@@ -133,7 +133,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41ac6cf92e62bf04b9d5486b24af298d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _data: {fileID: 11400000, guid: bfbbdb3a88324ba4fb17eca9679f2aec, type: 2}
+  Data: {fileID: 11400000, guid: bfbbdb3a88324ba4fb17eca9679f2aec, type: 2}
+  _collider: {fileID: 7697520464930204734}
 --- !u!61 &7697520464930204734
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -164,7 +165,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
