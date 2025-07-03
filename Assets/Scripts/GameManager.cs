@@ -1,4 +1,5 @@
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 public class GameManager : MonoBehaviour
 {
@@ -23,11 +24,21 @@ public class GameManager : MonoBehaviour
 
     public ItemBehavior SelectedItem;
     public float RoundTime;
-    public float Timer;
+    [ReadOnly] public float Timer;
+
+    private void Start()
+    {
+        ResetTimer();
+    }
 
     private void Update()
     {
         Timer -= Time.deltaTime;
+        if (UIManager.Timer.GetTextValue() != Mathf.RoundToInt(Timer).ToString())
+        {
+            UIManager.Timer.SetTextValue(Mathf.RoundToInt(Timer).ToString());
+        }
+
         if (Timer <= 0)
         {
             EndOfRound();    
