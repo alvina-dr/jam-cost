@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32c517d233ca1924496e4ec2b4e372ef, type: 3}
-  m_Name: ID_Basic
+  m_Script: {fileID: 11500000, guid: 81ff1ad9338f07e4e93fd92e5c650a35, type: 3}
+  m_Name: BD_PlasticQueen
   m_EditorClassIdentifier: 
-  Price: 100
-  Name: test name
-  ItemIcon: {fileID: 6850067608901130116, guid: e5c01db02b410f44b97db88dae8b9c64, type: 3}
+  Name: Plastic Queen
+  Description: Tous les objets en plastique gagnent un multiplicateur de x1.5
+  Icon: {fileID: -3079807719184372057, guid: 8bb9cf14c55eee24e94c37118d232ca7, type: 3}

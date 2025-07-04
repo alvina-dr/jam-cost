@@ -6,10 +6,12 @@ public class UI_TextValue : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI _textUI;
-    public string GetTextValue() => _textUI.text;
+    public string GetTextValue() => _tempoText;
+    private string _tempoText;
 
     public void SetTextValue(string text, bool animation = true)
     {
+        _tempoText = text;
         if (animation)
         {
             Sequence textAnimation = DOTween.Sequence();

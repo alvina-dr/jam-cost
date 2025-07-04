@@ -9,7 +9,7 @@ public class UI_TicketEntry : MonoBehaviour
 
     public void Setup(ItemData data)
     {
-        _itemIcon.sprite = null;
+        _itemIcon.sprite = data.ItemIcon;
         _itemName.text = data.Name;
     }
 }

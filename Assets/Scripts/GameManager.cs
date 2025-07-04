@@ -1,5 +1,6 @@
 using UnityEngine;
 using Sirenix.OdinInspector;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class GameManager : MonoBehaviour
     public float RoundTime;
     [ReadOnly] public float Timer;
 
+    public List<BonusData> BonusList;
+
     private void Start()
     {
         ResetTimer();
@@ -33,6 +36,8 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (!GetTimerPlaying()) return;
+
         Timer -= Time.deltaTime;
         if (UIManager.Timer.GetTextValue() != Mathf.RoundToInt(Timer).ToString())
         {
@@ -45,13 +50,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public bool GetTimerPlaying()
+    {
+        if (UIManager.BonusMenu.Menu.IsOpen()) return false;
+        return true;
+    }
+
     public void EndOfRound()
     {
-        ResetTimer();
+        Time.timeScale = 0f;
+        UIManager.BonusMenu.OpenMenu();
     }
 
     public void ResetTimer()
     {
         Timer = RoundTime;
+    }
+
+    public void AddBonus(BonusData bonus)
+    {
+        BonusList.Add(bonus);
+        UIManager.BonusList.UpdateBonusList();
     }
 }
