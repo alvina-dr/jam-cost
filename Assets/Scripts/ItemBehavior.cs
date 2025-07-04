@@ -28,29 +28,14 @@ public class ItemBehavior : MonoBehaviour
     {
         if (GameManager.Instance.CurrentGameState != GameManager.GameState.Scavenging) return;
 
-        _isDragging = true;
-        _dragOffset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        GameManager.Instance.SelectedItem = this;
-        _collider.enabled = false;
-        transform.DOScale(1.3f, .4f).SetEase(Ease.OutBack);
+        StartDrag();
     }
 
     private void OnMouseUp()
     {
         if (GameManager.Instance.CurrentGameState != GameManager.GameState.Scavenging) return;
 
-        _isDragging = false;
-        _collider.enabled = true;
-        transform.DOScale(1f, .3f).SetEase(Ease.InBack);
-        if (GameManager.Instance.SelectedItem == this) GameManager.Instance.SelectedItem = null;
-
-        if (GameManager.Instance.UIManager.TicketMenu.IsOverTicketMenu())
-        {
-            GameManager.Instance.UIManager.TicketMenu.AddItemToList(Data);
-            transform.DOKill();
-            GameManager.Instance.ItemManager.ItemList.Remove(this);
-            Destroy(gameObject);
-        }
+        EndDrag();
     }
 
     private void Update()
@@ -71,6 +56,37 @@ public class ItemBehavior : MonoBehaviour
         {
             Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = mouseWorldPosition + _dragOffset;
+        }
+    }
+
+    public void StartDrag()
+    {
+        _isDragging = true;
+        _dragOffset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        GameManager.Instance.SelectedItem = this;
+        _collider.enabled = false;
+        transform.DOScale(1.3f, .4f).SetEase(Ease.OutBack);
+    }
+
+    public void EndDrag()
+    {
+        _isDragging = false;
+        _collider.enabled = true;
+        transform.DOScale(1f, .3f).SetEase(Ease.InBack);
+        if (GameManager.Instance.SelectedItem == this) GameManager.Instance.SelectedItem = null;
+
+        if (GameManager.Instance.UIManager.TicketMenu.OverCheck.IsOver())
+        {
+            GameManager.Instance.UIManager.TicketMenu.AddItemToList(Data);
+            transform.DOKill();
+            GameManager.Instance.ItemManager.ItemList.Remove(this);
+            Destroy(gameObject);
+        }
+        else if (!GameManager.Instance.UIManager.DumpsterOverCheck.IsOver())
+        {
+            transform.DOKill();
+            GameManager.Instance.ItemManager.ItemList.Remove(this);
+            Destroy(gameObject);
         }
     }
 }

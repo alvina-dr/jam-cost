@@ -7,4 +7,5 @@ public class UIManager : MonoBehaviour
     public UI_TextValue Timer;
     public UI_BonusMenu BonusMenu;
     public UI_BonusList BonusList;
+    public UI_OverCheck DumpsterOverCheck;
 }

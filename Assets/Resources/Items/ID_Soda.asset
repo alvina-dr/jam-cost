@@ -16,4 +16,5 @@ MonoBehaviour:
   Price: 3
   Rarity: 2
   Name: Soda
-  Icon: {fileID: -2401115241096120877, guid: 9a32aba1ecb2d954c9b14983c4f12a1f, type: 3}
+  Icon: {fileID: 21300000, guid: aedab37bbae2fa74cb721317f9b0533a, type: 3}
+  Family: 0

@@ -1,9 +1,10 @@
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UI_TicketEntry : MonoBehaviour
+public class UI_TicketEntry : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     [SerializeField] private ItemData _data;
     public ItemData Data => _data;
@@ -32,5 +33,26 @@ public class UI_TicketEntry : MonoBehaviour
         {
             _itemPrice.transform.DOScale(1f, .1f);
         });
+    }
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        ItemBehavior itemBehavior = Instantiate(_data.Prefab);
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        itemBehavior.transform.position = new Vector3(mousePosition.x, mousePosition.y, 0);
+        itemBehavior.StartDrag();
+        transform.localScale = Vector3.zero;
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        if (GameManager.Instance.SelectedItem == null) return;
+        GameManager.Instance.SelectedItem.EndDrag();
+        GameManager.Instance.UIManager.TicketMenu.RemoveItemFromTicket(this);
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+
     }
 }

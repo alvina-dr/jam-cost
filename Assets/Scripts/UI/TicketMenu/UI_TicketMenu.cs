@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 
 public class UI_TicketMenu : MonoBehaviour
 {
+    public UI_OverCheck OverCheck;
     [SerializeField] private Transform _layout;
     [SerializeField] private UI_TicketEntry _ticketEntryPrefab;
     [SerializeField] private List<UI_TicketEntry> _ticketEntryList = new();
@@ -24,6 +25,12 @@ public class UI_TicketMenu : MonoBehaviour
         }
 
         _ticketEntryList.Clear();
+    }
+
+    public void RemoveItemFromTicket(UI_TicketEntry ticketEntry)
+    {
+        _ticketEntryList.Remove(ticketEntry);
+        Destroy(ticketEntry.gameObject);
     }
 
     public void AddItemToList(ItemData data)
