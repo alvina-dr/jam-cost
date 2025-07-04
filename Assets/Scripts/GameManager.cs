@@ -26,8 +26,18 @@ public class GameManager : MonoBehaviour
     public ItemBehavior SelectedItem;
     public float RoundTime;
     [ReadOnly] public float Timer;
+    public int CurrentScore;
 
     public List<BonusData> BonusList;
+
+    public enum GameState
+    {
+        Scavenging = 0,
+        CalculatingScore = 1,
+        ChoosingBonus = 2
+    }
+
+    public GameState CurrentGameState;
 
     private void Start()
     {
@@ -36,7 +46,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (!GetTimerPlaying()) return;
+        if (CurrentGameState != GameState.Scavenging) return;
 
         Timer -= Time.deltaTime;
         if (UIManager.Timer.GetTextValue() != Mathf.RoundToInt(Timer).ToString())
@@ -58,9 +68,7 @@ public class GameManager : MonoBehaviour
 
     public void EndOfRound()
     {
-        Time.timeScale = 0f;
-        UIManager.TicketMenu.ResetTicket();
-        UIManager.BonusMenu.OpenMenu();
+        SetGameState(GameState.CalculatingScore);
     }
 
     public void ResetTimer()
@@ -72,5 +80,27 @@ public class GameManager : MonoBehaviour
     {
         BonusList.Add(bonus);
         UIManager.BonusList.UpdateBonusList();
+    }
+
+    public void SetGameState(GameState state)
+    {
+        CurrentGameState = state;
+
+        switch (state)
+        {
+            case GameState.Scavenging:
+                break;
+            case GameState.CalculatingScore:
+                UIManager.TicketMenu.CountScore();
+                break;
+            case GameState.ChoosingBonus:
+                UIManager.BonusMenu.OpenMenu();
+                break;
+        }
+    }
+
+    public void CalculateScore(List<ItemData> itemDataList)
+    {
+
     }
 }

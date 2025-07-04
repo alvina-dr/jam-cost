@@ -22,6 +22,8 @@ public class ItemBehavior : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (GameManager.Instance.CurrentGameState != GameManager.GameState.Scavenging) return;
+
         _isDragging = true;
         _dragOffset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
         GameManager.Instance.SelectedItem = this;
@@ -43,7 +45,6 @@ public class ItemBehavior : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
 
     private void Update()
     {

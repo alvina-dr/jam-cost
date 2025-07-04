@@ -23,12 +23,6 @@ public class UI_BonusMenu : MonoBehaviour
         Menu.CloseMenu();
     }
 
-    public void ValidateBonusSelection()
-    {
-        GameManager.Instance.ResetTimer();
-        Time.timeScale = 1f;
-    }
-
     public void SelectBonus(UI_BonusEntry bonusEntry)
     {
         for (int i = 0; i < _bonusEntryList.Count; i++)
