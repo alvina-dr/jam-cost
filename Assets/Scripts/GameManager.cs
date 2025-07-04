@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour
     public void EndOfRound()
     {
         Time.timeScale = 0f;
+        UIManager.TicketMenu.ResetTicket();
         UIManager.BonusMenu.OpenMenu();
     }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 public class ItemData : ScriptableObject
 {
     public int Price;
+    public int Rarity;
     public string Name;
     public Sprite ItemIcon;
 }
