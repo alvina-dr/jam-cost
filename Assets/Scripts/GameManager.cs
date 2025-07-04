@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     public UIManager UIManager;
+    public ItemManager ItemManager;
 
     public ItemBehavior SelectedItem;
     public float RoundTime;
@@ -41,7 +42,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        ResetTimer();
+        SetGameState(GameState.Scavenging);
     }
 
     private void Update()
@@ -89,9 +90,12 @@ public class GameManager : MonoBehaviour
         switch (state)
         {
             case GameState.Scavenging:
+                ItemManager.ResetDumpster();
+                ResetTimer();
                 break;
             case GameState.CalculatingScore:
                 UIManager.TicketMenu.CountScore();
+                UIManager.HoverPrice.HidePrice();
                 break;
             case GameState.ChoosingBonus:
                 UIManager.BonusMenu.OpenMenu();

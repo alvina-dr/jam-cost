@@ -5,7 +5,7 @@ using UnityEngine;
 public class ItemManager : MonoBehaviour
 {
     public List<ItemBehavior> ItemList = new();
-    public int itemNumber;
+    public GenerationParameters GenerationParameters;
     [SerializeField] private Vector2 _spawnZone;
     [SerializeField] private Vector2 _offset;
 
@@ -28,7 +28,7 @@ public class ItemManager : MonoBehaviour
 
     public void SpawnItems()
     {
-        for (int i = 0; i < itemNumber; i++)
+        for (int i = 0; i < GenerationParameters.ItemNumber; i++)
         {
             ItemData data = DataLoader.Instance.GetRandomItemData();
             ItemBehavior itemBehavior = Instantiate(data.Prefab);

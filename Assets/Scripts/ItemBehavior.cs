@@ -12,11 +12,15 @@ public class ItemBehavior : MonoBehaviour
 
     private void OnMouseEnter()
     {
+        if (GameManager.Instance.CurrentGameState != GameManager.GameState.Scavenging) return;
+
         GameManager.Instance.UIManager.HoverPrice.ShowPrice(Data.Price, transform.position);
     }
 
     private void OnMouseExit()
     {
+        if (GameManager.Instance.CurrentGameState != GameManager.GameState.Scavenging) return;
+
         GameManager.Instance.UIManager.HoverPrice.HidePrice();
     }
 
@@ -33,6 +37,8 @@ public class ItemBehavior : MonoBehaviour
 
     private void OnMouseUp()
     {
+        if (GameManager.Instance.CurrentGameState != GameManager.GameState.Scavenging) return;
+
         _isDragging = false;
         _collider.enabled = true;
         transform.DOScale(1f, .3f).SetEase(Ease.InBack);
@@ -42,12 +48,25 @@ public class ItemBehavior : MonoBehaviour
         {
             GameManager.Instance.UIManager.TicketMenu.AddItemToList(Data);
             transform.DOKill();
+            GameManager.Instance.ItemManager.ItemList.Remove(this);
             Destroy(gameObject);
         }
     }
 
     private void Update()
     {
+        if (GameManager.Instance.CurrentGameState != GameManager.GameState.Scavenging)
+        {
+            if (_isDragging)
+            {
+                _isDragging = false;
+                _collider.enabled = true;
+                transform.DOScale(1f, .3f).SetEase(Ease.InBack);
+                if (GameManager.Instance.SelectedItem == this) GameManager.Instance.SelectedItem = null;
+            }
+            return;
+        }
+
         if (_isDragging)
         {
             Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);

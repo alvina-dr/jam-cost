@@ -29,7 +29,5 @@ public class UI_BonusEntry : MonoBehaviour
         GameManager.Instance.AddBonus(_bonusData);
         GameManager.Instance.UIManager.BonusMenu.CloseMenu();
         GameManager.Instance.SetGameState(GameManager.GameState.Scavenging);
-        GameManager.Instance.ResetTimer();
-        Time.timeScale = 1f;
     }
 }
