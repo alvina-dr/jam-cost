@@ -17,7 +17,7 @@ public class UI_TicketEntry : MonoBehaviour
     public void Setup(ItemData data)
     {
         _data = data;
-        _itemIcon.sprite = data.ItemIcon;
+        _itemIcon.sprite = data.Icon;
         _itemName.text = data.Name;
         _itemPrice.text = data.Price.ToString() + "$";
         for (int i = 0; i < data.Rarity; i++)

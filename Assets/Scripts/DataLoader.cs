@@ -34,4 +34,9 @@ public class DataLoader : MonoBehaviour
     {
         return BonusDataList[Random.Range(0, BonusDataList.Count)];
     }
+
+    public ItemData GetRandomItemData()
+    {
+        return ItemDataList[Random.Range(0, ItemDataList.Count)];
+    }
 }
