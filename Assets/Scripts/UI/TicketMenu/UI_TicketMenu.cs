@@ -69,17 +69,24 @@ public class UI_TicketMenu : MonoBehaviour
             int score = _ticketEntryList[index].Data.Price;
             countAnimation.AppendCallback(() => _ticketEntryList[index].BumpPrice());
             countAnimation.Join(_ticketEntryList[index].transform.DOShakeRotation(.3f, .3f));
+
+            // Basic score
             countAnimation.AppendCallback(() =>
             {
-                GameManager.Instance.UIManager.TextPopperManager.PopText("+" + _ticketEntryList[index].Data.Price, _ticketEntryList[index].ScoreSpawnPoint.position, _addColor);
+                if (familyCountList[(int)_ticketEntryList[index].Data.Family] > 1)
+                    GameManager.Instance.UIManager.TextPopperManager.PopText("+" + _ticketEntryList[index].Data.Price, _ticketEntryList[index].ScoreSpawnPoint.position, _addColor, UI_TextPopper.AnimSpeed.Quick);
+                else
+                    GameManager.Instance.UIManager.TextPopperManager.PopText("+" + _ticketEntryList[index].Data.Price, _ticketEntryList[index].ScoreSpawnPoint.position, _addColor);
             });
+
+            // If several in family
             if (familyCountList[(int)_ticketEntryList[index].Data.Family] > 1)
             {
-                countAnimation.AppendInterval(.3f);
+                countAnimation.AppendInterval(.45f);
                 countAnimation.AppendCallback(() =>
                 {
                     score *= familyCountList[(int)_ticketEntryList[index].Data.Family];
-                    GameManager.Instance.UIManager.TextPopperManager.PopText("x" + familyCountList[(int)_ticketEntryList[index].Data.Family], _ticketEntryList[index].ScoreSpawnPoint.position + new Vector3(1, 0, 0), _multiplyColor);
+                    GameManager.Instance.UIManager.TextPopperManager.PopText("x" + familyCountList[(int)_ticketEntryList[index].Data.Family], _ticketEntryList[index].ScoreSpawnPoint.position, _multiplyColor);
                 });
             }
             countAnimation.AppendCallback(() => GameManager.Instance.CurrentScore += score);

@@ -6,7 +6,13 @@ public class UI_TextPopper : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI TextMeshUI;
 
-    public void PopText(string text, Color color = default)
+    public enum AnimSpeed
+    {
+        Normal = 0,
+        Quick = 1
+    }
+
+    public void PopText(string text, Color color = default, AnimSpeed speed = AnimSpeed.Normal)
     {
         transform.localScale = Vector3.zero;
         TextMeshUI.text = text;
@@ -15,7 +21,15 @@ public class UI_TextPopper : MonoBehaviour
         Sequence textAnimation = DOTween.Sequence();
         textAnimation.Append(transform.DOScale(1.3f, .05f));
         textAnimation.Append(transform.DOScale(1f, .01f));
-        textAnimation.Append(transform.DOMoveY(transform.position.y + .3f, .5f));
+        switch (speed)
+        {
+            case AnimSpeed.Normal:
+                textAnimation.Append(transform.DOMoveY(transform.position.y + .3f, .5f));
+                break;
+            case AnimSpeed.Quick:
+                textAnimation.Append(transform.DOMoveY(transform.position.y + .3f, .3f));
+                break;
+        }
         textAnimation.Join(transform.DOShakeRotation(.5f, .3f));
         textAnimation.AppendCallback(() =>
         {
