@@ -1652,13 +1652,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIManager: {fileID: 110208747}
   ItemManager: {fileID: 1648493509}
-  SelectedItem: {fileID: 0}
   RoundTime: 10
+  RoundData: {fileID: 11400000, guid: 68529cb8f4d36ee4db03e872e1bcb99f, type: 2}
+  HandPerRound: 3
+  SelectedItem: {fileID: 0}
   Timer: 0
   CurrentScore: 0
   BonusList: []
   CurrentDay: 0
-  RoundData: {fileID: 11400000, guid: 68529cb8f4d36ee4db03e872e1bcb99f, type: 2}
+  CurrentHand: 0
   CurrentGameState: 0
 --- !u!114 &1648493509
 MonoBehaviour:

@@ -21,18 +21,23 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    [Header("References")]
     public UIManager UIManager;
     public ItemManager ItemManager;
 
-    public ItemBehavior SelectedItem;
+    [Header("Infos")]
     public float RoundTime;
+    public RoundData RoundData;
+    public int HandPerRound;
+
+    [Header("Current Stats")]
+    public ItemBehavior SelectedItem;
     [ReadOnly] public float Timer;
     public int CurrentScore;
-
     public List<BonusData> BonusList;
-
     public int CurrentDay;
-    public RoundData RoundData;
+    public int CurrentHand;
+
 
     public enum GameState
     {
@@ -47,6 +52,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         CurrentDay = -1;
+        NextDay();
         SetGameState(GameState.Scavenging);
     }
 
@@ -74,6 +80,7 @@ public class GameManager : MonoBehaviour
 
     public void EndOfRound()
     {
+        ResetTimer();
         SetGameState(GameState.CalculatingScore);
     }
 
@@ -95,8 +102,7 @@ public class GameManager : MonoBehaviour
         switch (state)
         {
             case GameState.Scavenging:
-                NextDay();
-                ItemManager.ResetDumpster();
+                CurrentHand++;
                 ResetTimer();
                 break;
             case GameState.CalculatingScore:
@@ -120,6 +126,8 @@ public class GameManager : MonoBehaviour
 
         SetCurrentScore(0);
         UIManager.TicketMenu.GoalScoreText.SetTextValue(RoundData.RoundDataList[CurrentDay].ScoreGoal + "$", true);
+
+        ItemManager.ResetDumpster();
     }
 
     public void SetCurrentScore(int score)

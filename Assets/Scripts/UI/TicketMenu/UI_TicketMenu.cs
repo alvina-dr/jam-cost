@@ -115,8 +115,25 @@ public class UI_TicketMenu : MonoBehaviour
         countAnimation.AppendInterval(2f);
         countAnimation.AppendCallback(() => ResetTicket());
         countAnimation.AppendInterval(1f);
-        countAnimation.AppendCallback(() => GameManager.Instance.CheckScoreHighEnough());
-        //countAnimation.AppendCallback(() => GameManager.Instance.SetGameState(GameManager.GameState.ChoosingBonus));
-        countAnimation.Play();
+
+        // End of round
+        if (GameManager.Instance.CurrentHand >= GameManager.Instance.HandPerRound)
+        {
+            countAnimation.AppendCallback(() => 
+            {
+                GameManager.Instance.CheckScoreHighEnough();
+                GameManager.Instance.CurrentHand = 0;
+            });
+        }
+        // Next hand
+        else
+        {
+            countAnimation.AppendCallback(() =>
+            {
+                GameManager.Instance.SetGameState(GameManager.GameState.Scavenging);
+            });
+        }
+
+        //countAnimation.Play();
     }
 }
