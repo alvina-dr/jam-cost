@@ -1,8 +1,7 @@
 using DG.Tweening;
+using System;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class UI_TicketMenu : MonoBehaviour
 {
@@ -51,10 +50,31 @@ public class UI_TicketMenu : MonoBehaviour
     {
         List<ItemData> itemDataList = new();
         Sequence countAnimation = DOTween.Sequence();
+
+        // calculate how many object there is of each family
+        List<int> familyCountList = new();
+        for (int i = 0; i < Enum.GetNames(typeof(ItemData.ItemFamily)).Length; i++)
+        {
+            Debug.Log((ItemData.ItemFamily)i);
+            familyCountList.Add(_ticketEntryList.FindAll(x => x.Data.Family == (ItemData.ItemFamily)i).Count);
+        }
+
         for (int i = 0; i < _ticketEntryList.Count; i++)
         {
             int index = i;
+            int score = _ticketEntryList[index].Data.Price;
             countAnimation.AppendCallback(() => _ticketEntryList[index].BumpPrice());
+            countAnimation.Join(_ticketEntryList[index].transform.DOShakeRotation(.3f, .3f));
+            countAnimation.AppendCallback(() =>
+            {
+                if (familyCountList[(int)_ticketEntryList[index].Data.Family] > 1)
+                {
+                    score *= familyCountList[(int)_ticketEntryList[index].Data.Family];
+                    GameManager.Instance.UIManager.TextPopperManager.PopText("x" + familyCountList[(int)_ticketEntryList[index].Data.Family], _ticketEntryList[index].transform.position, Color.red);
+                    // feedback that there is a multiplier
+                    // multiply this score
+                }
+            });
             countAnimation.AppendCallback(() => GameManager.Instance.CurrentScore += _ticketEntryList[index].Data.Price);
             countAnimation.AppendCallback(() => _totalText.SetTextValue(GameManager.Instance.CurrentScore.ToString() + "$"));
             countAnimation.Append(_totalText.transform.DOShakePosition(.2f, 10));

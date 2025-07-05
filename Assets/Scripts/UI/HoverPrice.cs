@@ -8,7 +8,7 @@ public class HoverPrice : MonoBehaviour
 
     public void ShowPrice(int price, Vector3 worldPosition)
     {
-        transform.position = Camera.main.WorldToScreenPoint(worldPosition);
+        transform.position = worldPosition; // Camera.main.WorldToScreenPoint(worldPosition);
         _showSizeAnimation.Show();
         _price.text = price.ToString() + "$";
     }

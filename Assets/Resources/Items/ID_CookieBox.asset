@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32c517d233ca1924496e4ec2b4e372ef, type: 3}
+  m_Name: ID_CookieBox
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 3737433453275763250, guid: b9fa057dd2ed9a5429d3f23a28c7d3c2, type: 3}
+  Price: 7
+  Rarity: 1
+  Name: Cookie Box
+  Icon: {fileID: 21300000, guid: d704fa18428caa74f923771b56bb9ae9, type: 3}
+  Family: 1

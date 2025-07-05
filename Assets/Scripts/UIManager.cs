@@ -10,4 +10,5 @@ public class UIManager : MonoBehaviour
     public UI_BonusList BonusList;
     public UI_OverCheck DumpsterOverCheck;
     public UI_GameOver GameOver;
+    public UI_TextPopperManager TextPopperManager;
 }

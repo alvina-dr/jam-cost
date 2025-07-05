@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: ID_PizzaBox
   m_EditorClassIdentifier: 
   Prefab: {fileID: 3737433453275763250, guid: 89e259dc54d1d5743b4d9f4b8e0c6b6e, type: 3}
-  Price: 4
-  Rarity: 3
+  Price: 3
+  Rarity: 1
   Name: Pizza Box
-  Icon: {fileID: -2401115241096120877, guid: 9a32aba1ecb2d954c9b14983c4f12a1f, type: 3}
+  Icon: {fileID: 21300000, guid: f76bccb822d55984c9056bfe3cadc848, type: 3}
   Family: 1

@@ -15,7 +15,8 @@ public class UI_TextPopper : MonoBehaviour
         Sequence textAnimation = DOTween.Sequence();
         textAnimation.Append(transform.DOScale(1.3f, .05f));
         textAnimation.Append(transform.DOScale(1f, .01f));
-        textAnimation.Append(transform.DOMoveY(transform.position.y + 50, .2f));
+        textAnimation.Append(transform.DOMoveY(transform.position.y + .3f, .5f));
+        textAnimation.Join(transform.DOShakeRotation(.5f, .3f));
         textAnimation.AppendCallback(() =>
         {
             Destroy(gameObject);
