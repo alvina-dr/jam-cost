@@ -1653,7 +1653,7 @@ MonoBehaviour:
   UIManager: {fileID: 110208747}
   ItemManager: {fileID: 1648493509}
   SelectedItem: {fileID: 0}
-  RoundTime: 10
+  RoundTime: 100
   Timer: 0
   CurrentScore: 0
   BonusList: []
