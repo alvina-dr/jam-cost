@@ -8,10 +8,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3332545717796112969, guid: a7baf07a41069234a8d382ebd7b43e0c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3332545717796112969, guid: a7baf07a41069234a8d382ebd7b43e0c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3332545717796112969, guid: a7baf07a41069234a8d382ebd7b43e0c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4162256917233115436, guid: a7baf07a41069234a8d382ebd7b43e0c, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -3079807719184372057, guid: 8bb9cf14c55eee24e94c37118d232ca7, type: 3}
+      objectReference: {fileID: 21300000, guid: c103c6a7d40710a4699e689d6b64053f, type: 3}
+    - target: {fileID: 6825208998740395840, guid: a7baf07a41069234a8d382ebd7b43e0c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c103c6a7d40710a4699e689d6b64053f, type: 3}
     - target: {fileID: 7242585668704001078, guid: a7baf07a41069234a8d382ebd7b43e0c, type: 3}
       propertyPath: m_Name
       value: IP_Newspaper

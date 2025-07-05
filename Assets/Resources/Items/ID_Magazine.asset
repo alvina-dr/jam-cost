@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32c517d233ca1924496e4ec2b4e372ef, type: 3}
-  m_Name: ID_Newspaper
+  m_Name: ID_Magazine
   m_EditorClassIdentifier: 
   Prefab: {fileID: 3737433453275763250, guid: 1a3a640d6e88d8b47a553db9f16bdb6e, type: 3}
-  Price: 4
-  Rarity: 3
-  Name: Newspaper
-  Icon: {fileID: -3079807719184372057, guid: 8bb9cf14c55eee24e94c37118d232ca7, type: 3}
+  Price: 5
+  Rarity: 1
+  Name: Magazine
+  Icon: {fileID: 21300000, guid: c103c6a7d40710a4699e689d6b64053f, type: 3}
   Family: 1
