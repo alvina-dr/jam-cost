@@ -1085,6 +1085,8 @@ MonoBehaviour:
   _ticketEntryList: []
   _totalText: {fileID: 6693518938809125235}
   _scoreGoalText: {fileID: 2602467620965726304}
+  _addColor: {r: 0.1415093, g: 0.61990225, b: 1, a: 1}
+  _multiplyColor: {r: 0.96981126, g: 0.38477942, b: 0.14455667, a: 1}
 --- !u!114 &4767481177639422249
 MonoBehaviour:
   m_ObjectHideFlags: 0

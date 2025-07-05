@@ -121,9 +121,10 @@ public class GameManager : MonoBehaviour
         UIManager.TicketMenu.UpdateScoreTexts();
     }
 
-    public void CalculateScore(List<ItemData> itemDataList)
+    public void AddScore(int score)
     {
-
+        CurrentScore += score;
+        UIManager.TicketMenu.UpdateScoreTexts();
     }
 
     public void CheckScoreHighEnough()

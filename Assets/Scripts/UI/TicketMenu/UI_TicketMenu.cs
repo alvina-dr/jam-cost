@@ -12,6 +12,10 @@ public class UI_TicketMenu : MonoBehaviour
     [SerializeField] private UI_TextValue _totalText;
     [SerializeField] private UI_TextValue _scoreGoalText;
 
+    [Header("Score colors")]
+    [SerializeField] private Color _addColor;
+    [SerializeField] private Color _multiplyColor;
+
     private void Awake()
     {
         UpdateScoreTexts(false);
@@ -67,14 +71,17 @@ public class UI_TicketMenu : MonoBehaviour
             countAnimation.Join(_ticketEntryList[index].transform.DOShakeRotation(.3f, .3f));
             countAnimation.AppendCallback(() =>
             {
-                if (familyCountList[(int)_ticketEntryList[index].Data.Family] > 1)
+                GameManager.Instance.UIManager.TextPopperManager.PopText("+" + _ticketEntryList[index].Data.Price, _ticketEntryList[index].ScoreSpawnPoint.position, _addColor);
+            });
+            if (familyCountList[(int)_ticketEntryList[index].Data.Family] > 1)
+            {
+                countAnimation.AppendInterval(.3f);
+                countAnimation.AppendCallback(() =>
                 {
                     score *= familyCountList[(int)_ticketEntryList[index].Data.Family];
-                    GameManager.Instance.UIManager.TextPopperManager.PopText("x" + familyCountList[(int)_ticketEntryList[index].Data.Family], _ticketEntryList[index].ScoreSpawnPoint.position, Color.red);
-                    // feedback that there is a multiplier
-                    // multiply this score
-                }
-            });
+                    GameManager.Instance.UIManager.TextPopperManager.PopText("x" + familyCountList[(int)_ticketEntryList[index].Data.Family], _ticketEntryList[index].ScoreSpawnPoint.position + new Vector3(1, 0, 0), _multiplyColor);
+                });
+            }
             countAnimation.AppendCallback(() => GameManager.Instance.CurrentScore += score);
             countAnimation.AppendCallback(() => _totalText.SetTextValue(GameManager.Instance.CurrentScore.ToString() + "$"));
             countAnimation.Append(_totalText.transform.DOShakePosition(.2f, 10));
