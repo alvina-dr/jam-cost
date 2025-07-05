@@ -14,6 +14,9 @@ public class UI_TicketEntry : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
     [SerializeField] private TextMeshProUGUI _itemPrice;
     [SerializeField] private Image _starPrefab;
     [SerializeField] private Transform _starParent;
+    [SerializeField] private Transform _horizontalLayout;
+
+    [SerializeField] private Image _raycastImage;
 
     public void Setup(ItemData data)
     {
@@ -29,9 +32,11 @@ public class UI_TicketEntry : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
 
     public void BumpPrice()
     {
-        _itemPrice.transform.DOScale(1.8f, .1f).SetEase(Ease.Linear).SetUpdate(true).OnComplete(() =>
+        _horizontalLayout.DOScale(1.3f, .1f).SetUpdate(true);
+        _itemPrice.transform.DOScale(1.8f, .1f).SetUpdate(true).OnComplete(() =>
         {
             _itemPrice.transform.DOScale(1f, .1f);
+            _horizontalLayout.DOScale(1f, .1f).SetUpdate(true);
         });
     }
 
@@ -49,6 +54,12 @@ public class UI_TicketEntry : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
         if (GameManager.Instance.SelectedItem == null) return;
         GameManager.Instance.SelectedItem.EndDrag();
         GameManager.Instance.UIManager.TicketMenu.RemoveItemFromTicket(this);
+    }
+
+    private void Update()
+    {
+        if (GameManager.Instance.SelectedItem != null) _raycastImage.raycastTarget = false;
+        else _raycastImage.raycastTarget = true;
     }
 
     public void OnDrag(PointerEventData eventData)
