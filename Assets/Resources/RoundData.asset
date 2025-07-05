@@ -9,7 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee48ddd69d6c58042bb5999fc8a6837b, type: 3}
-  m_Name: GenerationParameters
+  m_Script: {fileID: 11500000, guid: 29a1a3ca09fc2d644a7fa7464a4e5416, type: 3}
+  m_Name: RoundData
   m_EditorClassIdentifier: 
-  ItemNumber: 100
+  RoundDataList:
+  - ItemSpawnNumber: 100
+    ScoreGoal: 5
+  - ItemSpawnNumber: 100
+    ScoreGoal: 10
+  - ItemSpawnNumber: 100
+    ScoreGoal: 20

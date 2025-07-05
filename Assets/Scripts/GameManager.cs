@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     public int CurrentScore;
 
     public List<BonusData> BonusList;
+    public RoundData RoundData;
 
     public enum GameState
     {

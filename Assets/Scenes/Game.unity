@@ -1174,6 +1174,7 @@ MonoBehaviour:
   Timer: 0
   CurrentScore: 0
   BonusList: []
+  RoundData: {fileID: 11400000, guid: 68529cb8f4d36ee4db03e872e1bcb99f, type: 2}
   CurrentGameState: 0
 --- !u!114 &1648493509
 MonoBehaviour:
@@ -1189,7 +1190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemList: []
   GenerationParameters: {fileID: 11400000, guid: f4f280a27117da24eaadb9088d466dfb, type: 2}
-  _spawnZone: {x: 9.98, y: 5.89}
+  _spawnZone: {x: 8.87, y: 4.41}
   _offset: {x: 1.37, y: -1.39}
 --- !u!1 &1873983675
 GameObject:
@@ -1273,7 +1274,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.5, y: -1.22, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 0.90000004, y: 0.90000004, z: 0.90000004}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
