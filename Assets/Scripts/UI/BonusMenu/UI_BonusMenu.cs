@@ -23,13 +23,13 @@ public class UI_BonusMenu : MonoBehaviour
         Menu.CloseMenu();
     }
 
-    public void SelectBonus(UI_BonusEntry bonusEntry)
-    {
-        for (int i = 0; i < _bonusEntryList.Count; i++)
-        {
-            if (_bonusEntryList[i] != bonusEntry) _bonusEntryList[i].DeselectBonus();
-        }
-    }
+    //public void SelectBonus(UI_BonusEntry bonusEntry)
+    //{
+    //    for (int i = 0; i < _bonusEntryList.Count; i++)
+    //    {
+    //        if (_bonusEntryList[i] != bonusEntry) _bonusEntryList[i].DeselectBonus();
+    //    }
+    //}
 
     [Button]
     public void UpdateBonusEntryList()

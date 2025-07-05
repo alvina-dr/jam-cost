@@ -30,19 +30,23 @@ public class GameManager : MonoBehaviour
     public int CurrentScore;
 
     public List<BonusData> BonusList;
+
+    public int CurrentDay;
     public RoundData RoundData;
 
     public enum GameState
     {
         Scavenging = 0,
         CalculatingScore = 1,
-        ChoosingBonus = 2
+        ChoosingBonus = 2,
+        GameOver = 3
     }
 
     public GameState CurrentGameState;
 
     private void Start()
     {
+        CurrentDay = -1;
         SetGameState(GameState.Scavenging);
     }
 
@@ -91,6 +95,7 @@ public class GameManager : MonoBehaviour
         switch (state)
         {
             case GameState.Scavenging:
+                NextDay();
                 ItemManager.ResetDumpster();
                 ResetTimer();
                 break;
@@ -102,11 +107,32 @@ public class GameManager : MonoBehaviour
             case GameState.ChoosingBonus:
                 UIManager.BonusMenu.OpenMenu();
                 break;
+            case GameState.GameOver:
+                UIManager.GameOver.Open();
+                break;
         }
+    }
+
+    public void NextDay()
+    {
+        CurrentDay++;
+        UIManager.DayCount.SetTextValue((CurrentDay + 1).ToString());
     }
 
     public void CalculateScore(List<ItemData> itemDataList)
     {
 
+    }
+
+    public void CheckScoreHighEnough()
+    {
+        if (CurrentScore < RoundData.RoundDataList[CurrentDay].ScoreGoal)
+        {
+            SetGameState(GameState.GameOver);
+        }
+        else
+        {
+            SetGameState(GameState.ChoosingBonus);
+        }
     }
 }

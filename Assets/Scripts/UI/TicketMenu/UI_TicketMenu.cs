@@ -40,11 +40,6 @@ public class UI_TicketMenu : MonoBehaviour
         _ticketEntryList.Add(ticketEntry);
     }
 
-    public bool IsOverTicketMenu()
-    {
-        return EventSystem.current.IsPointerOverGameObject();
-    }
-
     public void CountScore()
     {
         List<ItemData> itemDataList = new();
@@ -62,7 +57,8 @@ public class UI_TicketMenu : MonoBehaviour
         countAnimation.AppendInterval(2f);
         countAnimation.AppendCallback(() => ResetTicket());
         countAnimation.AppendInterval(1f);
-        countAnimation.AppendCallback(() => GameManager.Instance.SetGameState(GameManager.GameState.ChoosingBonus));
+        countAnimation.AppendCallback(() => GameManager.Instance.CheckScoreHighEnough());
+        //countAnimation.AppendCallback(() => GameManager.Instance.SetGameState(GameManager.GameState.ChoosingBonus));
         countAnimation.Play();
     }
 }

@@ -45,6 +45,7 @@ public class UI_Menu : MonoBehaviour
 
     public void Pop(Transform transform, float time, bool show)
     {
+        if (show) transform.gameObject.SetActive(true);
         Sequence animationSequence = DOTween.Sequence();
         animationSequence.SetUpdate(true);
         animationSequence.Append(transform.DOScale(1.3f, time/2));

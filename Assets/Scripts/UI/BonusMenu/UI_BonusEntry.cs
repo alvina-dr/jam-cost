@@ -13,16 +13,16 @@ public class UI_BonusEntry : MonoBehaviour
         _bonusName.text = _bonusData.Name;
     }
 
-    public void SelectBonus()
-    {
-        _highlight.SetActive(true);
-        GameManager.Instance.UIManager.BonusMenu.SelectBonus(this);
-    }
+    //public void SelectBonus()
+    //{
+    //    _highlight.SetActive(true);
+    //    GameManager.Instance.UIManager.BonusMenu.SelectBonus(this);
+    //}
 
-    public void DeselectBonus()
-    {
-        _highlight.SetActive(false);
-    }
+    //public void DeselectBonus()
+    //{
+    //    _highlight.SetActive(false);
+    //}
 
     public void ChooseBonus()
     {
