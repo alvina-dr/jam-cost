@@ -17,6 +17,7 @@ public class UI_TicketEntry : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
     [SerializeField] private Transform _horizontalLayout;
 
     [SerializeField] private Image _raycastImage;
+    public Transform ScoreSpawnPoint;
 
     public void Setup(ItemData data)
     {

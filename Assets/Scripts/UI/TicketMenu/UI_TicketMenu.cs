@@ -19,7 +19,7 @@ public class UI_TicketMenu : MonoBehaviour
 
     public void UpdateScoreTexts(bool animate = true)
     {
-        _totalText.SetTextValue(GameManager.Instance.CurrentDay + "$", animate);
+        _totalText.SetTextValue(GameManager.Instance.CurrentScore + "$", animate);
         _scoreGoalText.SetTextValue(GameManager.Instance.RoundData.RoundDataList[GameManager.Instance.CurrentDay].ScoreGoal + "$", animate);
     }
 
@@ -70,12 +70,12 @@ public class UI_TicketMenu : MonoBehaviour
                 if (familyCountList[(int)_ticketEntryList[index].Data.Family] > 1)
                 {
                     score *= familyCountList[(int)_ticketEntryList[index].Data.Family];
-                    GameManager.Instance.UIManager.TextPopperManager.PopText("x" + familyCountList[(int)_ticketEntryList[index].Data.Family], _ticketEntryList[index].transform.position, Color.red);
+                    GameManager.Instance.UIManager.TextPopperManager.PopText("x" + familyCountList[(int)_ticketEntryList[index].Data.Family], _ticketEntryList[index].ScoreSpawnPoint.position, Color.red);
                     // feedback that there is a multiplier
                     // multiply this score
                 }
             });
-            countAnimation.AppendCallback(() => GameManager.Instance.CurrentScore += _ticketEntryList[index].Data.Price);
+            countAnimation.AppendCallback(() => GameManager.Instance.CurrentScore += score);
             countAnimation.AppendCallback(() => _totalText.SetTextValue(GameManager.Instance.CurrentScore.ToString() + "$"));
             countAnimation.Append(_totalText.transform.DOShakePosition(.2f, 10));
             countAnimation.AppendInterval(.8f);
