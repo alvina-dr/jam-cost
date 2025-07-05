@@ -6,9 +6,43 @@ public class ItemBehavior : MonoBehaviour
 {
     public ItemData Data;
     [SerializeField] private Collider2D _collider;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
 
     private bool _isDragging = false;
     private Vector3 _dragOffset;
+
+    [Header("Shadow")]
+    [SerializeField] private Vector3 _offset;
+    [SerializeField] private Vector3 _flyingOffset;
+    [SerializeField] private SpriteRenderer _shadowSpriteRenderer;
+
+    private void Start()
+    {
+        _shadowSpriteRenderer.transform.localPosition = _offset;
+        _shadowSpriteRenderer.transform.localRotation = Quaternion.identity;
+
+        _shadowSpriteRenderer.sprite = _spriteRenderer.sprite;
+
+        _shadowSpriteRenderer.sortingLayerName = _spriteRenderer.sortingLayerName;
+        _shadowSpriteRenderer.sortingOrder = _spriteRenderer.sortingOrder - 1;
+    }
+
+    private void LateUpdate()
+    {
+
+        if (_isDragging)
+        {
+            _shadowSpriteRenderer.transform.localPosition = Vector3.Lerp(_shadowSpriteRenderer.transform.localPosition,
+                Quaternion.Inverse(_spriteRenderer.transform.rotation) * _flyingOffset, Time.deltaTime * 30);
+            //_shadowSpriteRenderer.transform.localPosition = Quaternion.Inverse(_spriteRenderer.transform.rotation) * _flyingOffset;
+        }
+        else
+        {
+            _shadowSpriteRenderer.transform.localPosition = Vector3.Lerp(_shadowSpriteRenderer.transform.localPosition,
+                Quaternion.Inverse(_spriteRenderer.transform.rotation) * _offset, Time.deltaTime * 30);
+        }
+
+    }
 
     private void OnMouseEnter()
     {
@@ -66,14 +100,23 @@ public class ItemBehavior : MonoBehaviour
         GameManager.Instance.SelectedItem = this;
         _collider.enabled = false;
         transform.DOScale(1.3f, .4f).SetEase(Ease.OutBack);
+        gameObject.layer = LayerMask.NameToLayer("FrontItem");
+        _spriteRenderer.sortingLayerName = "Front";
+        _shadowSpriteRenderer.sortingLayerName = "Front";
+        SetSortingOrder(100);
     }
 
     public void EndDrag()
     {
         _isDragging = false;
         _collider.enabled = true;
-        transform.DOScale(1f, .3f).SetEase(Ease.InBack);
+        transform.DOScale(1f, .1f).SetEase(Ease.InBack);
         if (GameManager.Instance.SelectedItem == this) GameManager.Instance.SelectedItem = null;
+        gameObject.layer = LayerMask.NameToLayer("Default");
+        _spriteRenderer.sortingLayerName = "Default";
+        _shadowSpriteRenderer.sortingLayerName = "Default";
+        SetSortingOrder(GameManager.Instance.ItemManager.TopLayer + 2);
+        GameManager.Instance.ItemManager.TopLayer += 2; 
 
         if (GameManager.Instance.UIManager.TicketMenu.OverCheck.IsOver())
         {
@@ -88,5 +131,12 @@ public class ItemBehavior : MonoBehaviour
             GameManager.Instance.ItemManager.ItemList.Remove(this);
             Destroy(gameObject);
         }
+    }
+
+    public void SetSortingOrder(int sortingOrder)
+    {
+        _spriteRenderer.sortingOrder = sortingOrder;
+        _shadowSpriteRenderer.sortingOrder = sortingOrder - 1;
+        transform.position = new Vector3(transform.position.x, transform.position.y, sortingOrder * -0.001f);
     }
 }

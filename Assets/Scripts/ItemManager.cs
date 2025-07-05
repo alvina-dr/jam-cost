@@ -8,6 +8,7 @@ public class ItemManager : MonoBehaviour
     public GenerationParameters GenerationParameters;
     [SerializeField] private Vector2 _spawnZone;
     [SerializeField] private Vector2 _offset;
+    [SerializeField] public int TopLayer;
 
     [Button]
     public void ResetDumpster()
@@ -32,9 +33,11 @@ public class ItemManager : MonoBehaviour
         {
             ItemData data = DataLoader.Instance.GetRandomItemData();
             ItemBehavior itemBehavior = Instantiate(data.Prefab);
-            itemBehavior.transform.position = new Vector3(Random.Range(-_spawnZone.x/2 + _offset.x, _spawnZone.x / 2 + _offset.x), Random.Range(-_spawnZone.y / 2 + _offset.y, _spawnZone.y / 2 + _offset.y), 0);
+            itemBehavior.transform.position = new Vector3(Random.Range(-_spawnZone.x/2 + _offset.x, _spawnZone.x / 2 + _offset.x), Random.Range(-_spawnZone.y / 2 + _offset.y, _spawnZone.y / 2 + _offset.y), i * -0.001f);
             itemBehavior.transform.eulerAngles = new Vector3(0, 0, Random.Range(-70, 70));
             ItemList.Add(itemBehavior);
+            itemBehavior.SetSortingOrder((i * 2) + 1);
+            TopLayer = (i * 2) + 1;
         }
     }
 
