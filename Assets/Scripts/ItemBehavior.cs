@@ -16,6 +16,9 @@ public class ItemBehavior : MonoBehaviour
     [SerializeField] private Vector3 _flyingOffset;
     [SerializeField] private SpriteRenderer _shadowSpriteRenderer;
 
+    [SerializeField] private SpriteRenderer _cross;
+    [SerializeField] private SpriteRenderer _sellIcon;
+
     private void Start()
     {
         _shadowSpriteRenderer.transform.localPosition = _offset;
@@ -90,6 +93,22 @@ public class ItemBehavior : MonoBehaviour
         {
             Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = mouseWorldPosition + _dragOffset;
+
+            if (GameManager.Instance.UIManager.TicketMenu.OverCheck.IsOver())
+            {
+                _sellIcon.enabled = true;
+                _cross.enabled = false;
+            }
+            else if (!GameManager.Instance.UIManager.DumpsterOverCheck.IsOver())
+            {
+                _sellIcon.enabled = false;
+                _cross.enabled = true;
+            }
+            else
+            {
+                _sellIcon.enabled = false;
+                _cross.enabled = false;
+            }
         }
     }
 
