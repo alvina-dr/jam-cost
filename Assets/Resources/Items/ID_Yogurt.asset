@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32c517d233ca1924496e4ec2b4e372ef, type: 3}
-  m_Name: ID_Toothpaste
+  m_Name: ID_Yogurt
   m_EditorClassIdentifier: 
   Prefab: {fileID: 3737433453275763250, guid: 695b3ba057b93c14e9ce30d196e97fc5, type: 3}
-  Price: 4
-  Rarity: 3
-  Name: Toothpaste
-  Icon: {fileID: 9021324395334449989, guid: 2b200ab84323d474aae7c7ef63c8e1a6, type: 3}
+  Price: 5
+  Rarity: 1
+  Name: Yogurt
+  Icon: {fileID: 21300000, guid: 2956d055f8a39c141bf3ff0413b31098, type: 3}
+  Family: 0

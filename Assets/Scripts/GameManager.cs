@@ -95,6 +95,7 @@ public class GameManager : MonoBehaviour
                 ResetTimer();
                 break;
             case GameState.CalculatingScore:
+                if (SelectedItem != null) SelectedItem.EndDrag();
                 UIManager.TicketMenu.CountScore();
                 UIManager.HoverPrice.HidePrice();
                 break;
