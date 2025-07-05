@@ -130,7 +130,7 @@ public class UI_TicketMenu : MonoBehaviour
         {
             countAnimation.AppendCallback(() =>
             {
-                GameManager.Instance.SetGameState(GameManager.GameState.Scavenging);
+                GameManager.Instance.SetGameState(GameManager.GameState.ScavengingIntro);
             });
         }
 

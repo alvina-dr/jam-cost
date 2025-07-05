@@ -44,7 +44,8 @@ public class GameManager : MonoBehaviour
         Scavenging = 0,
         CalculatingScore = 1,
         ChoosingBonus = 2,
-        GameOver = 3
+        GameOver = 3,
+        ScavengingIntro = 4
     }
 
     public GameState CurrentGameState;
@@ -53,7 +54,7 @@ public class GameManager : MonoBehaviour
     {
         CurrentDay = -1;
         NextDay();
-        SetGameState(GameState.Scavenging);
+        SetGameState(GameState.ScavengingIntro);
     }
 
     private void Update()
@@ -115,6 +116,9 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.GameOver:
                 UIManager.GameOver.Open();
+                break;
+            case GameState.ScavengingIntro:
+                UIManager.NewHand.Show();
                 break;
         }
     }
