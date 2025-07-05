@@ -116,15 +116,16 @@ public class GameManager : MonoBehaviour
     public void NextDay()
     {
         CurrentDay++;
-        CurrentScore = 0;
         UIManager.DayCount.SetTextValue((CurrentDay + 1).ToString());
-        UIManager.TicketMenu.UpdateScoreTexts();
+
+        SetCurrentScore(0);
+        UIManager.TicketMenu.GoalScoreText.SetTextValue(RoundData.RoundDataList[CurrentDay].ScoreGoal + "$", true);
     }
 
-    public void AddScore(int score)
+    public void SetCurrentScore(int score)
     {
-        CurrentScore += score;
-        UIManager.TicketMenu.UpdateScoreTexts();
+        CurrentScore = score;
+        UIManager.TicketMenu.TotalScoreText.SetTextValue(CurrentScore.ToString() + "$");
     }
 
     public void CheckScoreHighEnough()

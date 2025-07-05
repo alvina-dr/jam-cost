@@ -9,23 +9,16 @@ public class UI_TicketMenu : MonoBehaviour
     [SerializeField] private Transform _layout;
     [SerializeField] private UI_TicketEntry _ticketEntryPrefab;
     [SerializeField] private List<UI_TicketEntry> _ticketEntryList = new();
-    [SerializeField] private UI_TextValue _totalText;
-    [SerializeField] private UI_TextValue _scoreGoalText;
+
+    [SerializeField] private UI_TextValue _totalScoreText;
+    public UI_TextValue TotalScoreText => _totalScoreText;
+
+    [SerializeField] private UI_TextValue _goalScoreText;
+    public UI_TextValue GoalScoreText => _goalScoreText;
 
     [Header("Score colors")]
     [SerializeField] private Color _addColor;
     [SerializeField] private Color _multiplyColor;
-
-    private void Awake()
-    {
-        UpdateScoreTexts(false);
-    }
-
-    public void UpdateScoreTexts(bool animate = true)
-    {
-        _totalText.SetTextValue(GameManager.Instance.CurrentScore + "$", animate);
-        _scoreGoalText.SetTextValue(GameManager.Instance.RoundData.RoundDataList[GameManager.Instance.CurrentDay].ScoreGoal + "$", animate);
-    }
 
     public void ResetTicket()
     {
@@ -59,7 +52,6 @@ public class UI_TicketMenu : MonoBehaviour
         List<int> familyCountList = new();
         for (int i = 0; i < Enum.GetNames(typeof(ItemData.ItemFamily)).Length; i++)
         {
-            Debug.Log((ItemData.ItemFamily)i);
             familyCountList.Add(_ticketEntryList.FindAll(x => x.Data.Family == (ItemData.ItemFamily)i).Count);
         }
 
@@ -70,28 +62,53 @@ public class UI_TicketMenu : MonoBehaviour
             countAnimation.AppendCallback(() => _ticketEntryList[index].BumpPrice());
             countAnimation.Join(_ticketEntryList[index].transform.DOShakeRotation(.3f, .3f));
 
+            int cloneNumber = _ticketEntryList.FindAll(x => x.Data == _ticketEntryList[i].Data).Count;
+            float delay = 0;
+
             // Basic score
-            countAnimation.AppendCallback(() =>
+            if (familyCountList[(int)_ticketEntryList[index].Data.Family] > 1 || cloneNumber > 1)
             {
-                if (familyCountList[(int)_ticketEntryList[index].Data.Family] > 1)
+                countAnimation.AppendCallback(() =>
+                {
                     GameManager.Instance.UIManager.TextPopperManager.PopText("+" + _ticketEntryList[index].Data.Price, _ticketEntryList[index].ScoreSpawnPoint.position, _addColor, UI_TextPopper.AnimSpeed.Quick);
-                else
+                });
+                delay += .45f;
+            }
+            else
+            {
+                countAnimation.AppendCallback(() =>
+                {
                     GameManager.Instance.UIManager.TextPopperManager.PopText("+" + _ticketEntryList[index].Data.Price, _ticketEntryList[index].ScoreSpawnPoint.position, _addColor);
-            });
+                });
+                delay += .5f;
+            }
 
             // If several in family
             if (familyCountList[(int)_ticketEntryList[index].Data.Family] > 1)
             {
-                countAnimation.AppendInterval(.45f);
+                countAnimation.AppendInterval(delay);
+                delay += .3f;
                 countAnimation.AppendCallback(() =>
                 {
-                    score *= familyCountList[(int)_ticketEntryList[index].Data.Family];
-                    GameManager.Instance.UIManager.TextPopperManager.PopText("x" + familyCountList[(int)_ticketEntryList[index].Data.Family], _ticketEntryList[index].ScoreSpawnPoint.position, _multiplyColor);
+                    score += familyCountList[(int)_ticketEntryList[index].Data.Family];
+                    GameManager.Instance.UIManager.TextPopperManager.PopText("+" + familyCountList[(int)_ticketEntryList[index].Data.Family], _ticketEntryList[index].ScoreSpawnPoint.position, _addColor);
                 });
             }
-            countAnimation.AppendCallback(() => GameManager.Instance.CurrentScore += score);
-            countAnimation.AppendCallback(() => _totalText.SetTextValue(GameManager.Instance.CurrentScore.ToString() + "$"));
-            countAnimation.Append(_totalText.transform.DOShakePosition(.2f, 10));
+
+            // if several time the same
+            if (cloneNumber > 1)
+            {
+                countAnimation.AppendInterval(delay);
+                delay += .3f;
+                countAnimation.AppendCallback(() =>
+                {
+                    score *= cloneNumber;
+                    GameManager.Instance.UIManager.TextPopperManager.PopText("x" + cloneNumber, _ticketEntryList[index].ScoreSpawnPoint.position, _multiplyColor, UI_TextPopper.AnimSpeed.Quick);
+                });
+            }
+
+            countAnimation.AppendCallback(() => GameManager.Instance.SetCurrentScore(GameManager.Instance.CurrentScore + score));
+            countAnimation.Append(_totalScoreText.transform.DOShakePosition(.2f, 10));
             countAnimation.AppendInterval(.8f);
             itemDataList.Add(_ticketEntryList[index].Data);
         }
