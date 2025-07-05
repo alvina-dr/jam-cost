@@ -11,10 +11,17 @@ public class UI_TicketMenu : MonoBehaviour
     [SerializeField] private UI_TicketEntry _ticketEntryPrefab;
     [SerializeField] private List<UI_TicketEntry> _ticketEntryList = new();
     [SerializeField] private UI_TextValue _totalText;
+    [SerializeField] private UI_TextValue _scoreGoalText;
 
     private void Awake()
     {
-        _totalText.SetTextValue("0$", false);
+        UpdateScoreTexts(false);
+    }
+
+    public void UpdateScoreTexts(bool animate = true)
+    {
+        _totalText.SetTextValue(GameManager.Instance.CurrentDay + "$", animate);
+        _scoreGoalText.SetTextValue(GameManager.Instance.RoundData.RoundDataList[GameManager.Instance.CurrentDay].ScoreGoal + "$", animate);
     }
 
     public void ResetTicket()

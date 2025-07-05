@@ -116,7 +116,9 @@ public class GameManager : MonoBehaviour
     public void NextDay()
     {
         CurrentDay++;
+        CurrentScore = 0;
         UIManager.DayCount.SetTextValue((CurrentDay + 1).ToString());
+        UIManager.TicketMenu.UpdateScoreTexts();
     }
 
     public void CalculateScore(List<ItemData> itemDataList)

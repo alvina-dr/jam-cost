@@ -1084,6 +1084,7 @@ MonoBehaviour:
   _ticketEntryPrefab: {fileID: 2494862288734556852, guid: 365b5e2768ebd4a4d818c0642c711f7a, type: 3}
   _ticketEntryList: []
   _totalText: {fileID: 6693518938809125235}
+  _scoreGoalText: {fileID: 2602467620965726304}
 --- !u!114 &4767481177639422249
 MonoBehaviour:
   m_ObjectHideFlags: 0
