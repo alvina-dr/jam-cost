@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RoundDataList:
   - ItemSpawnNumber: 100
-    ScoreGoal: 200
+    ScoreGoal: 100
   - ItemSpawnNumber: 100
     ScoreGoal: 500
   - ItemSpawnNumber: 100

@@ -46,7 +46,8 @@ public class GameManager : MonoBehaviour
         CalculatingScore = 1,
         ChoosingBonus = 2,
         GameOver = 3,
-        ScavengingIntro = 4
+        ScavengingIntro = 4,
+        Dialog = 5
     }
 
     public GameState CurrentGameState;
@@ -55,7 +56,7 @@ public class GameManager : MonoBehaviour
     {
         CurrentDay = -1;
         NextDay();
-        SetGameState(GameState.ScavengingIntro);
+        SetGameState(GameState.Dialog);
     }
 
     private void Update()
@@ -120,6 +121,9 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.ScavengingIntro:
                 UIManager.NewHand.Show();
+                break;
+            case GameState.Dialog:
+                UIManager.DialogMenu.Open();
                 break;
         }
     }
