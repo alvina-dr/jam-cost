@@ -18,3 +18,4 @@ MonoBehaviour:
   Name: Cookie Box
   Icon: {fileID: 21300000, guid: d704fa18428caa74f923771b56bb9ae9, type: 3}
   Family: 1
+  SpawnChance: 5

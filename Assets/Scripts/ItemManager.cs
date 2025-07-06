@@ -10,6 +10,8 @@ public class ItemManager : MonoBehaviour
     [SerializeField] private Vector2 _offset;
     [SerializeField] public int TopLayer;
 
+    [ReadOnly] private int _totalSpawnChance;
+
     [Button]
     public void ResetDumpster()
     {
@@ -29,15 +31,41 @@ public class ItemManager : MonoBehaviour
 
     public void SpawnItems()
     {
+        CalculateTotalSpawnChance();
+        
+
         for (int i = 0; i < GenerationParameters.ItemNumber; i++)
         {
-            ItemData data = DataLoader.Instance.GetRandomItemData();
-            ItemBehavior itemBehavior = Instantiate(data.Prefab);
+            ItemData dataItem = GetRandomItem();
+            //ItemData data = DataLoader.Instance.GetRandomItemData();
+            ItemBehavior itemBehavior = Instantiate(dataItem.Prefab);
             itemBehavior.transform.position = new Vector3(Random.Range(-_spawnZone.x/2 + _offset.x, _spawnZone.x / 2 + _offset.x), Random.Range(-_spawnZone.y / 2 + _offset.y, _spawnZone.y / 2 + _offset.y), i * -0.001f);
             itemBehavior.transform.eulerAngles = new Vector3(0, 0, Random.Range(-70, 70));
             ItemList.Add(itemBehavior);
             itemBehavior.SetSortingOrder((i * 2) + 1);
             TopLayer = (i * 2) + 1;
+        }
+    }
+
+    public ItemData GetRandomItem()
+    {
+        int index = Random.Range(0, _totalSpawnChance);
+        for (int j = 0; j < DataLoader.Instance.ItemDataList.Count; j++)
+        {
+            if (index < DataLoader.Instance.ItemDataList[j].SpawnChance)
+                return DataLoader.Instance.ItemDataList[j];
+            index -= DataLoader.Instance.ItemDataList[j].SpawnChance;
+        }
+        return null;
+    }
+
+    [Button]
+    public void CalculateTotalSpawnChance()
+    {
+        _totalSpawnChance = 0;
+        for (int i = 0; i < DataLoader.Instance.ItemDataList.Count; i++)
+        {
+            _totalSpawnChance += DataLoader.Instance.ItemDataList[i].SpawnChance;
         }
     }
 

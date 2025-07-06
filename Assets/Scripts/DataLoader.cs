@@ -27,12 +27,19 @@ public class DataLoader : MonoBehaviour
     private void OnAwake()
     {
         ItemDataList = Resources.LoadAll<ItemData>("Items").ToList();
+        for (int i = 0; i < ItemDataList.Count; i++)
+        {
+            ItemDataList[i] = Instantiate(ItemDataList[i]);
+        }
         BonusDataList = Resources.LoadAll<BonusData>("Bonus").ToList();
     }
 
-    public BonusData GetRandomBonusData()
+    public BonusData TakeRandomBonusData()
     {
-        return BonusDataList[Random.Range(0, BonusDataList.Count)];
+        int randomIndex = Random.Range(0, BonusDataList.Count);
+        BonusData data = BonusDataList[randomIndex];
+        BonusDataList.RemoveAt(randomIndex);
+        return data;
     }
 
     public ItemData GetRandomItemData()

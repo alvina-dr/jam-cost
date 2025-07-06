@@ -18,3 +18,4 @@ MonoBehaviour:
   Name: Box
   Icon: {fileID: 21300000, guid: cf4efcfa506dd0040adecdb3f440805e, type: 3}
   Family: 1
+  SpawnChance: 15

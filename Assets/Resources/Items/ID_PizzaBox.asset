@@ -18,3 +18,4 @@ MonoBehaviour:
   Name: Pizza Box
   Icon: {fileID: 21300000, guid: f76bccb822d55984c9056bfe3cadc848, type: 3}
   Family: 1
+  SpawnChance: 10

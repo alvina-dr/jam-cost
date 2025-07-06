@@ -17,3 +17,5 @@ MonoBehaviour:
   Rarity: 1
   Name: Plastic Bag
   Icon: {fileID: 21300000, guid: 175510a48c686f54784677ece95860a6, type: 3}
+  Family: 0
+  SpawnChance: 15

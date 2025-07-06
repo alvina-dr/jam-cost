@@ -22,12 +22,15 @@ public class UI_TicketMenu : MonoBehaviour
 
     public void ResetTicket()
     {
+        Sequence destroySequence = DOTween.Sequence();
         for (int i = _ticketEntryList.Count - 1; i >= 0; i--)
         {
-            Destroy(_ticketEntryList[i].gameObject);
+            int index = i;
+            destroySequence.Append(_ticketEntryList[index].transform.DOScale(1.3f, .1f));
+            destroySequence.Append(_ticketEntryList[index].transform.DOScale(0f, .1f));
+            destroySequence.AppendCallback(() => Destroy(_ticketEntryList[index].gameObject));
         }
-
-        _ticketEntryList.Clear();
+        destroySequence.AppendCallback(() => _ticketEntryList.Clear());
     }
 
     public void RemoveItemFromTicket(UI_TicketEntry ticketEntry)

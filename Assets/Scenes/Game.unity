@@ -2106,7 +2106,7 @@ MonoBehaviour:
   ItemManager: {fileID: 1648493509}
   RoundTime: 10
   RoundData: {fileID: 11400000, guid: 68529cb8f4d36ee4db03e872e1bcb99f, type: 2}
-  HandPerRound: 1
+  HandPerRound: 3
   SelectedItem: {fileID: 0}
   Timer: 0
   CurrentScore: 0

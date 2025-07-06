@@ -9,6 +9,7 @@ public class ItemData : ScriptableObject
     public string Name;
     public Sprite Icon;
     public ItemFamily Family;
+    public int SpawnChance;
 
     public enum ItemFamily
     {

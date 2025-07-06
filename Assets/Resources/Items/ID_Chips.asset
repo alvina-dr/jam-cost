@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: ID_Chips
   m_EditorClassIdentifier: 
   Prefab: {fileID: 3737433453275763250, guid: 93583161a7a0f1245ac7c3990feaa45a, type: 3}
-  Price: 4
-  Rarity: 3
+  Price: 10
+  Rarity: 2
   Name: Chips
   Icon: {fileID: 21300000, guid: ba8fbc4a256f27e4dad3e98d0a18a8a0, type: 3}
   Family: 0
+  SpawnChance: 3

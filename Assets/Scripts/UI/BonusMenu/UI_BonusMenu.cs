@@ -11,9 +11,10 @@ public class UI_BonusMenu : MonoBehaviour
 
     public void OpenMenu()
     {
+        if (_bonusEntryList.Count > DataLoader.Instance.BonusDataList.Count) Debug.LogError("Not enough bonus for this time");
         for (int i = 0; i < _bonusEntryList.Count; i++)
         {
-            _bonusEntryList[i].SetupBonus(DataLoader.Instance.GetRandomBonusData());
+            _bonusEntryList[i].SetupBonus(DataLoader.Instance.TakeRandomBonusData());
         }
         Menu.OpenMenu();
     }
@@ -21,15 +22,12 @@ public class UI_BonusMenu : MonoBehaviour
     public void CloseMenu()
     {
         Menu.CloseMenu();
+        for (int i = 0; i < _bonusEntryList.Count; i++)
+        {
+            if (_bonusEntryList[i].Data != null)
+                DataLoader.Instance.BonusDataList.Add(_bonusEntryList[i].Data);
+        }
     }
-
-    //public void SelectBonus(UI_BonusEntry bonusEntry)
-    //{
-    //    for (int i = 0; i < _bonusEntryList.Count; i++)
-    //    {
-    //        if (_bonusEntryList[i] != bonusEntry) _bonusEntryList[i].DeselectBonus();
-    //    }
-    //}
 
     [Button]
     public void UpdateBonusEntryList()
