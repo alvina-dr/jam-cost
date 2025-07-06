@@ -37,3 +37,4 @@ MonoBehaviour:
     Dialog: You owe me a lot of money.
     DialogSide: 1
     Interval: 1.3
+  EndGameState: 4

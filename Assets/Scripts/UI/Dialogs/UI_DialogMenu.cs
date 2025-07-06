@@ -36,6 +36,6 @@ public class UI_DialogMenu : MonoBehaviour
     public void Close()
     {
         Menu.CloseMenu();
-        GameManager.Instance.SetGameState(GameManager.GameState.ScavengingIntro);
+        GameManager.Instance.SetGameState(CurrentDialogData.EndGameState);
     }
 }

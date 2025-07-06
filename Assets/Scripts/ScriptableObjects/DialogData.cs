@@ -5,6 +5,7 @@ using UnityEngine;
 public class DialogData : ScriptableObject
 {
     public List<LineData> LineDataList = new();
+    public GameManager.GameState EndGameState;
 
     [System.Serializable]
     public class LineData
