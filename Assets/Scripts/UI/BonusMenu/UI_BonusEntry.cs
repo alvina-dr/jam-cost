@@ -1,16 +1,21 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI_BonusEntry : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _bonusName;
+    [SerializeField] private TextMeshProUGUI _bonusDescription;
     [SerializeField] private GameObject _highlight;
     [SerializeField] private BonusData _bonusData;
+    [SerializeField] private Image _bonusIcon;
 
     public void SetupBonus(BonusData data)
     {
         _bonusData = data;
         _bonusName.text = _bonusData.Name;
+        _bonusDescription.text = _bonusData.Description;
+        _bonusIcon.sprite = _bonusData.Icon;
     }
 
     //public void SelectBonus()

@@ -325,6 +325,7 @@ RectTransform:
   - {fileID: 1422478053}
   - {fileID: 445449397}
   - {fileID: 1126678167}
+  - {fileID: 848100695}
   - {fileID: 409676368}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -353,7 +354,8 @@ MonoBehaviour:
   BonusList: {fileID: 1377688904}
   DumpsterOverCheck: {fileID: 1605590742}
   GameOver: {fileID: 445449398}
-  TextPopperManager: {fileID: 1126678168}
+  TextPopperManager_Number: {fileID: 1126678168}
+  TextPopperManager_Info: {fileID: 848100696}
   NewHand: {fileID: 409676370}
 --- !u!1 &234208130
 GameObject:
@@ -1113,6 +1115,56 @@ MonoBehaviour:
   initDatabase: 1
   previewUpdatesPerSecond: 60
   previewTimeScale: 1
+--- !u!1 &848100694
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 848100695}
+  - component: {fileID: 848100696}
+  m_Layer: 5
+  m_Name: TextPopperInfo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &848100695
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 848100694}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 110208746}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &848100696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 848100694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60827ba6dd8a4634aa64c187a604a639, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textPopperPrefab: {fileID: 8368758867408221260, guid: 43caea0d3d1146f43a72bb6950067724, type: 3}
+  _textPopperParent: {fileID: 848100695}
 --- !u!1 &946488808
 GameObject:
   m_ObjectHideFlags: 0
@@ -1211,7 +1263,7 @@ GameObject:
   - component: {fileID: 1126678167}
   - component: {fileID: 1126678168}
   m_Layer: 5
-  m_Name: TextPopper
+  m_Name: TextPopperNumber
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2054,7 +2106,7 @@ MonoBehaviour:
   ItemManager: {fileID: 1648493509}
   RoundTime: 10
   RoundData: {fileID: 11400000, guid: 68529cb8f4d36ee4db03e872e1bcb99f, type: 2}
-  HandPerRound: 3
+  HandPerRound: 1
   SelectedItem: {fileID: 0}
   Timer: 0
   CurrentScore: 0

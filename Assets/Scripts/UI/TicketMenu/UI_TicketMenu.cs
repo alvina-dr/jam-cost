@@ -68,18 +68,18 @@ public class UI_TicketMenu : MonoBehaviour
             // Basic score
             if (familyCountList[(int)_ticketEntryList[index].Data.Family] > 1 || cloneNumber > 1)
             {
-                countAnimation.AppendCallback(() =>
+                countAnimation.AppendCallback((TweenCallback)(() =>
                 {
-                    GameManager.Instance.UIManager.TextPopperManager.PopText("+" + _ticketEntryList[index].Data.Price, _ticketEntryList[index].ScoreSpawnPoint.position, _addColor, UI_TextPopper.AnimSpeed.Quick);
-                });
+                    GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + _ticketEntryList[index].Data.Price, _ticketEntryList[index].ScoreSpawnPoint.position, _addColor, UI_TextPopper.AnimSpeed.Quick);
+                }));
                 delay += .45f;
             }
             else
             {
-                countAnimation.AppendCallback(() =>
+                countAnimation.AppendCallback((TweenCallback)(() =>
                 {
-                    GameManager.Instance.UIManager.TextPopperManager.PopText("+" + _ticketEntryList[index].Data.Price, _ticketEntryList[index].ScoreSpawnPoint.position, _addColor);
-                });
+                    GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + _ticketEntryList[index].Data.Price, _ticketEntryList[index].ScoreSpawnPoint.position, _addColor);
+                }));
                 delay += .5f;
             }
 
@@ -88,11 +88,11 @@ public class UI_TicketMenu : MonoBehaviour
             {
                 countAnimation.AppendInterval(delay);
                 delay += .3f;
-                countAnimation.AppendCallback(() =>
+                countAnimation.AppendCallback((TweenCallback)(() =>
                 {
                     score += familyCountList[(int)_ticketEntryList[index].Data.Family];
-                    GameManager.Instance.UIManager.TextPopperManager.PopText("+" + familyCountList[(int)_ticketEntryList[index].Data.Family], _ticketEntryList[index].ScoreSpawnPoint.position, _addColor);
-                });
+                    GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + familyCountList[(int)_ticketEntryList[index].Data.Family], _ticketEntryList[index].ScoreSpawnPoint.position, _addColor);
+                }));
             }
 
             // if several time the same
@@ -100,12 +100,28 @@ public class UI_TicketMenu : MonoBehaviour
             {
                 countAnimation.AppendInterval(delay);
                 delay += .3f;
-                countAnimation.AppendCallback(() =>
+                countAnimation.AppendCallback((TweenCallback)(() =>
                 {
                     score *= cloneNumber;
-                    GameManager.Instance.UIManager.TextPopperManager.PopText("x" + cloneNumber, _ticketEntryList[index].ScoreSpawnPoint.position, _multiplyColor, UI_TextPopper.AnimSpeed.Quick);
-                });
+                    GameManager.Instance.UIManager.TextPopperManager_Number.PopText("x" + cloneNumber, _ticketEntryList[index].ScoreSpawnPoint.position, _multiplyColor, UI_TextPopper.AnimSpeed.Quick);
+                }));
             }
+
+            // Bonus family type
+            List<BonusData> bonusDataFamilyList = GameManager.Instance.BonusList.FindAll(x => x is BD_FamilyMultiplier familyMultiplier && familyMultiplier.FamilyBonus == _ticketEntryList[index].Data.Family);
+            for (int j = 0; j < bonusDataFamilyList.Count; j++)
+            {
+                BD_FamilyMultiplier familyMultiplier = (BD_FamilyMultiplier) bonusDataFamilyList[j];
+                countAnimation.AppendInterval(delay);
+                delay += .3f;
+                countAnimation.AppendCallback((TweenCallback)(() =>
+                {
+                    score = Mathf.RoundToInt(score * familyMultiplier.BonusMultiplier);
+                    GameManager.Instance.UIManager.TextPopperManager_Number.PopText("x" + familyMultiplier.BonusMultiplier, _ticketEntryList[index].ScoreSpawnPoint.position, _multiplyColor, UI_TextPopper.AnimSpeed.Quick);
+                    GameManager.Instance.UIManager.TextPopperManager_Info.PopText(familyMultiplier.Name, GameManager.Instance.UIManager.BonusList.GetBonusTextSpawnPoint(familyMultiplier).position, Color.black, UI_TextPopper.AnimSpeed.Quick);
+                }));
+            }
+
 
             countAnimation.AppendCallback(() => GameManager.Instance.SetCurrentScore(GameManager.Instance.CurrentScore + score));
             countAnimation.Append(_totalScoreText.transform.DOShakePosition(.2f, 10));

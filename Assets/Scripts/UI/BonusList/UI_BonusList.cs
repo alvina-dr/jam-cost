@@ -7,6 +7,14 @@ public class UI_BonusList : MonoBehaviour
     [SerializeField] private Transform _bonusIconParent;
     [SerializeField] private List<UI_BonusIcon> _bonusIconList = new();
 
+    public Transform GetBonusTextSpawnPoint(BonusData bonusData)
+    {
+        UI_BonusIcon bonusIcon = _bonusIconList.Find(x => x.Data == bonusData);
+
+        if (bonusIcon != null) return bonusIcon.InfoSpawnPoint;
+        else return null;
+    }
+
     public void UpdateBonusList()
     {
         for (int i = _bonusIconList.Count - 1; i >= 0; i--)

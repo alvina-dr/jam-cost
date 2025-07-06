@@ -3,12 +3,13 @@ using UnityEngine.UI;
 
 public class UI_BonusIcon : MonoBehaviour
 {
-    [SerializeField] private BonusData _bonusData;
+    public BonusData Data;
     [SerializeField] private Image _bonusIcon;
+    public Transform InfoSpawnPoint;
 
     public void Setup(BonusData data)
     {
-        _bonusData = data;
+        Data = data;
         _bonusIcon.sprite = data.Icon;
     }
 }
