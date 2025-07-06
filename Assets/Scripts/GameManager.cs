@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     public float RoundTime;
     public RoundData RoundData;
     public int HandPerRound;
+    public int HandSize;
 
     [Header("Current Stats")]
     public ItemBehavior SelectedItem;

@@ -7,18 +7,6 @@ public class UI_OverCheck : MonoBehaviour
 {
     [SerializeField] private Image _image;
 
-    //private void Update()
-    //{
-    //    if (IsOver())
-    //    {
-    //        _image.color = Color.green;
-    //    }
-    //    else
-    //    {
-    //        _image.color = Color.red;
-    //    }
-    //}
-
     public bool IsOver()
     {
         PointerEventData pointerEventData = new PointerEventData(EventSystem.current);

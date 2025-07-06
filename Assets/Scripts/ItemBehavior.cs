@@ -13,6 +13,7 @@ public class ItemBehavior : MonoBehaviour
 
     [Header("Shadow")]
     [SerializeField] private Vector3 _offset;
+    [SerializeField] private Vector3 _startDragPosition;
     [SerializeField] private Vector3 _flyingOffset;
     [SerializeField] private SpriteRenderer _shadowSpriteRenderer;
 
@@ -96,6 +97,8 @@ public class ItemBehavior : MonoBehaviour
 
             if (GameManager.Instance.UIManager.TicketMenu.OverCheck.IsOver())
             {
+                if (GameManager.Instance.UIManager.TicketMenu.GetTicketEntryCount() + 1 > GameManager.Instance.HandSize) _sellIcon.color = Color.grey;
+                else _sellIcon.color = Color.green;
                 _sellIcon.enabled = true;
                 _cross.enabled = false;
             }
@@ -115,6 +118,7 @@ public class ItemBehavior : MonoBehaviour
     public void StartDrag()
     {
         _isDragging = true;
+        _startDragPosition = transform.position;
         _dragOffset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
         GameManager.Instance.SelectedItem = this;
         _collider.enabled = false;
@@ -131,24 +135,44 @@ public class ItemBehavior : MonoBehaviour
         _collider.enabled = true;
         transform.DOScale(1f, .1f).SetEase(Ease.InBack);
         if (GameManager.Instance.SelectedItem == this) GameManager.Instance.SelectedItem = null;
-        gameObject.layer = LayerMask.NameToLayer("Default");
-        _spriteRenderer.sortingLayerName = "Default";
-        _shadowSpriteRenderer.sortingLayerName = "Default";
-        SetSortingOrder(GameManager.Instance.ItemManager.TopLayer + 2);
-        GameManager.Instance.ItemManager.TopLayer += 2; 
 
         if (GameManager.Instance.UIManager.TicketMenu.OverCheck.IsOver())
         {
-            GameManager.Instance.UIManager.TicketMenu.AddItemToList(Data);
-            transform.DOKill();
-            GameManager.Instance.ItemManager.ItemList.Remove(this);
-            Destroy(gameObject);
+            if (GameManager.Instance.UIManager.TicketMenu.TryAddItemToList(Data))
+            {
+                transform.DOKill();
+                GameManager.Instance.ItemManager.ItemList.Remove(this);
+                Destroy(gameObject);
+            }
+            // if ticket is full, go back to bin
+            else
+            {
+                transform.DOMove(_startDragPosition, .5f).OnComplete(() =>
+                {
+                    gameObject.layer = LayerMask.NameToLayer("Default");
+                    _spriteRenderer.sortingLayerName = "Default";
+                    _shadowSpriteRenderer.sortingLayerName = "Default";
+                    SetSortingOrder(GameManager.Instance.ItemManager.TopLayer + 2);
+                    GameManager.Instance.ItemManager.TopLayer += 2;
+                });
+                _sellIcon.enabled = false;
+                _cross.enabled = false;
+            }
+
         }
         else if (!GameManager.Instance.UIManager.DumpsterOverCheck.IsOver())
         {
             transform.DOKill();
             GameManager.Instance.ItemManager.ItemList.Remove(this);
             Destroy(gameObject);
+        }
+        else
+        {
+            gameObject.layer = LayerMask.NameToLayer("Default");
+            _spriteRenderer.sortingLayerName = "Default";
+            _shadowSpriteRenderer.sortingLayerName = "Default";
+            SetSortingOrder(GameManager.Instance.ItemManager.TopLayer + 2);
+            GameManager.Instance.ItemManager.TopLayer += 2;
         }
     }
 

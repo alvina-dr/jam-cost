@@ -9,6 +9,7 @@ public class UI_TicketMenu : MonoBehaviour
     [SerializeField] private Transform _layout;
     [SerializeField] private UI_TicketEntry _ticketEntryPrefab;
     [SerializeField] private List<UI_TicketEntry> _ticketEntryList = new();
+    public int GetTicketEntryCount() => _ticketEntryList.Count; 
 
     [SerializeField] private UI_TextValue _totalScoreText;
     public UI_TextValue TotalScoreText => _totalScoreText;
@@ -26,8 +27,8 @@ public class UI_TicketMenu : MonoBehaviour
         for (int i = _ticketEntryList.Count - 1; i >= 0; i--)
         {
             int index = i;
-            destroySequence.Append(_ticketEntryList[index].transform.DOScale(1.3f, .1f));
-            destroySequence.Append(_ticketEntryList[index].transform.DOScale(0f, .1f));
+            destroySequence.Append(_ticketEntryList[index].HorizontalLayout.transform.DOScale(1.3f, .1f));
+            destroySequence.Append(_ticketEntryList[index].HorizontalLayout.transform.DOScale(0f, .1f));
             destroySequence.AppendCallback(() => Destroy(_ticketEntryList[index].gameObject));
         }
         destroySequence.AppendCallback(() => _ticketEntryList.Clear());
@@ -39,11 +40,13 @@ public class UI_TicketMenu : MonoBehaviour
         Destroy(ticketEntry.gameObject);
     }
 
-    public void AddItemToList(ItemData data)
+    public bool TryAddItemToList(ItemData data)
     {
+        if (_ticketEntryList.Count + 1 > GameManager.Instance.HandSize) return false;
         UI_TicketEntry ticketEntry = Instantiate(_ticketEntryPrefab, _layout);
         ticketEntry.Setup(data);
         _ticketEntryList.Add(ticketEntry);
+        return true;
     }
 
     public void CountScore()
@@ -152,7 +155,5 @@ public class UI_TicketMenu : MonoBehaviour
                 GameManager.Instance.SetGameState(GameManager.GameState.ScavengingIntro);
             });
         }
-
-        //countAnimation.Play();
     }
 }

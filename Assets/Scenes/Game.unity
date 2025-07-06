@@ -322,11 +322,11 @@ RectTransform:
   - {fileID: 1173785002}
   - {fileID: 1377688903}
   - {fileID: 1262494796}
-  - {fileID: 1422478053}
   - {fileID: 445449397}
   - {fileID: 1126678167}
   - {fileID: 848100695}
   - {fileID: 409676368}
+  - {fileID: 1422478053}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1886,7 +1886,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 13
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fdb6141faf825f64daa1657ba82c68f8, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 2f905e2120371c940bb731e71083011a, type: 2}
@@ -2107,6 +2107,7 @@ MonoBehaviour:
   RoundTime: 10
   RoundData: {fileID: 11400000, guid: 68529cb8f4d36ee4db03e872e1bcb99f, type: 2}
   HandPerRound: 3
+  HandSize: 4
   SelectedItem: {fileID: 0}
   Timer: 0
   CurrentScore: 0
@@ -2362,8 +2363,8 @@ Transform:
   m_GameObject: {fileID: 1873983675}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5, y: -1.22, z: 0}
-  m_LocalScale: {x: 0.90000004, y: 0.90000004, z: 0.90000004}
+  m_LocalPosition: {x: 1.3, y: -1.22, z: 0}
+  m_LocalScale: {x: 0.91999996, y: 0.91999996, z: 0.91999996}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}

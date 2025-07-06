@@ -15,6 +15,7 @@ public class UI_TicketEntry : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
     [SerializeField] private Image _starPrefab;
     [SerializeField] private Transform _starParent;
     [SerializeField] private Transform _horizontalLayout;
+    public Transform HorizontalLayout => _horizontalLayout;
 
     [SerializeField] private Image _raycastImage;
     public Transform ScoreSpawnPoint;
@@ -44,6 +45,7 @@ public class UI_TicketEntry : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
     public void OnBeginDrag(PointerEventData eventData)
     {
         ItemBehavior itemBehavior = Instantiate(_data.Prefab);
+        GameManager.Instance.ItemManager.ItemList.Add(itemBehavior);
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         itemBehavior.transform.position = new Vector3(mousePosition.x, mousePosition.y, 0);
         itemBehavior.StartDrag();
