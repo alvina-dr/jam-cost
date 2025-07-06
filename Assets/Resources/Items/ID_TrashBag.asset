@@ -17,5 +17,5 @@ MonoBehaviour:
   Rarity: 0
   Name: Trash Bag
   Icon: {fileID: 21300000, guid: 3a0c987b60b9fb145a6064940ec0556b, type: 3}
-  Family: 1
-  SpawnChance: 30
+  Family: 4
+  SpawnChance: 40
