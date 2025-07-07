@@ -32,6 +32,7 @@ public class DataLoader : MonoBehaviour
             ItemDataList[i] = Instantiate(ItemDataList[i]);
         }
         BonusDataList = Resources.LoadAll<BonusData>("Bonus").ToList();
+        BonusDataList = BonusDataList.FindAll(x => x.IsAvailableInGame);
     }
 
     public BonusData TakeRandomBonusData()

@@ -45,7 +45,7 @@ public class UI_TicketMenu : MonoBehaviour
 
     public bool TryAddItemToList(ItemData data)
     {
-        if (_ticketEntryList.Count + 1 > GameManager.Instance.HandSize) return false;
+        if (_ticketEntryList.Count + 1 > GameManager.Instance.GetTicketSize()) return false;
         UI_TicketEntry ticketEntry = Instantiate(_ticketEntryPrefab, _layout);
         ticketEntry.Setup(data);
         _ticketEntryList.Add(ticketEntry);

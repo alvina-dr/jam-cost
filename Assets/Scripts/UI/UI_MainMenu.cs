@@ -7,4 +7,9 @@ public class UI_MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("Game");
     }
+
+    public void EraseSave()
+    {
+        PlayerPrefs.DeleteAll();
+    }
 }

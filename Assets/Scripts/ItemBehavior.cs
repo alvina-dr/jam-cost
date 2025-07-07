@@ -101,7 +101,7 @@ public class ItemBehavior : MonoBehaviour
 
             if (GameManager.Instance.UIManager.TicketMenu.OverCheck.IsOver())
             {
-                if (GameManager.Instance.UIManager.TicketMenu.GetTicketEntryCount() + 1 > GameManager.Instance.HandSize) _sellIcon.color = Color.grey;
+                if (GameManager.Instance.UIManager.TicketMenu.GetTicketEntryCount() + 1 > GameManager.Instance.GetTicketSize()) _sellIcon.color = Color.grey;
                 else _sellIcon.color = Color.green;
                 _sellIcon.enabled = true;
                 _cross.enabled = false;

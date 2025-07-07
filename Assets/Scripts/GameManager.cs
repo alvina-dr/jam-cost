@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     public float RoundTime;
     public RoundData RoundData;
     public int HandPerRound;
-    public int HandSize;
+    [SerializeField] private int _ticketSize;
 
     [Header("Current Stats")]
     public ItemBehavior SelectedItem;
@@ -128,6 +128,7 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.Dialog:
                 if (!UIManager.DialogMenu.HasBeenPlayed()) UIManager.DialogMenu.Open();
+                else SetGameState(UIManager.DialogMenu.CurrentDialogData.EndGameState);
                 break;
         }
     }
@@ -161,5 +162,17 @@ public class GameManager : MonoBehaviour
             SetGameState(GameState.ChoosingBonus);
             AudioManager.Instance.PlaySFXSound(_winSound);
         }
+    }
+
+    public int GetTicketSize()
+    {
+        int handSizeBonus = 0;
+        List<BonusData> bonusTicketSize = BonusList.FindAll(x => x is BD_HandSize);
+        for (int i = 0; i < bonusTicketSize.Count; i++)
+        {
+            BD_HandSize handSizeBonusData = (BD_HandSize) bonusTicketSize[i];
+            if (handSizeBonusData != null) handSizeBonus += handSizeBonusData.BonusHandSize;
+        }
+        return _ticketSize + handSizeBonus;
     }
 }
