@@ -23,6 +23,7 @@ public class UI_TicketMenu : MonoBehaviour
 
     [Header("Audio")]
     [SerializeField] private AudioClip _countTicketEntryMoney;
+    [SerializeField] private AudioClip _validateTicketSound;
 
     public void ResetTicket()
     {
@@ -138,7 +139,8 @@ public class UI_TicketMenu : MonoBehaviour
             countAnimation.AppendInterval(.8f);
             itemDataList.Add(_ticketEntryList[index].Data);
         }
-        countAnimation.AppendInterval(2f);
+        countAnimation.AppendInterval(1f);
+        countAnimation.AppendCallback(() => AudioManager.Instance.PlaySFXSound(_validateTicketSound));
         countAnimation.AppendCallback(() => ResetTicket());
         countAnimation.AppendInterval(1f);
 
