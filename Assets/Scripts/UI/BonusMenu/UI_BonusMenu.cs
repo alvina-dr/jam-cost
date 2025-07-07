@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,13 @@ public class UI_BonusMenu : MonoBehaviour
     public void OpenMenu()
     {
         if (_bonusEntryList.Count > DataLoader.Instance.BonusDataList.Count) Debug.LogError("Not enough bonus for this time");
+
+        for (int i = 0; i < _bonusEntryList.Count; i++)
+        {
+            _bonusEntryList[i].Button.interactable = true;
+            _bonusEntryList[i].ButtonAnim.enabled = true;
+        }
+
         for (int i = 0; i < _bonusEntryList.Count; i++)
         {
             _bonusEntryList[i].SetupBonus(DataLoader.Instance.TakeRandomBonusData());
@@ -21,6 +29,12 @@ public class UI_BonusMenu : MonoBehaviour
 
     public void CloseMenu()
     {
+        for (int i = 0; i < _bonusEntryList.Count; i++)
+        {
+            _bonusEntryList[i].Button.interactable = false;
+            _bonusEntryList[i].ButtonAnim.enabled = false;
+            _bonusEntryList[i].transform.DOKill();
+        }
         Menu.CloseMenu();
         for (int i = 0; i < _bonusEntryList.Count; i++)
         {

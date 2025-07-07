@@ -5,6 +5,8 @@ using UnityEngine.UI;
 public class UI_BonusEntry : MonoBehaviour
 {
     public BonusData Data;
+    public Button Button;
+    public UI_Button ButtonAnim;
     [SerializeField] private TextMeshProUGUI _bonusName;
     [SerializeField] private TextMeshProUGUI _bonusDescription;
     [SerializeField] private GameObject _highlight;

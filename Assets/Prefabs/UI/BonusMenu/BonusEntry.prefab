@@ -359,6 +359,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Data: {fileID: 0}
+  Button: {fileID: 7500053908904656855}
+  ButtonAnim: {fileID: 4594766456208129097}
   _bonusName: {fileID: 6560696053356483881}
   _bonusDescription: {fileID: 7504015691301066438}
   _highlight: {fileID: 2931595145681746590}
@@ -487,6 +489,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _textMeshProUGUI: {fileID: 0}
   _background: {fileID: 0}
+  _onClickSound: {fileID: 8300000, guid: 100cc3ce4e5c93042bd4dfa68df39a82, type: 3}
 --- !u!1 &3398159787700251245
 GameObject:
   m_ObjectHideFlags: 0
