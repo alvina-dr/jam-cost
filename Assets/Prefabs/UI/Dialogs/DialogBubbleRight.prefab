@@ -584,6 +584,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _nameText: {fileID: 8963611999708264275}
   _dialogText: {fileID: 6552428598447586806}
+  _pop: {fileID: 8300000, guid: fa56d6d583ee9ba4b8075205b77560b5, type: 3}
 --- !u!1 &9094405958050885445
 GameObject:
   m_ObjectHideFlags: 0

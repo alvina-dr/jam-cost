@@ -58,6 +58,7 @@ MonoBehaviour:
   CurrentDialogData: {fileID: 11400000, guid: 8480b5a8d0bc2914c975aed0dea7f757, type: 2}
   _dialogBubbleParent: {fileID: 6384675108803256752}
   _continueButton: {fileID: 4559150528034388434}
+  _buttonApparitionSound: {fileID: 8300000, guid: fa56d6d583ee9ba4b8075205b77560b5, type: 3}
 --- !u!114 &9183574031910847077
 MonoBehaviour:
   m_ObjectHideFlags: 0

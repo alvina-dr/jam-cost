@@ -23,3 +23,9 @@ MonoBehaviour:
     ScoreGoal: 700
   - ItemSpawnNumber: 100
     ScoreGoal: 900
+  - ItemSpawnNumber: 100
+    ScoreGoal: 1300
+  - ItemSpawnNumber: 100
+    ScoreGoal: 1700
+  - ItemSpawnNumber: 100
+    ScoreGoal: 2000

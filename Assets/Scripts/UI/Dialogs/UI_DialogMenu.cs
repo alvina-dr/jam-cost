@@ -10,6 +10,7 @@ public class UI_DialogMenu : MonoBehaviour
     public DialogData CurrentDialogData;
     [SerializeField] private Transform _dialogBubbleParent;
     [SerializeField] private Transform _continueButton;
+    [SerializeField] private AudioClip _buttonApparitionSound;
 
     public void Open()
     {
@@ -30,6 +31,7 @@ public class UI_DialogMenu : MonoBehaviour
             showSequence.AppendInterval(CurrentDialogData.LineDataList[index].Interval);
         }
         showSequence.AppendCallback(() => _continueButton.parent = _dialogBubbleParent);
+        showSequence.AppendCallback(() => AudioManager.Instance.PlaySFXSound(_buttonApparitionSound));
         showSequence.AppendCallback(() => _continueButton.gameObject.SetActive(true));
         showSequence.AppendCallback(() => PlayerPrefs.SetString(CurrentDialogData.name, CurrentDialogData.name));
     }
