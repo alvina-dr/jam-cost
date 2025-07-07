@@ -31,11 +31,21 @@ public class UI_DialogMenu : MonoBehaviour
         }
         showSequence.AppendCallback(() => _continueButton.parent = _dialogBubbleParent);
         showSequence.AppendCallback(() => _continueButton.gameObject.SetActive(true));
+        showSequence.AppendCallback(() => PlayerPrefs.SetString(CurrentDialogData.name, CurrentDialogData.name));
     }
 
     public void Close()
     {
         Menu.CloseMenu();
         GameManager.Instance.SetGameState(CurrentDialogData.EndGameState);
+    }
+
+    public bool HasBeenPlayed()
+    {
+        if (PlayerPrefs.HasKey(CurrentDialogData.name))
+        {
+            return true;
+        }
+        return false;
     }
 }

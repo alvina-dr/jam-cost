@@ -127,7 +127,7 @@ public class GameManager : MonoBehaviour
                 UIManager.NewHand.Show();
                 break;
             case GameState.Dialog:
-                UIManager.DialogMenu.Open();
+                if (!UIManager.DialogMenu.HasBeenPlayed()) UIManager.DialogMenu.Open();
                 break;
         }
     }
