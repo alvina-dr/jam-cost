@@ -115,6 +115,7 @@ public class GameManager : MonoBehaviour
                 ResetTimer();
                 AudioManager.Instance.StartClockSound();
                 UIManager.TicketMenu.UpdateItemNumberText();
+                UIManager.RoundRemaining.SetTextValue(CurrentHand + "/" + HandPerRound);
                 break;
             case GameState.CalculatingScore:
                 AudioManager.Instance.StopClockSound();

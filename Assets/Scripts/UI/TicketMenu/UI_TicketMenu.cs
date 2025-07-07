@@ -89,23 +89,29 @@ public class UI_TicketMenu : MonoBehaviour
             // Basic score
             if (familyCountList[(int)_ticketEntryList[index].Data.Family] > 1 || cloneNumber > 1)
             {
-                countAnimation.AppendCallback((TweenCallback)(() =>
+                if (_ticketEntryList[index].Data.Price > 0) // if not garbage
                 {
-                    GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + _ticketEntryList[index].Data.Price, _ticketEntryList[index].ScoreSpawnPoint.position, _addColor, UI_TextPopper.AnimSpeed.Quick);
-                }));
-                delay += .45f;
+                    countAnimation.AppendCallback((TweenCallback)(() =>
+                    {
+                        GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + _ticketEntryList[index].Data.Price, _ticketEntryList[index].ScoreSpawnPoint.position, _addColor, UI_TextPopper.AnimSpeed.Quick);
+                    }));
+                    delay += .45f;
+                }
             }
             else
             {
-                countAnimation.AppendCallback((TweenCallback)(() =>
+                if (_ticketEntryList[index].Data.Price > 0) // if not garbage
                 {
-                    GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + _ticketEntryList[index].Data.Price, _ticketEntryList[index].ScoreSpawnPoint.position, _addColor);
-                }));
-                delay += .5f;
+                    countAnimation.AppendCallback((TweenCallback)(() =>
+                    {
+                        GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + _ticketEntryList[index].Data.Price, _ticketEntryList[index].ScoreSpawnPoint.position, _addColor);
+                    }));
+                    delay += .5f;
+                }
             }
 
             // If several in family
-            if (familyCountList[(int)_ticketEntryList[index].Data.Family] > 1)
+            if (familyCountList[(int)_ticketEntryList[index].Data.Family] > 1 && _ticketEntryList[index].Data.Price > 0)
             {
                 countAnimation.AppendInterval(delay);
                 delay += .3f;
@@ -117,7 +123,7 @@ public class UI_TicketMenu : MonoBehaviour
             }
 
             // if several time the same
-            if (cloneNumber > 1)
+            if (cloneNumber > 1 && _ticketEntryList[index].Data.Price > 0)
             {
                 countAnimation.AppendInterval(delay);
                 delay += .3f;
@@ -142,7 +148,6 @@ public class UI_TicketMenu : MonoBehaviour
                     GameManager.Instance.UIManager.TextPopperManager_Info.PopText(familyMultiplier.Name, GameManager.Instance.UIManager.BonusList.GetBonusTextSpawnPoint(familyMultiplier).position, Color.black, UI_TextPopper.AnimSpeed.Quick);
                 }));
             }
-
 
             countAnimation.AppendCallback(() => GameManager.Instance.SetCurrentScore(GameManager.Instance.CurrentScore + score));
             countAnimation.Append(_totalScoreText.transform.DOShakePosition(.2f, 10));
