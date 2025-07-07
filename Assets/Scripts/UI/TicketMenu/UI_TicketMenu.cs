@@ -173,7 +173,15 @@ public class UI_TicketMenu : MonoBehaviour
         {
             countAnimation.AppendCallback(() =>
             {
-                GameManager.Instance.SetGameState(GameManager.GameState.ScavengingIntro);
+                if (GameManager.Instance.CurrentScore >= GameManager.Instance.RoundData.RoundDataList[GameManager.Instance.CurrentDay].ScoreGoal)
+                {
+                    GameManager.Instance.CheckScoreHighEnough();
+                    GameManager.Instance.CurrentHand = 0;
+                }
+                else
+                {
+                    GameManager.Instance.SetGameState(GameManager.GameState.ScavengingIntro);
+                }
             });
         }
     }
