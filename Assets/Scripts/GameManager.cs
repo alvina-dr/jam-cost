@@ -112,8 +112,10 @@ public class GameManager : MonoBehaviour
             case GameState.Scavenging:
                 CurrentHand++;
                 ResetTimer();
+                AudioManager.Instance.StartClockSound();
                 break;
             case GameState.CalculatingScore:
+                AudioManager.Instance.StopClockSound();
                 AudioManager.Instance.PlaySFXSound(_endRoundSound);
                 if (SelectedItem != null) SelectedItem.EndDrag();
                 UIManager.TicketMenu.CountScore();

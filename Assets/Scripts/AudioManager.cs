@@ -20,6 +20,17 @@ public class AudioManager : MonoBehaviour
     #endregion
 
     [SerializeField] private AudioSource _sfx;
+    [SerializeField] private AudioSource _clockSound;
+
+    public void StartClockSound()
+    {
+        _clockSound.Play();
+    }
+
+    public void StopClockSound()
+    {
+        _clockSound.Stop();
+    }
 
     public void PlaySFXSound(AudioClip clip)
     {
