@@ -19,6 +19,10 @@ public class ItemBehavior : MonoBehaviour
 
     [SerializeField] private SpriteRenderer _cross;
     [SerializeField] private SpriteRenderer _sellIcon;
+    
+    [SerializeField] private AudioClip _pickUpSound;
+    [SerializeField] private AudioClip _trashItemSound;
+    [SerializeField] private AudioClip _addToTicketSound;
 
     private void Start()
     {
@@ -127,6 +131,7 @@ public class ItemBehavior : MonoBehaviour
         _spriteRenderer.sortingLayerName = "Front";
         _shadowSpriteRenderer.sortingLayerName = "Front";
         SetSortingOrder(100);
+        AudioManager.Instance.PlaySFXSound(_pickUpSound);
     }
 
     public void EndDrag()
@@ -134,6 +139,7 @@ public class ItemBehavior : MonoBehaviour
         _isDragging = false;
         _collider.enabled = true;
         transform.DOScale(1f, .1f).SetEase(Ease.InBack);
+
         if (GameManager.Instance.SelectedItem == this) GameManager.Instance.SelectedItem = null;
 
         if (GameManager.Instance.UIManager.TicketMenu.OverCheck.IsOver())
@@ -143,6 +149,7 @@ public class ItemBehavior : MonoBehaviour
                 transform.DOKill();
                 GameManager.Instance.ItemManager.ItemList.Remove(this);
                 Destroy(gameObject);
+                AudioManager.Instance.PlaySFXSound(_addToTicketSound);
             }
             // if ticket is full, go back to bin
             else
@@ -165,6 +172,7 @@ public class ItemBehavior : MonoBehaviour
             transform.DOKill();
             GameManager.Instance.ItemManager.ItemList.Remove(this);
             Destroy(gameObject);
+            AudioManager.Instance.PlaySFXSound(_trashItemSound);
         }
         else
         {
@@ -173,6 +181,7 @@ public class ItemBehavior : MonoBehaviour
             _shadowSpriteRenderer.sortingLayerName = "Default";
             SetSortingOrder(GameManager.Instance.ItemManager.TopLayer + 2);
             GameManager.Instance.ItemManager.TopLayer += 2;
+            AudioManager.Instance.PlaySFXSound(_pickUpSound);
         }
     }
 

@@ -481,3 +481,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _textMeshProUGUI: {fileID: 0}
   _background: {fileID: 0}
+  _onClickSound: {fileID: 8300000, guid: 100cc3ce4e5c93042bd4dfa68df39a82, type: 3}

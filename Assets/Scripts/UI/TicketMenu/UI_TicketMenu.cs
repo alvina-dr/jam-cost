@@ -21,6 +21,9 @@ public class UI_TicketMenu : MonoBehaviour
     [SerializeField] private Color _addColor;
     [SerializeField] private Color _multiplyColor;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip _countTicketEntryMoney;
+
     public void ResetTicket()
     {
         Sequence destroySequence = DOTween.Sequence();
@@ -65,6 +68,7 @@ public class UI_TicketMenu : MonoBehaviour
         {
             int index = i;
             int score = _ticketEntryList[index].Data.Price;
+            countAnimation.AppendCallback(() => AudioManager.Instance.PlaySFXSound(_countTicketEntryMoney));
             countAnimation.AppendCallback(() => _ticketEntryList[index].BumpPrice());
             countAnimation.Join(_ticketEntryList[index].transform.DOShakeRotation(.3f, .3f));
 

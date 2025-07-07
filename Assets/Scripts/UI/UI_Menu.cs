@@ -30,7 +30,6 @@ public class UI_Menu : MonoBehaviour
     public void CloseMenu()
     {
         _isOpen = false;
-        gameObject.SetActive(false);
         float totalDelay = 0;
         for (int i = 0; i < _closeAnimationList.Count; i++)
         {
@@ -41,6 +40,10 @@ public class UI_Menu : MonoBehaviour
                 Pop(_closeAnimationList[index].Transform, _closeAnimationList[index].Time, false);
             }).SetUpdate(true);
         }
+        DOVirtual.DelayedCall(totalDelay, () =>
+        {
+            gameObject.SetActive(false);
+        });
     }
 
     public void Pop(Transform transform, float time, bool show)

@@ -8,6 +8,7 @@ public class UI_Button : MonoBehaviour, ISelectHandler, IDeselectHandler, IPoint
 {
     [SerializeField] private TextMeshProUGUI _textMeshProUGUI;
     [SerializeField] private Image _background;
+    [SerializeField] private AudioClip _onClickSound;
 
     private void Awake()
     {
@@ -31,7 +32,7 @@ public class UI_Button : MonoBehaviour, ISelectHandler, IDeselectHandler, IPoint
 
     private void OnClick()
     {
-        //AudioManager.Instance.onButtonOn.Invoke();
+        AudioManager.Instance.PlaySFXSound(_onClickSound);
     }
 
     public void OnPointerEnter(PointerEventData eventData)

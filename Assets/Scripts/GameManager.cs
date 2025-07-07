@@ -25,6 +25,10 @@ public class GameManager : MonoBehaviour
     public UIManager UIManager;
     public ItemManager ItemManager;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip _winSound;
+    [SerializeField] private AudioClip _looseSound;
+
     [Header("Infos")]
     public float RoundTime;
     public RoundData RoundData;
@@ -150,10 +154,12 @@ public class GameManager : MonoBehaviour
         if (CurrentScore < RoundData.RoundDataList[CurrentDay].ScoreGoal)
         {
             SetGameState(GameState.GameOver);
+            AudioManager.Instance.PlaySFXSound(_looseSound);
         }
         else
         {
             SetGameState(GameState.ChoosingBonus);
+            AudioManager.Instance.PlaySFXSound(_winSound);
         }
     }
 }

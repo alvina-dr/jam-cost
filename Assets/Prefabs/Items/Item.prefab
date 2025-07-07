@@ -401,10 +401,14 @@ MonoBehaviour:
   _collider: {fileID: 8256978997658704428}
   _spriteRenderer: {fileID: 4162256917233115436}
   _offset: {x: 0, y: -0.05, z: 0}
+  _startDragPosition: {x: 0, y: 0, z: 0}
   _flyingOffset: {x: 0, y: -0.4, z: 0}
   _shadowSpriteRenderer: {fileID: 6825208998740395840}
   _cross: {fileID: 8950746068353948999}
   _sellIcon: {fileID: 283622195621017087}
+  _pickUpSound: {fileID: 8300000, guid: 25fcdf3a425f4a2428b12e2a7da1c3dc, type: 3}
+  _trashItemSound: {fileID: 8300000, guid: b663f0d51d345f540bb2c6e54a17c50e, type: 3}
+  _addToTicketSound: {fileID: 8300000, guid: 0fc69976e44ac9a459408b1e794c0ed5, type: 3}
 --- !u!60 &8256978997658704428
 PolygonCollider2D:
   m_ObjectHideFlags: 0
