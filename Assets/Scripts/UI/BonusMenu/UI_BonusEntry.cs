@@ -16,6 +16,11 @@ public class UI_BonusEntry : MonoBehaviour
 
     public void SetupBonus(BonusData data)
     {
+        if (data == null)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
         Data = data;
         _bonusName.text = Data.Name;
         _bonusDescription.text = Data.Description;

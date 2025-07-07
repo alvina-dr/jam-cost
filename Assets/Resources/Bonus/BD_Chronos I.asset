@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a97c7e25d6e7204489f68ee44a8fd8bf, type: 3}
-  m_Name: BD_Chronos
+  m_Name: BD_Chronos I
   m_EditorClassIdentifier: 
   IsAvailableInGame: 1
-  Name: Chronos
+  Name: Chronos I
   Description: Gain an extra <b><color=blue>+5 seconds</color></b>
   Icon: {fileID: 21300000, guid: b060b7d8bd2f77645b2ad3c314f27807, type: 3}
   Color: {r: 0.62352943, g: 0.4784314, b: 0.7803922, a: 1}
+  RequiredBonusList: []
   BonusTime: 5

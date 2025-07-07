@@ -37,9 +37,41 @@ public class DataLoader : MonoBehaviour
 
     public BonusData TakeRandomBonusData()
     {
-        int randomIndex = Random.Range(0, BonusDataList.Count);
-        BonusData data = BonusDataList[randomIndex];
-        BonusDataList.RemoveAt(randomIndex);
+        // Get all possible bonus
+        List<BonusData> availableBonusDataList = new();
+
+        for (int i = 0; i < BonusDataList.Count; i++)
+        {
+            if (BonusDataList[i].RequiredBonusList.Count > 0)
+            {
+                bool hasAllBonus = true;
+                for (int j = 0; j < BonusDataList[i].RequiredBonusList.Count; j++)
+                {
+                    if (!GameManager.Instance.BonusList.Find(x => x == BonusDataList[i].RequiredBonusList[j]))
+                    {
+                        hasAllBonus = false;
+                        break;
+                    }
+                }
+                if (hasAllBonus) availableBonusDataList.Add(BonusDataList[i]);
+            }
+            else
+            {
+                availableBonusDataList.Add(BonusDataList[i]);
+            }
+        }
+
+        //string debug = "";
+        //for (int i = 0; i < availableBonusDataList.Count; i++)
+        //{
+        //    debug += availableBonusDataList[i].Name + "\n";
+        //}
+        //Debug.Log(debug);
+
+        int randomIndex = Random.Range(0, availableBonusDataList.Count);
+        if (randomIndex >= availableBonusDataList.Count) return null;
+        BonusData data = availableBonusDataList[randomIndex];
+        BonusDataList.Remove(data);
         return data;
     }
 
