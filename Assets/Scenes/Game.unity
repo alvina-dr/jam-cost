@@ -2053,6 +2053,7 @@ MonoBehaviour:
   ItemManager: {fileID: 1648493509}
   _winSound: {fileID: 8300000, guid: 775ebd6260b9b9f4e8de44892d258a95, type: 3}
   _looseSound: {fileID: 8300000, guid: e47d6734df2c77b40b02b2a57a61c30b, type: 3}
+  _endRoundSound: {fileID: 8300000, guid: bae491b857f23ed4496562b501c06fe5, type: 3}
   _roundTime: 10
   RoundData: {fileID: 11400000, guid: 68529cb8f4d36ee4db03e872e1bcb99f, type: 2}
   HandPerRound: 3

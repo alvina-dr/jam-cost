@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     [Header("Audio")]
     [SerializeField] private AudioClip _winSound;
     [SerializeField] private AudioClip _looseSound;
+    [SerializeField] private AudioClip _endRoundSound;
 
     [Header("Infos")]
     [SerializeField] private float _roundTime;
@@ -113,6 +114,7 @@ public class GameManager : MonoBehaviour
                 ResetTimer();
                 break;
             case GameState.CalculatingScore:
+                AudioManager.Instance.PlaySFXSound(_endRoundSound);
                 if (SelectedItem != null) SelectedItem.EndDrag();
                 UIManager.TicketMenu.CountScore();
                 UIManager.HoverPrice.HidePrice();

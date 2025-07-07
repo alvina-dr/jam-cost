@@ -8,12 +8,14 @@ public class UI_NewHand : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _text;
     [SerializeField] private CanvasGroup _canvasGroup;
     [SerializeField] private Image _panelImage;
+    [SerializeField] private AudioClip _newHandSound;
 
     public void Show()
     {
         _panelImage.transform.localScale = new Vector3(1, 0, 1);
         _text.transform.localPosition = new Vector3(1920, _text.transform.localPosition.y, 0);
-        
+        AudioManager.Instance.PlaySFXSound(_newHandSound);
+
         Sequence showSequence = DOTween.Sequence();
         showSequence.SetUpdate(true);
         showSequence.Append(_canvasGroup.DOFade(1, .3f));

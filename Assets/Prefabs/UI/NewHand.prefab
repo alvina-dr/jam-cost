@@ -387,6 +387,7 @@ MonoBehaviour:
   _text: {fileID: 7148078985571028185}
   _canvasGroup: {fileID: 4351665701521016526}
   _panelImage: {fileID: 1656471595586319578}
+  _newHandSound: {fileID: 8300000, guid: 53e01a473e1850041a71eeed32fc7449, type: 3}
 --- !u!225 &4351665701521016526
 CanvasGroup:
   m_ObjectHideFlags: 0
