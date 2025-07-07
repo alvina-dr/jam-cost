@@ -16,6 +16,10 @@ MonoBehaviour:
   - ItemSpawnNumber: 100
     ScoreGoal: 100
   - ItemSpawnNumber: 100
+    ScoreGoal: 300
+  - ItemSpawnNumber: 100
     ScoreGoal: 500
   - ItemSpawnNumber: 100
-    ScoreGoal: 1000
+    ScoreGoal: 700
+  - ItemSpawnNumber: 100
+    ScoreGoal: 900
