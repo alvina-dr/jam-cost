@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioClip _looseSound;
 
     [Header("Infos")]
-    public float RoundTime;
+    [SerializeField] private float _roundTime;
     public RoundData RoundData;
     public int HandPerRound;
     [SerializeField] private int _ticketSize;
@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour
 
     public void ResetTimer()
     {
-        Timer = RoundTime;
+        Timer = GetRoundTime();
     }
 
     public void AddBonus(BonusData bonus)
@@ -167,12 +167,24 @@ public class GameManager : MonoBehaviour
     public int GetTicketSize()
     {
         int handSizeBonus = 0;
-        List<BonusData> bonusTicketSize = BonusList.FindAll(x => x is BD_HandSize);
-        for (int i = 0; i < bonusTicketSize.Count; i++)
+        List<BonusData> bonusTicketSizeList = BonusList.FindAll(x => x is BD_HandSize);
+        for (int i = 0; i < bonusTicketSizeList.Count; i++)
         {
-            BD_HandSize handSizeBonusData = (BD_HandSize) bonusTicketSize[i];
-            if (handSizeBonusData != null) handSizeBonus += handSizeBonusData.BonusHandSize;
+            BD_HandSize bonusTicketSize = (BD_HandSize) bonusTicketSizeList[i];
+            if (bonusTicketSize != null) handSizeBonus += bonusTicketSize.BonusHandSize;
         }
         return _ticketSize + handSizeBonus;
+    }
+
+    public float GetRoundTime()
+    {
+        float roundTimeBonus = 0;
+        List<BonusData> bonusTimerList = BonusList.FindAll(x => x is BD_Timer);
+        for (int i = 0; i < bonusTimerList.Count; i++)
+        {
+            BD_Timer bonusTimerData = (BD_Timer)bonusTimerList[i];
+            if (bonusTimerData != null) roundTimeBonus += bonusTimerData.BonusTime;
+        }
+        return _roundTime + roundTimeBonus;
     }
 }

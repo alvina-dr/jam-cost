@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 550a4b641f0e278488d9df4b407a2431, type: 3}
-  m_Name: BD_HandSize
+  m_Script: {fileID: 11500000, guid: a97c7e25d6e7204489f68ee44a8fd8bf, type: 3}
+  m_Name: BD_Chronos
   m_EditorClassIdentifier: 
   IsAvailableInGame: 1
-  Name: Check Please
-  Description: Your <b>receipt</b> can contain <color=green>+1</color> additional
-    item
-  Icon: {fileID: 21300000, guid: 6de2dd59c78b8e54083e9a76b612ed9d, type: 3}
-  BonusHandSize: 1
+  Name: Chronos
+  Description: Gain an extra <b><color=blue>+5 seconds</color></b>
+  Icon: {fileID: 21300000, guid: 84fc278546b191943b0ad5e672aa5f55, type: 3}
+  BonusTime: 5
