@@ -51,6 +51,7 @@ public class UI_TicketEntry : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
         itemBehavior.transform.position = new Vector3(mousePosition.x, mousePosition.y, 0);
         itemBehavior.StartDrag();
         transform.localScale = Vector3.zero;
+        GameManager.Instance.UIManager.TicketMenu.UpdateItemNumberText();
     }
 
     public void OnEndDrag(PointerEventData eventData)

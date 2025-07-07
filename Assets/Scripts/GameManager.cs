@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
     {
         CurrentDay = -1;
         NextDay();
+        UIManager.TicketMenu.UpdateItemNumberText();
         SetGameState(GameState.Dialog);
     }
 
@@ -113,6 +114,7 @@ public class GameManager : MonoBehaviour
                 CurrentHand++;
                 ResetTimer();
                 AudioManager.Instance.StartClockSound();
+                UIManager.TicketMenu.UpdateItemNumberText();
                 break;
             case GameState.CalculatingScore:
                 AudioManager.Instance.StopClockSound();

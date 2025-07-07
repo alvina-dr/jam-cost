@@ -17,6 +17,8 @@ public class UI_TicketMenu : MonoBehaviour
     [SerializeField] private UI_TextValue _goalScoreText;
     public UI_TextValue GoalScoreText => _goalScoreText;
 
+    [SerializeField] private UI_TextValue _itemNumberText;
+
     [Header("Score colors")]
     [SerializeField] private Color _addColor;
     [SerializeField] private Color _multiplyColor;
@@ -24,6 +26,11 @@ public class UI_TicketMenu : MonoBehaviour
     [Header("Audio")]
     [SerializeField] private AudioClip _countTicketEntryMoney;
     [SerializeField] private AudioClip _validateTicketSound;
+
+    public void UpdateItemNumberText()
+    {
+        _itemNumberText.SetTextValue(GetTicketEntryCount() + "/" + GameManager.Instance.GetTicketSize());
+    }
 
     public void ResetTicket()
     {
@@ -36,12 +43,14 @@ public class UI_TicketMenu : MonoBehaviour
             destroySequence.AppendCallback(() => Destroy(_ticketEntryList[index].gameObject));
         }
         destroySequence.AppendCallback(() => _ticketEntryList.Clear());
+        destroySequence.AppendCallback(() => UpdateItemNumberText());
     }
 
     public void RemoveItemFromTicket(UI_TicketEntry ticketEntry)
     {
         _ticketEntryList.Remove(ticketEntry);
         Destroy(ticketEntry.gameObject);
+        UpdateItemNumberText();
     }
 
     public bool TryAddItemToList(ItemData data)
@@ -50,6 +59,7 @@ public class UI_TicketMenu : MonoBehaviour
         UI_TicketEntry ticketEntry = Instantiate(_ticketEntryPrefab, _layout);
         ticketEntry.Setup(data);
         _ticketEntryList.Add(ticketEntry);
+        UpdateItemNumberText();
         return true;
     }
 
