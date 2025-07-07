@@ -44,6 +44,7 @@ public class UI_TicketEntry : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (GameManager.Instance.CurrentGameState != GameManager.GameState.Scavenging) return;
         ItemBehavior itemBehavior = Instantiate(_data.Prefab);
         GameManager.Instance.ItemManager.ItemList.Add(itemBehavior);
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -54,6 +55,7 @@ public class UI_TicketEntry : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (GameManager.Instance.CurrentGameState != GameManager.GameState.Scavenging) return;
         if (GameManager.Instance.SelectedItem == null) return;
         GameManager.Instance.SelectedItem.EndDrag();
         GameManager.Instance.UIManager.TicketMenu.RemoveItemFromTicket(this);
