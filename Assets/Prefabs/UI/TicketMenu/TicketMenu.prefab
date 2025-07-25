@@ -1170,7 +1170,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <wave  amplitude=2>Goal</wave>
+  m_text: <wave  amp=2>Goal</wave>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fdb6141faf825f64daa1657ba82c68f8, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 63d3c78982b495c439f482b639d4979f, type: 2}
@@ -1279,7 +1279,7 @@ MonoBehaviour:
     _serializedList: []
   sceneHideAnimations:
     _serializedList: []
-  preview: 0
+  preview: 1
   useDefaultDatabase: 1
   useDefaultKeywordDatabase: 0
   initDatabase: 1
