@@ -160,7 +160,7 @@ public class UI_TicketMenu : MonoBehaviour
         countAnimation.AppendInterval(1f);
 
         // End of round
-        if (GameManager.Instance.CurrentHand >= GameManager.Instance.HandPerRound)
+        if (GameManager.Instance.CurrentHand >= SaveManager.Instance.GetClassicScavengeNode().RoundNumber)
         {
             countAnimation.AppendCallback(() => 
             {
@@ -173,7 +173,7 @@ public class UI_TicketMenu : MonoBehaviour
         {
             countAnimation.AppendCallback(() =>
             {
-                if (GameManager.Instance.CurrentScore >= GameManager.Instance.RoundData.RoundDataList[GameManager.Instance.CurrentDay].ScoreGoal)
+                if (GameManager.Instance.CurrentScore >= SaveManager.Instance.GetClassicScavengeNode().ScoreGoal)
                 {
                     GameManager.Instance.CheckScoreHighEnough();
                     GameManager.Instance.CurrentHand = 0;

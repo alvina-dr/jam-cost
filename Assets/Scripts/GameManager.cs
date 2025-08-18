@@ -1,6 +1,7 @@
 using UnityEngine;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -33,7 +34,6 @@ public class GameManager : MonoBehaviour
     [Header("Infos")]
     [SerializeField] private float _roundTime;
     public RoundData RoundData;
-    public int HandPerRound;
     [SerializeField] private int _ticketSize;
 
     [Header("Current Stats")]
@@ -59,9 +59,15 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        CurrentDay = -1;
-        NextDay();
+        CurrentDay = 0;
+        //NextDay();
+
+        UIManager.DayCount.SetTextValue((CurrentDay + 1).ToString());
+        SetCurrentScore(0);
+        UIManager.TicketMenu.GoalScoreText.SetTextValue(SaveManager.Instance.GetClassicScavengeNode().ScoreGoal + "$", true);
+        ItemManager.ResetDumpster();
         UIManager.TicketMenu.UpdateItemNumberText();
+
         SetGameState(GameState.Dialog);
     }
 
@@ -115,7 +121,7 @@ public class GameManager : MonoBehaviour
                 ResetTimer();
                 AudioManager.Instance.StartClockSound();
                 UIManager.TicketMenu.UpdateItemNumberText();
-                UIManager.RoundRemaining.SetTextValue(CurrentHand + "/" + HandPerRound);
+                UIManager.RoundRemaining.SetTextValue(CurrentHand + "/" + SaveManager.Instance.GetClassicScavengeNode().RoundNumber);
                 break;
             case GameState.CalculatingScore:
                 AudioManager.Instance.StopClockSound();
@@ -142,13 +148,14 @@ public class GameManager : MonoBehaviour
 
     public void NextDay()
     {
-        CurrentDay++;
-        UIManager.DayCount.SetTextValue((CurrentDay + 1).ToString());
+        SceneManager.LoadScene("Map");
+        //CurrentDay++;
+        //UIManager.DayCount.SetTextValue((CurrentDay + 1).ToString());
 
-        SetCurrentScore(0);
-        UIManager.TicketMenu.GoalScoreText.SetTextValue(RoundData.RoundDataList[CurrentDay].ScoreGoal + "$", true);
+        //SetCurrentScore(0);
+        //UIManager.TicketMenu.GoalScoreText.SetTextValue(RoundData.RoundDataList[CurrentDay].ScoreGoal + "$", true);
 
-        ItemManager.ResetDumpster();
+        //ItemManager.ResetDumpster();
     }
 
     public void SetCurrentScore(int score)
@@ -159,7 +166,7 @@ public class GameManager : MonoBehaviour
 
     public void CheckScoreHighEnough()
     {
-        if (CurrentScore < RoundData.RoundDataList[CurrentDay].ScoreGoal)
+        if (CurrentScore < SaveManager.Instance.GetClassicScavengeNode().ScoreGoal)
         {
             SetGameState(GameState.GameOver);
             AudioManager.Instance.PlaySFXSound(_looseSound);
