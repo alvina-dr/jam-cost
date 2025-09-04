@@ -16,6 +16,7 @@ public class DataLoader : MonoBehaviour
         else
         {
             Instance = this;
+            DontDestroyOnLoad(this);
             OnAwake();
         }
     }
@@ -50,7 +51,7 @@ public class DataLoader : MonoBehaviour
                 bool hasAllBonus = true;
                 for (int j = 0; j < BonusDataList[i].RequiredBonusList.Count; j++)
                 {
-                    if (!GameManager.Instance.BonusList.Find(x => x == BonusDataList[i].RequiredBonusList[j]))
+                    if (!SaveManager.Instance.CurrentSave.BonusList.Find(x => x == BonusDataList[i].RequiredBonusList[j]))
                     {
                         hasAllBonus = false;
                         break;

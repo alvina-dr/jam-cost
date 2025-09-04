@@ -42,6 +42,7 @@ public class SaveManager : MonoBehaviour
         public int RandomSeed;
         public int CurrentDay;
         public List<int> FormerNodeList = new();
+        public List<BonusData> BonusList = new();
 
         public SaveData()
         {

@@ -40,7 +40,6 @@ public class GameManager : MonoBehaviour
     public ItemBehavior SelectedItem;
     [ReadOnly] public float Timer;
     public int CurrentScore;
-    public List<BonusData> BonusList;
     public int CurrentDay;
     public int CurrentHand;
 
@@ -69,6 +68,8 @@ public class GameManager : MonoBehaviour
         UIManager.TicketMenu.UpdateItemNumberText();
 
         SetGameState(GameState.Dialog);
+
+        UIManager.BonusList.UpdateBonusList();
     }
 
     private void Update()
@@ -106,7 +107,7 @@ public class GameManager : MonoBehaviour
 
     public void AddBonus(BonusData bonus)
     {
-        BonusList.Add(bonus);
+        SaveManager.Instance.CurrentSave.BonusList.Add(bonus);
         UIManager.BonusList.UpdateBonusList();
     }
 
@@ -176,7 +177,7 @@ public class GameManager : MonoBehaviour
     public int GetTicketSize()
     {
         int handSizeBonus = 0;
-        List<BonusData> bonusTicketSizeList = BonusList.FindAll(x => x is BD_HandSize);
+        List<BonusData> bonusTicketSizeList = SaveManager.Instance.CurrentSave.BonusList.FindAll(x => x is BD_HandSize);
         for (int i = 0; i < bonusTicketSizeList.Count; i++)
         {
             BD_HandSize bonusTicketSize = (BD_HandSize) bonusTicketSizeList[i];
@@ -188,7 +189,7 @@ public class GameManager : MonoBehaviour
     public float GetRoundTime()
     {
         float roundTimeBonus = 0;
-        List<BonusData> bonusTimerList = BonusList.FindAll(x => x is BD_Timer);
+        List<BonusData> bonusTimerList = SaveManager.Instance.CurrentSave.BonusList.FindAll(x => x is BD_Timer);
         for (int i = 0; i < bonusTimerList.Count; i++)
         {
             BD_Timer bonusTimerData = (BD_Timer)bonusTimerList[i];
