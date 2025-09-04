@@ -15,4 +15,4 @@ MonoBehaviour:
   IsAvailableInGame: 1
   NodeIcon: {fileID: 21300000, guid: cf4efcfa506dd0040adecdb3f440805e, type: 3}
   ScoreGoal: 60
-  RoundNumber: 2
+  RoundNumber: 3

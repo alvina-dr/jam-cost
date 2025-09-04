@@ -15,6 +15,6 @@ public class UI_GameOver : MonoBehaviour
 
     public void ReloadGame()
     {
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("MainMenu");
     }
 }

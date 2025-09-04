@@ -3802,6 +3802,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6436201847158242453, guid: 8267fe26a38b4bb4da0aa0f61750c309, type: 3}
+      propertyPath: StartingSave.CurrentDay
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 6468123659638565399, guid: 8267fe26a38b4bb4da0aa0f61750c309, type: 3}
       propertyPath: m_Name
       value: SAVE MANAGER
