@@ -131,9 +131,11 @@ public class GameManager : MonoBehaviour
                 UIManager.HoverPrice.HidePrice();
                 break;
             case GameState.ChoosingBonus:
+                AudioManager.Instance.PlaySFXSound(_winSound);
                 UIManager.BonusMenu.OpenMenu();
                 break;
             case GameState.GameOver:
+                AudioManager.Instance.PlaySFXSound(_looseSound);
                 UIManager.GameOver.Open();
                 break;
             case GameState.ScavengingIntro:
@@ -148,6 +150,7 @@ public class GameManager : MonoBehaviour
 
     public void NextDay()
     {
+        SaveManager.Instance.CurrentSave.CurrentDay++;
         SceneManager.LoadScene("Map");
         //CurrentDay++;
         //UIManager.DayCount.SetTextValue((CurrentDay + 1).ToString());
@@ -166,16 +169,8 @@ public class GameManager : MonoBehaviour
 
     public void CheckScoreHighEnough()
     {
-        if (CurrentScore < SaveManager.Instance.GetClassicScavengeNode().ScoreGoal)
-        {
-            SetGameState(GameState.GameOver);
-            AudioManager.Instance.PlaySFXSound(_looseSound);
-        }
-        else
-        {
-            SetGameState(GameState.ChoosingBonus);
-            AudioManager.Instance.PlaySFXSound(_winSound);
-        }
+        if (CurrentScore < SaveManager.Instance.GetClassicScavengeNode().ScoreGoal) SetGameState(GameState.GameOver);
+        else SetGameState(GameState.ChoosingBonus);
     }
 
     public int GetTicketSize()

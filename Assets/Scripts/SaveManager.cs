@@ -1,5 +1,4 @@
-using System.Linq;
-using UnityEditor.Overlays;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SaveManager : MonoBehaviour
@@ -11,7 +10,7 @@ public class SaveManager : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
         else
         {
@@ -23,10 +22,13 @@ public class SaveManager : MonoBehaviour
     #endregion
 
     public MapNodeData CurrentMapNode;
+    public SaveData CurrentSave;
+    public SaveData StartingSave;
 
     private void OnAwake()
     {
-
+        CurrentSave = new SaveData(StartingSave);
+        // here load save
     }
 
     public MND_ClassicScavenge GetClassicScavengeNode()
@@ -34,8 +36,21 @@ public class SaveManager : MonoBehaviour
         return (MND_ClassicScavenge) CurrentMapNode;
     }
 
+    [System.Serializable]
     public class SaveData
     {
-        
+        public int RandomSeed;
+        public int CurrentDay;
+        public List<int> FormerNodeList = new();
+
+        public SaveData()
+        {
+            CurrentDay = 0;
+        }
+
+        public SaveData(SaveData saveData)
+        {
+            CurrentDay = saveData.CurrentDay;
+        }
     }
 }

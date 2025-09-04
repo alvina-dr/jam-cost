@@ -4,4 +4,5 @@ using UnityEngine;
 public class MapNodeData : ScriptableObject
 {
     public bool IsAvailableInGame;
+    public Sprite NodeIcon;
 }

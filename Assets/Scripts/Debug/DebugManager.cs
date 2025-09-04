@@ -2,6 +2,7 @@ using extDebug.Menu;
 using UnityEngine;
 using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
+using static GameManager;
 
 public class DebugManager : MonoBehaviour
 {
@@ -17,5 +18,11 @@ public class DebugManager : MonoBehaviour
 
         DM.Add("Reload" , action => SceneManager.LoadScene("Game"));
         DM.Add("Test" , action => Debug.Log("test"));
+        DM.Add("Win" , action => WinCurrentNode());
+    }
+
+    public void WinCurrentNode()
+    {
+        GameManager.Instance.SetGameState(GameState.ChoosingBonus);
     }
 }
