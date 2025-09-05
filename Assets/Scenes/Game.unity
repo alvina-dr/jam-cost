@@ -2059,6 +2059,11 @@ GameObject:
   - component: {fileID: 1648493507}
   - component: {fileID: 1648493508}
   - component: {fileID: 1648493509}
+  - component: {fileID: 1648493510}
+  - component: {fileID: 1648493511}
+  - component: {fileID: 1648493513}
+  - component: {fileID: 1648493512}
+  - component: {fileID: 1648493514}
   m_Layer: 0
   m_Name: MANAGER
   m_TagString: Untagged
@@ -2095,19 +2100,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIManager: {fileID: 110208747}
   ItemManager: {fileID: 1648493509}
-  _winSound: {fileID: 8300000, guid: 775ebd6260b9b9f4e8de44892d258a95, type: 3}
-  _looseSound: {fileID: 8300000, guid: e47d6734df2c77b40b02b2a57a61c30b, type: 3}
-  _endRoundSound: {fileID: 8300000, guid: bae491b857f23ed4496562b501c06fe5, type: 3}
   _roundTime: 10
   RoundData: {fileID: 11400000, guid: 68529cb8f4d36ee4db03e872e1bcb99f, type: 2}
   _ticketSize: 4
   SelectedItem: {fileID: 0}
   Timer: 0
   CurrentScore: 0
-  BonusList: []
   CurrentDay: 0
   CurrentHand: 0
-  CurrentGameState: 0
+  CurrentGameState: {fileID: 0}
+  ScavengingState: {fileID: 1648493510}
+  CalculatingScoreState: {fileID: 1648493511}
+  ChoosingBonusState: {fileID: 1648493513}
+  GameOverState: {fileID: 1648493512}
+  ScavengingIntroState: {fileID: 1648493514}
 --- !u!114 &1648493509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2125,6 +2131,71 @@ MonoBehaviour:
   _spawnZone: {x: 8.87, y: 4.41}
   _offset: {x: 1.37, y: -1.39}
   TopLayer: 0
+--- !u!114 &1648493510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648493506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff60752d9d8281c4e865c3af0f5c30db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Timer: 0
+  _roundTime: 10
+--- !u!114 &1648493511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648493506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d81e561c1444f2948a217196ec6ccf27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _endRoundSound: {fileID: 8300000, guid: bae491b857f23ed4496562b501c06fe5, type: 3}
+--- !u!114 &1648493512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648493506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 404480aefd23ed64989b8fb81a721b66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _looseSound: {fileID: 8300000, guid: e47d6734df2c77b40b02b2a57a61c30b, type: 3}
+--- !u!114 &1648493513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648493506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16c672ffef5d5fc4281bbd5e41bf1f6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _winSound: {fileID: 8300000, guid: 775ebd6260b9b9f4e8de44892d258a95, type: 3}
+--- !u!114 &1648493514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648493506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b8571d5a826f5f4480ca03ae75aa70c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1784639561
 GameObject:
   m_ObjectHideFlags: 0
@@ -4856,10 +4927,10 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1175137739040338229}
-  - {fileID: 1648493507}
   - {fileID: 6958878136810456709}
   - {fileID: 1427236118123603061}
   - {fileID: 8305887982021838072}
+  - {fileID: 1648493507}
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 1638492188}

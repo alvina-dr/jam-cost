@@ -54,35 +54,35 @@ public class ItemBehavior : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (GameManager.Instance.CurrentGameState != GameManager.GameState.Scavenging) return;
+        if (GameManager.Instance.CurrentGameState != GameManager.Instance.ScavengingState) return;
 
         GameManager.Instance.UIManager.HoverPrice.ShowPrice(Data.Price, transform.position);
     }
 
     private void OnMouseExit()
     {
-        if (GameManager.Instance.CurrentGameState != GameManager.GameState.Scavenging) return;
+        if (GameManager.Instance.CurrentGameState != GameManager.Instance.ScavengingState) return;
 
         GameManager.Instance.UIManager.HoverPrice.HidePrice();
     }
 
     private void OnMouseDown()
     {
-        if (GameManager.Instance.CurrentGameState != GameManager.GameState.Scavenging) return;
+        if (GameManager.Instance.CurrentGameState != GameManager.Instance.ScavengingState) return;
 
         StartDrag();
     }
 
     private void OnMouseUp()
     {
-        if (GameManager.Instance.CurrentGameState != GameManager.GameState.Scavenging) return;
+        if (GameManager.Instance.CurrentGameState != GameManager.Instance.ScavengingState) return;
 
         EndDrag();
     }
 
     private void Update()
     {
-        if (GameManager.Instance.CurrentGameState != GameManager.GameState.Scavenging)
+        if (GameManager.Instance.CurrentGameState != GameManager.Instance.ScavengingState)
         {
             if (_isDragging)
             {

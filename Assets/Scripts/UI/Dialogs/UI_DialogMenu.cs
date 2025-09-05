@@ -39,7 +39,7 @@ public class UI_DialogMenu : MonoBehaviour
     public void Close()
     {
         Menu.CloseMenu();
-        GameManager.Instance.SetGameState(CurrentDialogData.EndGameState);
+        GameManager.Instance.SetGameState(GameManager.Instance.ScavengingIntroState);
     }
 
     public bool HasBeenPlayed()

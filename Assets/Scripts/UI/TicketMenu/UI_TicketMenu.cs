@@ -180,7 +180,7 @@ public class UI_TicketMenu : MonoBehaviour
                 }
                 else
                 {
-                    GameManager.Instance.SetGameState(GameManager.GameState.ScavengingIntro);
+                    GameManager.Instance.SetGameState(GameManager.Instance.ScavengingIntroState);
                 }
             });
         }

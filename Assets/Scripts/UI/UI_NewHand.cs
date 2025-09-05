@@ -25,6 +25,6 @@ public class UI_NewHand : MonoBehaviour
         showSequence.Append(_text.transform.DOLocalMoveX(-1920, .4f).SetEase(Ease.Linear));
         showSequence.Append(_panelImage.transform.DOScaleY(0, .3f));
         showSequence.Append(_canvasGroup.DOFade(0, .3f));
-        showSequence.AppendCallback(() => GameManager.Instance.SetGameState(GameManager.GameState.Scavenging));
+        showSequence.AppendCallback(() => GameManager.Instance.SetGameState(GameManager.Instance.ScavengingState));
     }
 }
