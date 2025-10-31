@@ -9,4 +9,9 @@ public class UI_MovingBackground : MonoBehaviour
     {
         transform.DOLocalMoveX(transform.localPosition.x + 1920, _time).SetEase(Ease.Linear).SetLoops(-1, LoopType.Restart);
     }
+
+    private void OnDestroy()
+    {
+        transform.DOKill();
+    }
 }

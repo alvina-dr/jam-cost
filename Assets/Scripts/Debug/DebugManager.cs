@@ -1,6 +1,5 @@
 using extDebug.Menu;
 using UnityEngine;
-using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
 using static GameManager;
 
@@ -23,6 +22,6 @@ public class DebugManager : MonoBehaviour
 
     public void WinCurrentNode()
     {
-        //GameManager.Instance.SetGameState(GameState.ChoosingBonus); à remettre
+        GameManager.Instance.SetGameState(GameManager.Instance.ChoosingBonusState);
     }
 }
