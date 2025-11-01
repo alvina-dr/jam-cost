@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SaveManager : MonoBehaviour
 {
@@ -34,6 +35,12 @@ public class SaveManager : MonoBehaviour
     public MND_ClassicScavenge GetClassicScavengeNode()
     {
         return (MND_ClassicScavenge) CurrentMapNode;
+    }
+
+    public void NextDay()
+    {
+        CurrentSave.CurrentDay++;
+        SceneManager.LoadScene("Map");
     }
 
     [System.Serializable]

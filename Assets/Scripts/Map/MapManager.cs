@@ -92,31 +92,36 @@ public class MapManager : MonoBehaviour
     public void LaunchNode(MapNodeData data)
     {
         SaveManager.Instance.CurrentMapNode = data;
-        SceneManager.LoadScene("Game");
-    }
-
-    public List<UI_MapNode> GetNodeListFromColumn(int columnIndex, bool includeInactive = false)
-    {
-        if (includeInactive) return _mapNodeList.FindAll(x => x.MapNodeColumnIndex == columnIndex);
-        return _mapNodeList.FindAll(x => x.MapNodeColumnIndex == columnIndex && x.gameObject.activeSelf);
+        switch (data) 
+        {
+            case MND_ClassicScavenge:
+                SceneManager.LoadScene("Game");
+                break;
+            case MND_NPC:
+                SceneManager.LoadScene("Game");
+                break;
+            case MND_Shop:
+                SceneManager.LoadScene("Shop");
+                break;
+        }
     }
 
     public void RemoveNodes()
     {
         for (int i = 0; i < 3; i++)
         {
-            DeactivateRandomNode();
+            RemoveRandomNode();
         }
     }
 
-    public void DeactivateRandomNode()
+    public void RemoveRandomNode()
     {
         int column = Random.Range(0, _nodeNumberPerColumn.Count);
         List<UI_MapNode> columnNodeList = GetNodeListFromColumn(column);
         
         if (columnNodeList.Count <= 1)
         {
-            DeactivateRandomNode();
+            RemoveRandomNode();
         }
         else
         {
@@ -189,8 +194,11 @@ public class MapManager : MonoBehaviour
                 // if node is not part of previous nodes
                 if (!SaveManager.Instance.CurrentSave.FormerNodeList.Contains(_mapNodeList[i].MapNodeIndex))
                 {
-                    Debug.Log("deactivate node from other days : " + _mapNodeList[i].name);
                     _mapNodeList[i].DeactivateNode();
+                }
+                else
+                {
+                    _mapNodeList[i].ShowNodeAlreadyUsed();
                 }
             }
             else
@@ -198,56 +206,11 @@ public class MapManager : MonoBehaviour
                 _mapNodeList[i].SetWhiteLine();
                 if (SaveManager.Instance.CurrentSave.CurrentDay != 0)
                 {
-                    Debug.Log("node : " + lastMapNode.name + " and list of next nodes for last node : ");
-                    for (int j = 0; j < lastMapNode.NextNodeList.Count; j++)
+                    if (!_mapNodeList[SaveManager.Instance.CurrentSave.FormerNodeList.Last()].NextNodeList.Contains(_mapNodeList[i].MapNodeIndex))
                     {
-                        Debug.Log(lastMapNode.NextNodeList[j]);
-                    }
-
-                    Debug.Log("_______");
-                    if (_mapNodeList[SaveManager.Instance.CurrentSave.FormerNodeList.Last()].NextNodeList.Contains(_mapNodeList[i].MapNodeIndex))
-                    {
-                        Debug.Log("accessible");
-                    }
-                    else
-                    {
-                        Debug.Log("inaccessible");
                         _mapNodeList[i].DeactivateNode();
-
                     }
-                    // if the node is NOT accessible by the last node
-                    //if (!_mapNodeList[i].AccessibleThroughNode(_mapNodeList[SaveManager.Instance.CurrentSave.FormerNodeList.Last()]))
-                    //{
-                    //    Debug.Log("deactivate node : " + _mapNodeList[i].name);
-                    //    _mapNodeList[i].DeactivateNode();
-                    //}
                 }
-                else
-                {
-
-                }
-            }
-
-            // For nodes from today
-            //else
-            //{
-            //    mapNode.SetWhiteLine();
-
-            //    // if it's NOT the first day
-            //    if (SaveManager.Instance.CurrentSave.CurrentDay != 0)
-            //    {
-            //        // if the node is NOT accessible by the last node
-            //        if (!mapNode.AccessibleThroughNode(_mapNodeList[SaveManager.Instance.CurrentSave.FormerNodeList.Last()]))
-            //        {
-            //            mapNode.DeactivateNode();
-            //        }
-            //    }
-            //}
-
-
-            if (SaveManager.Instance.CurrentSave.FormerNodeList.Contains(_mapNodeList[i].MapNodeIndex))
-            {
-                _mapNodeList[i].ShowFormerNode();
             }
         }
     }
@@ -255,5 +218,11 @@ public class MapManager : MonoBehaviour
     public UI_MapNode GetNodeAtCoordinates(int row, int column)
     {
         return _mapNodeList.Find(mapNode => mapNode.MapNodeRowIndex == row && mapNode.MapNodeColumnIndex == column);
+    }
+
+    public List<UI_MapNode> GetNodeListFromColumn(int columnIndex, bool includeInactive = false)
+    {
+        if (includeInactive) return _mapNodeList.FindAll(x => x.MapNodeColumnIndex == columnIndex);
+        return _mapNodeList.FindAll(x => x.MapNodeColumnIndex == columnIndex && x.gameObject.activeSelf);
     }
 }

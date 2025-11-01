@@ -22,6 +22,7 @@ public class DebugManager : MonoBehaviour
 
     public void WinCurrentNode()
     {
-        GameManager.Instance.SetGameState(GameManager.Instance.ChoosingBonusState);
+        if (GameManager.Instance == null) return;
+        GameManager.Instance.SetGameState(GameManager.Instance.WinState);
     }
 }

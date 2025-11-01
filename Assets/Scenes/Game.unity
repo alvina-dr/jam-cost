@@ -2064,6 +2064,7 @@ GameObject:
   - component: {fileID: 1648493513}
   - component: {fileID: 1648493512}
   - component: {fileID: 1648493514}
+  - component: {fileID: 1648493515}
   m_Layer: 0
   m_Name: MANAGER
   m_TagString: Untagged
@@ -2111,6 +2112,7 @@ MonoBehaviour:
   CurrentGameState: {fileID: 0}
   ScavengingState: {fileID: 1648493510}
   CalculatingScoreState: {fileID: 1648493511}
+  WinState: {fileID: 1648493515}
   ChoosingBonusState: {fileID: 1648493513}
   GameOverState: {fileID: 1648493512}
   ScavengingIntroState: {fileID: 1648493514}
@@ -2196,6 +2198,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b8571d5a826f5f4480ca03ae75aa70c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1648493515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648493506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 872be8cdddbff1d46a0fb40068ebc5ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _winSound: {fileID: 8300000, guid: 775ebd6260b9b9f4e8de44892d258a95, type: 3}
 --- !u!1 &1784639561
 GameObject:
   m_ObjectHideFlags: 0
@@ -4827,7 +4842,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6169140620994304603, guid: 5365bd975b861d54d927ef96b96b55b5, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 959.99994
+      value: 959.9999
       objectReference: {fileID: 0}
     - target: {fileID: 6169140620994304603, guid: 5365bd975b861d54d927ef96b96b55b5, type: 3}
       propertyPath: m_AnchoredPosition.y

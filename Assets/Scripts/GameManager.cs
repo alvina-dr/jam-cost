@@ -23,6 +23,16 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    [ReadOnly] public GameState CurrentGameState;
+
+    [Header("States")]
+    public GS_Scavenging ScavengingState;
+    public GS_CalculatingScore CalculatingScoreState;
+    public GS_Win WinState;
+    public GS_ChoosingBonus ChoosingBonusState;
+    public GS_GameOver GameOverState;
+    public GS_ScavengingIntro ScavengingIntroState;
+
     [Header("References")]
     public UIManager UIManager;
     public ItemManager ItemManager;
@@ -38,14 +48,6 @@ public class GameManager : MonoBehaviour
     public int CurrentScore;
     public int CurrentDay;
     public int CurrentHand;
-
-    [Header("States")]
-    public GameState CurrentGameState;
-    public GS_Scavenging ScavengingState;
-    public GS_CalculatingScore CalculatingScoreState;
-    public GS_ChoosingBonus ChoosingBonusState;
-    public GS_GameOver GameOverState;
-    public GS_ScavengingIntro ScavengingIntroState;
 
     private void Start()
     {
@@ -92,12 +94,6 @@ public class GameManager : MonoBehaviour
         //    break;
     }
 
-    public void NextDay()
-    {
-        SaveManager.Instance.CurrentSave.CurrentDay++;
-        SceneManager.LoadScene("Map");
-    }
-
     public void SetCurrentScore(int score)
     {
         CurrentScore = score;
@@ -107,7 +103,7 @@ public class GameManager : MonoBehaviour
     public void CheckScoreHighEnough()
     {
         if (CurrentScore < SaveManager.Instance.GetClassicScavengeNode().ScoreGoal) SetGameState(GameManager.Instance.GameOverState);
-        else SetGameState(GameManager.Instance.ChoosingBonusState);
+        else SetGameState(GameManager.Instance.WinState);
     }
 
     public int GetTicketSize()

@@ -1,6 +1,7 @@
+using DG.Tweening;
 using UnityEngine;
 
-public class GS_ChoosingBonus : GameState
+public class GS_Win : GameState
 {
     [SerializeField] private AudioClip _winSound;
 
@@ -8,7 +9,10 @@ public class GS_ChoosingBonus : GameState
     {
         base.EnterState();
         AudioManager.Instance.PlaySFXSound(_winSound);
-        ShopManager.Instance.UIManager.BonusMenu.OpenMenu();
+        DOVirtual.DelayedCall(1, () =>
+        {
+            SaveManager.Instance.NextDay();
+        });
     }
 
     public override void UpdateState()

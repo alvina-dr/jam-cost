@@ -128,11 +128,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MapNodeData: {fileID: 11400000, guid: cffc50a3e8ada694c92f6e77cad39c5c, type: 2}
   MapNodeIndex: 0
+  MapNodeColumnIndex: 0
+  MapNodeRowIndex: 0
   _button: {fileID: 8895644914904312504}
   _icon: {fileID: 2848865452125443997}
   _lineRendererPrefab: {fileID: 7816221521061035567, guid: b99a3df99dc347442982d41599449b1d, type: 3}
   _previousNodeList: 
+  NextNodeList: 
   _lineRendererList: []
+  _uIbutton: {fileID: 9131030212169576512}
 --- !u!114 &8895644914904312504
 MonoBehaviour:
   m_ObjectHideFlags: 0

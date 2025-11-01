@@ -31,10 +31,9 @@ public class UI_BonusEntry : MonoBehaviour
 
     public void ChooseBonus()
     {
-        GameManager.Instance.AddBonus(Data);
+        ShopManager.Instance.AddBonus(Data);
         Data = null;
-        GameManager.Instance.UIManager.BonusMenu.CloseMenu();
-        GameManager.Instance.NextDay();
-        //GameManager.Instance.SetGameState(GameManager.GameState.ScavengingIntro);
+        ShopManager.Instance.UIManager.BonusMenu.CloseMenu();
+        SaveManager.Instance.NextDay();
     }
 }

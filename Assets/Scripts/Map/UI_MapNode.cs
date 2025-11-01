@@ -16,6 +16,7 @@ public class UI_MapNode : MonoBehaviour
     [SerializeField] private List<int> _previousNodeList = new();
     public List<int> NextNodeList = new();
     [SerializeField] private List<UI_LineRenderer> _lineRendererList = new();
+    [SerializeField] private UI_Button _uIbutton;
 
     public void SetupNode(MapNodeData nodeData, int nodeIndex, int columnIndex, int rowIndex)
     {
@@ -56,14 +57,22 @@ public class UI_MapNode : MonoBehaviour
 
     public void DeactivateNode()
     {
+        _uIbutton.enabled = false;
         _button.interactable = false;
         _icon.color = Color.black;
-        
         SetWhiteLine();
+    }
+
+    public void ShowNodeAlreadyUsed()
+    {
+        _uIbutton.enabled = false;
+        _button.interactable = false;
+        _icon.color = Color.grey;
     }
 
     public void ShowFormerNode()
     {
+        _uIbutton.enabled = true;
         _icon.color = Color.white;
     }
 
