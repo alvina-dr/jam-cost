@@ -50,8 +50,8 @@ public class UI_MapNode : MonoBehaviour
 
     public void ChooseMapNode()
     {
-        MapManager.Instance.LaunchNode(MapNodeData);
         SaveManager.Instance.CurrentSave.FormerNodeList.Add(MapNodeIndex);
+        MapManager.Instance.LaunchNode(MapNodeData);
     }
 
     public void DeactivateNode()

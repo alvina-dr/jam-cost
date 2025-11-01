@@ -1005,6 +1005,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EndingMapNode
       objectReference: {fileID: 0}
+    - target: {fileID: 7580806377522280316, guid: 6078906bcf72a2e4db5ea9bae06291c0, type: 3}
+      propertyPath: MapNodeData
+      value: 
+      objectReference: {fileID: 11400000, guid: 9d7c6edd5c1790a4cbb28d5f65b2712c, type: 2}
     - target: {fileID: 8895644914904312504, guid: 6078906bcf72a2e4db5ea9bae06291c0, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -1488,6 +1492,10 @@ PrefabInstance:
     - target: {fileID: 7200766266673933735, guid: 6078906bcf72a2e4db5ea9bae06291c0, type: 3}
       propertyPath: m_Name
       value: StartingMapNode
+      objectReference: {fileID: 0}
+    - target: {fileID: 7580806377522280316, guid: 6078906bcf72a2e4db5ea9bae06291c0, type: 3}
+      propertyPath: MapNodeIndex
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 8895644914904312504, guid: 6078906bcf72a2e4db5ea9bae06291c0, type: 3}
       propertyPath: m_Enabled

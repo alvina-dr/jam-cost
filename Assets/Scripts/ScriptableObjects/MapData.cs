@@ -5,6 +5,7 @@ using UnityEngine;
 public class MapData : ScriptableObject
 {
     public List<MapNodeDailyChoice> DailyChoiceList = new();
+    public int NumberOfNodesToDelete;
 
     [System.Serializable]
     public class MapNodeDailyChoice

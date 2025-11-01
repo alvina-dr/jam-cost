@@ -39,3 +39,4 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 083ad088cf1b0634da06a9bee5f5840f, type: 2}
     - {fileID: 11400000, guid: 9d7c6edd5c1790a4cbb28d5f65b2712c, type: 2}
     - {fileID: 11400000, guid: 9d7c6edd5c1790a4cbb28d5f65b2712c, type: 2}
+  NumberOfNodesToDelete: 4
