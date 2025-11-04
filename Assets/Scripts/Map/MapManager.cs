@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MapManager : MonoBehaviour
 {
@@ -38,6 +39,10 @@ public class MapManager : MonoBehaviour
     [SerializeField] private UI_MapNode _startingMapNode;
     [SerializeField] private UI_MapNode _endingMapNode;
     [SerializeField] private Vector2 _offsetRandomLimit;
+
+    [Header("Tiles")]
+    [SerializeField] private Transform _tileParent;
+    [SerializeField] private Image _tile1x1Building;
 
     public void OnAwake()
     {
@@ -77,6 +82,8 @@ public class MapManager : MonoBehaviour
 
         SetNodesState();
 
+        AddTiles();
+
         if (SaveManager.Instance.CurrentSave.FormerNodeList.Count > 1)
         {
             _racoonIcon.transform.position = _mapNodeList.Find(x => x.MapNodeIndex == SaveManager.Instance.CurrentSave.FormerNodeList.Last()).transform.position;
@@ -98,7 +105,7 @@ public class MapManager : MonoBehaviour
                 SceneManager.LoadScene("Game");
                 break;
             case MND_NPC:
-                SceneManager.LoadScene("Game");
+                SceneManager.LoadScene("Shop");
                 break;
             case MND_Shop:
                 SceneManager.LoadScene("Shop");
@@ -209,6 +216,31 @@ public class MapManager : MonoBehaviour
                     if (!_mapNodeList[SaveManager.Instance.CurrentSave.FormerNodeList.Last()].NextNodeList.Contains(_mapNodeList[i].MapNodeIndex))
                     {
                         _mapNodeList[i].DeactivateNode();
+                    }
+                }
+            }
+        }
+    }
+
+    public void AddTiles()
+    {
+        for (int i = 0; i < _mapNodeList.Count; i++)
+        {
+            UI_MapNode currentMapNode = _mapNodeList[i];
+            if (_mapNodeList[i].gameObject.activeSelf)
+            {
+                List<UI_MapNode> nextColumnNodeList = GetNodeListFromColumn(currentMapNode.MapNodeColumnIndex + 1);
+
+                for (int j = 0; j < nextColumnNodeList.Count; j++)
+                {
+                    if (nextColumnNodeList[j].MapNodeRowIndex == currentMapNode.MapNodeRowIndex + 1
+                        || nextColumnNodeList[j].MapNodeRowIndex == currentMapNode.MapNodeRowIndex - 1)
+                    {
+                        UI_MapNode diagonalMapNode = _mapNodeList[nextColumnNodeList[j].MapNodeIndex];
+                        Image tile = Instantiate(_tile1x1Building, _tileParent);
+                        tile.transform.position = new Vector3((diagonalMapNode.transform.position.x + currentMapNode.transform.position.x)/2f,
+                            (diagonalMapNode.transform.position.y + currentMapNode.transform.position.y)/2f, 0);
+                        tile.name = _tile1x1Building.name + "_" + currentMapNode.MapNodeIndex + "-" + diagonalMapNode.MapNodeIndex;
                     }
                 }
             }

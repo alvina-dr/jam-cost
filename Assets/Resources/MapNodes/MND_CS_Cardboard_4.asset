@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3a4358663ffa24241baa9b66c7d4b310, type: 3}
-  m_Name: MND_CS_4
+  m_Name: MND_CS_Cardboard_4
   m_EditorClassIdentifier: 
   IsAvailableInGame: 1
-  NodeIcon: {fileID: 21300000, guid: 243f3281ae107e74cb9c726a587400ff, type: 3}
+  NodeIcon: {fileID: 21300000, guid: c103c6a7d40710a4699e689d6b64053f, type: 3}
   ScoreGoal: 200
   RoundNumber: 3
+  SpawnItemParameters: {fileID: 11400000, guid: cc07bd7682fb981438de2cc83cd2f032, type: 2}

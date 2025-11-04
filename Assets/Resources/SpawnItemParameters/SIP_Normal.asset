@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6fd03b55de3f5947a7d24bdbc89ba09, type: 3}
+  m_Name: SIP_Normal
+  m_EditorClassIdentifier: 
+  ItemProbabilityList:
+  - Weight: 15
+    ItemData: {fileID: 11400000, guid: a65d4a05ab7de8d48ab5843af68dcf33, type: 2}
+  - Weight: 3
+    ItemData: {fileID: 11400000, guid: c5a9e48aa162b024c9ec4491d4766251, type: 2}
+  - Weight: 5
+    ItemData: {fileID: 11400000, guid: afec7c6a94a7cbf4b80943dfcd70417b, type: 2}
+  - Weight: 5
+    ItemData: {fileID: 11400000, guid: 7e2a896605d9d7740b4d5c74693f55ee, type: 2}
+  - Weight: 7
+    ItemData: {fileID: 11400000, guid: 43a3136e225aa0644aad002df16cd1cd, type: 2}
+  - Weight: 10
+    ItemData: {fileID: 11400000, guid: 06ff4cab308e83545ae541a7163aa26c, type: 2}
+  - Weight: 15
+    ItemData: {fileID: 11400000, guid: bfbbdb3a88324ba4fb17eca9679f2aec, type: 2}
+  - Weight: 10
+    ItemData: {fileID: 11400000, guid: fca8d237e9768074e8aa95122e91da4d, type: 2}
+  - Weight: 3
+    ItemData: {fileID: 11400000, guid: 6075140c31ac97d4fa99f762af8b6434, type: 2}
+  - Weight: 15
+    ItemData: {fileID: 11400000, guid: 4232cb650739f564f9a2ce53d08344f5, type: 2}
+  - Weight: 40
+    ItemData: {fileID: 11400000, guid: 06d9fb3819290d4478ab1a5baa5fd555, type: 2}
+  - Weight: 10
+    ItemData: {fileID: 11400000, guid: aa62c1101b2fd4548b4c9b7281071c6b, type: 2}
+  - Weight: 7
+    ItemData: {fileID: 11400000, guid: 9db9c94023d415a4495f800924e99821, type: 2}

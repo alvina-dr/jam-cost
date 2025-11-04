@@ -52,9 +52,12 @@ public class ItemManager : MonoBehaviour
         int index = Random.Range(0, _totalSpawnChance);
         for (int j = 0; j < DataLoader.Instance.ItemDataList.Count; j++)
         {
-            if (index < DataLoader.Instance.ItemDataList[j].SpawnChance)
+            ItemData data = DataLoader.Instance.ItemDataList[j];
+            SpawnItemParameters.ItemProbability proba = SaveManager.Instance.GetClassicScavengeNode().SpawnItemParameters.GetMatchingItemData(data);
+
+            if (index < proba.Weight)
                 return DataLoader.Instance.ItemDataList[j];
-            index -= DataLoader.Instance.ItemDataList[j].SpawnChance;
+            index -= proba.Weight;
         }
         return null;
     }
@@ -63,9 +66,9 @@ public class ItemManager : MonoBehaviour
     public void CalculateTotalSpawnChance()
     {
         _totalSpawnChance = 0;
-        for (int i = 0; i < DataLoader.Instance.ItemDataList.Count; i++)
+        for (int i = 0; i < SaveManager.Instance.GetClassicScavengeNode().SpawnItemParameters.ItemProbabilityList.Count; i++)
         {
-            _totalSpawnChance += DataLoader.Instance.ItemDataList[i].SpawnChance;
+            _totalSpawnChance += SaveManager.Instance.GetClassicScavengeNode().SpawnItemParameters.ItemProbabilityList[i].Weight;
         }
     }
 
