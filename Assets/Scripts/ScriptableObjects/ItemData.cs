@@ -5,6 +5,7 @@ public class ItemData : ScriptableObject
 {
     public ItemBehavior Prefab;
     public int Price;
+    public int BonusCurrency;
     public int Rarity;
     public string Name;
     public Sprite Icon;

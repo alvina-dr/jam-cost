@@ -103,8 +103,30 @@ public class ItemBehavior : MonoBehaviour
             {
                 if (GameManager.Instance.UIManager.TicketMenu.GetTicketEntryCount() + 1 > GameManager.Instance.GetTicketSize()) _sellIcon.color = Color.grey;
                 else _sellIcon.color = Color.green;
-                _sellIcon.enabled = true;
-                _cross.enabled = false;
+                if (Data.BonusCurrency > 0)
+                {
+                    _sellIcon.enabled = false;
+                    _cross.enabled = false;
+                }
+                else
+                {
+                    _sellIcon.enabled = true;
+                    _cross.enabled = false;
+                }
+
+            }
+            else if (GameManager.Instance.UIManager.CoinBagOverCheck.IsOver())
+            {
+                if (Data.BonusCurrency > 0)
+                {
+                    _sellIcon.enabled = true;
+                    _cross.enabled = false;
+                }
+                else
+                {
+                    _sellIcon.enabled = false;
+                    _cross.enabled = false;
+                }
             }
             else if (!GameManager.Instance.UIManager.DumpsterOverCheck.IsOver())
             {
@@ -144,34 +166,33 @@ public class ItemBehavior : MonoBehaviour
 
         if (GameManager.Instance.UIManager.TicketMenu.OverCheck.IsOver())
         {
-            if (GameManager.Instance.UIManager.TicketMenu.TryAddItemToList(Data))
+            if (Data.BonusCurrency == 0 && GameManager.Instance.UIManager.TicketMenu.TryAddItemToList(Data))
             {
-                transform.DOKill();
-                GameManager.Instance.ItemManager.ItemList.Remove(this);
-                Destroy(gameObject);
+                DestroyItem();
                 AudioManager.Instance.PlaySFXSound(_addToTicketSound);
             }
-            // if ticket is full, go back to bin
             else
             {
-                transform.DOMove(_startDragPosition, .5f).OnComplete(() =>
-                {
-                    gameObject.layer = LayerMask.NameToLayer("Default");
-                    _spriteRenderer.sortingLayerName = "Default";
-                    _shadowSpriteRenderer.sortingLayerName = "Default";
-                    SetSortingOrder(GameManager.Instance.ItemManager.TopLayer + 2);
-                    GameManager.Instance.ItemManager.TopLayer += 2;
-                });
-                _sellIcon.enabled = false;
-                _cross.enabled = false;
+                GoBackToDumpster();
             }
 
         }
+        else if (GameManager.Instance.UIManager.CoinBagOverCheck.IsOver())
+        {
+            if (Data.BonusCurrency > 0)
+            {
+                SaveManager.Instance.AddCurrency(Data.BonusCurrency);
+                DestroyItem();
+                AudioManager.Instance.PlaySFXSound(_addToTicketSound);
+            }
+            else
+            {
+                GoBackToDumpster();
+            }
+        }
         else if (!GameManager.Instance.UIManager.DumpsterOverCheck.IsOver())
         {
-            transform.DOKill();
-            GameManager.Instance.ItemManager.ItemList.Remove(this);
-            Destroy(gameObject);
+            DestroyItem();
             AudioManager.Instance.PlaySFXSound(_trashItemSound);
         }
         else
@@ -185,10 +206,31 @@ public class ItemBehavior : MonoBehaviour
         }
     }
 
+    public void GoBackToDumpster()
+    {
+        transform.DOMove(_startDragPosition, .5f).OnComplete(() =>
+        {
+            gameObject.layer = LayerMask.NameToLayer("Default");
+            _spriteRenderer.sortingLayerName = "Default";
+            _shadowSpriteRenderer.sortingLayerName = "Default";
+            SetSortingOrder(GameManager.Instance.ItemManager.TopLayer + 2);
+            GameManager.Instance.ItemManager.TopLayer += 2;
+        });
+        _sellIcon.enabled = false;
+        _cross.enabled = false;
+    }
+
     public void SetSortingOrder(int sortingOrder)
     {
         _spriteRenderer.sortingOrder = sortingOrder;
         _shadowSpriteRenderer.sortingOrder = sortingOrder - 1;
         transform.position = new Vector3(transform.position.x, transform.position.y, sortingOrder * -0.001f);
+    }
+
+    public void DestroyItem()
+    {
+        transform.DOKill();
+        GameManager.Instance.ItemManager.ItemList.Remove(this);
+        Destroy(gameObject);
     }
 }

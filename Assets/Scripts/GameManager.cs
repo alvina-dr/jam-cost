@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour
         ItemManager.ResetDumpster();
         UIManager.TicketMenu.UpdateItemNumberText();
         UIManager.BonusList.UpdateBonusList();
+        UIManager?.CoinCount.SetTextValue(SaveManager.Instance.CurrentSave.Currency.ToString());
 
         CurrentGameState = ScavengingIntroState;
         CurrentGameState.EnterState();

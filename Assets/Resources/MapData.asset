@@ -24,13 +24,13 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 41443b0ad27f711469adcfbb242e7d78, type: 2}
     - {fileID: 11400000, guid: 32ccb5db3b1fa1a46929ff1667e25f38, type: 2}
   - MapNodeDataList:
-    - {fileID: 11400000, guid: a7429d39c13087143b40e4a945bee045, type: 2}
     - {fileID: 11400000, guid: aa0c421df902ed14f93ba91c5ed17b50, type: 2}
     - {fileID: 11400000, guid: 332926b00b8b6ba4b994a42ad61165aa, type: 2}
+    - {fileID: 11400000, guid: a7429d39c13087143b40e4a945bee045, type: 2}
     - {fileID: 11400000, guid: a725c1eabf9247d4188bebaf25d40ee5, type: 2}
   - MapNodeDataList:
     - {fileID: 11400000, guid: 332926b00b8b6ba4b994a42ad61165aa, type: 2}
-    - {fileID: 11400000, guid: 32598c3171b44334b8268653f288bef7, type: 2}
+    - {fileID: 11400000, guid: a7429d39c13087143b40e4a945bee045, type: 2}
     - {fileID: 11400000, guid: a725c1eabf9247d4188bebaf25d40ee5, type: 2}
     - {fileID: 11400000, guid: 32ccb5db3b1fa1a46929ff1667e25f38, type: 2}
   - MapNodeDataList:
@@ -38,7 +38,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 9d7c6edd5c1790a4cbb28d5f65b2712c, type: 2}
     - {fileID: 11400000, guid: a725c1eabf9247d4188bebaf25d40ee5, type: 2}
   - MapNodeDataList:
-    - {fileID: 11400000, guid: 083ad088cf1b0634da06a9bee5f5840f, type: 2}
+    - {fileID: 11400000, guid: a7429d39c13087143b40e4a945bee045, type: 2}
     - {fileID: 11400000, guid: b242d725899160d408799757c0b6715c, type: 2}
     - {fileID: 11400000, guid: 9d7c6edd5c1790a4cbb28d5f65b2712c, type: 2}
   NumberOfNodesToDelete: 4

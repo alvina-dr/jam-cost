@@ -7,9 +7,11 @@ public class UIManager : MonoBehaviour
     public UI_TextValue Timer;
     public UI_TextValue DayCount;
     public UI_TextValue RoundRemaining;
+    public UI_TextValue CoinCount;
     public UI_BonusMenu BonusMenu;
     public UI_BonusList BonusList;
     public UI_OverCheck DumpsterOverCheck;
+    public UI_OverCheck CoinBagOverCheck;
     public UI_GameOver GameOver;
     public UI_TextPopperManager TextPopperManager_Number;
     public UI_TextPopperManager TextPopperManager_Info;

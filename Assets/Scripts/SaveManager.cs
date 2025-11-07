@@ -43,17 +43,25 @@ public class SaveManager : MonoBehaviour
         SceneManager.LoadScene("Map");
     }
 
+    public void AddCurrency(int number)
+    {
+        CurrentSave.Currency += number;
+        GameManager.Instance?.UIManager?.CoinCount.SetTextValue(CurrentSave.Currency.ToString());
+    }
+
     [System.Serializable]
     public class SaveData
     {
         public int RandomSeed;
         public int CurrentDay;
+        public int Currency;
         public List<int> FormerNodeList = new();
         public List<BonusData> BonusList = new();
 
         public SaveData()
         {
             CurrentDay = 0;
+            Currency = 0;
         }
 
         public SaveData(SaveData saveData)

@@ -78,9 +78,4 @@ public class DataLoader : MonoBehaviour
         BonusDataList.Remove(data);
         return data;
     }
-
-    public ItemData GetRandomItemData()
-    {
-        return ItemDataList[Random.Range(0, ItemDataList.Count)];
-    }
 }
