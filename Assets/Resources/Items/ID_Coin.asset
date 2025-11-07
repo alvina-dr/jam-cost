@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 3737433453275763250, guid: 2ea5387f3843301418e2e3f7f12e9634, type: 3}
   Price: 0
-  BonusCurrency: 10
+  BonusCurrency: 1
   Rarity: 1
   Name: Coin
   Icon: {fileID: 21300000, guid: a326ac63f89ee284298bc68f4c2d7978, type: 3}
