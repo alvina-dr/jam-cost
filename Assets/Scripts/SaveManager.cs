@@ -32,7 +32,7 @@ public class SaveManager : MonoBehaviour
         // here load save
     }
 
-    public MND_Scavenge_Classic GetClassicScavengeNode()
+    public MND_Scavenge_Classic GetScavengeNode()
     {
         return (MND_Scavenge_Classic) CurrentMapNode;
     }

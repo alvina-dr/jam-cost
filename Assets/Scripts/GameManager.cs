@@ -51,11 +51,21 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        switch (SaveManager.Instance.CurrentMapNode)
+        {
+            case MND_Scavenge_Empty:
+                // prepare interface for empty challenge
+                UIManager.DayCount.gameObject.SetActive(false);
+                UIManager.TicketMenu.gameObject.SetActive(false);
+                break;
+            case MND_Scavenge_Classic:
+                UIManager.TicketMenu.GoalScoreText.SetTextValue(SaveManager.Instance.GetScavengeNode().ScoreGoal + "$", true);
+                break;
+        }
         CurrentDay = 0;
 
         UIManager.DayCount.SetTextValue((CurrentDay + 1).ToString());
         SetCurrentScore(0);
-        UIManager.TicketMenu.GoalScoreText.SetTextValue(SaveManager.Instance.GetClassicScavengeNode().ScoreGoal + "$", true);
         ItemManager.ResetDumpster();
         UIManager.TicketMenu.UpdateItemNumberText();
         UIManager.BonusList.UpdateBonusList();
@@ -103,7 +113,7 @@ public class GameManager : MonoBehaviour
 
     public void CheckScoreHighEnough()
     {
-        if (CurrentScore < SaveManager.Instance.GetClassicScavengeNode().ScoreGoal) SetGameState(GameManager.Instance.GameOverState);
+        if (CurrentScore < SaveManager.Instance.GetScavengeNode().ScoreGoal) SetGameState(GameManager.Instance.GameOverState);
         else SetGameState(GameManager.Instance.WinState);
     }
 

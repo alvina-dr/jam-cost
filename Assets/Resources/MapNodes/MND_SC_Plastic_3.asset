@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8500b62373a49354aa3c85bb688cdeb2, type: 3}
   m_Name: MND_SC_Plastic_3
   m_EditorClassIdentifier: 
-  IsAvailableInGame: 0
+  IsAvailableInGame: 1
   NodeIcon: {fileID: 21300000, guid: 2a00d807a96ae4345bbe040650f5607b, type: 3}
   ScoreGoal: 200
   RoundNumber: 3

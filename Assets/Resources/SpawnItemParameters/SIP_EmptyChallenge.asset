@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6fd03b55de3f5947a7d24bdbc89ba09, type: 3}
-  m_Name: SIP_Normal
+  m_Name: SIP_EmptyChallenge
   m_EditorClassIdentifier: 
   ItemProbabilityList:
   - Weight: 15
@@ -41,4 +41,4 @@ MonoBehaviour:
     ItemData: {fileID: 11400000, guid: 9db9c94023d415a4495f800924e99821, type: 2}
   - Weight: 3
     ItemData: {fileID: 11400000, guid: d129557050f34c647909e75e0cd33db0, type: 2}
-  ItemNumber: 100
+  ItemNumber: 30

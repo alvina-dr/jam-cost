@@ -15,7 +15,7 @@ public class GS_Scavenging : GameState
         ResetTimer();
         AudioManager.Instance.StartClockSound();
         GameManager.Instance.UIManager.TicketMenu.UpdateItemNumberText();
-        GameManager.Instance.UIManager.RoundRemaining.SetTextValue(GameManager.Instance.CurrentHand + "/" + SaveManager.Instance.GetClassicScavengeNode().RoundNumber);
+        GameManager.Instance.UIManager.RoundRemaining.SetTextValue(GameManager.Instance.CurrentHand + "/" + SaveManager.Instance.GetScavengeNode().RoundNumber);
     }
 
     public override void UpdateState()
@@ -32,10 +32,34 @@ public class GS_Scavenging : GameState
         {
             EndOfRound();
         }
+
+        switch (SaveManager.Instance.CurrentMapNode)
+        {
+            case MND_Scavenge_Empty scavengeEmptyNode:
+                if (GameManager.Instance.ItemManager.ItemList.Count == 0)
+                {
+                    GameManager.Instance.SetGameState(GameManager.Instance.WinState);
+                    // win this game
+                }
+                break;
+        }
+
+
     }
 
     public void EndOfRound()
     {
+        switch (SaveManager.Instance.CurrentMapNode)
+        {
+            case MND_Scavenge_Empty scavengeEmptyNode:
+                if (GameManager.Instance.ItemManager.ItemList.Count > 0)
+                {
+                    GameManager.Instance.SetGameState(GameManager.Instance.GameOverState);
+                }
+                return;
+        }
+
+        // normal classic state
         ResetTimer();
         GameManager.Instance.SetGameState(GameManager.Instance.CalculatingScoreState);
     }
@@ -47,6 +71,12 @@ public class GS_Scavenging : GameState
 
     public float GetRoundTime()
     {
+        switch (SaveManager.Instance.CurrentMapNode) 
+        {
+            case MND_Scavenge_Empty scavengeEmptyNode :
+                return scavengeEmptyNode.Timer;
+        }
+
         float roundTimeBonus = 0;
         List<BonusData> bonusTimerList = SaveManager.Instance.CurrentSave.BonusList.FindAll(x => x is BD_Timer);
         for (int i = 0; i < bonusTimerList.Count; i++)

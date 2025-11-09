@@ -5,7 +5,6 @@ using UnityEngine;
 public class ItemManager : MonoBehaviour
 {
     public List<ItemBehavior> ItemList = new();
-    public GenerationParameters GenerationParameters;
     [SerializeField] private Vector2 _spawnZone;
     [SerializeField] private Vector2 _offset;
     [SerializeField] public int TopLayer;
@@ -33,11 +32,9 @@ public class ItemManager : MonoBehaviour
     {
         CalculateTotalSpawnChance();
         
-
-        for (int i = 0; i < GenerationParameters.ItemNumber; i++)
+        for (int i = 0; i < SaveManager.Instance.GetScavengeNode().SpawnItemParameters.ItemNumber; i++)
         {
             ItemData dataItem = GetRandomItem();
-            //ItemData data = DataLoader.Instance.GetRandomItemData();
             ItemBehavior itemBehavior = Instantiate(dataItem.Prefab);
             itemBehavior.transform.position = new Vector3(Random.Range(-_spawnZone.x/2 + _offset.x, _spawnZone.x / 2 + _offset.x), Random.Range(-_spawnZone.y / 2 + _offset.y, _spawnZone.y / 2 + _offset.y), i * -0.001f);
             itemBehavior.transform.eulerAngles = new Vector3(0, 0, Random.Range(-70, 70));
@@ -53,7 +50,7 @@ public class ItemManager : MonoBehaviour
         for (int j = 0; j < DataLoader.Instance.ItemDataList.Count; j++)
         {
             ItemData data = DataLoader.Instance.ItemDataList[j];
-            SpawnItemParameters.ItemProbability proba = SaveManager.Instance.GetClassicScavengeNode().SpawnItemParameters.GetMatchingItemData(data);
+            SpawnItemParameters.ItemProbability proba = SaveManager.Instance.GetScavengeNode().SpawnItemParameters.GetMatchingItemData(data);
 
             if (index < proba.Weight)
                 return DataLoader.Instance.ItemDataList[j];
@@ -66,9 +63,9 @@ public class ItemManager : MonoBehaviour
     public void CalculateTotalSpawnChance()
     {
         _totalSpawnChance = 0;
-        for (int i = 0; i < SaveManager.Instance.GetClassicScavengeNode().SpawnItemParameters.ItemProbabilityList.Count; i++)
+        for (int i = 0; i < SaveManager.Instance.GetScavengeNode().SpawnItemParameters.ItemProbabilityList.Count; i++)
         {
-            _totalSpawnChance += SaveManager.Instance.GetClassicScavengeNode().SpawnItemParameters.ItemProbabilityList[i].Weight;
+            _totalSpawnChance += SaveManager.Instance.GetScavengeNode().SpawnItemParameters.ItemProbabilityList[i].Weight;
         }
     }
 

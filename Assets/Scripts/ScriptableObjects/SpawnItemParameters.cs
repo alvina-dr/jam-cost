@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpawnItemParameters : ScriptableObject
 {
     public List<ItemProbability> ItemProbabilityList = new();
+    public int ItemNumber;
 
     public ItemProbability GetMatchingItemData(ItemData itemData)
     {
