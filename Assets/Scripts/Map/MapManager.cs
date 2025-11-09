@@ -98,7 +98,7 @@ public class MapManager : MonoBehaviour
         SaveManager.Instance.CurrentMapNode = data;
         switch (data) 
         {
-            case MND_ClassicScavenge:
+            case MND_Scavenge_Classic:
                 SceneManager.LoadScene("Game");
                 break;
             case MND_NPC:
