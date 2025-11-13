@@ -22,14 +22,19 @@ public class MainSceneToolbarButton
 			EditorSceneManager.OpenScene("Assets/Scenes/Game.unity");
 		}
 
-        if (GUILayout.Button(new GUIContent("Main Menu", "Open Main Menu Scene")))
+        if (GUILayout.Button(new GUIContent("Shop", "Open Shop Scene")))
         {
-            EditorSceneManager.OpenScene("Assets/Scenes/MainMenu.unity");
+            EditorSceneManager.OpenScene("Assets/Scenes/Shop.unity");
         }
 
         if (GUILayout.Button(new GUIContent("Map", "Open Map Scene")))
         {
             EditorSceneManager.OpenScene("Assets/Scenes/Map.unity");
+        }
+
+        if (GUILayout.Button(new GUIContent("Main Menu", "Open Main Menu Scene")))
+        {
+            EditorSceneManager.OpenScene("Assets/Scenes/MainMenu.unity");
         }
     }
 }
