@@ -2,12 +2,14 @@ using DG.Tweening;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI_TicketMenu : MonoBehaviour
 {
     public UI_OverCheck OverCheck;
     [SerializeField] private Transform _layout;
     [SerializeField] private UI_TicketEntry _ticketEntryPrefab;
+    [SerializeField] private Button _continueButton;
     [SerializeField] private List<UI_TicketEntry> _ticketEntryList = new();
     public int GetTicketEntryCount() => _ticketEntryList.Count; 
 
@@ -180,9 +182,15 @@ public class UI_TicketMenu : MonoBehaviour
                 }
                 else
                 {
-                    GameManager.Instance.SetGameState(GameManager.Instance.ScavengingIntroState);
+                    _continueButton.gameObject.SetActive(true);
                 }
             });
         }
+    }
+
+    public void Continue()
+    {
+        _continueButton.gameObject.SetActive(false);
+        GameManager.Instance.SetGameState(GameManager.Instance.ScavengingIntroState);
     }
 }

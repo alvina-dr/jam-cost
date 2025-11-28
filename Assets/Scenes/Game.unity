@@ -2583,7 +2583,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemList: []
-  GenerationParameters: {fileID: 11400000, guid: f4f280a27117da24eaadb9088d466dfb, type: 2}
   _spawnZone: {x: 8.87, y: 4.41}
   _offset: {x: 1.37, y: -1.39}
   TopLayer: 0
@@ -5085,6 +5084,10 @@ PrefabInstance:
     - target: {fileID: 8254856024892278258, guid: 10a08d4552be41d4aa37b4b041b3adae, type: 3}
       propertyPath: m_Name
       value: NewHand
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254856024892278258, guid: 10a08d4552be41d4aa37b4b041b3adae, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
