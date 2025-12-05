@@ -188,9 +188,13 @@ public class UI_TicketMenu : MonoBehaviour
         }
     }
 
-    public void Continue()
+    public List<ItemData> GetItemDataList()
     {
-        _continueButton.gameObject.SetActive(false);
-        GameManager.Instance.SetGameState(GameManager.Instance.ScavengingIntroState);
+        List<ItemData> itemDataList = new();
+        for (int i = 0; i < _ticketEntryList.Count; i++)
+        {
+            itemDataList.Add(_ticketEntryList[i].Data);
+        }
+        return itemDataList;
     }
 }

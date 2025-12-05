@@ -61,7 +61,7 @@ public class GS_Scavenging : GameState
 
         // normal classic state
         ResetTimer();
-        GameManager.Instance.SetGameState(GameManager.Instance.CalculatingScoreState);
+        GameManager.Instance.SetGameState(GameManager.Instance.BagState);
     }
 
     public void ResetTimer()

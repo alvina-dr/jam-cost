@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     public GS_ChoosingBonus ChoosingBonusState;
     public GS_GameOver GameOverState;
     public GS_ScavengingIntro ScavengingIntroState;
+    public GS_Bag BagState;
 
     [Header("References")]
     public UIManager UIManager;

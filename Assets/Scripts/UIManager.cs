@@ -17,4 +17,5 @@ public class UIManager : MonoBehaviour
     public UI_TextPopperManager TextPopperManager_Info;
     public UI_NewHand NewHand;
     public UI_DialogMenu DialogMenu;
+    public UI_BagMenu BagMenu;
 }
