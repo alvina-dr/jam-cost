@@ -11,17 +11,28 @@ public class UI_BagMenu : MonoBehaviour
     [SerializeField] private List<UI_BagSlot> _bagSlotList;
     [SerializeField] private List<UI_BagSlot> _choiceSlotList;
     public Transform DraggedItem;
-    [SerializeField]  private Button _continueButton;
+    [SerializeField] private Button _confirm;
+    [SerializeField] private Button _continue;
+
+    public UI_ValueBar _scoreBar;
+    public UI_TextValue _scoreGoalText;
+    public UI_TextValue _currentScoreText;
 
     [Header("Score colors")]
     [SerializeField] private Color _addColor;
     [SerializeField] private Color _multiplyColor;
     public void OpenMenu()
     {
-        _continueButton.gameObject.SetActive(true);
+        _confirm.gameObject.SetActive(true);
+        _continue.gameObject.SetActive(false);
+
         _menu.OpenMenu();
 
         GameManager.Instance.UIManager.TicketMenu.ResetTicket();
+
+        _scoreBar.SetBarValue(GameManager.Instance.CurrentScore, SaveManager.Instance.GetScavengeNode().ScoreGoal, false);
+        _scoreGoalText.SetTextValue(SaveManager.Instance.GetScavengeNode().ScoreGoal.ToString(), false);
+        _currentScoreText.SetTextValue(GameManager.Instance.CurrentScore.ToString(), false);
 
         List<ItemData> bagItemList = GameManager.Instance.UIManager.TicketMenu.GetItemDataList();
         for (int i = 0; i < bagItemList.Count; i++)
@@ -41,10 +52,16 @@ public class UI_BagMenu : MonoBehaviour
         _menu.CloseMenu();
     }
 
-    public void Continue()
+    public void Confirm()
     {
         CountScore();
-        _continueButton.gameObject.SetActive(false);
+        _confirm.gameObject.SetActive(false);
+    }
+
+    public void Continue()
+    {
+        GameManager.Instance.SetGameState(GameManager.Instance.ScavengingIntroState);
+        _continue.gameObject.SetActive(false);
     }
 
     public List<UI_BagSlot> GetChosenItemSlotList()
@@ -143,7 +160,13 @@ public class UI_BagMenu : MonoBehaviour
                 }));
             }
 
-            countAnimation.AppendCallback(() => GameManager.Instance.SetCurrentScore(GameManager.Instance.CurrentScore + score));
+            countAnimation.AppendCallback(() =>
+            {
+                GameManager.Instance.SetCurrentScore(GameManager.Instance.CurrentScore + score);
+                _scoreBar.SetBarValue(GameManager.Instance.CurrentScore, SaveManager.Instance.GetScavengeNode().ScoreGoal);
+                _scoreGoalText.SetTextValue(SaveManager.Instance.GetScavengeNode().ScoreGoal.ToString());
+                _currentScoreText.SetTextValue(GameManager.Instance.CurrentScore.ToString());
+            });
             //countAnimation.Append(_totalScoreText.transform.DOShakePosition(.2f, 10));
             countAnimation.AppendInterval(.8f);
             //chosenItemSlotList.Add(_ticketEntryList[index].Data);
@@ -151,8 +174,8 @@ public class UI_BagMenu : MonoBehaviour
         countAnimation.AppendInterval(1f);
         //countAnimation.AppendCallback(() => AudioManager.Instance.PlaySFXSound(_validateTicketSound));
         //countAnimation.AppendCallback(() => ResetTicket());
-        countAnimation.AppendInterval(1f);
-        countAnimation.AppendCallback(() => GameManager.Instance.SetGameState(GameManager.Instance.ScavengingIntroState));
+        //countAnimation.AppendInterval(1f);
+        //countAnimation.AppendCallback(() => GameManager.Instance.SetGameState(GameManager.Instance.ScavengingIntroState));
 
         // End of round
         if (GameManager.Instance.CurrentHand >= SaveManager.Instance.GetScavengeNode().RoundNumber)
@@ -170,12 +193,12 @@ public class UI_BagMenu : MonoBehaviour
             {
                 if (GameManager.Instance.CurrentScore >= SaveManager.Instance.GetScavengeNode().ScoreGoal)
                 {
-                    GameManager.Instance.CheckScoreHighEnough();
+                    GameManager.Instance.SetGameState(GameManager.Instance.WinState);
                     GameManager.Instance.CurrentHand = 0;
                 }
                 else
                 {
-                    _continueButton.gameObject.SetActive(true);
+                    _continue.gameObject.SetActive(true);
                 }
             });
         }

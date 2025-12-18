@@ -114,8 +114,8 @@ public class GameManager : MonoBehaviour
 
     public void CheckScoreHighEnough()
     {
-        if (CurrentScore < SaveManager.Instance.GetScavengeNode().ScoreGoal) SetGameState(GameManager.Instance.GameOverState);
-        else SetGameState(GameManager.Instance.WinState);
+        if (CurrentScore < SaveManager.Instance.GetScavengeNode().ScoreGoal) SetGameState(GameOverState);
+        else SetGameState(WinState);
     }
 
     public int GetTicketSize()
