@@ -1281,6 +1281,9 @@ MonoBehaviour:
   _multiplyColor: {r: 0.96981126, g: 0.38477942, b: 0.14455667, a: 1}
   _countTicketEntryMoney: {fileID: 8300000, guid: cc915268ec08b0147b1643ee32903dd6, type: 3}
   _validateTicketSound: {fileID: 8300000, guid: bfef64a3437f7664aa550d0028baf901, type: 3}
+  _ticketImage: {fileID: 6629143510612743408}
+  _normalTicket: {fileID: 21300000, guid: 22b882450875ac244822ccf1d0be69a3, type: 3}
+  _greyTicket: {fileID: 391432175851756416, guid: 778450e967dfd41418702c5749c87f33, type: 3}
 --- !u!114 &4767481177639422249
 MonoBehaviour:
   m_ObjectHideFlags: 0

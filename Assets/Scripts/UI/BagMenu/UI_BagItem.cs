@@ -21,7 +21,7 @@ public class UI_BagItem : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
     public void OnBeginDrag(PointerEventData eventData)
     {
         Debug.Log("begin drag : " + name);
-        _currentBagSlot.RemoveItem(this);
+        _currentBagSlot.RemoveItem();
         _image.raycastTarget = false;
         transform.parent = _bagMenu.DraggedItem;
         _formerBagSlot = _currentBagSlot;

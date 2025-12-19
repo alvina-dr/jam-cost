@@ -32,6 +32,11 @@ public class MainSceneToolbarButton
             EditorSceneManager.OpenScene("Assets/Scenes/Map.unity");
         }
 
+        if (GUILayout.Button(new GUIContent("Hub", "Open Hub Scene")))
+        {
+            EditorSceneManager.OpenScene("Assets/Scenes/Hub.unity");
+        }
+
         if (GUILayout.Button(new GUIContent("Main Menu", "Open Main Menu Scene")))
         {
             EditorSceneManager.OpenScene("Assets/Scenes/MainMenu.unity");

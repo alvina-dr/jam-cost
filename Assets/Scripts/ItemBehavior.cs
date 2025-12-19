@@ -54,35 +54,35 @@ public class ItemBehavior : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (GameManager.Instance.CurrentGameState != GameManager.Instance.ScavengingState) return;
+        if (GameManager.Instance.CurrentGameState != (GameManager.Instance.ScavengingState || GameManager.Instance.PreparationState)) return;
 
         GameManager.Instance.UIManager.HoverPrice.ShowPrice(Data.Price, transform.position);
     }
 
     private void OnMouseExit()
     {
-        if (GameManager.Instance.CurrentGameState != GameManager.Instance.ScavengingState) return;
+        if (GameManager.Instance.CurrentGameState != (GameManager.Instance.ScavengingState || GameManager.Instance.PreparationState)) return;
 
         GameManager.Instance.UIManager.HoverPrice.HidePrice();
     }
 
     private void OnMouseDown()
     {
-        if (GameManager.Instance.CurrentGameState != GameManager.Instance.ScavengingState) return;
+        if (GameManager.Instance.CurrentGameState != (GameManager.Instance.ScavengingState || GameManager.Instance.PreparationState)) return;
 
         StartDrag();
     }
 
     private void OnMouseUp()
     {
-        if (GameManager.Instance.CurrentGameState != GameManager.Instance.ScavengingState) return;
+        if (GameManager.Instance.CurrentGameState != (GameManager.Instance.ScavengingState || GameManager.Instance.PreparationState)) return;
 
         EndDrag();
     }
 
     private void Update()
     {
-        if (GameManager.Instance.CurrentGameState != GameManager.Instance.ScavengingState)
+        if (GameManager.Instance.CurrentGameState != (GameManager.Instance.ScavengingState || GameManager.Instance.PreparationState))
         {
             if (_isDragging)
             {
@@ -99,7 +99,7 @@ public class ItemBehavior : MonoBehaviour
             Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = mouseWorldPosition + _dragOffset;
 
-            if (GameManager.Instance.UIManager.TicketMenu.OverCheck.IsOver())
+            if (GameManager.Instance.UIManager.TicketMenu.OverCheck.IsOver() && GameManager.Instance.CurrentGameState != GameManager.Instance.PreparationState)
             {
                 if (GameManager.Instance.UIManager.TicketMenu.GetTicketEntryCount() + 1 > GameManager.Instance.GetTicketSize()) _sellIcon.color = Color.grey;
                 else _sellIcon.color = Color.green;
@@ -166,16 +166,18 @@ public class ItemBehavior : MonoBehaviour
 
         if (GameManager.Instance.UIManager.TicketMenu.OverCheck.IsOver())
         {
-            if (Data.BonusCurrency == 0 && GameManager.Instance.UIManager.TicketMenu.TryAddItemToList(Data))
-            {
-                DestroyItem();
-                AudioManager.Instance.PlaySFXSound(_addToTicketSound);
-            }
-            else
+            if (GameManager.Instance.CurrentGameState == GameManager.Instance.PreparationState || Data.BonusCurrency != 0)
             {
                 GoBackToDumpster();
             }
-
+            else
+            {
+                if (GameManager.Instance.UIManager.TicketMenu.TryAddItemToList(Data))
+                {
+                    DestroyItem();
+                    AudioManager.Instance.PlaySFXSound(_addToTicketSound);
+                }
+            }
         }
         else if (GameManager.Instance.UIManager.CoinBagOverCheck.IsOver())
         {

@@ -79,6 +79,19 @@ public class UI_BagMenu : MonoBehaviour
         List<UI_BagSlot> chosenItemSlotList = GetChosenItemSlotList();
         Sequence countAnimation = DOTween.Sequence();
 
+        for (int i = 0; i < _bagSlotList.Count; i++)
+        {
+            int index = i;
+            if (_bagSlotList[i].CurrentBagItem != null)
+            {
+                countAnimation.AppendCallback(() =>
+                {
+                    _bagSlotList[index].ClearSlot();
+                });
+                countAnimation.AppendInterval(.1f);
+            }
+        }
+
         // calculate how many object there is of each family
         List<int> familyCountList = new();
         for (int i = 0; i < Enum.GetNames(typeof(ItemData.ItemFamily)).Length; i++)
@@ -164,7 +177,6 @@ public class UI_BagMenu : MonoBehaviour
             {
                 GameManager.Instance.SetCurrentScore(GameManager.Instance.CurrentScore + score);
                 _scoreBar.SetBarValue(GameManager.Instance.CurrentScore, SaveManager.Instance.GetScavengeNode().ScoreGoal);
-                _scoreGoalText.SetTextValue(SaveManager.Instance.GetScavengeNode().ScoreGoal.ToString());
                 _currentScoreText.SetTextValue(GameManager.Instance.CurrentScore.ToString());
             });
             //countAnimation.Append(_totalScoreText.transform.DOShakePosition(.2f, 10));

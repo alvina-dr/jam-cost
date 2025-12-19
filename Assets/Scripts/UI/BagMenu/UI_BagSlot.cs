@@ -18,7 +18,7 @@ public class UI_BagSlot : MonoBehaviour, IDropHandler
         _currentBagItem = bagItem;
     }
 
-    public void RemoveItem(UI_BagItem bagItem)
+    public void RemoveItem()
     {
         _currentBagItem = null;
     }
