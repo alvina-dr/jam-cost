@@ -61,20 +61,24 @@ public class ItemBehavior : MonoBehaviour
 
     private void OnMouseExit()
     {
-        if (GameManager.Instance.CurrentGameState != (GameManager.Instance.ScavengingState || GameManager.Instance.PreparationState)) return;
+        if (GameManager.Instance.CurrentGameState != GameManager.Instance.ScavengingState
+        && GameManager.Instance.CurrentGameState != GameManager.Instance.PreparationState) return;
 
         GameManager.Instance.UIManager.HoverPrice.HidePrice();
     }
 
     private void OnMouseDown()
     {
-        if (GameManager.Instance.CurrentGameState != (GameManager.Instance.ScavengingState || GameManager.Instance.PreparationState)) return;
+        if (PauseManager.Instance.IsPaused) return;
+        if (GameManager.Instance.CurrentGameState != GameManager.Instance.ScavengingState
+        && GameManager.Instance.CurrentGameState != GameManager.Instance.PreparationState) return;
 
         StartDrag();
     }
 
     private void OnMouseUp()
     {
+        if (PauseManager.Instance.IsPaused) return;
         if (GameManager.Instance.CurrentGameState != (GameManager.Instance.ScavengingState || GameManager.Instance.PreparationState)) return;
 
         EndDrag();
@@ -82,13 +86,13 @@ public class ItemBehavior : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance.CurrentGameState != (GameManager.Instance.ScavengingState || GameManager.Instance.PreparationState))
+        if (GameManager.Instance.CurrentGameState != (GameManager.Instance.ScavengingState || GameManager.Instance.PreparationState) || PauseManager.Instance.IsPaused)
         {
             if (_isDragging)
             {
                 _isDragging = false;
                 _collider.enabled = true;
-                transform.DOScale(1f, .3f).SetEase(Ease.InBack);
+                DropItem();
                 if (GameManager.Instance.SelectedItem == this) GameManager.Instance.SelectedItem = null;
             }
             return;
@@ -148,7 +152,7 @@ public class ItemBehavior : MonoBehaviour
         _dragOffset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
         GameManager.Instance.SelectedItem = this;
         _collider.enabled = false;
-        transform.DOScale(1.3f, .4f).SetEase(Ease.OutBack);
+        transform.DOScale(1.3f, .4f).SetEase(Ease.OutBack).SetUpdate(true);
         gameObject.layer = LayerMask.NameToLayer("FrontItem");
         _spriteRenderer.sortingLayerName = "Front";
         _shadowSpriteRenderer.sortingLayerName = "Front";
@@ -160,7 +164,7 @@ public class ItemBehavior : MonoBehaviour
     {
         _isDragging = false;
         _collider.enabled = true;
-        transform.DOScale(1f, .1f).SetEase(Ease.InBack);
+        //transform.DOScale(1f, .1f).SetEase(Ease.InBack).SetUpdate(true);
 
         if (GameManager.Instance.SelectedItem == this) GameManager.Instance.SelectedItem = null;
 
@@ -199,24 +203,26 @@ public class ItemBehavior : MonoBehaviour
         }
         else
         {
-            gameObject.layer = LayerMask.NameToLayer("Default");
-            _spriteRenderer.sortingLayerName = "Default";
-            _shadowSpriteRenderer.sortingLayerName = "Default";
-            SetSortingOrder(GameManager.Instance.ItemManager.TopLayer + 2);
-            GameManager.Instance.ItemManager.TopLayer += 2;
-            AudioManager.Instance.PlaySFXSound(_pickUpSound);
+            DropItem();
         }
+    }
+
+    public void DropItem()
+    {
+        transform.DOScale(1f, .3f).SetEase(Ease.InBack).SetUpdate(true);
+        gameObject.layer = LayerMask.NameToLayer("Default");
+        _spriteRenderer.sortingLayerName = "Default";
+        _shadowSpriteRenderer.sortingLayerName = "Default";
+        SetSortingOrder(GameManager.Instance.ItemManager.TopLayer + 2);
+        GameManager.Instance.ItemManager.TopLayer += 2;
+        AudioManager.Instance.PlaySFXSound(_pickUpSound);
     }
 
     public void GoBackToDumpster()
     {
         transform.DOMove(_startDragPosition, .5f).OnComplete(() =>
         {
-            gameObject.layer = LayerMask.NameToLayer("Default");
-            _spriteRenderer.sortingLayerName = "Default";
-            _shadowSpriteRenderer.sortingLayerName = "Default";
-            SetSortingOrder(GameManager.Instance.ItemManager.TopLayer + 2);
-            GameManager.Instance.ItemManager.TopLayer += 2;
+            DropItem();
         });
         _sellIcon.enabled = false;
         _cross.enabled = false;
