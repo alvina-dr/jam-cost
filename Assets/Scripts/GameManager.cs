@@ -27,12 +27,12 @@ public class GameManager : MonoBehaviour
 
     [Header("States")]
     public GS_Scavenging ScavengingState;
-    public GS_CalculatingScore CalculatingScoreState;
     public GS_Win WinState;
     public GS_ChoosingBonus ChoosingBonusState;
     public GS_GameOver GameOverState;
     public GS_ScavengingIntro ScavengingIntroState;
     public GS_Bag BagState;
+    public GS_Preparation PreparationState;
 
     [Header("References")]
     public UIManager UIManager;
@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
         UIManager.BonusList.UpdateBonusList();
         UIManager?.CoinCount.SetTextValue(SaveManager.Instance.CurrentSave.Currency.ToString());
 
-        CurrentGameState = ScavengingIntroState;
+        CurrentGameState = PreparationState;
         CurrentGameState.EnterState();
     }
 
@@ -114,8 +114,8 @@ public class GameManager : MonoBehaviour
 
     public void CheckScoreHighEnough()
     {
-        if (CurrentScore < SaveManager.Instance.GetScavengeNode().ScoreGoal) SetGameState(GameManager.Instance.GameOverState);
-        else SetGameState(GameManager.Instance.WinState);
+        if (CurrentScore < SaveManager.Instance.GetScavengeNode().ScoreGoal) SetGameState(GameOverState);
+        else SetGameState(WinState);
     }
 
     public int GetTicketSize()

@@ -29,6 +29,11 @@ public class UI_TicketMenu : MonoBehaviour
     [SerializeField] private AudioClip _countTicketEntryMoney;
     [SerializeField] private AudioClip _validateTicketSound;
 
+    [Header("Image")]
+    [SerializeField] private Image _ticketImage;
+    [SerializeField] private Sprite _normalTicket;
+    [SerializeField] private Sprite _greyTicket;
+
     public void UpdateItemNumberText()
     {
         _itemNumberText.SetTextValue(GetTicketEntryCount() + "/" + GameManager.Instance.GetTicketSize());
@@ -63,6 +68,18 @@ public class UI_TicketMenu : MonoBehaviour
         _ticketEntryList.Add(ticketEntry);
         UpdateItemNumberText();
         return true;
+    }
+
+    public void EnableMenu()
+    {
+        //OverCheck.enabled = true;
+        _ticketImage.sprite = _normalTicket;
+    }
+
+    public void DisableMenu()
+    {
+        //OverCheck.enabled = false;
+        _ticketImage.sprite = _greyTicket;
     }
 
     public void CountScore()

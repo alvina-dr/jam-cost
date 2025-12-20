@@ -18,7 +18,7 @@ public class UI_BagSlot : MonoBehaviour, IDropHandler
         _currentBagItem = bagItem;
     }
 
-    public void RemoveItem(UI_BagItem bagItem)
+    public void RemoveItem()
     {
         _currentBagItem = null;
     }
@@ -43,6 +43,8 @@ public class UI_BagSlot : MonoBehaviour, IDropHandler
             _currentBagItem = bagItem;
             _currentBagItem.SetSlot(this);
             _currentBagItem.transform.DOMove(transform.position, .1f);
+            RectTransform rect = (RectTransform)_currentBagItem.transform;
+            rect.SetOffsets(0, 0, 0, 0);
         }
     }
 }

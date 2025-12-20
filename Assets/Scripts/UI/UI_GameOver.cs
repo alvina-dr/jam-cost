@@ -17,6 +17,6 @@ public class UI_GameOver : MonoBehaviour
     {
         Destroy(SaveManager.Instance.gameObject);
         Destroy(DataLoader.Instance.gameObject);
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("Hub");
     }
 }
