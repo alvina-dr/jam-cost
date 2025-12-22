@@ -19,4 +19,9 @@ public class UI_GameOver : MonoBehaviour
         Destroy(DataLoader.Instance.gameObject);
         SceneManager.LoadScene("Hub");
     }
+
+    public void NextDay()
+    {
+        SaveManager.Instance.NextDay();
+    }
 }

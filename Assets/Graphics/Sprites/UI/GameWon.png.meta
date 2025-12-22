@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6638ebd7d89cb8b42b2b71b2276711fc
+guid: c6c021943a9253c45ab4584f50a4e5e5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 610908720128868772
-    second: Group 45_0
+      213: 4865099757606551272
+    second: GameWon_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -109,11 +109,24 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Group 45_0
+      name: GameWon_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4a148758e326a7800800000000000000
-      internalID: 610908720128868772
+      spriteID: 8ee3af0047e448340800000000000000
+      internalID: 4865099757606551272
       vertices: []
       indices: 
       edges: []
@@ -148,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Group 45_0: 610908720128868772
+      GameWon_0: 4865099757606551272
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

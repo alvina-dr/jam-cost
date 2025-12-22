@@ -359,7 +359,7 @@ GameObject:
   - component: {fileID: 8928964524807797910}
   - component: {fileID: 2616679725663204846}
   m_Layer: 5
-  m_Name: GameOver
+  m_Name: GameLost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1519,6 +1519,18 @@ PrefabInstance:
     - target: {fileID: 4055730177989707258, guid: 6d787b4eee563d3478023ad9a8cea882, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5578681622546133820, guid: 6d787b4eee563d3478023ad9a8cea882, type: 3}
+      propertyPath: m_Color.b
+      value: 0.21568629
+      objectReference: {fileID: 0}
+    - target: {fileID: 5578681622546133820, guid: 6d787b4eee563d3478023ad9a8cea882, type: 3}
+      propertyPath: m_Color.g
+      value: 0.3529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 5578681622546133820, guid: 6d787b4eee563d3478023ad9a8cea882, type: 3}
+      propertyPath: m_Color.r
+      value: 0.8941177
       objectReference: {fileID: 0}
     - target: {fileID: 5938949023320744415, guid: 6d787b4eee563d3478023ad9a8cea882, type: 3}
       propertyPath: m_text
