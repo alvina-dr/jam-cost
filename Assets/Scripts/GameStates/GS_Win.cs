@@ -9,13 +9,8 @@ public class GS_Win : GameState
     {
         base.EnterState();
         AudioManager.Instance.PlaySFXSound(_winSound);
-
+        GameManager.Instance.UIManager.GameWon.Open();
         // show small victory animation
-
-        DOVirtual.DelayedCall(1, () =>
-        {
-            SaveManager.Instance.NextDay();
-        });
     }
 
     public override void UpdateState()

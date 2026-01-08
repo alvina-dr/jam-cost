@@ -8,7 +8,7 @@ public class GS_GameOver : GameState
     {
         base.EnterState();
         AudioManager.Instance.PlaySFXSound(_looseSound);
-        GameManager.Instance.UIManager.GameOver.Open();
+        GameManager.Instance.UIManager.GameLost.Open();
     }
 
     public override void UpdateState()
