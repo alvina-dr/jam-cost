@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -23,12 +24,14 @@ public class HubManager : MonoBehaviour
     public GameObject BreakRoom;
     public GameObject InsideLocker;
 
+    [Button]
     public void OpenLocker()
     {
         BreakRoom.SetActive(false);
         InsideLocker.SetActive(true);
     }
 
+    [Button]
     public void CloseLocker()
     {
         BreakRoom.SetActive(true);
@@ -38,5 +41,11 @@ public class HubManager : MonoBehaviour
     public void LaunchNewRun()
     {
         SceneManager.LoadScene("Map");
+    }
+
+    public void UseMealTicket(int cost)
+    {
+        SaveManager.Instance.CurrentSave.MealTickets -= cost;
+        // actualize UI 
     }
 }

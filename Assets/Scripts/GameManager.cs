@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
         ItemManager.ResetDumpster();
         UIManager.TicketMenu.UpdateItemNumberText();
         UIManager.BonusList.UpdateBonusList();
-        UIManager?.CoinCount.SetTextValue(SaveManager.Instance.CurrentSave.Currency.ToString());
+        UIManager?.CoinCount.SetTextValue(SaveManager.Instance.CurrentSave.ProductivityPoints.ToString());
 
         CurrentGameState = PreparationState;
         CurrentGameState.EnterState();

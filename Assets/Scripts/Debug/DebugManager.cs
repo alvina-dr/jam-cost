@@ -1,4 +1,5 @@
 using extDebug.Menu;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static GameManager;
@@ -18,6 +19,8 @@ public class DebugManager : MonoBehaviour
         DM.Add("Reload" , action => SceneManager.LoadScene("Game"));
         DM.Add("Win" , action => WinCurrentNode());
         DM.Add("Generate new map" , action => GenerateNewMap());
+        DM.Add("Gain/PP" , action => SaveManager.Instance.AddPP(100));
+        DM.Add("Gain/MealTickets", action => SaveManager.Instance.CurrentSave.MealTickets += 100);
     }
 
     public void WinCurrentNode()

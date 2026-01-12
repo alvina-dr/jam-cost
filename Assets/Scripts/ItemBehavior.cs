@@ -187,7 +187,7 @@ public class ItemBehavior : MonoBehaviour
         {
             if (Data.BonusCurrency > 0)
             {
-                SaveManager.Instance.AddCurrency(Data.BonusCurrency);
+                SaveManager.Instance.AddPP(Data.BonusCurrency);
                 DestroyItem();
                 AudioManager.Instance.PlaySFXSound(_addToTicketSound);
             }
