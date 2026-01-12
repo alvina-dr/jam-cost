@@ -2370,7 +2370,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <wave amp=2>Break Room
+  m_text: <wave amp=2>Break Room <sprite name=PP>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 96c0e0c4a5984704782f78cfe69055d6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: fa219e36c499b2442979fff80e68e8a4, type: 2}
