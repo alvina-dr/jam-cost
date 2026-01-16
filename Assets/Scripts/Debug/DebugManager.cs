@@ -20,7 +20,7 @@ public class DebugManager : MonoBehaviour
         DM.Add("Win" , action => WinCurrentNode());
         DM.Add("Generate new map" , action => GenerateNewMap());
         DM.Add("Gain/PP" , action => SaveManager.Instance.AddPP(100));
-        DM.Add("Gain/MealTickets", action => SaveManager.Instance.CurrentSave.MealTickets += 100);
+        DM.Add("Gain/MealTickets", action => GainMealTickets());
     }
 
     public void WinCurrentNode()
@@ -34,5 +34,11 @@ public class DebugManager : MonoBehaviour
         SaveManager.Instance.CurrentSave.FormerNodeList.Clear();
 
         SceneManager.LoadScene("Map");
+    }
+
+    public void GainMealTickets()
+    {
+        SaveManager.Instance.CurrentSave.MealTickets += 100;
+        HubManager.Instance?.UpdateUpgrades();
     }
 }

@@ -1,4 +1,6 @@
 using Sirenix.OdinInspector;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -23,6 +25,14 @@ public class HubManager : MonoBehaviour
 
     public GameObject BreakRoom;
     public GameObject InsideLocker;
+    [SerializeField] private List<HubUpgrade> _hubUpgradeList = new();
+
+    [Button]
+    public void UpdateUpgradeList()
+    {
+        _hubUpgradeList.Clear();
+        _hubUpgradeList = FindObjectsByType<HubUpgrade>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToList();
+    }
 
     [Button]
     public void OpenLocker()
@@ -46,6 +56,15 @@ public class HubManager : MonoBehaviour
     public void UseMealTicket(int cost)
     {
         SaveManager.Instance.CurrentSave.MealTickets -= cost;
+        UpdateUpgrades();
         // actualize UI 
+    }
+
+    public void UpdateUpgrades()
+    {
+        for (int i = 0; i < _hubUpgradeList.Count; i++)
+        {
+            _hubUpgradeList[i].UpdatePrice();
+        }
     }
 }
