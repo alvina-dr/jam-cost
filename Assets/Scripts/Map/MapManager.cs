@@ -43,18 +43,18 @@ public class MapManager : MonoBehaviour
 
     public void OnAwake()
     {
-        _dayText.SetTextValue((SaveManager.Instance.CurrentSave.CurrentDay + 1).ToString());
+        _dayText.SetTextValue((SaveManager.Instance.CurrentSave.CurrentRun.CurrentDay + 1).ToString());
 
-        if (SaveManager.Instance.CurrentSave.CurrentDay == 0)
+        if (SaveManager.Instance.CurrentSave.CurrentRun.CurrentDay == 0)
         {
-            SaveManager.Instance.CurrentSave.RandomSeed = (int)System.DateTime.Now.Ticks;
-            SaveManager.Instance.CurrentSave.FormerNodeList.Add(_startingMapNode.MapNodeIndex);
+            SaveManager.Instance.CurrentSave.CurrentRun.RandomSeed = (int)System.DateTime.Now.Ticks;
+            SaveManager.Instance.CurrentSave.CurrentRun.FormerNodeList.Add(_startingMapNode.MapNodeIndex);
         }
 
         //_mapNodeList.Add(_startingMapNode);
         //_nodeNumberPerColumn.Add(1);
 
-        Random.InitState(SaveManager.Instance.CurrentSave.RandomSeed);
+        Random.InitState(SaveManager.Instance.CurrentSave.CurrentRun.RandomSeed);
 
         // instantiate all nodes
         for (int i = 0; i < _mapData.DailyChoiceList.Count; i++)
@@ -81,9 +81,9 @@ public class MapManager : MonoBehaviour
 
         AddTiles();
 
-        if (SaveManager.Instance.CurrentSave.FormerNodeList.Count > 1)
+        if (SaveManager.Instance.CurrentSave.CurrentRun.FormerNodeList.Count > 1)
         {
-            _racoonIcon.transform.position = _mapNodeList.Find(x => x.MapNodeIndex == SaveManager.Instance.CurrentSave.FormerNodeList.Last()).transform.position;
+            _racoonIcon.transform.position = _mapNodeList.Find(x => x.MapNodeIndex == SaveManager.Instance.CurrentSave.CurrentRun.FormerNodeList.Last()).transform.position;
             _racoonIcon.transform.position += new Vector3(0, 100);
         }
         else
@@ -188,15 +188,15 @@ public class MapManager : MonoBehaviour
     public void SetNodesState()
     {
         UI_MapNode lastMapNode = _startingMapNode;
-        if (SaveManager.Instance.CurrentSave.FormerNodeList.Count > 1) lastMapNode = _mapNodeList[SaveManager.Instance.CurrentSave.FormerNodeList.Last()];
+        if (SaveManager.Instance.CurrentSave.CurrentRun.FormerNodeList.Count > 1) lastMapNode = _mapNodeList[SaveManager.Instance.CurrentSave.CurrentRun.FormerNodeList.Last()];
 
         for (int i = 0; i < _mapNodeList.Count; i++)
         {
             // if node is not of today column 
-            if (_mapNodeList[i].MapNodeColumnIndex != SaveManager.Instance.CurrentSave.CurrentDay) 
+            if (_mapNodeList[i].MapNodeColumnIndex != SaveManager.Instance.CurrentSave.CurrentRun.CurrentDay) 
             {
                 // if node is not part of previous nodes
-                if (!SaveManager.Instance.CurrentSave.FormerNodeList.Contains(_mapNodeList[i].MapNodeIndex))
+                if (!SaveManager.Instance.CurrentSave.CurrentRun.FormerNodeList.Contains(_mapNodeList[i].MapNodeIndex))
                 {
                     _mapNodeList[i].DeactivateNode();
                 }
@@ -208,9 +208,9 @@ public class MapManager : MonoBehaviour
             else
             {
                 _mapNodeList[i].SetWhiteLine();
-                if (SaveManager.Instance.CurrentSave.CurrentDay != 0)
+                if (SaveManager.Instance.CurrentSave.CurrentRun.CurrentDay != 0)
                 {
-                    if (!_mapNodeList[SaveManager.Instance.CurrentSave.FormerNodeList.Last()].NextNodeList.Contains(_mapNodeList[i].MapNodeIndex))
+                    if (!_mapNodeList[SaveManager.Instance.CurrentSave.CurrentRun.FormerNodeList.Last()].NextNodeList.Contains(_mapNodeList[i].MapNodeIndex))
                     {
                         _mapNodeList[i].DeactivateNode();
                     }

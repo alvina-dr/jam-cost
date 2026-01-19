@@ -24,12 +24,23 @@ public class SaveManager : MonoBehaviour
 
     public MapNodeData CurrentMapNode;
     public SaveData CurrentSave;
-    public SaveData StartingSave;
 
     private void OnAwake()
     {
-        CurrentSave = new SaveData(StartingSave);
-        // here load save
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
+        CurrentSave = new SaveData();
+    }
+
+    public void StartNewRun()
+    {
+        CurrentSave.CurrentRun = new RunData();
+
+        // Load permanent bonus advantages
+        AddPP(CurrentSave.RunStartLootPP);
+
+        UI_Run.Instance?.PPTextValue.SetTextValue(CurrentSave.CurrentRun.ProductivityPoints.ToString());
+        UI_Run.Instance?.MealTicketTextValue.SetTextValue(CurrentSave.MealTickets.ToString());
     }
 
     public MND_Scavenge_Classic GetScavengeNode()
@@ -39,35 +50,47 @@ public class SaveManager : MonoBehaviour
 
     public void NextDay()
     {
-        CurrentSave.CurrentDay++;
+        CurrentSave.CurrentRun.CurrentDay++;
         SceneManager.LoadScene("Map");
     }
 
     public void AddPP(int number)
     {
-        CurrentSave.ProductivityPoints += number;
-        GameManager.Instance?.UIManager?.CoinCount.SetTextValue(CurrentSave.ProductivityPoints.ToString());
+        CurrentSave.CurrentRun.ProductivityPoints += number;
+        GameManager.Instance?.UIManager?.CoinCount.SetTextValue(CurrentSave.CurrentRun.ProductivityPoints.ToString());
+        UI_Run.Instance?.PPTextValue.SetTextValue(CurrentSave.CurrentRun.ProductivityPoints.ToString());
+    }
+
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        UI_Run.Instance?.PPTextValue.SetTextValue(CurrentSave.CurrentRun.ProductivityPoints.ToString(), false);
+        UI_Run.Instance?.MealTicketTextValue.SetTextValue(CurrentSave.MealTickets.ToString(), false);
     }
 
     [System.Serializable]
     public class SaveData
     {
+        public int MealTickets;
+        public List<BonusData> PermanentBonusList = new();
+
+        // Permanent bonus stats
+        public float RoundBonusTime;
+        public int RunStartLootPP;
+
+        public RunData CurrentRun = new RunData();
+
+        public SaveData() { }
+    }
+
+    [System.Serializable]
+    public class RunData
+    {
         public int RandomSeed;
         public int CurrentDay;
-        public int MealTickets;
         public int ProductivityPoints;
+        public List<BonusData> CurrentRunBonusList = new();
         public List<int> FormerNodeList = new();
-        public List<BonusData> BonusList = new();
 
-        public SaveData()
-        {
-            CurrentDay = 0;
-            ProductivityPoints = 0;
-        }
-
-        public SaveData(SaveData saveData)
-        {
-            CurrentDay = saveData.CurrentDay;
-        }
+        public RunData () { }
     }
 }

@@ -40,7 +40,7 @@ public class UI_MapNode : MonoBehaviour
         lineRenderer.points[2] = neighbourMapNode.transform.position - transform.position;
         _lineRendererList.Add(lineRenderer);
 
-        if (SaveManager.Instance.CurrentSave.FormerNodeList.FindAll(x => x == neighbourMapNode.MapNodeIndex).Count > 0)
+        if (SaveManager.Instance.CurrentSave.CurrentRun.FormerNodeList.FindAll(x => x == neighbourMapNode.MapNodeIndex).Count > 0)
         {
             lineRenderer.color = Color.red;
         }
@@ -51,7 +51,7 @@ public class UI_MapNode : MonoBehaviour
 
     public void ChooseMapNode()
     {
-        SaveManager.Instance.CurrentSave.FormerNodeList.Add(MapNodeIndex);
+        SaveManager.Instance.CurrentSave.CurrentRun.FormerNodeList.Add(MapNodeIndex);
         MapManager.Instance.LaunchNode(MapNodeData);
     }
 

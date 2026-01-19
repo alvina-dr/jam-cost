@@ -5,6 +5,7 @@ public class HubUpgrade : MonoBehaviour
 {
     [SerializeField] private int _cost;
     [SerializeField] private TextMeshPro _priceText;
+    [SerializeField] private BonusData _bonusData;
 
     private void Start()
     {
@@ -25,6 +26,7 @@ public class HubUpgrade : MonoBehaviour
             HubManager.Instance.UseMealTicket(_cost);
             // actualize UI upgrade
             Debug.Log("buy upgrade");
+            _bonusData.GetBonus();
         }
     }
 }

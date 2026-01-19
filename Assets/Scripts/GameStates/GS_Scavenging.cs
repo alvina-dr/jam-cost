@@ -77,13 +77,6 @@ public class GS_Scavenging : GameState
                 return scavengeEmptyNode.Timer;
         }
 
-        float roundTimeBonus = 0;
-        List<BonusData> bonusTimerList = SaveManager.Instance.CurrentSave.BonusList.FindAll(x => x is BD_Timer);
-        for (int i = 0; i < bonusTimerList.Count; i++)
-        {
-            BD_Timer bonusTimerData = (BD_Timer)bonusTimerList[i];
-            if (bonusTimerData != null) roundTimeBonus += bonusTimerData.BonusTime;
-        }
-        return _roundTime + roundTimeBonus;
+        return _roundTime + SaveManager.Instance.CurrentSave.RoundBonusTime;
     }
 }

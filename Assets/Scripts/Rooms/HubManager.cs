@@ -11,7 +11,6 @@ public class HubManager : MonoBehaviour
 
     private void Awake()
     {
-
         if (Instance != null && Instance != this)
         {
             Destroy(this);
@@ -51,6 +50,7 @@ public class HubManager : MonoBehaviour
     public void LaunchNewRun()
     {
         SceneManager.LoadScene("Map");
+        SaveManager.Instance.StartNewRun();
     }
 
     public void UseMealTicket(int cost)

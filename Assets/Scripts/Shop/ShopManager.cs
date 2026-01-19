@@ -40,9 +40,4 @@ public class ShopManager : MonoBehaviour
         CurrentGameState = newState;
         CurrentGameState.EnterState();
     }
-
-    public void AddBonus(BonusData bonus)
-    {
-        SaveManager.Instance.CurrentSave.BonusList.Add(bonus);
-    }
 }

@@ -4,4 +4,10 @@ using UnityEngine;
 public class BD_Timer : BonusData
 {
     public float BonusTime;
+
+    public override void GetBonus()
+    {
+        base.GetBonus();
+        SaveManager.Instance.CurrentSave.RoundBonusTime += BonusTime;
+    }
 }

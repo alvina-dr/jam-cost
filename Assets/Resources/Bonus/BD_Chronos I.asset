@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: BD_Chronos I
   m_EditorClassIdentifier: 
   IsAvailableInGame: 1
+  Durability: 0
   Name: Chronos I
   Description: Gain an extra <b><color=blue>+5 seconds</color></b>
   Icon: {fileID: 21300000, guid: b060b7d8bd2f77645b2ad3c314f27807, type: 3}

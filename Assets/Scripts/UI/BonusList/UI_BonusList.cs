@@ -24,10 +24,10 @@ public class UI_BonusList : MonoBehaviour
 
         _bonusIconList.Clear();
 
-        for (int i = 0; i < SaveManager.Instance.CurrentSave.BonusList.Count; i++)
+        for (int i = 0; i < SaveManager.Instance.CurrentSave.CurrentRun.CurrentRunBonusList.Count; i++)
         {
             UI_BonusIcon bonusIcon = Instantiate(_bonusIconPrefab, _bonusIconParent);
-            bonusIcon.Setup(SaveManager.Instance.CurrentSave.BonusList[i]);
+            bonusIcon.Setup(SaveManager.Instance.CurrentSave.CurrentRun.CurrentRunBonusList[i]);
             _bonusIconList.Add(bonusIcon);
         }
     }

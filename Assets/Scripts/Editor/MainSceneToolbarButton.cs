@@ -41,5 +41,14 @@ public class MainSceneToolbarButton
         {
             EditorSceneManager.OpenScene("Assets/Scenes/MainMenu.unity");
         }
+
+        if (GUILayout.Button(new GUIContent("New save", "Creates a new save")))
+        {
+            if (SaveManager.Instance != null)
+            {
+                SaveManager.Instance.CurrentSave = new();
+                SaveManager.Instance.CurrentSave.CurrentRun = new();
+            }
+        }
     }
 }

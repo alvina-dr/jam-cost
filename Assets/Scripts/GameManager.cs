@@ -1,8 +1,6 @@
 using UnityEngine;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
-using UnityEngine.InputSystem.LowLevel;
 
 public class GameManager : MonoBehaviour
 {
@@ -70,7 +68,7 @@ public class GameManager : MonoBehaviour
         ItemManager.ResetDumpster();
         UIManager.TicketMenu.UpdateItemNumberText();
         UIManager.BonusList.UpdateBonusList();
-        UIManager?.CoinCount.SetTextValue(SaveManager.Instance.CurrentSave.ProductivityPoints.ToString());
+        UIManager?.CoinCount.SetTextValue(SaveManager.Instance.CurrentSave.CurrentRun.ProductivityPoints.ToString());
 
         CurrentGameState = PreparationState;
         CurrentGameState.EnterState();
@@ -89,7 +87,7 @@ public class GameManager : MonoBehaviour
 
     public void AddBonus(BonusData bonus)
     {
-        SaveManager.Instance.CurrentSave.BonusList.Add(bonus);
+        SaveManager.Instance.CurrentSave.CurrentRun.CurrentRunBonusList.Add(bonus);
         UIManager.BonusList.UpdateBonusList();
     }
 
@@ -121,7 +119,7 @@ public class GameManager : MonoBehaviour
     public int GetTicketSize()
     {
         int handSizeBonus = 0;
-        List<BonusData> bonusTicketSizeList = SaveManager.Instance.CurrentSave.BonusList.FindAll(x => x is BD_HandSize);
+        List<BonusData> bonusTicketSizeList = SaveManager.Instance.CurrentSave.CurrentRun.CurrentRunBonusList.FindAll(x => x is BD_HandSize);
         for (int i = 0; i < bonusTicketSizeList.Count; i++)
         {
             BD_HandSize bonusTicketSize = (BD_HandSize) bonusTicketSizeList[i];

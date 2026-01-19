@@ -30,8 +30,8 @@ public class DebugManager : MonoBehaviour
 
     public void GenerateNewMap()
     {
-        SaveManager.Instance.CurrentSave.CurrentDay = 0;
-        SaveManager.Instance.CurrentSave.FormerNodeList.Clear();
+        SaveManager.Instance.CurrentSave.CurrentRun.CurrentDay = 0;
+        SaveManager.Instance.CurrentSave.CurrentRun.FormerNodeList.Clear();
 
         SceneManager.LoadScene("Map");
     }

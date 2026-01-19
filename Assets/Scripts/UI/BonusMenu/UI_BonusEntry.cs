@@ -31,7 +31,7 @@ public class UI_BonusEntry : MonoBehaviour
 
     public void ChooseBonus()
     {
-        ShopManager.Instance.AddBonus(Data);
+        Data.GetBonus();
         Data = null;
         ShopManager.Instance.UIManager.BonusMenu.CloseMenu();
         SaveManager.Instance.NextDay();
