@@ -19,4 +19,8 @@ public class UIManager : MonoBehaviour
     public UI_NewHand NewHand;
     public UI_DialogMenu DialogMenu;
     public UI_BagMenu BagMenu;
+
+    [Header("HUD")]
+    public UI_TextValue ScoreTextValue;
+    public UI_BarValue ScoreBarValue;
 }

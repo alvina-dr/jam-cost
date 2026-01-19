@@ -14,7 +14,7 @@ public class UI_BagMenu : MonoBehaviour
     [SerializeField] private Button _confirm;
     [SerializeField] private Button _continue;
 
-    public UI_ValueBar _scoreBar;
+    public UI_BarValue _scoreBar;
     public UI_TextValue _scoreGoalText;
     public UI_TextValue _currentScoreText;
 

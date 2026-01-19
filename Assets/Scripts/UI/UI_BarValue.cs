@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-public class UI_ValueBar : MonoBehaviour
+public class UI_BarValue : MonoBehaviour
 {
     #region Properties
     [SerializeField] private Slider bar;

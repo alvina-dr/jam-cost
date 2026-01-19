@@ -9,15 +9,8 @@ public class UI_TicketMenu : MonoBehaviour
     public UI_OverCheck OverCheck;
     [SerializeField] private Transform _layout;
     [SerializeField] private UI_TicketEntry _ticketEntryPrefab;
-    [SerializeField] private Button _continueButton;
     [SerializeField] private List<UI_TicketEntry> _ticketEntryList = new();
     public int GetTicketEntryCount() => _ticketEntryList.Count; 
-
-    [SerializeField] private UI_TextValue _totalScoreText;
-    public UI_TextValue TotalScoreText => _totalScoreText;
-
-    [SerializeField] private UI_TextValue _goalScoreText;
-    public UI_TextValue GoalScoreText => _goalScoreText;
 
     [SerializeField] private UI_TextValue _itemNumberText;
 
@@ -169,7 +162,7 @@ public class UI_TicketMenu : MonoBehaviour
             }
 
             countAnimation.AppendCallback(() => GameManager.Instance.SetCurrentScore(GameManager.Instance.CurrentScore + score));
-            countAnimation.Append(_totalScoreText.transform.DOShakePosition(.2f, 10));
+            //countAnimation.Append(_totalScoreText.transform.DOShakePosition(.2f, 10));
             countAnimation.AppendInterval(.8f);
             itemDataList.Add(_ticketEntryList[index].Data);
         }
@@ -196,10 +189,6 @@ public class UI_TicketMenu : MonoBehaviour
                 {
                     GameManager.Instance.CheckScoreHighEnough();
                     GameManager.Instance.CurrentHand = 0;
-                }
-                else
-                {
-                    _continueButton.gameObject.SetActive(true);
                 }
             });
         }
