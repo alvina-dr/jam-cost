@@ -24,10 +24,18 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3332545717796112969, guid: a7baf07a41069234a8d382ebd7b43e0c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 3332545717796112969, guid: a7baf07a41069234a8d382ebd7b43e0c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.63
+      objectReference: {fileID: 0}
     - target: {fileID: 4162256917233115436, guid: a7baf07a41069234a8d382ebd7b43e0c, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: a326ac63f89ee284298bc68f4c2d7978, type: 3}
+      objectReference: {fileID: 1161201145128540330, guid: e189569e0f9432d448b4e61a2bf8836a, type: 3}
     - target: {fileID: 5768727057420461858, guid: a7baf07a41069234a8d382ebd7b43e0c, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.41
@@ -35,7 +43,7 @@ PrefabInstance:
     - target: {fileID: 6825208998740395840, guid: a7baf07a41069234a8d382ebd7b43e0c, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: a326ac63f89ee284298bc68f4c2d7978, type: 3}
+      objectReference: {fileID: 1161201145128540330, guid: e189569e0f9432d448b4e61a2bf8836a, type: 3}
     - target: {fileID: 7242585668704001078, guid: a7baf07a41069234a8d382ebd7b43e0c, type: 3}
       propertyPath: m_Name
       value: IP_Coin
@@ -253,4 +261,4 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.53
+  m_Radius: 0.64
