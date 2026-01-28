@@ -1,6 +1,10 @@
+using Sirenix.OdinInspector;
 using System.Collections.Generic;
+using UnityEditor.EditorTools;
 using UnityEngine;
+using UnityEngine.LightTransport;
 using UnityEngine.SceneManagement;
+using Yarn.Unity;
 
 public class SaveManager : MonoBehaviour
 {
@@ -16,7 +20,7 @@ public class SaveManager : MonoBehaviour
         else
         {
             Instance = this;
-            DontDestroyOnLoad(this);
+            DontDestroyOnLoad(this.gameObject);
             OnAwake();
         }
     }
@@ -29,7 +33,7 @@ public class SaveManager : MonoBehaviour
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
 
-        CurrentSave = new SaveData();
+        LoadOrCreateSave();
     }
 
     public void StartNewRun()
@@ -66,6 +70,61 @@ public class SaveManager : MonoBehaviour
         UI_Run.Instance?.PPTextValue.SetTextValue(CurrentSave.CurrentRun.ProductivityPoints.ToString(), false);
         UI_Run.Instance?.MealTicketTextValue.SetTextValue(CurrentSave.MealTickets.ToString(), false);
     }
+
+    #region SaveManagement
+    public bool LoadOrCreateSave()
+    {
+        if (System.IO.File.Exists(Application.persistentDataPath + "/Save.json"))
+        {
+            LoadSave();
+            return true;
+        }
+        else
+        {
+            CurrentSave = new SaveData();
+            return false;
+        }
+    }
+
+    // Loads a save, this save must exist
+    public void LoadSave()
+    {
+        string jsonFile = System.IO.File.ReadAllText($"{Application.persistentDataPath}/Save.json");
+        CurrentSave = JsonUtility.FromJson<SaveData>(jsonFile);
+    }
+
+    // Application.persistentDataPath is : C:/Users/Username/AppData/LocalLow/{CompanyName}/{GameName}
+    // Company name : Summer Rain
+    // Game name : Saudade
+    // Saves the whole game : loop number, environment modifications...
+    [Button("Manual Save")]
+    public void Save()
+    {
+        // Save yarn state
+        //if (YarnStorage != null)
+        //{
+        //    (Dictionary<string, float> yarnFloats, Dictionary<string, string> yarnStrings, Dictionary<string, bool> yarnBools) = YarnStorage.GetAllVariables();
+        //    CurrentSave.YarnFloats = new SerializableDictionary<string, float>(yarnFloats);
+        //    CurrentSave.YarnStrings = new SerializableDictionary<string, string>(yarnStrings);
+        //    CurrentSave.YarnBools = new SerializableDictionary<string, bool>(yarnBools);
+        //}
+
+        // Write into json file
+#if UNITY_EDITOR
+        string save = JsonUtility.ToJson(CurrentSave, true);
+#else
+        string save = JsonUtility.ToJson(CurrentSave);
+#endif
+
+        System.IO.File.WriteAllText(Application.persistentDataPath + "/Save.json", save);
+    }
+
+    private void OnDestroy()
+    {
+        Debug.Log("Destroy save !!!");
+        Save();
+    }
+    #endregion
 
     [System.Serializable]
     public class SaveData
