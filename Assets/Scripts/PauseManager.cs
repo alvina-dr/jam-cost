@@ -55,4 +55,10 @@ public class PauseManager : MonoBehaviour
     {
         _menu.CloseMenu();
     }
+
+    private void OnDestroy()
+    {
+        InputAction pauseAction = InputSystem.actions.FindAction("Pause");
+        pauseAction.performed -= Pause;
+    }
 }

@@ -1,6 +1,6 @@
 using BennyKok.RuntimeDebug.Actions;
 using BennyKok.RuntimeDebug.Systems;
-using extDebug.Menu;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -10,10 +10,12 @@ public class DebugManager : MonoBehaviour
 {
     private void Awake()
     {
-        //DM.Input = new DMCustomInput();
         SetupDebugMenu();
+    }
 
-        List <BonusData> bonusDataList = Resources.LoadAll<BonusData>("Bonus").ToList();
+    public void SetupDebugMenu()
+    {
+        List<BonusData> bonusDataList = Resources.LoadAll<BonusData>("Bonus").ToList();
 
         for (int i = 0; i < bonusDataList.Count; i++)
         {
@@ -21,40 +23,17 @@ public class DebugManager : MonoBehaviour
             if (bonusDataList[index].Durability == BonusData.BonusDurability.Permanent)
             {
                 RuntimeDebugSystem.RegisterActions(DebugActionBuilder.Button().WithName(bonusDataList[index].Name).WithGroup("Bonus/Permanent").WithAction(() => bonusDataList[index].GetBonus()));
-                //DM.Add("Bonus/Permanent/" + bonusDataList[index].Name, action => bonusDataList[index].GetBonus());
             }
             else
             {
                 RuntimeDebugSystem.RegisterActions(DebugActionBuilder.Button().WithName(bonusDataList[index].Name).WithGroup("Bonus/Run").WithAction(() => bonusDataList[index].GetBonus()));
-                //DM.Add("Bonus/Run/" + bonusDataList[index].Name, action => bonusDataList[index].GetBonus());
             }
         }
-    }
 
-    public void SetupDebugMenu()
-    {
-        //DM.Root.Clear();
-
-        //DM.Add("Reload" , action => SceneManager.LoadScene("Game"));
-        //DM.Add("Win" , action => WinCurrentNode());
-        //DM.Add("Generate new map" , action => GenerateNewMap());
-        //DM.Add("Gain/PP" , action => SaveManager.Instance.AddPP(100));
-        //DM.Add("Gain/MealTickets", action => GainMealTickets());
-        //DM.Add("Bonus/Permanent");
-        //DM.Add("Bonus/Run");
-        //List<BonusData> bonusDataList = Resources.LoadAll<BonusData>("Bonus").ToList();
-        //for (int i = 0; i < bonusDataList.Count; i++)
-        //{
-        //    int index = i;
-        //    if (bonusDataList[index].Durability == BonusData.BonusDurability.Permanent)
-        //    {
-        //        DM.Add("Bonus/Permanent/" + bonusDataList[index].Name, action => bonusDataList[index].GetBonus());
-        //    }
-        //    else
-        //    {
-        //        DM.Add("Bonus/Run/" + bonusDataList[index].Name, action => bonusDataList[index].GetBonus());
-        //    }
-        //}
+        RuntimeDebugSystem.RegisterActions(DebugActionBuilder.Button().WithName("Win").WithGroup("Game").WithAction(() => WinCurrentNode()));
+        RuntimeDebugSystem.RegisterActions(DebugActionBuilder.Button().WithName("Generate new map").WithGroup("Map").WithAction(() => GenerateNewMap()));
+        RuntimeDebugSystem.RegisterActions(DebugActionBuilder.Button().WithName("PP").WithGroup("Gain").WithAction(() => SaveManager.Instance.AddPP(100)));
+        RuntimeDebugSystem.RegisterActions(DebugActionBuilder.Button().WithName("Meal Tickets").WithGroup("Gain").WithAction(() => GainMealTickets()));
     }
 
     public void WinCurrentNode()
