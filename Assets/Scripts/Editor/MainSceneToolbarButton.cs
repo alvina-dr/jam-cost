@@ -49,6 +49,8 @@ public class MainSceneToolbarButton
                 SaveManager.Instance.CurrentSave = new();
                 SaveManager.Instance.CurrentSave.CurrentRun = new();
             }
+
+            System.IO.File.Delete(Application.persistentDataPath + "/Save.json");
         }
     }
 }
