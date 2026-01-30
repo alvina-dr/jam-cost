@@ -75,7 +75,17 @@ public class DataLoader : MonoBehaviour
         int randomIndex = Random.Range(0, availableBonusDataList.Count);
         if (randomIndex >= availableBonusDataList.Count) return null;
         BonusData data = availableBonusDataList[randomIndex];
-        BonusDataList.Remove(data);
-        return data;
+        return TakeSpecificBonus(data);
+    }
+
+    public BonusData TakeSpecificBonus(BonusData bonusData)
+    {
+        BonusDataList.Remove(bonusData);
+        return bonusData;
+    }
+
+    public BonusData TakeBonusByName(string bonusName)
+    {
+        return TakeSpecificBonus(BonusDataList.Find(x => x.name == bonusName));
     }
 }

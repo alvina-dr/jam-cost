@@ -1,8 +1,6 @@
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
-using UnityEditor.EditorTools;
 using UnityEngine;
-using UnityEngine.LightTransport;
 using UnityEngine.SceneManagement;
 using Yarn.Unity;
 
@@ -91,12 +89,20 @@ public class SaveManager : MonoBehaviour
     {
         string jsonFile = System.IO.File.ReadAllText($"{Application.persistentDataPath}/Save.json");
         CurrentSave = JsonUtility.FromJson<SaveData>(jsonFile);
+
+        // Load permanent bonus
+        for (int i = 0; i < CurrentSave.CurrentRun.CurrentRunBonusList.Count; i++)
+        {
+            Debug.Log("bonus : " + CurrentSave.CurrentRun.CurrentRunBonusList[i].name);
+            //DataLoader.Instance.TakeBonusByName();
+        }
+
+        //Load run bonus
     }
 
     // Application.persistentDataPath is : C:/Users/Username/AppData/LocalLow/{CompanyName}/{GameName}
-    // Company name : Summer Rain
-    // Game name : Saudade
-    // Saves the whole game : loop number, environment modifications...
+    // Company name : ???
+    // Game name : racoon
     [Button("Manual Save")]
     public void Save()
     {
@@ -110,11 +116,7 @@ public class SaveManager : MonoBehaviour
         //}
 
         // Write into json file
-#if UNITY_EDITOR
         string save = JsonUtility.ToJson(CurrentSave, true);
-#else
-        string save = JsonUtility.ToJson(CurrentSave);
-#endif
 
         System.IO.File.WriteAllText(Application.persistentDataPath + "/Save.json", save);
     }
@@ -130,7 +132,7 @@ public class SaveManager : MonoBehaviour
     public class SaveData
     {
         public int MealTickets;
-        public List<BonusData> PermanentBonusList = new();
+        [SerializeReference] public List<BonusData> PermanentBonusList = new();
 
         // Permanent bonus stats
         public float RoundBonusTime;
@@ -147,7 +149,7 @@ public class SaveManager : MonoBehaviour
         public int RandomSeed;
         public int CurrentDay;
         public int ProductivityPoints;
-        public List<BonusData> CurrentRunBonusList = new();
+        [SerializeReference] public List<BonusData> CurrentRunBonusList = new();
         public List<int> FormerNodeList = new();
 
         public RunData () { }
