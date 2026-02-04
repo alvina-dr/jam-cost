@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using BennyKok.RuntimeDebug.Actions;
+﻿using BennyKok.RuntimeDebug.Actions;
 using BennyKok.RuntimeDebug.Attributes;
 using BennyKok.RuntimeDebug.Components.UI;
 using BennyKok.RuntimeDebug.Data;
 using BennyKok.RuntimeDebug.DebugInput;
 using BennyKok.RuntimeDebug.Utils;
+using Codice.Client.BaseCommands.BranchExplorer;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using UnityEngine;
 
 namespace BennyKok.RuntimeDebug.Systems
@@ -492,11 +493,13 @@ namespace BennyKok.RuntimeDebug.Systems
                         .WithInputAction((response) =>
                         {
                             entry.SetValue(target, response.GetObjectsForReflection()[0]);
+                            action.name = $"{entry.GetActionName()} <b><color=\"green\">[{action.GetCurrentValueString()}</color></b>]";
+                            Instance.runtimeDebugUI.rootList.Refresh();
                         });
                 }
                 if (action != null)
                 {
-                    action.name = entry.GetActionName();
+                    action.name = $"{entry.GetActionName()} <b><color=\"green\">[{action.GetCurrentValueString()}</color></b>]";
                     action.group = finalGroup;
                     action.description = entry.attribute.description;
                     action.closePanelAfterTrigger = entry.attribute.closePanelAfterTrigger;

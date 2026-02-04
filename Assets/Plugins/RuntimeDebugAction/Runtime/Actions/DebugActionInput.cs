@@ -121,6 +121,22 @@ namespace BennyKok.RuntimeDebug.Actions
             }
             return this;
         }
+
+        public override string GetCurrentValueString()
+        {
+            var prefill = inputQuery.allParams.Aggregate("",
+            (result, param) =>
+            {
+                if (param.valuePrefillCallback == null) return result;
+                var prefillValue = param.valuePrefillCallback?.Invoke();
+                var prefillString = prefillValue != null ? prefillValue.ToString() : "";
+                if (prefillValue is string && !string.IsNullOrEmpty(prefillString) && inputQuery.allParams.Count > 1)
+                    prefillString = "\"" + prefillString + "\"";
+                return result + (result.Length > 0 ? " " : null) + prefillString;
+            });
+
+            return prefill;
+        }
     }
 
 }

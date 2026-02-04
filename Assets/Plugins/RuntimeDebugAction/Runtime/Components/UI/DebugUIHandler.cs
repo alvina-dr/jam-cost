@@ -44,7 +44,7 @@ namespace BennyKok.RuntimeDebug.Components.UI
 
         private Vector3 actionDisplayPosition;
 
-        private ListItem rootItem = new ListItem()
+        public ListItem rootItem = new ListItem()
         {
             children = new List<ListItem>()
         };
@@ -244,7 +244,7 @@ namespace BennyKok.RuntimeDebug.Components.UI
             navigationHeader.text = header;
         }
 
-        [NonSerialized] private ListItemView actionDisplay;
+        [NonSerialized] public ListItemView actionDisplay;
         [NonSerialized] private CanvasGroup actionDisplayCanvasGroup;
 
         private Canvas canvas;
@@ -574,7 +574,7 @@ namespace BennyKok.RuntimeDebug.Components.UI
                 }
             }
 
-            Debug.LogWarning($"No action was found for removal, {action.name}");
+            //Debug.LogWarning($"No action was found for removal, {action.name}");
         }
     }
 }

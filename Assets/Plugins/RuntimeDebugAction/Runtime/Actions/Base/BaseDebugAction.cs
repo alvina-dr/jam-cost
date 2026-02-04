@@ -1,6 +1,7 @@
-using System;
+using BennyKok.RuntimeDebug.DebugInput;
 using BennyKok.RuntimeDebug.Systems;
 using BennyKok.RuntimeDebug.Utils;
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -66,6 +67,11 @@ namespace BennyKok.RuntimeDebug.Actions
         public virtual void Setup()
         {
 
+        }
+
+        public virtual string GetCurrentValueString()
+        {
+            return "NONE";
         }
     }
 

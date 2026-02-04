@@ -17,7 +17,7 @@
       "dependencies": {
         "com.unity.textmeshpro": "3.0.6"
       },
-      "hash": "7f68a7fc29efd535f53eb55a00d4ec9e54e43b70"
+      "hash": "a7733a3c0a4c4b6b4d977a1c5d706fd28207a9fd"
     },
     "com.marijnzwemmer.unity-toolbar-extender": {
       "version": "https://github.com/marijnz/unity-toolbar-extender.git",

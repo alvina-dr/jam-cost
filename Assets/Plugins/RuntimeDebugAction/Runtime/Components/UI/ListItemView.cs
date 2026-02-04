@@ -150,7 +150,7 @@ namespace BennyKok.RuntimeDebug.Components.UI
             if (uiHandler == null)
                 uiHandler = ui;
 
-            if (uiHandler.customFont)
+            if (uiHandler != null && uiHandler.customFont)
             {
                 // tagLabel.font = uiHandler.customFont;
                 label.font = uiHandler.customFont;

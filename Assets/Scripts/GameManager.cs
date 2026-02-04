@@ -37,8 +37,6 @@ public class GameManager : MonoBehaviour
     public ItemManager ItemManager;
 
     [Header("Infos")]
-    [SerializeField] private float _roundTime;
-    public RoundData RoundData;
     [SerializeField] private int _ticketSize;
 
     [Header("Current Stats")]

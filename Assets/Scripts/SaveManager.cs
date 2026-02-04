@@ -1,4 +1,5 @@
 using Sirenix.OdinInspector;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -26,12 +27,15 @@ public class SaveManager : MonoBehaviour
 
     public MapNodeData CurrentMapNode;
     public SaveData CurrentSave;
-
+    
     private void OnAwake()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
 
+        // in editor on awake
         LoadOrCreateSave();
+
+        // in build on launching in main menu
     }
 
     public void StartNewRun()
@@ -59,7 +63,7 @@ public class SaveManager : MonoBehaviour
     public void AddPP(int number)
     {
         CurrentSave.CurrentRun.ProductivityPoints += number;
-        GameManager.Instance?.UIManager?.CoinCount.SetTextValue(CurrentSave.CurrentRun.ProductivityPoints.ToString());
+        if (GameManager.Instance != null) GameManager.Instance.UIManager.CoinCount.SetTextValue(CurrentSave.CurrentRun.ProductivityPoints.ToString());
         UI_Run.Instance?.PPTextValue.SetTextValue(CurrentSave.CurrentRun.ProductivityPoints.ToString());
     }
 
@@ -90,19 +94,17 @@ public class SaveManager : MonoBehaviour
         string jsonFile = System.IO.File.ReadAllText($"{Application.persistentDataPath}/Save.json");
         CurrentSave = JsonUtility.FromJson<SaveData>(jsonFile);
 
-        // Load permanent bonus
-        for (int i = 0; i < CurrentSave.CurrentRun.CurrentRunBonusList.Count; i++)
+        CurrentSave.CurrentRun.CurrentRunBonusList.Clear();
+        for (int i = 0; i < CurrentSave.CurrentRun.CurrentRunBonusListName.Count; i++)
         {
-            Debug.Log("bonus : " + CurrentSave.CurrentRun.CurrentRunBonusList[i].name);
-            //DataLoader.Instance.TakeBonusByName();
+            CurrentSave.CurrentRun.CurrentRunBonusList.Add(DataLoader.Instance.TakeBonusByName(CurrentSave.CurrentRun.CurrentRunBonusListName[i]));
         }
-
-        //Load run bonus
+        CurrentSave.CurrentRun.CurrentRunBonusListName.Clear();
     }
 
     // Application.persistentDataPath is : C:/Users/Username/AppData/LocalLow/{CompanyName}/{GameName}
-    // Company name : ???
-    // Game name : racoon
+    // Company name : DefaultCompany
+    // Game name : jam-cost
     [Button("Manual Save")]
     public void Save()
     {
@@ -114,8 +116,14 @@ public class SaveManager : MonoBehaviour
         //    CurrentSave.YarnStrings = new SerializableDictionary<string, string>(yarnStrings);
         //    CurrentSave.YarnBools = new SerializableDictionary<string, bool>(yarnBools);
         //}
+        CurrentSave.LastSceneName = SceneManager.GetActiveScene().name;
 
-        // Write into json file
+        CurrentSave.CurrentRun.CurrentRunBonusListName.Clear();
+        for (int i = 0; i < CurrentSave.CurrentRun.CurrentRunBonusList.Count; i++)
+        {
+            CurrentSave.CurrentRun.CurrentRunBonusListName.Add(CurrentSave.CurrentRun.CurrentRunBonusList[i].name);
+        }
+
         string save = JsonUtility.ToJson(CurrentSave, true);
 
         System.IO.File.WriteAllText(Application.persistentDataPath + "/Save.json", save);
@@ -131,8 +139,11 @@ public class SaveManager : MonoBehaviour
     [System.Serializable]
     public class SaveData
     {
+        public string LastSceneName = "Hub";
+
         public int MealTickets;
         [SerializeReference] public List<BonusData> PermanentBonusList = new();
+
 
         // Permanent bonus stats
         public float RoundBonusTime;
@@ -149,7 +160,8 @@ public class SaveManager : MonoBehaviour
         public int RandomSeed;
         public int CurrentDay;
         public int ProductivityPoints;
-        [SerializeReference] public List<BonusData> CurrentRunBonusList = new();
+        public List<BonusData> CurrentRunBonusList = new();
+        [HideInInspector] public List<string> CurrentRunBonusListName = new();
         public List<int> FormerNodeList = new();
 
         public RunData () { }

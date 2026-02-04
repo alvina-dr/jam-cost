@@ -14,13 +14,13 @@ namespace BennyKok.RuntimeDebug.Actions
         /// <summary>
         /// Create a new <see cref="DebugActionToggle"/> instance
         /// </summary>
-        /// <returns>A aew <see cref="DebugActionToggle"/> instance</returns>
+        /// <returns>A new <see cref="DebugActionToggle"/> instance</returns>
         public static DebugActionToggle Toggle() => new DebugActionToggle();
 
         /// <summary>
         /// Create a new <see cref="DebugActionEnum"/> instance
         /// </summary>
-        /// <returns>A aew <see cref="DebugActionEnum"/> instance</returns>
+        /// <returns>A new <see cref="DebugActionEnum"/> instance</returns>
         public static DebugActionEnum Enum() => new DebugActionEnum();
 
         /// <summary>

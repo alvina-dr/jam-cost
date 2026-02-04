@@ -80,8 +80,12 @@ public class DataLoader : MonoBehaviour
 
     public BonusData TakeSpecificBonus(BonusData bonusData)
     {
-        BonusDataList.Remove(bonusData);
-        return bonusData;
+        if (BonusDataList.Contains(bonusData))
+        {
+            BonusDataList.Remove(bonusData);
+            return bonusData;
+        }
+        return null;
     }
 
     public BonusData TakeBonusByName(string bonusName)

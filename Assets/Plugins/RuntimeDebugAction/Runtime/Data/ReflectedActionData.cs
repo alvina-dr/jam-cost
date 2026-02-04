@@ -1,7 +1,10 @@
 using System;
+using System.Linq;
 using System.Reflection;
 using BennyKok.RuntimeDebug.Actions;
 using BennyKok.RuntimeDebug.Attributes;
+using BennyKok.RuntimeDebug.DebugInput;
+using UnityEngine;
 
 namespace BennyKok.RuntimeDebug.Data
 {
@@ -79,6 +82,23 @@ namespace BennyKok.RuntimeDebug.Data
 
             if (fieldInfo != null) fieldInfo.SetValue(obj, castedValue);
             if (propertyInfo != null) propertyInfo.GetSetMethod(false).Invoke(obj, new object[] { castedValue });
+        }
+
+        public string GetValueToString(InputQuery query)
+        {
+            var prefill = query.allParams.Aggregate("",
+            (result, param) =>
+            {
+                if (param.valuePrefillCallback == null) return result;
+                var prefillValue = param.valuePrefillCallback?.Invoke();
+                var prefillString = prefillValue != null ? prefillValue.ToString() : "";
+                if (prefillValue is string && !string.IsNullOrEmpty(prefillString) && query.allParams.Count > 1)
+                    prefillString = "\"" + prefillString + "\"";
+                return result + (result.Length > 0 ? " " : null) + prefillString;
+            });
+
+            return prefill;
+            //return System.DateTime.Now.ToString();
         }
 
         public Type GetTargetType()

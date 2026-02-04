@@ -85,7 +85,7 @@ MonoBehaviour:
   pointerHoverIgnoreMobile: 0
   selectionColorHighlight: 1
   selectionUnderlineHighlight: 1
-  disableLogger: 1
+  disableLogger: 0
   loggerMaxLine: 100
   addApplicationOptions: 0
   addQualityOptions: 0
