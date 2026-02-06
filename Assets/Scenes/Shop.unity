@@ -2778,7 +2778,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1648493507}
   - component: {fileID: 1648493514}
-  - component: {fileID: 1648493513}
   m_Layer: 0
   m_Name: MANAGER
   m_TagString: Untagged
@@ -2801,19 +2800,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1648493513
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1648493506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16c672ffef5d5fc4281bbd5e41bf1f6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _winSound: {fileID: 8300000, guid: 775ebd6260b9b9f4e8de44892d258a95, type: 3}
 --- !u!114 &1648493514
 MonoBehaviour:
   m_ObjectHideFlags: 0

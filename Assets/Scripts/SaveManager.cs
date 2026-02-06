@@ -30,6 +30,8 @@ public class SaveManager : MonoBehaviour
     
     private void OnAwake()
     {
+        UI_Run.Instance?.PPTextValue.SetTextValue(CurrentSave.CurrentRun.ProductivityPoints.ToString(), false);
+        UI_Run.Instance?.MealTicketTextValue.SetTextValue(CurrentSave.MealTickets.ToString(), false);
         SceneManager.sceneLoaded += OnSceneLoaded;
 
         // in editor on awake
