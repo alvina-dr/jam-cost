@@ -212,20 +212,54 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8622150064227498991, guid: a7baf07a41069234a8d382ebd7b43e0c, type: 3}
+      propertyPath: _collider
+      value: 
+      objectReference: {fileID: 2834635080238091872}
     m_RemovedComponents:
     - {fileID: 8256978997658704428, guid: a7baf07a41069234a8d382ebd7b43e0c, type: 3}
+    - {fileID: 8316950329617629813, guid: a7baf07a41069234a8d382ebd7b43e0c, type: 3}
+    - {fileID: 8622150064227498991, guid: a7baf07a41069234a8d382ebd7b43e0c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7242585668704001078, guid: a7baf07a41069234a8d382ebd7b43e0c, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 7397536762399809850}
+    - targetCorrespondingSourceObject: {fileID: 7242585668704001078, guid: a7baf07a41069234a8d382ebd7b43e0c, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 2834635080238091872}
   m_SourcePrefab: {fileID: 100100000, guid: a7baf07a41069234a8d382ebd7b43e0c, type: 3}
+--- !u!212 &2165592341694125831 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6825208998740395840, guid: a7baf07a41069234a8d382ebd7b43e0c, type: 3}
+  m_PrefabInstance: {fileID: 4662837150235267143}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2609674235713113201 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7242585668704001078, guid: a7baf07a41069234a8d382ebd7b43e0c, type: 3}
   m_PrefabInstance: {fileID: 4662837150235267143}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7397536762399809850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2609674235713113201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 408c8916be4cfeb4cac4d43a370b0d7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: {fileID: 11400000, guid: d129557050f34c647909e75e0cd33db0, type: 2}
+  _collider: {fileID: 2834635080238091872}
+  _spriteRenderer: {fileID: 8752454728129130859}
+  _offset: {x: 0, y: 0, z: 0}
+  _startDragPosition: {x: 0, y: 0, z: 0}
+  _flyingOffset: {x: 0, y: 0, z: 0}
+  _shadowSpriteRenderer: {fileID: 2165592341694125831}
+  _collectSound: {fileID: 8300000, guid: 0fc69976e44ac9a459408b1e794c0ed5, type: 3}
 --- !u!58 &2834635080238091872
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -262,3 +296,8 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.64
+--- !u!212 &8752454728129130859 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4162256917233115436, guid: a7baf07a41069234a8d382ebd7b43e0c, type: 3}
+  m_PrefabInstance: {fileID: 4662837150235267143}
+  m_PrefabAsset: {fileID: 0}

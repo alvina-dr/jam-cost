@@ -20,24 +20,21 @@ public class ShopManager : MonoBehaviour
     }
     #endregion
 
-    [ReadOnly] public GameState CurrentGameState;
-
-    [Header("States")]
-    public GS_ChoosingBonus ChoosingBonus;
-
     [Header("References")]
     public UIManager UIManager;
 
-    private void Start()
+    public void LeaveShop()
     {
-        CurrentGameState = ChoosingBonus;
-        CurrentGameState.EnterState();
+        SaveManager.Instance.NextDay();
     }
 
-    public void SetGameState(GameState newState)
+    public void OpenVendingMachine()
     {
-        CurrentGameState.ExitState();
-        CurrentGameState = newState;
-        CurrentGameState.EnterState();
+        UIManager.BonusMenu.OpenMenu();
+    }
+
+    public void OpenConvertingMachine()
+    {
+
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32c517d233ca1924496e4ec2b4e372ef, type: 3}
   m_Name: ID_Coin
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 3737433453275763250, guid: 2ea5387f3843301418e2e3f7f12e9634, type: 3}
+  Prefab: {fileID: 7397536762399809850, guid: 2ea5387f3843301418e2e3f7f12e9634, type: 3}
   Price: 0
   BonusCurrency: 1
   Rarity: 1

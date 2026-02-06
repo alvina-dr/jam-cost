@@ -1,88 +1,17 @@
-using System.Collections;
-using UnityEngine;
 using DG.Tweening;
+using UnityEngine;
 
-public class ItemBehavior : MonoBehaviour
+public class DraggableBehavior : ItemBehavior
 {
-    public ItemData Data;
-    [SerializeField] private Collider2D _collider;
-    [SerializeField] private SpriteRenderer _spriteRenderer;
-
     private bool _isDragging = false;
     private Vector3 _dragOffset;
 
-    [Header("Shadow")]
-    [SerializeField] private Vector3 _offset;
-    [SerializeField] private Vector3 _startDragPosition;
-    [SerializeField] private Vector3 _flyingOffset;
-    [SerializeField] private SpriteRenderer _shadowSpriteRenderer;
-
     [SerializeField] private SpriteRenderer _cross;
     [SerializeField] private SpriteRenderer _sellIcon;
-    
+
     [SerializeField] private AudioClip _pickUpSound;
     [SerializeField] private AudioClip _trashItemSound;
     [SerializeField] private AudioClip _addToTicketSound;
-
-    private void Start()
-    {
-        _shadowSpriteRenderer.transform.localPosition = _offset;
-        _shadowSpriteRenderer.transform.localRotation = Quaternion.identity;
-
-        _shadowSpriteRenderer.sprite = _spriteRenderer.sprite;
-
-        _shadowSpriteRenderer.sortingLayerName = _spriteRenderer.sortingLayerName;
-        _shadowSpriteRenderer.sortingOrder = _spriteRenderer.sortingOrder - 1;
-    }
-
-    private void LateUpdate()
-    {
-
-        if (_isDragging)
-        {
-            _shadowSpriteRenderer.transform.localPosition = Vector3.Lerp(_shadowSpriteRenderer.transform.localPosition,
-                Quaternion.Inverse(_spriteRenderer.transform.rotation) * _flyingOffset, Time.deltaTime * 30);
-            //_shadowSpriteRenderer.transform.localPosition = Quaternion.Inverse(_spriteRenderer.transform.rotation) * _flyingOffset;
-        }
-        else
-        {
-            _shadowSpriteRenderer.transform.localPosition = Vector3.Lerp(_shadowSpriteRenderer.transform.localPosition,
-                Quaternion.Inverse(_spriteRenderer.transform.rotation) * _offset, Time.deltaTime * 30);
-        }
-
-    }
-
-    private void OnMouseEnter()
-    {
-        if (GameManager.Instance.CurrentGameState != (GameManager.Instance.ScavengingState || GameManager.Instance.PreparationState)) return;
-
-        GameManager.Instance.UIManager.HoverPrice.ShowPrice(Data.Price, transform.position);
-    }
-
-    private void OnMouseExit()
-    {
-        if (GameManager.Instance.CurrentGameState != GameManager.Instance.ScavengingState
-        && GameManager.Instance.CurrentGameState != GameManager.Instance.PreparationState) return;
-
-        GameManager.Instance.UIManager.HoverPrice.HidePrice();
-    }
-
-    private void OnMouseDown()
-    {
-        if (PauseManager.Instance.IsPaused) return;
-        if (GameManager.Instance.CurrentGameState != GameManager.Instance.ScavengingState
-        && GameManager.Instance.CurrentGameState != GameManager.Instance.PreparationState) return;
-
-        StartDrag();
-    }
-
-    private void OnMouseUp()
-    {
-        if (PauseManager.Instance.IsPaused) return;
-        if (GameManager.Instance.CurrentGameState != (GameManager.Instance.ScavengingState || GameManager.Instance.PreparationState)) return;
-
-        EndDrag();
-    }
 
     private void Update()
     {
@@ -143,6 +72,53 @@ public class ItemBehavior : MonoBehaviour
                 _cross.enabled = false;
             }
         }
+    }
+
+    private void LateUpdate()
+    {
+        if (_isDragging)
+        {
+            _shadowSpriteRenderer.transform.localPosition = Vector3.Lerp(_shadowSpriteRenderer.transform.localPosition,
+                Quaternion.Inverse(_spriteRenderer.transform.rotation) * _flyingOffset, Time.deltaTime * 30);
+            //_shadowSpriteRenderer.transform.localPosition = Quaternion.Inverse(_spriteRenderer.transform.rotation) * _flyingOffset;
+        }
+        else
+        {
+            _shadowSpriteRenderer.transform.localPosition = Vector3.Lerp(_shadowSpriteRenderer.transform.localPosition,
+                Quaternion.Inverse(_spriteRenderer.transform.rotation) * _offset, Time.deltaTime * 30);
+        }
+    }
+
+    private void OnMouseEnter()
+    {
+        if (GameManager.Instance.CurrentGameState != (GameManager.Instance.ScavengingState || GameManager.Instance.PreparationState)) return;
+
+        GameManager.Instance.UIManager.HoverPrice.ShowPrice(Data.Price, transform.position);
+    }
+
+    private void OnMouseExit()
+    {
+        if (GameManager.Instance.CurrentGameState != GameManager.Instance.ScavengingState
+        && GameManager.Instance.CurrentGameState != GameManager.Instance.PreparationState) return;
+
+        GameManager.Instance.UIManager.HoverPrice.HidePrice();
+    }
+
+    private void OnMouseDown()
+    {
+        if (PauseManager.Instance.IsPaused) return;
+        if (GameManager.Instance.CurrentGameState != GameManager.Instance.ScavengingState
+        && GameManager.Instance.CurrentGameState != GameManager.Instance.PreparationState) return;
+
+        StartDrag();
+    }
+
+    private void OnMouseUp()
+    {
+        if (PauseManager.Instance.IsPaused) return;
+        if (GameManager.Instance.CurrentGameState != (GameManager.Instance.ScavengingState || GameManager.Instance.PreparationState)) return;
+
+        EndDrag();
     }
 
     public void StartDrag()
@@ -226,19 +202,5 @@ public class ItemBehavior : MonoBehaviour
         });
         _sellIcon.enabled = false;
         _cross.enabled = false;
-    }
-
-    public void SetSortingOrder(int sortingOrder)
-    {
-        _spriteRenderer.sortingOrder = sortingOrder;
-        _shadowSpriteRenderer.sortingOrder = sortingOrder - 1;
-        transform.position = new Vector3(transform.position.x, transform.position.y, sortingOrder * -0.001f);
-    }
-
-    public void DestroyItem()
-    {
-        transform.DOKill();
-        GameManager.Instance.ItemManager.ItemList.Remove(this);
-        Destroy(gameObject);
     }
 }

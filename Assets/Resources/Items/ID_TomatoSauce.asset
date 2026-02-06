@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32c517d233ca1924496e4ec2b4e372ef, type: 3}
   m_Name: ID_TomatoSauce
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 3737433453275763250, guid: 712ef6e2c69042a41b547f33cef751e0, type: 3}
+  Prefab: {fileID: 3971539782363818920, guid: 712ef6e2c69042a41b547f33cef751e0, type: 3}
   Price: 1
+  BonusCurrency: 0
   Rarity: 1
   Name: Tomato Sauce
   Icon: {fileID: 21300000, guid: 6de2dd59c78b8e54083e9a76b612ed9d, type: 3}
   Family: 2
-  SpawnChance: 15

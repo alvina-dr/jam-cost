@@ -941,7 +941,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &261153929
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3253,8 +3253,6 @@ MonoBehaviour:
   PreparationState: {fileID: 1648493517}
   UIManager: {fileID: 110208747}
   ItemManager: {fileID: 1648493509}
-  _roundTime: 10
-  RoundData: {fileID: 11400000, guid: 68529cb8f4d36ee4db03e872e1bcb99f, type: 2}
   _ticketSize: 4
   SelectedItem: {fileID: 0}
   Timer: 0
@@ -3397,7 +3395,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1720426188
 SpriteRenderer:
   m_ObjectHideFlags: 0

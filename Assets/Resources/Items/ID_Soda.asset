@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32c517d233ca1924496e4ec2b4e372ef, type: 3}
   m_Name: ID_Soda
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 3737433453275763250, guid: 2133d2c9c09632745aef623f2048aab6, type: 3}
+  Prefab: {fileID: 3971539782363818920, guid: 2133d2c9c09632745aef623f2048aab6, type: 3}
   Price: 3
+  BonusCurrency: 0
   Rarity: 1
   Name: Soda
   Icon: {fileID: 21300000, guid: aedab37bbae2fa74cb721317f9b0533a, type: 3}
   Family: 0
-  SpawnChance: 10

@@ -45,11 +45,13 @@ public class UI_TicketEntry : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (GameManager.Instance.CurrentGameState != GameManager.Instance.ScavengingState) return;
-        ItemBehavior itemBehavior = Instantiate(_data.Prefab);
-        GameManager.Instance.ItemManager.ItemList.Add(itemBehavior);
+        DraggableBehavior draggableBehavior = (DraggableBehavior) Instantiate(_data.Prefab);
+        if (draggableBehavior == null) return;
+
+        GameManager.Instance.ItemManager.ItemList.Add(draggableBehavior);
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        itemBehavior.transform.position = new Vector3(mousePosition.x, mousePosition.y, 0);
-        itemBehavior.StartDrag();
+        draggableBehavior.transform.position = new Vector3(mousePosition.x, mousePosition.y, 0);
+        draggableBehavior.StartDrag();
         transform.localScale = Vector3.zero;
         GameManager.Instance.UIManager.TicketMenu.UpdateItemNumberText();
     }

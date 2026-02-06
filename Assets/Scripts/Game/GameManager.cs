@@ -26,7 +26,6 @@ public class GameManager : MonoBehaviour
     [Header("States")]
     public GS_Scavenging ScavengingState;
     public GS_Win WinState;
-    public GS_ChoosingBonus ChoosingBonusState;
     public GS_GameOver GameOverState;
     public GS_ScavengingIntro ScavengingIntroState;
     public GS_Bag BagState;
@@ -40,7 +39,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int _ticketSize;
 
     [Header("Current Stats")]
-    public ItemBehavior SelectedItem;
+    public DraggableBehavior SelectedItem;
     [ReadOnly] public float Timer;
     public int CurrentScore;
     public int CurrentDay;
