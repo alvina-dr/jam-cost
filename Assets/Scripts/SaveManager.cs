@@ -62,7 +62,23 @@ public class SaveManager : MonoBehaviour
         SceneManager.LoadScene("Map");
     }
 
-    public void AddPP(int number)
+    public void AddPP(int number, Vector3 worldPosition = default(Vector3))
+    {
+        if (number > 0 && worldPosition != default(Vector3))
+        {
+            UI_Run.Instance?.UIParticle_Attractor.onAttracted.RemoveAllListeners();
+            UI_Run.Instance?.UIParticle_Attractor.onAttracted.AddListener(() => OnParticleAttracted(1));
+            UI_Run.Instance.UIParticle_RectTransform.position = new Vector3(worldPosition.x, worldPosition.y, 0);
+            UI_Run.Instance.UIParticle_RectTransform.localPosition = new Vector3(UI_Run.Instance.UIParticle_RectTransform.position.x, UI_Run.Instance.UIParticle_RectTransform.position.y, 0);
+            UI_Run.Instance?.UIParticle_PP.Emit(number);
+        }
+        else
+        {
+            OnParticleAttracted(number);
+        }
+    }
+
+    public void OnParticleAttracted(int number)
     {
         CurrentSave.CurrentRun.ProductivityPoints += number;
         if (GameManager.Instance != null) GameManager.Instance.UIManager.CoinCount.SetTextValue(CurrentSave.CurrentRun.ProductivityPoints.ToString());

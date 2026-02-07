@@ -1,3 +1,4 @@
+using Coffee.UIExtensions;
 using UnityEngine;
 
 public class UI_Run : MonoBehaviour
@@ -20,4 +21,7 @@ public class UI_Run : MonoBehaviour
 
     public UI_TextValue PPTextValue;
     public UI_TextValue MealTicketTextValue;
+    public ParticleSystem UIParticle_PP;
+    public RectTransform UIParticle_RectTransform;
+    public UIParticleAttractor UIParticle_Attractor;
 }

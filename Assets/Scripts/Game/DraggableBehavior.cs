@@ -161,16 +161,7 @@ public class DraggableBehavior : ItemBehavior
         }
         else if (GameManager.Instance.UIManager.CoinBagOverCheck.IsOver())
         {
-            if (Data.BonusCurrency > 0)
-            {
-                SaveManager.Instance.AddPP(Data.BonusCurrency);
-                DestroyItem();
-                AudioManager.Instance.PlaySFXSound(_addToTicketSound);
-            }
-            else
-            {
-                GoBackToDumpster();
-            }
+            GoBackToDumpster();
         }
         else if (!GameManager.Instance.UIManager.DumpsterOverCheck.IsOver())
         {

@@ -51,7 +51,6 @@ public class GameManager : MonoBehaviour
         {
             case MND_Scavenge_Empty:
                 // prepare interface for empty challenge
-                UIManager.DayCount.gameObject.SetActive(false);
                 UIManager.TicketMenu.gameObject.SetActive(false);
                 break;
             case MND_Scavenge_Classic:
@@ -61,7 +60,6 @@ public class GameManager : MonoBehaviour
         }
         CurrentDay = 0;
 
-        UIManager.DayCount.SetTextValue((CurrentDay + 1).ToString());
         SetCurrentScore(0);
         ItemManager.ResetDumpster();
         UIManager.TicketMenu.UpdateItemNumberText();

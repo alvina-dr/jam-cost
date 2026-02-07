@@ -39,6 +39,6 @@ MonoBehaviour:
     ItemData: {fileID: 11400000, guid: aa62c1101b2fd4548b4c9b7281071c6b, type: 2}
   - Weight: 7
     ItemData: {fileID: 11400000, guid: 9db9c94023d415a4495f800924e99821, type: 2}
-  - Weight: 3
+  - Weight: 20
     ItemData: {fileID: 11400000, guid: d129557050f34c647909e75e0cd33db0, type: 2}
   ItemNumber: 30
