@@ -21,7 +21,8 @@ public class ShopManager : MonoBehaviour
     #endregion
 
     [Header("References")]
-    public UIManager UIManager;
+    public UI_BonusMenu BonusMenu;
+    public UI_ConversionMenu ConversionMenu;
 
     public void LeaveShop()
     {
@@ -30,11 +31,11 @@ public class ShopManager : MonoBehaviour
 
     public void OpenVendingMachine()
     {
-        UIManager.BonusMenu.OpenMenu();
+        BonusMenu.OpenMenu();
     }
 
-    public void OpenConvertingMachine()
+    public void OpenConversionMachine()
     {
-
+        ConversionMenu.OpenMenu();
     }
 }

@@ -11,7 +11,7 @@ public class UI_Menu : MonoBehaviour
     private bool _isOpen = false;
     public bool IsOpen() => _isOpen;
 
-    public void OpenMenu()
+    public virtual void OpenMenu()
     {
         _isOpen = true;
         gameObject.SetActive(true);
@@ -27,7 +27,7 @@ public class UI_Menu : MonoBehaviour
         }
     }
 
-    public void CloseMenu()
+    public virtual void CloseMenu()
     {
         _isOpen = false;
         float totalDelay = 0;

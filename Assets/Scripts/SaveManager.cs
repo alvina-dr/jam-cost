@@ -62,27 +62,49 @@ public class SaveManager : MonoBehaviour
         SceneManager.LoadScene("Map");
     }
 
+    public void AddMT(int number, Vector3 worldPosition = default(Vector3))
+    {
+        if (number > 0 && worldPosition != default(Vector3))
+        {
+            UI_Run.Instance?.UIParticle_MT_Attractor.onAttracted.RemoveAllListeners();
+            UI_Run.Instance?.UIParticle_MT_Attractor.onAttracted.AddListener(() => OnParticleAttracted_MT(1));
+            UI_Run.Instance.UIParticle_MT_RectTransform.position = new Vector3(worldPosition.x, worldPosition.y, 0);
+            UI_Run.Instance.UIParticle_MT_RectTransform.localPosition = new Vector3(UI_Run.Instance.UIParticle_MT_RectTransform.localPosition.x, UI_Run.Instance.UIParticle_MT_RectTransform.localPosition.y, 0);
+            UI_Run.Instance?.UIParticle_MT.Emit(number);
+        }
+        else
+        {
+            OnParticleAttracted_MT(number);
+        }
+    }
+
     public void AddPP(int number, Vector3 worldPosition = default(Vector3))
     {
         if (number > 0 && worldPosition != default(Vector3))
         {
-            UI_Run.Instance?.UIParticle_Attractor.onAttracted.RemoveAllListeners();
-            UI_Run.Instance?.UIParticle_Attractor.onAttracted.AddListener(() => OnParticleAttracted(1));
-            UI_Run.Instance.UIParticle_RectTransform.position = new Vector3(worldPosition.x, worldPosition.y, 0);
-            UI_Run.Instance.UIParticle_RectTransform.localPosition = new Vector3(UI_Run.Instance.UIParticle_RectTransform.position.x, UI_Run.Instance.UIParticle_RectTransform.position.y, 0);
+            UI_Run.Instance?.UIParticle_PP_Attractor.onAttracted.RemoveAllListeners();
+            UI_Run.Instance?.UIParticle_PP_Attractor.onAttracted.AddListener(() => OnParticleAttracted_PP(1));
+            UI_Run.Instance.UIParticle_PP_RectTransform.position = new Vector3(worldPosition.x, worldPosition.y, 0);
+            UI_Run.Instance.UIParticle_PP_RectTransform.localPosition = new Vector3(UI_Run.Instance.UIParticle_PP_RectTransform.localPosition.x, UI_Run.Instance.UIParticle_PP_RectTransform.localPosition.y, 0);
             UI_Run.Instance?.UIParticle_PP.Emit(number);
         }
         else
         {
-            OnParticleAttracted(number);
+            OnParticleAttracted_PP(number);
         }
     }
 
-    public void OnParticleAttracted(int number)
+    public void OnParticleAttracted_PP(int number)
     {
         CurrentSave.CurrentRun.ProductivityPoints += number;
         if (GameManager.Instance != null) GameManager.Instance.UIManager.CoinCount.SetTextValue(CurrentSave.CurrentRun.ProductivityPoints.ToString());
         UI_Run.Instance?.PPTextValue.SetTextValue(CurrentSave.CurrentRun.ProductivityPoints.ToString());
+    }
+
+    public void OnParticleAttracted_MT(int number)
+    {
+        CurrentSave.MealTickets += number;
+        UI_Run.Instance?.MealTicketTextValue.SetTextValue(CurrentSave.MealTickets.ToString());
     }
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)

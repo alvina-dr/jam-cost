@@ -33,6 +33,6 @@ public class UI_BonusEntry : MonoBehaviour
     {
         Data.GetBonus();
         Data = null;
-        ShopManager.Instance.UIManager.BonusMenu.CloseMenu();
+        ShopManager.Instance.BonusMenu.CloseMenu();
     }
 }

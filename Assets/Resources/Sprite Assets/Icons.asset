@@ -43,6 +43,11 @@ MonoBehaviour:
     m_GlyphIndex: 0
     m_Scale: 1
     m_Name: PP
+  - m_ElementType: 2
+    m_Unicode: 65534
+    m_GlyphIndex: 1
+    m_Scale: 1
+    m_Name: MT
   m_GlyphTable:
   - m_Index: 0
     m_Metrics:
@@ -60,6 +65,22 @@ MonoBehaviour:
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
     sprite: {fileID: 1161201145128540330, guid: e189569e0f9432d448b4e61a2bf8836a, type: 3}
+  - m_Index: 1
+    m_Metrics:
+      m_Width: 128
+      m_Height: 128
+      m_HorizontalBearingX: 0
+      m_HorizontalBearingY: 108
+      m_HorizontalAdvance: 128
+    m_GlyphRect:
+      m_X: 128
+      m_Y: 384
+      m_Width: 128
+      m_Height: 128
+    m_Scale: 1
+    m_AtlasIndex: 0
+    m_ClassDefinitionType: 0
+    sprite: {fileID: -739356608, guid: e189569e0f9432d448b4e61a2bf8836a, type: 3}
   spriteInfoList: []
   fallbackSpriteAssets: []
 --- !u!21 &8769282810531737725
