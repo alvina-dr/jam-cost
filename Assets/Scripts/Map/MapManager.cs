@@ -41,22 +41,22 @@ public class MapManager : MonoBehaviour
     [SerializeField] private Transform _tileParent;
     [SerializeField] private Image _tile1x1Building;
 
-    private List<int> _formerNodeList => SaveManager.Instance.CurrentSave.CurrentRun.FormerNodeList;
+    private List<int> _formerNodeList => SaveManager.CurrentSave.CurrentRun.FormerNodeList;
 
     public void OnAwake()
     {
-        _dayText.SetTextValue((SaveManager.Instance.CurrentSave.CurrentRun.CurrentDay + 1).ToString());
+        _dayText.SetTextValue((SaveManager.CurrentSave.CurrentRun.CurrentDay + 1).ToString());
 
         if (_formerNodeList.Count == 0)
         {
-            SaveManager.Instance.CurrentSave.CurrentRun.RandomSeed = (int)System.DateTime.Now.Ticks;
+            SaveManager.CurrentSave.CurrentRun.RandomSeed = (int)System.DateTime.Now.Ticks;
             _formerNodeList.Add(_startingMapNode.MapNodeIndex);
         }
 
         //_mapNodeList.Add(_startingMapNode);
         //_nodeNumberPerColumn.Add(1);
 
-        Random.InitState(SaveManager.Instance.CurrentSave.CurrentRun.RandomSeed);
+        Random.InitState(SaveManager.CurrentSave.CurrentRun.RandomSeed);
 
         // instantiate all nodes
         for (int i = 0; i < _mapData.DailyChoiceList.Count; i++)
@@ -199,7 +199,7 @@ public class MapManager : MonoBehaviour
         for (int i = 0; i < _mapNodeList.Count; i++)
         {
             // if node is not of today column 
-            if (_mapNodeList[i].MapNodeColumnIndex != SaveManager.Instance.CurrentSave.CurrentRun.CurrentDay) 
+            if (_mapNodeList[i].MapNodeColumnIndex != SaveManager.CurrentSave.CurrentRun.CurrentDay) 
             {
                 // if node is not part of previous nodes
                 if (!_formerNodeList.Contains(_mapNodeList[i].MapNodeIndex))
@@ -214,7 +214,7 @@ public class MapManager : MonoBehaviour
             else
             {
                 _mapNodeList[i].SetWhiteLine();
-                if (SaveManager.Instance.CurrentSave.CurrentRun.CurrentDay != 0)
+                if (SaveManager.CurrentSave.CurrentRun.CurrentDay != 0)
                 {
                     if (!_mapNodeList[_formerNodeList.Last()].NextNodeList.Contains(_mapNodeList[i].MapNodeIndex))
                     {

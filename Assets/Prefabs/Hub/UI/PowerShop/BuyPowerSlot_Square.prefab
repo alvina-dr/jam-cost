@@ -546,6 +546,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _powerData: {fileID: 0}
   _powerIcon: {fileID: 7692815972425878602}
+  _powerBackgroundHighlight: {fileID: 2871855084010985369}
   _powerPriceParent: {fileID: 6347618559895238576}
   _powerPrice: {fileID: 3093888948830037232}
 --- !u!114 &4605055500195785464

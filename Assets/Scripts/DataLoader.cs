@@ -51,7 +51,7 @@ public class DataLoader : MonoBehaviour
                 bool hasAllBonus = true;
                 for (int j = 0; j < BonusDataList[i].RequiredBonusList.Count; j++)
                 {
-                    if (!SaveManager.Instance.CurrentSave.CurrentRun.CurrentRunBonusList.Find(x => x == BonusDataList[i].RequiredBonusList[j]))
+                    if (!SaveManager.CurrentSave.CurrentRun.CurrentRunBonusList.Find(x => x == BonusDataList[i].RequiredBonusList[j]))
                     {
                         hasAllBonus = false;
                         break;

@@ -29,15 +29,15 @@ public class DebugManager : MonoBehaviour
 
     #region Debug Actions
     [DebugAction(name= "RoundBonusTime", group ="Info")]
-    public float RoundBonusTime { get => SaveManager.Instance.CurrentSave.RoundBonusTime; set => SaveManager.Instance.CurrentSave.RoundBonusTime = value; }
+    public float RoundBonusTime { get => SaveManager.CurrentSave.RoundBonusTime; set => SaveManager.CurrentSave.RoundBonusTime = value; }
 
     [DebugAction(name = "RunStartLoopPP", group = "Info")]
-    public int RunStartLoopPP { get => SaveManager.Instance.CurrentSave.RunStartLootPP; set => SaveManager.Instance.CurrentSave.RunStartLootPP = value;}
+    public int RunStartLoopPP { get => SaveManager.CurrentSave.RunStartLootPP; set => SaveManager.CurrentSave.RunStartLootPP = value;}
 
     [DebugAction(name = "MealTickets", group = "Info")]
-    public int MealTickets { get => SaveManager.Instance.CurrentSave.MealTickets; set => SaveManager.Instance.CurrentSave.MealTickets = value; }
+    public int MealTickets { get => SaveManager.CurrentSave.MealTickets; set => SaveManager.CurrentSave.MealTickets = value; }
     [DebugAction(name = "RandomSeed", group = "Info")]
-    public int RandomSeed { get => SaveManager.Instance.CurrentSave.CurrentRun.RandomSeed; set => SaveManager.Instance.CurrentSave.CurrentRun.RandomSeed = value; }
+    public int RandomSeed { get => SaveManager.CurrentSave.CurrentRun.RandomSeed; set => SaveManager.CurrentSave.CurrentRun.RandomSeed = value; }
 
     #endregion
 
@@ -88,7 +88,7 @@ public class DebugManager : MonoBehaviour
         
         // GAIN
         DebugActionList.Add(DebugActionBuilder.Button().WithName("PP").WithGroup("Gain").WithAction(() => SaveManager.Instance.AddPP(100)));
-        DebugActionList.Add(DebugActionBuilder.Button().WithName("Meal Tickets").WithGroup("Gain").WithAction(() => GainMealTickets()));
+        DebugActionList.Add(DebugActionBuilder.Button().WithName("Meal Tickets").WithGroup("Gain").WithAction(() => SaveManager.Instance.AddMT(100)));
 
         RuntimeDebugSystem.RegisterActions(DebugActionList.ToArray());
         DebugActionArray = RuntimeDebugSystem.RegisterActionsAuto(this);
@@ -101,16 +101,10 @@ public class DebugManager : MonoBehaviour
 
     public void GenerateNewMap()
     {
-        SaveManager.Instance.CurrentSave.CurrentRun.CurrentDay = 0;
-        SaveManager.Instance.CurrentSave.CurrentRun.FormerNodeList.Clear();
+        SaveManager.CurrentSave.CurrentRun.CurrentDay = 0;
+        SaveManager.CurrentSave.CurrentRun.FormerNodeList.Clear();
 
         SceneManager.LoadScene("Map");
-    }
-
-    public void GainMealTickets()
-    {
-        SaveManager.Instance.CurrentSave.MealTickets += 100;
-        HubManager.Instance?.UpdateUpgrades();
     }
 
     public void GetBonus(BonusData data)

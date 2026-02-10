@@ -15,13 +15,13 @@ public class HubUpgrade : MonoBehaviour
     public void UpdatePrice()
     {
         _priceText.text = _cost.ToString();
-        if (SaveManager.Instance.CurrentSave.MealTickets >= _cost) _priceText.color = Color.green;
+        if (SaveManager.CurrentSave.MealTickets >= _cost) _priceText.color = Color.green;
         else _priceText.color = Color.red;
     }
 
     public void BuyUpgrade()
     {
-        if (SaveManager.Instance.CurrentSave.MealTickets >= _cost)
+        if (SaveManager.CurrentSave.MealTickets >= _cost)
         {
             HubManager.Instance.UseMealTicket(_cost);
             // actualize UI upgrade

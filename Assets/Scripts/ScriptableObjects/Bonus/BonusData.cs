@@ -24,10 +24,10 @@ public class BonusData : ScriptableObject
         switch (Durability)
         {
             case BonusDurability.Run:
-                SaveManager.Instance.CurrentSave.CurrentRun.CurrentRunBonusList.Add(this);
+                SaveManager.CurrentSave.CurrentRun.CurrentRunBonusList.Add(this);
                 break;
             case BonusDurability.Permanent:
-                SaveManager.Instance.CurrentSave.PermanentBonusList.Add(this);
+                SaveManager.CurrentSave.PermanentBonusList.Add(this);
                 break;
         }
     }

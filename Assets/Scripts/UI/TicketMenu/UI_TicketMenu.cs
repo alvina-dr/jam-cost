@@ -147,7 +147,7 @@ public class UI_TicketMenu : MonoBehaviour
             }
 
             // Bonus family type
-            List<BonusData> bonusDataFamilyList = SaveManager.Instance.CurrentSave.CurrentRun.CurrentRunBonusList.FindAll(x => x is BD_FamilyMultiplier familyMultiplier && familyMultiplier.FamilyBonus == _ticketEntryList[index].Data.Family);
+            List<BonusData> bonusDataFamilyList = SaveManager.CurrentSave.CurrentRun.CurrentRunBonusList.FindAll(x => x is BD_FamilyMultiplier familyMultiplier && familyMultiplier.FamilyBonus == _ticketEntryList[index].Data.Family);
             for (int j = 0; j < bonusDataFamilyList.Count; j++)
             {
                 BD_FamilyMultiplier familyMultiplier = (BD_FamilyMultiplier) bonusDataFamilyList[j];

@@ -61,7 +61,7 @@ public class HubManager : MonoBehaviour
 
     public void UseMealTicket(int cost)
     {
-        SaveManager.Instance.CurrentSave.MealTickets -= cost;
+        SaveManager.CurrentSave.MealTickets -= cost;
         UpdateUpgrades();
         // actualize UI 
     }

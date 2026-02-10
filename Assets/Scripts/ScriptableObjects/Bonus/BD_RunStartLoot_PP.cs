@@ -8,6 +8,6 @@ public class BD_RunStartLoot_PP : BonusData
     public override void GetBonus()
     {
         base.GetBonus();
-        SaveManager.Instance.CurrentSave.RunStartLootPP += BonusPP;
+        SaveManager.CurrentSave.RunStartLootPP += BonusPP;
     }
 }

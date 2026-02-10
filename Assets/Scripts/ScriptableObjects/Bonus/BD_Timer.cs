@@ -8,6 +8,6 @@ public class BD_Timer : BonusData
     public override void GetBonus()
     {
         base.GetBonus();
-        SaveManager.Instance.CurrentSave.RoundBonusTime += BonusTime;
+        SaveManager.CurrentSave.RoundBonusTime += BonusTime;
     }
 }

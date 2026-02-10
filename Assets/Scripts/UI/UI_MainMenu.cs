@@ -6,7 +6,7 @@ public class UI_MainMenu : MonoBehaviour
     public void StartGame()
     {
         SaveManager.Instance.LoadOrCreateSave();
-        if (SceneManager.GetSceneByName(SaveManager.Instance.CurrentSave.LastSceneName) != null) SceneManager.LoadScene(SaveManager.Instance.CurrentSave.LastSceneName);
+        if (SceneManager.GetSceneByName(SaveManager.CurrentSave.LastSceneName) != null) SceneManager.LoadScene(SaveManager.CurrentSave.LastSceneName);
         else SceneManager.LoadScene("Hub");
     }
 

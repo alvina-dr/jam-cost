@@ -20,7 +20,7 @@ public class UI_ConversionMenu : UI_Menu
 
     public void AddMTConversion()
     {
-        if (SaveManager.Instance.CurrentSave.CurrentRun.ProductivityPoints < (_mealTicketNumber + 1) * 5)
+        if (SaveManager.CurrentSave.CurrentRun.ProductivityPoints < (_mealTicketNumber + 1) * 5)
         {
             // prevent player from selecting more
             return;

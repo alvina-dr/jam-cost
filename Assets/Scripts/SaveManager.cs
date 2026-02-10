@@ -9,6 +9,7 @@ public class SaveManager : MonoBehaviour
 {
     #region Singleton
     public static SaveManager Instance { get; private set; }
+    public static SaveData CurrentSave => SaveManager.Instance._currentSave;
 
     private void Awake()
     {
@@ -26,16 +27,16 @@ public class SaveManager : MonoBehaviour
     #endregion
 
     public MapNodeData CurrentMapNode;
-    public SaveData CurrentSave;
+    [SerializeField] private SaveData _currentSave;
     
     private void OnAwake()
     {
+        // in editor on awake
+        LoadOrCreateSave();
+
         UI_Run.Instance?.PPTextValue.SetTextValue(CurrentSave.CurrentRun.ProductivityPoints.ToString(), false);
         UI_Run.Instance?.MealTicketTextValue.SetTextValue(CurrentSave.MealTickets.ToString(), false);
         SceneManager.sceneLoaded += OnSceneLoaded;
-
-        // in editor on awake
-        LoadOrCreateSave();
 
         // in build on launching in main menu
     }
@@ -123,16 +124,22 @@ public class SaveManager : MonoBehaviour
         }
         else
         {
-            CurrentSave = new SaveData();
+            CreateSave();
             return false;
         }
+    }
+
+    public void CreateSave()
+    {
+        _currentSave = new SaveData();
+        _currentSave.CurrentRun = new RunData();
     }
 
     // Loads a save, this save must exist
     public void LoadSave()
     {
         string jsonFile = System.IO.File.ReadAllText($"{Application.persistentDataPath}/Save.json");
-        CurrentSave = JsonUtility.FromJson<SaveData>(jsonFile);
+        _currentSave = JsonUtility.FromJson<SaveData>(jsonFile);
 
         CurrentSave.CurrentRun.CurrentRunBonusList.Clear();
         for (int i = 0; i < CurrentSave.CurrentRun.CurrentRunBonusListName.Count; i++)
@@ -183,6 +190,9 @@ public class SaveManager : MonoBehaviour
 
         public int MealTickets;
         [SerializeReference] public List<BonusData> PermanentBonusList = new();
+        [SerializeReference] public List<PowerData> UnlockedPowerDataList = new();
+        [SerializeReference] public List<PowerData> EquipedPowerDataList = new();
+        [SerializeReference] public int EquipedPowerMax = 1;
 
         // Permanent bonus stats
         public float RoundBonusTime = 0;

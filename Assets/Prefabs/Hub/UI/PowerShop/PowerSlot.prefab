@@ -169,12 +169,7 @@ MonoBehaviour:
   _priceObject: {fileID: 7327528669935942507}
   _lockedObject: {fileID: 287130552624107422}
   _priceText: {fileID: 5882680179366769577}
-  _onPointerEnter:
-    m_PersistentCalls:
-      m_Calls: []
-  _onPointerExit:
-    m_PersistentCalls:
-      m_Calls: []
+  _powerSlotCost: 10
 --- !u!114 &2461947216402111152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,6 +231,22 @@ MonoBehaviour:
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
           m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4839846908083708047}
+          m_TargetAssemblyTypeName: UI_PowerSlot, Assembly-CSharp
+          m_MethodName: UnlockPowerSlot
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

@@ -16,3 +16,4 @@ MonoBehaviour:
   PowerDescription: "Rajoute du temps au chronom\xE8tre."
   PowerLore: "Un bon repas redonne de l'\xE9nergie."
   PowerSprite: {fileID: 21300000, guid: 8523ce5556d904e46999258049a21ecb, type: 3}
+  PowerPrice: 5

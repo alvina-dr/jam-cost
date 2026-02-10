@@ -77,6 +77,6 @@ public class GS_Scavenging : GameState
                 return scavengeEmptyNode.Timer;
         }
 
-        return _roundTime + SaveManager.Instance.CurrentSave.RoundBonusTime;
+        return _roundTime + SaveManager.CurrentSave.RoundBonusTime;
     }
 }

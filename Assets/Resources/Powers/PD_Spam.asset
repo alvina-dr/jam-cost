@@ -16,3 +16,4 @@ MonoBehaviour:
   PowerDescription: Delete a third of trash items.
   PowerLore: Huge cheeseburger !
   PowerSprite: {fileID: 21300000, guid: 823503dde5adc124d97b4f34f32f27c7, type: 3}
+  PowerPrice: 5

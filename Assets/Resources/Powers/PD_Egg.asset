@@ -16,3 +16,4 @@ MonoBehaviour:
   PowerDescription: "Rajoute du temps au chronom\xE8tre."
   PowerLore: "Un chronom\xE8tre ancien dont on ne conna\xEEt pas la provenance."
   PowerSprite: {fileID: 21300000, guid: a78d0a6aaca308740af4856b9d60bf6c, type: 3}
+  PowerPrice: 5

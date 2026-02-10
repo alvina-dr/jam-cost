@@ -46,8 +46,7 @@ public class MainSceneToolbarButton
         {
             if (SaveManager.Instance != null)
             {
-                SaveManager.Instance.CurrentSave = new();
-                SaveManager.Instance.CurrentSave.CurrentRun = new();
+                SaveManager.Instance.CreateSave();
             }
 
             System.IO.File.Delete(Application.persistentDataPath + "/Save.json");
