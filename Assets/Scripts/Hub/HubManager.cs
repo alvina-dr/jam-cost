@@ -25,6 +25,7 @@ public class HubManager : MonoBehaviour
     public GameObject BreakRoom;
     public GameObject InsideLocker;
     [SerializeField] private List<HubUpgrade> _hubUpgradeList = new();
+    public UI_PowerShop PowerShop;
 
     [Button]
     public void UpdateUpgradeList()
@@ -45,6 +46,11 @@ public class HubManager : MonoBehaviour
     {
         BreakRoom.SetActive(true);
         InsideLocker.SetActive(false);
+    }
+
+    public void OpenPowerShop()
+    {
+        PowerShop.OpenMenu();
     }
 
     public void LaunchNewRun()

@@ -184,10 +184,10 @@ public class SaveManager : MonoBehaviour
         public int MealTickets;
         [SerializeReference] public List<BonusData> PermanentBonusList = new();
 
-
         // Permanent bonus stats
-        public float RoundBonusTime;
-        public int RunStartLootPP;
+        public float RoundBonusTime = 0;
+        public int RunStartLootPP = 0;
+        public int RunStartRerolls = 0;
 
         public RunData CurrentRun = new RunData();
 
@@ -200,6 +200,7 @@ public class SaveManager : MonoBehaviour
         public int RandomSeed;
         public int CurrentDay;
         public int ProductivityPoints;
+        public int Rerolls;
         public List<BonusData> CurrentRunBonusList = new();
         [HideInInspector] public List<string> CurrentRunBonusListName = new();
         public List<int> FormerNodeList = new();
