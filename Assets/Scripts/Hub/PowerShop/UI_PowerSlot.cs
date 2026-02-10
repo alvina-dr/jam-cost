@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class UI_PowerSlot : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class UI_PowerSlot : MonoBehaviour
     [SerializeField] private GameObject _priceObject;
     [SerializeField] private GameObject _lockedObject;
     [SerializeField] private TextMeshProUGUI _priceText;
+    [SerializeField] private Image _powerIcon;
 
     [Header("Values")]
     [SerializeField] private int _powerSlotCost;
@@ -32,6 +34,7 @@ public class UI_PowerSlot : MonoBehaviour
         }
         else
         {
+            _powerIcon.gameObject.SetActive(false);
             _addObject.SetActive(false);
             _priceObject.SetActive(true);
             _lockedObject.SetActive(true);
@@ -51,8 +54,13 @@ public class UI_PowerSlot : MonoBehaviour
 
     public void SetPower(PowerData powerData)
     {
-        if (powerData == null) return;
+        if (powerData == null)
+        {
+            _powerIcon.gameObject.SetActive(false);
+            return;
+        }
 
-
+        _powerIcon.gameObject.SetActive(true);
+        _powerIcon.sprite = powerData.PowerSprite;
     }
 }

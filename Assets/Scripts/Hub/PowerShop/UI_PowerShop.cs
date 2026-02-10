@@ -34,10 +34,13 @@ public class UI_PowerShop : UI_Menu
         base.CloseMenu();
     }
 
-    public void Setup()
+    public void Setup(bool reset = true)
     {
-        _currentPowerSlot = null;
-        _currentPowerData = null;
+        if (reset)
+        {
+            _currentPowerSlot = null;
+            _currentPowerData = null;
+        }
 
         for (int i = 0; i < _powerSlotList.Count; i++)
         {
@@ -51,11 +54,12 @@ public class UI_PowerShop : UI_Menu
 
         List<PowerData> powerDataList = Resources.LoadAll<PowerData>("Powers").ToList();
 
-        for (int i = 0; i < powerDataList.Count; i++)
+        for (int i = 0; i < _buyPowerSlotList.Count; i++)
         {
-            if (i >= powerDataList.Count) break;
-            _buyPowerSlotList[i].SetupSlot(powerDataList[i]);
+            _buyPowerSlotList[i].SetupSlot(i < powerDataList.Count ? powerDataList[i] : null);
         }
+
+        if (reset) SetupTicket(powerDataList[0], _buyPowerSlotList[0]);
     }
 
     public void SetupTicket(PowerData powerData, UI_BuyPowerSlot powerSlot)
@@ -74,16 +78,16 @@ public class UI_PowerShop : UI_Menu
         {
             if (SaveManager.CurrentSave.EquipedPowerDataList.Contains(_currentPowerData))
             {
-                _ticketButtonText.text = "<wave  amp=2>Unequip</wave>";
+                _ticketButtonText.text = "<wave amp=2>Unequip</wave>";
             }
             else
             {
-                _ticketButtonText.text = "<wave  amp=2>Equip</wave>";
+                _ticketButtonText.text = "<wave amp=2>Equip</wave>";
             }
         }
         else
         {
-            _ticketButtonText.text = "<wave  amp=2>Buy</wave>";
+            _ticketButtonText.text = "<wave amp=2>Buy</wave>";
         }
     }
 
@@ -109,8 +113,7 @@ public class UI_PowerShop : UI_Menu
             BuyPower();
         }
 
-        _currentPowerSlot.SetupSlot();
-
+        Setup(false);
         SetupTicket(_currentPowerData, _currentPowerSlot);
     }
 
@@ -127,10 +130,12 @@ public class UI_PowerShop : UI_Menu
         if (SaveManager.CurrentSave.EquipedPowerDataList.Count >= SaveManager.CurrentSave.EquipedPowerMax) return;
 
         SaveManager.CurrentSave.EquipedPowerDataList.Add(_currentPowerData);
+        //_powerSlotList[SaveManager.CurrentSave.EquipedPowerDataList.Count - 1].SetPower(_currentPowerData);
     }
 
     public void UnequipPower()
     {
+        //_powerSlotList[SaveManager.CurrentSave.EquipedPowerDataList.Count - 1].SetPower(_currentPowerData);
         SaveManager.CurrentSave.EquipedPowerDataList.Remove(_currentPowerData);
     }
 }

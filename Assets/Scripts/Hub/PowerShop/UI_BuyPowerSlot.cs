@@ -11,14 +11,26 @@ public class UI_BuyPowerSlot : MonoBehaviour
     [SerializeField] private Image _powerBackgroundHighlight;
     [SerializeField] private Transform _powerPriceParent;
     [SerializeField] private TextMeshProUGUI _powerPrice;
+    [SerializeField] private TextMeshProUGUI _soldOutText;
 
     public void SetupSlot(PowerData powerData = null)
     {
         if (powerData != null) _powerData = powerData;
 
-        if (powerData == null && _powerData == null) return;
-
-        _powerIcon.sprite = _powerData.PowerSprite;
+        if (_powerData)
+        {
+            _powerIcon.sprite = _powerData.PowerSprite;
+            _powerIcon.gameObject.SetActive(true);
+            _soldOutText.gameObject.SetActive(false);
+            _powerPrice.text = $"{_powerData.PowerPrice}<sprite name=MT>";
+        }
+        else
+        {
+            _powerIcon.gameObject.SetActive(false);
+            _soldOutText.gameObject.SetActive(true);
+            _powerPriceParent.gameObject.SetActive(false);
+            return;
+        }
 
         // if already bought
         if (SaveManager.CurrentSave.UnlockedPowerDataList.Contains(_powerData))
@@ -39,7 +51,6 @@ public class UI_BuyPowerSlot : MonoBehaviour
         else
         {
             _powerBackgroundHighlight.gameObject.SetActive(true);
-            _powerPrice.text = $"{_powerData.PowerPrice}<sprite name=MT>";
             _powerPriceParent.gameObject.SetActive(true);
         }
     }
