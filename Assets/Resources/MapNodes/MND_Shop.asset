@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: MND_Shop
   m_EditorClassIdentifier: 
   IsAvailableInGame: 1
-  NodeIcon: {fileID: 21300000, guid: 0c3cc57d1fc872040957d37ce476b4d6, type: 3}
+  NodeIcon: {fileID: 21300000, guid: 7c9bcc1c508b7b94c8049d0f3b7a9bed, type: 3}

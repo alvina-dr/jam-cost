@@ -6,17 +6,28 @@ public class BonusData : ScriptableObject
 {
     public bool IsAvailableInGame;
     public BonusDurability Durability;
+    public BonusCategory Category;
 
     public string Name;
     public string Description;
     public Sprite Icon;
     public Color Color;
-    public List<BonusData> RequiredBonusList;
+    public List<BonusData> UpgradeBonusList;
 
     public enum BonusDurability
     {
         Run = 0,
         Permanent = 1
+    }
+
+    public enum BonusCategory
+    {
+        Space = 0,
+        Luck = 1,
+        PP = 2,
+        Combination = 3,
+        Time = 4,
+        Cursor = 5
     }
 
     public virtual void GetBonus()

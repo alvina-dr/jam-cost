@@ -35,9 +35,17 @@ public class UI_MapNode : MonoBehaviour
 
         UI_LineRenderer lineRenderer = Instantiate(_lineRendererPrefab, MapManager.Instance.LineParent);
         lineRenderer.transform.position = transform.position;
+
         if (xThenY) lineRenderer.points[1] = new Vector2(neighbourMapNode.transform.position.x - transform.position.x, 0);
         else lineRenderer.points[1] = new Vector2(0, neighbourMapNode.transform.position.y - transform.position.y);
-        lineRenderer.points[2] = neighbourMapNode.transform.position - transform.position;
+
+        if (xThenY) lineRenderer.points[2] = new Vector2(neighbourMapNode.transform.position.x - transform.position.x, 0);
+        else lineRenderer.points[2] = new Vector2(0, neighbourMapNode.transform.position.y - transform.position.y);
+
+        if (xThenY) lineRenderer.points[3] = new Vector2(neighbourMapNode.transform.position.x - transform.position.x, 0);
+        else lineRenderer.points[3] = new Vector2(0, neighbourMapNode.transform.position.y - transform.position.y);
+
+        lineRenderer.points[4] = neighbourMapNode.transform.position - transform.position;
         _lineRendererList.Add(lineRenderer);
 
         if (SaveManager.CurrentSave.CurrentRun.FormerNodeList.FindAll(x => x == neighbourMapNode.MapNodeIndex).Count > 0)
@@ -59,7 +67,7 @@ public class UI_MapNode : MonoBehaviour
     {
         _uIbutton.enabled = false;
         _button.interactable = false;
-        _icon.color = Color.black;
+        _icon.color = new Color(_icon.color.r, _icon.color.g, _icon.color.b, .25f);
         SetWhiteLine();
     }
 
@@ -67,13 +75,13 @@ public class UI_MapNode : MonoBehaviour
     {
         _uIbutton.enabled = false;
         _button.interactable = false;
-        _icon.color = Color.grey;
+        _icon.color = new Color(_icon.color.r, _icon.color.g, _icon.color.b, .5f);
     }
 
     public void ShowFormerNode()
     {
         _uIbutton.enabled = true;
-        _icon.color = Color.white;
+        _icon.color = new Color(_icon.color.r, _icon.color.g, _icon.color.b, 1f);
     }
 
     public bool AccessibleThroughNode(UI_MapNode startMapNode)

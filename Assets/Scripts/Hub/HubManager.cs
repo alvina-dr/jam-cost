@@ -26,6 +26,7 @@ public class HubManager : MonoBehaviour
     public GameObject InsideLocker;
     [SerializeField] private List<HubUpgrade> _hubUpgradeList = new();
     public UI_PowerShop PowerShop;
+    public UI_PermanentBonusShop PermanentBonusShop;
 
     [Button]
     public void UpdateUpgradeList()
@@ -51,6 +52,11 @@ public class HubManager : MonoBehaviour
     public void OpenPowerShop()
     {
         PowerShop.OpenMenu();
+    }
+
+    public void OpenPermanentBonusShop()
+    {
+        PermanentBonusShop.OpenMenu();
     }
 
     public void LaunchNewRun()

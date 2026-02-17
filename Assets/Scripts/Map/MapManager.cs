@@ -29,7 +29,7 @@ public class MapManager : MonoBehaviour
     public Transform LineParent;
     [SerializeField] private MapData _mapData;
     [SerializeField] private UI_TextValue _dayText;
-    [SerializeField] private Transform _racoonIcon;
+    [SerializeField] private Transform _currentMapNodeIcon;
 
     [SerializeField] private List<UI_MapNode> _mapNodeList;
     [SerializeField] private List<int> _nodeNumberPerColumn;
@@ -85,13 +85,13 @@ public class MapManager : MonoBehaviour
 
         if (_formerNodeList.Count > 1)
         {
-            _racoonIcon.transform.position = _mapNodeList.Find(x => x.MapNodeIndex == _formerNodeList.Last()).transform.position;
-            _racoonIcon.transform.position += new Vector3(0, 100);
+            _currentMapNodeIcon.transform.position = _mapNodeList.Find(x => x.MapNodeIndex == _formerNodeList.Last()).transform.position;
+            _currentMapNodeIcon.transform.position += new Vector3(0, 75);
         }
         else
         {
-            _racoonIcon.transform.position = _startingMapNode.transform.position;
-            _racoonIcon.transform.position += new Vector3(0, 100);
+            _currentMapNodeIcon.transform.position = _startingMapNode.transform.position;
+            _currentMapNodeIcon.transform.position += new Vector3(0, 75);
         }
     }
 

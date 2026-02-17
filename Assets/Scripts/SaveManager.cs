@@ -1,3 +1,4 @@
+using PrimeTween;
 using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,8 @@ public class SaveManager : MonoBehaviour
     
     private void OnAwake()
     {
+        PrimeTweenConfig.warnTweenOnDisabledTarget = false;
+
         // in editor on awake
         LoadOrCreateSave();
 

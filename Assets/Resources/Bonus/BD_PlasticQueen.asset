@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: BD_PlasticQueen
   m_EditorClassIdentifier: 
   IsAvailableInGame: 1
+  Durability: 0
+  Category: 3
   Name: Plastic Queen
   Description: All <b>plastic objects</b> permanently gain a multiplier of <color=red><b>x1.5</b></color>
   Icon: {fileID: 21300000, guid: c9566d9cc1b87544ba200544d811c009, type: 3}
   Color: {r: 0.9490197, g: 0.3647059, b: 0, a: 1}
+  RequiredBonusList: []
   FamilyBonus: 0
   BonusMultiplier: 1.5

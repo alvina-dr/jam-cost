@@ -46,12 +46,12 @@ public class DataLoader : MonoBehaviour
 
         for (int i = 0; i < BonusDataList.Count; i++)
         {
-            if (BonusDataList[i].RequiredBonusList.Count > 0)
+            if (BonusDataList[i].UpgradeBonusList.Count > 0)
             {
                 bool hasAllBonus = true;
-                for (int j = 0; j < BonusDataList[i].RequiredBonusList.Count; j++)
+                for (int j = 0; j < BonusDataList[i].UpgradeBonusList.Count; j++)
                 {
-                    if (!SaveManager.CurrentSave.CurrentRun.CurrentRunBonusList.Find(x => x == BonusDataList[i].RequiredBonusList[j]))
+                    if (!SaveManager.CurrentSave.CurrentRun.CurrentRunBonusList.Find(x => x == BonusDataList[i].UpgradeBonusList[j]))
                     {
                         hasAllBonus = false;
                         break;
