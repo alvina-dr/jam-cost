@@ -20,7 +20,7 @@ public class UI_PermanentBonusShop : UI_Menu
 
     public override void OpenMenu()
     {
-        Setup();
+        ChangeIndex(0);
         base.OpenMenu();
     }
 
@@ -103,5 +103,6 @@ public class UI_PermanentBonusShop : UI_Menu
     {
         _currentIndex = newIndex;
         Setup();
+        if (_buyPermanentBonusSlotList[0].gameObject.activeSelf) SetupTicket(_buyPermanentBonusSlotList[0].BonusData, _buyPermanentBonusSlotList[0]);
     }
 }
