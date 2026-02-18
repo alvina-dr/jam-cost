@@ -15,6 +15,7 @@ public class UI_BuyPermanentBonusSlot : MonoBehaviour
     [Header("Bonus Upgrade")]
     [SerializeField] private Transform _bonusUpgradeVisual;
     [SerializeField] private Image _bonusUpgradeLevel;
+    [SerializeField] private List<Image> _bonusUpgradeLevelList;
 
     public void Setup(BonusData bonusData)
     {
@@ -22,10 +23,12 @@ public class UI_BuyPermanentBonusSlot : MonoBehaviour
         CurrentIndex = 0;
 
         DestroyAllChildren(_bonusUpgradeVisual.transform);
+        _bonusUpgradeLevelList.Clear();
 
         if (bonusData.UpgradeBonusList.Count > 0)
         {
             Image imageB = Instantiate(_bonusUpgradeLevel, _bonusUpgradeVisual);
+            _bonusUpgradeLevelList.Add(imageB);
             if (SaveManager.CurrentSave.PermanentBonusList.Contains(BonusData))
             {
                 imageB.color = Color.black;
@@ -39,6 +42,7 @@ public class UI_BuyPermanentBonusSlot : MonoBehaviour
             for (int i = 0; i < bonusData.UpgradeBonusList.Count; i++)
             {
                 Image image = Instantiate(_bonusUpgradeLevel, _bonusUpgradeVisual);
+                _bonusUpgradeLevelList.Add(image);
                 if (SaveManager.CurrentSave.PermanentBonusList.Contains(bonusData.UpgradeBonusList[i]))
                 {
                     image.color = Color.black;
@@ -58,6 +62,8 @@ public class UI_BuyPermanentBonusSlot : MonoBehaviour
             }
         }
 
+        if (CurrentIndex < _bonusUpgradeLevelList.Count) _bonusUpgradeLevelList[CurrentIndex].color = Color.grey;
+
         if (CurrentIndex == 0) 
         {
             _bonusIcon.sprite = BonusData.Icon;
@@ -65,9 +71,13 @@ public class UI_BuyPermanentBonusSlot : MonoBehaviour
         }
         else
         {
-            if (CurrentIndex > BonusData.UpgradeBonusList.Count) CurrentIndex = BonusData.UpgradeBonusList.Count;
-            _bonusIcon.sprite = BonusData.UpgradeBonusList[CurrentIndex - 1].Icon;
-            _bonusName.text = BonusData.UpgradeBonusList[CurrentIndex - 1].Name;
+            int index = CurrentIndex - 1;
+            if (CurrentIndex > BonusData.UpgradeBonusList.Count)
+            {
+                index = BonusData.UpgradeBonusList.Count - 1;
+            }
+            _bonusIcon.sprite = BonusData.UpgradeBonusList[index].Icon;
+            _bonusName.text = BonusData.UpgradeBonusList[index].Name;
         }
     }
 

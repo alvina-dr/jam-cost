@@ -79,6 +79,8 @@ public class UI_PermanentBonusShop : UI_Menu
         if (SaveManager.CurrentSave.PermanentBonusList.Contains(bonusData)) return;
 
 
+        // check if can buy
+
         SaveManager.CurrentSave.PermanentBonusList.Add(bonusData);
 
         // increase buy permanent bonus slot current index 
