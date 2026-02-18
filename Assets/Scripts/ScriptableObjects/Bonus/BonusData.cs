@@ -10,6 +10,7 @@ public class BonusData : ScriptableObject
 
     public string Name;
     public string Description;
+    public int Price;
     public Sprite Icon;
     public Color Color;
     public List<BonusData> UpgradeBonusList;

@@ -17,8 +17,8 @@ MonoBehaviour:
   Category: 4
   Name: Chronos II
   Description: Gain an extra <b><color=blue>+10 seconds</color></b>
+  Price: 10
   Icon: {fileID: 21300000, guid: 622ddc58f4728f74198e58711951dfc4, type: 3}
   Color: {r: 0.62352943, g: 0.4784314, b: 0.7803922, a: 1}
-  RequiredBonusList:
-  - {fileID: 11400000, guid: 728fa30fc834e594f85705b63eef03e8, type: 2}
+  UpgradeBonusList: []
   BonusTime: 5

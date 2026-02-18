@@ -80,8 +80,10 @@ public class UI_PermanentBonusShop : UI_Menu
 
 
         // check if can buy
-
+        if (SaveManager.CurrentSave.MealTickets < bonusData.Price) return;
+        
         SaveManager.CurrentSave.PermanentBonusList.Add(bonusData);
+        SaveManager.Instance.AddMT(-bonusData.Price);
 
         // increase buy permanent bonus slot current index 
         if (_currentBuyPermanentBonusSlot.CurrentIndex - 1 < _currentBuyPermanentBonusSlot.BonusData.UpgradeBonusList.Count - 1)

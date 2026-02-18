@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: BD_CheckPlease II
   m_EditorClassIdentifier: 
   IsAvailableInGame: 1
+  Durability: 0
+  Category: 0
   Name: Check Please II
   Description: Your <b>receipt</b> can contain <color=green>+2</color> additional
     item
+  Price: 10
   Icon: {fileID: 21300000, guid: b56d14cc6686c14458bbfdb0a92eb349, type: 3}
   Color: {r: 0.32941177, g: 0.7686275, b: 0.54901963, a: 1}
-  RequiredBonusList:
-  - {fileID: 11400000, guid: 0be96d6585cf96b48a044c5668494657, type: 2}
+  UpgradeBonusList: []
   BonusHandSize: 1
