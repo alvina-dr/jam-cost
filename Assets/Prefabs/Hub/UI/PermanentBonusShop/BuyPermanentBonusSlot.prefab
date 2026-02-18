@@ -463,12 +463,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99a9f8ffffe5c2447867bfba25fc0a83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BonusDataList: []
+  BonusData: {fileID: 0}
   _bonusIcon: {fileID: 8423552620429255604}
   _bonusName: {fileID: 7563682160968487465}
   CurrentIndex: 0
   _bonusUpgradeVisual: {fileID: 3810040324914019523}
-  _bonusUpgradeLevel: {fileID: 5158007260646736064, guid: 2bcb0c4b9305e38448c2d971f22139a4, type: 3}
+  _bonusUpgradeLevel: {fileID: 836301525046877952, guid: 2bcb0c4b9305e38448c2d971f22139a4, type: 3}
 --- !u!114 &2268116222572689737
 MonoBehaviour:
   m_ObjectHideFlags: 0

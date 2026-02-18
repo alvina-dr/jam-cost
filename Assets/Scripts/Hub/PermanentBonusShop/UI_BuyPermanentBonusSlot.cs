@@ -14,32 +14,67 @@ public class UI_BuyPermanentBonusSlot : MonoBehaviour
 
     [Header("Bonus Upgrade")]
     [SerializeField] private Transform _bonusUpgradeVisual;
-    [SerializeField] private GameObject _bonusUpgradeLevel;
+    [SerializeField] private Image _bonusUpgradeLevel;
 
     public void Setup(BonusData bonusData)
     {
         BonusData = bonusData;
-        _bonusIcon.sprite = BonusData.Icon;
-        _bonusName.text = BonusData.Name;
+        CurrentIndex = 0;
 
         DestroyAllChildren(_bonusUpgradeVisual.transform);
-        for (int i = 0; i < bonusData.UpgradeBonusList.Count; i++)
+
+        if (bonusData.UpgradeBonusList.Count > 0)
         {
-            Instantiate(_bonusUpgradeLevel, _bonusUpgradeVisual);
+            Image imageB = Instantiate(_bonusUpgradeLevel, _bonusUpgradeVisual);
+            if (SaveManager.CurrentSave.PermanentBonusList.Contains(BonusData))
+            {
+                imageB.color = Color.black;
+                CurrentIndex++;
+            }
+            else
+            {
+                imageB.color = Color.white;
+            }
+
+            for (int i = 0; i < bonusData.UpgradeBonusList.Count; i++)
+            {
+                Image image = Instantiate(_bonusUpgradeLevel, _bonusUpgradeVisual);
+                if (SaveManager.CurrentSave.PermanentBonusList.Contains(bonusData.UpgradeBonusList[i]))
+                {
+                    image.color = Color.black;
+                    CurrentIndex++;
+                }
+                else
+                {
+                    image.color = Color.white;
+                }
+            }
+        }
+        else
+        {
+            if (SaveManager.CurrentSave.PermanentBonusList.Contains(BonusData))
+            {
+                // make it appear bought already
+            }
         }
 
-        if (bonusData.UpgradeBonusList.Count > 0) Instantiate(_bonusUpgradeLevel, _bonusUpgradeVisual);
-    }
-
-    public void AddBonusUpgrade(BonusData bonusData)
-    {
-        //BonusData.Add(bonusData);
-        Instantiate(_bonusUpgradeLevel, _bonusUpgradeVisual);
+        if (CurrentIndex == 0) 
+        {
+            _bonusIcon.sprite = BonusData.Icon;
+            _bonusName.text = BonusData.Name;
+        }
+        else
+        {
+            if (CurrentIndex > BonusData.UpgradeBonusList.Count) CurrentIndex = BonusData.UpgradeBonusList.Count;
+            _bonusIcon.sprite = BonusData.UpgradeBonusList[CurrentIndex - 1].Icon;
+            _bonusName.text = BonusData.UpgradeBonusList[CurrentIndex - 1].Name;
+        }
     }
 
     public void TrySetupTicket()
     {
-        HubManager.Instance.PermanentBonusShop.SetupTicket(BonusData, this);
+        if (CurrentIndex == 0) HubManager.Instance.PermanentBonusShop.SetupTicket(BonusData, this);
+        else HubManager.Instance.PermanentBonusShop.SetupTicket(BonusData.UpgradeBonusList[CurrentIndex - 1], this);
     }
 
     private void DestroyAllChildren(Transform parent)

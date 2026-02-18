@@ -33,8 +33,6 @@ public class UI_PermanentBonusShop : UI_Menu
     {
         List<BonusData> bonusDataList = Resources.LoadAll<BonusData>("Bonus").ToList();
         bonusDataList = bonusDataList.FindAll(x => _currentIndex == (int)x.Category);
-        //List<BonusData> bonusUpgradeDataList = bonusDataList.FindAll(x => x.UpgradeBonusList.Count > 0);
-        //bonusDataList = bonusDataList.FindAll(x => x.UpgradeBonusList.Count == 0);
 
         for (int i = bonusDataList.Count - 1; i >= 0; i--)
         {
@@ -56,13 +54,6 @@ public class UI_PermanentBonusShop : UI_Menu
                 _buyPermanentBonusSlotList[i].gameObject.SetActive(false);
             }
         }
-
-
-        //for (int i = 0; i < bonusUpgradeDataList.Count; i++)
-        //{
-        //    UI_BuyPermanentBonusSlot parentBonusSlot = _buyPermanentBonusSlotList.Find(x => x.BonusData.Contains(bonusUpgradeDataList[i].UpgradeBonusList[0]));
-        //    if (parentBonusSlot != null) parentBonusSlot.AddBonusUpgrade(bonusUpgradeDataList[i]);
-        //}
     }
 
     public void SetupTicket(BonusData bonusData, UI_BuyPermanentBonusSlot permanentBonusShop)
@@ -77,7 +68,33 @@ public class UI_PermanentBonusShop : UI_Menu
 
     public void TicketButton()
     {
-        SaveManager.CurrentSave.PermanentBonusList.Add(_currentBonusData);
+        if (_currentBuyPermanentBonusSlot.CurrentIndex - 1 >= _currentBuyPermanentBonusSlot.BonusData.UpgradeBonusList.Count) return;
+
+        BonusData bonusData = _currentBuyPermanentBonusSlot.BonusData;
+        if (_currentBuyPermanentBonusSlot.CurrentIndex > 0)
+        {
+            bonusData = _currentBuyPermanentBonusSlot.BonusData.UpgradeBonusList[_currentBuyPermanentBonusSlot.CurrentIndex - 1];
+        }
+
+        if (SaveManager.CurrentSave.PermanentBonusList.Contains(bonusData)) return;
+
+
+        SaveManager.CurrentSave.PermanentBonusList.Add(bonusData);
+
+        // increase buy permanent bonus slot current index 
+        if (_currentBuyPermanentBonusSlot.CurrentIndex - 1 < _currentBuyPermanentBonusSlot.BonusData.UpgradeBonusList.Count - 1)
+        {
+            _currentBuyPermanentBonusSlot.CurrentIndex++;
+        }
+
+        //should show not the bonus we just unlocked but the one after
+        if (_currentBuyPermanentBonusSlot.CurrentIndex - 1 < _currentBuyPermanentBonusSlot.BonusData.UpgradeBonusList.Count)
+        {
+            _currentBonusData = _currentBuyPermanentBonusSlot.BonusData.UpgradeBonusList[_currentBuyPermanentBonusSlot.CurrentIndex - 1];
+        }
+
+        Setup();
+        SetupTicket(_currentBonusData, _currentBuyPermanentBonusSlot);
     }
 
     public void ChangeIndex(int newIndex)
