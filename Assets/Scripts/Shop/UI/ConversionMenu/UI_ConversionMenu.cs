@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class UI_ConversionMenu : UI_Menu
 {
-    [SerializeField] private TextMeshProUGUI _conversionText;
+    [SerializeField] private TextMeshProUGUI _conversionTextPP;
+    [SerializeField] private TextMeshProUGUI _conversionTextMT;
     [SerializeField] private Transform _mealTicketSpawnPoint;
     private int _mealTicketNumber;
 
@@ -38,7 +39,8 @@ public class UI_ConversionMenu : UI_Menu
 
     public void UpdateConversionDisplay()
     {
-        _conversionText.text = $"{_mealTicketNumber * 5}<sprite name=PP> -> {_mealTicketNumber}<sprite name=MT>";
+        _conversionTextPP.text = $"{_mealTicketNumber * 5}<sprite name=PP>";
+        _conversionTextMT.text = $"{_mealTicketNumber}<sprite name=MT>";
     }
 
     public void ConfirmConversion()
