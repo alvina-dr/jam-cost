@@ -13,6 +13,7 @@ public class UI_PermanentBonusShop : UI_Menu
     [SerializeField] private Image _bonusIcon;
     [SerializeField] private TextMeshProUGUI _bonusName;
     [SerializeField] private TextMeshProUGUI _bonusDescription;
+    [SerializeField] private TextMeshProUGUI _ticketButtonText;
 
     [ReadOnly] private int _currentIndex;
     [ReadOnly] private BonusData _currentBonusData;
@@ -61,6 +62,7 @@ public class UI_PermanentBonusShop : UI_Menu
         _bonusIcon.sprite = bonusData.Icon;
         _bonusName.text = bonusData.Name;
         _bonusDescription.text = bonusData.Description;
+        _ticketButtonText.text = $"Buy ({bonusData.Price}<sprite name=MT>)";
 
         _currentBonusData = bonusData;
         _currentBuyPermanentBonusSlot = permanentBonusShop;
