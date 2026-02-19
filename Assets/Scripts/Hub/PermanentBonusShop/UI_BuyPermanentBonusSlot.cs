@@ -1,7 +1,8 @@
+using System;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using System.Collections.Generic;
 
 public class UI_BuyPermanentBonusSlot : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class UI_BuyPermanentBonusSlot : MonoBehaviour
 
     [SerializeField] private Image _bonusIcon;
     [SerializeField] private TextMeshProUGUI _bonusName;
+    [SerializeField] private TextMeshProUGUI _bonusPrice;
 
     public int CurrentIndex = 0;
 
@@ -19,6 +21,7 @@ public class UI_BuyPermanentBonusSlot : MonoBehaviour
 
     public void Setup(BonusData bonusData)
     {
+        bool everythingBought = true;
         BonusData = bonusData;
         CurrentIndex = 0;
 
@@ -36,6 +39,7 @@ public class UI_BuyPermanentBonusSlot : MonoBehaviour
             }
             else
             {
+                everythingBought = false;
                 imageB.color = Color.white;
             }
 
@@ -51,6 +55,7 @@ public class UI_BuyPermanentBonusSlot : MonoBehaviour
                 else
                 {
                     image.color = Color.white;
+                    everythingBought = false;
                 }
             }
         }
@@ -58,16 +63,30 @@ public class UI_BuyPermanentBonusSlot : MonoBehaviour
         {
             if (SaveManager.CurrentSave.PermanentBonusList.Contains(BonusData))
             {
-                // make it appear bought already
+
+            }
+            else
+            {
+                everythingBought = false;
             }
         }
 
         if (CurrentIndex < _bonusUpgradeLevelList.Count) _bonusUpgradeLevelList[CurrentIndex].color = Color.grey;
 
-        if (CurrentIndex == 0) 
+        if (everythingBought)
+        {
+            _bonusPrice.gameObject.SetActive(false);
+        }
+        else
+        {
+            _bonusPrice.gameObject.SetActive(true);
+        }
+
+        if (CurrentIndex == 0)
         {
             _bonusIcon.sprite = BonusData.Icon;
             _bonusName.text = BonusData.Name;
+            _bonusPrice.text = $"{BonusData.Price}<sprite name=MT>";
         }
         else
         {
@@ -78,6 +97,7 @@ public class UI_BuyPermanentBonusSlot : MonoBehaviour
             }
             _bonusIcon.sprite = BonusData.UpgradeBonusList[index].Icon;
             _bonusName.text = BonusData.UpgradeBonusList[index].Name;
+            _bonusPrice.text = $"{BonusData.UpgradeBonusList[index].Price}<sprite name=MT>";
         }
     }
 
