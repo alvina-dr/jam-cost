@@ -35,16 +35,16 @@ public class UI_BagMenu : MonoBehaviour
         _currentScoreText.SetTextValue(GameManager.Instance.CurrentScore.ToString(), false);
 
         List<ItemData> bagItemList = GameManager.Instance.UIManager.TicketMenu.GetItemDataList();
-        for (int i = 0; i < bagItemList.Count; i++)
-        {
-            if (i >= _bagSlotList.Count) break;
-            _bagSlotList[i].CreateItem(bagItemList[i]);
-        }
-
         for (int i = 0; i < _choiceSlotList.Count; i++)
         {
-            _choiceSlotList[i].ClearSlot();
+            if (i >= bagItemList.Count) break;
+            _choiceSlotList[i].CreateItem(bagItemList[i]);
         }
+
+        //for (int i = 0; i < _choiceSlotList.Count; i++)
+        //{
+        //    _choiceSlotList[i].ClearSlot();
+        //}
     }
 
     public void CloseMenu()
