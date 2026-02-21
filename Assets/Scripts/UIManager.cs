@@ -7,7 +7,6 @@ public class UIManager : MonoBehaviour
     public UI_TextValue Timer;
     public UI_TextValue RoundRemaining;
     public UI_TextValue CoinCount;
-    public UI_BonusMenu BonusMenu;
     public UI_BonusList BonusList;
     public UI_OverCheck DumpsterOverCheck;
     public UI_OverCheck CoinBagOverCheck;
@@ -16,8 +15,8 @@ public class UIManager : MonoBehaviour
     public UI_TextPopperManager TextPopperManager_Number;
     public UI_TextPopperManager TextPopperManager_Info;
     public UI_NewHand NewHand;
-    public UI_DialogMenu DialogMenu;
     public UI_BagMenu BagMenu;
+    public UI_PowerMenu PowerMenu;
 
     [Header("HUD")]
     public UI_TextValue ScoreTextValue;

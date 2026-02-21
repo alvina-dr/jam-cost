@@ -8,4 +8,6 @@ public class PowerData : ScriptableObject
     public string PowerLore;
     public Sprite PowerSprite;
     public int PowerPrice;
+    public PowerBehavior PowerBehaviorPrefab;
+    public float LoadingTime;
 }

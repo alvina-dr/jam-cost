@@ -40,7 +40,6 @@ public class GameManager : MonoBehaviour
 
     [Header("Current Stats")]
     public DraggableBehavior SelectedItem;
-    [ReadOnly] public float Timer;
     public int CurrentScore;
     public int CurrentDay;
     public int CurrentHand;
@@ -73,12 +72,6 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         if (CurrentGameState) CurrentGameState.UpdateState();
-    }
-
-    public bool GetTimerPlaying()
-    {
-        if (UIManager.BonusMenu.Menu.IsOpen()) return false;
-        return true;
     }
 
     public void AddBonus(BonusData bonus)

@@ -1,9 +1,11 @@
 using BennyKok.RuntimeDebug.Actions;
 using BennyKok.RuntimeDebug.Attributes;
 using BennyKok.RuntimeDebug.Systems;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class DebugManager : MonoBehaviour
@@ -79,6 +81,14 @@ public class DebugManager : MonoBehaviour
             }
         }
 
+        List<PowerData> powerDataList = Resources.LoadAll<PowerData>("Powers").ToList();
+        for (int i = 0; i < powerDataList.Count; i++)
+        {
+            int index = i;
+            DebugActionList.Add(DebugActionBuilder.Button().WithName(powerDataList[index].PowerName).WithGroup("Power/Get").WithAction(() => GetPower(powerDataList[index])));
+            DebugActionList.Add(DebugActionBuilder.Button().WithName(powerDataList[index].PowerName).WithGroup("Power/Equip").WithAction(() => EquipPower(powerDataList[index])));
+        }
+
         // GAME
         DebugActionList.Add(DebugActionBuilder.Button().WithName("Win").WithGroup("Game").WithAction(() => WinCurrentNode()).WithClosePanelAfterTrigger(true));
         DebugActionList.Add(DebugActionBuilder.Button().WithName("Loose").WithGroup("Game").WithAction(() => WinCurrentNode()).WithClosePanelAfterTrigger(true));
@@ -111,5 +121,28 @@ public class DebugManager : MonoBehaviour
     {
         BonusData bonus = DataLoader.Instance.TakeSpecificBonus(data);
         if (bonus != null) bonus.GetBonus();
+    }
+
+    public void GetPower(PowerData powerData)
+    {
+        if (!SaveManager.CurrentSave.UnlockedPowerDataList.Contains(powerData))
+        {
+            SaveManager.CurrentSave.UnlockedPowerDataList.Add(powerData);
+        }
+    }
+
+    public void EquipPower(PowerData powerData)
+    {
+        GetPower(powerData);
+
+        if (!SaveManager.CurrentSave.EquipedPowerDataList.Contains(powerData))
+        {
+            SaveManager.CurrentSave.EquipedPowerDataList.Add(powerData);
+        }
+
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.UIManager.PowerMenu.Setup();
+        }
     }
 }
