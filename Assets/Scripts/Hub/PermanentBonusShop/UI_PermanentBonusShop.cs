@@ -33,6 +33,7 @@ public class UI_PermanentBonusShop : UI_Menu
     public void Setup()
     {
         List<BonusData> bonusDataList = Resources.LoadAll<BonusData>("Bonus").ToList();
+        bonusDataList = bonusDataList.FindAll(x => x.Durability == BonusData.BonusDurability.Permanent);
         bonusDataList = bonusDataList.FindAll(x => _currentIndex == (int)x.Category);
 
         for (int i = bonusDataList.Count - 1; i >= 0; i--)

@@ -38,6 +38,7 @@ public class UI_BagMenu : MonoBehaviour
         for (int i = 0; i < _choiceSlotList.Count; i++)
         {
             if (i >= bagItemList.Count) break;
+            _choiceSlotList[i].ClearSlot();
             _choiceSlotList[i].CreateItem(bagItemList[i]);
         }
 
