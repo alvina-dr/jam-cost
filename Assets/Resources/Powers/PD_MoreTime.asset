@@ -19,3 +19,4 @@ MonoBehaviour:
   PowerPrice: 5
   PowerBehaviorPrefab: {fileID: 7148455723909092525, guid: f90efc7abe0e6194089177bdd8a6d96d, type: 3}
   LoadingTime: 30
+  CurrentLoadTime: 0

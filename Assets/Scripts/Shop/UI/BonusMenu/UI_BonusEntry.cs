@@ -4,10 +4,10 @@ using UnityEngine.UI;
 
 public class UI_BonusEntry : MonoBehaviour
 {
-    public BonusData Data;
+    public BonusData BonusData;
     public Button Button;
     public UI_Button ButtonAnim;
-    [SerializeField] private TextMeshProUGUI _bonusName;
+    [SerializeField] private TextMeshProUGUI _bonusPrice;
     [SerializeField] private Image _bonusNameBackground;
     [SerializeField] private TextMeshProUGUI _bonusDescription;
     [SerializeField] private GameObject _highlight;
@@ -18,21 +18,19 @@ public class UI_BonusEntry : MonoBehaviour
     {
         if (data == null)
         {
-            gameObject.SetActive(false);
+            _bonusIcon.gameObject.SetActive(false);
+            _bonusPrice.text = $"SOLD OUT";
             return;
         }
-        Data = data;
-        _bonusName.text = Data.Name;
-        _bonusDescription.text = Data.Description;
-        _bonusIcon.sprite = Data.Icon;
-        _bonusNameBackground.color = Data.Color;
-        _shadow.color = Data.Color;
+
+        BonusData = data;
+        _bonusPrice.text = $"{BonusData.Price} <sprite name=PP>";
+        _bonusIcon.gameObject.SetActive(true);
+        _bonusIcon.sprite = BonusData.Icon;
     }
 
-    public void ChooseBonus()
+    public void TrySetupInfo()
     {
-        Data.GetBonus();
-        Data = null;
-        ShopManager.Instance.BonusMenu.CloseMenu();
+        ShopManager.Instance.BonusMenu.SetupInfo(BonusData, this);
     }
 }

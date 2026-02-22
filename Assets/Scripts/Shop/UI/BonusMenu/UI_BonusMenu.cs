@@ -2,15 +2,22 @@ using DG.Tweening;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_BonusMenu : MonoBehaviour
+public class UI_BonusMenu : UI_Menu
 {
-    public UI_Menu Menu;
     public List<UI_BonusEntry> _bonusEntryList = new();
 
-    public void OpenMenu()
+    [SerializeField] private TextMeshProUGUI _bonusName;
+    [SerializeField] private TextMeshProUGUI _bonusDescription;
+    [SerializeField] private TextMeshProUGUI _bonusPrice;
+
+    private BonusData _currentBonusData;
+    private UI_BonusEntry _currentBonusEntry;
+
+    public override void OpenMenu()
     {
         if (_bonusEntryList.Count > DataLoader.Instance.BonusDataList.Count) Debug.LogError("Not enough bonus for this time");
 
@@ -24,10 +31,11 @@ public class UI_BonusMenu : MonoBehaviour
         {
             _bonusEntryList[i].SetupBonus(DataLoader.Instance.TakeRandomBonusData());
         }
-        Menu.OpenMenu();
+
+        base.OpenMenu();
     }
 
-    public void CloseMenu()
+    public override void CloseMenu()
     {
         for (int i = 0; i < _bonusEntryList.Count; i++)
         {
@@ -35,12 +43,31 @@ public class UI_BonusMenu : MonoBehaviour
             _bonusEntryList[i].ButtonAnim.enabled = false;
             _bonusEntryList[i].transform.DOKill();
         }
-        Menu.CloseMenu();
+        
+        base.CloseMenu();
+
         for (int i = 0; i < _bonusEntryList.Count; i++)
         {
-            if (_bonusEntryList[i].Data != null)
-                DataLoader.Instance.BonusDataList.Add(_bonusEntryList[i].Data);
+            if (_bonusEntryList[i].BonusData != null)
+                DataLoader.Instance.BonusDataList.Add(_bonusEntryList[i].BonusData);
         }
+    }
+
+    public void SetupInfo(BonusData bonusData, UI_BonusEntry bonusEntry)
+    {
+        _currentBonusData = bonusData;
+        _currentBonusEntry = bonusEntry;
+        _bonusName.text = _currentBonusData.Name;
+        _bonusDescription.text = _currentBonusData.Description;
+        _bonusPrice.text = $"Buy ({_currentBonusData.Price} <sprite name=PP>)";
+    }
+
+    public void Button()
+    {
+        _currentBonusData.GetBonus();
+        _currentBonusData = null;
+        _currentBonusEntry.SetupBonus(null);
+        //ShopManager.Instance.BonusMenu.CloseMenu();
     }
 
     [Button]

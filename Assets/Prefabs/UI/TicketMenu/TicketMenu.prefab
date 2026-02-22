@@ -490,8 +490,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7622103916217602343}
   - component: {fileID: 7674924437513729597}
-  - component: {fileID: 4767481177639422249}
-  - component: {fileID: 4091831540236209057}
   - component: {fileID: 1681733568751978145}
   m_Layer: 5
   m_Name: TicketMenu
@@ -534,7 +532,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e9778f6732394d46b18fec96ad29bf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OverCheck: {fileID: 4767481177639422249}
   _layout: {fileID: 7433433843388926899}
   _ticketEntryPrefab: {fileID: 2494862288734556852, guid: 365b5e2768ebd4a4d818c0642c711f7a, type: 3}
   _ticketEntryList: []
@@ -546,49 +543,6 @@ MonoBehaviour:
   _ticketImage: {fileID: 6629143510612743408}
   _normalTicket: {fileID: 21300000, guid: 22b882450875ac244822ccf1d0be69a3, type: 3}
   _greyTicket: {fileID: 391432175851756416, guid: 778450e967dfd41418702c5749c87f33, type: 3}
---- !u!114 &4767481177639422249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8681712961402696466}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8d651215b0653a48bd382daa3672d7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _image: {fileID: 4091831540236209057}
---- !u!114 &4091831540236209057
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8681712961402696466}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1681733568751978145
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -52,14 +52,12 @@ public class UI_PowerShop : UI_Menu
             else _powerSlotList[i].Setup();
         }
 
-        List<PowerData> powerDataList = Resources.LoadAll<PowerData>("Powers").ToList();
-
         for (int i = 0; i < _buyPowerSlotList.Count; i++)
         {
-            _buyPowerSlotList[i].SetupSlot(i < powerDataList.Count ? powerDataList[i] : null);
+            _buyPowerSlotList[i].SetupSlot(i < DataLoader.Instance.PowerDataList.Count ? DataLoader.Instance.PowerDataList[i] : null);
         }
 
-        if (reset) SetupTicket(powerDataList[0], _buyPowerSlotList[0]);
+        if (reset) SetupTicket(DataLoader.Instance.PowerDataList[0], _buyPowerSlotList[0]);
     }
 
     public void SetupTicket(PowerData powerData, UI_BuyPowerSlot powerSlot)

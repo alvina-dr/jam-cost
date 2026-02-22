@@ -32,7 +32,7 @@ public class DraggableBehavior : ItemBehavior
             Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = mouseWorldPosition + _dragOffset;
 
-            if (GameManager.Instance.UIManager.TicketMenu.OverCheck.IsOver() && GameManager.Instance.CurrentGameState != GameManager.Instance.PreparationState)
+            if (GameManager.Instance.UIManager.DepotOverCheck.IsOver() && GameManager.Instance.CurrentGameState != GameManager.Instance.PreparationState)
             {
                 if (GameManager.Instance.UIManager.TicketMenu.GetTicketEntryCount() + 1 > GameManager.Instance.GetTicketSize()) _sellIcon.color = Color.grey;
                 else _sellIcon.color = Color.green;
@@ -48,20 +48,7 @@ public class DraggableBehavior : ItemBehavior
                 }
 
             }
-            else if (GameManager.Instance.UIManager.CoinBagOverCheck.IsOver())
-            {
-                if (Data.BonusCurrency > 0)
-                {
-                    _sellIcon.enabled = true;
-                    _cross.enabled = false;
-                }
-                else
-                {
-                    _sellIcon.enabled = false;
-                    _cross.enabled = false;
-                }
-            }
-            else if (!GameManager.Instance.UIManager.DumpsterOverCheck.IsOver())
+            else if (!GameManager.Instance.UIManager.CrateOverCheck.IsOver())
             {
                 _sellIcon.enabled = false;
                 _cross.enabled = true;
@@ -144,7 +131,7 @@ public class DraggableBehavior : ItemBehavior
 
         if (GameManager.Instance.SelectedItem == this) GameManager.Instance.SelectedItem = null;
 
-        if (GameManager.Instance.UIManager.TicketMenu.OverCheck.IsOver())
+        if (GameManager.Instance.UIManager.DepotOverCheck.IsOver())
         {
             if (GameManager.Instance.CurrentGameState == GameManager.Instance.PreparationState || Data.BonusCurrency != 0)
             {
@@ -159,11 +146,7 @@ public class DraggableBehavior : ItemBehavior
                 }
             }
         }
-        else if (GameManager.Instance.UIManager.CoinBagOverCheck.IsOver())
-        {
-            GoBackToDumpster();
-        }
-        else if (!GameManager.Instance.UIManager.DumpsterOverCheck.IsOver())
+        else if (!GameManager.Instance.UIManager.CrateOverCheck.IsOver())
         {
             DestroyItem();
             AudioManager.Instance.PlaySFXSound(_trashItemSound);

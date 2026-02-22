@@ -10,4 +10,10 @@ public class PowerData : ScriptableObject
     public int PowerPrice;
     public PowerBehavior PowerBehaviorPrefab;
     public float LoadingTime;
+    public float CurrentLoadTime = 0;
+
+    public void Reset()
+    {
+        CurrentLoadTime = 0;        
+    }
 }

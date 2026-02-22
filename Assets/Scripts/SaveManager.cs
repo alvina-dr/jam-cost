@@ -144,12 +144,30 @@ public class SaveManager : MonoBehaviour
         string jsonFile = System.IO.File.ReadAllText($"{Application.persistentDataPath}/Save.json");
         _currentSave = JsonUtility.FromJson<SaveData>(jsonFile);
 
+        // CURRENT RUN BONUS LIST
         CurrentSave.CurrentRun.CurrentRunBonusList.Clear();
         for (int i = 0; i < CurrentSave.CurrentRun.CurrentRunBonusListName.Count; i++)
         {
             CurrentSave.CurrentRun.CurrentRunBonusList.Add(DataLoader.Instance.TakeBonusByName(CurrentSave.CurrentRun.CurrentRunBonusListName[i]));
         }
         CurrentSave.CurrentRun.CurrentRunBonusListName.Clear();
+
+        // PERMANENT BONUS
+        CurrentSave.PermanentBonusList.Clear();
+        for (int i = 0; i < CurrentSave.PermanentBonusListName.Count; i++)
+        {
+            CurrentSave.PermanentBonusList.Add(DataLoader.Instance.TakeBonusByName(CurrentSave.PermanentBonusListName[i]));
+        }
+        CurrentSave.PermanentBonusListName.Clear();
+
+        // POWER UNLOCKED
+        CurrentSave.UnlockedPowerDataList.Clear();
+        for (int i = 0; i < CurrentSave.UnlockedPowerDataListName.Count; i++)
+        {
+            CurrentSave.UnlockedPowerDataList.Add(DataLoader.Instance.PowerDataList.Find(x => x.name == CurrentSave.UnlockedPowerDataListName[i]));
+        }
+        CurrentSave.UnlockedPowerDataListName.Clear();
+
     }
 
     // Application.persistentDataPath is : C:/Users/Username/AppData/LocalLow/{CompanyName}/{GameName}
@@ -193,8 +211,14 @@ public class SaveManager : MonoBehaviour
 
         public int MealTickets;
         [SerializeReference] public List<BonusData> PermanentBonusList = new();
+        [HideInInspector] public List<string> PermanentBonusListName = new();
+        
         [SerializeReference] public List<PowerData> UnlockedPowerDataList = new();
+        [HideInInspector] public List<string> UnlockedPowerDataListName = new();
+        
         [SerializeReference] public List<PowerData> EquipedPowerDataList = new();
+        [HideInInspector] public List<string> EquipedPowerDataListName = new();
+
         [SerializeReference] public int EquipedPowerMax = 1;
 
         // Permanent bonus stats

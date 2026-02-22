@@ -25,6 +25,7 @@ public class DataLoader : MonoBehaviour
     public List<ItemData> ItemDataList;
     public List<BonusData> BonusDataList;
     public List<MapNodeData> MapNodeDataList;
+    public List<PowerData> PowerDataList;
 
     private void OnAwake()
     {
@@ -37,6 +38,13 @@ public class DataLoader : MonoBehaviour
         BonusDataList = BonusDataList.FindAll(x => x.IsAvailableInGame);
         MapNodeDataList = Resources.LoadAll<MapNodeData>("MapNodes").ToList();
         MapNodeDataList = MapNodeDataList.FindAll(x => x.IsAvailableInGame);
+
+        PowerDataList = Resources.LoadAll<PowerData>("Powers").ToList();
+        for(int i = 0;  i < PowerDataList.Count;i++)
+        {
+            PowerDataList[i].Reset();
+            PowerDataList[i] = Instantiate(PowerDataList[i]);
+        }
     }
 
     public BonusData TakeRandomBonusData()

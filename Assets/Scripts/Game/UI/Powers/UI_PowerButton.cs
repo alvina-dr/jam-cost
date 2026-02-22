@@ -9,9 +9,6 @@ public class UI_PowerButton : MonoBehaviour
     [SerializeField] private Image _powerIcon;
     [SerializeField] private Image _powerLoading;
 
-    private float _timer;
-
-
     public void Setup(PowerData powerData)
     {
         _powerData = powerData;
@@ -20,19 +17,19 @@ public class UI_PowerButton : MonoBehaviour
 
     public void UsePower()
     {
-        if (_timer > 0) return;
+        if (_powerData.CurrentLoadTime > 0) return;
         Instantiate(_powerData.PowerBehaviorPrefab);
-        _timer = _powerData.LoadingTime;
+        _powerData.CurrentLoadTime = _powerData.LoadingTime;
     }
 
     private void Update()
     {
         if (GameManager.Instance.CurrentGameState != GameManager.Instance.ScavengingState) return;
 
-        if (_timer >= 0)
+        if (_powerData.CurrentLoadTime >= 0)
         {
-            _timer -= Time.deltaTime;
-            _powerLoading.fillAmount = (float) _timer / (float) _powerData.LoadingTime;
+            _powerData.CurrentLoadTime -= Time.deltaTime;
+            _powerLoading.fillAmount = (float) _powerData.CurrentLoadTime / (float) _powerData.LoadingTime;
             if (_powerLoading.fillAmount < 0) _powerLoading.fillAmount = 0;
         }
     }

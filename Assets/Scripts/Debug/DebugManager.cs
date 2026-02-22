@@ -81,12 +81,11 @@ public class DebugManager : MonoBehaviour
             }
         }
 
-        List<PowerData> powerDataList = Resources.LoadAll<PowerData>("Powers").ToList();
-        for (int i = 0; i < powerDataList.Count; i++)
+        for (int i = 0; i < DataLoader.Instance.PowerDataList.Count; i++)
         {
             int index = i;
-            DebugActionList.Add(DebugActionBuilder.Button().WithName(powerDataList[index].PowerName).WithGroup("Power/Get").WithAction(() => GetPower(powerDataList[index])));
-            DebugActionList.Add(DebugActionBuilder.Button().WithName(powerDataList[index].PowerName).WithGroup("Power/Equip").WithAction(() => EquipPower(powerDataList[index])));
+            DebugActionList.Add(DebugActionBuilder.Button().WithName(DataLoader.Instance.PowerDataList[index].PowerName).WithGroup("Power/Get").WithAction(() => GetPower(DataLoader.Instance.PowerDataList[index])));
+            DebugActionList.Add(DebugActionBuilder.Button().WithName(DataLoader.Instance.PowerDataList[index].PowerName).WithGroup("Power/Equip").WithAction(() => EquipPower(DataLoader.Instance.PowerDataList[index])));
         }
 
         // GAME
