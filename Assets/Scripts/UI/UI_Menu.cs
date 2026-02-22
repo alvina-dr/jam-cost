@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
+using static UnityEngine.InputSystem.InputAction;
 
 public class UI_Menu : MonoBehaviour
 {
@@ -11,8 +13,13 @@ public class UI_Menu : MonoBehaviour
     private bool _isOpen = false;
     public bool IsOpen() => _isOpen;
 
+    private InputAction _cancelAction;
+
     public virtual void OpenMenu()
     {
+        _cancelAction = InputSystem.actions.FindAction("Cancel");
+        _cancelAction.performed += OnCancel;
+
         _isOpen = true;
         gameObject.SetActive(true);
         float totalDelay = 0;
@@ -29,6 +36,8 @@ public class UI_Menu : MonoBehaviour
 
     public virtual void CloseMenu()
     {
+        if (_cancelAction != null) _cancelAction.performed -= OnCancel;
+
         _isOpen = false;
         float totalDelay = 0;
         for (int i = 0; i < _closeAnimationList.Count; i++)
@@ -55,6 +64,15 @@ public class UI_Menu : MonoBehaviour
 
         if (show) animationSequence.Append(transform.DOScale(1f, time / 2));
         else animationSequence.Append(transform.DOScale(0f, time/2));
+    }
+
+    public void OnCancel(CallbackContext context)
+    {
+        Debug.Log("CANCEL : " + transform.name);
+        if (context.performed)
+        {
+            CloseMenu();
+        }
     }
 
     [Serializable]

@@ -3,6 +3,7 @@ using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using Yarn.Unity;
 
@@ -33,6 +34,7 @@ public class SaveManager : MonoBehaviour
     private void OnAwake()
     {
         PrimeTweenConfig.warnTweenOnDisabledTarget = false;
+        InputSystem.actions.Enable();
 
         // in editor on awake
         LoadOrCreateSave();

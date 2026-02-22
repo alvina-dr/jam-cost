@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class UI_BonusMenu : UI_Menu
@@ -32,6 +33,10 @@ public class UI_BonusMenu : UI_Menu
             _bonusEntryList[i].SetupBonus(DataLoader.Instance.TakeRandomBonusData());
         }
 
+        _bonusName.gameObject.SetActive(false);
+        _bonusDescription.gameObject.SetActive(false);
+        //_bonusDescription.gameObject.SetActive(false);
+
         base.OpenMenu();
     }
 
@@ -53,8 +58,15 @@ public class UI_BonusMenu : UI_Menu
         }
     }
 
+    //public override void Modif_OnCancel(InputAction.CallbackContext context)
+    //{
+    //    base.Modif_OnCancel(context);
+    //}
+
     public void SetupInfo(BonusData bonusData, UI_BonusEntry bonusEntry)
     {
+        _bonusName.gameObject.SetActive(true);
+        _bonusDescription.gameObject.SetActive(true);
         _currentBonusData = bonusData;
         _currentBonusEntry = bonusEntry;
         _bonusName.text = _currentBonusData.Name;
@@ -64,6 +76,8 @@ public class UI_BonusMenu : UI_Menu
 
     public void Button()
     {
+        if (_currentBonusData == null) return;
+
         _currentBonusData.GetBonus();
         _currentBonusData = null;
         _currentBonusEntry.SetupBonus(null);

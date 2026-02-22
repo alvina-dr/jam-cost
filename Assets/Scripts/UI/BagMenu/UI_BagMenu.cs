@@ -37,9 +37,12 @@ public class UI_BagMenu : MonoBehaviour
         List<ItemData> bagItemList = GameManager.Instance.UIManager.TicketMenu.GetItemDataList();
         for (int i = 0; i < _choiceSlotList.Count; i++)
         {
-            if (i >= bagItemList.Count) break;
             _choiceSlotList[i].ClearSlot();
-            _choiceSlotList[i].CreateItem(bagItemList[i]);
+
+            if (i < bagItemList.Count)
+            {
+                _choiceSlotList[i].CreateItem(bagItemList[i]);
+            }
         }
 
         //for (int i = 0; i < _choiceSlotList.Count; i++)
