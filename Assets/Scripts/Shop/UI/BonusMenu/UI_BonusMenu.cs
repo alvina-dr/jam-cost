@@ -78,9 +78,12 @@ public class UI_BonusMenu : UI_Menu
     {
         if (_currentBonusData == null) return;
 
+        if (_currentBonusData.Price > SaveManager.CurrentSave.CurrentRun.ProductivityPoints) return;
+
         _currentBonusData.GetBonus();
         _currentBonusData = null;
         _currentBonusEntry.SetupBonus(null);
+        SaveManager.Instance.AddPP(-_currentBonusData.Price);
         //ShopManager.Instance.BonusMenu.CloseMenu();
     }
 
