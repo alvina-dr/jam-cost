@@ -216,9 +216,12 @@ public class MapManager : MonoBehaviour
                 _mapNodeList[i].SetWhiteLine();
                 if (SaveManager.CurrentSave.CurrentRun.CurrentDay != 0)
                 {
-                    if (!_mapNodeList[_formerNodeList.Last()].NextNodeList.Contains(_mapNodeList[i].MapNodeIndex))
+                    if (_formerNodeList.Last() != -1)
                     {
-                        _mapNodeList[i].DeactivateNode();
+                        if (!_mapNodeList[_formerNodeList.Last()].NextNodeList.Contains(_mapNodeList[i].MapNodeIndex))
+                        {
+                            _mapNodeList[i].DeactivateNode();
+                        }
                     }
                 }
             }

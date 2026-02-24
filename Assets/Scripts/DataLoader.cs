@@ -23,7 +23,8 @@ public class DataLoader : MonoBehaviour
     #endregion
 
     public List<ItemData> ItemDataList;
-    public List<BonusData> BonusDataList;
+    public List<BonusData> RunBonusDataList;
+    public List<BonusData> PermanentBonusDataList;
     public List<MapNodeData> MapNodeDataList;
     public List<PowerData> PowerDataList;
 
@@ -34,8 +35,12 @@ public class DataLoader : MonoBehaviour
         {
             ItemDataList[i] = Instantiate(ItemDataList[i]);
         }
-        BonusDataList = Resources.LoadAll<BonusData>("Bonus").ToList();
-        BonusDataList = BonusDataList.FindAll(x => x.IsAvailableInGame);
+        RunBonusDataList = Resources.LoadAll<BonusData>("Bonus/Run").ToList();
+        RunBonusDataList = RunBonusDataList.FindAll(x => x.IsAvailableInGame);
+
+        PermanentBonusDataList = Resources.LoadAll<BonusData>("Bonus/Permanent").ToList();
+        PermanentBonusDataList = PermanentBonusDataList.FindAll(x => x.IsAvailableInGame);
+
         MapNodeDataList = Resources.LoadAll<MapNodeData>("MapNodes").ToList();
         MapNodeDataList = MapNodeDataList.FindAll(x => x.IsAvailableInGame);
 
@@ -47,30 +52,15 @@ public class DataLoader : MonoBehaviour
         }
     }
 
-    public BonusData TakeRandomBonusData()
+    public BonusData TakeRandomBonusData(BonusData.BonusDurability bonusDurability = BonusData.BonusDurability.Run)
     {
         // Get all possible bonus
+        List<BonusData> bonusDataPool = GetBonusDataList(bonusDurability);
         List<BonusData> availableBonusDataList = new();
 
-        for (int i = 0; i < BonusDataList.Count; i++)
+        for (int i = 0; i < bonusDataPool.Count; i++)
         {
-            if (BonusDataList[i].UpgradeBonusList.Count > 0)
-            {
-                bool hasAllBonus = true;
-                for (int j = 0; j < BonusDataList[i].UpgradeBonusList.Count; j++)
-                {
-                    if (!SaveManager.CurrentSave.CurrentRun.CurrentRunBonusList.Find(x => x == BonusDataList[i].UpgradeBonusList[j]))
-                    {
-                        hasAllBonus = false;
-                        break;
-                    }
-                }
-                if (hasAllBonus) availableBonusDataList.Add(BonusDataList[i]);
-            }
-            else
-            {
-                availableBonusDataList.Add(BonusDataList[i]);
-            }
+            availableBonusDataList.Add(bonusDataPool[i]);
         }
 
         //string debug = "";
@@ -83,21 +73,56 @@ public class DataLoader : MonoBehaviour
         int randomIndex = Random.Range(0, availableBonusDataList.Count);
         if (randomIndex >= availableBonusDataList.Count) return null;
         BonusData data = availableBonusDataList[randomIndex];
-        return TakeSpecificBonus(data);
+        return TakeRunSpecificBonus(data);
     }
 
-    public BonusData TakeSpecificBonus(BonusData bonusData)
+    public BonusData TakeRunSpecificBonus(BonusData bonusData, BonusData.BonusDurability bonusDurability = BonusData.BonusDurability.Run)
     {
-        if (BonusDataList.Contains(bonusData))
+        switch (bonusDurability)
         {
-            BonusDataList.Remove(bonusData);
-            return bonusData;
+            case BonusData.BonusDurability.Run:
+                if (RunBonusDataList.Contains(bonusData))
+                {
+                    RunBonusDataList.Remove(bonusData);
+                    return bonusData;
+                }
+                break;
+
+            case BonusData.BonusDurability.Permanent:
+                if (PermanentBonusDataList.Contains(bonusData))
+                {
+                    PermanentBonusDataList.Remove(bonusData);
+                    return bonusData;
+                }
+                break;
         }
         return null;
     }
 
-    public BonusData TakeBonusByName(string bonusName)
+    public BonusData TakeRunBonusByName(string bonusName, BonusData.BonusDurability bonusDurability = BonusData.BonusDurability.Run)
     {
-        return TakeSpecificBonus(BonusDataList.Find(x => x.name == bonusName));
+        switch (bonusDurability)
+        {
+            case BonusData.BonusDurability.Run:
+                return TakeRunSpecificBonus(RunBonusDataList.Find(x => x.name == bonusName), bonusDurability);
+            case BonusData.BonusDurability.Permanent:
+                return TakeRunSpecificBonus(PermanentBonusDataList.Find(x => x.name == bonusName), bonusDurability);
+        }
+
+        Debug.LogError("ERROR : bonus durability case not treated.");
+        return null;
+    }
+
+    public List<BonusData> GetBonusDataList(BonusData.BonusDurability bonusDurability = BonusData.BonusDurability.Run)
+    {
+        switch (bonusDurability)
+        {
+            case BonusData.BonusDurability.Run:
+                return RunBonusDataList;
+            case BonusData.BonusDurability.Permanent:
+                return PermanentBonusDataList;
+        }
+
+        return RunBonusDataList;
     }
 }

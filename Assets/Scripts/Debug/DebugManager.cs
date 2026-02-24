@@ -118,7 +118,7 @@ public class DebugManager : MonoBehaviour
 
     public void GetBonus(BonusData data)
     {
-        BonusData bonus = DataLoader.Instance.TakeSpecificBonus(data);
+        BonusData bonus = DataLoader.Instance.TakeRunSpecificBonus(data);
         if (bonus != null) bonus.GetBonus();
     }
 

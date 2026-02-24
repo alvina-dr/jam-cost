@@ -150,7 +150,7 @@ public class SaveManager : MonoBehaviour
         CurrentSave.CurrentRun.CurrentRunBonusList.Clear();
         for (int i = 0; i < CurrentSave.CurrentRun.CurrentRunBonusListName.Count; i++)
         {
-            CurrentSave.CurrentRun.CurrentRunBonusList.Add(DataLoader.Instance.TakeBonusByName(CurrentSave.CurrentRun.CurrentRunBonusListName[i]));
+            CurrentSave.CurrentRun.CurrentRunBonusList.Add(DataLoader.Instance.TakeRunBonusByName(CurrentSave.CurrentRun.CurrentRunBonusListName[i]));
         }
         CurrentSave.CurrentRun.CurrentRunBonusListName.Clear();
 
@@ -158,7 +158,7 @@ public class SaveManager : MonoBehaviour
         CurrentSave.PermanentBonusList.Clear();
         for (int i = 0; i < CurrentSave.PermanentBonusListName.Count; i++)
         {
-            CurrentSave.PermanentBonusList.Add(DataLoader.Instance.TakeBonusByName(CurrentSave.PermanentBonusListName[i]));
+            CurrentSave.PermanentBonusList.Add(DataLoader.Instance.TakeRunBonusByName(CurrentSave.PermanentBonusListName[i]));
         }
         CurrentSave.PermanentBonusListName.Clear();
 
