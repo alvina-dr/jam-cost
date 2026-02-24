@@ -98,7 +98,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1115404044363229569, guid: 030817c84900b974db2c2abfafcde29b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: NextDay
+      value: NextNode
       objectReference: {fileID: 0}
     - target: {fileID: 1901563172443923963, guid: 030817c84900b974db2c2abfafcde29b, type: 3}
       propertyPath: m_Name

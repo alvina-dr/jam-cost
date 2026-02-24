@@ -45,7 +45,7 @@ public class MapManager : MonoBehaviour
 
     public void OnAwake()
     {
-        _dayText.SetTextValue((SaveManager.CurrentSave.CurrentRun.CurrentDay + 1).ToString());
+        _dayText.SetTextValue((SaveManager.CurrentSave.CurrentRun.CurrentNode + 1).ToString());
 
         if (_formerNodeList.Count == 0)
         {
@@ -199,7 +199,7 @@ public class MapManager : MonoBehaviour
         for (int i = 0; i < _mapNodeList.Count; i++)
         {
             // if node is not of today column 
-            if (_mapNodeList[i].MapNodeColumnIndex != SaveManager.CurrentSave.CurrentRun.CurrentDay) 
+            if (_mapNodeList[i].MapNodeColumnIndex != SaveManager.CurrentSave.CurrentRun.CurrentNode) 
             {
                 // if node is not part of previous nodes
                 if (!_formerNodeList.Contains(_mapNodeList[i].MapNodeIndex))
@@ -214,7 +214,7 @@ public class MapManager : MonoBehaviour
             else
             {
                 _mapNodeList[i].SetWhiteLine();
-                if (SaveManager.CurrentSave.CurrentRun.CurrentDay != 0)
+                if (SaveManager.CurrentSave.CurrentRun.CurrentNode != 0)
                 {
                     if (_formerNodeList.Last() != -1)
                     {

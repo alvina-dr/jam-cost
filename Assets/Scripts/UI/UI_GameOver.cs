@@ -20,8 +20,8 @@ public class UI_GameOver : MonoBehaviour
         SceneManager.LoadScene("Hub");
     }
 
-    public void NextDay()
+    public void NextNode()
     {
-        SaveManager.Instance.NextDay();
+        SaveManager.Instance.NextNode();
     }
 }

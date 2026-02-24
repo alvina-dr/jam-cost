@@ -31,7 +31,7 @@ public class ShopManager : MonoBehaviour
 
     public void LeaveShop()
     {
-        SaveManager.Instance.NextDay();
+        SaveManager.Instance.NextNode();
     }
 
     public void OpenVendingMachine()

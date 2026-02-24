@@ -53,8 +53,11 @@ public class SaveManager : MonoBehaviour
         // Load permanent bonus advantages
         AddPP(CurrentSave.RunStartLootPP);
 
-        UI_Run.Instance?.PPTextValue.SetTextValue(CurrentSave.CurrentRun.ProductivityPoints.ToString());
-        UI_Run.Instance?.MealTicketTextValue.SetTextValue(CurrentSave.MealTickets.ToString());
+        if (UI_Run.Instance != null)
+        {
+            UI_Run.Instance.PPTextValue.SetTextValue(CurrentSave.CurrentRun.ProductivityPoints.ToString());
+            UI_Run.Instance.MealTicketTextValue.SetTextValue(CurrentSave.MealTickets.ToString());
+        }
     }
 
     public MND_Scavenge_Classic GetScavengeNode()
@@ -62,9 +65,9 @@ public class SaveManager : MonoBehaviour
         return (MND_Scavenge_Classic) CurrentMapNode;
     }
 
-    public void NextDay()
+    public void NextNode()
     {
-        CurrentSave.CurrentRun.CurrentDay++;
+        CurrentSave.CurrentRun.CurrentNode++;
         SceneManager.LoadScene("Map");
     }
 
@@ -226,6 +229,7 @@ public class SaveManager : MonoBehaviour
         // Permanent bonus stats
         public float RoundBonusTime = 0;
         public int RunStartLootPP = 0;
+        public int Node = 0;
         public int RunStartRerolls = 0;
 
         public RunData CurrentRun = new RunData();
@@ -237,7 +241,7 @@ public class SaveManager : MonoBehaviour
     public class RunData
     {
         public int RandomSeed;
-        public int CurrentDay;
+        public int CurrentNode;
         public int ProductivityPoints;
         public int Rerolls;
         public List<BonusData> CurrentRunBonusList = new();

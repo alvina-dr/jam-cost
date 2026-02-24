@@ -68,7 +68,6 @@ public class UI_Menu : MonoBehaviour
 
     public void OnCancel(CallbackContext context)
     {
-        Debug.Log("CANCEL : " + transform.name);
         if (context.performed)
         {
             CloseMenu();
