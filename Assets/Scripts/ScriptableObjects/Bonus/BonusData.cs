@@ -9,6 +9,7 @@ public class BonusData : ScriptableObject
     public BonusCategory Category;
 
     public string Name;
+    [TextArea]
     public string Description;
     public int Price;
     public Sprite Icon;

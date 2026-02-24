@@ -4,7 +4,7 @@ using UnityEngine;
 public class GS_Preparation : GameState
 {
     [ReadOnly] public float Timer;
-    [SerializeField] private float _preparationTime;
+    public float PreparationTime = 10;
 
     public override void EnterState()
     {
@@ -40,6 +40,6 @@ public class GS_Preparation : GameState
 
     public void ResetTimer()
     {
-        Timer = _preparationTime;
+        Timer = PreparationTime;
     }
 }

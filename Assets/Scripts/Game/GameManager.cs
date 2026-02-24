@@ -1,6 +1,7 @@
-using UnityEngine;
 using Sirenix.OdinInspector;
+using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
@@ -65,7 +66,18 @@ public class GameManager : MonoBehaviour
         UIManager.BonusList.UpdateBonusList();
         UIManager?.CoinCount.SetTextValue(SaveManager.CurrentSave.CurrentRun.ProductivityPoints.ToString());
 
-        CurrentGameState = PreparationState;
+        //List<BonusData> bonusDataFamilyList = SaveManager.CurrentSave.CurrentRun.CurrentRunBonusList.FindAll(x => x is BD_FamilyMultiplier familyMultiplier && familyMultiplier.FamilyBonus == chosenItemSlotList[index].CurrentBagItem.Data.Family);
+
+        BD_PreparationTime bonusPreparationTime = (BD_PreparationTime) SaveManager.CurrentSave.CurrentRun.CurrentRunBonusList.Find(x => x is BD_PreparationTime);
+        if (bonusPreparationTime != null)
+        {
+            PreparationState.PreparationTime = bonusPreparationTime.PreparationTimeDuration;
+            CurrentGameState = PreparationState;
+        }
+        else
+        {
+            CurrentGameState = ScavengingIntroState;
+        }
         CurrentGameState.EnterState();
     }
 
