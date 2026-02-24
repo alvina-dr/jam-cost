@@ -149,7 +149,7 @@ public class UI_BagMenu : MonoBehaviour
                 {
                     score += familyCountList[(int)chosenItemSlotList[index].CurrentBagItem.Data.Family];
                     GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + familyCountList[(int)chosenItemSlotList[index].CurrentBagItem.Data.Family], chosenItemSlotList[index].transform.position, _addColor);
-                    ShakeList(chosenItemSlotList.FindAll(x => x.CurrentBagItem.Data.Family == chosenItemSlotList[i].CurrentBagItem.Data.Family));
+                    ShakeList(chosenItemSlotList.FindAll(x => x.CurrentBagItem.Data.Family == chosenItemSlotList[index].CurrentBagItem.Data.Family));
                 }));
             }
 
@@ -162,6 +162,7 @@ public class UI_BagMenu : MonoBehaviour
                 {
                     score *= cloneNumber;
                     GameManager.Instance.UIManager.TextPopperManager_Number.PopText("x" + cloneNumber, chosenItemSlotList[index].transform.position, _multiplyColor, UI_TextPopper.AnimSpeed.Quick);
+                    ShakeList(chosenItemSlotList.FindAll(x => x.CurrentBagItem.Data.Name == chosenItemSlotList[index].CurrentBagItem.Data.Name));
                 }));
             }
 
@@ -227,8 +228,10 @@ public class UI_BagMenu : MonoBehaviour
     {
         for (int i = 0; i < slotList.Count; i++)
         {
-            PrimeTween.Sequence shakeAnim = PrimeTween.Sequence.Create();
-            shakeAnim.Chain(PrimeTween.Tween.ShakeLocalPosition(slotList[i].CurrentBagItem.transform, Vector3.one * 1.5f, .2f));
+            PrimeTween.Sequence anim = PrimeTween.Sequence.Create();
+            anim.Chain(PrimeTween.Tween.LocalPositionY(slotList[i].CurrentBagItem.transform, 20, .3f));
+            anim.Chain(PrimeTween.Tween.LocalPositionY(slotList[i].CurrentBagItem.transform, 0, .3f));
+            //anim.Chain(PrimeTween.Tween.ShakeLocalPosition(slotList[i].CurrentBagItem.transform, Vector3.one * 1.5f, .2f));
         }
     }
 
