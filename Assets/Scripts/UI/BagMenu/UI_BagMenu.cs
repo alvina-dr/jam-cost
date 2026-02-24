@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using PrimeTween;
 
 public class UI_BagMenu : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class UI_BagMenu : MonoBehaviour
     [Header("Score colors")]
     [SerializeField] private Color _addColor;
     [SerializeField] private Color _multiplyColor;
+
     public void OpenMenu()
     {
         _confirm.gameObject.SetActive(true);
@@ -81,7 +83,7 @@ public class UI_BagMenu : MonoBehaviour
     public void CountScore()
     {
         List<UI_BagSlot> chosenItemSlotList = GetChosenItemSlotList();
-        Sequence countAnimation = DOTween.Sequence();
+        DG.Tweening.Sequence countAnimation = DOTween.Sequence();
 
         for (int i = 0; i < _bagSlotList.Count; i++)
         {
@@ -147,6 +149,7 @@ public class UI_BagMenu : MonoBehaviour
                 {
                     score += familyCountList[(int)chosenItemSlotList[index].CurrentBagItem.Data.Family];
                     GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + familyCountList[(int)chosenItemSlotList[index].CurrentBagItem.Data.Family], chosenItemSlotList[index].transform.position, _addColor);
+                    ShakeList(chosenItemSlotList.FindAll(x => x.CurrentBagItem.Data.Family == chosenItemSlotList[i].CurrentBagItem.Data.Family));
                 }));
             }
 
@@ -217,6 +220,15 @@ public class UI_BagMenu : MonoBehaviour
                     _continue.gameObject.SetActive(true);
                 }
             });
+        }
+    }
+
+    public void ShakeList(List<UI_BagSlot> slotList)
+    {
+        for (int i = 0; i < slotList.Count; i++)
+        {
+            PrimeTween.Sequence shakeAnim = PrimeTween.Sequence.Create();
+            shakeAnim.Chain(PrimeTween.Tween.ShakeLocalPosition(slotList[i].CurrentBagItem.transform, Vector3.one * 1.5f, .2f));
         }
     }
 

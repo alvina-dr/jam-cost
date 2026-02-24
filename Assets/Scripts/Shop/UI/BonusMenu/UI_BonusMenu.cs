@@ -84,7 +84,6 @@ public class UI_BonusMenu : UI_Menu
         _currentBonusData = null;
         _currentBonusEntry.SetupBonus(null);
         SaveManager.Instance.AddPP(-_currentBonusData.Price);
-        //ShopManager.Instance.BonusMenu.CloseMenu();
     }
 
     [Button]
