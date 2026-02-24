@@ -33,14 +33,16 @@ MonoBehaviour:
   m_defaultTextMeshProUITextContainerSize: {x: 200, y: 50}
   m_autoSizeTextContainer: 0
   m_IsTextObjectScaleStatic: 0
-  m_fallbackFontAssets: []
+  m_fallbackFontAssets:
+  - {fileID: 11400000, guid: fdb6141faf825f64daa1657ba82c68f8, type: 2}
   m_matchMaterialPreset: 1
   m_HideSubTextObjects: 0
   m_defaultSpriteAsset: {fileID: 11400000, guid: e5134e787003a154fb53672c404a5609, type: 2}
   m_defaultSpriteAssetPath: Sprite Assets/
   m_enableEmojiSupport: 1
   m_MissingCharacterSpriteUnicode: 0
-  m_EmojiFallbackTextAssets: []
+  m_EmojiFallbackTextAssets:
+  - {fileID: 11400000, guid: e5134e787003a154fb53672c404a5609, type: 2}
   m_defaultColorGradientPresetsPath: Color Gradient Presets/
   m_defaultStyleSheet: {fileID: 11400000, guid: f952c082cb03451daed3ee968ac6c63e, type: 2}
   m_StyleSheetsResourcePath: 
