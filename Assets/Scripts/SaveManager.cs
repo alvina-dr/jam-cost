@@ -68,6 +68,7 @@ public class SaveManager : MonoBehaviour
     public void NextNode()
     {
         CurrentSave.CurrentRun.CurrentNode++;
+        AddPP(CurrentSave.EveryNodeLootPP);
         SceneManager.LoadScene("Map");
     }
 
@@ -229,7 +230,7 @@ public class SaveManager : MonoBehaviour
         // Permanent bonus stats
         public float RoundBonusTime = 0;
         public int RunStartLootPP = 0;
-        public int Node = 0;
+        public int EveryNodeLootPP = 0;
         public int RunStartRerolls = 0;
 
         public RunData CurrentRun = new RunData();

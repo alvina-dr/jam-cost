@@ -86,16 +86,19 @@ public class UI_PermanentBonusShop : UI_Menu
         if (SaveManager.CurrentSave.MealTickets < bonusData.Price) return;
         
         SaveManager.CurrentSave.PermanentBonusList.Add(bonusData);
+        bonusData.GetBonus();
         SaveManager.Instance.AddMT(-bonusData.Price);
 
         // increase buy permanent bonus slot current index 
-        if (_currentBuyPermanentBonusSlot.CurrentIndex - 1 < _currentBuyPermanentBonusSlot.BonusData.UpgradeBonusList.Count - 1)
+        if (_currentBuyPermanentBonusSlot.BonusData.UpgradeBonusList.Count > 0 &&
+            _currentBuyPermanentBonusSlot.CurrentIndex - 1 < _currentBuyPermanentBonusSlot.BonusData.UpgradeBonusList.Count - 1)
         {
             _currentBuyPermanentBonusSlot.CurrentIndex++;
         }
 
         //should show not the bonus we just unlocked but the one after
-        if (_currentBuyPermanentBonusSlot.CurrentIndex - 1 < _currentBuyPermanentBonusSlot.BonusData.UpgradeBonusList.Count)
+        if (_currentBuyPermanentBonusSlot.BonusData.UpgradeBonusList.Count > 0 &&
+            _currentBuyPermanentBonusSlot.CurrentIndex - 1 < _currentBuyPermanentBonusSlot.BonusData.UpgradeBonusList.Count)
         {
             _currentBonusData = _currentBuyPermanentBonusSlot.BonusData.UpgradeBonusList[_currentBuyPermanentBonusSlot.CurrentIndex - 1];
         }
