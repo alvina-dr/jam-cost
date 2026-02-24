@@ -24,6 +24,11 @@ public class ShopManager : MonoBehaviour
     public UI_BonusMenu BonusMenu;
     public UI_ConversionMenu ConversionMenu;
 
+    private void Start()
+    {
+        BonusMenu.SelectBonusList();
+    }
+
     public void LeaveShop()
     {
         SaveManager.Instance.NextDay();

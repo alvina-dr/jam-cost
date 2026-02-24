@@ -18,6 +18,8 @@ public class UI_BonusMenu : UI_Menu
     private BonusData _currentBonusData;
     private UI_BonusEntry _currentBonusEntry;
 
+    private List<BonusData> _sellingBonusDataList = new();
+
     public override void OpenMenu()
     {
         if (_bonusEntryList.Count > DataLoader.Instance.RunBonusDataList.Count) Debug.LogError("Not enough bonus for this time");
@@ -30,7 +32,7 @@ public class UI_BonusMenu : UI_Menu
 
         for (int i = 0; i < _bonusEntryList.Count; i++)
         {
-            _bonusEntryList[i].SetupBonus(DataLoader.Instance.TakeRandomBonusData(BonusData.BonusDurability.Run));
+            if (_bonusEntryList[i].BonusData == null) _bonusEntryList[i].SetupBonus(_sellingBonusDataList[i]);
         }
 
         _bonusName.gameObject.SetActive(false);
@@ -38,6 +40,14 @@ public class UI_BonusMenu : UI_Menu
         //_bonusDescription.gameObject.SetActive(false);
 
         base.OpenMenu();
+    }
+
+    public void SelectBonusList()
+    {
+        for (int i = 0; i < _bonusEntryList.Count; i++)
+        {
+            _sellingBonusDataList.Add(DataLoader.Instance.TakeRandomBonusData(BonusData.BonusDurability.Run));
+        }
     }
 
     public override void CloseMenu()
