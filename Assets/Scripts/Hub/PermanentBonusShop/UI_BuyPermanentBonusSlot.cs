@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -104,7 +105,18 @@ public class UI_BuyPermanentBonusSlot : MonoBehaviour
     public void TrySetupTicket()
     {
         if (CurrentIndex == 0) HubManager.Instance.PermanentBonusShop.SetupTicket(BonusData, this);
-        else HubManager.Instance.PermanentBonusShop.SetupTicket(BonusData.UpgradeBonusList[CurrentIndex - 1], this);
+        else
+        {
+            if (CurrentIndex - 1 < BonusData.UpgradeBonusList.Count)
+            {
+                HubManager.Instance.PermanentBonusShop.SetupTicket(BonusData.UpgradeBonusList[CurrentIndex - 1], this);
+            }
+            else
+            {
+                HubManager.Instance.PermanentBonusShop.SetupTicket(BonusData.UpgradeBonusList.Last(), this);
+
+            }
+        }
     }
 
     private void DestroyAllChildren(Transform parent)

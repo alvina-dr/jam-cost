@@ -31,7 +31,7 @@ public class DebugManager : MonoBehaviour
 
     #region Debug Actions
     [DebugAction(name= "RoundBonusTime", group ="Info")]
-    public float RoundBonusTime { get => SaveManager.CurrentSave.RoundBonusTime; set => SaveManager.CurrentSave.RoundBonusTime = value; }
+    public float RoundBonusTime { get => SaveManager.CurrentSave.PermanentRoundBonusTime; set => SaveManager.CurrentSave.PermanentRoundBonusTime = value; }
 
     [DebugAction(name = "RunStartLoopPP", group = "Info")]
     public int RunStartLoopPP { get => SaveManager.CurrentSave.RunStartLootPP; set => SaveManager.CurrentSave.RunStartLootPP = value;}

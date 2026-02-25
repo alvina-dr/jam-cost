@@ -58,19 +58,52 @@ public class UI_PermanentBonusShop : UI_Menu
         }
     }
 
-    public void SetupTicket(BonusData bonusData, UI_BuyPermanentBonusSlot permanentBonusShop)
+    public void SetupTicket(BonusData bonusData, UI_BuyPermanentBonusSlot permanentBonusSlot)
     {
+        if (bonusData == null)
+        {
+            _bonusIcon.sprite = null;
+            _bonusIcon.gameObject.SetActive(false);
+            _bonusName.text = string.Empty;
+            _bonusDescription.text = string.Empty;
+            _ticketButtonText.text = string.Empty;
+            _currentBonusData = null;
+            _currentBuyPermanentBonusSlot = null;
+
+            return;
+        }
+
+        _bonusIcon.gameObject.SetActive(true);
         _bonusIcon.sprite = bonusData.Icon;
         _bonusName.text = bonusData.Name;
         _bonusDescription.text = bonusData.Description;
+
         _ticketButtonText.text = $"Buy ({bonusData.Price}<sprite name=MT>)";
 
+        if (bonusData.UpgradeBonusList.Count == 0) 
+        {
+            if (SaveManager.CurrentSave.PermanentBonusList.Contains(bonusData))
+            {
+                _ticketButtonText.text = $"Complete";
+            }
+        }
+        else
+        {
+            if (permanentBonusSlot.CurrentIndex >= bonusData.UpgradeBonusList.Count || SaveManager.CurrentSave.PermanentBonusList.Contains(bonusData.UpgradeBonusList[permanentBonusSlot.CurrentIndex]))
+            {
+                _ticketButtonText.text = $"Complete";
+            }
+        }
+
         _currentBonusData = bonusData;
-        _currentBuyPermanentBonusSlot = permanentBonusShop;
+        _currentBuyPermanentBonusSlot = permanentBonusSlot;
     }
 
     public void TicketButton()
     {
+        if (_currentBonusData == null) return;
+        if (_currentBuyPermanentBonusSlot == null) return;
+
         if (_currentBuyPermanentBonusSlot.CurrentIndex - 1 >= _currentBuyPermanentBonusSlot.BonusData.UpgradeBonusList.Count) return;
 
         BonusData bonusData = _currentBuyPermanentBonusSlot.BonusData;
@@ -111,6 +144,26 @@ public class UI_PermanentBonusShop : UI_Menu
     {
         _currentIndex = newIndex;
         Setup();
-        if (_buyPermanentBonusSlotList[0].gameObject.activeSelf) SetupTicket(_buyPermanentBonusSlotList[0].BonusData, _buyPermanentBonusSlotList[0]);
+
+        if (_buyPermanentBonusSlotList[0].gameObject.activeSelf)
+        {
+            BonusData correctBonusData = _buyPermanentBonusSlotList[0].BonusData;
+
+            // if first level bonus data is already known
+            if (correctBonusData.UpgradeBonusList.Count > 0 &&
+                SaveManager.CurrentSave.PermanentBonusList.Contains(correctBonusData))
+            {
+                if (_buyPermanentBonusSlotList[0].CurrentIndex - 1 < correctBonusData.UpgradeBonusList.Count)
+                    correctBonusData = correctBonusData.UpgradeBonusList[_buyPermanentBonusSlotList[0].CurrentIndex - 1];
+                else
+                    correctBonusData = correctBonusData.UpgradeBonusList.Last();
+            }
+
+            SetupTicket(correctBonusData, _buyPermanentBonusSlotList[0]);
+        }
+        else
+        {
+            SetupTicket(null, null);
+        }
     }
 }

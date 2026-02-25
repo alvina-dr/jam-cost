@@ -228,7 +228,7 @@ public class SaveManager : MonoBehaviour
         [SerializeReference] public int EquipedPowerMax = 1;
 
         // Permanent bonus stats
-        public float RoundBonusTime = 0;
+        public float PermanentRoundBonusTime = 0;
         public int RunStartLootPP = 0;
         public int EveryNodeLootPP = 0;
         public int RunStartRerolls = 0;
@@ -245,6 +245,9 @@ public class SaveManager : MonoBehaviour
         public int CurrentNode;
         public int ProductivityPoints;
         public int Rerolls;
+
+        public float RunRoundBonusTime = 0;
+
         public List<BonusData> CurrentRunBonusList = new();
         [HideInInspector] public List<string> CurrentRunBonusListName = new();
         public List<int> FormerNodeList = new();
