@@ -1,10 +1,11 @@
 using DG.Tweening;
+using PrimeTween;
 using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
-using PrimeTween;
 
 public class UI_BagMenu : MonoBehaviour
 {
@@ -18,6 +19,10 @@ public class UI_BagMenu : MonoBehaviour
     public UI_BarValue _scoreBar;
     public UI_TextValue _currentScoreText;
 
+    [Header("Round score")]
+    [SerializeField] private Transform _roundScoreParent;
+    [SerializeField] private UI_TextValue _roundScoreText;
+
     [Header("Score colors")]
     [SerializeField] private Color _addColor;
     [SerializeField] private Color _multiplyColor;
@@ -30,7 +35,9 @@ public class UI_BagMenu : MonoBehaviour
         _menu.OpenMenu();
 
         _scoreBar.SetBarValue(GameManager.Instance.CurrentScore, SaveManager.Instance.GetScavengeNode().ScoreGoal, false);
-        _currentScoreText.SetTextValue($"{GameManager.Instance.CurrentScore} / {SaveManager.Instance.GetScavengeNode().ScoreGoal}", true);
+        _currentScoreText.SetTextValue($"{GameManager.Instance.CurrentScore} / {SaveManager.Instance.GetScavengeNode().ScoreGoal}", false);
+        _roundScoreText.SetTextValue($"{0}", false);
+        _roundScoreParent.gameObject.SetActive(false);
 
         List<ItemData> bagItemList = GameManager.Instance.ScavengingState.GetItemDataList();
         GameManager.Instance.ScavengingState.CleanItemDataList();
@@ -80,6 +87,10 @@ public class UI_BagMenu : MonoBehaviour
 
     public void CountScore()
     {
+        int roundScore = 0;
+        _roundScoreText.SetTextValue($"{roundScore}");
+        _roundScoreParent.gameObject.SetActive(true);
+
         List<UI_BagSlot> chosenItemSlotList = GetChosenItemSlotList();
         DG.Tweening.Sequence countAnimation = DOTween.Sequence();
 
@@ -106,10 +117,6 @@ public class UI_BagMenu : MonoBehaviour
         for (int i = 0; i < chosenItemSlotList.Count; i++)
         {
             int index = i;
-
-            //countAnimation.AppendCallback(() => AudioManager.Instance.PlaySFXSound(_countTicketEntryMoney));
-            //countAnimation.AppendCallback(() => chosenItemSlotList[index].BumpPrice());
-            //countAnimation.Join(chosenItemSlotList[index].transform.DOShakeRotation(.3f, .3f));
 
             int cloneNumber = chosenItemSlotList.FindAll(x => x.CurrentBagItem.Data == chosenItemSlotList[i].CurrentBagItem.Data).Count;
             float delay = 0;
@@ -197,14 +204,26 @@ public class UI_BagMenu : MonoBehaviour
                 countAnimation.AppendInterval(.5f);
                 countAnimation.AppendCallback(() =>
                 {
-                    GameManager.Instance.SetCurrentScore(GameManager.Instance.CurrentScore + score);
-                    _scoreBar.SetBarValue(GameManager.Instance.CurrentScore, SaveManager.Instance.GetScavengeNode().ScoreGoal);
-                    _currentScoreText.SetTextValue(GameManager.Instance.CurrentScore.ToString());
+                    roundScore += score;
+                    _roundScoreText.SetTextValueNumber(roundScore - score, roundScore);
+
+                    //GameManager.Instance.SetCurrentScore(GameManager.Instance.CurrentScore + score);
+                    //_scoreBar.SetBarValue(GameManager.Instance.CurrentScore, SaveManager.Instance.GetScavengeNode().ScoreGoal);
+                    //_currentScoreText.SetTextValue(GameManager.Instance.CurrentScore.ToString());
                     //chosenItemSlotList[index].HidePrice();
                 });
             }
             countAnimation.AppendInterval(.8f);
         }
+        countAnimation.AppendInterval(1f);
+        countAnimation.AppendCallback(() =>
+        {
+            GameManager.Instance.SetCurrentScore(GameManager.Instance.CurrentScore + roundScore);
+            _scoreBar.SetBarValue(GameManager.Instance.CurrentScore, SaveManager.Instance.GetScavengeNode().ScoreGoal);
+            _currentScoreText.SetTextValue($"{GameManager.Instance.CurrentScore} / {SaveManager.Instance.GetScavengeNode().ScoreGoal}");
+            _roundScoreParent.gameObject.SetActive(false);
+            //chosenItemSlotList[index].HidePrice();
+        });
         countAnimation.AppendInterval(1f);
 
         // End of round

@@ -49,7 +49,7 @@ public class UI_BagItem : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
     public void SetSlot(UI_BagSlot bagSlot)
     {
         _currentBagSlot = bagSlot;
-        transform.parent = _currentBagSlot.BagItemParent;
+        transform.SetParent(_currentBagSlot.BagItemParent);
     }
 
     public void Setup(ItemData itemData)
