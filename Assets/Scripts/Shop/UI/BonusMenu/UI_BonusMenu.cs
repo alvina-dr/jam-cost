@@ -22,8 +22,6 @@ public class UI_BonusMenu : UI_Menu
 
     public override void OpenMenu()
     {
-        if (_bonusEntryList.Count > DataLoader.Instance.RunBonusDataList.Count) Debug.LogError("Not enough bonus for this time");
-
         for (int i = 0; i < _bonusEntryList.Count; i++)
         {
             _bonusEntryList[i].Button.interactable = true;
@@ -44,9 +42,23 @@ public class UI_BonusMenu : UI_Menu
 
     public void SelectBonusList()
     {
+        if (_bonusEntryList.Count > DataLoader.Instance.RunBonusDataList.Count) Debug.LogWarning("Not enough bonus for this time");
+
         for (int i = 0; i < _bonusEntryList.Count; i++)
         {
             _sellingBonusDataList.Add(DataLoader.Instance.TakeRandomBonusData(BonusData.BonusDurability.Run));
+        }
+    }
+
+    public void ReleaseBonusList()
+    {
+        Debug.Log("release bonus list");
+        for (int i = 0; i < _bonusEntryList.Count; i++)
+        {
+            if (_sellingBonusDataList[i] != null)
+            {
+                DataLoader.Instance.RunBonusDataList.Add(_sellingBonusDataList[i]);
+            }
         }
     }
 
@@ -60,18 +72,7 @@ public class UI_BonusMenu : UI_Menu
         }
         
         base.CloseMenu();
-
-        for (int i = 0; i < _bonusEntryList.Count; i++)
-        {
-            if (_bonusEntryList[i].BonusData != null)
-                DataLoader.Instance.RunBonusDataList.Add(_bonusEntryList[i].BonusData);
-        }
     }
-
-    //public override void Modif_OnCancel(InputAction.CallbackContext context)
-    //{
-    //    base.Modif_OnCancel(context);
-    //}
 
     public void SetupInfo(BonusData bonusData, UI_BonusEntry bonusEntry)
     {
@@ -91,6 +92,15 @@ public class UI_BonusMenu : UI_Menu
         if (_currentBonusData.Price > SaveManager.CurrentSave.CurrentRun.ProductivityPoints) return;
 
         _currentBonusData.GetBonus();
+
+        for (int i = 0; i < _sellingBonusDataList.Count; i++)
+        {
+            if (_sellingBonusDataList[i] == _currentBonusData)
+            {
+                _sellingBonusDataList[i] = null;
+            }
+        }
+
         SaveManager.Instance.AddPP(-_currentBonusData.Price);
         _currentBonusData = null;
         _currentBonusEntry.SetupBonus(null);

@@ -31,6 +31,7 @@ public class ShopManager : MonoBehaviour
 
     public void LeaveShop()
     {
+        BonusMenu.ReleaseBonusList();
         SaveManager.Instance.NextNode();
     }
 
