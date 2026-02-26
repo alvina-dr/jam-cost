@@ -1534,7 +1534,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5938949023320744415, guid: 6d787b4eee563d3478023ad9a8cea882, type: 3}
       propertyPath: m_text
-      value: '     Try again'
+      value: '       Back to hub'
       objectReference: {fileID: 0}
     - target: {fileID: 7789650274984934497, guid: 6d787b4eee563d3478023ad9a8cea882, type: 3}
       propertyPath: m_Name

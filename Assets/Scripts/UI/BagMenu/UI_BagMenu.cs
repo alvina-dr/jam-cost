@@ -36,7 +36,9 @@ public class UI_BagMenu : MonoBehaviour
         _scoreGoalText.SetTextValue(SaveManager.Instance.GetScavengeNode().ScoreGoal.ToString(), false);
         _currentScoreText.SetTextValue(GameManager.Instance.CurrentScore.ToString(), false);
 
-        List<ItemData> bagItemList = GameManager.Instance.UIManager.TicketMenu.GetItemDataList();
+        List<ItemData> bagItemList = GameManager.Instance.ScavengingState.GetItemDataList();
+        GameManager.Instance.ScavengingState.CleanItemDataList();
+
         for (int i = 0; i < _choiceSlotList.Count; i++)
         {
             _choiceSlotList[i].ClearSlot();

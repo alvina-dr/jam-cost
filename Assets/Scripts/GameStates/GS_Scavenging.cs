@@ -7,6 +7,7 @@ public class GS_Scavenging : GameState
 {
     [ReadOnly] public float Timer;
     [SerializeField] private float _roundTime;
+    public List<ItemBehavior> SelectedItemList = new();
 
     public override void EnterState()
     {
@@ -78,5 +79,39 @@ public class GS_Scavenging : GameState
         }
 
         return _roundTime + SaveManager.CurrentSave.PermanentRoundBonusTime + SaveManager.CurrentSave.CurrentRun.RunRoundBonusTime;
+    }
+
+    public bool TryAddItemToSelectedList(ItemBehavior itemBehavior)
+    {
+        if (SelectedItemList.Count + 1 > GameManager.Instance.GetTicketSize()) return false;
+
+        SelectedItemList.Add(itemBehavior);
+        //UpdateItemNumberText();
+        return true;
+    }
+
+    public void RemoveItemFromSelectedList(ItemBehavior itemBehavior)
+    {
+        if (!SelectedItemList.Contains(itemBehavior)) return;
+        SelectedItemList.Remove(itemBehavior);
+    }
+
+    public List<ItemData> GetItemDataList()
+    {
+        List<ItemData> itemDataList = new();
+        for (int i = 0; i < SelectedItemList.Count; i++)
+        {
+            itemDataList.Add(SelectedItemList[i].Data);
+        }
+        return itemDataList;
+    }
+
+    public void CleanItemDataList()
+    {
+        for (int i = SelectedItemList.Count - 1; i >= 0; i--)
+        {
+            Destroy(SelectedItemList[i].gameObject);
+        }
+        SelectedItemList.Clear();
     }
 }

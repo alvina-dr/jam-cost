@@ -121,13 +121,13 @@ public class DraggableBehavior : ItemBehavior
         _shadowSpriteRenderer.sortingLayerName = "Front";
         SetSortingOrder(100);
         AudioManager.Instance.PlaySFXSound(_pickUpSound);
+        GameManager.Instance.ScavengingState.RemoveItemFromSelectedList(this);
     }
 
     public void EndDrag()
     {
         _isDragging = false;
         _collider.enabled = true;
-        //transform.DOScale(1f, .1f).SetEase(Ease.InBack).SetUpdate(true);
 
         if (GameManager.Instance.SelectedItem == this) GameManager.Instance.SelectedItem = null;
 
@@ -139,10 +139,15 @@ public class DraggableBehavior : ItemBehavior
             }
             else
             {
-                if (GameManager.Instance.UIManager.TicketMenu.TryAddItemToList(Data))
+                if (GameManager.Instance.ScavengingState.TryAddItemToSelectedList(this))
                 {
-                    DestroyItem();
+                    DropItem();
+                    //DestroyItem();
                     AudioManager.Instance.PlaySFXSound(_addToTicketSound);
+                }
+                else
+                {
+                    GoBackToDumpster();
                 }
             }
         }
