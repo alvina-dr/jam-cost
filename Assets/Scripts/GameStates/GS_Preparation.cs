@@ -11,9 +11,8 @@ public class GS_Preparation : GameState
         base.EnterState();
         ResetTimer();
         AudioManager.Instance.StartClockSound();
-        GameManager.Instance.UIManager.TicketMenu.UpdateItemNumberText();
-        GameManager.Instance.UIManager.RoundRemaining.SetTextValue(GameManager.Instance.CurrentHand + "/" + SaveManager.Instance.GetScavengeNode().RoundNumber);
-        GameManager.Instance.UIManager.TicketMenu.DisableMenu();
+        GameManager.Instance.ScavengingState.UpdateItemNumberText();
+        GameManager.Instance.UIManager.RoundRemaining.SetTextValue(GameManager.Instance.CurrentRound + "/" + SaveManager.Instance.GetScavengeNode().RoundNumber);
     }
 
     public override void UpdateState()
@@ -35,7 +34,6 @@ public class GS_Preparation : GameState
     public override void ExitState()
     {
         base.ExitState();
-        GameManager.Instance.UIManager.TicketMenu.EnableMenu();
     }
 
     public void ResetTimer()

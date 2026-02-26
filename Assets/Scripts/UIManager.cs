@@ -3,7 +3,6 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     public HoverPrice HoverPrice;
-    public UI_TicketMenu TicketMenu;
     public UI_TextValue Timer;
     public UI_TextValue RoundRemaining;
     public UI_TextValue CoinCount;

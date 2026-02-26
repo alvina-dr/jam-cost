@@ -2923,7 +2923,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3489341908228792153, guid: ff72d7222bd8a2f4aad4598e344489dd, type: 3}
       propertyPath: m_text
-      value: <wave amp=2>Break Room <sprite name=PP>
+      value: <wave amp=2>Break Room
       objectReference: {fileID: 0}
     - target: {fileID: 3489341908228792153, guid: ff72d7222bd8a2f4aad4598e344489dd, type: 3}
       propertyPath: m_fontColor.b

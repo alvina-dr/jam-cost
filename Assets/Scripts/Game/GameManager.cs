@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
     public DraggableBehavior SelectedItem;
     public int CurrentScore;
     public int CurrentDay;
-    public int CurrentHand;
+    public int CurrentRound;
 
     private void Start()
     {
@@ -51,7 +51,6 @@ public class GameManager : MonoBehaviour
         {
             case MND_Scavenge_Empty:
                 // prepare interface for empty challenge
-                UIManager.TicketMenu.gameObject.SetActive(false);
                 break;
             case MND_Scavenge_Classic:
                 UIManager.ScoreTextValue.SetTextValue(CurrentScore.ToString() + " / " + SaveManager.Instance.GetScavengeNode().ScoreGoal.ToString());
@@ -62,7 +61,7 @@ public class GameManager : MonoBehaviour
 
         SetCurrentScore(0);
         ItemManager.ResetDumpster();
-        UIManager.TicketMenu.UpdateItemNumberText();
+        ScavengingState.UpdateItemNumberText();
         UIManager.BonusList.UpdateBonusList();
         UIManager?.CoinCount.SetTextValue(SaveManager.CurrentSave.CurrentRun.ProductivityPoints.ToString());
 
@@ -118,15 +117,15 @@ public class GameManager : MonoBehaviour
         else SetGameState(WinState);
     }
 
-    public int GetTicketSize()
+    public int GetDepotSize()
     {
-        int handSizeBonus = 0;
-        List<BonusData> bonusTicketSizeList = SaveManager.CurrentSave.CurrentRun.CurrentRunBonusList.FindAll(x => x is BD_HandSize);
-        for (int i = 0; i < bonusTicketSizeList.Count; i++)
+        int depotSizeBonus = 0;
+        List<BonusData> bonusDepotSizeList = SaveManager.CurrentSave.CurrentRun.CurrentRunBonusList.FindAll(x => x is BD_HandSize);
+        for (int i = 0; i < bonusDepotSizeList.Count; i++)
         {
-            BD_HandSize bonusTicketSize = (BD_HandSize) bonusTicketSizeList[i];
-            if (bonusTicketSize != null) handSizeBonus += bonusTicketSize.BonusHandSize;
+            BD_HandSize bonusDepotSize = (BD_HandSize) bonusDepotSizeList[i];
+            if (bonusDepotSize != null) depotSizeBonus += bonusDepotSize.BonusHandSize;
         }
-        return _ticketSize + handSizeBonus;
+        return _ticketSize + depotSizeBonus;
     }
 }

@@ -34,7 +34,7 @@ public class DraggableBehavior : ItemBehavior
 
             if (GameManager.Instance.UIManager.DepotOverCheck.IsOver() && GameManager.Instance.CurrentGameState != GameManager.Instance.PreparationState)
             {
-                if (GameManager.Instance.UIManager.TicketMenu.GetTicketEntryCount() + 1 > GameManager.Instance.GetTicketSize()) _sellIcon.color = Color.grey;
+                if (GameManager.Instance.ScavengingState.SelectedItemList.Count + 1 > GameManager.Instance.GetDepotSize()) _sellIcon.color = Color.grey;
                 else _sellIcon.color = Color.green;
                 if (Data.BonusCurrency > 0)
                 {

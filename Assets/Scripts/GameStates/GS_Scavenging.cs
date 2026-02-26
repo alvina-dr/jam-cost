@@ -8,15 +8,16 @@ public class GS_Scavenging : GameState
     [ReadOnly] public float Timer;
     [SerializeField] private float _roundTime;
     public List<ItemBehavior> SelectedItemList = new();
+    [SerializeField] private UI_TextValue _itemNumberText;
 
     public override void EnterState()
     {
         base.EnterState();
-        GameManager.Instance.CurrentHand++;
+        GameManager.Instance.CurrentRound++;
         ResetTimer();
         AudioManager.Instance.StartClockSound();
-        GameManager.Instance.UIManager.TicketMenu.UpdateItemNumberText();
-        GameManager.Instance.UIManager.RoundRemaining.SetTextValue(GameManager.Instance.CurrentHand + "/" + SaveManager.Instance.GetScavengeNode().RoundNumber);
+        GameManager.Instance.ScavengingState.UpdateItemNumberText();
+        GameManager.Instance.UIManager.RoundRemaining.SetTextValue(GameManager.Instance.CurrentRound + "/" + SaveManager.Instance.GetScavengeNode().RoundNumber);
     }
 
     public override void UpdateState()
@@ -83,10 +84,10 @@ public class GS_Scavenging : GameState
 
     public bool TryAddItemToSelectedList(ItemBehavior itemBehavior)
     {
-        if (SelectedItemList.Count + 1 > GameManager.Instance.GetTicketSize()) return false;
+        if (SelectedItemList.Count + 1 > GameManager.Instance.GetDepotSize()) return false;
 
         SelectedItemList.Add(itemBehavior);
-        //UpdateItemNumberText();
+        UpdateItemNumberText();
         return true;
     }
 
@@ -113,5 +114,10 @@ public class GS_Scavenging : GameState
             Destroy(SelectedItemList[i].gameObject);
         }
         SelectedItemList.Clear();
+    }
+
+    public void UpdateItemNumberText()
+    {
+        _itemNumberText.SetTextValue(SelectedItemList.Count + "/" + GameManager.Instance.GetDepotSize());
     }
 }
