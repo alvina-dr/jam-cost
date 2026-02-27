@@ -782,6 +782,7 @@ MonoBehaviour:
   _bonusDescription: {fileID: 3070317396588035362}
   _bonusPrice: {fileID: 5025373842978910497}
   _rerollNumber: {fileID: 8458756949911960181}
+  _rerollParent: {fileID: 4090446631741921683}
 --- !u!1 &4975553961881175468
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,6 +17,7 @@ public class UI_BonusMenu : UI_Menu
 
     [Header("Reroll")]
     [SerializeField] private TextMeshProUGUI _rerollNumber;
+    [SerializeField] private Transform _rerollParent;
 
     private BonusData _currentBonusData;
     private UI_BonusEntry _currentBonusEntry;
@@ -45,7 +46,11 @@ public class UI_BonusMenu : UI_Menu
 
         _bonusName.gameObject.SetActive(false);
         _bonusDescription.gameObject.SetActive(false);
+
         _rerollNumber.text = SaveManager.CurrentSave.CurrentRun.Rerolls.ToString();
+
+        if (SaveManager.CurrentSave.CurrentRun.Rerolls == 0) _rerollParent.gameObject.SetActive(false);
+        else _rerollParent.gameObject.SetActive(true);
     }
 
     public void SelectBonusList()
