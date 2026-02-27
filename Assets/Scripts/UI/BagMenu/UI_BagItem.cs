@@ -20,6 +20,7 @@ public class UI_BagItem : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        return;
         Debug.Log("begin drag : " + name);
         _currentBagSlot.RemoveItem();
         _image.raycastTarget = false;
@@ -30,6 +31,7 @@ public class UI_BagItem : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        return;
         _image.raycastTarget = true;
         if (_currentBagSlot == null)
         {
@@ -40,6 +42,7 @@ public class UI_BagItem : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
 
     public void OnDrag(PointerEventData eventData)
     {
+        return;
         Vector3 mouseScreenPos = Input.mousePosition;
         mouseScreenPos.z = Mathf.Abs(Camera.main.transform.position.z);
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(mouseScreenPos);

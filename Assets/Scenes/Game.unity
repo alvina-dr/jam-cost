@@ -2837,11 +2837,11 @@ MonoBehaviour:
   PreparationState: {fileID: 1648493517}
   UIManager: {fileID: 110208747}
   ItemManager: {fileID: 1648493509}
-  _ticketSize: 4
+  _depotSize: 4
   SelectedItem: {fileID: 0}
   CurrentScore: 0
   CurrentDay: 0
-  CurrentHand: 0
+  CurrentRound: 0
 --- !u!114 &1648493509
 MonoBehaviour:
   m_ObjectHideFlags: 0

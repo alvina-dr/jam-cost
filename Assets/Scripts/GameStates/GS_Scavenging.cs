@@ -94,7 +94,9 @@ public class GS_Scavenging : GameState
     public void RemoveItemFromSelectedList(ItemBehavior itemBehavior)
     {
         if (!SelectedItemList.Contains(itemBehavior)) return;
+
         SelectedItemList.Remove(itemBehavior);
+        UpdateItemNumberText();
     }
 
     public List<ItemData> GetItemDataList()

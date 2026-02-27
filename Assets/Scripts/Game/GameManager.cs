@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     public ItemManager ItemManager;
 
     [Header("Infos")]
-    [SerializeField] private int _ticketSize;
+    [SerializeField] private int _depotSize;
 
     [Header("Current Stats")]
     public DraggableBehavior SelectedItem;
@@ -121,12 +121,15 @@ public class GameManager : MonoBehaviour
     public int GetDepotSize()
     {
         int depotSizeBonus = 0;
+
         List<BD_HandSize> bonusDepotSizeList = SaveManager.Instance.CheckHasRunBonusList<BD_HandSize>();
 
+        Debug.Log("hand size list count : " + bonusDepotSizeList.Count);
         for (int i = 0; i < bonusDepotSizeList.Count; i++)
         {
-            if (bonusDepotSizeList[i] != null) depotSizeBonus += bonusDepotSizeList[i].BonusHandSize;
+            Debug.Log("depot size bonus : " + bonusDepotSizeList[i].BonusHandSize.ToString());
+            depotSizeBonus += bonusDepotSizeList[i].BonusHandSize;
         }
-        return _ticketSize + depotSizeBonus;
+        return _depotSize + depotSizeBonus;
     }
 }

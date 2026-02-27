@@ -10,14 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 550a4b641f0e278488d9df4b407a2431, type: 3}
-  m_Name: BD_CheckPlease I
+  m_Name: BD_CheckPlease
   m_EditorClassIdentifier: 
   IsAvailableInGame: 1
   Durability: 0
   Category: 0
   Name: Check Please
-  Description: Your <b>receipt</b> can contain <color=green>+1</color> additional
-    item
+  Description: Your <b>depot</b> can contain <color=green>+1</color> additional item
   Price: 10
   Icon: {fileID: 21300000, guid: d5a4d1730acb1d24ca54d64edfda29b3, type: 3}
   Color: {r: 0.32941177, g: 0.7686275, b: 0.54901963, a: 1}

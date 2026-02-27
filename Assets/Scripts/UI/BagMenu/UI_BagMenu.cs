@@ -42,9 +42,19 @@ public class UI_BagMenu : MonoBehaviour
         List<ItemData> bagItemList = GameManager.Instance.ScavengingState.GetItemDataList();
         GameManager.Instance.ScavengingState.CleanItemDataList();
 
+        int size = GameManager.Instance.GetDepotSize();
         for (int i = 0; i < _choiceSlotList.Count; i++)
         {
             _choiceSlotList[i].ClearSlot();
+
+            if (i < size)
+            {
+                _choiceSlotList[i].gameObject.SetActive(true);
+            }
+            else
+            {
+                _choiceSlotList[i].gameObject.SetActive(false);
+            }
 
             if (i < bagItemList.Count)
             {

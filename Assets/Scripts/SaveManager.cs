@@ -79,10 +79,19 @@ public class SaveManager : MonoBehaviour
 
     public List<T> CheckHasRunBonusList<T>() where T : BonusData
     {
-        List<T> list = new List<T>();
-        list = CurrentSave.CurrentRun.CurrentRunBonusList.FindAll(x => x is T) as List<T>;
-        if (list != null) return list;
-        else return new();
+        List<T> returnList = new();
+        List<BonusData> listBonusData = new();
+        listBonusData = CurrentSave.CurrentRun.CurrentRunBonusList.FindAll(x => x is T);
+
+        for (int i = 0; i < listBonusData.Count; i++)
+        {
+            if (listBonusData[i] is T castedValue)
+            {
+                returnList.Add(castedValue);
+            }
+        }
+
+        return returnList;
     }
 
     public void AddMT(int number, Vector3 worldPosition = default(Vector3))
