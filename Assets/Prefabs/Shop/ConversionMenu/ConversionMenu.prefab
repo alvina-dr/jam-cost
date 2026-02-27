@@ -1648,6 +1648,18 @@ PrefabInstance:
       propertyPath: m_text
       value: <sketchy>-
       objectReference: {fileID: 0}
+    - target: {fileID: 5938949023320744415, guid: 6d787b4eee563d3478023ad9a8cea882, type: 3}
+      propertyPath: m_fontSize
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5938949023320744415, guid: 6d787b4eee563d3478023ad9a8cea882, type: 3}
+      propertyPath: m_fontStyle
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 5938949023320744415, guid: 6d787b4eee563d3478023ad9a8cea882, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 7789650274984934497, guid: 6d787b4eee563d3478023ad9a8cea882, type: 3}
       propertyPath: m_Name
       value: Button_-
@@ -1838,6 +1850,18 @@ PrefabInstance:
       propertyPath: m_text
       value: <sketchy>+
       objectReference: {fileID: 0}
+    - target: {fileID: 5938949023320744415, guid: 6d787b4eee563d3478023ad9a8cea882, type: 3}
+      propertyPath: m_fontSize
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5938949023320744415, guid: 6d787b4eee563d3478023ad9a8cea882, type: 3}
+      propertyPath: m_fontStyle
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 5938949023320744415, guid: 6d787b4eee563d3478023ad9a8cea882, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 7789650274984934497, guid: 6d787b4eee563d3478023ad9a8cea882, type: 3}
       propertyPath: m_Name
       value: Button_+
@@ -1945,6 +1969,10 @@ PrefabInstance:
       value: 2<sprite name=MT>
       objectReference: {fileID: 0}
     - target: {fileID: 3489341908228792153, guid: ff72d7222bd8a2f4aad4598e344489dd, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3489341908228792153, guid: ff72d7222bd8a2f4aad4598e344489dd, type: 3}
       propertyPath: m_VerticalAlignment
       value: 4096
       objectReference: {fileID: 0}
@@ -2015,11 +2043,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6060419224617199122, guid: 8755a01bb57818e4fbe9ae6834f02cce, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100.23
+      value: 105.24
       objectReference: {fileID: 0}
     - target: {fileID: 6060419224617199122, guid: 8755a01bb57818e4fbe9ae6834f02cce, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 508.81497
+      value: 506.31
       objectReference: {fileID: 0}
     - target: {fileID: 6060419224617199122, guid: 8755a01bb57818e4fbe9ae6834f02cce, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2210,6 +2238,10 @@ PrefabInstance:
     - target: {fileID: 3489341908228792153, guid: ff72d7222bd8a2f4aad4598e344489dd, type: 3}
       propertyPath: m_text
       value: 10<sprite name=PP>
+      objectReference: {fileID: 0}
+    - target: {fileID: 3489341908228792153, guid: ff72d7222bd8a2f4aad4598e344489dd, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3489341908228792153, guid: ff72d7222bd8a2f4aad4598e344489dd, type: 3}
       propertyPath: m_VerticalAlignment

@@ -64,7 +64,6 @@ public class GameManager : MonoBehaviour
         ItemManager.ResetDumpster();
         ScavengingState.UpdateItemNumberText();
         UIManager.BonusList.UpdateBonusList();
-        UIManager?.CoinCount.SetTextValue(SaveManager.CurrentSave.CurrentRun.ProductivityPoints.ToString());
 
         //List<BonusData> bonusDataFamilyList = SaveManager.CurrentSave.CurrentRun.CurrentRunBonusList.FindAll(x => x is BD_FamilyMultiplier familyMultiplier && familyMultiplier.FamilyBonus == chosenItemSlotList[index].CurrentBagItem.Data.Family);
 

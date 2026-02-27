@@ -130,7 +130,6 @@ public class SaveManager : MonoBehaviour
     public void OnParticleAttracted_PP(int number)
     {
         CurrentSave.CurrentRun.ProductivityPoints += number;
-        if (GameManager.Instance != null) GameManager.Instance.UIManager.CoinCount.SetTextValue(CurrentSave.CurrentRun.ProductivityPoints.ToString());
         UI_Run.Instance?.PPTextValue.SetTextValue(CurrentSave.CurrentRun.ProductivityPoints.ToString());
     }
 
