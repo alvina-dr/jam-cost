@@ -160,7 +160,7 @@ MonoBehaviour:
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
+  m_spriteAsset: {fileID: 11400000, guid: e5134e787003a154fb53672c404a5609, type: 2}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
   m_TextStyleHashCode: -1183493901
@@ -228,7 +228,7 @@ MonoBehaviour:
   context:
     scaleAnimations: 1
     scaleUniformly: 1
-    useScaledTime: 1
+    useScaledTime: 0
     tmpAnimator: {fileID: 7584346940555697182}
   updateFrom: 0
   animateOnStart: 1

@@ -316,6 +316,7 @@ RectTransform:
   - {fileID: 409676368}
   - {fileID: 1338153650}
   - {fileID: 1483669827}
+  - {fileID: 158781181}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -338,7 +339,6 @@ MonoBehaviour:
   HoverPrice: {fileID: 551825959}
   Timer: {fileID: 1013592282}
   RoundRemaining: {fileID: 1349184526}
-  CoinCount: {fileID: 0}
   BonusList: {fileID: 1377688904}
   CrateOverCheck: {fileID: 1605590742}
   DepotOverCheck: {fileID: 1799360636}
@@ -567,7 +567,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2991396493576107827, guid: ff72d7222bd8a2f4aad4598e344489dd, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -105.900024
+      value: -105.8999
       objectReference: {fileID: 0}
     - target: {fileID: 2991396493576107827, guid: ff72d7222bd8a2f4aad4598e344489dd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -617,7 +617,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 885867721}
+    m_TransformParent: {fileID: 110208746}
     m_Modifications:
     - target: {fileID: 85952870470059289, guid: e289b658b7442c04caa0c33bfc7339a5, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1601,7 +1601,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 158781181}
   - {fileID: 1320404375}
   - {fileID: 391073318}
   - {fileID: 901677176}
@@ -2247,7 +2246,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7750568581437612977, guid: ce8c56acc24918644bbaed56dd94fcf3, type: 3}
       propertyPath: m_Name
-      value: SimpleText_Hyemin
+      value: Text_RoundRemaining
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8099,6 +8098,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4853868304806731911, guid: eb4da42dee17e32459931e1bea15134c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8318,6 +8321,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 110208746}
     m_Modifications:
+    - target: {fileID: 585903208836669121, guid: 6a0e1c16e934bb448bb0e3a049f3beae, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -105.8999
+      objectReference: {fileID: 0}
     - target: {fileID: 801740851204119272, guid: 6a0e1c16e934bb448bb0e3a049f3beae, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.786
@@ -8707,6 +8714,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 885867721}
     m_Modifications:
+    - target: {fileID: 5667898360208979927, guid: 23e3d07e739b88e4ba74f6f173cdbfa9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 7.2400017
+      objectReference: {fileID: 0}
     - target: {fileID: 6447550794178235772, guid: 23e3d07e739b88e4ba74f6f173cdbfa9, type: 3}
       propertyPath: m_Name
       value: HoverPrice

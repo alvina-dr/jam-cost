@@ -8,7 +8,6 @@ public class PauseManager : MonoBehaviour
 
     private void Awake()
     {
-
         if (Instance != null && Instance != this)
         {
             Destroy(this);
@@ -29,6 +28,12 @@ public class PauseManager : MonoBehaviour
     {
         InputAction pauseAction = InputSystem.actions.FindAction("Pause");
         pauseAction.performed += Pause;
+    }
+
+    public void ContinueButton()
+    {
+        Time.timeScale = 1f;
+        CloseMenu();
     }
 
     public void Pause(InputAction.CallbackContext _)
