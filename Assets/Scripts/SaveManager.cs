@@ -52,6 +52,7 @@ public class SaveManager : MonoBehaviour
 
         // Load permanent bonus advantages
         AddPP(CurrentSave.RunStartLootPP);
+        CurrentSave.CurrentRun.Rerolls += CurrentSave.RunStartRerolls;
 
         if (UI_Run.Instance != null)
         {
