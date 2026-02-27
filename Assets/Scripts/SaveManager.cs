@@ -72,6 +72,19 @@ public class SaveManager : MonoBehaviour
         SceneManager.LoadScene("Map");
     }
 
+    public T CheckHasRunBonus<T>() where T : BonusData
+    {
+        return CurrentSave.CurrentRun.CurrentRunBonusList.Find(x => x is T) as T;
+    }
+
+    public List<T> CheckHasRunBonusList<T>() where T : BonusData
+    {
+        List<T> list = new List<T>();
+        list = CurrentSave.CurrentRun.CurrentRunBonusList.FindAll(x => x is T) as List<T>;
+        if (list != null) return list;
+        else return new();
+    }
+
     public void AddMT(int number, Vector3 worldPosition = default(Vector3))
     {
         if (number > 0 && worldPosition != default(Vector3))

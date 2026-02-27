@@ -15,6 +15,9 @@ public class UI_BonusMenu : UI_Menu
     [SerializeField] private TextMeshProUGUI _bonusDescription;
     [SerializeField] private TextMeshProUGUI _bonusPrice;
 
+    [Header("Reroll")]
+    [SerializeField] private TextMeshProUGUI _rerollNumber;
+
     private BonusData _currentBonusData;
     private UI_BonusEntry _currentBonusEntry;
 
@@ -28,16 +31,21 @@ public class UI_BonusMenu : UI_Menu
             _bonusEntryList[i].ButtonAnim.enabled = true;
         }
 
+        Setup();
+
+        base.OpenMenu();
+    }
+
+    public void Setup()
+    {
         for (int i = 0; i < _bonusEntryList.Count; i++)
         {
-            if (_bonusEntryList[i].BonusData == null) _bonusEntryList[i].SetupBonus(_sellingBonusDataList[i]);
+            _bonusEntryList[i].SetupBonus(_sellingBonusDataList[i]);
         }
 
         _bonusName.gameObject.SetActive(false);
         _bonusDescription.gameObject.SetActive(false);
-        //_bonusDescription.gameObject.SetActive(false);
-
-        base.OpenMenu();
+        _rerollNumber.text = SaveManager.CurrentSave.CurrentRun.Rerolls.ToString();
     }
 
     public void SelectBonusList()
@@ -52,7 +60,6 @@ public class UI_BonusMenu : UI_Menu
 
     public void ReleaseBonusList()
     {
-        Debug.Log("release bonus list");
         for (int i = 0; i < _bonusEntryList.Count; i++)
         {
             if (_sellingBonusDataList[i] != null)
@@ -60,6 +67,8 @@ public class UI_BonusMenu : UI_Menu
                 DataLoader.Instance.RunBonusDataList.Add(_sellingBonusDataList[i]);
             }
         }
+
+        _sellingBonusDataList.Clear();
     }
 
     public override void CloseMenu()
@@ -111,5 +120,17 @@ public class UI_BonusMenu : UI_Menu
     {
         _bonusEntryList.Clear();
         _bonusEntryList = GetComponentsInChildren<UI_BonusEntry>().ToList();
+    }
+
+    [Button]
+    public void RerollShop()
+    {
+        if (SaveManager.CurrentSave.CurrentRun.Rerolls == 0) return;
+
+        SaveManager.CurrentSave.CurrentRun.Rerolls--;
+
+        ReleaseBonusList();
+        SelectBonusList();
+        OpenMenu();
     }
 }

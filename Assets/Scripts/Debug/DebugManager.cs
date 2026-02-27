@@ -98,6 +98,7 @@ public class DebugManager : MonoBehaviour
         // GAIN
         DebugActionList.Add(DebugActionBuilder.Button().WithName("PP").WithGroup("Gain").WithAction(() => SaveManager.Instance.AddPP(100)));
         DebugActionList.Add(DebugActionBuilder.Button().WithName("Meal Tickets").WithGroup("Gain").WithAction(() => SaveManager.Instance.AddMT(100)));
+        DebugActionList.Add(DebugActionBuilder.Button().WithName("Rerolls").WithGroup("Gain").WithAction(() => SaveManager.CurrentSave.CurrentRun.Rerolls++));
 
         RuntimeDebugSystem.RegisterActions(DebugActionList.ToArray());
         DebugActionArray = RuntimeDebugSystem.RegisterActionsAuto(this);

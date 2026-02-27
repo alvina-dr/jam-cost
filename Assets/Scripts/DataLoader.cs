@@ -60,15 +60,16 @@ public class DataLoader : MonoBehaviour
 
         for (int i = 0; i < bonusDataPool.Count; i++)
         {
-            availableBonusDataList.Add(bonusDataPool[i]);
-        }
+            if (bonusDataPool[i] is not BD_SameFamily)
+            {
+                availableBonusDataList.Add(bonusDataPool[i]);
+            }
+            else if (SaveManager.Instance.CheckHasRunBonus<BD_SameFamily>() == null)
+            {
+                availableBonusDataList.Add(bonusDataPool[i]);
+            }
 
-        //string debug = "";
-        //for (int i = 0; i < availableBonusDataList.Count; i++)
-        //{
-        //    debug += availableBonusDataList[i].Name + "\n";
-        //}
-        //Debug.Log(debug);
+        }
 
         int randomIndex = Random.Range(0, availableBonusDataList.Count);
         if (randomIndex >= availableBonusDataList.Count) return null;

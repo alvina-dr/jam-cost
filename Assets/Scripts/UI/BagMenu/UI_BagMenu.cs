@@ -123,7 +123,7 @@ public class UI_BagMenu : MonoBehaviour
             int countTimeMax = 1;
 
             // BONUS : count items twice on the last round
-            BonusData doubleTrouble = SaveManager.CurrentSave.CurrentRun.CurrentRunBonusList.Find(x => x is BD_LastTurn_DoubleItem);
+            BD_LastTurn_DoubleItem doubleTrouble = SaveManager.Instance.CheckHasRunBonus<BD_LastTurn_DoubleItem>();
             if (GameManager.Instance.CurrentRound >= SaveManager.Instance.GetScavengeNode().RoundNumber && doubleTrouble != null)
             {
                 countTimeMax = 2;
@@ -176,29 +176,33 @@ public class UI_BagMenu : MonoBehaviour
                 {
                     countAnimation.AppendInterval(delay);
                     delay += .3f;
-                    countAnimation.AppendCallback((TweenCallback)(() =>
+                    countAnimation.AppendCallback(() =>
                     {
                         score *= cloneNumber;
                         chosenItemSlotList[index].SetPriceText(score);
                         GameManager.Instance.UIManager.TextPopperManager_Number.PopText("x" + cloneNumber, chosenItemSlotList[index].transform.position, _multiplyColor, UI_TextPopper.AnimSpeed.Quick);
                         ShakeList(chosenItemSlotList.FindAll(x => x.CurrentBagItem.Data.Name == chosenItemSlotList[index].CurrentBagItem.Data.Name));
-                    }));
+                    });
                 }
 
                 // BONUS : family type
-                List<BonusData> bonusDataFamilyList = SaveManager.CurrentSave.CurrentRun.CurrentRunBonusList.FindAll(x => x is BD_FamilyMultiplier familyMultiplier && familyMultiplier.FamilyBonus == chosenItemSlotList[index].CurrentBagItem.Data.Family);
+                List<BD_FamilyMultiplier> bonusDataFamilyList = SaveManager.Instance.CheckHasRunBonusList<BD_FamilyMultiplier>(); 
                 for (int j = 0; j < bonusDataFamilyList.Count; j++)
                 {
-                    BD_FamilyMultiplier familyMultiplier = (BD_FamilyMultiplier)bonusDataFamilyList[j];
-                    countAnimation.AppendInterval(delay);
-                    delay += .3f;
-                    countAnimation.AppendCallback((TweenCallback)(() =>
+                    BD_FamilyMultiplier familyMultiplier = bonusDataFamilyList[j];
+
+                    if (familyMultiplier.FamilyBonus == chosenItemSlotList[index].CurrentBagItem.Data.Family)
                     {
-                        score = Mathf.RoundToInt(score * familyMultiplier.BonusMultiplier);
-                        chosenItemSlotList[index].SetPriceText(score);
-                        GameManager.Instance.UIManager.TextPopperManager_Number.PopText("x" + familyMultiplier.BonusMultiplier, chosenItemSlotList[index].transform.position, _multiplyColor, UI_TextPopper.AnimSpeed.Quick);
-                        GameManager.Instance.UIManager.TextPopperManager_Info.PopText(familyMultiplier.Name, chosenItemSlotList[index].transform.position + Vector3.up, Color.black, UI_TextPopper.AnimSpeed.Quick);
-                    }));
+                        countAnimation.AppendInterval(delay);
+                        delay += .3f;
+                        countAnimation.AppendCallback(() =>
+                        {
+                            score = Mathf.RoundToInt(score * familyMultiplier.BonusMultiplier);
+                            chosenItemSlotList[index].SetPriceText(score);
+                            GameManager.Instance.UIManager.TextPopperManager_Number.PopText("x" + familyMultiplier.BonusMultiplier, chosenItemSlotList[index].transform.position, _multiplyColor, UI_TextPopper.AnimSpeed.Quick);
+                            GameManager.Instance.UIManager.TextPopperManager_Info.PopText(familyMultiplier.Name, chosenItemSlotList[index].transform.position + Vector3.up, Color.black, UI_TextPopper.AnimSpeed.Quick);
+                        });
+                    }
                 }
 
                 countAnimation.AppendInterval(.5f);

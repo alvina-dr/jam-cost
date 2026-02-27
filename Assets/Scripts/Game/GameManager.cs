@@ -1,3 +1,4 @@
+using MoreMountains.Tools;
 using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
@@ -67,7 +68,7 @@ public class GameManager : MonoBehaviour
 
         //List<BonusData> bonusDataFamilyList = SaveManager.CurrentSave.CurrentRun.CurrentRunBonusList.FindAll(x => x is BD_FamilyMultiplier familyMultiplier && familyMultiplier.FamilyBonus == chosenItemSlotList[index].CurrentBagItem.Data.Family);
 
-        BD_PreparationTime bonusPreparationTime = (BD_PreparationTime) SaveManager.CurrentSave.CurrentRun.CurrentRunBonusList.Find(x => x is BD_PreparationTime);
+        BD_PreparationTime bonusPreparationTime = SaveManager.Instance.CheckHasRunBonus<BD_PreparationTime>();
         if (bonusPreparationTime != null)
         {
             PreparationState.PreparationTime = bonusPreparationTime.PreparationTimeDuration;
@@ -120,11 +121,11 @@ public class GameManager : MonoBehaviour
     public int GetDepotSize()
     {
         int depotSizeBonus = 0;
-        List<BonusData> bonusDepotSizeList = SaveManager.CurrentSave.CurrentRun.CurrentRunBonusList.FindAll(x => x is BD_HandSize);
+        List<BD_HandSize> bonusDepotSizeList = SaveManager.Instance.CheckHasRunBonusList<BD_HandSize>();
+
         for (int i = 0; i < bonusDepotSizeList.Count; i++)
         {
-            BD_HandSize bonusDepotSize = (BD_HandSize) bonusDepotSizeList[i];
-            if (bonusDepotSize != null) depotSizeBonus += bonusDepotSize.BonusHandSize;
+            if (bonusDepotSizeList[i] != null) depotSizeBonus += bonusDepotSizeList[i].BonusHandSize;
         }
         return _ticketSize + depotSizeBonus;
     }
