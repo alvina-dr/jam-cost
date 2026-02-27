@@ -16,7 +16,7 @@ MonoBehaviour:
   Durability: 0
   Category: 3
   Name: Same Family - Paper
-  Description: 
+  Description: All items are paper items.
   Price: 10
   Icon: {fileID: 21300000, guid: cf4efcfa506dd0040adecdb3f440805e, type: 3}
   Color: {r: 1, g: 0, b: 0.8082342, a: 1}

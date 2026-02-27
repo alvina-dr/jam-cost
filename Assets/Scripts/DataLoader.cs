@@ -35,6 +35,7 @@ public class DataLoader : MonoBehaviour
         {
             ItemDataList[i] = Instantiate(ItemDataList[i]);
         }
+
         RunBonusDataList = Resources.LoadAll<BonusData>("Bonus/Run").ToList();
         RunBonusDataList = RunBonusDataList.FindAll(x => x.IsAvailableInGame);
 
@@ -52,7 +53,7 @@ public class DataLoader : MonoBehaviour
         }
     }
 
-    public BonusData TakeRandomBonusData(BonusData.BonusDurability bonusDurability = BonusData.BonusDurability.Run)
+    public BonusData TakeRandomBonusData(BonusData.BonusDurability bonusDurability = BonusData.BonusDurability.Run, List<BonusData> formerList = null)
     {
         // Get all possible bonus
         List<BonusData> bonusDataPool = GetBonusDataList(bonusDurability);
@@ -66,9 +67,12 @@ public class DataLoader : MonoBehaviour
             }
             else if (SaveManager.Instance.CheckHasRunBonus<BD_SameFamily>() == null)
             {
-                availableBonusDataList.Add(bonusDataPool[i]);
+                if (formerList == null) availableBonusDataList.Add(bonusDataPool[i]);
+                else if (formerList.Find(x => x is BD_SameFamily) == null)
+                {
+                    availableBonusDataList.Add(bonusDataPool[i]);
+                }
             }
-
         }
 
         int randomIndex = Random.Range(0, availableBonusDataList.Count);

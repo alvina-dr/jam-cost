@@ -59,7 +59,7 @@ public class UI_BonusMenu : UI_Menu
 
         for (int i = 0; i < _bonusEntryList.Count; i++)
         {
-            _sellingBonusDataList.Add(DataLoader.Instance.TakeRandomBonusData(BonusData.BonusDurability.Run));
+            _sellingBonusDataList.Add(DataLoader.Instance.TakeRandomBonusData(BonusData.BonusDurability.Run, _sellingBonusDataList));
         }
     }
 
