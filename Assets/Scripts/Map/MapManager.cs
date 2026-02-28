@@ -109,7 +109,7 @@ public class MapManager : MonoBehaviour
 
     public void RemoveNodes()
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 1; i++)
         {
             RemoveRandomNode();
         }
@@ -118,15 +118,17 @@ public class MapManager : MonoBehaviour
     public void RemoveRandomNode()
     {
         int column = Random.Range(0, _nodeNumberPerColumn.Count);
-        List<UI_MapNode> columnNodeList = GetNodeListFromColumn(column);
-        
-        if (columnNodeList.Count <= 1)
+        //List<UI_MapNode> columnNodeList = GetNodeListFromColumn(column);
+
+        for (int i = 0; i < _nodeNumberPerColumn.Count; i++)
         {
-            RemoveRandomNode();
-        }
-        else
-        {
-            columnNodeList[Random.Range(0, columnNodeList.Count)].gameObject.SetActive(false);
+            List<UI_MapNode> columnNodeListTest = GetNodeListFromColumn(i);
+
+            if (columnNodeListTest.Count > 1)
+            {
+                Debug.Log("deactivate node on column : " + i);
+                columnNodeListTest[Random.Range(0, columnNodeListTest.Count)].gameObject.SetActive(false);
+            }
         }
     }
 

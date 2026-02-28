@@ -21,43 +21,44 @@ MonoBehaviour:
     - {fileID: 11400000, guid: cffc50a3e8ada694c92f6e77cad39c5c, type: 2}
   - MapNodeDataList:
     - {fileID: 11400000, guid: 41443b0ad27f711469adcfbb242e7d78, type: 2}
-    - {fileID: 11400000, guid: a7429d39c13087143b40e4a945bee045, type: 2}
+    - {fileID: 11400000, guid: 41443b0ad27f711469adcfbb242e7d78, type: 2}
+    - {fileID: 11400000, guid: 5f38a0e566fd81946b8e9ce0676f1889, type: 2}
     - {fileID: 11400000, guid: 5f38a0e566fd81946b8e9ce0676f1889, type: 2}
     - {fileID: 11400000, guid: 32ccb5db3b1fa1a46929ff1667e25f38, type: 2}
-    - {fileID: 11400000, guid: a7429d39c13087143b40e4a945bee045, type: 2}
   - MapNodeDataList:
+    - {fileID: 11400000, guid: a725c1eabf9247d4188bebaf25d40ee5, type: 2}
+    - {fileID: 11400000, guid: 332926b00b8b6ba4b994a42ad61165aa, type: 2}
+    - {fileID: 11400000, guid: a7429d39c13087143b40e4a945bee045, type: 2}
+    - {fileID: 11400000, guid: a725c1eabf9247d4188bebaf25d40ee5, type: 2}
+    - {fileID: 11400000, guid: 332926b00b8b6ba4b994a42ad61165aa, type: 2}
+  - MapNodeDataList:
+    - {fileID: 11400000, guid: a7429d39c13087143b40e4a945bee045, type: 2}
     - {fileID: 11400000, guid: aa0c421df902ed14f93ba91c5ed17b50, type: 2}
-    - {fileID: 11400000, guid: 332926b00b8b6ba4b994a42ad61165aa, type: 2}
-    - {fileID: 11400000, guid: a7429d39c13087143b40e4a945bee045, type: 2}
-    - {fileID: 11400000, guid: a725c1eabf9247d4188bebaf25d40ee5, type: 2}
-    - {fileID: 11400000, guid: 332926b00b8b6ba4b994a42ad61165aa, type: 2}
-  - MapNodeDataList:
-    - {fileID: 11400000, guid: 332926b00b8b6ba4b994a42ad61165aa, type: 2}
-    - {fileID: 11400000, guid: a7429d39c13087143b40e4a945bee045, type: 2}
-    - {fileID: 11400000, guid: a725c1eabf9247d4188bebaf25d40ee5, type: 2}
-    - {fileID: 11400000, guid: 32ccb5db3b1fa1a46929ff1667e25f38, type: 2}
+    - {fileID: 11400000, guid: aa0c421df902ed14f93ba91c5ed17b50, type: 2}
+    - {fileID: 11400000, guid: aa0c421df902ed14f93ba91c5ed17b50, type: 2}
     - {fileID: 11400000, guid: a7429d39c13087143b40e4a945bee045, type: 2}
   - MapNodeDataList:
+    - {fileID: 11400000, guid: 15a3b77b6fb18064a9751385fa38619a, type: 2}
+    - {fileID: 11400000, guid: 9d7c6edd5c1790a4cbb28d5f65b2712c, type: 2}
+    - {fileID: 11400000, guid: 15a3b77b6fb18064a9751385fa38619a, type: 2}
     - {fileID: 11400000, guid: a7429d39c13087143b40e4a945bee045, type: 2}
     - {fileID: 11400000, guid: 9d7c6edd5c1790a4cbb28d5f65b2712c, type: 2}
-    - {fileID: 11400000, guid: 9d7c6edd5c1790a4cbb28d5f65b2712c, type: 2}
-    - {fileID: 11400000, guid: a725c1eabf9247d4188bebaf25d40ee5, type: 2}
   - MapNodeDataList:
     - {fileID: 11400000, guid: b242d725899160d408799757c0b6715c, type: 2}
-    - {fileID: 11400000, guid: 9d7c6edd5c1790a4cbb28d5f65b2712c, type: 2}
-    - {fileID: 11400000, guid: 9d7c6edd5c1790a4cbb28d5f65b2712c, type: 2}
-    - {fileID: 11400000, guid: b242d725899160d408799757c0b6715c, type: 2}
+    - {fileID: 11400000, guid: 73502eee3268dd84d8e2837f5223a628, type: 2}
+    - {fileID: 11400000, guid: 70d8cf55c8ef85046bbef24c6ccba32e, type: 2}
+    - {fileID: 11400000, guid: 73502eee3268dd84d8e2837f5223a628, type: 2}
     - {fileID: 11400000, guid: a7429d39c13087143b40e4a945bee045, type: 2}
   - MapNodeDataList:
-    - {fileID: 11400000, guid: b242d725899160d408799757c0b6715c, type: 2}
+    - {fileID: 11400000, guid: 4d6db7c1a3eb12949882c85a42284cd8, type: 2}
     - {fileID: 11400000, guid: a7429d39c13087143b40e4a945bee045, type: 2}
-    - {fileID: 11400000, guid: b242d725899160d408799757c0b6715c, type: 2}
-    - {fileID: 11400000, guid: 9d7c6edd5c1790a4cbb28d5f65b2712c, type: 2}
-    - {fileID: 11400000, guid: 9d7c6edd5c1790a4cbb28d5f65b2712c, type: 2}
+    - {fileID: 11400000, guid: 27aa782f4bb6a8a47b9a32e5aface085, type: 2}
+    - {fileID: 11400000, guid: f546d95eabb56ff4a903822def45194f, type: 2}
+    - {fileID: 11400000, guid: 27aa782f4bb6a8a47b9a32e5aface085, type: 2}
   - MapNodeDataList:
     - {fileID: 11400000, guid: a7429d39c13087143b40e4a945bee045, type: 2}
-    - {fileID: 11400000, guid: b242d725899160d408799757c0b6715c, type: 2}
-    - {fileID: 11400000, guid: 9d7c6edd5c1790a4cbb28d5f65b2712c, type: 2}
-    - {fileID: 11400000, guid: a7429d39c13087143b40e4a945bee045, type: 2}
-    - {fileID: 11400000, guid: 9d7c6edd5c1790a4cbb28d5f65b2712c, type: 2}
+    - {fileID: 11400000, guid: 9cb5f16203053634fa7df13f2d5b5007, type: 2}
+    - {fileID: 11400000, guid: b51bc4ebff110a047bad4e8fc2112c1e, type: 2}
+    - {fileID: 11400000, guid: d49fab57ed745b8488fa184656c05494, type: 2}
+    - {fileID: 11400000, guid: 9cb5f16203053634fa7df13f2d5b5007, type: 2}
   NumberOfNodesToDelete: 4

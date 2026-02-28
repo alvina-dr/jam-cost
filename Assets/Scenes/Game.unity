@@ -339,7 +339,6 @@ MonoBehaviour:
   HoverPrice: {fileID: 551825959}
   Timer: {fileID: 1013592282}
   RoundRemaining: {fileID: 1349184526}
-  BonusList: {fileID: 0}
   CrateOverCheck: {fileID: 1605590742}
   DepotOverCheck: {fileID: 1799360636}
   GameLost: {fileID: 445449398}
@@ -449,7 +448,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7750568581437612977, guid: ce8c56acc24918644bbaed56dd94fcf3, type: 3}
       propertyPath: m_Name
-      value: SimpleText_Hyemin
+      value: Text_ItemNumberDepot
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2680,7 +2679,7 @@ MonoBehaviour:
   Timer: 0
   _roundTime: 15
   SelectedItemList: []
-  _itemNumberText: {fileID: 1349184526}
+  _itemNumberText: {fileID: 116919398}
 --- !u!114 &1648493512
 MonoBehaviour:
   m_ObjectHideFlags: 0
