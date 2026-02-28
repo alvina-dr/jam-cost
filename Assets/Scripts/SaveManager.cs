@@ -254,6 +254,10 @@ public class SaveManager : MonoBehaviour
 
         [SerializeReference] public int EquipedPowerMax = 1;
 
+        // Save stats
+        public int NumberRunPlayed;
+        public float TimePlayed;
+
         // Permanent bonus stats
         public float PermanentRoundBonusTime = 0;
         public int RunStartLootPP = 0;

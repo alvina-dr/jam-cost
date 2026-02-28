@@ -16,7 +16,7 @@ MonoBehaviour:
   Durability: 0
   Category: 3
   Name: Glass Me Daddy
-  Description: Tous les objets en plastique gagnent un multiplicateur de x1.5
+  Description: All <b>glass items</b> permanently gain a multiplier of <color=red><b>x1.5</b></color>
   Price: 5
   Icon: {fileID: 21300000, guid: fa83633571cbb264088500e1a232937d, type: 3}
   Color: {r: 0.9490197, g: 0.3647059, b: 0, a: 1}
