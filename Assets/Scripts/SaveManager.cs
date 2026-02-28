@@ -145,6 +145,11 @@ public class SaveManager : MonoBehaviour
         UI_Run.Instance?.MealTicketTextValue.SetTextValue(CurrentSave.MealTickets.ToString(), false);
     }
 
+    public void Update()
+    {
+        CurrentSave.CurrentRun.TotalRunDuration += Time.deltaTime;
+    }
+
     #region SaveManagement
     public bool LoadOrCreateSave()
     {
@@ -267,6 +272,7 @@ public class SaveManager : MonoBehaviour
         public int CurrentNode;
         public int ProductivityPoints;
         public int Rerolls;
+        public float TotalRunDuration;
 
         public float RunRoundBonusTime = 0;
 

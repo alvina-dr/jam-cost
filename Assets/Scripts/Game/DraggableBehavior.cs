@@ -15,7 +15,8 @@ public class DraggableBehavior : ItemBehavior
 
     private void Update()
     {
-        if (GameManager.Instance.CurrentGameState != (GameManager.Instance.ScavengingState || GameManager.Instance.PreparationState) || PauseManager.Instance.IsPaused)
+        if ((GameManager.Instance.CurrentGameState != GameManager.Instance.ScavengingState
+        && GameManager.Instance.CurrentGameState != GameManager.Instance.PreparationState) || PauseManager.Instance.IsPaused)
         {
             if (_isDragging)
             {
@@ -26,6 +27,17 @@ public class DraggableBehavior : ItemBehavior
             }
             return;
         }
+        //if (GameManager.Instance.CurrentGameState != (GameManager.Instance.ScavengingState || GameManager.Instance.PreparationState) || PauseManager.Instance.IsPaused)
+        //{
+        //    if (_isDragging)
+        //    {
+        //        _isDragging = false;
+        //        _collider.enabled = true;
+        //        DropItem();
+        //        if (GameManager.Instance.SelectedItem == this) GameManager.Instance.SelectedItem = null;
+        //    }
+        //    return;
+        //}
 
         if (_isDragging)
         {
@@ -78,7 +90,8 @@ public class DraggableBehavior : ItemBehavior
 
     private void OnMouseEnter()
     {
-        if (GameManager.Instance.CurrentGameState != (GameManager.Instance.ScavengingState || GameManager.Instance.PreparationState)) return;
+        if (GameManager.Instance.CurrentGameState != GameManager.Instance.ScavengingState
+        && GameManager.Instance.CurrentGameState != GameManager.Instance.PreparationState) return;
 
         GameManager.Instance.UIManager.HoverPrice.ShowPrice(Data.Price, transform.position);
     }
@@ -103,7 +116,8 @@ public class DraggableBehavior : ItemBehavior
     private void OnMouseUp()
     {
         if (PauseManager.Instance.IsPaused) return;
-        if (GameManager.Instance.CurrentGameState != (GameManager.Instance.ScavengingState || GameManager.Instance.PreparationState)) return;
+        if (GameManager.Instance.CurrentGameState != GameManager.Instance.ScavengingState
+        && GameManager.Instance.CurrentGameState != GameManager.Instance.PreparationState) return;
 
         EndDrag();
     }
@@ -164,6 +178,7 @@ public class DraggableBehavior : ItemBehavior
 
     public void DropItem()
     {
+        Debug.Log("DROP ITEM");
         transform.DOScale(1f, .3f).SetEase(Ease.InBack).SetUpdate(true);
         gameObject.layer = LayerMask.NameToLayer("Default");
         _spriteRenderer.sortingLayerName = "Default";

@@ -90,7 +90,7 @@ public class DebugManager : MonoBehaviour
 
         // GAME
         DebugActionList.Add(DebugActionBuilder.Button().WithName("Win").WithGroup("Game").WithAction(() => WinCurrentNode()).WithClosePanelAfterTrigger(true));
-        DebugActionList.Add(DebugActionBuilder.Button().WithName("Loose").WithGroup("Game").WithAction(() => WinCurrentNode()).WithClosePanelAfterTrigger(true));
+        DebugActionList.Add(DebugActionBuilder.Button().WithName("Loose").WithGroup("Game").WithAction(() => LooseCurrentNode()).WithClosePanelAfterTrigger(true));
         
         // MAP
         DebugActionList.Add(DebugActionBuilder.Button().WithName("Generate new map").WithGroup("Map").WithAction(() => GenerateNewMap()));
@@ -107,6 +107,11 @@ public class DebugManager : MonoBehaviour
     public void WinCurrentNode()
     {
         GameManager.Instance?.SetGameState(GameManager.Instance.WinState);
+    }
+
+    public void LooseCurrentNode()
+    {
+        GameManager.Instance?.SetGameState(GameManager.Instance.GameOverState);
     }
 
     public void GenerateNewMap()

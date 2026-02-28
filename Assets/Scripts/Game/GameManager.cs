@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
     public int CurrentScore;
     public int CurrentDay;
     public int CurrentRound;
+    public int FoundPP;
 
     private void Start()
     {
@@ -54,7 +55,7 @@ public class GameManager : MonoBehaviour
                 // prepare interface for empty challenge
                 break;
             case MND_Scavenge_Classic:
-                UIManager.ScoreTextValue.SetTextValue(CurrentScore.ToString() + " / " + SaveManager.Instance.GetScavengeNode().ScoreGoal.ToString());
+                UIManager.ScoreTextValue.SetTextValue($"{CurrentScore} / {SaveManager.Instance.GetScavengeNode().ScoreGoal}");
                 UIManager.ScoreBarValue.SetBarValue(CurrentScore, SaveManager.Instance.GetScavengeNode().ScoreGoal);
                 break;
         }
