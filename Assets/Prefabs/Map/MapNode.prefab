@@ -208,10 +208,10 @@ MonoBehaviour:
   MapNodeRowIndex: 0
   _button: {fileID: 8895644914904312504}
   _icon: {fileID: 2848865452125443997}
-  _lineRendererPrefab: {fileID: 7816221521061035567, guid: b99a3df99dc347442982d41599449b1d, type: 3}
+  _lineRendererPrefab: {fileID: 9221902595523834785, guid: b99a3df99dc347442982d41599449b1d, type: 3}
   _previousNodeList: 
   NextNodeList: 
-  _lineRendererList: []
+  _mapLineList: []
   _uIbutton: {fileID: 9131030212169576512}
 --- !u!114 &8895644914904312504
 MonoBehaviour:

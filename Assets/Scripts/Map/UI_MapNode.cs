@@ -3,8 +3,9 @@ using NUnit.Framework.Constraints;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class UI_MapNode : MonoBehaviour
+public class UI_MapNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public MapNodeData MapNodeData;
     public int MapNodeIndex;
@@ -12,10 +13,10 @@ public class UI_MapNode : MonoBehaviour
     public int MapNodeRowIndex;
     [SerializeField] private Button _button;
     [SerializeField] private Image _icon;
-    [SerializeField] private UI_LineRenderer _lineRendererPrefab;
+    [SerializeField] private UI_MapLine _lineRendererPrefab;
     [SerializeField] private List<int> _previousNodeList = new();
     public List<int> NextNodeList = new();
-    [SerializeField] private List<UI_LineRenderer> _lineRendererList = new();
+    [SerializeField] private List<UI_MapLine> _mapLineList = new();
     [SerializeField] private UI_Button _uIbutton;
 
     public void SetupNode(MapNodeData nodeData, int nodeIndex, int columnIndex, int rowIndex)
@@ -33,24 +34,27 @@ public class UI_MapNode : MonoBehaviour
     {
         if (_previousNodeList.Contains(neighbourMapNode.MapNodeIndex)) return;
 
-        UI_LineRenderer lineRenderer = Instantiate(_lineRendererPrefab, MapManager.Instance.LineParent);
-        lineRenderer.transform.position = transform.position;
+        UI_MapLine mapLine = Instantiate(_lineRendererPrefab, MapManager.Instance.LineParent);
+        mapLine.StartMapNode = neighbourMapNode;
+        mapLine.EndMapNode = this;
 
-        if (xThenY) lineRenderer.points[1] = new Vector2(neighbourMapNode.transform.position.x - transform.position.x, 0);
-        else lineRenderer.points[1] = new Vector2(0, neighbourMapNode.transform.position.y - transform.position.y);
+        mapLine.transform.position = transform.position;
 
-        if (xThenY) lineRenderer.points[2] = new Vector2(neighbourMapNode.transform.position.x - transform.position.x, 0);
-        else lineRenderer.points[2] = new Vector2(0, neighbourMapNode.transform.position.y - transform.position.y);
+        if (xThenY) mapLine.LineRenderer.points[1] = new Vector2(neighbourMapNode.transform.position.x - transform.position.x, 0);
+        else mapLine.LineRenderer.points[1] = new Vector2(0, neighbourMapNode.transform.position.y - transform.position.y);
 
-        if (xThenY) lineRenderer.points[3] = new Vector2(neighbourMapNode.transform.position.x - transform.position.x, 0);
-        else lineRenderer.points[3] = new Vector2(0, neighbourMapNode.transform.position.y - transform.position.y);
+        if (xThenY) mapLine.LineRenderer.points[2] = new Vector2(neighbourMapNode.transform.position.x - transform.position.x, 0);
+        else mapLine.LineRenderer.points[2] = new Vector2(0, neighbourMapNode.transform.position.y - transform.position.y);
 
-        lineRenderer.points[4] = neighbourMapNode.transform.position - transform.position;
-        _lineRendererList.Add(lineRenderer);
+        if (xThenY) mapLine.LineRenderer.points[3] = new Vector2(neighbourMapNode.transform.position.x - transform.position.x, 0);
+        else mapLine.LineRenderer.points[3] = new Vector2(0, neighbourMapNode.transform.position.y - transform.position.y);
+
+        mapLine.LineRenderer.points[4] = neighbourMapNode.transform.position - transform.position;
+        _mapLineList.Add(mapLine);
 
         if (SaveManager.CurrentSave.CurrentRun.FormerNodeList.FindAll(x => x == neighbourMapNode.MapNodeIndex).Count > 0)
         {
-            lineRenderer.color = Color.red;
+            mapLine.LineRenderer.color = Color.red;
         }
         
         _previousNodeList.Add(neighbourMapNode.MapNodeIndex);
@@ -86,20 +90,49 @@ public class UI_MapNode : MonoBehaviour
 
     public bool AccessibleThroughNode(UI_MapNode startMapNode)
     {
-        Debug.Log("accessible through last node : " + (_previousNodeList.FindAll(x => x == startMapNode.MapNodeIndex).Count > 0));
         return (_previousNodeList.FindAll(x => x == startMapNode.MapNodeIndex).Count > 0);
     }
 
     public void SetWhiteLine()
     {
-        for (int i = 0; i < _lineRendererList.Count; i++)
+        for (int i = 0; i < _mapLineList.Count; i++)
         {
-            _lineRendererList[i].color = Color.white;
+            _mapLineList[i].LineRenderer.color = Color.white;
         }
+    }
+
+    public void ShowPathToHere()
+    {
+
     }
 
     private void OnDestroy()
     {
         transform.DOKill();
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (!_uIbutton.enabled) return;
+
+        UI_MapLine mapLine = _mapLineList.Find(x => x.StartMapNode == MapManager.Instance.GetLastNode());
+        if (mapLine != null)
+        {
+            mapLine.LineRenderer.color = Color.red;
+            mapLine.transform.SetAsLastSibling();
+        }
+        // show path line
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (!_uIbutton.enabled) return;
+
+        UI_MapLine mapLine = _mapLineList.Find(x => x.StartMapNode == MapManager.Instance.GetLastNode());
+        if (mapLine != null)
+        {
+            mapLine.LineRenderer.color = Color.white;
+        }
+        // hide path line
     }
 }

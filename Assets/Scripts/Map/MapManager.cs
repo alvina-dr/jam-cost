@@ -33,9 +33,11 @@ public class MapManager : MonoBehaviour
 
     [SerializeField] private List<UI_MapNode> _mapNodeList;
     [SerializeField] private List<int> _nodeNumberPerColumn;
-    [SerializeField] private UI_MapNode _startingMapNode;
-    [SerializeField] private UI_MapNode _endingMapNode;
+    public UI_MapNode StartingMapNode;
+    public UI_MapNode EndingMapNode;
     [SerializeField] private Vector2 _offsetRandomLimit;
+    [SerializeField] private Vector2 _interNodeSpace;
+    [SerializeField] private Vector3 _offsetGeneralMap;
 
     [Header("Tiles")]
     [SerializeField] private Transform _tileParent;
@@ -50,7 +52,7 @@ public class MapManager : MonoBehaviour
         if (_formerNodeList.Count == 0)
         {
             SaveManager.CurrentSave.CurrentRun.RandomSeed = (int)System.DateTime.Now.Ticks;
-            _formerNodeList.Add(_startingMapNode.MapNodeIndex);
+            _formerNodeList.Add(StartingMapNode.MapNodeIndex);
         }
 
         //_mapNodeList.Add(_startingMapNode);
@@ -68,8 +70,9 @@ public class MapManager : MonoBehaviour
                 UI_MapNode mapNode = Instantiate(_mapNodePrefab, _mapNodeParent);
 
                 int mapNodeIndex = i * _mapData.DailyChoiceList[0].MapNodeDataList.Count + j + 1; // + 1 because of the starting map node
-                mapNode.transform.localPosition = new Vector3(i * 200f, j * 200f, 0) + 
-                    new Vector3(Random.Range(-_offsetRandomLimit.x, _offsetRandomLimit.x), Random.Range(-_offsetRandomLimit.y, _offsetRandomLimit.y), 0);
+                mapNode.transform.localPosition = new Vector3(i * _interNodeSpace.x, j * _interNodeSpace.y, 0) + 
+                    new Vector3(Random.Range(-_offsetRandomLimit.x, _offsetRandomLimit.x), Random.Range(-_offsetRandomLimit.y, _offsetRandomLimit.y), 0)
+                    + _offsetGeneralMap;
                 mapNode.SetupNode(_mapData.DailyChoiceList[i].MapNodeDataList[j], _mapNodeList.Count, i, j);
                 _mapNodeList.Add(mapNode);
             }
@@ -83,16 +86,8 @@ public class MapManager : MonoBehaviour
 
         AddTiles();
 
-        if (_formerNodeList.Count > 1)
-        {
-            _currentMapNodeIcon.transform.position = _mapNodeList.Find(x => x.MapNodeIndex == _formerNodeList.Last()).transform.position;
-            _currentMapNodeIcon.transform.position += new Vector3(0, 75);
-        }
-        else
-        {
-            _currentMapNodeIcon.transform.position = _startingMapNode.transform.position;
-            _currentMapNodeIcon.transform.position += new Vector3(0, 75);
-        }
+        _currentMapNodeIcon.transform.position = GetLastNode().transform.position;
+        _currentMapNodeIcon.transform.position += new Vector3(0, 75);
     }
 
     public void LaunchNode(MapNodeData data)
@@ -145,7 +140,7 @@ public class MapManager : MonoBehaviour
             // on first column connect all nodes to starting node
             else if (_mapNodeList[i].MapNodeColumnIndex == 0)
             {
-                _mapNodeList[i].SetupLine(_startingMapNode, true);
+                _mapNodeList[i].SetupLine(StartingMapNode, true);
             }
             // we get all nodes from next column and pick random ones to connect with
             else if (_mapNodeList[i].MapNodeColumnIndex < _nodeNumberPerColumn.Count)
@@ -183,13 +178,13 @@ public class MapManager : MonoBehaviour
         List<UI_MapNode> lastColumnNodeList = GetNodeListFromColumn(_mapData.DailyChoiceList.Count - 1);
         for (int i = 0; i < lastColumnNodeList.Count; i++)
         {
-            _endingMapNode.SetupLine(lastColumnNodeList[i], false);
+            EndingMapNode.SetupLine(lastColumnNodeList[i], false);
         }
     }
 
     public void SetNodesState()
     {
-        UI_MapNode lastMapNode = _startingMapNode;
+        UI_MapNode lastMapNode = StartingMapNode;
         if (_formerNodeList.Count > 1
             && _formerNodeList[^1] != -1)
         {
@@ -262,5 +257,17 @@ public class MapManager : MonoBehaviour
     {
         if (includeInactive) return _mapNodeList.FindAll(x => x.MapNodeColumnIndex == columnIndex);
         return _mapNodeList.FindAll(x => x.MapNodeColumnIndex == columnIndex && x.gameObject.activeSelf);
+    }
+
+    public UI_MapNode GetLastNode()
+    {
+        if (_formerNodeList.Count > 1)
+        {
+            return _mapNodeList.Find(x => x.MapNodeIndex == _formerNodeList.Last());
+        }
+        else
+        {
+            return StartingMapNode;
+        }
     }
 }
