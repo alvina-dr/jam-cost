@@ -42,6 +42,11 @@ public class MainSceneToolbarButton
             EditorSceneManager.OpenScene("Assets/Scenes/MainMenu.unity");
         }
 
+        if (GUILayout.Button(new GUIContent("Onboarding", "Open Onboarding Scene")))
+        {
+            EditorSceneManager.OpenScene("Assets/Scenes/Onboarding.unity");
+        }
+
         if (GUILayout.Button(new GUIContent("New save", "Creates a new save")))
         {
             if (SaveManager.Instance != null)

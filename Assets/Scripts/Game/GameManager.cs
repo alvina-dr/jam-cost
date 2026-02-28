@@ -64,7 +64,6 @@ public class GameManager : MonoBehaviour
         SetCurrentScore(0);
         ItemManager.ResetDumpster();
         ScavengingState.UpdateItemNumberText();
-        UIManager.BonusList.UpdateBonusList();
 
         //List<BonusData> bonusDataFamilyList = SaveManager.CurrentSave.CurrentRun.CurrentRunBonusList.FindAll(x => x is BD_FamilyMultiplier familyMultiplier && familyMultiplier.FamilyBonus == chosenItemSlotList[index].CurrentBagItem.Data.Family);
 
@@ -89,7 +88,6 @@ public class GameManager : MonoBehaviour
     public void AddBonus(BonusData bonus)
     {
         SaveManager.CurrentSave.CurrentRun.CurrentRunBonusList.Add(bonus);
-        UIManager.BonusList.UpdateBonusList();
     }
 
     public void SetGameState(GameState newState)

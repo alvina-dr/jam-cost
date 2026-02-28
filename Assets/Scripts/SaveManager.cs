@@ -257,6 +257,7 @@ public class SaveManager : MonoBehaviour
         // Save stats
         public int NumberRunPlayed;
         public float TimePlayed;
+        public bool SeeOnboarding = false;
 
         // Permanent bonus stats
         public float PermanentRoundBonusTime = 0;

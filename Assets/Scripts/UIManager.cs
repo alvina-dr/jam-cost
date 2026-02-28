@@ -5,7 +5,6 @@ public class UIManager : MonoBehaviour
     public HoverPrice HoverPrice;
     public UI_TextValue Timer;
     public UI_TextValue RoundRemaining;
-    public UI_BonusList BonusList;
 
     [Header("Over check")]
     public UI_OverCheck CrateOverCheck;
