@@ -1,0 +1,20 @@
+﻿title: NPC_Racoon
+---
+// Racoon: Hi hello <wave>darling</wave>... Fancy seeing you there...
+Racoon: <wave>EUUH AAARG OUAAHEEEEYH</wave>
+Racoon: <wave>œrg æœrg euurgh</wave>
+Racoon: <wave>EUUH AAARG OUAAHEEEEEEEEEEEEEYH</wave>
+-> Racoon: <wave>œrg æœrg euurgh</wave>
+-> Racoon: œrg æœrg euurgh
+===
+
+title: NPC1_Ending
+---
+NPC: Arf. The manager of this floor seems to be absent.
+NPC: I’m not sure if they’re on leave or just taking a break that feels like an eternity, but it looks like you’ll have to wait to meet them.
+NPC: Lucky you—I’ve heard they’re pretty strict..
+NPC: In the mean time, thanks for your job here.
+NPC: You are a really precious asset to this company.
+NPC: Here you go. A few meal tickets <sprite name=MT> for you...
+NPC: See you later !
+===
