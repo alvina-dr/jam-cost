@@ -766,7 +766,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2016755954673155265, guid: ff42f5a1f35861246ab34dea339de961, type: 3}
       propertyPath: m_text
-      value: '!!!'
+      value: <wave>!!!
       objectReference: {fileID: 0}
     - target: {fileID: 2148701192055081680, guid: ff42f5a1f35861246ab34dea339de961, type: 3}
       propertyPath: m_Name
@@ -830,7 +830,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7174577954857152365, guid: ff42f5a1f35861246ab34dea339de961, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 589.3
+      value: 492.3
       objectReference: {fileID: 0}
     - target: {fileID: 7174577954857152365, guid: ff42f5a1f35861246ab34dea339de961, type: 3}
       propertyPath: m_AnchoredPosition.y

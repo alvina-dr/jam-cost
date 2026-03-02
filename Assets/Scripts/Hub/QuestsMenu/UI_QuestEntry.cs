@@ -24,6 +24,7 @@ public class UI_QuestEntry : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         _selected = false;
         _questData = data;
         _nameText.text = _questData.Data.Name;
+        _nameText.color = new Color32(56, 56, 56, 255);
 
         _newStatusParent.gameObject.SetActive(false);
         _collectStatusParent.gameObject.SetActive(false);
@@ -40,6 +41,7 @@ public class UI_QuestEntry : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                 _collectStatusParent.gameObject.SetActive(true);
                 break;
             case QuestData.QuestState.Collected:
+                _nameText.color = new Color32(121, 121, 121, 255);
                 _completedStatusParent.gameObject.SetActive(true);
                 break;
         }

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class UI_QuestsMenu : UI_Menu
 {
@@ -80,6 +81,8 @@ public class UI_QuestsMenu : UI_Menu
         {
             _currentQuestData.CollectQuest();
             HubManager.Instance.UpdateAllUnlocks();
+            Setup();
+            _currentQuestEntry.TrySetupTicket();
         }
     }
 }
