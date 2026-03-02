@@ -1579,6 +1579,14 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6149628572618597448, guid: 6078906bcf72a2e4db5ea9bae06291c0, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 98
+      objectReference: {fileID: 0}
+    - target: {fileID: 6149628572618597448, guid: 6078906bcf72a2e4db5ea9bae06291c0, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 98
+      objectReference: {fileID: 0}
     - target: {fileID: 7200766266673933735, guid: 6078906bcf72a2e4db5ea9bae06291c0, type: 3}
       propertyPath: m_Name
       value: EndingMapNode
@@ -1589,7 +1597,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: e5fcb8f75e750cc46baf27d128003a42, type: 2}
     - target: {fileID: 8895644914904312504, guid: 6078906bcf72a2e4db5ea9bae06291c0, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

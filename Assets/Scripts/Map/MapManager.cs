@@ -229,6 +229,12 @@ public class MapManager : MonoBehaviour
                 }
             }
         }
+
+        if (lastMapNode.MapNodeColumnIndex != _nodeNumberPerColumn.Count - 1)
+        {
+            Debug.Log("Not last column");
+            EndingMapNode.DeactivateNode();
+        }
     }
 
     public void ConnectNodesPerColumn()
