@@ -60,6 +60,11 @@ public class UI_PermanentBonusShop : UI_Menu
 
     public void SetupTicket(BonusData bonusData, UI_BuyPermanentBonusSlot permanentBonusSlot)
     {
+        for (int i = 0; i < _buyPermanentBonusSlotList.Count; i++)
+        {
+            _buyPermanentBonusSlotList[i].Deselect();
+        }
+
         if (bonusData == null)
         {
             _bonusIcon.sprite = null;

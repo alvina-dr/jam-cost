@@ -978,7 +978,7 @@ GameObject:
   - component: {fileID: 583701784}
   - component: {fileID: 583701785}
   m_Layer: 0
-  m_Name: LockerDoor
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1043,7 +1043,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: e2115896e73bc184dae25ea6b9704fd4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9610056d0b38fb24587d96bcf3ddb828, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1270,7 +1270,7 @@ GameObject:
   - component: {fileID: 1104332687}
   - component: {fileID: 1104332686}
   m_Layer: 0
-  m_Name: LockerDoor (1)
+  m_Name: Outline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1364,7 +1364,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: e2115896e73bc184dae25ea6b9704fd4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9610056d0b38fb24587d96bcf3ddb828, type: 3}
   m_Color: {r: 1, g: 0.74343246, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2945,7 +2945,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -2.14, y: 0.92, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 583701784}
@@ -3010,12 +3010,19 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.10862732, y: 0.37205186}
-      - {x: -0.17772122, y: 0.20863071}
-      - {x: -0.17397633, y: -0.35319102}
-      - {x: -0.116053104, y: -0.37395}
-      - {x: 0.1771788, y: -0.2116264}
-      - {x: 0.17604136, y: 0.3639392}
+    - - {x: 0.20727384, y: 0.8248831}
+      - {x: -0.5106012, y: 0.40399328}
+      - {x: -0.50359714, y: -0.7127329}
+      - {x: -0.2803979, y: -0.82947236}
+      - {x: 0.441765, y: -0.42508096}
+      - {x: 0.44349897, y: -0.34080666}
+      - {x: 0.5114986, y: -0.25007546}
+      - {x: 0.49493873, y: -0.1648494}
+      - {x: 0.44001913, y: -0.139296}
+      - {x: 0.5116155, y: -0.053936362}
+      - {x: 0.48352313, y: 0.042223692}
+      - {x: 0.43577492, y: 0.04409319}
+      - {x: 0.4346758, y: 0.6906282}
   m_UseDelaunayMesh: 0
 --- !u!114 &2060670222
 MonoBehaviour:

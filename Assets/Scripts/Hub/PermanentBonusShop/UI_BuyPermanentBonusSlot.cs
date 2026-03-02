@@ -20,6 +20,8 @@ public class UI_BuyPermanentBonusSlot : MonoBehaviour
     [SerializeField] private Image _bonusUpgradeLevel;
     [SerializeField] private List<Image> _bonusUpgradeLevelList;
 
+    [SerializeField] private Image _highlight;
+
     public void Setup(BonusData bonusData)
     {
         bool everythingBought = true;
@@ -117,6 +119,8 @@ public class UI_BuyPermanentBonusSlot : MonoBehaviour
 
             }
         }
+
+        Select();
     }
 
     private void DestroyAllChildren(Transform parent)
@@ -125,5 +129,15 @@ public class UI_BuyPermanentBonusSlot : MonoBehaviour
         {
             Destroy(parent.GetChild(i).gameObject);
         }
+    }
+
+    public void Select()
+    {
+        _highlight.gameObject.SetActive(true);
+    }
+
+    public void Deselect()
+    {
+        _highlight.gameObject.SetActive(false);
     }
 }
