@@ -10,6 +10,7 @@ public class UI_QuestsMenu : UI_Menu
     [Header("Components")]
     [SerializeField] private TextMeshProUGUI _questName;
     [SerializeField] private TextMeshProUGUI _questDescription;
+    [SerializeField] private TextMeshProUGUI _questButtonText;
 
     private QuestData _currentQuestData;
     private UI_QuestEntry _currentQuestEntry;
@@ -51,11 +52,33 @@ public class UI_QuestsMenu : UI_Menu
         if (questData == null) return;
 
         _questName.text = questData.Data.Name;
-        _questDescription.text = questData.Data.Description;
+        _questDescription.text = questData.Description;
+
+        switch (_currentQuestData.Data.State)
+        {
+            case QuestData.QuestState.New:
+            case QuestData.QuestState.Completing:
+                _questButtonText.text = $"{questData.Reward} <sprite name=MT>";
+                break;
+            case QuestData.QuestState.WaitCollection:
+                _questButtonText.text = $"Collect ({questData.Reward} <sprite name=MT>)";
+                break;
+            case QuestData.QuestState.Collected:
+                _questButtonText.text = "Complete";
+                break;
+        }
     }
 
     public override void CloseMenu()
     {
         base.CloseMenu();
+    }
+
+    public void TicketButton()
+    {
+        if (_currentQuestData.Data.State ==  QuestData.QuestState.WaitCollection)
+        {
+            _currentQuestData.CollectQuest();
+        }
     }
 }

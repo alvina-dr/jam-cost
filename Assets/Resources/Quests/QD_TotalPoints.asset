@@ -9,10 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd0982852bf7c5d40843d35662aa5187, type: 3}
-  m_Name: QD_Generic
+  m_Script: {fileID: 11500000, guid: 0ca9c66ec6d25dc42b7e208c789390de, type: 3}
+  m_Name: QD_TotalPoints
   m_EditorClassIdentifier: 
   Data:
-    Name: Quest 1
-    Description: 
+    Name: Beginnings
     State: 0
+  Reward: 3
+  Description: Reach a total of a 1000 cumulated points.
+  Goal: 1000

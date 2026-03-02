@@ -241,13 +241,11 @@ public class SaveManager : MonoBehaviour
 
         public int MealTickets;
         [SerializeReference] public List<BonusData> PermanentBonusList = new();
-        [HideInInspector] public List<string> PermanentBonusListName = new();
         
         [SerializeReference] public List<PowerData> UnlockedPowerDataList = new();
         [HideInInspector] public List<string> UnlockedPowerDataListName = new();
         
         [SerializeReference] public List<PowerData> EquipedPowerDataList = new();
-        [HideInInspector] public List<string> EquipedPowerDataListName = new();
 
         [SerializeReference] public int EquipedPowerMax = 1;
 
@@ -255,6 +253,9 @@ public class SaveManager : MonoBehaviour
         public bool SeeOnboarding = false;
         public int NumberRunPlayed;
         public float TimePlayed;
+
+        // Quests stats
+        public int TotalPoints;
         public int PPSpentRunShop;
         public int PPConvertedToMT;
 

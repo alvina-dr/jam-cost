@@ -9,10 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd0982852bf7c5d40843d35662aa5187, type: 3}
-  m_Name: QD_Generic 3
+  m_Script: {fileID: 11500000, guid: b5a477b8871526a43bbe1456e3ff045d, type: 3}
+  m_Name: QD_PPSpentRunShop
   m_EditorClassIdentifier: 
   Data:
-    Name: Here we gooo
-    Description: Alriiight
+    Name: A small break
     State: 0
+  Reward: 3
+  Description: Spend 5 productivity points <sprite name=PP> at the vending machine.
+  Goal: 5

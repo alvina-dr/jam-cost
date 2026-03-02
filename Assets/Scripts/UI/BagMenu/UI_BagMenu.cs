@@ -233,6 +233,8 @@ public class UI_BagMenu : MonoBehaviour
         countAnimation.AppendCallback(() =>
         {
             GameManager.Instance.SetCurrentScore(GameManager.Instance.CurrentScore + roundScore);
+            SaveManager.CurrentSave.TotalPoints += roundScore;
+            QuestManager.Instance.CheckQuestCompletionByType<QD_TotalPoints>();
             _scoreBar.SetBarValue(GameManager.Instance.CurrentScore, SaveManager.Instance.GetScavengeNode().ScoreGoal);
             _currentScoreText.SetTextValue($"{GameManager.Instance.CurrentScore} / {SaveManager.Instance.GetScavengeNode().ScoreGoal}");
             _roundScoreParent.gameObject.SetActive(false);
