@@ -23,6 +23,7 @@ public class PauseManager : MonoBehaviour
     public bool IsPaused { get; private set; }
 
     [SerializeField] private UI_Menu _menu;
+    [SerializeField] private UI_Pause_BonusMenu _bonusMenu;
 
     public void SetupActionInput()
     {
@@ -58,6 +59,7 @@ public class PauseManager : MonoBehaviour
 
     public void CloseMenu()
     {
+        _bonusMenu.CloseMenu();
         _menu.CloseMenu();
     }
 
