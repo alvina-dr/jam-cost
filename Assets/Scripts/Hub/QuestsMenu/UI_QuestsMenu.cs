@@ -37,7 +37,7 @@ public class UI_QuestsMenu : UI_Menu
 
         for (int i = 0; i < _questEntryList.Count; i++)
         {
-            if (i < questDataList.Count)
+            if (i < orderedQuestDataList.Count)
             {
                 _questEntryList[i].gameObject.SetActive(true);
                 _questEntryList[i].Setup(orderedQuestDataList[i]);

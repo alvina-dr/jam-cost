@@ -10,10 +10,16 @@ public class QuestData : ScriptableObject
 
     public enum QuestState
     {
-        New = 0,
-        Completing = 1,
-        WaitCollection = 2,
-        Collected = 3
+        Hidden = 0,
+        New = 1,
+        Completing = 2,
+        WaitCollection = 3,
+        Collected = 4
+    }
+
+    public void DiscoverQuest()
+    {
+        Data.State = QuestState.New;
     }
 
     public virtual bool CheckQuestCompletion()
