@@ -166,6 +166,7 @@ public class UI_PermanentBonusShop : UI_Menu
             }
 
             SetupTicket(correctBonusData, _buyPermanentBonusSlotList[0]);
+            _buyPermanentBonusSlotList[0].Select();
         }
         else
         {
