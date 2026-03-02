@@ -26,12 +26,21 @@ public class UI_QuestsMenu : UI_Menu
     public void Setup()
     {
         List<QuestData> questDataList = QuestManager.Instance.QuestDataDictionary.Values.ToList();
+
+        List<QuestData> orderedQuestDataList = new();
+
+        orderedQuestDataList.AddRange(questDataList.FindAll(x => x.Data.State == QuestData.QuestState.WaitCollection));
+        orderedQuestDataList.AddRange(questDataList.FindAll(x => x.Data.State == QuestData.QuestState.New));
+        orderedQuestDataList.AddRange(questDataList.FindAll(x => x.Data.State == QuestData.QuestState.Completing));
+        orderedQuestDataList.AddRange(questDataList.FindAll(x => x.Data.State == QuestData.QuestState.Collected));
+
+
         for (int i = 0; i < _questEntryList.Count; i++)
         {
             if (i < questDataList.Count)
             {
                 _questEntryList[i].gameObject.SetActive(true);
-                _questEntryList[i].Setup(questDataList[i]);
+                _questEntryList[i].Setup(orderedQuestDataList[i]);
             }
             else
             {
