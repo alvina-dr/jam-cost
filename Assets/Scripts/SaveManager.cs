@@ -251,7 +251,8 @@ public class SaveManager : MonoBehaviour
 
         // Save stats
         public bool SeeOnboarding = false;
-        public bool SeeNPCFirstTime = false;
+        public bool HubFirstTime = false;
+        public bool ShopFirstTime = false;
         public bool SeeNewFrigo = false;
         public int NumberRunPlayed;
         public float TimePlayed;

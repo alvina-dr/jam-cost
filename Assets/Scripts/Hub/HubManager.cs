@@ -28,10 +28,10 @@ public class HubManager : MonoBehaviour
 
     private void Start()
     {
-        if (!SaveManager.CurrentSave.SeeNPCFirstTime)
+        if (!SaveManager.CurrentSave.HubFirstTime)
         {
             DialogueManager.Instance.DialogueRunner.StartDialogue("NPC1_Introduction");
-            SaveManager.CurrentSave.SeeNPCFirstTime = true;
+            SaveManager.CurrentSave.HubFirstTime = true;
         }
     }
 

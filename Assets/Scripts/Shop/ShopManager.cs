@@ -27,6 +27,12 @@ public class ShopManager : MonoBehaviour
     private void Start()
     {
         BonusMenu.SelectBonusList();
+
+        if (!SaveManager.CurrentSave.ShopFirstTime)
+        {
+            DialogueManager.Instance.DialogueRunner.StartDialogue("NPC1_ShopFirstTime");
+            SaveManager.CurrentSave.ShopFirstTime = true;
+        }
     }
 
     public void LeaveShop()
