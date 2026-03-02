@@ -18,3 +18,8 @@ NPC: You are a really precious asset to this company.
 NPC: Here you go. A few meal tickets <sprite name=MT> for you...
 NPC: See you later !
 ===
+
+title: NPC1_NewFrigo
+---
+NPC: Frigo Réparé, Dialogue PNJ
+===
