@@ -19,6 +19,9 @@ public class UI_MapNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     [SerializeField] private List<UI_MapLine> _mapLineList = new();
     [SerializeField] private UI_Button _uIbutton;
 
+    [Header("offset size for corners")]
+    [SerializeField] private Vector2 _cornerOffset;
+
     public void SetupNode(MapNodeData nodeData, int nodeIndex, int columnIndex, int rowIndex)
     {
         MapNodeData = nodeData;
@@ -39,17 +42,20 @@ public class UI_MapNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         mapLine.EndMapNode = this;
 
         mapLine.transform.position = transform.position;
+        Vector2 endPosition = neighbourMapNode.transform.position - transform.position;
 
-        if (xThenY) mapLine.LineRenderer.points[1] = new Vector2(neighbourMapNode.transform.position.x - transform.position.x, 0);
-        else mapLine.LineRenderer.points[1] = new Vector2(0, neighbourMapNode.transform.position.y - transform.position.y);
+        // if both nodes are on the same line
+        if (endPosition.y != 0)
+        {
+            if (xThenY) mapLine.LineRenderer.points[1] = new Vector2(endPosition.x + _cornerOffset.x, 0);
+            else mapLine.LineRenderer.points[1] = new Vector2(0, endPosition.y + (endPosition.y < 0 ? _cornerOffset.y : -_cornerOffset.y));
 
-        if (xThenY) mapLine.LineRenderer.points[2] = new Vector2(neighbourMapNode.transform.position.x - transform.position.x, 0);
-        else mapLine.LineRenderer.points[2] = new Vector2(0, neighbourMapNode.transform.position.y - transform.position.y);
+            if (xThenY) mapLine.LineRenderer.points[2] = new Vector2(endPosition.x, (endPosition.y < 0 ?- _cornerOffset.y : _cornerOffset.y));
+            else mapLine.LineRenderer.points[2] = new Vector2(-_cornerOffset.x, endPosition.y);
+        }
 
-        if (xThenY) mapLine.LineRenderer.points[3] = new Vector2(neighbourMapNode.transform.position.x - transform.position.x, 0);
-        else mapLine.LineRenderer.points[3] = new Vector2(0, neighbourMapNode.transform.position.y - transform.position.y);
+        mapLine.LineRenderer.points[3] = endPosition;
 
-        mapLine.LineRenderer.points[4] = neighbourMapNode.transform.position - transform.position;
         _mapLineList.Add(mapLine);
 
         if (SaveManager.CurrentSave.CurrentRun.FormerNodeList.FindAll(x => x == neighbourMapNode.MapNodeIndex).Count > 0)

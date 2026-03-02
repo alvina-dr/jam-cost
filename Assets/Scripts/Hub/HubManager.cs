@@ -22,32 +22,9 @@ public class HubManager : MonoBehaviour
     }
     #endregion
 
-    public GameObject BreakRoom;
-    public GameObject InsideLocker;
-    [SerializeField] private List<HubUpgrade> _hubUpgradeList = new();
     public UI_PowerShop PowerShop;
     public UI_PermanentBonusShop PermanentBonusShop;
-
-    [Button]
-    public void UpdateUpgradeList()
-    {
-        _hubUpgradeList.Clear();
-        _hubUpgradeList = FindObjectsByType<HubUpgrade>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToList();
-    }
-
-    [Button]
-    public void OpenLocker()
-    {
-        BreakRoom.SetActive(false);
-        InsideLocker.SetActive(true);
-    }
-
-    [Button]
-    public void CloseLocker()
-    {
-        BreakRoom.SetActive(true);
-        InsideLocker.SetActive(false);
-    }
+    public UI_QuestsMenu QuestsMenu;
 
     public void OpenPowerShop()
     {
@@ -59,24 +36,14 @@ public class HubManager : MonoBehaviour
         PermanentBonusShop.OpenMenu();
     }
 
+    public void OpenQuestMenu()
+    {
+        QuestsMenu.OpenMenu();
+    }
+
     public void LaunchNewRun()
     {
         SceneManager.LoadScene("Map");
         SaveManager.Instance.StartNewRun();
-    }
-
-    public void UseMealTicket(int cost)
-    {
-        SaveManager.CurrentSave.MealTickets -= cost;
-        UpdateUpgrades();
-        // actualize UI 
-    }
-
-    public void UpdateUpgrades()
-    {
-        for (int i = 0; i < _hubUpgradeList.Count; i++)
-        {
-            _hubUpgradeList[i].UpdatePrice();
-        }
     }
 }

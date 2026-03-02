@@ -16,7 +16,7 @@ public class DataLoader : MonoBehaviour
         else
         {
             Instance = this;
-            DontDestroyOnLoad(this);
+            DontDestroyOnLoad(this.gameObject);
             OnAwake();
         }
     }
@@ -53,6 +53,7 @@ public class DataLoader : MonoBehaviour
         }
     }
 
+
     public BonusData TakeRandomBonusData(BonusData.BonusDurability bonusDurability = BonusData.BonusDurability.Run, List<BonusData> formerList = null)
     {
         // Get all possible bonus
@@ -83,39 +84,17 @@ public class DataLoader : MonoBehaviour
 
     public BonusData TakeRunSpecificBonus(BonusData bonusData, BonusData.BonusDurability bonusDurability = BonusData.BonusDurability.Run)
     {
-        switch (bonusDurability)
+        if (RunBonusDataList.Contains(bonusData))
         {
-            case BonusData.BonusDurability.Run:
-                if (RunBonusDataList.Contains(bonusData))
-                {
-                    RunBonusDataList.Remove(bonusData);
-                    return bonusData;
-                }
-                break;
-
-            case BonusData.BonusDurability.Permanent:
-                if (PermanentBonusDataList.Contains(bonusData))
-                {
-                    PermanentBonusDataList.Remove(bonusData);
-                    return bonusData;
-                }
-                break;
+            RunBonusDataList.Remove(bonusData);
+            return bonusData;
         }
         return null;
     }
 
     public BonusData TakeRunBonusByName(string bonusName, BonusData.BonusDurability bonusDurability = BonusData.BonusDurability.Run)
     {
-        switch (bonusDurability)
-        {
-            case BonusData.BonusDurability.Run:
-                return TakeRunSpecificBonus(RunBonusDataList.Find(x => x.name == bonusName), bonusDurability);
-            case BonusData.BonusDurability.Permanent:
-                return TakeRunSpecificBonus(PermanentBonusDataList.Find(x => x.name == bonusName), bonusDurability);
-        }
-
-        Debug.LogError("ERROR : bonus durability case not treated.");
-        return null;
+        return TakeRunSpecificBonus(RunBonusDataList.Find(x => x.name == bonusName));
     }
 
     public List<BonusData> GetBonusDataList(BonusData.BonusDurability bonusDurability = BonusData.BonusDurability.Run)

@@ -118,16 +118,14 @@ public class MapManager : MonoBehaviour
     public void RemoveRandomNode()
     {
         int column = Random.Range(0, _nodeNumberPerColumn.Count);
-        //List<UI_MapNode> columnNodeList = GetNodeListFromColumn(column);
 
         for (int i = 0; i < _nodeNumberPerColumn.Count; i++)
         {
-            List<UI_MapNode> columnNodeListTest = GetNodeListFromColumn(i);
+            List<UI_MapNode> columnNodeList = GetNodeListFromColumn(i);
 
-            if (columnNodeListTest.Count > 1)
+            if (columnNodeList.Count > 1)
             {
-                Debug.Log("deactivate node on column : " + i);
-                columnNodeListTest[Random.Range(0, columnNodeListTest.Count)].gameObject.SetActive(false);
+                columnNodeList[Random.Range(0, columnNodeList.Count)].gameObject.SetActive(false);
             }
         }
     }
@@ -182,6 +180,11 @@ public class MapManager : MonoBehaviour
         {
             EndingMapNode.SetupLine(lastColumnNodeList[i], false);
         }
+
+        for (int i = 0; i < 1; i++)
+        {
+            ConnectNodesPerColumn();
+        }
     }
 
     public void SetNodesState()
@@ -221,6 +224,30 @@ public class MapManager : MonoBehaviour
                         }
                     }
                 }
+            }
+        }
+    }
+
+    public void ConnectNodesPerColumn()
+    {
+        // connect a node per column to previous column
+        for (int i = 1; i < _nodeNumberPerColumn.Count; i++)
+        {
+            List<UI_MapNode> columnNodeList = GetNodeListFromColumn(i);
+            List<UI_MapNode> previousColumnNodeList = GetNodeListFromColumn(i - 1);
+
+
+            UI_MapNode randomNode = columnNodeList[Random.Range(0, columnNodeList.Count)];
+
+            UI_MapNode sameRowMapNode = previousColumnNodeList.Find(x => x.MapNodeRowIndex == randomNode.MapNodeRowIndex);
+            if (sameRowMapNode != null) previousColumnNodeList.Remove(sameRowMapNode);
+            Debug.Log("previous column node list count : " + previousColumnNodeList.Count);
+
+            if (previousColumnNodeList.Count != 0)
+            {
+                UI_MapNode closestPreviousNode = previousColumnNodeList.Aggregate((x, y) => System.Math.Abs(x.MapNodeRowIndex - _mapNodeList[i].MapNodeRowIndex) < System.Math.Abs(y.MapNodeRowIndex - _mapNodeList[i].MapNodeRowIndex) ? x : y);
+
+                randomNode.SetupLine(closestPreviousNode, false);
             }
         }
     }

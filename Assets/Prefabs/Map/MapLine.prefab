@@ -58,6 +58,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e949bec83dc04b4b959d0626d63b6e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartMapNode: {fileID: 0}
+  EndMapNode: {fileID: 0}
   LineRenderer: {fileID: 7816221521061035567}
 --- !u!114 &7816221521061035567
 MonoBehaviour:
@@ -80,7 +82,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   points:
-  - {x: 0, y: 0}
   - {x: 0, y: 0}
   - {x: 0, y: 0}
   - {x: 0, y: 0}

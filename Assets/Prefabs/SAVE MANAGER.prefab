@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1102212129726004946}
   - component: {fileID: 6436201847158242453}
+  - component: {fileID: 4494955558298098340}
   m_Layer: 0
   m_Name: SAVE MANAGER
   m_TagString: Untagged
@@ -45,7 +46,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentMapNode: {fileID: 11400000, guid: cffc50a3e8ada694c92f6e77cad39c5c, type: 2}
-  CurrentSave:
-    CurrentDay: 0
-  StartingSave:
-    CurrentDay: 0
+  _currentSave:
+    LastSceneName: Hub
+    MealTickets: 0
+    PermanentBonusList: []
+    PermanentBonusListName: []
+    UnlockedPowerDataList: []
+    UnlockedPowerDataListName: []
+    EquipedPowerDataList: []
+    EquipedPowerDataListName: []
+    EquipedPowerMax: 1
+    NumberRunPlayed: 0
+    TimePlayed: 0
+    SeeOnboarding: 0
+    PermanentRoundBonusTime: 0
+    RunStartLootPP: 0
+    EveryNodeLootPP: 0
+    RunStartRerolls: 0
+    CurrentRun:
+      RandomSeed: 0
+      CurrentNode: 0
+      ProductivityPoints: 0
+      Rerolls: 0
+      TotalRunDuration: 0
+      RunRoundBonusTime: 0
+      CurrentRunBonusList: []
+      CurrentRunBonusListName: []
+      FormerNodeList: 
+--- !u!114 &4494955558298098340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6468123659638565399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89d83d19d147c1d499e0930f18f3d7ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  QuestDataList: []

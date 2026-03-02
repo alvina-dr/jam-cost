@@ -2,10 +2,9 @@ using UnityEngine;
 
 public class HubManagerRelay : MonoBehaviour
 {
-    public void OpenLocker() => HubManager.Instance.OpenLocker();
-    public void CloseLocker() => HubManager.Instance.CloseLocker();
     public void LaunchNewRun() => HubManager.Instance.LaunchNewRun();
     public void OpenPowerShop() => HubManager.Instance.OpenPowerShop();
     public void OpenPermanentBonusShop() => HubManager.Instance.OpenPermanentBonusShop();
+    public void OpenQuestMenu() => HubManager.Instance.OpenQuestMenu();
 
 }

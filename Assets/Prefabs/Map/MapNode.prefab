@@ -213,6 +213,7 @@ MonoBehaviour:
   NextNodeList: 
   _mapLineList: []
   _uIbutton: {fileID: 9131030212169576512}
+  _cornerOffset: {x: 20, y: 20}
 --- !u!114 &8895644914904312504
 MonoBehaviour:
   m_ObjectHideFlags: 0

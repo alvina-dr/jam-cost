@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc3c0cb01f57d654aa7836b51964635d, type: 3}
   m_Name: BD_RunStartLoot_PP
   m_EditorClassIdentifier: 
-  IsAvailableInGame: 0
+  IsAvailableInGame: 1
   Durability: 1
   Category: 2
   Name: Start with PP

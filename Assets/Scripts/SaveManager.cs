@@ -2,6 +2,7 @@ using PrimeTween;
 using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -177,21 +178,16 @@ public class SaveManager : MonoBehaviour
         string jsonFile = System.IO.File.ReadAllText($"{Application.persistentDataPath}/Save.json");
         _currentSave = JsonUtility.FromJson<SaveData>(jsonFile);
 
-        // CURRENT RUN BONUS LIST
-        CurrentSave.CurrentRun.CurrentRunBonusList.Clear();
-        for (int i = 0; i < CurrentSave.CurrentRun.CurrentRunBonusListName.Count; i++)
+        // Update bonus taken for Data Loader
+        for (int i = 0; i < CurrentSave.CurrentRun.CurrentRunBonusList.Count; i++)
         {
-            CurrentSave.CurrentRun.CurrentRunBonusList.Add(DataLoader.Instance.TakeRunBonusByName(CurrentSave.CurrentRun.CurrentRunBonusListName[i]));
+            DataLoader.Instance.TakeRunSpecificBonus(CurrentSave.CurrentRun.CurrentRunBonusList[i]);
         }
-        CurrentSave.CurrentRun.CurrentRunBonusListName.Clear();
 
-        // PERMANENT BONUS
-        CurrentSave.PermanentBonusList.Clear();
-        for (int i = 0; i < CurrentSave.PermanentBonusListName.Count; i++)
+        for (int i = 0; i < CurrentSave.ModifiedQuestList.Count; i++)
         {
-            CurrentSave.PermanentBonusList.Add(DataLoader.Instance.TakeRunBonusByName(CurrentSave.PermanentBonusListName[i]));
+            QuestManager.Instance.QuestDataDictionary[CurrentSave.ModifiedQuestList[i].Name].Data = CurrentSave.ModifiedQuestList[i];
         }
-        CurrentSave.PermanentBonusListName.Clear();
 
         // POWER UNLOCKED
         CurrentSave.UnlockedPowerDataList.Clear();
@@ -219,10 +215,11 @@ public class SaveManager : MonoBehaviour
         //}
         CurrentSave.LastSceneName = SceneManager.GetActiveScene().name;
 
-        CurrentSave.CurrentRun.CurrentRunBonusListName.Clear();
-        for (int i = 0; i < CurrentSave.CurrentRun.CurrentRunBonusList.Count; i++)
+        CurrentSave.ModifiedQuestList.Clear();
+        List<QuestData> questDataList = QuestManager.Instance.QuestDataDictionary.Values.ToList();
+        for (int i = 0; i < questDataList.Count; i++)
         {
-            CurrentSave.CurrentRun.CurrentRunBonusListName.Add(CurrentSave.CurrentRun.CurrentRunBonusList[i].name);
+            CurrentSave.ModifiedQuestList.Add(questDataList[i].Data);
         }
 
         string save = JsonUtility.ToJson(CurrentSave, true);
@@ -255,9 +252,11 @@ public class SaveManager : MonoBehaviour
         [SerializeReference] public int EquipedPowerMax = 1;
 
         // Save stats
+        public bool SeeOnboarding = false;
         public int NumberRunPlayed;
         public float TimePlayed;
-        public bool SeeOnboarding = false;
+        public int PPSpentRunShop;
+        public int PPConvertedToMT;
 
         // Permanent bonus stats
         public float PermanentRoundBonusTime = 0;
@@ -265,7 +264,8 @@ public class SaveManager : MonoBehaviour
         public int EveryNodeLootPP = 0;
         public int RunStartRerolls = 0;
 
-        public RunData CurrentRun = new RunData();
+        public RunData CurrentRun = new();
+        public List<QuestData.QuestDataClass> ModifiedQuestList = new();
 
         public SaveData() { }
     }
@@ -282,7 +282,6 @@ public class SaveManager : MonoBehaviour
         public float RunRoundBonusTime = 0;
 
         public List<BonusData> CurrentRunBonusList = new();
-        [HideInInspector] public List<string> CurrentRunBonusListName = new();
         public List<int> FormerNodeList = new();
 
         public RunData () { }
