@@ -46,4 +46,13 @@ public class HubManager : MonoBehaviour
         SceneManager.LoadScene("Map");
         SaveManager.Instance.StartNewRun();
     }
+
+    public void UpdateAllUnlocks()
+    {
+        List<Unlockable_Quest> unlockableList = FindObjectsByType<Unlockable_Quest>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToList();
+        for (int i = 0; i < unlockableList.Count; i++)
+        {
+            unlockableList[i].UpdateUnlock();
+        }
+    }
 }

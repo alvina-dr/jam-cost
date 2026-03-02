@@ -79,6 +79,7 @@ public class UI_QuestsMenu : UI_Menu
         if (_currentQuestData.Data.State ==  QuestData.QuestState.WaitCollection)
         {
             _currentQuestData.CollectQuest();
+            HubManager.Instance.UpdateAllUnlocks();
         }
     }
 }

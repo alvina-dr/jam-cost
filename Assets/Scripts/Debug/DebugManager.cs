@@ -100,6 +100,13 @@ public class DebugManager : MonoBehaviour
         DebugActionList.Add(DebugActionBuilder.Button().WithName("Meal Tickets").WithGroup("Gain").WithAction(() => SaveManager.Instance.AddMT(100)));
         DebugActionList.Add(DebugActionBuilder.Button().WithName("Rerolls").WithGroup("Gain").WithAction(() => SaveManager.CurrentSave.CurrentRun.Rerolls++));
 
+        List<QuestData> questDataList = QuestManager.Instance.QuestDataDictionary.Values.ToList();
+        for (int i = 0; i < questDataList.Count; i++)
+        {
+            int index = i;
+            DebugActionList.Add(DebugActionBuilder.Button().WithName(questDataList[index].Data.Name).WithGroup("Quest/Achieve").WithAction(() => questDataList[index].SetQuestToWaitCollection()));
+        }
+
         RuntimeDebugSystem.RegisterActions(DebugActionList.ToArray());
         DebugActionArray = RuntimeDebugSystem.RegisterActionsAuto(this);
     }
