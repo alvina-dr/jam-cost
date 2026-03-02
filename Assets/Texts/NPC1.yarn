@@ -1,6 +1,5 @@
 ﻿title: NPC_Racoon
 ---
-// Racoon: Hi hello <wave>darling</wave>... Fancy seeing you there...
 Racoon: <wave>EUUH AAARG OUAAHEEEEYH</wave>
 Racoon: <wave>œrg æœrg euurgh</wave>
 Racoon: <wave>EUUH AAARG OUAAHEEEEEEEEEEEEEYH</wave>
@@ -10,13 +9,13 @@ Racoon: <wave>EUUH AAARG OUAAHEEEEEEEEEEEEEYH</wave>
 
 title: NPC1_Ending
 ---
-NPC: Arf. The manager of this floor seems to be absent.
-NPC: I’m not sure if they’re on leave or just taking a break that feels like an eternity, but it looks like you’ll have to wait to meet them.
-NPC: Lucky you—I’ve heard they’re pretty strict..
-NPC: In the mean time, thanks for your job here.
-NPC: You are a really precious asset to this company.
-NPC: Here you go. A few meal tickets <sprite name=MT> for you...
-NPC: See you later !
+Arf. The manager of this floor seems to be absent.
+I’m not sure if they’re on leave or just taking a break that feels like an eternity, but it looks like you’ll have to wait to meet them.
+Lucky you—I’ve heard they’re pretty strict..
+In the mean time, thanks for your job here.
+You are a really precious asset to this company.
+Here you go. A few meal tickets <sprite name=MT> for you...
+See you later !
 ===
 
 title: NPC1_NewFrigo
@@ -25,4 +24,13 @@ Oh sweet, the <wave>fridge</wave> is back! I can’t wait to watch other employe
 -> Dee: My favourite office drama!
 -> Dee: Are you the one stealing them?
     You can’t prove anything girl, step back.
+===
+title: NPC1_Introduction
+---
+Hey Dee, did you notice? You can clock in when you begin your day!
+-> Dee: You should do that every day to get paid!!
+-> Dee: Who are you again?
+Anyway! And since I know you're a bit of a slacker, I left something on the board for you.
+-> Dee: That’s nice, thanks....
+-> Dee: Who are you <i>again</i>?
 ===

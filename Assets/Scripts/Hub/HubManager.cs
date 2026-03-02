@@ -26,6 +26,15 @@ public class HubManager : MonoBehaviour
     public UI_PermanentBonusShop PermanentBonusShop;
     public UI_QuestsMenu QuestsMenu;
 
+    private void Start()
+    {
+        if (!SaveManager.CurrentSave.SeeNPCFirstTime)
+        {
+            DialogueManager.Instance.DialogueRunner.StartDialogue("NPC1_Introduction");
+            SaveManager.CurrentSave.SeeNPCFirstTime = true;
+        }
+    }
+
     public void OpenPowerShop()
     {
         PowerShop.OpenMenu();
