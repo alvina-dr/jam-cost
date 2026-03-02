@@ -104,6 +104,9 @@ public class MapManager : MonoBehaviour
             case MND_Shop:
                 SceneManager.LoadScene("Shop");
                 break;
+            case MND_Boss:
+                SceneManager.LoadScene("Ending");
+                break;
         }
     }
 
