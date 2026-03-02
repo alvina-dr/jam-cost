@@ -19,7 +19,7 @@ MonoBehaviour:
   Description: Start scavenging with a preparation phase of 10 seconds. You can't
     put items on the depot during this phase.
   Price: 5
-  Icon: {fileID: 21300000, guid: fefe1525867fbe9438477cb1f055f412, type: 3}
+  Icon: {fileID: 21300000, guid: 351fa3fa0a6749d4dbeb958aa026815a, type: 3}
   Color: {r: 0, g: 0, b: 0, a: 0}
   UpgradeBonusList: []
   PreparationTimeDuration: 10
