@@ -32,6 +32,8 @@ public class QuestData : ScriptableObject
 
     public virtual void SetQuestToWaitCollection()
     {
+        if (Data.State == QuestState.WaitCollection || Data.State == QuestState.Collected) return;
+
         Data.State = QuestState.WaitCollection;
     }
 
