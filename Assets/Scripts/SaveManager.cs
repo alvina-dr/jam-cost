@@ -191,14 +191,9 @@ public class SaveManager : MonoBehaviour
             QuestManager.Instance.QuestDataDictionary[CurrentSave.ModifiedQuestList[i].Name].Data = CurrentSave.ModifiedQuestList[i];
         }
 
-        // POWER UNLOCKED
-        CurrentSave.UnlockedPowerDataList.Clear();
-        for (int i = 0; i < CurrentSave.UnlockedPowerDataListName.Count; i++)
-        {
-            CurrentSave.UnlockedPowerDataList.Add(DataLoader.Instance.PowerDataList.Find(x => x.name == CurrentSave.UnlockedPowerDataListName[i]));
-        }
-        CurrentSave.UnlockedPowerDataListName.Clear();
-
+        CurrentSave.UnlockedPowerDataList = LoadList(CurrentSave.UnlockedPowerDataListName, DataLoader.Instance.PowerDataList);
+        CurrentSave.EquipedPowerDataList = LoadList(CurrentSave.EquipedPowerDataListName, DataLoader.Instance.PowerDataList);
+        CurrentSave.PermanentBonusList = LoadList(CurrentSave.PermanentBonusListName, DataLoader.Instance.PermanentBonusDataList);
     }
 
     public void EraseSave()
@@ -208,8 +203,8 @@ public class SaveManager : MonoBehaviour
     }
 
     // Application.persistentDataPath is : C:/Users/Username/AppData/LocalLow/{CompanyName}/{GameName}
-    // Company name : DefaultCompany
-    // Game name : jam-cost
+    // Company name : Bummin' Around
+    // Game name : Slacking Off
     [Button("Manual Save")]
     public void Save()
     {
@@ -230,9 +225,34 @@ public class SaveManager : MonoBehaviour
             CurrentSave.ModifiedQuestList.Add(questDataList[i].Data);
         }
 
+        CurrentSave.UnlockedPowerDataListName = SaveList(CurrentSave.UnlockedPowerDataList);
+        CurrentSave.EquipedPowerDataListName = SaveList(CurrentSave.EquipedPowerDataList);
+        CurrentSave.PermanentBonusListName = SaveList(CurrentSave.PermanentBonusList);
+
         string save = JsonUtility.ToJson(CurrentSave, true);
 
         System.IO.File.WriteAllText(Application.persistentDataPath + "/Save.json", save);
+    }
+
+    public List<string> SaveList<T>(List<T> currentDataList) where T : ScriptableObject
+    {
+        List<string> currentDataListName = new();
+        for (int i = 0; i < currentDataList.Count; i++)
+        {
+            currentDataListName.Add(currentDataList[i].name);
+        }
+
+        return currentDataListName;
+    }
+
+    public List<T> LoadList<T>(List<string> currentDataListName, List<T> dataLib) where T : ScriptableObject
+    {
+        List<T> currentDataList = new();
+        for (int i = 0; i < currentDataListName.Count; i++)
+        {
+            currentDataList.Add(dataLib.Find(x => x.name == currentDataListName[i]));
+        }
+        return currentDataList;
     }
 
     private void OnDestroy()
@@ -249,11 +269,13 @@ public class SaveManager : MonoBehaviour
 
         public int MealTickets;
         [SerializeReference] public List<BonusData> PermanentBonusList = new();
-        
+        [SerializeReference] public List<string> PermanentBonusListName = new();
+
         [SerializeReference] public List<PowerData> UnlockedPowerDataList = new();
-        [HideInInspector] public List<string> UnlockedPowerDataListName = new();
+        [SerializeReference] public List<string> UnlockedPowerDataListName = new();
         
         [SerializeReference] public List<PowerData> EquipedPowerDataList = new();
+        [SerializeReference] public List<string> EquipedPowerDataListName = new();
 
         [SerializeReference] public int EquipedPowerMax = 1;
 
