@@ -255,6 +255,7 @@ public class SaveManager : MonoBehaviour
         public bool SeeOnboarding = false;
         public bool HubFirstTime = false;
         public bool ShopFirstTime = false;
+        public bool GameFirstTime = false;
         public bool SeeNewFrigo = false;
         public int NumberRunPlayed;
         public float TimePlayed;

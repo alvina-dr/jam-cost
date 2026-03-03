@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-
         if (Instance != null && Instance != this)
         {
             Destroy(this);
@@ -64,6 +63,12 @@ public class GameManager : MonoBehaviour
         SetCurrentScore(0);
         ItemManager.ResetDumpster();
         ScavengingState.UpdateItemNumberText();
+
+        if (!SaveManager.CurrentSave.GameFirstTime)
+        {
+            DialogueManager.Instance.DialogueRunner.StartDialogue("NPC1_GameFirstTime");
+            SaveManager.CurrentSave.GameFirstTime = true;
+        }
 
         //List<BonusData> bonusDataFamilyList = SaveManager.CurrentSave.CurrentRun.CurrentRunBonusList.FindAll(x => x is BD_FamilyMultiplier familyMultiplier && familyMultiplier.FamilyBonus == chosenItemSlotList[index].CurrentBagItem.Data.Family);
     }
