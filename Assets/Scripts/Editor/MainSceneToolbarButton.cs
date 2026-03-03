@@ -17,7 +17,17 @@ public class MainSceneToolbarButton
 	{
 		GUILayout.FlexibleSpace();
 
-		if (GUILayout.Button(new GUIContent("Game", "Open Game Scene")))
+        if (GUILayout.Button(new GUIContent("New save", "Creates a new save")))
+        {
+            if (SaveManager.Instance != null)
+            {
+                SaveManager.Instance.CreateSave();
+            }
+
+            System.IO.File.Delete(Application.persistentDataPath + "/Save.json");
+        }
+
+        if (GUILayout.Button(new GUIContent("Game", "Open Game Scene")))
 		{
 			EditorSceneManager.OpenScene("Assets/Scenes/Game.unity");
 		}
@@ -45,16 +55,6 @@ public class MainSceneToolbarButton
         if (GUILayout.Button(new GUIContent("Onboarding", "Open Onboarding Scene")))
         {
             EditorSceneManager.OpenScene("Assets/Scenes/Onboarding.unity");
-        }
-
-        if (GUILayout.Button(new GUIContent("New save", "Creates a new save")))
-        {
-            if (SaveManager.Instance != null)
-            {
-                SaveManager.Instance.CreateSave();
-            }
-
-            System.IO.File.Delete(Application.persistentDataPath + "/Save.json");
         }
     }
 }
