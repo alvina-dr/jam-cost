@@ -18,3 +18,4 @@ MonoBehaviour:
   Reward: 3
   Description: Spend 5 productivity points <sprite name=PP> at the vending machine.
   Goal: 5
+  QuestUnlocked: []

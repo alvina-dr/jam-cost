@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Data:
     Name: Beginnings
-    State: 0
+    State: 1
   Reward: 3
   Description: Reach a total of a 1000 cumulated points.
   Goal: 1000
+  QuestUnlocked:
+  - {fileID: 11400000, guid: 9c7fab6717047bb498ecd5ab1698a110, type: 2}
+  - {fileID: 11400000, guid: 9f3ea5824a08f664499c32a0055a2e8b, type: 2}
+  - {fileID: 11400000, guid: da498b2e298302c458a3626e33fe34be, type: 2}

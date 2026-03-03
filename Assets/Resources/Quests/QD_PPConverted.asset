@@ -19,3 +19,4 @@ MonoBehaviour:
   Description: Convert 20 productivity points <sprite name=PP> to meal tickets <sprite
     name=MT> at the conversion machine.
   Goal: 20
+  QuestUnlocked: []

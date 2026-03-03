@@ -34,7 +34,6 @@ public class UI_QuestsMenu : UI_Menu
         orderedQuestDataList.AddRange(questDataList.FindAll(x => x.Data.State == QuestData.QuestState.Completing));
         orderedQuestDataList.AddRange(questDataList.FindAll(x => x.Data.State == QuestData.QuestState.Collected));
 
-
         for (int i = 0; i < _questEntryList.Count; i++)
         {
             if (i < orderedQuestDataList.Count)

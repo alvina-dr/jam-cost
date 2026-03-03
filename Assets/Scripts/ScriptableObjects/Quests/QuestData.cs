@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "QuestData", menuName = "Scriptable Objects/Quests/QuestData")]
@@ -7,6 +8,8 @@ public class QuestData : ScriptableObject
     public int Reward;
     [TextArea] public string Description;
     public int Goal;
+
+    public List<QuestData> QuestUnlocked = new();
 
     public enum QuestState
     {
@@ -36,6 +39,11 @@ public class QuestData : ScriptableObject
     {
         SaveManager.Instance.AddMT(Reward);
         Data.State = QuestState.Collected;
+
+        for (int i = 0; i < QuestUnlocked.Count; i++)
+        {
+            QuestManager.Instance.GetInstantiatedQuestData(QuestUnlocked[i]).DiscoverQuest();
+        }
     }
 
     [System.Serializable]

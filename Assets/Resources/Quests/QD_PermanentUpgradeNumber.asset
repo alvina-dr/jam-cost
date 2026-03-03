@@ -19,3 +19,4 @@ MonoBehaviour:
   Description: Use your meal ticket <sprite name=MT> to buy a permanent upgrade in
     the fridge.
   Goal: 1
+  QuestUnlocked: []

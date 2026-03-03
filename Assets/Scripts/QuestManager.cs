@@ -71,8 +71,8 @@ public class QuestManager : MonoBehaviour
         return questDataTypeList;
     }
 
-    public void DiscoverQuest(QuestData questData)
+    public QuestData GetInstantiatedQuestData(QuestData questData)
     {
-        questData.DiscoverQuest();
+        return QuestDataDictionary[questData.Data.Name];
     }
 }
