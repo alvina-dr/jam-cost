@@ -263,6 +263,7 @@ public class SaveManager : MonoBehaviour
         public int TotalPoints;
         public int PPSpentRunShop;
         public int PPConvertedToMT;
+        public int NumberFirstBossPlayed;
 
         // Permanent bonus stats
         public float PermanentRoundBonusTime = 0;
