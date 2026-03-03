@@ -109,4 +109,9 @@ public class DataLoader : MonoBehaviour
 
         return RunBonusDataList;
     }
+    
+    public PowerData GetInstantiatedVersionOfPower(PowerData powerData)
+    {
+        return PowerDataList.Find(x => x.PowerName == powerData.PowerName);
+    }
 }

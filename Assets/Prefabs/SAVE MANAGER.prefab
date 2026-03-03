@@ -50,15 +50,19 @@ MonoBehaviour:
     LastSceneName: Hub
     MealTickets: 0
     PermanentBonusList: []
-    PermanentBonusListName: []
     UnlockedPowerDataList: []
     UnlockedPowerDataListName: []
     EquipedPowerDataList: []
-    EquipedPowerDataListName: []
     EquipedPowerMax: 1
+    SeeOnboarding: 0
+    HubFirstTime: 0
+    ShopFirstTime: 0
+    SeeNewFrigo: 0
     NumberRunPlayed: 0
     TimePlayed: 0
-    SeeOnboarding: 0
+    TotalPoints: 0
+    PPSpentRunShop: 0
+    PPConvertedToMT: 0
     PermanentRoundBonusTime: 0
     RunStartLootPP: 0
     EveryNodeLootPP: 0
@@ -71,8 +75,9 @@ MonoBehaviour:
       TotalRunDuration: 0
       RunRoundBonusTime: 0
       CurrentRunBonusList: []
-      CurrentRunBonusListName: []
       FormerNodeList: 
+    ModifiedQuestList: []
+  FirstPower: {fileID: 11400000, guid: 5ac3058a1642fe041ae4dfa896e0ee76, type: 2}
 --- !u!114 &4494955558298098340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,4 +90,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89d83d19d147c1d499e0930f18f3d7ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  QuestDataList: []

@@ -70,4 +70,9 @@ public class QuestManager : MonoBehaviour
 
         return questDataTypeList;
     }
+
+    public void DiscoverQuest(QuestData questData)
+    {
+        questData.DiscoverQuest();
+    }
 }

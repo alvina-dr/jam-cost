@@ -31,6 +31,7 @@ public class SaveManager : MonoBehaviour
 
     public MapNodeData CurrentMapNode;
     [SerializeField] private SaveData _currentSave;
+    public PowerData FirstPower;
     
     private void OnAwake()
     {
@@ -170,6 +171,7 @@ public class SaveManager : MonoBehaviour
     {
         _currentSave = new SaveData();
         _currentSave.CurrentRun = new RunData();
+        _currentSave.UnlockedPowerDataList.Add(DataLoader.Instance.GetInstantiatedVersionOfPower(FirstPower));
     }
 
     // Loads a save, this save must exist

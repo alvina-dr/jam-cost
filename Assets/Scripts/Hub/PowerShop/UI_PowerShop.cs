@@ -128,7 +128,8 @@ public class UI_PowerShop : UI_Menu
         if (SaveManager.CurrentSave.EquipedPowerDataList.Count >= SaveManager.CurrentSave.EquipedPowerMax) return;
 
         SaveManager.CurrentSave.EquipedPowerDataList.Add(_currentPowerData);
-        //_powerSlotList[SaveManager.CurrentSave.EquipedPowerDataList.Count - 1].SetPower(_currentPowerData);
+        
+        QuestManager.Instance.CheckQuestCompletionByType<QD_EquipPowerNumber>();
     }
 
     public void UnequipPower()
