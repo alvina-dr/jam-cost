@@ -16,6 +16,7 @@ MonoBehaviour:
     Name: A small break
     State: 0
   Reward: 3
-  Description: Spend 5 productivity points <sprite name=PP> at the vending machine.
+  Description: Spend <b>5 Productivity Points</b> <sprite name=PP> at the vending
+    machine.
   Goal: 5
   QuestUnlocked: []

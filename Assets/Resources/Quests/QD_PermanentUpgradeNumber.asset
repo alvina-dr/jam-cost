@@ -16,7 +16,8 @@ MonoBehaviour:
     Name: Day by day
     State: 0
   Reward: 3
-  Description: Use your meal ticket <sprite name=MT> to buy a permanent upgrade in
-    the fridge.
+  Description: Upgrade your snacks and boost your stamina for the day by redeeming
+    your <b>Meal Tickets</b> <sprite name=MT> at the Fridge's Staff Room. Pick your
+    favorite and enjoy the upgrade!
   Goal: 1
   QuestUnlocked: []

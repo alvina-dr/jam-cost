@@ -16,6 +16,7 @@ MonoBehaviour:
     Name: Upper management
     State: 0
   Reward: 5
-  Description: Go say hello to your manager.
+  Description: Go say hello to your <b>Manager</b> by completing your first run!
+    Who knows? Maybe a surprise awaits you.
   Goal: 1
   QuestUnlocked: []

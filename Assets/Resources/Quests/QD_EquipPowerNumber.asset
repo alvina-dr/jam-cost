@@ -16,5 +16,7 @@ MonoBehaviour:
     Name: Power up
     State: 1
   Reward: 3
-  Description: Equip your first power in the punch clock at the entrance of the hub.
+  Description: Use the <b>Punch Clock</b> to equip your first power. When you go
+    into the Staff Room, it's the perfect way to start the day!
   Goal: 1
+  QuestUnlocked: []

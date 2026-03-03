@@ -16,7 +16,8 @@ MonoBehaviour:
     Name: Conversion machine
     State: 0
   Reward: 3
-  Description: Convert 20 productivity points <sprite name=PP> to meal tickets <sprite
-    name=MT> at the conversion machine.
+  Description: Use the <b>Conversion Machine</b> to convert <b>20 Productivity Points</b>
+    <sprite name=PP> into <b>Meal Tickets</b> <sprite name=MT>. Your future self
+    will thank you!
   Goal: 20
   QuestUnlocked: []

@@ -16,7 +16,7 @@ MonoBehaviour:
     Name: Beginnings
     State: 1
   Reward: 3
-  Description: Reach a total of a 1000 cumulated points.
+  Description: 'Reach a cumulative score of <b>1 000 points</b>, all runs combined. '
   Goal: 1000
   QuestUnlocked:
   - {fileID: 11400000, guid: 9c7fab6717047bb498ecd5ab1698a110, type: 2}
