@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class DraggableBehavior : ItemBehavior
 {
@@ -44,7 +45,9 @@ public class DraggableBehavior : ItemBehavior
             Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = mouseWorldPosition + _dragOffset;
 
-            if (GameManager.Instance.UIManager.DepotOverCheck.IsOver() && GameManager.Instance.CurrentGameState != GameManager.Instance.PreparationState)
+            if ((GameManager.Instance.UIManager.DepotOverCheck.IsOver() 
+                || (Input.mousePosition.x >= Screen.width && Input.mousePosition.y >= 0 && Input.mousePosition.y <= Screen.height)) 
+                        && GameManager.Instance.CurrentGameState != GameManager.Instance.PreparationState)
             {
                 if (GameManager.Instance.ScavengingState.SelectedItemList.Count + 1 > GameManager.Instance.GetDepotSize()) _sellIcon.color = Color.grey;
                 else _sellIcon.color = Color.green;
@@ -167,8 +170,23 @@ public class DraggableBehavior : ItemBehavior
         }
         else if (!GameManager.Instance.UIManager.CrateOverCheck.IsOver())
         {
-            DestroyItem();
-            AudioManager.Instance.PlaySFXSound(_trashItemSound);
+            if (Input.mousePosition.x >= Screen.width && Input.mousePosition.y >= 0 && Input.mousePosition.y <= Screen.height)
+            {
+                if (GameManager.Instance.ScavengingState.TryAddItemToSelectedList(this))
+                {
+                    DropItem();
+                    AudioManager.Instance.PlaySFXSound(_addToTicketSound);
+                }
+                else
+                {
+                    GoBackToDumpster();
+                }
+            }
+            else
+            {
+                DestroyItem();
+                AudioManager.Instance.PlaySFXSound(_trashItemSound);
+            }
         }
         else
         {

@@ -4,7 +4,6 @@ using BennyKok.RuntimeDebug.Components.UI;
 using BennyKok.RuntimeDebug.Data;
 using BennyKok.RuntimeDebug.DebugInput;
 using BennyKok.RuntimeDebug.Utils;
-using Codice.Client.BaseCommands.BranchExplorer;
 using System;
 using System.Collections.Generic;
 using System.Linq;

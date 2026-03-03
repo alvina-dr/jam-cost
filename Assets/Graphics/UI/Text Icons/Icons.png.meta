@@ -195,6 +195,28 @@ TextureImporter:
       name: Icons_3
       rect:
         serializedVersion: 2
+        x: 384
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe4373e239ed7a642bc82c9283cc6481
+      internalID: -246950237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icons_4
+      rect:
+        serializedVersion: 2
         x: 0
         y: 256
         width: 128
@@ -207,8 +229,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dca82915f7cf6c04c9fab2c29b5bf405
-      internalID: -246950237
+      spriteID: bbf7345956d8fd64ca2df44322c4dd5a
+      internalID: 901119044
       vertices: []
       indices: 
       edges: []
@@ -231,6 +253,7 @@ TextureImporter:
       Icons_1: -739356608
       Icons_2: -1944459687
       Icons_3: -246950237
+      Icons_4: 901119044
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
