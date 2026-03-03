@@ -1078,7 +1078,7 @@ MonoBehaviour:
   StartingMapNode: {fileID: 1537887724}
   EndingMapNode: {fileID: 1238834155}
   _offsetRandomLimit: {x: 0, y: 0}
-  _interNodeSpace: {x: 140, y: 140}
+  _interNodeSpace: {x: 100, y: 140}
   _offsetGeneralMap: {x: -20, y: 70, z: 0}
   _tileParent: {fileID: 1457852100}
   _tile1x1Building: {fileID: 4713781638998912258, guid: 7fa472c8a8102d54abf64ed51091992d, type: 3}
