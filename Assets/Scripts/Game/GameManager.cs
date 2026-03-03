@@ -66,7 +66,10 @@ public class GameManager : MonoBehaviour
         ScavengingState.UpdateItemNumberText();
 
         //List<BonusData> bonusDataFamilyList = SaveManager.CurrentSave.CurrentRun.CurrentRunBonusList.FindAll(x => x is BD_FamilyMultiplier familyMultiplier && familyMultiplier.FamilyBonus == chosenItemSlotList[index].CurrentBagItem.Data.Family);
+    }
 
+    public void StartFirstRound()
+    {
         BD_PreparationTime bonusPreparationTime = SaveManager.Instance.CheckHasRunBonus<BD_PreparationTime>();
         if (bonusPreparationTime != null)
         {
