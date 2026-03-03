@@ -184,10 +184,10 @@ public class MapManager : MonoBehaviour
             EndingMapNode.SetupLine(lastColumnNodeList[i], false);
         }
 
-        for (int i = 0; i < 1; i++)
-        {
-            ConnectNodesPerColumn();
-        }
+        //for (int i = 0; i < 1; i++)
+        //{
+        //    ConnectNodesPerColumn();
+        //}
     }
 
     public void SetNodesState()
