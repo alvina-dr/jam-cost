@@ -444,7 +444,7 @@ MonoBehaviour:
   showCharacterNameInLine: 1
   characterNameText: {fileID: 79829332213985086}
   characterNameContainer: {fileID: 5408319174734959387}
-  useFadeEffect: 0
+  useFadeEffect: 1
   fadeUpDuration: 0.25
   fadeDownDuration: 0.1
   autoAdvance: 0
@@ -1198,7 +1198,7 @@ MonoBehaviour:
   lastLineCharacterNameText: {fileID: 2462542644353725301}
   lastLineCharacterNameContainer: {fileID: 7510065209826070352}
   showUnavailableOptions: 1
-  useFadeEffect: 0
+  useFadeEffect: 1
   fadeUpDuration: 0.25
   fadeDownDuration: 0.1
 --- !u!1 &6764811550793890141
