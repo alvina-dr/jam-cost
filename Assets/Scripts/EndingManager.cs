@@ -10,6 +10,7 @@ public class EndingManager : MonoBehaviour
     {
         DialogueManager.Instance.DialogueRunner.StartDialogue(_endingDialog);
         DialogueManager.Instance.EndDialogueEvent += CallEndDialogueEvent;
+        SaveManager.CurrentSave.NumberFirstBossPlayed++;
 
     }
 
