@@ -21,6 +21,6 @@ public class UI_MainMenu : MonoBehaviour
 
     public void EraseSave()
     {
-        PlayerPrefs.DeleteAll();
+        SaveManager.Instance.EraseSave();
     }
 }

@@ -201,6 +201,12 @@ public class SaveManager : MonoBehaviour
 
     }
 
+    public void EraseSave()
+    {
+        System.IO.File.Delete(Application.persistentDataPath + "/Save.json");
+        CreateSave();
+    }
+
     // Application.persistentDataPath is : C:/Users/Username/AppData/LocalLow/{CompanyName}/{GameName}
     // Company name : DefaultCompany
     // Game name : jam-cost
