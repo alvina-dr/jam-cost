@@ -21,7 +21,7 @@ public class UI_PermanentBonusShop : UI_Menu
 
     public override void OpenMenu()
     {
-        ChangeIndex(0);
+        ChangeIndex(1);
         base.OpenMenu();
     }
 
