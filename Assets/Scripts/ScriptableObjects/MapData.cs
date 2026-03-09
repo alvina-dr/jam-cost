@@ -6,6 +6,8 @@ public class MapData : ScriptableObject
 {
     public List<MapNodeDailyChoice> DailyChoiceList = new();
     public int NumberOfNodesToDelete;
+    public int BossNumber;
+    public MapNodeData BossMapNodeData;
 
     [System.Serializable]
     public class MapNodeDailyChoice

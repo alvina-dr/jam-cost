@@ -52,7 +52,7 @@ public class HubManager : MonoBehaviour
 
     public void LaunchNewRun()
     {
-        SceneManager.LoadScene("Map");
+        SceneManager.LoadScene("Game");
         SaveManager.Instance.StartNewRun();
     }
 

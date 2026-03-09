@@ -511,7 +511,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7169038334092197051}
   - component: {fileID: 3785810915285283545}
-  - component: {fileID: 2828712698712172417}
   - component: {fileID: 2424541968248519684}
   m_Layer: 5
   m_Name: SmallIcon
@@ -547,18 +546,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2978353422170431383}
   m_CullTransparentMesh: 1
---- !u!114 &2828712698712172417
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2978353422170431383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 294fda65a95bdde449d92f7665542106, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2424541968248519684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -599,7 +586,6 @@ GameObject:
   m_Component:
   - component: {fileID: 887195124557315432}
   - component: {fileID: 4171895612030544879}
-  - component: {fileID: 7507859179036356470}
   - component: {fileID: 795310216745961712}
   m_Layer: 5
   m_Name: Thumb
@@ -635,18 +621,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3476082700850305031}
   m_CullTransparentMesh: 1
---- !u!114 &7507859179036356470
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3476082700850305031}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 294fda65a95bdde449d92f7665542106, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &795310216745961712
 MonoBehaviour:
   m_ObjectHideFlags: 0

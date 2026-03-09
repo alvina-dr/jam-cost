@@ -132,19 +132,19 @@ public class SaveManager : MonoBehaviour
     public void OnParticleAttracted_PP(int number)
     {
         CurrentSave.CurrentRun.ProductivityPoints += number;
-        UI_Run.Instance?.PPTextValue.SetTextValue(CurrentSave.CurrentRun.ProductivityPoints.ToString());
+        if (UI_Run.Instance != null) UI_Run.Instance.PPTextValue.SetTextValue(CurrentSave.CurrentRun.ProductivityPoints.ToString());
     }
 
     public void OnParticleAttracted_MT(int number)
     {
         CurrentSave.MealTickets += number;
-        UI_Run.Instance?.MealTicketTextValue.SetTextValue(CurrentSave.MealTickets.ToString());
+        if (UI_Run.Instance != null) UI_Run.Instance.MealTicketTextValue.SetTextValue(CurrentSave.MealTickets.ToString());
     }
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        UI_Run.Instance?.PPTextValue.SetTextValue(CurrentSave.CurrentRun.ProductivityPoints.ToString(), false);
-        UI_Run.Instance?.MealTicketTextValue.SetTextValue(CurrentSave.MealTickets.ToString(), false);
+        if (UI_Run.Instance != null) UI_Run.Instance.PPTextValue.SetTextValue(CurrentSave.CurrentRun.ProductivityPoints.ToString(), false);
+        if (UI_Run.Instance != null) UI_Run.Instance.MealTicketTextValue.SetTextValue(CurrentSave.MealTickets.ToString(), false);
     }
 
     public void Update()

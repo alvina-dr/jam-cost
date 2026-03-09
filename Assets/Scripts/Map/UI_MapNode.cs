@@ -24,13 +24,18 @@ public class UI_MapNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void SetupNode(MapNodeData nodeData, int nodeIndex, int columnIndex, int rowIndex)
     {
-        MapNodeData = nodeData;
+        SetupNode(nodeData);
         MapNodeIndex = nodeIndex;
         MapNodeRowIndex = rowIndex;
         MapNodeColumnIndex = columnIndex;
+        transform.name = "MapNode_" + MapNodeIndex;
+    }
+
+    public void SetupNode(MapNodeData nodeData)
+    {
+        MapNodeData = nodeData;
         _icon.sprite = nodeData.NodeIcon;
         _icon.SetNativeSize();
-        transform.name = "MapNode_" + MapNodeIndex;
     }
 
     public void SetupLine(UI_MapNode neighbourMapNode, bool xThenY)
@@ -70,7 +75,7 @@ public class UI_MapNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void ChooseMapNode()
     {
         SaveManager.CurrentSave.CurrentRun.FormerNodeList.Add(MapNodeIndex);
-        MapManager.Instance.LaunchNode(MapNodeData);
+        NodeChoiceManager.Instance.LaunchNode(MapNodeData);
     }
 
     public void DeactivateNode()

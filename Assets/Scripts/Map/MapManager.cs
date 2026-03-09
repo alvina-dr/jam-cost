@@ -47,7 +47,7 @@ public class MapManager : MonoBehaviour
 
     public void OnAwake()
     {
-        _dayText.SetTextValue((SaveManager.CurrentSave.CurrentRun.CurrentNode + 1).ToString());
+        //_dayText.SetTextValue((SaveManager.CurrentSave.CurrentRun.CurrentNode + 1).ToString());
 
         if (_formerNodeList.Count == 0)
         {

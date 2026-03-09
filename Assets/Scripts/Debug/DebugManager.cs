@@ -107,6 +107,8 @@ public class DebugManager : MonoBehaviour
             DebugActionList.Add(DebugActionBuilder.Button().WithName(questDataList[index].Data.Name).WithGroup("Quest/Achieve").WithAction(() => questDataList[index].SetQuestToWaitCollection()));
         }
 
+        //DebugActionList.Add(DebugActionBuilder.Button().WithName("LaunchLastNode").WithGroup("Map").WithAction(() => SaveManager.CurrentSave.CurrentRun.Rerolls++));
+
         RuntimeDebugSystem.RegisterActions(DebugActionList.ToArray());
         DebugActionArray = RuntimeDebugSystem.RegisterActionsAuto(this);
     }
