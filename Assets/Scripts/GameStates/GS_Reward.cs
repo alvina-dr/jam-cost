@@ -42,7 +42,7 @@ public class GS_Reward : GameState
             }
         }
 
-        DOVirtual.DelayedCall(.5f, () =>
+        DOVirtual.DelayedCall(1.5f, () =>
         {
             SaveManager.Instance.NextNode();
         });
