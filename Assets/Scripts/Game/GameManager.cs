@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     public GS_ScavengingIntro ScavengingIntroState;
     public GS_Bag BagState;
     public GS_Preparation PreparationState;
+    public GS_Reward RewardState;
 
     [Header("References")]
     public UIManager UIManager;
@@ -130,10 +131,8 @@ public class GameManager : MonoBehaviour
 
         List<BD_HandSize> bonusDepotSizeList = SaveManager.Instance.CheckHasRunBonusList<BD_HandSize>();
 
-        Debug.Log("hand size list count : " + bonusDepotSizeList.Count);
         for (int i = 0; i < bonusDepotSizeList.Count; i++)
         {
-            Debug.Log("depot size bonus : " + bonusDepotSizeList[i].BonusHandSize.ToString());
             depotSizeBonus += bonusDepotSizeList[i].BonusHandSize;
         }
         return _depotSize + depotSizeBonus;

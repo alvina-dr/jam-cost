@@ -21,8 +21,7 @@ public class ClickableBehavior : ItemBehavior
     private void OnMouseDown()
     {
         if (PauseManager.Instance.IsPaused) return;
-        if (GameManager.Instance.CurrentGameState != GameManager.Instance.ScavengingState
-        && GameManager.Instance.CurrentGameState != GameManager.Instance.PreparationState) return;
+        if (!CanClickItem()) return;
         Collect();
     }
 

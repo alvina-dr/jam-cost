@@ -46,7 +46,7 @@ public class NodeChoiceManager : MonoBehaviour
         }
         else
         {
-            List<MapNodeData> choiceList = _mapData.DailyChoiceList[SaveManager.CurrentSave.CurrentRun.CurrentNode].MapNodeDataList;
+            List<MapNodeData> choiceList = new(_mapData.DailyChoiceList[SaveManager.CurrentSave.CurrentRun.CurrentNode].MapNodeDataList);
             for (int i = 0; i < 2; i++)
             { 
                 if (choiceList.Count == 0) break;

@@ -16,8 +16,7 @@ public class DraggableBehavior : ItemBehavior
 
     private void Update()
     {
-        if ((GameManager.Instance.CurrentGameState != GameManager.Instance.ScavengingState
-        && GameManager.Instance.CurrentGameState != GameManager.Instance.PreparationState) || PauseManager.Instance.IsPaused)
+        if (!CanClickItem() || PauseManager.Instance.IsPaused)
         {
             if (_isDragging)
             {
@@ -28,17 +27,6 @@ public class DraggableBehavior : ItemBehavior
             }
             return;
         }
-        //if (GameManager.Instance.CurrentGameState != (GameManager.Instance.ScavengingState || GameManager.Instance.PreparationState) || PauseManager.Instance.IsPaused)
-        //{
-        //    if (_isDragging)
-        //    {
-        //        _isDragging = false;
-        //        _collider.enabled = true;
-        //        DropItem();
-        //        if (GameManager.Instance.SelectedItem == this) GameManager.Instance.SelectedItem = null;
-        //    }
-        //    return;
-        //}
 
         if (_isDragging)
         {
@@ -93,16 +81,14 @@ public class DraggableBehavior : ItemBehavior
 
     private void OnMouseEnter()
     {
-        if (GameManager.Instance.CurrentGameState != GameManager.Instance.ScavengingState
-        && GameManager.Instance.CurrentGameState != GameManager.Instance.PreparationState) return;
+        if (!CanClickItem()) return;
 
         GameManager.Instance.UIManager.HoverPrice.ShowPrice(Data.Price, transform.position);
     }
 
     private void OnMouseExit()
     {
-        if (GameManager.Instance.CurrentGameState != GameManager.Instance.ScavengingState
-        && GameManager.Instance.CurrentGameState != GameManager.Instance.PreparationState) return;
+        if (!CanClickItem()) return;
 
         GameManager.Instance.UIManager.HoverPrice.HidePrice();
     }
@@ -110,8 +96,7 @@ public class DraggableBehavior : ItemBehavior
     private void OnMouseDown()
     {
         if (PauseManager.Instance.IsPaused) return;
-        if (GameManager.Instance.CurrentGameState != GameManager.Instance.ScavengingState
-        && GameManager.Instance.CurrentGameState != GameManager.Instance.PreparationState) return;
+        if (!CanClickItem()) return;
 
         StartDrag();
     }
@@ -119,8 +104,7 @@ public class DraggableBehavior : ItemBehavior
     private void OnMouseUp()
     {
         if (PauseManager.Instance.IsPaused) return;
-        if (GameManager.Instance.CurrentGameState != GameManager.Instance.ScavengingState
-        && GameManager.Instance.CurrentGameState != GameManager.Instance.PreparationState) return;
+        if (!CanClickItem()) return;
 
         EndDrag();
     }
@@ -139,6 +123,7 @@ public class DraggableBehavior : ItemBehavior
         SetSortingOrder(100);
         AudioManager.Instance.PlaySFXSound(_pickUpSound);
         GameManager.Instance.ScavengingState.RemoveItemFromSelectedList(this);
+        if (!GameManager.Instance.ItemManager.ItemList.Contains(this)) GameManager.Instance.ItemManager.ItemList.Add(this);
     }
 
     public void EndDrag()
@@ -159,6 +144,7 @@ public class DraggableBehavior : ItemBehavior
                 if (GameManager.Instance.ScavengingState.TryAddItemToSelectedList(this))
                 {
                     DropItem();
+                    GameManager.Instance.ItemManager.ItemList.Remove(this);
                     //DestroyItem();
                     AudioManager.Instance.PlaySFXSound(_addToTicketSound);
                 }
@@ -175,6 +161,7 @@ public class DraggableBehavior : ItemBehavior
                 if (GameManager.Instance.ScavengingState.TryAddItemToSelectedList(this))
                 {
                     DropItem();
+                    GameManager.Instance.ItemManager.ItemList.Remove(this);
                     AudioManager.Instance.PlaySFXSound(_addToTicketSound);
                 }
                 else
@@ -196,7 +183,6 @@ public class DraggableBehavior : ItemBehavior
 
     public void DropItem()
     {
-        Debug.Log("DROP ITEM");
         transform.DOScale(1f, .3f).SetEase(Ease.InBack).SetUpdate(true);
         gameObject.layer = LayerMask.NameToLayer("Default");
         _spriteRenderer.sortingLayerName = "Default";

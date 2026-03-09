@@ -38,4 +38,12 @@ public class ItemBehavior : MonoBehaviour
         GameManager.Instance.ItemManager.ItemList.Remove(this);
         Destroy(gameObject);
     }
+
+    public bool CanClickItem()
+    {
+        if (GameManager.Instance.CurrentGameState == GameManager.Instance.ScavengingState) return true;
+        if (GameManager.Instance.CurrentGameState == GameManager.Instance.PreparationState) return true;
+        if (GameManager.Instance.CurrentGameState == GameManager.Instance.RewardState) return true;
+        return false;
+    }
 }

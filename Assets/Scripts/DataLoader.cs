@@ -114,4 +114,16 @@ public class DataLoader : MonoBehaviour
     {
         return PowerDataList.Find(x => x.PowerName == powerData.PowerName);
     }
+
+    public string ConvertTimeToMinutes(float time)
+    {
+        string minutes = System.TimeSpan.FromSeconds(time).Minutes.ToString();
+        string seconds = System.TimeSpan.FromSeconds(time).Seconds.ToString();
+        if (seconds.Length == 1) seconds = "0" + seconds;
+        string miliseconds = System.TimeSpan.FromSeconds(time).Milliseconds.ToString();
+        if (miliseconds.Length > 2) miliseconds.Substring(0, 2);
+        if (miliseconds.Length == 2) miliseconds += "0";
+        return (minutes + ":" + seconds);
+        //return (minutes + ":" + seconds + "." + miliseconds);
+    }
 }

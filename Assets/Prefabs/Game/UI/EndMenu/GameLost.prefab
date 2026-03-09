@@ -165,7 +165,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7799645520752997}
   - component: {fileID: 8928964524807797910}
-  - component: {fileID: 2616679725663204846}
   m_Layer: 5
   m_Name: GameLost
   m_TagString: Untagged
@@ -208,25 +207,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7169c140d9e33cb42bd1477490351b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Menu: {fileID: 2616679725663204846}
+  _openAnimationList: []
+  _closeAnimationList: []
   _scoreText: {fileID: 8528874557747726257}
   _nodeText: {fileID: 2219112518826580135}
   _totalTimeText: {fileID: 449221623709021724}
   _ppText: {fileID: 0}
---- !u!114 &2616679725663204846
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1901563172443923963}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 392c67e71b841be4fa11277a1add4ce3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _openAnimationList: []
-  _closeAnimationList: []
 --- !u!1 &2042111322204650175
 GameObject:
   m_ObjectHideFlags: 0

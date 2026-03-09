@@ -9,12 +9,18 @@ public class GS_Win : GameState
     {
         base.EnterState();
         AudioManager.Instance.PlaySFXSound(_winSound);
-        GameManager.Instance.UIManager.GameWon.Open();
+        GameManager.Instance.UIManager.GameWon.OpenMenu();
         // show small victory animation
     }
 
     public override void UpdateState()
     {
         base.UpdateState();
+    }
+
+    public override void ExitState()
+    {
+        base.ExitState();
+        GameManager.Instance.UIManager.GameWon.CloseMenu();
     }
 }
