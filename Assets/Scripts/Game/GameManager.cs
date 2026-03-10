@@ -46,6 +46,10 @@ public class GameManager : MonoBehaviour
     public int CurrentRound;
     public int FoundPP;
 
+    [Header("Over check")]
+    public OverCheck DepotOverCheck;
+
+
     private void Start()
     {
         switch (SaveManager.Instance.CurrentMapNode)

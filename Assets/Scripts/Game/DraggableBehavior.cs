@@ -45,7 +45,7 @@ public class DraggableBehavior : ItemBehavior
             Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = mouseWorldPosition + _dragOffset;
 
-            if ((GameManager.Instance.UIManager.DepotOverCheck.IsOver() 
+            if ((GameManager.Instance.DepotOverCheck.IsOver() 
                 || (Input.mousePosition.x >= Screen.width && Input.mousePosition.y >= 0 && Input.mousePosition.y <= Screen.height)) 
                         && GameManager.Instance.CurrentGameState != GameManager.Instance.PreparationState)
             {
@@ -148,7 +148,7 @@ public class DraggableBehavior : ItemBehavior
 
         if (GameManager.Instance.SelectedItem == this) GameManager.Instance.SelectedItem = null;
 
-        if (GameManager.Instance.UIManager.DepotOverCheck.IsOver())
+        if (GameManager.Instance.DepotOverCheck.IsOver())
         {
             if (GameManager.Instance.CurrentGameState == GameManager.Instance.PreparationState || Data.BonusCurrency != 0)
             {
