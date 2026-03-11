@@ -1,3 +1,4 @@
+using EasyTransition;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -23,6 +24,7 @@ public class NodeChoiceManager : MonoBehaviour
 
     [SerializeField] private MapData _mapData;
     [SerializeField] private List<UI_MapNode> _mapNodeList = new();
+    [SerializeField] private TransitionSettings _transitionSettings;
 
     private void OnAwake()
     {
@@ -76,16 +78,16 @@ public class NodeChoiceManager : MonoBehaviour
         switch (data)
         {
             case MND_Scavenge_Classic:
-                SceneManager.LoadScene("Game");
+                TransitionManager.Instance().TransitionChangeScene("Game", _transitionSettings, 0);
                 break;
             case MND_NPC:
-                SceneManager.LoadScene("Shop");
+                TransitionManager.Instance().TransitionChangeScene("Shop", _transitionSettings, 0);
                 break;
             case MND_Shop:
-                SceneManager.LoadScene("Shop");
+                TransitionManager.Instance().TransitionChangeScene("Shop", _transitionSettings, 0);
                 break;
             case MND_Boss:
-                SceneManager.LoadScene("Ending");
+                TransitionManager.Instance().TransitionChangeScene("Ending", _transitionSettings, 0);
                 break;
         }
     }

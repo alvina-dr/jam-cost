@@ -1,3 +1,4 @@
+using EasyTransition;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,8 @@ public class HubManager : MonoBehaviour
     public UI_PermanentBonusShop PermanentBonusShop;
     public UI_QuestsMenu QuestsMenu;
 
+    [SerializeField] private TransitionSettings _transitionSettings;
+
     private void Start()
     {
         if (!SaveManager.CurrentSave.HubFirstTime)
@@ -52,7 +55,7 @@ public class HubManager : MonoBehaviour
 
     public void LaunchNewRun()
     {
-        SceneManager.LoadScene("Game");
+        TransitionManager.Instance().TransitionChangeScene("Game", _transitionSettings, 0);
         SaveManager.Instance.StartNewRun();
     }
 

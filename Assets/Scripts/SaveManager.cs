@@ -1,3 +1,4 @@
+using EasyTransition;
 using PrimeTween;
 using Sirenix.OdinInspector;
 using System;
@@ -28,6 +29,8 @@ public class SaveManager : MonoBehaviour
         }
     }
     #endregion
+
+    [SerializeField] private TransitionSettings _transitionSettings;
 
     public MapNodeData CurrentMapNode;
     [SerializeField] private SaveData _currentSave;
@@ -72,7 +75,7 @@ public class SaveManager : MonoBehaviour
     {
         CurrentSave.CurrentRun.CurrentNode++;
         AddPP(CurrentSave.EveryNodeLootPP);
-        SceneManager.LoadScene("Map");
+        TransitionManager.Instance().TransitionChangeScene("Map", _transitionSettings, 0);
     }
 
     public T CheckHasRunBonus<T>() where T : BonusData

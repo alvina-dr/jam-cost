@@ -1,8 +1,11 @@
+using EasyTransition;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class UI_MainMenu : MonoBehaviour
 {
+    [SerializeField] private TransitionSettings _transitionSettings; 
+
     public void StartGame()
     {
         SaveManager.Instance.LoadOrCreateSave();
@@ -11,11 +14,11 @@ public class UI_MainMenu : MonoBehaviour
 
         if (SaveManager.CurrentSave.SeeOnboarding == true)
         {
-            SceneManager.LoadScene("Hub");
+            TransitionManager.Instance().TransitionChangeScene("Hub", _transitionSettings, 0);
         }
         else
         {
-            SceneManager.LoadScene("Onboarding");
+            TransitionManager.Instance().TransitionChangeScene("Onboarding", _transitionSettings, 0);
         }
     }
 

@@ -45,24 +45,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b37f000b0e5bca4f8e6b699ce9ee963, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _transitionSettings: {fileID: 11400000, guid: b0126e1e0c6c2a04895d564bd230dfb9, type: 2}
   CurrentMapNode: {fileID: 11400000, guid: cffc50a3e8ada694c92f6e77cad39c5c, type: 2}
   _currentSave:
     LastSceneName: Hub
     MealTickets: 0
     PermanentBonusList: []
+    PermanentBonusListName: []
     UnlockedPowerDataList: []
     UnlockedPowerDataListName: []
     EquipedPowerDataList: []
+    EquipedPowerDataListName: []
     EquipedPowerMax: 1
     SeeOnboarding: 0
     HubFirstTime: 0
     ShopFirstTime: 0
+    GameFirstTime: 0
     SeeNewFrigo: 0
     NumberRunPlayed: 0
     TimePlayed: 0
     TotalPoints: 0
     PPSpentRunShop: 0
     PPConvertedToMT: 0
+    NumberFirstBossPlayed: 0
     PermanentRoundBonusTime: 0
     RunStartLootPP: 0
     EveryNodeLootPP: 0

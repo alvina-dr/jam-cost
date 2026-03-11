@@ -1,3 +1,4 @@
+using EasyTransition;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -31,6 +32,9 @@ public class OnboardingManager : MonoBehaviour
 
     [Header("Text")]
     [SerializeField] private TextMeshProUGUI _text;
+
+    [Header("Transition")]
+    [SerializeField] private TransitionSettings _transitionSettings;
 
 
     private void Start()
@@ -80,6 +84,6 @@ public class OnboardingManager : MonoBehaviour
     public void StartGame()
     {
         SaveManager.CurrentSave.SeeOnboarding = true;
-        SceneManager.LoadScene("Hub");
+        TransitionManager.Instance().TransitionChangeScene("Hub", _transitionSettings, 0);
     }
 }
