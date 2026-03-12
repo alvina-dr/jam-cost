@@ -2,18 +2,7 @@ using UnityEngine;
 
 public class OverCheck : MonoBehaviour
 {
-    public bool MouseOver;
     [SerializeField] private LayerMask _layerMask;
-
-    public void OnMouseEnter()
-    {
-        MouseOver = true;
-    }
-
-    public void OnMouseExit() 
-    { 
-        MouseOver = false;
-    }
 
     public bool IsOver()
     {

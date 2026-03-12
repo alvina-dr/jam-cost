@@ -51,7 +51,7 @@ public class DraggableBehavior : ItemBehavior
                 }
 
             }
-            else if (!GameManager.Instance.UIManager.CrateOverCheck.IsOver())
+            else if (!GameManager.Instance.CrateOverCheck.IsOver())
             {
                 _sellIcon.enabled = false;
                 _cross.enabled = true;
@@ -121,6 +121,8 @@ public class DraggableBehavior : ItemBehavior
         _spriteRenderer.sortingLayerName = "Front";
         _shadowSpriteRenderer.sortingLayerName = "Front";
         SetSortingOrder(100);
+        _spriteRenderer.maskInteraction = SpriteMaskInteraction.None;
+        _shadowSpriteRenderer.maskInteraction = SpriteMaskInteraction.None;
         AudioManager.Instance.PlaySFXSound(_pickUpSound);
         GameManager.Instance.ScavengingState.RemoveItemFromSelectedList(this);
         if (!GameManager.Instance.ItemManager.ItemList.Contains(this)) GameManager.Instance.ItemManager.ItemList.Add(this);
@@ -154,7 +156,7 @@ public class DraggableBehavior : ItemBehavior
                 }
             }
         }
-        else if (!GameManager.Instance.UIManager.CrateOverCheck.IsOver())
+        else if (!GameManager.Instance.CrateOverCheck.IsOver())
         {
             if (Input.mousePosition.x >= Screen.width && Input.mousePosition.y >= 0 && Input.mousePosition.y <= Screen.height)
             {
@@ -183,13 +185,17 @@ public class DraggableBehavior : ItemBehavior
 
     public void DropItem()
     {
-        transform.DOScale(1f, .3f).SetEase(Ease.InBack).SetUpdate(true);
         gameObject.layer = LayerMask.NameToLayer("Default");
         _spriteRenderer.sortingLayerName = "Default";
         _shadowSpriteRenderer.sortingLayerName = "Default";
         SetSortingOrder(GameManager.Instance.ItemManager.TopLayer + 2);
         GameManager.Instance.ItemManager.TopLayer += 2;
         AudioManager.Instance.PlaySFXSound(_pickUpSound);
+        transform.DOScale(1f, .3f).SetEase(Ease.InBack).SetUpdate(true).OnComplete(() =>
+        {
+            _spriteRenderer.maskInteraction = SpriteMaskInteraction.VisibleOutsideMask;
+            _shadowSpriteRenderer.maskInteraction = SpriteMaskInteraction.VisibleOutsideMask;
+        });
     }
 
     public void GoBackToDumpster()

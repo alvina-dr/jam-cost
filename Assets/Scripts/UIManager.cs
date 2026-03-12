@@ -6,10 +6,6 @@ public class UIManager : MonoBehaviour
     public UI_TextValue Timer;
     public UI_TextValue RoundRemaining;
 
-    [Header("Over check")]
-    public UI_OverCheck CrateOverCheck;
-    public UI_OverCheck DepotOverCheck;
-
     [Header("Game Over UI")]
     public UI_GameOver GameLost;
     public UI_GameOver GameWon;

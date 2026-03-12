@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Over check")]
     public OverCheck DepotOverCheck;
+    public OverCheck CrateOverCheck;
 
 
     private void Start()
