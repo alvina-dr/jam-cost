@@ -62,11 +62,14 @@ public class GameManager : MonoBehaviour
             case MND_Scavenge_Classic:
                 UIManager.ScoreTextValue.SetTextValue($"{CurrentScore} / {SaveManager.Instance.GetScavengeNode().ScoreGoal}");
                 UIManager.ScoreBarValue.SetBarValue(CurrentScore, SaveManager.Instance.GetScavengeNode().ScoreGoal);
+                ScavengingState.ResetTimer();
                 break;
         }
         CurrentDay = 0;
 
         SetCurrentScore(0);
+        UIManager.Timer.SetTextValue($"{Mathf.RoundToInt(ScavengingState.Timer)}", false);
+
         ItemManager.ResetDumpster();
         ScavengingState.UpdateItemNumberText();
 

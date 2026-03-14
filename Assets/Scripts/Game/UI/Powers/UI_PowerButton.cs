@@ -18,7 +18,8 @@ public class UI_PowerButton : MonoBehaviour
     public void UsePower()
     {
         if (_powerData.CurrentLoadTime > 0) return;
-        Instantiate(_powerData.PowerBehaviorPrefab);
+        PowerBehavior powerBehavior = Instantiate(_powerData.PowerBehaviorPrefab);
+        powerBehavior.transform.position = transform.position;
         _powerData.CurrentLoadTime = _powerData.LoadingTime;
     }
 

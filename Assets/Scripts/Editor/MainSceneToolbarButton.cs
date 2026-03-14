@@ -10,22 +10,13 @@ public class MainSceneToolbarButton
 {
 	static MainSceneToolbarButton()
 	{
-		ToolbarExtender.LeftToolbarGUI.Add(OnToolbarGUI);
-	}
+		ToolbarExtender.LeftToolbarGUI.Add(OnLeftToolbarGUI);
+		ToolbarExtender.RightToolbarGUI.Add(OnRightToolbarGUI);
+    }
 	
-	static void OnToolbarGUI()
+	static void OnLeftToolbarGUI()
 	{
 		GUILayout.FlexibleSpace();
-
-        if (GUILayout.Button(new GUIContent("New save", "Creates a new save")))
-        {
-            if (SaveManager.Instance != null)
-            {
-                SaveManager.Instance.CreateSave();
-            }
-
-            System.IO.File.Delete(Application.persistentDataPath + "/Save.json");
-        }
 
         if (GUILayout.Button(new GUIContent("Game", "Open Game Scene")))
 		{
@@ -45,6 +36,19 @@ public class MainSceneToolbarButton
         if (GUILayout.Button(new GUIContent("Hub", "Open Hub Scene")))
         {
             EditorSceneManager.OpenScene("Assets/Scenes/Hub.unity");
+        }
+    }
+
+    static void OnRightToolbarGUI()
+    {
+        if (GUILayout.Button(new GUIContent("New save", "Creates a new save")))
+        {
+            if (SaveManager.Instance != null)
+            {
+                SaveManager.Instance.CreateSave();
+            }
+
+            System.IO.File.Delete(Application.persistentDataPath + "/Save.json");
         }
 
         if (GUILayout.Button(new GUIContent("Main Menu", "Open Main Menu Scene")))
