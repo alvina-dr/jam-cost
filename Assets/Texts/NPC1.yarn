@@ -1,50 +1,50 @@
 ﻿title: NPC_Racoon
 ---
-Racoon: <wave>EUUH AAARG OUAAHEEEEYH</wave>
-Racoon: <wave>œrg æœrg euurgh</wave>
-Racoon: <wave>EUUH AAARG OUAAHEEEEEEEEEEEEEYH</wave>
--> Racoon: <wave>œrg æœrg euurgh</wave>
--> Racoon: œrg æœrg euurgh
+Hubert: <wave>EUUH AAARG OUAAHEEEEYH</wave> #line:0fbd45e 
+Hubert: <wave>œrg æœrg euurgh</wave> #line:0b79fcc 
+Hubert: <wave>EUUH AAARG OUAAHEEEEEEEEEEEEEYH</wave> #line:0154f94 
+-> Hubert: <wave>œrg æœrg euurgh</wave> #line:033f9c4 
+-> Hubert: œrg æœrg euurgh #line:09bd812 
 ===
 
 title: NPC1_Ending
 ---
-Arf. The manager of this floor seems to be absent.
-I’m not sure if they’re on leave or just taking a break that feels like an eternity, but it looks like you’ll have to wait to meet them.
-Lucky you—I’ve heard they’re pretty strict..
-In the mean time, thanks for your job here.
-You are a really precious asset to this company.
-Here you go. A few meal tickets <sprite name=MT> for you...
-See you later !
-<i>[This is the end of the playtest.]</i>
-<i>[Thank you for playing =) ]</i>
+Hubert: Arf. The manager of this floor seems to be absent. #line:0bd441a 
+Hubert: I’m not sure if they’re on leave or just taking a break that feels like an eternity, but it looks like you’ll have to wait to meet them. #line:0a86e57 
+Hubert: Lucky you—I’ve heard they’re pretty strict.. #line:0e14cf6 
+Hubert: In the mean time, thanks for your job here. #line:036ed76 
+Hubert: You are a really precious asset to this company. #line:04d9211 
+Hubert: Here you go. A few meal tickets <sprite name=MT> for you... #line:071f372 
+Hubert: See you later ! #line:07c0e07 
+<i>\[This is the end of the playtest.\]</i> #line:0ad0f08 
+<i>\[Thank you for playing =) \]</i> #line:0fe88aa 
 ===
 
 title: NPC1_NewFrigo
 ---
-Oh sweet, the <wave>fridge</wave> is back! I can’t wait to watch other employees stick angry post-its on their food — it’s going to be my new little dramedy.
--> Dee: My favourite office drama!
--> Dee: Are you the one stealing them?
-    You can’t prove anything girl, step back.
+Hubert: Oh sweet, the <wave>fridge</wave> is back! I can’t wait to watch other employees stick angry post-its on their food — it’s going to be my new little dramedy. #line:07ab75e 
+-> Dee: My favourite office drama! #line:08b3184 
+-> Dee: Are you the one stealing them? #line:015f683 
+Hubert: You can’t prove anything girl, step back. #line:03045ff 
 ===
 title: NPC1_Introduction
 ---
-Hey Dee, did you notice? You can clock in with the <b>[PUNCH CLOCK]</b> when you begin your day!
--> Dee: You should do that every day to get paid!!
--> Dee: Who are you again?
-Anyway! And since I know you're a bit of a slacker, I left something on the <b>[BOARD]</b> for you.
--> Dee: That’s nice, thanks....
--> Dee: Who are you <i>again</i>?
+Hubert: Hey Dee, did you notice? You can clock in with the <b>\[PUNCH CLOCK\]</b> when you begin your day! #line:0aad62a 
+-> Dee: You should do that every day to get paid!! #line:07ab713 
+-> Dee: Who are you again? #line:08167f5 
+Hubert: Anyway! And since I know you're a bit of a slacker, I left something on the <b>\[BOARD\]</b> for you. #line:032d404 
+-> Dee: That’s nice, thanks.... #line:03bed7a 
+-> Dee: Who are you <i>again</i>? #line:0e4dd27 
 ===
 
 title: NPC1_ShopFirstTime
 ---
-Don’t you ever crave something sweet during the day? I’ve got to stay strong — I want to save my productivity points and cash them in at the converter.
--> I didn’t expect that from you, that’s smart!
--> I don’t need candy. I need a sugar daddy.
+Hubert: Don’t you ever crave something sweet during the day? I’ve got to stay strong — I want to save my productivity points and cash them in at the converter. #line:0afe78e 
+-> I didn’t expect that from you, that’s smart! #line:0979c32 
+-> I don’t need candy. I need a sugar daddy. #line:0de62f3 
 ===
 
 title: NPC1_GameFirstTime
 ---
-You can start whenever you want during your first round by pressing the “PLAY” button. Also, by pressing <b>space</b> <sprite name=Input_Space>, you can pause the game if you need to take a break or think about your strategy!
+You can start whenever you want during your first round by pressing the “PLAY” button. Also, by pressing <b>space</b> <sprite name=Input_Space>, you can pause the game if you need to take a break or think about your strategy! #line:0f1aabc 
 ===
