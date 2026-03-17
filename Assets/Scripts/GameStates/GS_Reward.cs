@@ -9,6 +9,8 @@ public class GS_Reward : GameState
     {
         base.EnterState();
 
+        GameManager.Instance.Lever.SetActive(false);
+
         // get calculation of how many pp should be instantiated as a reward
         // instantiate all pps
         // let the player click the button to continue their run

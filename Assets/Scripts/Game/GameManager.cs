@@ -1,8 +1,7 @@
-using MoreMountains.Tools;
 using Sirenix.OdinInspector;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
+using PrimeTween;
 
 public class GameManager : MonoBehaviour
 {
@@ -51,6 +50,7 @@ public class GameManager : MonoBehaviour
     [Header("Over check")]
     public OverCheck DepotOverCheck;
     public OverCheck CrateOverCheck;
+    public GameObject Lever;
 
 
     private void Start()
@@ -151,5 +151,21 @@ public class GameManager : MonoBehaviour
     public int GetMaxRoundNumber()
     {
         return _roundNumber + SaveManager.CurrentSave.CurrentRun.RunBonusRound;
+    }
+
+    public void RerollCrate()
+    {
+        if (CurrentGameState != ScavengingState && CurrentGameState != PreparationState) return;
+        if (ScavengingState.CurrentSubState == GS_Scavenging.Scavenging_SubState.RerollCrateAnim) return;
+        if (PreparationState.CurrentSubState == GS_Preparation.Preparation_SubState.RerollCrateAnim) return;
+
+        ScavengingState.CurrentSubState = GS_Scavenging.Scavenging_SubState.RerollCrateAnim;
+        PreparationState.CurrentSubState = GS_Preparation.Preparation_SubState.RerollCrateAnim;
+        Sequence rerollSequence = Sequence.Create();
+        rerollSequence.ChainDelay(1f);
+        rerollSequence.ChainCallback(() => ItemManager.ResetDumpster());
+        rerollSequence.ChainDelay(1f);
+        rerollSequence.ChainCallback(() => ScavengingState.CurrentSubState = GS_Scavenging.Scavenging_SubState.Scavenging);
+        rerollSequence.ChainCallback(() => PreparationState.CurrentSubState = GS_Preparation.Preparation_SubState.Preparation);
     }
 }

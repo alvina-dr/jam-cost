@@ -9,9 +9,19 @@ public class GS_Scavenging : GameState
     public List<ItemBehavior> SelectedItemList = new();
     [SerializeField] private UI_TextValue _itemNumberText;
 
+    public enum Scavenging_SubState
+    {
+        Scavenging = 0,
+        RerollCrateAnim = 1
+    }
+
+    public Scavenging_SubState CurrentSubState;
+
+
     public override void EnterState()
     {
         base.EnterState();
+        GameManager.Instance.Lever.SetActive(true);
         GameManager.Instance.CurrentRound++;
         ResetTimer();
         AudioManager.Instance.StartClockSound();

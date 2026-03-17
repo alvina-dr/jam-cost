@@ -6,9 +6,18 @@ public class GS_Preparation : GameState
     [ReadOnly] public float Timer;
     public float PreparationTime = 10;
 
+    public enum Preparation_SubState
+    {
+        Preparation = 0,
+        RerollCrateAnim = 1
+    }
+
+    public Preparation_SubState CurrentSubState;
+
     public override void EnterState()
     {
         base.EnterState();
+        GameManager.Instance.Lever.SetActive(true);
         ResetTimer();
         AudioManager.Instance.StartClockSound();
         GameManager.Instance.ScavengingState.UpdateItemNumberText();
