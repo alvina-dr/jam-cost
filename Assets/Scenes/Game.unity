@@ -7162,7 +7162,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!60 &1054496360
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -8877,6 +8877,7 @@ MonoBehaviour:
   FoundPP: 0
   DepotOverCheck: {fileID: 1134507862}
   CrateOverCheck: {fileID: 359854387}
+  Lever: {fileID: 1054496359}
 --- !u!114 &1648493509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8910,6 +8911,7 @@ MonoBehaviour:
   _roundTime: 15
   SelectedItemList: []
   _itemNumberText: {fileID: 116919398}
+  CurrentSubState: 0
 --- !u!114 &1648493512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8975,6 +8977,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Timer: 0
   PreparationTime: 10
+  CurrentSubState: 0
 --- !u!114 &1648493518
 MonoBehaviour:
   m_ObjectHideFlags: 0
