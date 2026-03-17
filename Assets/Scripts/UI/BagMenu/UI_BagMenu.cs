@@ -27,6 +27,10 @@ public class UI_BagMenu : MonoBehaviour
     [SerializeField] private Color _addColor;
     [SerializeField] private Color _multiplyColor;
 
+    [Header("Particles")]
+    [SerializeField] private ParticleSystem _confettiLeft;
+    [SerializeField] private ParticleSystem _confettiRight;
+
     public void OpenMenu()
     {
         _confirm.gameObject.SetActive(true);
@@ -236,6 +240,12 @@ public class UI_BagMenu : MonoBehaviour
             SaveManager.CurrentSave.TotalPoints += roundScore;
             QuestManager.Instance.CheckQuestCompletionByType<QD_TotalPoints>();
             _scoreBar.SetBarValue(GameManager.Instance.CurrentScore, SaveManager.Instance.GetScavengeNode().ScoreGoal);
+            
+            if (roundScore > 0)
+            {
+                _confettiLeft.Play();
+                _confettiRight.Play();
+            }
             _currentScoreText.SetTextValue($"{GameManager.Instance.CurrentScore} / {SaveManager.Instance.GetScavengeNode().ScoreGoal}");
             _roundScoreParent.gameObject.SetActive(false);
             //chosenItemSlotList[index].HidePrice();
