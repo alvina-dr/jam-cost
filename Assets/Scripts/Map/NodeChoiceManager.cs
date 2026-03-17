@@ -80,7 +80,7 @@ public class NodeChoiceManager : MonoBehaviour
             case MND_Scavenge_Classic:
                 TransitionManager.Instance().TransitionChangeScene("Game", _transitionSettings, 0);
                 break;
-            case MND_NPC:
+            case MND_FreeRound:
                 TransitionManager.Instance().TransitionChangeScene("Shop", _transitionSettings, 0);
                 break;
             case MND_Shop:

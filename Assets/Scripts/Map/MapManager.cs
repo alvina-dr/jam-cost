@@ -98,7 +98,7 @@ public class MapManager : MonoBehaviour
             case MND_Scavenge_Classic:
                 SceneManager.LoadScene("Game");
                 break;
-            case MND_NPC:
+            case MND_FreeRound:
                 SceneManager.LoadScene("Shop");
                 break;
             case MND_Shop:

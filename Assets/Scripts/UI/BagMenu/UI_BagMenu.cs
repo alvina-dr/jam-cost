@@ -138,7 +138,7 @@ public class UI_BagMenu : MonoBehaviour
 
             // BONUS : count items twice on the last round
             BD_LastTurn_DoubleItem doubleTrouble = SaveManager.Instance.CheckHasRunBonus<BD_LastTurn_DoubleItem>();
-            if (GameManager.Instance.CurrentRound >= SaveManager.Instance.GetScavengeNode().RoundNumber && doubleTrouble != null)
+            if (GameManager.Instance.CurrentRound >= GameManager.Instance.GetMaxRoundNumber() && doubleTrouble != null)
             {
                 countTimeMax = 2;
             }
@@ -253,7 +253,7 @@ public class UI_BagMenu : MonoBehaviour
         countAnimation.AppendInterval(1f);
 
         // End of round
-        if (GameManager.Instance.CurrentRound >= SaveManager.Instance.GetScavengeNode().RoundNumber)
+        if (GameManager.Instance.CurrentRound >= GameManager.Instance.GetMaxRoundNumber())
         {
             countAnimation.AppendCallback(() =>
             {

@@ -37,6 +37,11 @@ public class MainSceneToolbarButton
         {
             EditorSceneManager.OpenScene("Assets/Scenes/Hub.unity");
         }
+
+        if (GUILayout.Button(new GUIContent("Free Round", "Open Free Round Scene")))
+        {
+            EditorSceneManager.OpenScene("Assets/Scenes/FreeRound.unity");
+        }
     }
 
     static void OnRightToolbarGUI()

@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 396851949313655989}
   - component: {fileID: 9136793899106955224}
   m_Layer: 0
-  m_Name: LockerDoor
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 5588058603642960328}
   - component: {fileID: 3928180972586353682}
   m_Layer: 0
-  m_Name: LockerDoor (1)
+  m_Name: Highlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

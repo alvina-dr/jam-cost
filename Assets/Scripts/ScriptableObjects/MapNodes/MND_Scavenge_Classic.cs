@@ -5,6 +5,5 @@ using UnityEngine;
 public class MND_Scavenge_Classic : MapNodeData
 {
     public int ScoreGoal;
-    public int RoundNumber;
     public SpawnItemParameters SpawnItemParameters;
 }

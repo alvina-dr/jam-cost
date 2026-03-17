@@ -6,6 +6,7 @@ using UnityEngine;
 using Yarn;
 using Yarn.Unity;
 using Yarn.Unity.Attributes;
+#nullable enable
 
 public class OptionDialogBubblePresenter : DialoguePresenterBase
 {

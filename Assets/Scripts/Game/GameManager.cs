@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Infos")]
     [SerializeField] private int _depotSize;
+    [SerializeField] private int _roundNumber;
 
     [Header("Current Stats")]
     public DraggableBehavior SelectedItem;
@@ -69,6 +70,7 @@ public class GameManager : MonoBehaviour
 
         SetCurrentScore(0);
         UIManager.Timer.SetTextValue($"{Mathf.RoundToInt(ScavengingState.Timer)}", false);
+        GameManager.Instance.UIManager.RoundRemaining.SetTextValue($"Round {CurrentRound} / {GetMaxRoundNumber()}", false);
 
         ItemManager.ResetDumpster();
         ScavengingState.UpdateItemNumberText();
@@ -144,5 +146,10 @@ public class GameManager : MonoBehaviour
             depotSizeBonus += bonusDepotSizeList[i].BonusHandSize;
         }
         return _depotSize + depotSizeBonus;
+    }
+
+    public int GetMaxRoundNumber()
+    {
+        return _roundNumber + SaveManager.CurrentSave.CurrentRun.RunBonusRound;
     }
 }

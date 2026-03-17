@@ -7724,6 +7724,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dialogue System
       objectReference: {fileID: 0}
+    - target: {fileID: 4965692068064237759, guid: 108f5ea8a8a6d254faa273d53397fff9, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5390485031976064024, guid: 108f5ea8a8a6d254faa273d53397fff9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -7789,6 +7793,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5427465723473620903, guid: 108f5ea8a8a6d254faa273d53397fff9, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5733512302714500269, guid: 108f5ea8a8a6d254faa273d53397fff9, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5733512302714500269, guid: 108f5ea8a8a6d254faa273d53397fff9, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
@@ -8580,6 +8592,7 @@ MonoBehaviour:
   UIManager: {fileID: 110208747}
   ItemManager: {fileID: 1648493509}
   _depotSize: 4
+  _roundNumber: 3
   SelectedItem: {fileID: 0}
   CurrentScore: 0
   CurrentDay: 0

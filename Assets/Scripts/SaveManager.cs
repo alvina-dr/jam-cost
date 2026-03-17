@@ -319,6 +319,7 @@ public class SaveManager : MonoBehaviour
         public float TotalRunDuration;
 
         public float RunRoundBonusTime = 0;
+        public int RunBonusRound = 0;
 
         public List<BonusData> CurrentRunBonusList = new();
         public List<int> FormerNodeList = new();

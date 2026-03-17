@@ -12,7 +12,7 @@ public class GS_Preparation : GameState
         ResetTimer();
         AudioManager.Instance.StartClockSound();
         GameManager.Instance.ScavengingState.UpdateItemNumberText();
-        GameManager.Instance.UIManager.RoundRemaining.SetTextValue($"Round {GameManager.Instance.CurrentRound} / {SaveManager.Instance.GetScavengeNode().RoundNumber}");
+        GameManager.Instance.UIManager.RoundRemaining.SetTextValue($"Round {GameManager.Instance.CurrentRound} / {GameManager.Instance.GetMaxRoundNumber()}");
     }
 
     public override void UpdateState()

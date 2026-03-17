@@ -50,4 +50,9 @@ public class ShopManager : MonoBehaviour
     {
         ConversionMenu.OpenMenu();
     }
+
+    public void GetFreeRound()
+    {
+        SaveManager.CurrentSave.CurrentRun.RunBonusRound++;
+    }
 }
