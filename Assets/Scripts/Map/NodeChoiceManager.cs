@@ -81,7 +81,7 @@ public class NodeChoiceManager : MonoBehaviour
                 TransitionManager.Instance().TransitionChangeScene("Game", _transitionSettings, 0);
                 break;
             case MND_FreeRound:
-                TransitionManager.Instance().TransitionChangeScene("Shop", _transitionSettings, 0);
+                TransitionManager.Instance().TransitionChangeScene("FreeRound", _transitionSettings, 0);
                 break;
             case MND_Shop:
                 TransitionManager.Instance().TransitionChangeScene("Shop", _transitionSettings, 0);

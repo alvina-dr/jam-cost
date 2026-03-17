@@ -1,5 +1,6 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ShopManager : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class ShopManager : MonoBehaviour
     {
         BonusMenu.SelectBonusList();
 
-        if (!SaveManager.CurrentSave.ShopFirstTime)
+        if (SceneManager.GetActiveScene().name == "Shop" && !SaveManager.CurrentSave.ShopFirstTime)
         {
             DialogueManager.Instance.DialogueRunner.StartDialogue("NPC1_ShopFirstTime");
             SaveManager.CurrentSave.ShopFirstTime = true;

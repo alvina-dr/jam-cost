@@ -99,7 +99,7 @@ public class MapManager : MonoBehaviour
                 SceneManager.LoadScene("Game");
                 break;
             case MND_FreeRound:
-                SceneManager.LoadScene("Shop");
+                SceneManager.LoadScene("FreeRound");
                 break;
             case MND_Shop:
                 SceneManager.LoadScene("Shop");
