@@ -307,8 +307,6 @@ public class OptionDialogBubblePresenter : DialoguePresenterBase
         }
 
         // ADDED BY ALVINA FOR SPEECH BUBBLE SYSTEM
-        Debug.Log("character name : " + dialogueOptions[0].Line.CharacterName);
-
         // show dialog bubble above matching character
 
         List<DialogBubbleCharacter> dialogBubbleCharacterList = FindObjectsByType<DialogBubbleCharacter>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToList();

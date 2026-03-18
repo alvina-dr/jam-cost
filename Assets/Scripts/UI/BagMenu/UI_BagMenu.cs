@@ -1,16 +1,15 @@
 using DG.Tweening;
+using MoreMountains.Feedbacks;
 using PrimeTween;
 using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
-public class UI_BagMenu : MonoBehaviour
+public class UI_BagMenu : UI_Menu
 {
-    [SerializeField] private UI_Menu _menu;
-    [SerializeField] private List<UI_BagSlot> _bagSlotList;
+    [Header("Bag menu")]
     [SerializeField] private List<UI_BagSlot> _choiceSlotList;
     public Transform DraggedItem;
     [SerializeField] private Button _confirm;
@@ -30,13 +29,19 @@ public class UI_BagMenu : MonoBehaviour
     [Header("Particles")]
     [SerializeField] private ParticleSystem _confettiLeft;
     [SerializeField] private ParticleSystem _confettiRight;
+    [SerializeField] private MMF_Player _shakePlayer;
 
-    public void OpenMenu()
+    private int _animationStackedNumber;
+    private float _animationTimeScale = 1;
+
+    public override void OpenMenu()
     {
+        _animationTimeScale = 1;
+
         _confirm.gameObject.SetActive(true);
         _continue.gameObject.SetActive(false);
 
-        _menu.OpenMenu();
+        base.OpenMenu();
 
         _scoreBar.SetBarValue(GameManager.Instance.CurrentScore, SaveManager.Instance.GetScavengeNode().ScoreGoal, false);
         _currentScoreText.SetTextValue($"{GameManager.Instance.CurrentScore} / {SaveManager.Instance.GetScavengeNode().ScoreGoal}", false);
@@ -65,16 +70,11 @@ public class UI_BagMenu : MonoBehaviour
                 _choiceSlotList[i].CreateItem(bagItemList[i]);
             }
         }
-
-        //for (int i = 0; i < _choiceSlotList.Count; i++)
-        //{
-        //    _choiceSlotList[i].ClearSlot();
-        //}
     }
 
-    public void CloseMenu()
+    public override void CloseMenu()
     {
-        _menu.CloseMenu();
+        base.CloseMenu();
     }
 
     public void Confirm()
@@ -102,24 +102,14 @@ public class UI_BagMenu : MonoBehaviour
     public void CountScore()
     {
         int roundScore = 0;
+        float baseDelay = 0.5f;
+        int totalAnimation = 0;
+
         _roundScoreText.SetTextValue($"{roundScore}");
         _roundScoreParent.gameObject.SetActive(true);
 
         List<UI_BagSlot> chosenItemSlotList = GetChosenItemSlotList();
         DG.Tweening.Sequence countAnimation = DOTween.Sequence();
-
-        for (int i = 0; i < _bagSlotList.Count; i++)
-        {
-            int index = i;
-            if (_bagSlotList[i].CurrentBagItem != null)
-            {
-                countAnimation.AppendCallback(() =>
-                {
-                    _bagSlotList[index].ClearSlot();
-                });
-                countAnimation.AppendInterval(.1f);
-            }
-        }
 
         // calculate how many object there is of each family
         List<int> familyCountList = new();
@@ -133,7 +123,6 @@ public class UI_BagMenu : MonoBehaviour
             int index = i;
 
             int cloneNumber = chosenItemSlotList.FindAll(x => x.CurrentBagItem.Data == chosenItemSlotList[i].CurrentBagItem.Data).Count;
-            float delay = 0;
             int countTimeMax = 1;
 
             // BONUS : count items twice on the last round
@@ -150,34 +139,41 @@ public class UI_BagMenu : MonoBehaviour
                 // BONUS : DOUBLE TROUBLE
                 if (countTime == 1)
                 {
-                    countAnimation.AppendInterval(.3f);
+                    totalAnimation++;
+                    countAnimation.AppendInterval(baseDelay * _animationTimeScale);
                     countAnimation.AppendCallback(() =>
                     {
+                        _shakePlayer.PlayFeedbacks();
+                        StackAnim();
                         GameManager.Instance.UIManager.TextPopperManager_Info.PopText(doubleTrouble.Name, chosenItemSlotList[index].transform.position + Vector3.up, Color.black, UI_TextPopper.AnimSpeed.Quick);
                     });
-                    countAnimation.AppendInterval(.1f);
+                    countAnimation.AppendInterval(.1f * _animationTimeScale);
                 }
 
                 // Basic score
                 if (chosenItemSlotList[index].CurrentBagItem.Data.Price > 0) // if not garbage
                 {
+                    totalAnimation++;
+                    countAnimation.AppendInterval(baseDelay * _animationTimeScale);
                     countAnimation.AppendCallback(() =>
                     {
+                        _shakePlayer.PlayFeedbacks();
+                        StackAnim();
                         GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + chosenItemSlotList[index].CurrentBagItem.Data.Price, chosenItemSlotList[index].transform.position, _addColor, UI_TextPopper.AnimSpeed.Quick);
                         chosenItemSlotList[index].SetPriceText(score);
                     });
-                    countAnimation.AppendInterval(.5f);
-                    delay += .45f;
                 }
 
 
                 // COMBINAISON : If several in family
                 if (familyCountList[(int)chosenItemSlotList[index].CurrentBagItem.Data.Family] > 1 && chosenItemSlotList[index].CurrentBagItem.Data.Price > 0)
                 {
-                    countAnimation.AppendInterval(delay);
-                    delay += .3f;
+                    totalAnimation++;
+                    countAnimation.AppendInterval(baseDelay * _animationTimeScale);
                     countAnimation.AppendCallback(() =>
                     {
+                        _shakePlayer.PlayFeedbacks();
+                        StackAnim();
                         score += familyCountList[(int)chosenItemSlotList[index].CurrentBagItem.Data.Family];
                         chosenItemSlotList[index].SetPriceText(score);
                         GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + familyCountList[(int)chosenItemSlotList[index].CurrentBagItem.Data.Family], chosenItemSlotList[index].transform.position, _addColor);
@@ -188,10 +184,12 @@ public class UI_BagMenu : MonoBehaviour
                 // COMBINAISON : if several time the same
                 if (cloneNumber > 1 && chosenItemSlotList[index].CurrentBagItem.Data.Price > 0)
                 {
-                    countAnimation.AppendInterval(delay);
-                    delay += .3f;
+                    totalAnimation++;
+                    countAnimation.AppendInterval(baseDelay * _animationTimeScale);
                     countAnimation.AppendCallback(() =>
                     {
+                        _shakePlayer.PlayFeedbacks();
+                        StackAnim();
                         score *= cloneNumber;
                         chosenItemSlotList[index].SetPriceText(score);
                         GameManager.Instance.UIManager.TextPopperManager_Number.PopText("x" + cloneNumber, chosenItemSlotList[index].transform.position, _multiplyColor, UI_TextPopper.AnimSpeed.Quick);
@@ -207,10 +205,13 @@ public class UI_BagMenu : MonoBehaviour
 
                     if (familyMultiplier.FamilyBonus == chosenItemSlotList[index].CurrentBagItem.Data.Family)
                     {
-                        countAnimation.AppendInterval(delay);
-                        delay += .3f;
+                        totalAnimation++;
+
+                        countAnimation.AppendInterval(baseDelay * _animationTimeScale);
                         countAnimation.AppendCallback(() =>
                         {
+                            _shakePlayer.PlayFeedbacks();
+                            StackAnim();
                             score = Mathf.RoundToInt(score * familyMultiplier.BonusMultiplier);
                             chosenItemSlotList[index].SetPriceText(score);
                             GameManager.Instance.UIManager.TextPopperManager_Number.PopText("x" + familyMultiplier.BonusMultiplier, chosenItemSlotList[index].transform.position, _multiplyColor, UI_TextPopper.AnimSpeed.Quick);
@@ -219,33 +220,35 @@ public class UI_BagMenu : MonoBehaviour
                     }
                 }
 
-                countAnimation.AppendInterval(.5f);
+                totalAnimation++;
+                countAnimation.AppendInterval(.15f * _animationTimeScale);
                 countAnimation.AppendCallback(() =>
                 {
+                    StackAnim();
                     roundScore += score;
-                    _roundScoreText.SetTextValueNumber(roundScore - score, roundScore);
-
-                    //GameManager.Instance.SetCurrentScore(GameManager.Instance.CurrentScore + score);
-                    //_scoreBar.SetBarValue(GameManager.Instance.CurrentScore, SaveManager.Instance.GetScavengeNode().ScoreGoal);
-                    //_currentScoreText.SetTextValue(GameManager.Instance.CurrentScore.ToString());
-                    //chosenItemSlotList[index].HidePrice();
+                    _roundScoreText.SetTextValueNumber(roundScore - score, roundScore, .4f * _animationTimeScale);
                 });
             }
-            countAnimation.AppendInterval(.8f);
+
+            totalAnimation++;
+            countAnimation.AppendInterval(.3f * _animationTimeScale);
+            StackAnim();
         }
-        countAnimation.AppendInterval(1f);
+        countAnimation.AppendInterval(.8f * _animationTimeScale);
         countAnimation.AppendCallback(() =>
         {
             GameManager.Instance.SetCurrentScore(GameManager.Instance.CurrentScore + roundScore);
             SaveManager.CurrentSave.TotalPoints += roundScore;
             QuestManager.Instance.CheckQuestCompletionByType<QD_TotalPoints>();
             _scoreBar.SetBarValue(GameManager.Instance.CurrentScore, SaveManager.Instance.GetScavengeNode().ScoreGoal);
+
+            int confettiNumber = 0;
+            if (roundScore > 0) confettiNumber++;
+            if (roundScore > SaveManager.Instance.GetScavengeNode().ScoreGoal / 2) confettiNumber++;
+            if (roundScore > SaveManager.Instance.GetScavengeNode().ScoreGoal) confettiNumber++;
+            _confettiLeft.Emit(confettiNumber * 50);
+            _confettiRight.Emit(confettiNumber * 50);
             
-            if (roundScore > 0)
-            {
-                _confettiLeft.Play();
-                _confettiRight.Play();
-            }
             _currentScoreText.SetTextValue($"{GameManager.Instance.CurrentScore} / {SaveManager.Instance.GetScavengeNode().ScoreGoal}");
             _roundScoreParent.gameObject.SetActive(false);
             //chosenItemSlotList[index].HidePrice();
@@ -277,6 +280,8 @@ public class UI_BagMenu : MonoBehaviour
                 }
             });
         }
+
+        _animationTimeScale = 5.0f / (float)totalAnimation;
     }
 
     public void ShakeList(List<UI_BagSlot> slotList)
@@ -289,15 +294,14 @@ public class UI_BagMenu : MonoBehaviour
         }
     }
 
-#if UNITY_EDITOR
-    [Button]
-    private void UpdateBagSlotList()
+    public void StackAnim()
     {
-        _bagSlotList.Clear();
-        foreach (UI_BagSlot child in transform.GetComponentsInChildren<UI_BagSlot>(includeInactive: true))
+        Debug.Log("animation time scale : " + _animationTimeScale);
+        _animationStackedNumber++;
+        if (_animationStackedNumber > 1)
         {
-            _bagSlotList.Add(child);
+            _animationStackedNumber = 0;
+            _animationTimeScale *= .7f;
         }
     }
-#endif
 }

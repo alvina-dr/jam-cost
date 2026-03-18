@@ -27,7 +27,7 @@ public class UI_TextValue : MonoBehaviour
         }
     }
 
-    public void SetTextValueNumber(int oldNumber, int newNumber, bool animation = true)
+    public void SetTextValueNumber(int oldNumber, int newNumber, float animationDuration = .5f, bool animation = true)
     {
         _tempoText = $"{newNumber}";
         if (animation)
@@ -39,7 +39,7 @@ public class UI_TextValue : MonoBehaviour
             int addNumber = difference < 0 ? -1 : 1;
             difference = Mathf.Abs(difference);
 
-            float numberDuration = .5f / (float) difference;
+            float numberDuration = animationDuration / (float) difference;
             for (int i = 0; i < difference; i++)
             {
                 int number = oldNumber + addNumber * (i + 1);
