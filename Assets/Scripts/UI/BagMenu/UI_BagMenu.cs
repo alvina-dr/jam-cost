@@ -72,7 +72,6 @@ public class UI_BagMenu : UI_Menu
         }
     }
 
-
     private void Update()
     {
         if (!_isOpen)

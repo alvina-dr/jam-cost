@@ -23,12 +23,6 @@ public class UI_BagSlot : MonoBehaviour
         HidePrice();
     }
 
-    public void RemoveItem()
-    {
-        _currentBagItem = null;
-        HidePrice();
-    }
-
     public void ClearSlot()
     {
         Destroy(CurrentBagItem?.gameObject);

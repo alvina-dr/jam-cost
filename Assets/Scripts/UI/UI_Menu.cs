@@ -1,8 +1,7 @@
 using DG.Tweening;
-using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
 
@@ -17,11 +16,10 @@ public class UI_Menu : MonoBehaviour
 
     public virtual void OpenMenu()
     {
-        _cancelAction = InputSystem.actions.FindAction("Cancel");
-        _cancelAction.performed += OnCancel;
-
         _isOpen = true;
         gameObject.SetActive(true);
+
+        StartCoroutine(OnStartComplete());
         float totalDelay = 0;
         for (int i = 0; i < _openAnimationList.Count; i++)
         {
@@ -32,6 +30,13 @@ public class UI_Menu : MonoBehaviour
                 Pop(_openAnimationList[index].Transform, _openAnimationList[index].Time, true);
             }).SetUpdate(true);
         }
+    }
+
+    IEnumerator OnStartComplete()
+    {
+        yield return new WaitForEndOfFrame();
+        _cancelAction = InputSystem.actions.FindAction("Cancel");
+        _cancelAction.performed += OnCancel;
     }
 
     public virtual void CloseMenu()
@@ -68,13 +73,14 @@ public class UI_Menu : MonoBehaviour
 
     public void OnCancel(CallbackContext context)
     {
+        Debug.Log("cancel");
         if (context.performed)
         {
             CloseMenu();
         }
     }
 
-    [Serializable]
+    [System.Serializable]
     public class Animation
     {
         public Transform Transform;

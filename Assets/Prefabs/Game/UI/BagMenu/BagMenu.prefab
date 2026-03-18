@@ -10187,7 +10187,6 @@ MonoBehaviour:
   - {fileID: 2551362470114742417}
   - {fileID: 1504318352116559540}
   - {fileID: 3001252435627933251}
-  DraggedItem: {fileID: 0}
   _confirm: {fileID: 3964594814975348401}
   _continue: {fileID: 1707988133678457734}
   _scoreBar: {fileID: 2116154808261063143}

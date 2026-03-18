@@ -33,14 +33,14 @@ public class PauseManager : MonoBehaviour
 
     public void ContinueButton()
     {
-        Time.timeScale = 1f;
-        CloseMenu();
+        Pause(new InputAction.CallbackContext());
     }
 
     public void Pause(InputAction.CallbackContext _)
     {
         if (GameManager.Instance.CurrentGameState != GameManager.Instance.ScavengingState
             && GameManager.Instance.CurrentGameState != GameManager.Instance.PreparationState
+            && GameManager.Instance.CurrentGameState != null
             && GameManager.Instance.CurrentGameState != GameManager.Instance.RewardState) return;
 
         IsPaused = !IsPaused;
