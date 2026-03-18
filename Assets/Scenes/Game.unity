@@ -9487,7 +9487,9 @@ MonoBehaviour:
   Timer: 0
   _roundTime: 15
   SelectedItemList: []
-  _itemNumberText: {fileID: 116919398}
+  _itemNumberTextValue: {fileID: 116919398}
+  _itemNumberText: {fileID: 116919397}
+  _depotSprite: {fileID: 1134507859}
   CurrentSubState: 0
 --- !u!114 &1648493512
 MonoBehaviour:

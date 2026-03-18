@@ -50,6 +50,7 @@ public class UI_BagMenu : UI_Menu
 
         List<ItemData> bagItemList = GameManager.Instance.ScavengingState.GetItemDataList();
         GameManager.Instance.ScavengingState.CleanItemDataList();
+        GameManager.Instance.ScavengingState.UpdateItemNumberText();
 
         int size = GameManager.Instance.GetDepotSize();
         for (int i = 0; i < _choiceSlotList.Count; i++)
@@ -316,7 +317,6 @@ public class UI_BagMenu : UI_Menu
 
     public void StackAnim()
     {
-        Debug.Log("animation time scale : " + _animationTimeScale);
         _animationStackedNumber++;
         if (_animationStackedNumber > 1)
         {

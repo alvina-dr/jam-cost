@@ -1,5 +1,6 @@
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GS_Scavenging : GameState
@@ -7,7 +8,9 @@ public class GS_Scavenging : GameState
     [ReadOnly] public float Timer;
     [SerializeField] private float _roundTime;
     public List<ItemBehavior> SelectedItemList = new();
-    [SerializeField] private UI_TextValue _itemNumberText;
+    [SerializeField] private UI_TextValue _itemNumberTextValue;
+    [SerializeField] private TextMeshProUGUI _itemNumberText;
+    [SerializeField] private SpriteRenderer _depotSprite;
 
     public enum Scavenging_SubState
     {
@@ -17,7 +20,6 @@ public class GS_Scavenging : GameState
 
     public Scavenging_SubState CurrentSubState;
 
-
     public override void EnterState()
     {
         base.EnterState();
@@ -25,7 +27,6 @@ public class GS_Scavenging : GameState
         GameManager.Instance.CurrentRound++;
         ResetTimer();
         AudioManager.Instance.StartClockSound();
-        GameManager.Instance.ScavengingState.UpdateItemNumberText();
         GameManager.Instance.UIManager.RoundRemaining.SetTextValue($"Round {GameManager.Instance.CurrentRound} / {GameManager.Instance.GetMaxRoundNumber()}");
     }
 
@@ -54,8 +55,6 @@ public class GS_Scavenging : GameState
                 }
                 break;
         }
-
-
     }
 
     public void EndOfRound()
@@ -129,6 +128,17 @@ public class GS_Scavenging : GameState
 
     public void UpdateItemNumberText()
     {
-        _itemNumberText.SetTextValue(SelectedItemList.Count + "/" + GameManager.Instance.GetDepotSize());
+        if (SelectedItemList.Count >= GameManager.Instance.GetDepotSize())
+        {
+            _itemNumberText.color = Color.red;
+            _depotSprite.color = new Color32(213, 213, 213, 255);
+        }
+        else
+        {
+            _itemNumberText.color = new Color32(237, 223, 205, 255);
+            _depotSprite.color = Color.white;
+        }
+
+        _itemNumberTextValue.SetTextValue(SelectedItemList.Count + "/" + GameManager.Instance.GetDepotSize());
     }
 }

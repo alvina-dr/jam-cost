@@ -147,7 +147,6 @@ public class DraggableBehavior : ItemBehavior
                 {
                     DropItem();
                     GameManager.Instance.ItemManager.ItemList.Remove(this);
-                    //DestroyItem();
                     AudioManager.Instance.PlaySFXSound(_addToTicketSound);
                 }
                 else

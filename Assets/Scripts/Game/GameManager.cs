@@ -52,7 +52,6 @@ public class GameManager : MonoBehaviour
     public OverCheck CrateOverCheck;
     public GameObject Lever;
 
-
     private void Start()
     {
         switch (SaveManager.Instance.CurrentMapNode)
@@ -70,7 +69,7 @@ public class GameManager : MonoBehaviour
 
         SetCurrentScore(0);
         UIManager.Timer.SetTextValue($"{Mathf.RoundToInt(ScavengingState.Timer)}", false);
-        GameManager.Instance.UIManager.RoundRemaining.SetTextValue($"Round {CurrentRound} / {GetMaxRoundNumber()}", false);
+        UIManager.RoundRemaining.SetTextValue($"Round {CurrentRound} / {GetMaxRoundNumber()}", false);
 
         ItemManager.ResetDumpster();
         ScavengingState.UpdateItemNumberText();
