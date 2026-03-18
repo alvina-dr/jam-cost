@@ -1,10 +1,8 @@
 using DG.Tweening;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class UI_BagSlot : MonoBehaviour, IDropHandler
+public class UI_BagSlot : MonoBehaviour
 {
     [SerializeField] private UI_OverCheck _overCheck;
     public bool Over => _overCheck.IsOver();
@@ -36,23 +34,6 @@ public class UI_BagSlot : MonoBehaviour, IDropHandler
         Destroy(CurrentBagItem?.gameObject);
         _currentBagItem = null;
         HidePrice();
-    }
-
-    public void OnDrop(PointerEventData eventData)
-    {
-        if (_currentBagItem != null) return;
-
-        GameObject dropped = eventData.pointerDrag;
-        UI_BagItem bagItem = dropped.GetComponent<UI_BagItem>();
-
-        if (bagItem != null )
-        {
-            _currentBagItem = bagItem;
-            _currentBagItem.SetSlot(this);
-            _currentBagItem.transform.DOMove(transform.position, .1f);
-            RectTransform rect = (RectTransform)_currentBagItem.transform;
-            rect.SetOffsets(0, 0, 0, 0);
-        }
     }
 
     public void SetPriceText(int number)

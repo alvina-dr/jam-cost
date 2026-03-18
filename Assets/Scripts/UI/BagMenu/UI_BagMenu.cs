@@ -11,7 +11,6 @@ public class UI_BagMenu : UI_Menu
 {
     [Header("Bag menu")]
     [SerializeField] private List<UI_BagSlot> _choiceSlotList;
-    public Transform DraggedItem;
     [SerializeField] private Button _confirm;
     [SerializeField] private Button _continue;
 
