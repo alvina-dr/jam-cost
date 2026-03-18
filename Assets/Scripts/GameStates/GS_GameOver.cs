@@ -7,6 +7,7 @@ public class GS_GameOver : GameState
     public override void EnterState()
     {
         base.EnterState();
+        Time.timeScale = 1f;
         AudioManager.Instance.PlaySFXSound(_looseSound);
         GameManager.Instance.UIManager.GameLost.OpenMenu();
     }

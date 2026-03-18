@@ -8,6 +8,7 @@ public class GS_Win : GameState
     public override void EnterState()
     {
         base.EnterState();
+        Time.timeScale = 1f;
         AudioManager.Instance.PlaySFXSound(_winSound);
         GameManager.Instance.UIManager.GameWon.OpenMenu();
         // show small victory animation

@@ -10,7 +10,7 @@ public class UI_Menu : MonoBehaviour
 {
     [SerializeField] private List<Animation> _openAnimationList = new();
     [SerializeField] private List<Animation> _closeAnimationList = new();
-    private bool _isOpen = false;
+    protected bool _isOpen = false;
     public bool IsOpen() => _isOpen;
 
     private InputAction _cancelAction;

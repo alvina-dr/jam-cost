@@ -72,9 +72,29 @@ public class UI_BagMenu : UI_Menu
         }
     }
 
+
+    private void Update()
+    {
+        if (!_isOpen)
+        {
+            Time.timeScale = 1.0f;
+            return;
+        }
+
+        if (Input.GetMouseButton(0))
+        {
+            Time.timeScale = 2f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
+    }
+
     public override void CloseMenu()
     {
         base.CloseMenu();
+        Time.timeScale = 1f;
     }
 
     public void Confirm()
