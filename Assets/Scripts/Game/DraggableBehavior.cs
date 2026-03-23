@@ -1,6 +1,5 @@
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 
 public class DraggableBehavior : ItemBehavior
 {
@@ -79,16 +78,20 @@ public class DraggableBehavior : ItemBehavior
         }
     }
 
-    private void OnMouseEnter()
+    protected override void OnMouseEnter()
     {
+        base.OnMouseEnter();
         if (!CanClickItem()) return;
+        if (GameManager.Instance.SelectedItem != null) return;
 
         GameManager.Instance.UIManager.HoverPrice.ShowPrice(Data.Price, transform.position);
     }
 
-    private void OnMouseExit()
+    protected override void OnMouseExit()
     {
+        base.OnMouseExit();
         if (!CanClickItem()) return;
+        if (GameManager.Instance.SelectedItem != null) return;
 
         GameManager.Instance.UIManager.HoverPrice.HidePrice();
     }

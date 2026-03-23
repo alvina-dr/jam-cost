@@ -54,4 +54,24 @@ public class ItemBehavior : MonoBehaviour
         if (GameManager.Instance.CurrentGameState == GameManager.Instance.RewardState) return true;
         return false;
     }
+
+    protected virtual void OnMouseEnter()
+    {
+        if (!CanClickItem()) return;
+        if (GameManager.Instance.SelectedItem != null) return;
+
+        Color color = _spriteRenderer.material.GetColor("_OutlineColor");
+        color = new Color(color.r, color.g, color.b, 1);
+        _spriteRenderer.material.SetColor("_OutlineColor", color);
+    }
+
+    protected virtual void OnMouseExit()
+    {
+        if (!CanClickItem()) return;
+        if (GameManager.Instance.SelectedItem != null) return;
+
+        Color color = _spriteRenderer.material.GetColor("_OutlineColor");
+        color = new Color(color.r, color.g, color.b, 0);
+        _spriteRenderer.material.SetColor("_OutlineColor", color);
+    }
 }
