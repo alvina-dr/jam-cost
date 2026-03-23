@@ -49,7 +49,17 @@ public class NodeChoiceManager : MonoBehaviour
         else
         {
             List<MapNodeData> choiceList = new(_mapData.DailyChoiceList[SaveManager.CurrentSave.CurrentRun.CurrentNode].MapNodeDataList);
-            for (int i = 0; i < 2; i++)
+
+            int numberNodeToDraw = 2;
+
+            MND_FreeRound freeRound = choiceList.Find(x => x is MND_FreeRound) as MND_FreeRound;
+            if (freeRound != null && SaveManager.CurrentSave.CurrentRun.RunBonusRound == 0)
+            {
+                choiceList.Remove(freeRound);
+                chosenMapNodeData.Add(freeRound);
+                numberNodeToDraw--;
+            }
+            for (int i = 0; i < numberNodeToDraw; i++)
             { 
                 if (choiceList.Count == 0) break;
                 MapNodeData mapNodeData = choiceList[Random.Range(0, choiceList.Count)];

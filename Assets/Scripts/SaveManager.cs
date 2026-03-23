@@ -35,7 +35,8 @@ public class SaveManager : MonoBehaviour
     public MapNodeData CurrentMapNode;
     [SerializeField] private SaveData _currentSave;
     public PowerData FirstPower;
-    
+    [SerializeField] private MapNodeData _firstNode;
+
     private void OnAwake()
     {
         PrimeTweenConfig.warnTweenOnDisabledTarget = false;
@@ -54,6 +55,7 @@ public class SaveManager : MonoBehaviour
     public void StartNewRun()
     {
         CurrentSave.CurrentRun = new RunData();
+        CurrentMapNode = _firstNode;
 
         // Load permanent bonus advantages
         AddPP(CurrentSave.RunStartLootPP);

@@ -79,10 +79,12 @@ MonoBehaviour:
       Rerolls: 0
       TotalRunDuration: 0
       RunRoundBonusTime: 0
+      RunBonusRound: 0
       CurrentRunBonusList: []
       FormerNodeList: 
     ModifiedQuestList: []
   FirstPower: {fileID: 11400000, guid: 5ac3058a1642fe041ae4dfa896e0ee76, type: 2}
+  _firstNode: {fileID: 11400000, guid: cffc50a3e8ada694c92f6e77cad39c5c, type: 2}
 --- !u!114 &4494955558298098340
 MonoBehaviour:
   m_ObjectHideFlags: 0
