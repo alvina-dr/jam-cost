@@ -5189,6 +5189,7 @@ MonoBehaviour:
   _clickableMaterial: {fileID: 2100000, guid: f4abf853aeb0b3b4498833203d55b262, type: 2}
   _collectParticles: {fileID: 3642709651322272509}
   _collectSound: {fileID: 8300000, guid: 0fc69976e44ac9a459408b1e794c0ed5, type: 3}
+  _maxScale: 0.75
 --- !u!58 &2834635080238091872
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -119,6 +119,7 @@ public class DraggableBehavior : ItemBehavior
         _dragOffset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
         GameManager.Instance.SelectedItem = this;
         _collider.enabled = false;
+        transform.DOKill();
         transform.DOScale(1.3f, .4f).SetEase(Ease.OutBack).SetUpdate(true);
         gameObject.layer = LayerMask.NameToLayer("FrontItem");
         _spriteRenderer.sortingLayerName = "Front";
@@ -193,6 +194,8 @@ public class DraggableBehavior : ItemBehavior
         SetSortingOrder(GameManager.Instance.ItemManager.TopLayer + 2);
         GameManager.Instance.ItemManager.TopLayer += 2;
         AudioManager.Instance.PlaySFXSound(_pickUpSound);
+
+        transform.DOKill();
         transform.DOScale(1f, .3f).SetEase(Ease.InBack).SetUpdate(true).OnComplete(() =>
         {
             _spriteRenderer.maskInteraction = SpriteMaskInteraction.VisibleOutsideMask;
