@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ItemFamilyGarbage
+  m_Name: ItemFamily4
   m_Shader: {fileID: -6465566751694194690, guid: e8a32357c6c92aa469a4d13dc7cb224e, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -42,11 +42,12 @@ Material:
     m_Ints: []
     m_Floats:
     - _OutlineAnimationFrequence: 6
+    - _OutlineAnimationFrequency: 5
     - _OutlineAnimationSpeed: 6
-    - _OutlineAnimationStrength: 0.5
-    - _OutlineThickness: 1
+    - _OutlineAnimationStrength: 5
+    - _OutlineThickness: 2
     m_Colors:
-    - _OutlineColor: {r: 0.3018868, g: 0.023198344, b: 0, a: 0}
+    - _OutlineColor: {r: 1, g: 0.7477843, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &2850658905962833268

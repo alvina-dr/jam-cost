@@ -409,6 +409,7 @@ MonoBehaviour:
   _family3Material: {fileID: 2100000, guid: 1b588398024ba6742b3037f53dbf0e92, type: 2}
   _family4Material: {fileID: 2100000, guid: 3a430e1f32465b840a02788602dd1903, type: 2}
   _familyGarbageMaterial: {fileID: 2100000, guid: 28f039e842234f647bf9fb4c97d6bfef, type: 2}
+  _clickableMaterial: {fileID: 2100000, guid: f4abf853aeb0b3b4498833203d55b262, type: 2}
   _cross: {fileID: 8950746068353948999}
   _sellIcon: {fileID: 283622195621017087}
   _pickUpSound: {fileID: 8300000, guid: 25fcdf3a425f4a2428b12e2a7da1c3dc, type: 3}

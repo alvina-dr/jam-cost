@@ -17,6 +17,7 @@ public class ItemData : ScriptableObject
         Paper = 1,
         Glass = 2,
         Electronics = 3,
-        Garbage = 4
+        Garbage = 4,
+        Clickable = 5 
     }
 }

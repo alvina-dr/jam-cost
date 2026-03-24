@@ -17,5 +17,5 @@ MonoBehaviour:
   BonusCurrency: 1
   Rarity: 10
   Name: Productivity Point
-  Icon: {fileID: 21300000, guid: a326ac63f89ee284298bc68f4c2d7978, type: 3}
-  Family: 0
+  Icon: {fileID: 0}
+  Family: 5

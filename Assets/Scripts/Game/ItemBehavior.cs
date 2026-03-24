@@ -20,6 +20,7 @@ public class ItemBehavior : MonoBehaviour
     [SerializeField] private Material _family3Material;
     [SerializeField] private Material _family4Material;
     [SerializeField] private Material _familyGarbageMaterial;
+    [SerializeField] private Material _clickableMaterial;
 
 
     private void Start()
@@ -48,6 +49,9 @@ public class ItemBehavior : MonoBehaviour
                 break;
             case ItemData.ItemFamily.Garbage:
                 _spriteRenderer.material = _familyGarbageMaterial;
+                break;
+            case ItemData.ItemFamily.Clickable:
+                _spriteRenderer.material = _clickableMaterial;
                 break;
         }
     }

@@ -4939,6 +4939,10 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4162256917233115436, guid: a7baf07a41069234a8d382ebd7b43e0c, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f4abf853aeb0b3b4498833203d55b262, type: 2}
     - target: {fileID: 5768727057420461858, guid: a7baf07a41069234a8d382ebd7b43e0c, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.41
@@ -5177,6 +5181,12 @@ MonoBehaviour:
   _startDragPosition: {x: 0, y: 0, z: 0}
   _flyingOffset: {x: 0, y: 0, z: 0}
   _shadowSpriteRenderer: {fileID: 2165592341694125831}
+  _family1Material: {fileID: 2100000, guid: 3292b5dfb5c73934386be40bceced334, type: 2}
+  _family2Material: {fileID: 2100000, guid: b89a6af935ffe124ab92e5b8d6bc338f, type: 2}
+  _family3Material: {fileID: 2100000, guid: 1b588398024ba6742b3037f53dbf0e92, type: 2}
+  _family4Material: {fileID: 2100000, guid: 3a430e1f32465b840a02788602dd1903, type: 2}
+  _familyGarbageMaterial: {fileID: 2100000, guid: 28f039e842234f647bf9fb4c97d6bfef, type: 2}
+  _clickableMaterial: {fileID: 2100000, guid: f4abf853aeb0b3b4498833203d55b262, type: 2}
   _collectParticles: {fileID: 3642709651322272509}
   _collectSound: {fileID: 8300000, guid: 0fc69976e44ac9a459408b1e794c0ed5, type: 3}
 --- !u!58 &2834635080238091872
