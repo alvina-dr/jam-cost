@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Interactable_Dialogue : MonoBehaviour
+public class Interactable_Dialogue : Interactable
 {
     [SerializeField] private string _dialogueNodeName;
     [SerializeField] private UnityEvent _endDialogEvent;

@@ -14,6 +14,14 @@ public class ItemBehavior : MonoBehaviour
     [SerializeField] protected Vector3 _flyingOffset;
     [SerializeField] protected SpriteRenderer _shadowSpriteRenderer;
 
+    [Header("Materials")]
+    [SerializeField] private Material _family1Material;
+    [SerializeField] private Material _family2Material;
+    [SerializeField] private Material _family3Material;
+    [SerializeField] private Material _family4Material;
+    [SerializeField] private Material _familyGarbageMaterial;
+
+
     private void Start()
     {
         _shadowSpriteRenderer.transform.localPosition = _offset;
@@ -23,6 +31,25 @@ public class ItemBehavior : MonoBehaviour
 
         _shadowSpriteRenderer.sortingLayerName = _spriteRenderer.sortingLayerName;
         _shadowSpriteRenderer.sortingOrder = _spriteRenderer.sortingOrder - 1;
+
+        switch (Data.Family)
+        {
+            case ItemData.ItemFamily.Plastic:
+                _spriteRenderer.material = _family1Material;
+                break;
+            case ItemData.ItemFamily.Paper:
+                _spriteRenderer.material = _family2Material;
+                break;
+            case ItemData.ItemFamily.Glass:
+                _spriteRenderer.material = _family3Material;
+                break;
+            case ItemData.ItemFamily.Electronics:
+                _spriteRenderer.material = _family4Material;
+                break;
+            case ItemData.ItemFamily.Garbage:
+                _spriteRenderer.material = _familyGarbageMaterial;
+                break;
+        }
     }
 
     public void SetSortingOrder(int sortingOrder)

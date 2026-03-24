@@ -171,7 +171,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!1 &4210247358685197757
@@ -346,7 +346,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!1 &7242585668704001078
@@ -404,6 +404,11 @@ MonoBehaviour:
   _startDragPosition: {x: 0, y: 0, z: 0}
   _flyingOffset: {x: 0, y: -0.4, z: 0}
   _shadowSpriteRenderer: {fileID: 6825208998740395840}
+  _family1Material: {fileID: 2100000, guid: 3292b5dfb5c73934386be40bceced334, type: 2}
+  _family2Material: {fileID: 2100000, guid: b89a6af935ffe124ab92e5b8d6bc338f, type: 2}
+  _family3Material: {fileID: 2100000, guid: 1b588398024ba6742b3037f53dbf0e92, type: 2}
+  _family4Material: {fileID: 2100000, guid: 3a430e1f32465b840a02788602dd1903, type: 2}
+  _familyGarbageMaterial: {fileID: 2100000, guid: 28f039e842234f647bf9fb4c97d6bfef, type: 2}
   _cross: {fileID: 8950746068353948999}
   _sellIcon: {fileID: 283622195621017087}
   _pickUpSound: {fileID: 8300000, guid: 25fcdf3a425f4a2428b12e2a7da1c3dc, type: 3}
