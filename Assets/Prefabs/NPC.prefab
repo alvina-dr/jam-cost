@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 6682948744498250755}
-  _outlineColor: {r: 1, g: 0.6079353, b: 0, a: 1}
+  _outlineColor: {r: 1, g: 0.7809262, b: 0, a: 1}
   _dialogueNodeName: NPC_Racoon
   _endDialogEvent:
     m_PersistentCalls:

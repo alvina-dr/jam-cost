@@ -47,7 +47,7 @@ Material:
     - _OutlineAnimationStrength: 5.3
     - _OutlineThickness: 3
     m_Colors:
-    - _OutlineColor: {r: 1, g: 0.7477843, b: 0, a: 1}
+    - _OutlineColor: {r: 1, g: 0.7477843, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &2850658905962833268
