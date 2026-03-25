@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -6,6 +7,7 @@ using UnityEngine;
 using Yarn;
 using Yarn.Unity;
 using Yarn.Unity.Attributes;
+using PrimeTween;
 #nullable enable
 
 public class OptionDialogBubblePresenter : DialoguePresenterBase
@@ -40,6 +42,8 @@ public class OptionDialogBubblePresenter : DialoguePresenterBase
 
     LocalizedLine? lastSeenLine;
 
+    private Sequence _sequence;
+
     /// <summary>
     /// Controls whether or not to display options whose <see
     /// cref="OptionSet.Option.IsAvailable"/> value is <see
@@ -47,18 +51,6 @@ public class OptionDialogBubblePresenter : DialoguePresenterBase
     /// </summary>
     [Space]
     public bool showUnavailableOptions = false;
-
-    [Group("Fade")]
-    [Label("Fade UI")]
-    public bool useFadeEffect = true;
-
-    [Group("Fade")]
-    [ShowIf(nameof(useFadeEffect))]
-    public float fadeUpDuration = 0.25f;
-
-    [Group("Fade")]
-    [ShowIf(nameof(useFadeEffect))]
-    public float fadeDownDuration = 0.1f;
 
     public Transform dialogBubble;
 
@@ -73,9 +65,7 @@ public class OptionDialogBubblePresenter : DialoguePresenterBase
     {
         if (canvasGroup != null)
         {
-            canvasGroup.alpha = 0;
-            canvasGroup.interactable = false;
-            canvasGroup.blocksRaycasts = false;
+            HideDialogBubble();
         }
 
         return YarnTask.CompletedTask;
@@ -112,9 +102,7 @@ public class OptionDialogBubblePresenter : DialoguePresenterBase
     {
         if (canvasGroup != null)
         {
-            canvasGroup.alpha = 0;
-            canvasGroup.interactable = false;
-            canvasGroup.blocksRaycasts = false;
+            HideDialogBubble();
         }
 
         return YarnTask.CompletedTask;
@@ -327,12 +315,7 @@ public class OptionDialogBubblePresenter : DialoguePresenterBase
         // END ADDED BY ALVINA FOR SPEECH BUBBLE SYSTEM END
 
         // allow interactivity and wait for an option to be selected
-        if (canvasGroup != null)
-        {
-            canvasGroup.alpha = 1.0f;
-            canvasGroup.interactable = true;
-            canvasGroup.blocksRaycasts = true;
-        }
+        ShowDialogBubble();
 
         // Wait for a selection to be made, or for the task to be completed.
         var completedTask = await selectedOptionCompletionSource.Task;
@@ -341,16 +324,16 @@ public class OptionDialogBubblePresenter : DialoguePresenterBase
         // now one of the option items has been selected so we do cleanup
         if (canvasGroup != null)
         {
-            canvasGroup.alpha = 0;
-            canvasGroup.interactable = false;
-            canvasGroup.blocksRaycasts = false;
+            HideDialogBubble(() =>
+            {
+                // disabling ALL the options views now
+                foreach (var optionView in optionViews)
+                {
+                    optionView.gameObject.SetActive(false);
+                }
+            });
         }
 
-        // disabling ALL the options views now
-        foreach (var optionView in optionViews)
-        {
-            optionView.gameObject.SetActive(false);
-        }
         await YarnTask.Yield();
 
         // if we are cancelled we still need to return but we don't want to have a selection, so we return no selected option
@@ -379,5 +362,40 @@ public class OptionDialogBubblePresenter : DialoguePresenterBase
         optionView.gameObject.SetActive(false);
 
         return optionView;
+    }
+
+    private void ShowDialogBubble(Action callback = null)
+    {
+        if (canvasGroup != null)
+        {
+            canvasGroup.alpha = 1.0f;
+            canvasGroup.interactable = true;
+            canvasGroup.blocksRaycasts = true;
+
+            _sequence.Stop();
+            _sequence = Sequence.Create();
+            _sequence.ChainDelay(.15f);
+            _sequence.Chain(Tween.Scale(dialogBubble.transform, 1.1f, .1f));
+            _sequence.Chain(Tween.Scale(dialogBubble.transform, 1f, .05f));
+            _sequence.ChainCallback(() => callback?.Invoke());
+        }
+    }
+
+    private void HideDialogBubble(Action callback = null)
+    {
+        if (canvasGroup != null)
+        {
+            _sequence.Stop();
+            _sequence = Sequence.Create();
+            _sequence.Chain(Tween.Scale(dialogBubble.transform, 1.1f, .1f));
+            _sequence.Chain(Tween.Scale(dialogBubble.transform, 0f, .05f));
+            _sequence.ChainCallback(() =>
+            {
+                canvasGroup.alpha = 0;
+                canvasGroup.interactable = false;
+                canvasGroup.blocksRaycasts = false;
+                callback?.Invoke();
+            });
+        }
     }
 }

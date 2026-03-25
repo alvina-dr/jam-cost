@@ -4,9 +4,9 @@ using UnityEngine;
 using Yarn.Markup;
 using Yarn.Unity;
 using Yarn.Unity.Attributes;
-using System.Threading;
 using System.Linq;
-
+using System;
+using PrimeTween;
 #nullable enable
 
 public class LineDialogBubblePresenter : DialoguePresenterBase
@@ -21,11 +21,6 @@ public class LineDialogBubblePresenter : DialoguePresenterBase
     /// View.
     /// </summary>
     /// <remarks>
-    /// If <see cref="useFadeEffect"/> is true, then the alpha value of this
-    /// <see cref="CanvasGroup"/> will be animated during line presentation
-    /// and dismissal.
-    /// </remarks>
-    /// <seealso cref="useFadeEffect"/>
     [Space]
     [MustNotBeNull]
     public CanvasGroup? canvasGroup;
@@ -38,46 +33,6 @@ public class LineDialogBubblePresenter : DialoguePresenterBase
     /// </summary>
     [MustNotBeNull]
     public TMP_Text? lineText;
-
-    /// <summary>
-    /// Controls whether the line view should fade in when lines appear, and
-    /// fade out when lines disappear.
-    /// </summary>
-    /// <remarks><para>If this value is <see langword="true"/>, the <see
-    /// cref="canvasGroup"/> object's alpha property will animate from 0 to
-    /// 1 over the course of <see cref="fadeUpDuration"/> seconds when lines
-    /// appear, and animate from 1 to zero over the course of <see
-    /// cref="fadeDownDuration"/> seconds when lines disappear.</para>
-    /// <para>If this value is <see langword="false"/>, the <see
-    /// cref="canvasGroup"/> object will appear instantaneously.</para>
-    /// </remarks>
-    /// <seealso cref="canvasGroup"/>
-    /// <seealso cref="fadeUpDuration"/>
-    /// <seealso cref="fadeDownDuration"/>
-    [Group("Fade")]
-    [Label("Fade UI")]
-    public bool useFadeEffect = true;
-
-    /// <summary>
-    /// The time that the fade effect will take to fade lines in.
-    /// </summary>
-    /// <remarks>This value is only used when <see cref="useFadeEffect"/> is
-    /// <see langword="true"/>.</remarks>
-    /// <seealso cref="useFadeEffect"/>
-    [Group("Fade")]
-    [ShowIf(nameof(useFadeEffect))]
-    public float fadeUpDuration = 0.25f;
-
-    /// <summary>
-    /// The time that the fade effect will take to fade lines out.
-    /// </summary>
-    /// <remarks>This value is only used when <see cref="useFadeEffect"/> is
-    /// <see langword="true"/>.</remarks>
-    /// <seealso cref="useFadeEffect"/>
-    [Group("Fade")]
-    [ShowIf(nameof(useFadeEffect))]
-    public float fadeDownDuration = 0.1f;
-
 
     /// <summary>
     /// Controls whether this Line View will automatically to the Dialogue
@@ -141,6 +96,8 @@ public class LineDialogBubblePresenter : DialoguePresenterBase
     [MustNotBeNull("Attach a component that implements the " + nameof(IAsyncTypewriter) + " interface.")]
     public UnityEngine.Object? customTypewriter;
 
+    private PrimeTween.Sequence _sequence;
+
     /// <summary>
     /// A list of <see cref="ActionMarkupHandler"/> objects that will be
     /// used to handle markers in the line.
@@ -163,33 +120,18 @@ public class LineDialogBubblePresenter : DialoguePresenterBase
         }
     }
 
-    /// <inheritdoc/>
     public override YarnTask OnDialogueCompleteAsync()
     {
-        if (canvasGroup != null)
-        {
-            canvasGroup.alpha = 0;
-            canvasGroup.interactable = false;
-            canvasGroup.blocksRaycasts = false;
-        }
+        HideDialogBubble();
         return YarnTask.CompletedTask;
     }
 
-    /// <inheritdoc/>
     public override YarnTask OnDialogueStartedAsync()
     {
-        if (canvasGroup != null)
-        {
-            canvasGroup.alpha = 0;
-            canvasGroup.interactable = false;
-            canvasGroup.blocksRaycasts = false;
-        }
+        HideDialogBubble();
         return YarnTask.CompletedTask;
     }
 
-    /// <summary>
-    /// Called by Unity on first frame.
-    /// </summary>
     private void Awake()
     {
         switch (typewriterStyle)
@@ -314,23 +256,7 @@ public class LineDialogBubblePresenter : DialoguePresenterBase
 
         Typewriter.PrepareForContent(text);
 
-        if (canvasGroup != null)
-        {
-            // fading up the UI
-            if (useFadeEffect)
-            {
-                await Effects.FadeAlphaAsync(canvasGroup, 0, 1, fadeUpDuration, token.HurryUpToken);
-                canvasGroup.interactable = true;
-                canvasGroup.blocksRaycasts = true;
-            }
-            else
-            {
-                // We're not fading up, so set the canvas group's alpha to 1 immediately.
-                canvasGroup.alpha = 1;
-                canvasGroup.interactable = true;
-                canvasGroup.blocksRaycasts = true;
-            }
-        }
+        ShowDialogBubble();
 
         await Typewriter.RunTypewriter(text, token.HurryUpToken).SuppressCancellationThrow();
 
@@ -346,21 +272,41 @@ public class LineDialogBubblePresenter : DialoguePresenterBase
 
         Typewriter.ContentWillDismiss();
 
+        HideDialogBubble();
+    }
+
+    private void ShowDialogBubble(Action callback = null)
+    {
         if (canvasGroup != null)
         {
-            // we fade down the UI
-            if (useFadeEffect)
-            {
-                await Effects.FadeAlphaAsync(canvasGroup, 1, 0, fadeDownDuration, token.HurryUpToken).SuppressCancellationThrow();
-                canvasGroup.interactable = false;
-                canvasGroup.blocksRaycasts = false;
-            }
-            else
+            canvasGroup.alpha = 1.0f;
+            canvasGroup.interactable = true;
+            canvasGroup.blocksRaycasts = true;
+
+            _sequence.Stop();
+            _sequence = Sequence.Create();
+            _sequence.ChainDelay(.15f);
+            _sequence.Chain(Tween.Scale(dialogBubble.transform, 1.1f, .1f));
+            _sequence.Chain(Tween.Scale(dialogBubble.transform, 1f, .05f));
+            _sequence.ChainCallback(() => callback?.Invoke());
+        }
+    }
+
+    private void HideDialogBubble(Action callback = null)
+    {
+        if (canvasGroup != null)
+        {
+            _sequence.Stop();
+            _sequence = Sequence.Create();
+            _sequence.Chain(Tween.Scale(dialogBubble.transform, 1.1f, .1f));
+            _sequence.Chain(Tween.Scale(dialogBubble.transform, 0f, .05f));
+            _sequence.ChainCallback(() =>
             {
                 canvasGroup.alpha = 0;
                 canvasGroup.interactable = false;
                 canvasGroup.blocksRaycasts = false;
-            }
+                callback?.Invoke();
+            });
         }
     }
 }

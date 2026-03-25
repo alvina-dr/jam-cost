@@ -30,9 +30,4 @@ public class DialogueManager : MonoBehaviour
         EndDialogueEvent?.Invoke();
         EndDialogueEvent = null;
     }
-
-    public void Log()
-    {
-        Debug.Log("node start");
-    }
 }
