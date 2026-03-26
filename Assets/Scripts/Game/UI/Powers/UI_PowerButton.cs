@@ -49,9 +49,14 @@ public class UI_PowerButton : MonoBehaviour
         _powerLoading.fillAmount = 0;
         // particles when power is charged
         // change color of background of power when power is charged
-        DialogueManager.Instance.EndDialogueEvent += PlayAgain;
-        Time.timeScale = 0;
-        DialogueManager.Instance.DialogueRunner.StartDialogue("Onboarding_Powers");
+
+        if (!SaveManager.CurrentSave.PowerFirstTime)
+        {
+            SaveManager.CurrentSave.PowerFirstTime = true;
+            DialogueManager.Instance.EndDialogueEvent += PlayAgain;
+            Time.timeScale = 0;
+            DialogueManager.Instance.DialogueRunner.StartDialogue("Onboarding_Powers");
+        }
     }
 
     public void PlayAgain()
