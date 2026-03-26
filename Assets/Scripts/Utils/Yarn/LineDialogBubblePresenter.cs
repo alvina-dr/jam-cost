@@ -163,12 +163,22 @@ public class LineDialogBubblePresenter : DialoguePresenterBase
                 break;
 
             case TypewriterType.Custom:
-                Typewriter = ValidateCustomTypewriter();
-                Typewriter?.ActionMarkupHandlers.AddRange(ActionMarkupHandlers);
-                if (Typewriter == null)
+                Typewriter = new CustomTypewriter()
                 {
-                    Debug.LogWarning("Typewriter mode is set to custom but there is no typewriter set.");
-                }
+                    ActionMarkupHandlers = ActionMarkupHandlers,
+                    Text = this.lineText,
+                    CharactersPerSecond = this.lettersPerSecond,
+                };
+                //Typewriter = ValidateCustomTypewriter();
+                //Typewriter?.ActionMarkupHandlers.AddRange(ActionMarkupHandlers);
+                //if (Typewriter == null)
+                //{
+                //    Debug.LogWarning("Typewriter mode is set to custom but there is no typewriter set.");
+                //}
+                //else
+                //{
+
+                //}
                 break;
         }
     }
@@ -284,7 +294,8 @@ public class LineDialogBubblePresenter : DialoguePresenterBase
             canvasGroup.blocksRaycasts = true;
 
             _sequence.Stop();
-            _sequence = Sequence.Create();
+            _sequence = Sequence.Create(useUnscaledTime: true);
+            _sequence.timeScale = 1.0f;
             _sequence.ChainDelay(.15f);
             _sequence.Chain(Tween.Scale(dialogBubble.transform, 1.1f, .1f));
             _sequence.Chain(Tween.Scale(dialogBubble.transform, 1f, .05f));
@@ -297,7 +308,7 @@ public class LineDialogBubblePresenter : DialoguePresenterBase
         if (canvasGroup != null)
         {
             _sequence.Stop();
-            _sequence = Sequence.Create();
+            _sequence = Sequence.Create(useUnscaledTime:true);
             _sequence.Chain(Tween.Scale(dialogBubble.transform, 1.1f, .1f));
             _sequence.Chain(Tween.Scale(dialogBubble.transform, 0f, .05f));
             _sequence.ChainCallback(() =>

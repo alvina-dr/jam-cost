@@ -1,0 +1,10 @@
+﻿title: Onboarding_GameScene
+---
+PlayButton: You can start whenever you want during your first round by pressing the “PLAY” button. 
+Pause: Also, by pressing <b>space</b> <sprite name=Input_Space>, you can pause the game if you need to take a break or think about your strategy!
+===
+title: Onboarding_Powers
+---
+Powers: Your powers charge with time.  
+Powers: Once they're ready, click on their buttons to use them !
+===

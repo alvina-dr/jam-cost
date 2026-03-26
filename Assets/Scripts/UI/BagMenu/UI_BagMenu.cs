@@ -130,6 +130,15 @@ public class UI_BagMenu : UI_Menu
         List<UI_BagSlot> chosenItemSlotList = GetChosenItemSlotList();
         DG.Tweening.Sequence countAnimation = DOTween.Sequence();
 
+        List<CombinationData> combinationList = DataLoader.Instance.CombinationDataList.FindAll(x => x.Effect == CombinationData.CombinationEffect.ItemAddition);
+        for (int i = 0; i < combinationList.Count; i++)
+        {
+            if (combinationList[i].CheckCombination(chosenItemSlotList))
+            {
+
+            }
+        }
+
         // calculate how many object there is of each family
         List<int> familyCountList = new();
         for (int i = 0; i < Enum.GetNames(typeof(ItemData.ItemFamily)).Length; i++)

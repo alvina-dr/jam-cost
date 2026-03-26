@@ -610,7 +610,7 @@ MonoBehaviour:
   lineText: {fileID: 3031593848836806679}
   autoAdvance: 0
   autoAdvanceDelay: 1
-  typewriterStyle: 1
+  typewriterStyle: 3
   lettersPerSecond: 45
   wordsPerSecond: 10
   customTypewriter: {fileID: 0}

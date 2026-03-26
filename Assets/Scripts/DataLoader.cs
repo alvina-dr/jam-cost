@@ -27,6 +27,7 @@ public class DataLoader : MonoBehaviour
     public List<BonusData> PermanentBonusDataList;
     public List<MapNodeData> MapNodeDataList;
     public List<PowerData> PowerDataList;
+    public List<CombinationData> CombinationDataList;
 
     private void OnAwake()
     {
@@ -48,9 +49,12 @@ public class DataLoader : MonoBehaviour
         PowerDataList = Resources.LoadAll<PowerData>("Powers").ToList();
         for(int i = 0;  i < PowerDataList.Count;i++)
         {
-            PowerDataList[i].Reset();
+            //PowerDataList[i].Reset();
             PowerDataList[i] = Instantiate(PowerDataList[i]);
         }
+
+        CombinationDataList = Resources.LoadAll<CombinationData>("Combinations").ToList();
+
     }
 
 

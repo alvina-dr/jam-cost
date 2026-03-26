@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 898c9f57dd12f9c4aab70236100f6f3a, type: 3}
+  m_Name: CD_ItemList_FullPlasticFamily
+  m_EditorClassIdentifier: 
+  Effect: 0
+  Bonus: 5
+  _requiredItemList:
+  - {fileID: 11400000, guid: c5a9e48aa162b024c9ec4491d4766251, type: 2}
+  - {fileID: 11400000, guid: 7e2a896605d9d7740b4d5c74693f55ee, type: 2}
+  - {fileID: 11400000, guid: bfbbdb3a88324ba4fb17eca9679f2aec, type: 2}
+  - {fileID: 11400000, guid: fca8d237e9768074e8aa95122e91da4d, type: 2}
+  - {fileID: 11400000, guid: 9db9c94023d415a4495f800924e99821, type: 2}

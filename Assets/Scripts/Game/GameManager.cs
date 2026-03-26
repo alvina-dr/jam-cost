@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
 
         if (!SaveManager.CurrentSave.GameFirstTime)
         {
-            DialogueManager.Instance.DialogueRunner.StartDialogue("NPC1_GameFirstTime");
+            DialogueManager.Instance.DialogueRunner.StartDialogue("Onboarding_GameScene");
             SaveManager.CurrentSave.GameFirstTime = true;
         }
 
