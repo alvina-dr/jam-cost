@@ -36,6 +36,11 @@ public class TooltipManager : MonoBehaviour
         ShowTooltip(combinationData.Description, position);
     }
 
+    public void ShowTooltip(TooltipData tooltipData, Vector3 position)
+    {
+        ShowTooltip(tooltipData.Description, position);
+    }
+
     public void ShowTooltip(string description, Vector3 position)
     {
         _tooltipTransform.gameObject.SetActive(true);
