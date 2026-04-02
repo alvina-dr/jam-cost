@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24f1e6f7bc59c4349a2008210b92647a, type: 3}
   m_Name: CD_Family_Plastic
   m_EditorClassIdentifier: 
+  Name: Plastic Family
+  Description: If the depot contains more than 4 items from the same family, each
+    item from this family gains +5 value.
   Effect: 0
   Bonus: 5
   CombinationFamily: 0

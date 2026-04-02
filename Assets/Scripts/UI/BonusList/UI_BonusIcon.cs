@@ -1,8 +1,9 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class UI_BonusIcon : MonoBehaviour
+public class UI_BonusIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public BonusData Data;
     [SerializeField] private Image _bonusIcon;
@@ -13,6 +14,15 @@ public class UI_BonusIcon : MonoBehaviour
     {
         Data = data;
         _bonusIcon.sprite = data.Icon;
-        _description.text = data.Description;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        TooltipManager.Instance.ShowTooltip(Data, transform.position);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        TooltipManager.Instance.HideTooltip();
     }
 }

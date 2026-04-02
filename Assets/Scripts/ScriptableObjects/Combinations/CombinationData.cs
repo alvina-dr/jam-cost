@@ -12,10 +12,12 @@ public class CombinationData : ScriptableObject
         TotalMultiplication = 3
     }
 
+    public string Name;
+    [TextArea] public string Description;
     public CombinationEffect Effect;
     public int Bonus;
 
-    public virtual bool CheckCombination(List<UI_BagSlot> itemDataList)
+    public virtual bool CheckCombination(ref List<UI_BagSlot> itemDataList)
     {
         return false;
     }

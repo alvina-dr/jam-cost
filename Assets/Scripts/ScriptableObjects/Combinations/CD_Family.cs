@@ -6,12 +6,28 @@ public class CD_Family : CombinationData
 {
     public ItemData.ItemFamily CombinationFamily;
 
-    public override bool CheckCombination(List<UI_BagSlot> itemDataList)
+    public override bool CheckCombination(ref List<UI_BagSlot> itemDataList)
     {
+        Debug.Log("cd family combination check");
         int numberFamily = 0;
         for (int i = 0; i < itemDataList.Count; i++)
         {
-            if (itemDataList[i].CurrentBagItem.Data.Family == CombinationFamily) numberFamily++;
+            if (itemDataList[i].CurrentBagItem.Data.Family == CombinationFamily)
+            {
+                numberFamily++;
+            }
+        }
+
+        if (numberFamily >= 4)
+        {
+            Debug.Log("number family is higher than 4");
+            for (int i = 0; i < itemDataList.Count; i++)
+            {
+                if (itemDataList[i].CurrentBagItem.Data.Family == CombinationFamily)
+                {
+                    itemDataList[i].CurrentBagItem.CombinationItemAddList.Add(Bonus);
+                }
+            }
         }
         return numberFamily >= 4;
     }

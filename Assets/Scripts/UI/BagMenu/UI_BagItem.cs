@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,10 @@ public class UI_BagItem : MonoBehaviour
     [SerializeField] private Image _image;
     [SerializeField] private ItemData _itemData;
     public ItemData Data => _itemData;
+
+    public int CurrentScore = 0;
+    public List<int> CombinationItemAddList = new();
+    public List<int> CombinationItemMultList = new();
 
     private void Start()
     {
@@ -25,5 +30,6 @@ public class UI_BagItem : MonoBehaviour
     {
         _itemData = itemData;
         _image.sprite = itemData.Icon;
+        CurrentScore = _itemData.Price;
     }
 }

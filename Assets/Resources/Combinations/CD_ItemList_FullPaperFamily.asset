@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 898c9f57dd12f9c4aab70236100f6f3a, type: 3}
   m_Name: CD_ItemList_FullPaperFamily
   m_EditorClassIdentifier: 
+  Name: Complete Paper Family
+  Description: If all items from the paper family are in the depot.
   Effect: 0
   Bonus: 5
   _requiredItemList:

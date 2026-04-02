@@ -6,17 +6,21 @@ public class CD_ItemList : CombinationData
 {
     [SerializeField] private List<ItemData> _requiredItemList = new();
 
-    public override bool CheckCombination(List<UI_BagSlot> itemDataList)
+    public override bool CheckCombination(ref List<UI_BagSlot> itemDataListRef)
     {
+        List<UI_BagSlot> itemDataList = new List<UI_BagSlot>(itemDataListRef);
         List<ItemData> requiredItemList = new(_requiredItemList);
         for (int i = 0; i < requiredItemList.Count; i++)
         {
             UI_BagSlot bagSlot = itemDataList.Find(x => x.CurrentBagItem.Data.Name == requiredItemList[i].Name);
-            ItemData item = bagSlot.CurrentBagItem.Data;
-            if (item != null)
+            if (bagSlot != null)
             {
-                requiredItemList.Remove(item);
-                itemDataList.Remove(bagSlot);
+                ItemData item = bagSlot.CurrentBagItem.Data;
+                if (item != null)
+                {
+                    requiredItemList.Remove(item);
+                    itemDataList.Remove(bagSlot);
+                }
             }
         }
         return requiredItemList.Count == 0;
