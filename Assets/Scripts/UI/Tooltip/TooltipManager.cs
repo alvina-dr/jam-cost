@@ -46,7 +46,6 @@ public class TooltipManager : MonoBehaviour
         _tooltipTransform.gameObject.SetActive(true);
         _descriptionText.SetText(description);
         Vector3 newPosition = Camera.main.WorldToScreenPoint(position) + _offset;
-        Debug.Log("most left point : " + (newPosition.x - _tooltipTransform.sizeDelta.x / 2));
 
         if (newPosition.x - _tooltipTransform.sizeDelta.x / 2 < _screenBorderOffset.x)
         {

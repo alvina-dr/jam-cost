@@ -1,10 +1,8 @@
-using DG.Tweening;
 using MoreMountains.Feedbacks;
 using PrimeTween;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class UI_BagMenu : UI_Menu
@@ -174,6 +172,8 @@ public class UI_BagMenu : UI_Menu
                 {
                     _shakePlayer.PlayFeedbacks();
                     StackAnim();
+                    UI_BonusIcon bonusIcon = _bonusIconList.Find(x => x.Data.Name == doubleTrouble.Name);
+                    if (bonusIcon != null) bonusIcon.Highlight();
                     GameManager.Instance.UIManager.TextPopperManager_Info.PopText(doubleTrouble.Name, Vector3.up, Color.black, UI_TextPopper.AnimSpeed.Quick);
                 });
                 _countSequence.ChainDelay(.1f * _animationTimeScale);
@@ -182,51 +182,27 @@ public class UI_BagMenu : UI_Menu
 
             CountCombinations();
 
-            CountIndividualItems();
+            CountBonus();
         }
 
         for (int i = 0; i < chosenItemSlotList.Count; i++)
         {
             int index = i;
 
-            //for (int countTime = 0; countTime < countTimeMax; countTime++)
-            //{
-                //int score = chosenItemSlotList[index].CurrentBagItem.Data.Price;
+            _countSequence.ChainDelay(.6f);
+            _countSequence.ChainCallback(() =>
+            {
+                StackAnim();
+                chosenItemSlotList[index].CurrentBagItem.CountItem();
+            });
+            _countSequence.ChainDelay(.2f);
+            _countSequence.ChainCallback(() =>
+            {
+                chosenItemSlotList[index].CurrentBagItem.CountItem();
+                roundScore += chosenItemSlotList[index].CurrentBagItem.CurrentScore;
+                _roundScoreText.SetTextValueNumber(roundScore - chosenItemSlotList[index].CurrentBagItem.CurrentScore, roundScore, .4f * _animationTimeScale);
+            });
 
-                // BONUS : family type
-                //List<BD_FamilyMultiplier> bonusDataFamilyList = SaveManager.Instance.CheckHasRunBonusList<BD_FamilyMultiplier>(); 
-                //for (int j = 0; j < bonusDataFamilyList.Count; j++)
-                //{
-                //    BD_FamilyMultiplier familyMultiplier = bonusDataFamilyList[j];
-
-                //    if (familyMultiplier.FamilyBonus == chosenItemSlotList[index].CurrentBagItem.Data.Family)
-                //    {
-                //        totalAnimation++;
-
-                //        countAnimation.AppendInterval(baseDelay * _animationTimeScale);
-                //        countAnimation.AppendCallback(() =>
-                //        {
-                //            _shakePlayer.PlayFeedbacks();
-                //            StackAnim();
-                //            score = Mathf.RoundToInt(score * familyMultiplier.BonusMultiplier);
-                //            chosenItemSlotList[index].SetPriceText(score);
-                //            GameManager.Instance.UIManager.TextPopperManager_Number.PopText("x" + familyMultiplier.BonusMultiplier, chosenItemSlotList[index].transform.position, _multiplyColor, UI_TextPopper.AnimSpeed.Quick);
-                //            GameManager.Instance.UIManager.TextPopperManager_Info.PopText(familyMultiplier.Name, chosenItemSlotList[index].transform.position + Vector3.up, Color.black, UI_TextPopper.AnimSpeed.Quick);
-                //        });
-                //    }
-                //}
-
-                totalAnimation++;
-                _countSequence.ChainDelay(.15f * _animationTimeScale);
-                _countSequence.ChainCallback(() =>
-                {
-                    StackAnim();
-                    roundScore += chosenItemSlotList[index].CurrentBagItem.CurrentScore;
-                    _roundScoreText.SetTextValueNumber(roundScore - chosenItemSlotList[index].CurrentBagItem.CurrentScore, roundScore, .4f * _animationTimeScale);
-                });
-            //}
-
-            totalAnimation++;
             _countSequence.ChainDelay(.3f * _animationTimeScale);
             StackAnim();
         }
@@ -284,9 +260,9 @@ public class UI_BagMenu : UI_Menu
     {
         for (int i = 0; i < slotList.Count; i++)
         {
-            PrimeTween.Sequence anim = PrimeTween.Sequence.Create();
-            anim.Chain(PrimeTween.Tween.LocalPositionY(slotList[i].CurrentBagItem.transform, 20, .3f));
-            anim.Chain(PrimeTween.Tween.LocalPositionY(slotList[i].CurrentBagItem.transform, 0, .3f));
+            Sequence anim = Sequence.Create();
+            anim.Chain(Tween.LocalPositionY(slotList[i].CurrentBagItem.transform, 20, .3f));
+            anim.Chain(Tween.LocalPositionY(slotList[i].CurrentBagItem.transform, 0, .3f));
         }
     }
 
@@ -395,8 +371,34 @@ public class UI_BagMenu : UI_Menu
         }
     }
 
-    public void CountIndividualItems()
+    public void CountBonus()
     {
+        List<UI_BagSlot> chosenItemSlotList = GetChosenItemSlotList();
 
+        // BONUS FAMILY MULTIPLIER
+        List<BD_FamilyMultiplier> bonusDataFamilyList = SaveManager.Instance.CheckHasRunBonusList<BD_FamilyMultiplier>();
+        for (int j = 0; j < bonusDataFamilyList.Count; j++)
+        {
+            BD_FamilyMultiplier familyMultiplier = bonusDataFamilyList[j];
+
+            for (int i = 0; i < chosenItemSlotList.Count; i++)
+            {
+                UI_BagSlot bagSlot = chosenItemSlotList[i];
+                if (familyMultiplier.FamilyBonus == bagSlot.CurrentBagItem.Data.Family)
+                {
+                    _countSequence.ChainCallback(() =>
+                    {
+                        _shakePlayer.PlayFeedbacks();
+                        StackAnim();
+                        bagSlot.CurrentBagItem.CurrentScore = Mathf.RoundToInt(bagSlot.CurrentBagItem.CurrentScore * familyMultiplier.BonusMultiplier);
+                        bagSlot.SetPriceText(bagSlot.CurrentBagItem.CurrentScore);
+                        GameManager.Instance.UIManager.TextPopperManager_Number.PopText("x" + familyMultiplier.BonusMultiplier, bagSlot.transform.position, _multiplyColor, UI_TextPopper.AnimSpeed.Quick);
+                        GameManager.Instance.UIManager.TextPopperManager_Info.PopText(familyMultiplier.Name, bagSlot.transform.position + Vector3.up, Color.black, UI_TextPopper.AnimSpeed.Quick);
+                    });
+                    _countSequence.ChainDelay(.3f);
+                }
+            }
+
+        }
     }
 }

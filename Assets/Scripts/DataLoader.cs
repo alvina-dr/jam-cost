@@ -57,7 +57,6 @@ public class DataLoader : MonoBehaviour
 
     }
 
-
     public BonusData TakeRandomBonusData(BonusData.BonusDurability bonusDurability = BonusData.BonusDurability.Run, List<BonusData> formerList = null)
     {
         // Get all possible bonus

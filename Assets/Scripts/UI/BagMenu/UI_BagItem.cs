@@ -9,6 +9,7 @@ public class UI_BagItem : MonoBehaviour
     [SerializeField] private UI_BagSlot _currentBagSlot;
     [SerializeField] private Image _image;
     [SerializeField] private ItemData _itemData;
+    [SerializeField] private ParticleSystem _countItemParticle;
     public ItemData Data => _itemData;
 
     public int CurrentScore = 0;
@@ -31,5 +32,10 @@ public class UI_BagItem : MonoBehaviour
         _itemData = itemData;
         _image.sprite = itemData.Icon;
         CurrentScore = _itemData.Price;
+    }
+
+    public void CountItem()
+    {
+        _countItemParticle.Play();
     }
 }
