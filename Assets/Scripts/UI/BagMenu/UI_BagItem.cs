@@ -1,11 +1,12 @@
+using PrimeTween;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class UI_BagItem : MonoBehaviour
+public class UI_BagItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     private UI_BagMenu _bagMenu;
-    [SerializeField] private UI_BagSlot _formerBagSlot;
     [SerializeField] private UI_BagSlot _currentBagSlot;
     [SerializeField] private Image _image;
     [SerializeField] private ItemData _itemData;
@@ -37,5 +38,25 @@ public class UI_BagItem : MonoBehaviour
     public void CountItem()
     {
         _countItemParticle.Play();
+        Sequence sequence = Sequence.Create();
+        sequence.Chain(Tween.Scale(_image.transform, 1.4f, .1f));
+        sequence.Chain(Tween.Scale(_image.transform, 1, .05f));
+    }
+
+    public void CountBaseScore()
+    {
+        Sequence sequence = Sequence.Create();
+        sequence.Chain(Tween.Scale(_image.transform, 1.4f, .1f));
+        sequence.Chain(Tween.Scale(_image.transform, 1, .05f));
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        TooltipManager.Instance.ShowTooltip(Data, transform.position + Vector3.up / 2);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        TooltipManager.Instance.HideTooltip();
     }
 }

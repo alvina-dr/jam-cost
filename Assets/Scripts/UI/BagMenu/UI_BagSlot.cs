@@ -36,6 +36,11 @@ public class UI_BagSlot : MonoBehaviour
         _priceGO.gameObject.SetActive(true);
     }
 
+    public void SetPriceTextNumber(int oldPrice, int newPrice)
+    {
+        _priceText.SetTextValueNumber(oldPrice, newPrice, .4f);
+    }
+
     public void HidePrice()
     {
         _priceText.SetTextValue(string.Empty, false);

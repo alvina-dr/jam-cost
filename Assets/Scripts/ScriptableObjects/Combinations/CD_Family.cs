@@ -8,7 +8,6 @@ public class CD_Family : CombinationData
 
     public override bool CheckCombination(ref List<UI_BagSlot> itemDataList)
     {
-        Debug.Log("cd family combination check");
         int numberFamily = 0;
         for (int i = 0; i < itemDataList.Count; i++)
         {
@@ -20,7 +19,6 @@ public class CD_Family : CombinationData
 
         if (numberFamily >= 4)
         {
-            Debug.Log("number family is higher than 4");
             for (int i = 0; i < itemDataList.Count; i++)
             {
                 if (itemDataList[i].CurrentBagItem.Data.Family == CombinationFamily)
