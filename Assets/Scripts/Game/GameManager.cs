@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
         }
         CurrentDay = 0;
 
-        SetCurrentScore(0);
+        SetCurrentScore(0, false);
         UIManager.Timer.SetTextValue($"{Mathf.RoundToInt(ScavengingState.Timer)}", false);
         UIManager.RoundRemaining.SetTextValue($"Round {CurrentRound} / {GetMaxRoundNumber()}", false);
 
@@ -121,11 +121,11 @@ public class GameManager : MonoBehaviour
         //    break;
     }
 
-    public void SetCurrentScore(int score)
+    public void SetCurrentScore(int score, bool animation = true)
     {
         CurrentScore = score;
-        UIManager.ScoreTextValue.SetTextValue($"{CurrentScore} / {SaveManager.Instance.GetScavengeNode().ScoreGoal}");
-        UIManager.ScoreBarValue.SetBarValue(CurrentScore, SaveManager.Instance.GetScavengeNode().ScoreGoal);
+        UIManager.ScoreTextValue.SetTextValue($"{CurrentScore} / {SaveManager.Instance.GetScavengeNode().ScoreGoal}", animation);
+        UIManager.ScoreBarValue.SetBarValue(CurrentScore, SaveManager.Instance.GetScavengeNode().ScoreGoal, animation);
     }
 
     public void CheckScoreHighEnough()

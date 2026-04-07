@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SpriteDefaultInstance
-  m_Shader: {fileID: -6465566751694194690, guid: e8a32357c6c92aa469a4d13dc7cb224e, type: 3}
+  m_Name: FullscreenDithering
+  m_Shader: {fileID: -6465566751694194690, guid: a058b7233bd16b34b9334676396bcb75, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -23,10 +23,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -41,26 +37,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Dithering: 0
-    - _OutlineAnimationFrequence: 6
-    - _OutlineAnimationFrequency: 6
-    - _OutlineAnimationSpeed: 6
-    - _OutlineAnimationStrength: 5.3
-    - _OutlineThickness: 3
-    m_Colors:
-    - _OutlineColor: {r: 1, g: 0.7477843, b: 0, a: 0}
+    - _ColorResolution: 16
+    - _DitherAlpha: 0.55
+    - _DitherScale: 2000
+    - _DitherSpread: 0.1
+    - _DitheringStrength: 0
+    - _PixelSize: 400
+    m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &2850658905962833268
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 10

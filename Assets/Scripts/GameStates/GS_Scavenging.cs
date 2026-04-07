@@ -38,6 +38,8 @@ public class GS_Scavenging : GameState
         if (GameManager.Instance.UIManager.Timer.GetTextValue() != Mathf.RoundToInt(Timer).ToString())
         {
             GameManager.Instance.UIManager.Timer.SetTextValue(Mathf.RoundToInt(Timer).ToString());
+            if (Timer <= 5) GameManager.Instance.UIManager.Timer.SetTextColor(Color.red);
+            else GameManager.Instance.UIManager.Timer.ResetTextColor();
         }
 
         if (Timer <= 0)

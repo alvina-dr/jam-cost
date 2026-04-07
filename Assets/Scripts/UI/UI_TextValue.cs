@@ -10,6 +10,12 @@ public class UI_TextValue : MonoBehaviour
     private string _tempoText;
 
     private Sequence textAnimation;
+    private Color _textInitialColor;
+
+    private void Awake()
+    {
+        _textInitialColor = _textUI.color;    
+    }
 
     public void SetTextValue(string text, bool animation = true)
     {
@@ -25,6 +31,16 @@ public class UI_TextValue : MonoBehaviour
         {
             _textUI.text = text;
         }
+    }
+
+    public void SetTextColor(Color color)
+    {
+        _textUI.color = color;
+    }
+
+    public void ResetTextColor()
+    {
+        _textUI.color = _textInitialColor;
     }
 
     public void SetTextValueNumber(int oldNumber, int newNumber, float animationDuration = .5f, bool animation = true)
@@ -62,10 +78,5 @@ public class UI_TextValue : MonoBehaviour
         {
             _textUI.text = $"{newNumber}";
         }
-    }
-
-    void OnDisable()
-    {
-        textAnimation.Stop();
     }
 }

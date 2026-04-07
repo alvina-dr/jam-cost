@@ -38,16 +38,8 @@ public class DraggableBehavior : ItemBehavior
             {
                 if (GameManager.Instance.ScavengingState.SelectedItemList.Count + 1 > GameManager.Instance.GetDepotSize()) _sellIcon.color = Color.grey;
                 else _sellIcon.color = Color.green;
-                if (Data.BonusCurrency > 0)
-                {
-                    _sellIcon.enabled = false;
-                    _cross.enabled = false;
-                }
-                else
-                {
-                    _sellIcon.enabled = true;
-                    _cross.enabled = false;
-                }
+                _sellIcon.enabled = true;
+                _cross.enabled = false;
 
             }
             else if (!GameManager.Instance.CrateOverCheck.IsOver())
@@ -141,7 +133,7 @@ public class DraggableBehavior : ItemBehavior
 
         if (GameManager.Instance.DepotOverCheck.IsOver())
         {
-            if (GameManager.Instance.CurrentGameState == GameManager.Instance.PreparationState || Data.BonusCurrency != 0)
+            if (GameManager.Instance.CurrentGameState == GameManager.Instance.PreparationState)
             {
                 GoBackToDumpster();
             }
