@@ -25,7 +25,11 @@ public class LineDialogBubblePresenter : DialoguePresenterBase
     [MustNotBeNull]
     public CanvasGroup? canvasGroup;
 
-    public Transform dialogBubble;
+    public RectTransform dialogBubble;
+    public Transform dialogBubblePoint;
+
+    [Header("Offset")]
+    public Vector3 screenBorderOffset;
 
     /// <summary>
     /// The <see cref="TMP_Text"/> object that displays the text of
@@ -254,7 +258,7 @@ public class LineDialogBubblePresenter : DialoguePresenterBase
 
         if (dialogBubbleCharacter != null)
         {
-            dialogBubble.transform.position = Camera.main.WorldToScreenPoint(dialogBubbleCharacter.transform.position);
+            PlaceDialogBubble(Camera.main.WorldToScreenPoint(dialogBubbleCharacter.transform.position));
         }
         // END ADDED BY ALVINA FOR SPEECH BUBBLE SYSTEM END
 
@@ -319,5 +323,18 @@ public class LineDialogBubblePresenter : DialoguePresenterBase
                 callback?.Invoke();
             });
         }
+    }
+
+    private void PlaceDialogBubble(Vector3 targetPosition)
+    {
+        Vector3 newPosition = targetPosition;
+
+        if (newPosition.x - dialogBubble.sizeDelta.x / 2 < screenBorderOffset.x)
+        {
+            newPosition -= new Vector3(newPosition.x - dialogBubble.sizeDelta.x / 2 - screenBorderOffset.x, 0, 0);
+        }
+
+        dialogBubble.transform.position = newPosition;
+        dialogBubblePoint.transform.position += targetPosition - newPosition;
     }
 }
