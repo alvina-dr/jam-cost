@@ -255,7 +255,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &5933965783482360897
 MonoBehaviour:
@@ -344,7 +344,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _descriptionText: {fileID: 4692853481451644920}
   _tooltipTransform: {fileID: 5750297426435332061}
-  _offset: {x: 0, y: 30, z: 0}
+  _offset: {x: 0, y: 50, z: 0}
   _screenBorderOffset: {x: 30, y: 30, z: 0}
 --- !u!1001 &6970017065176578156
 PrefabInstance:

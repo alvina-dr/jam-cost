@@ -132,6 +132,8 @@ public class UI_MapNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             mapLine.LineRenderer.color = Color.red;
             mapLine.transform.SetAsLastSibling();
         }
+
+        TooltipManager.Instance.ShowTooltip(MapNodeData, Camera.main.ScreenToWorldPoint(transform.position));
         // show path line
     }
 
@@ -144,6 +146,7 @@ public class UI_MapNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         {
             mapLine.LineRenderer.color = Color.white;
         }
+        TooltipManager.Instance.HideTooltip();
         // hide path line
     }
 }

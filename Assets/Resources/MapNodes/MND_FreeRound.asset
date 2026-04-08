@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 751b2510932cb3648b423ce4b8a88ff6, type: 3}
   m_Name: MND_FreeRound
   m_EditorClassIdentifier: 
+  NodeName: Free round
   IsAvailableInGame: 1
   NodeIcon: {fileID: 21300000, guid: d60adce52d3ef90488d10c5cac4fccd4, type: 3}

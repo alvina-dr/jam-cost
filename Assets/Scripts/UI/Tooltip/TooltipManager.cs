@@ -46,6 +46,11 @@ public class TooltipManager : MonoBehaviour
         ShowTooltip($"{itemData.Name} [{itemData.Price}]", position);
     }
 
+    public void ShowTooltip(MapNodeData mapNodeData, Vector3 position)
+    {
+        ShowTooltip(mapNodeData.NodeName, position);
+    }
+
     public void ShowTooltip(string description, Vector3 position)
     {
         _tooltipTransform.gameObject.SetActive(true);

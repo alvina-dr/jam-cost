@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 430b7549ab9235c47a272f25b5e54a67, type: 3}
   m_Name: MND_Scavenge_Empty
   m_EditorClassIdentifier: 
+  NodeName: Challenge
   IsAvailableInGame: 1
   NodeIcon: {fileID: 21300000, guid: 987c7c419d64ea149b70c5a9dcbbb352, type: 3}
   ScoreGoal: 0
-  RoundNumber: 1
   SpawnItemParameters: {fileID: 11400000, guid: abd3e403a75a6f24bb1555eb2eef99dc, type: 2}
   Timer: 30
