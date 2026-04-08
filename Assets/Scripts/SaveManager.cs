@@ -288,6 +288,8 @@ public class SaveManager : MonoBehaviour
         public bool SeeOnboarding = false;
         public bool HubFirstTime = false;
         public bool ShopFirstTime = false;
+        public bool FreeRoundFirstTime = false;
+        public bool GetFreeRoundFirstTime = false;
         public bool GameFirstTime = false;
         public bool PowerFirstTime = false;
         public bool SeeNewFrigo = false;

@@ -8,3 +8,19 @@ title: Dee_Shop
 Dee: Aaaand.....
 Dee: Time for a break.
 ===
+title: FirstFreeRound
+---
+Dee: Oh wow !
+Dee: What's that on the floor.
+Dee: I should go take a look.
+===
+
+title: GetFirstFreeRound
+---
+Dee: Nice.
+Dee: I now have one more round to find cool items in the crate.
+===
+title: ForgetFreeRound
+---
+Dee: I should take the item on the floor before leaving.
+===

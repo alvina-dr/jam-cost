@@ -29,7 +29,7 @@ public class ShopManager : MonoBehaviour
     {
         BonusMenu.SelectBonusList();
 
-        if (SceneManager.GetActiveScene().name == "Shop" && !SaveManager.CurrentSave.ShopFirstTime)
+        if (!SaveManager.CurrentSave.ShopFirstTime)
         {
             DialogueManager.Instance.DialogueRunner.StartDialogue("NPC1_ShopFirstTime");
             SaveManager.CurrentSave.ShopFirstTime = true;
@@ -50,10 +50,5 @@ public class ShopManager : MonoBehaviour
     public void OpenConversionMachine()
     {
         ConversionMenu.OpenMenu();
-    }
-
-    public void GetFreeRound()
-    {
-        SaveManager.CurrentSave.CurrentRun.RunBonusRound++;
     }
 }
