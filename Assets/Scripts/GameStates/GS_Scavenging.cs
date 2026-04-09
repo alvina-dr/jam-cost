@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using TMPro;
@@ -11,6 +12,8 @@ public class GS_Scavenging : GameState
     [SerializeField] private UI_TextValue _itemNumberTextValue;
     [SerializeField] private TextMeshProUGUI _itemNumberText;
     [SerializeField] private SpriteRenderer _depotSprite;
+
+    private bool _fireDown;
 
     public enum Scavenging_SubState
     {
@@ -38,8 +41,30 @@ public class GS_Scavenging : GameState
         if (GameManager.Instance.UIManager.Timer.GetTextValue() != Mathf.RoundToInt(Timer).ToString())
         {
             GameManager.Instance.UIManager.Timer.SetTextValue(Mathf.RoundToInt(Timer).ToString());
-            if (Timer <= 5) GameManager.Instance.UIManager.Timer.SetTextColor(Color.red);
-            else GameManager.Instance.UIManager.Timer.ResetTextColor();
+            if (Timer <= 5)
+            {
+                GameManager.Instance.UIManager.Timer.SetTextColor(Color.red);
+                if (!_fireDown)
+                {
+                    _fireDown = true;
+                    GameManager.Instance.UIManager.TimerBackground.material.DOFloat(1.2f, "_FlameLevel", .3f).OnComplete(() =>
+                    {
+                        _fireDown = false;
+                    });
+                }
+            }
+            else
+            {
+                GameManager.Instance.UIManager.Timer.ResetTextColor();
+                if (!_fireDown)
+                {
+                    _fireDown = true;
+                    GameManager.Instance.UIManager.TimerBackground.material.DOFloat(0, "_FlameLevel", .3f).OnComplete(() =>
+                    {
+                        _fireDown = false;
+                    });
+                }
+            }
         }
 
         if (Timer <= 0)
@@ -79,6 +104,9 @@ public class GS_Scavenging : GameState
     public void ResetTimer()
     {
         Timer = GetRoundTime();
+        GameManager.Instance.UIManager.Timer.ResetTextColor();
+        GameManager.Instance.UIManager.TimerBackground.material.SetFloat("_FlameLevel", 0);
+        _fireDown = false;
     }
 
     public float GetRoundTime()

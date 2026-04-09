@@ -1,5 +1,6 @@
 using Coffee.UIExtensions;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -28,6 +29,8 @@ public class UIManager : MonoBehaviour
     public ParticleSystem UIParticle_Time;
     public RectTransform UIParticle_Time_RectTransform;
     public UIParticleAttractor UIParticle_Time_Attractor;
+
+    public Image TimerBackground;
 
     public void AddTimer(int number, Vector3 worldPosition)
     {
