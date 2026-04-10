@@ -113,12 +113,6 @@ public class GameManager : MonoBehaviour
         CurrentGameState.ExitState();
         CurrentGameState = newState;
         CurrentGameState.EnterState();
-
-        //case GameStateEnum.Dialog:
-        //    CurrentGameStateMachine = null;
-        //    if (!UIManager.DialogMenu.HasBeenPlayed()) UIManager.DialogMenu.Open();
-        //    else SetGameState(UIManager.DialogMenu.CurrentDialogData.EndGameState);
-        //    break;
     }
 
     public void SetCurrentScore(int score, bool animation = true)

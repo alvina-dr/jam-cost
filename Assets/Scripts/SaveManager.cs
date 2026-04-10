@@ -76,7 +76,7 @@ public class SaveManager : MonoBehaviour
     public void NextNode()
     {
         CurrentSave.CurrentRun.CurrentNode++;
-        AddPP(CurrentSave.EveryNodeLootPP);
+        //AddPP(CurrentSave.EveryNodeLootPP);
         TransitionManager.Instance().TransitionChangeScene("Map", _transitionSettings, 0);
     }
 

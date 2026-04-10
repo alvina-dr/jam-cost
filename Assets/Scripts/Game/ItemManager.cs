@@ -71,7 +71,10 @@ public class ItemManager : MonoBehaviour
     {
         CleanItems();
 
-        for (int i = 0; i < 5; i++)
+        int ppNumber = 5;
+        ppNumber += SaveManager.CurrentSave.EveryNodeLootPP;
+
+        for (int i = 0; i < ppNumber; i++)
         {
             ItemData dataItem = _ppID;
             ItemBehavior itemBehavior = Instantiate(dataItem.Prefab);

@@ -16,7 +16,8 @@ MonoBehaviour:
   Durability: 1
   Category: 2
   Name: Productive Times
-  Description: Each finished node gives you 3 productivity point <sprite name=PP>.
+  Description: Gives you 3 more productivity point <sprite name=PP> at the end of
+    scavenging.
   Price: 5
   Icon: {fileID: 0}
   Color: {r: 0, g: 0, b: 0, a: 0}
