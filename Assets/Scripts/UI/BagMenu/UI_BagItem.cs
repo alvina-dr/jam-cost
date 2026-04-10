@@ -11,6 +11,7 @@ public class UI_BagItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     [SerializeField] private Image _image;
     [SerializeField] private ItemData _itemData;
     [SerializeField] private ParticleSystem _countItemParticle;
+    [SerializeField] private UI_Animation _highlightAnimation;
     public ItemData Data => _itemData;
 
     public int CurrentScore = 0;
@@ -41,6 +42,7 @@ public class UI_BagItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         Sequence sequence = Sequence.Create();
         sequence.Chain(Tween.Scale(_image.transform, 1.4f, .1f));
         sequence.Chain(Tween.Scale(_image.transform, 1, .05f));
+        _highlightAnimation.StartAnim();
     }
 
     public void CountBaseScore()

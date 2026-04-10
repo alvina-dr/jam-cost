@@ -81,6 +81,7 @@ public class UI_QuestsMenu : UI_Menu
     public override void CloseMenu()
     {
         base.CloseMenu();
+        HubManager.Instance.UpdateAllUnlocks();
     }
 
     public void TicketButton()
@@ -88,7 +89,6 @@ public class UI_QuestsMenu : UI_Menu
         if (_currentQuestData.Data.State ==  QuestData.QuestState.WaitCollection)
         {
             _currentQuestData.CollectQuest();
-            HubManager.Instance.UpdateAllUnlocks();
             Setup();
             _currentQuestEntry.TrySetupTicket();
         }
