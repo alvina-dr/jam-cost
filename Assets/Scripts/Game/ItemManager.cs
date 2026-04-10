@@ -57,9 +57,12 @@ public class ItemManager : MonoBehaviour
             ItemData data = DataLoader.Instance.ItemDataList[j];
             SpawnItemParameters.ItemProbability proba = SaveManager.Instance.GetScavengeNode().SpawnItemParameters.GetMatchingItemData(data);
 
-            if (index < proba.Weight)
-                return DataLoader.Instance.ItemDataList[j];
-            index -= proba.Weight;
+            if (proba != null)
+            {
+                if (index < proba.Weight)
+                    return DataLoader.Instance.ItemDataList[j];
+                index -= proba.Weight;
+            }
         }
         return null;
     }
