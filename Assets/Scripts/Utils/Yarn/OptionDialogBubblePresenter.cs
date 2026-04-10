@@ -52,8 +52,12 @@ public class OptionDialogBubblePresenter : DialoguePresenterBase
     [Space]
     public bool showUnavailableOptions = false;
 
-    public Transform dialogBubble;
+    public RectTransform dialogBubble;
+    public Transform dialogBubblePoint;
 
+    [Header("Offset")]
+    public Vector3 screenBorderOffset;
+    
     private const string TruncateLastLineMarkupName = "lastline";
 
     /// <summary>
@@ -397,5 +401,18 @@ public class OptionDialogBubblePresenter : DialoguePresenterBase
                 callback?.Invoke();
             });
         }
+    }
+
+    private void PlaceDialogBubble(Vector3 targetPosition)
+    {
+        Vector3 newPosition = targetPosition;
+
+        if (newPosition.x - dialogBubble.sizeDelta.x / 2 < screenBorderOffset.x)
+        {
+            newPosition -= new Vector3(newPosition.x - dialogBubble.sizeDelta.x / 2 - screenBorderOffset.x, 0, 0);
+        }
+
+        dialogBubble.transform.position = newPosition;
+        dialogBubblePoint.transform.position += targetPosition - newPosition;
     }
 }

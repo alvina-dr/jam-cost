@@ -1844,6 +1844,8 @@ MonoBehaviour:
   lastLineCharacterNameContainer: {fileID: 0}
   showUnavailableOptions: 1
   dialogBubble: {fileID: 4965692068064237759}
+  dialogBubblePoint: {fileID: 9014772104751067642}
+  screenBorderOffset: {x: 10, y: 10, z: 0}
 --- !u!1 &5870798500692583979
 GameObject:
   m_ObjectHideFlags: 0
