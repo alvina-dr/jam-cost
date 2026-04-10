@@ -22,6 +22,7 @@ public class QuestData : ScriptableObject
 
     public void DiscoverQuest()
     {
+        if (Data.State != QuestState.Hidden) return;
         Data.State = QuestState.New;
     }
 
