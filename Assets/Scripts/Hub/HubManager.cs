@@ -2,6 +2,7 @@ using EasyTransition;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -27,6 +28,8 @@ public class HubManager : MonoBehaviour
     public UI_PermanentBonusShop PermanentBonusShop;
     public UI_QuestsMenu QuestsMenu;
 
+    [SerializeField] private Transform _questBoardClue;
+
     [SerializeField] private TransitionSettings _transitionSettings;
 
     private void Start()
@@ -36,6 +39,8 @@ public class HubManager : MonoBehaviour
             DialogueManager.Instance.DialogueRunner.StartDialogue("NPC1_Introduction");
             SaveManager.CurrentSave.HubFirstTime = true;
         }
+
+        ShowQuestBoardIndication();
     }
 
     public void OpenPowerShop()
@@ -66,5 +71,11 @@ public class HubManager : MonoBehaviour
         {
             unlockableList[i].UpdateUnlock();
         }
+    }
+
+    public void ShowQuestBoardIndication()
+    {
+        List<QuestData> questDataList = QuestManager.Instance.QuestDataDictionary.Values.ToList();
+        _questBoardClue.gameObject.SetActive(questDataList.Find(x => x.Data.State == QuestData.QuestState.WaitCollection || x.Data.State == QuestData.QuestState.New));
     }
 }

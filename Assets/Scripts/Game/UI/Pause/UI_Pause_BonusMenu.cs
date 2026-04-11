@@ -8,6 +8,7 @@ public class UI_Pause_BonusMenu : UI_Menu
     public override void OpenMenu()
     {
         Setup();
+        PauseManager.Instance.CloseAllMenusExcept(this);
         base.OpenMenu();
     }
 

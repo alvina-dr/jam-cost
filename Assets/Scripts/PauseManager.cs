@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -23,7 +24,7 @@ public class PauseManager : MonoBehaviour
     public bool IsPaused { get; private set; }
 
     [SerializeField] private UI_Menu _menu;
-    [SerializeField] private UI_Pause_BonusMenu _bonusMenu;
+    [SerializeField] private List<UI_Menu> _menuList = new();
 
     public void SetupActionInput()
     {
@@ -63,8 +64,16 @@ public class PauseManager : MonoBehaviour
 
     public void CloseMenu()
     {
-        _bonusMenu.CloseMenu();
+        CloseAllMenusExcept(null);
         _menu.CloseMenu();
+    }
+
+    public void CloseAllMenusExcept(UI_Menu exceptionMenu)
+    {
+        for (int i = 0; i < _menuList.Count; i++)
+        {
+            if(_menuList[i] != exceptionMenu) _menuList[i].CloseMenu();
+        }
     }
 
     private void OnDestroy()

@@ -82,6 +82,7 @@ public class UI_QuestsMenu : UI_Menu
     {
         base.CloseMenu();
         HubManager.Instance.UpdateAllUnlocks();
+        HubManager.Instance.ShowQuestBoardIndication();
     }
 
     public void TicketButton()
