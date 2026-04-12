@@ -19,13 +19,7 @@ public class CD_Family : CombinationData
 
         if (numberFamily >= 4)
         {
-            for (int i = 0; i < itemDataList.Count; i++)
-            {
-                if (itemDataList[i].CurrentBagItem.Data.Family == CombinationFamily)
-                {
-                    itemDataList[i].CurrentBagItem.CombinationItemAddList.Add(Bonus);
-                }
-            }
+            DiscoverCombination();
         }
         return numberFamily >= 4;
     }

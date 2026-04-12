@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "QuestData", menuName = "Scriptable Objects/Quests/QuestData")]
 public class QuestData : ScriptableObject
 {
-    public QuestDataClass Data;
+    public QuestDataSave Data;
     public int Reward;
     [TextArea] public string Description;
     public int Goal;
@@ -50,7 +50,7 @@ public class QuestData : ScriptableObject
     }
 
     [System.Serializable]
-    public class QuestDataClass
+    public class QuestDataSave
     {
         public string Name;
         public QuestState State;

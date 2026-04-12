@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89bfc4f049e9512418ef9a2db3f72f51, type: 3}
   m_Name: CD_Identical
   m_EditorClassIdentifier: 
+  Data:
+    Name: Clones
+    State: 0
   Name: Clones
   Description: If 4 or more items are identical, each identical item's <color=red>x2</color>
     base value.

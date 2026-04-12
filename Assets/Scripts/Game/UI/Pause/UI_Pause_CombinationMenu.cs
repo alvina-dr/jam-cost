@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class UI_Pause_CombinationMenu : UI_Menu
@@ -20,11 +21,12 @@ public class UI_Pause_CombinationMenu : UI_Menu
 
     public void Setup()
     {
+        List<CombinationData> combinationList = DataLoader.Instance.CombinationDataDictionary.Values.ToList();
         for (int i = 0; i < _combinationEntryList.Count; i++)
         {
-            if (i < DataLoader.Instance.CombinationDataList.Count)
+            if (i < combinationList.Count)
             {
-                _combinationEntryList[i].Setup(DataLoader.Instance.CombinationDataList[i]);
+                _combinationEntryList[i].Setup(combinationList[i]);
                 _combinationEntryList[i].gameObject.SetActive(true);
             }
             else

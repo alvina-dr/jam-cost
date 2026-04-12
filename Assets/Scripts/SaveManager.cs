@@ -196,6 +196,11 @@ public class SaveManager : MonoBehaviour
             QuestManager.Instance.QuestDataDictionary[CurrentSave.ModifiedQuestList[i].Name].Data = CurrentSave.ModifiedQuestList[i];
         }
 
+        for (int i = 0; i < CurrentSave.ModifiedCombinationList.Count; i++)
+        {
+            DataLoader.Instance.CombinationDataDictionary[CurrentSave.ModifiedCombinationList[i].Name].Data = CurrentSave.ModifiedCombinationList[i];
+        }
+
         CurrentSave.UnlockedPowerDataList = LoadList(CurrentSave.UnlockedPowerDataListName, DataLoader.Instance.PowerDataList);
         CurrentSave.EquipedPowerDataList = LoadList(CurrentSave.EquipedPowerDataListName, DataLoader.Instance.PowerDataList);
         CurrentSave.PermanentBonusList = LoadList(CurrentSave.PermanentBonusListName, DataLoader.Instance.PermanentBonusDataList);
@@ -228,6 +233,13 @@ public class SaveManager : MonoBehaviour
         for (int i = 0; i < questDataList.Count; i++)
         {
             CurrentSave.ModifiedQuestList.Add(questDataList[i].Data);
+        }
+
+        CurrentSave.ModifiedCombinationList.Clear();
+        List<CombinationData> combinationDataList = DataLoader.Instance.CombinationDataDictionary.Values.ToList();
+        for (int i = 0; i < combinationDataList.Count; i++)
+        {
+            CurrentSave.ModifiedCombinationList.Add(combinationDataList[i].Data);
         }
 
         CurrentSave.UnlockedPowerDataListName = SaveList(CurrentSave.UnlockedPowerDataList);
@@ -309,7 +321,8 @@ public class SaveManager : MonoBehaviour
         public int RunStartRerolls = 0;
 
         public RunData CurrentRun = new();
-        public List<QuestData.QuestDataClass> ModifiedQuestList = new();
+        public List<QuestData.QuestDataSave> ModifiedQuestList = new();
+        public List<CombinationData.CombinationDataSave> ModifiedCombinationList = new();
 
         public SaveData() { }
     }

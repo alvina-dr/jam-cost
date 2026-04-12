@@ -23,6 +23,14 @@ public class CD_ItemList : CombinationData
                 }
             }
         }
-        return requiredItemList.Count == 0;
+        if (requiredItemList.Count == 0)
+        {
+            DiscoverCombination();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

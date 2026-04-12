@@ -13,7 +13,7 @@ public class UI_Combination : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         gameObject.SetActive(true);
         _combinationData = combinationData;
-        _combinationName.SetText(_combinationData.Name);
+        _combinationName.SetText(_combinationData.Data.Name);
         StartCoroutine(Rebuild());
         Sequence showSequence = Sequence.Create();
         showSequence.Chain(Tween.Scale(transform, 1.3f, .05f));

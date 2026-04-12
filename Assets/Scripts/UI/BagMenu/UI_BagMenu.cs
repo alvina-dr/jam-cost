@@ -2,6 +2,7 @@ using MoreMountains.Feedbacks;
 using PrimeTween;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -300,10 +301,11 @@ public class UI_BagMenu : UI_Menu
     public void CountCombinations()
     {
         List<UI_BagSlot> chosenItemSlotList = GetChosenItemSlotList();
+        List<CombinationData> combinationList = DataLoader.Instance.CombinationDataDictionary.Values.ToList();
         _combinationDataList.Clear();
 
         // calculate all addition per item combinations
-        List<CombinationData> combinationItemAddList = DataLoader.Instance.CombinationDataList.FindAll(x => x.Effect == CombinationData.CombinationEffect.ItemAddition);
+        List<CombinationData> combinationItemAddList = combinationList.FindAll(x => x.Effect == CombinationData.CombinationEffect.ItemAddition);
         for (int i = 0; i < combinationItemAddList.Count; i++)
         {
             int index = i;
@@ -315,7 +317,7 @@ public class UI_BagMenu : UI_Menu
                     _combinationList[_combinationDataList.Count].Setup(combinationItemAddList[index]);
                     _combinationDataList.Add(combinationItemAddList[index]);
                     _shakePlayer.PlayFeedbacks();
-                    GameManager.Instance.UIManager.TextPopperManager_Info.PopText($"<wave amp=2>{combinationItemAddList[index].Name}", Vector3.up, Color.black);
+                    GameManager.Instance.UIManager.TextPopperManager_Info.PopText($"<wave amp=2>{combinationItemAddList[index].Data.Name}", Vector3.up, Color.black);
                 });
                 _countSequence.ChainDelay(.2f);
                 for (int j = 0; j < refChosenItemSlotList.Count; j++)
@@ -337,7 +339,7 @@ public class UI_BagMenu : UI_Menu
         }
 
         // calculate all multiplier per item combinations
-        List<CombinationData> combinationItemMultList = DataLoader.Instance.CombinationDataList.FindAll(x => x.Effect == CombinationData.CombinationEffect.ItemMultiplication);
+        List<CombinationData> combinationItemMultList = combinationList.FindAll(x => x.Effect == CombinationData.CombinationEffect.ItemMultiplication);
         for (int i = 0; i < combinationItemMultList.Count; i++)
         {
             int index = i;
@@ -349,7 +351,7 @@ public class UI_BagMenu : UI_Menu
                     _combinationList[_combinationDataList.Count].Setup(combinationItemMultList[index]);
                     _combinationDataList.Add(combinationItemAddList[index]);
                     _shakePlayer.PlayFeedbacks();
-                    GameManager.Instance.UIManager.TextPopperManager_Info.PopText($"<wave amp=2>{combinationItemMultList[index].Name}", Vector3.up, Color.black);
+                    GameManager.Instance.UIManager.TextPopperManager_Info.PopText($"<wave amp=2>{combinationItemMultList[index].Data.Name}", Vector3.up, Color.black);
                 });
                 _countSequence.ChainDelay(.2f);
                 for (int j = 0; j < refChosenItemSlotList.Count; j++)

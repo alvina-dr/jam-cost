@@ -27,6 +27,7 @@ public class CD_Identical : CombinationData
         if (maxIdenticalNumber >= 4)
         {
             bagSlotList = bagSlotList.FindAll(x => x.CurrentBagItem.Data.Name == identicalItemData.Name);
+            DiscoverCombination();
             return true;
         }
         else

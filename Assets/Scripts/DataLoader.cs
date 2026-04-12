@@ -27,7 +27,7 @@ public class DataLoader : MonoBehaviour
     public List<BonusData> PermanentBonusDataList;
     public List<MapNodeData> MapNodeDataList;
     public List<PowerData> PowerDataList;
-    public List<CombinationData> CombinationDataList;
+    public Dictionary<string, CombinationData> CombinationDataDictionary = new();
 
     private void OnAwake()
     {
@@ -53,8 +53,12 @@ public class DataLoader : MonoBehaviour
             PowerDataList[i] = Instantiate(PowerDataList[i]);
         }
 
-        CombinationDataList = Resources.LoadAll<CombinationData>("Combinations").ToList();
-
+        List<CombinationData> combinationDataList = Resources.LoadAll<CombinationData>("Combinations").ToList();
+        for (int i = 0; i < combinationDataList.Count; i++)
+        {
+            CombinationData combinationData = Instantiate(combinationDataList[i]);
+            CombinationDataDictionary.Add(combinationData.Data.Name, combinationData);
+        }
     }
 
     public BonusData TakeRandomBonusData(BonusData.BonusDurability bonusDurability = BonusData.BonusDurability.Run, List<BonusData> formerList = null)
