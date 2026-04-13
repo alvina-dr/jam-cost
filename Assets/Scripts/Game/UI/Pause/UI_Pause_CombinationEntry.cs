@@ -1,13 +1,28 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class UI_Pause_CombinationEntry : MonoBehaviour
+public class UI_Pause_CombinationEntry : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private TextMeshProUGUI _combinationName;
     [SerializeField] private TextMeshProUGUI _combinationDescription;
     [SerializeField] private Transform _newIndicator;
 
     private CombinationData _combinationData;
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (_combinationData.Data.State == CombinationData.CombinationDiscovery.New)
+        {
+            _combinationData.SeeDiscoveredCombination();
+            _newIndicator.gameObject.SetActive(false);
+        }
+     }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+
+    }
 
     public void Setup(CombinationData combinationData)
     {
