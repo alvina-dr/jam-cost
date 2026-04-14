@@ -76,11 +76,9 @@ public class GameManager : MonoBehaviour
 
         if (!SaveManager.CurrentSave.GameFirstTime)
         {
-            DialogueManager.Instance.DialogueRunner.StartDialogue("Onboarding_GameScene");
+            DialogueManager.Instance.DialogueRunner.StartDialogue("Onboarding_GameScene_1");
             SaveManager.CurrentSave.GameFirstTime = true;
         }
-
-        //List<BonusData> bonusDataFamilyList = SaveManager.CurrentSave.CurrentRun.CurrentRunBonusList.FindAll(x => x is BD_FamilyMultiplier familyMultiplier && familyMultiplier.FamilyBonus == chosenItemSlotList[index].CurrentBagItem.Data.Family);
     }
 
     public void StartFirstRound()

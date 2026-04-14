@@ -22,7 +22,7 @@ public class UI_TextValue : MonoBehaviour
         _tempoText = text;
         if (animation)
         {
-            textAnimation = Sequence.Create();
+            textAnimation = Sequence.Create(useUnscaledTime:true);
             textAnimation.Chain(Tween.Scale(transform, 1.1f, .2f));
             textAnimation.ChainCallback(() => _textUI.text = text, warnIfTargetDestroyed:false);
             textAnimation.Chain(Tween.Scale(transform, 1f, .1f));

@@ -26,10 +26,12 @@ public class LineDialogBubblePresenter : DialoguePresenterBase
     public CanvasGroup? canvasGroup;
 
     public RectTransform dialogBubble;
-    public Transform dialogBubblePoint;
+    public RectTransform dialogBubblePoint;
+    private Vector3 _startingPositionDialogBubblePoint;
 
     [Header("Offset")]
     public Vector3 screenBorderOffset;
+    public Vector3 dialogBubbleOffset;
 
     /// <summary>
     /// The <see cref="TMP_Text"/> object that displays the text of
@@ -138,6 +140,7 @@ public class LineDialogBubblePresenter : DialoguePresenterBase
 
     private void Awake()
     {
+        _startingPositionDialogBubblePoint = dialogBubblePoint.transform.localPosition;
         switch (typewriterStyle)
         {
             case TypewriterType.Instant:
@@ -327,14 +330,51 @@ public class LineDialogBubblePresenter : DialoguePresenterBase
 
     private void PlaceDialogBubble(Vector3 targetPosition)
     {
+        targetPosition += dialogBubbleOffset;
         Vector3 newPosition = targetPosition;
 
+        // TOO FAR LEFT
         if (newPosition.x - dialogBubble.sizeDelta.x / 2 < screenBorderOffset.x)
         {
             newPosition -= new Vector3(newPosition.x - dialogBubble.sizeDelta.x / 2 - screenBorderOffset.x, 0, 0);
         }
 
+        // TOO FAR RIGHT
+        if (newPosition.x + dialogBubble.sizeDelta.x / 2 > Screen.width - screenBorderOffset.x)
+        {
+            newPosition -= new Vector3((newPosition.x + dialogBubble.sizeDelta.x / 2) - (Screen.width - screenBorderOffset.x), 0, 0);
+        }
+
+        // UNDER BOTTOM
+        if (newPosition.y - dialogBubble.sizeDelta.y / 2 < screenBorderOffset.y)
+        {
+            //newPosition -= new Vector3(0, newPosition.y - dialogBubble.sizeDelta.y / 2 - screenBorderOffset.y, 0);
+        }
+
+        // ABOVE TOP
+        Debug.Log("position : " + newPosition);
+        Debug.Log("screen height min : " + (Screen.height - screenBorderOffset.y));
+        if (newPosition.y + dialogBubble.sizeDelta.y  > Screen.height - screenBorderOffset.y)
+        {
+            Debug.Log("above top");
+            dialogBubble.pivot = new Vector2(dialogBubble.pivot.x, 1);
+            dialogBubblePoint.anchorMin = new Vector2(dialogBubble.anchorMin.x, 1);
+            dialogBubblePoint.anchorMax = new Vector2(dialogBubble.anchorMax.x, 1);
+            dialogBubblePoint.transform.localPosition = new Vector3(dialogBubble.pivot.x, 10, 0);
+            dialogBubblePoint.localScale = new Vector3(1, -1, 1);
+            newPosition -= new Vector3(0, dialogBubbleOffset.y * 2, 0);
+            //newPosition -= new Vector3(0, (newPosition.y + dialogBubble.sizeDelta.y / 2) - (Screen.height - screenBorderOffset.y), 0);
+        }
+        else
+        {
+            dialogBubble.pivot = new Vector2(dialogBubble.pivot.x, 0);
+            dialogBubblePoint.anchorMin = new Vector2(dialogBubble.anchorMin.x, 0);
+            dialogBubblePoint.anchorMax = new Vector2(dialogBubble.anchorMax.x, 0);
+            dialogBubblePoint.transform.localPosition = new Vector3(dialogBubble.pivot.x, -10, 0);
+            dialogBubblePoint.localScale = new Vector3(1, 1, 1);
+        }
+
         dialogBubble.transform.position = newPosition;
-        dialogBubblePoint.transform.position += targetPosition - newPosition;
+        dialogBubblePoint.transform.localPosition = new Vector3(_startingPositionDialogBubblePoint.x + targetPosition.x - newPosition.x, dialogBubblePoint.transform.localPosition.y, dialogBubblePoint.transform.localPosition.z);
     }
 }

@@ -23,5 +23,6 @@ public class GS_Bag : GameState
     {
         base.ExitState();
         GameManager.Instance.UIManager.BagMenu.CloseMenu();
+        SaveManager.CurrentSave.GameFirstTimeRoundPlayed = true;
     }
 }

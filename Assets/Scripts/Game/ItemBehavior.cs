@@ -72,6 +72,7 @@ public class ItemBehavior : MonoBehaviour
 
     public bool CanClickItem()
     {
+        if (DialogueManager.Instance.DialogueRunner.IsDialogueRunning) return false;
         if (GameManager.Instance.CurrentGameState == GameManager.Instance.ScavengingState)
         {
             if (GameManager.Instance.ScavengingState.CurrentSubState == GS_Scavenging.Scavenging_SubState.Scavenging) return true;

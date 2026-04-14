@@ -44,6 +44,8 @@ public class PauseManager : MonoBehaviour
             && GameManager.Instance.CurrentGameState != null
             && GameManager.Instance.CurrentGameState != GameManager.Instance.RewardState) return;
 
+        if (DialogueManager.Instance.DialogueRunner.IsDialogueRunning) return;
+
         IsPaused = !IsPaused;
         if (IsPaused)
         {

@@ -302,8 +302,13 @@ public class SaveManager : MonoBehaviour
         public bool ShopFirstTime = false;
         public bool FreeRoundFirstTime = false;
         public bool GetFreeRoundFirstTime = false;
+
         public bool GameFirstTime = false;
+        public bool GameFirstTimeRoundPlayed = false;
+        public bool GameSecondTime = false;
+        public bool GameThirdTime = false;
         public bool PowerFirstTime = false;
+        
         public bool SeeNewFrigo = false;
         public int NumberRunPlayed;
         public float TimePlayed;
