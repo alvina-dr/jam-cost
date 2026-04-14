@@ -230,6 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nameText: {fileID: 1605989158565587813}
+  _completionValueText: {fileID: 0}
   _newStatusParent: {fileID: 5995798220363281718}
   _collectStatusParent: {fileID: 3926459572365783350}
   _completedStatusParent: {fileID: 2167623405099043183}
@@ -579,7 +580,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7174577954857152365, guid: ff42f5a1f35861246ab34dea339de961, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 492.3
+      value: 583
       objectReference: {fileID: 0}
     - target: {fileID: 7174577954857152365, guid: ff42f5a1f35861246ab34dea339de961, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -641,7 +642,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1594120276027890964, guid: ce8c56acc24918644bbaed56dd94fcf3, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 394.3
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 1594120276027890964, guid: ce8c56acc24918644bbaed56dd94fcf3, type: 3}
       propertyPath: m_SizeDelta.y

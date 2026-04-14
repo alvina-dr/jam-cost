@@ -15,4 +15,9 @@ public class QD_EquipPowerNumber : QuestData
             return false;
         }
     }
+
+    public override int GetCurrentValue()
+    {
+        return SaveManager.CurrentSave.EquipedPowerDataList.Count;
+    }
 }

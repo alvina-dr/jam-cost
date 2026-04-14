@@ -15,4 +15,9 @@ public class QD_FirstBossNumber : QuestData
             return false;
         }
     }
+
+    public override int GetCurrentValue()
+    {
+        return SaveManager.CurrentSave.NumberFirstBossPlayed;
+    }
 }

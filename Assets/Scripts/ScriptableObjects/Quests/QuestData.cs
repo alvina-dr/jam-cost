@@ -31,6 +31,11 @@ public class QuestData : ScriptableObject
         return false;
     }
 
+    public virtual int GetCurrentValue()
+    {
+        return 0;
+    }
+
     public virtual void SetQuestToWaitCollection()
     {
         if (Data.State == QuestState.WaitCollection || Data.State == QuestState.Collected) return;
