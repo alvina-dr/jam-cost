@@ -352,18 +352,14 @@ public class LineDialogBubblePresenter : DialoguePresenterBase
         }
 
         // ABOVE TOP
-        Debug.Log("position : " + newPosition);
-        Debug.Log("screen height min : " + (Screen.height - screenBorderOffset.y));
         if (newPosition.y + dialogBubble.sizeDelta.y  > Screen.height - screenBorderOffset.y)
         {
-            Debug.Log("above top");
             dialogBubble.pivot = new Vector2(dialogBubble.pivot.x, 1);
             dialogBubblePoint.anchorMin = new Vector2(dialogBubble.anchorMin.x, 1);
             dialogBubblePoint.anchorMax = new Vector2(dialogBubble.anchorMax.x, 1);
             dialogBubblePoint.transform.localPosition = new Vector3(dialogBubble.pivot.x, 10, 0);
             dialogBubblePoint.localScale = new Vector3(1, -1, 1);
             newPosition -= new Vector3(0, dialogBubbleOffset.y * 2, 0);
-            //newPosition -= new Vector3(0, (newPosition.y + dialogBubble.sizeDelta.y / 2) - (Screen.height - screenBorderOffset.y), 0);
         }
         else
         {

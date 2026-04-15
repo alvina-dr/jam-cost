@@ -44,6 +44,7 @@ public class UI_BagMenu : UI_Menu
     private float _animationTimeScale = 1;
 
     private PrimeTween.Sequence _countSequence;
+    int _roundScore = 0;
 
     public override void OpenMenu()
     {
@@ -157,11 +158,11 @@ public class UI_BagMenu : UI_Menu
         _countSequence.Stop();
         _countSequence = PrimeTween.Sequence.Create();
 
-        int roundScore = 0;
+        _roundScore = 0;
         float baseDelay = 0.5f;
         int totalAnimation = 0;
 
-        _roundScoreText.SetTextValue($"{roundScore}", false);
+        _roundScoreText.SetTextValue($"{_roundScore}", false);
         _roundScoreParent.gameObject.SetActive(true);
 
         List<UI_BagSlot> chosenItemSlotList = GetChosenItemSlotList();
@@ -208,25 +209,28 @@ public class UI_BagMenu : UI_Menu
             _countSequence.ChainCallback(() =>
             {
                 _shakePlayer.PlayFeedbacks();
-                roundScore += chosenItemSlotList[index].CurrentBagItem.CurrentScore;
-                _roundScoreText.SetTextValueNumber(roundScore - chosenItemSlotList[index].CurrentBagItem.CurrentScore, roundScore, .4f);
+                _roundScore += chosenItemSlotList[index].CurrentBagItem.CurrentScore;
+                _roundScoreText.SetTextValueNumber(_roundScore - chosenItemSlotList[index].CurrentBagItem.CurrentScore, _roundScore, .4f);
             });
 
             _countSequence.ChainDelay(.3f * _animationTimeScale);
             StackAnim();
         }
+
+        CountTotalScoreBonus();
+
         _countSequence.ChainDelay(.8f * _animationTimeScale);
         _countSequence.ChainCallback(() =>
         {
-            GameManager.Instance.SetCurrentScore(GameManager.Instance.CurrentScore + roundScore);
-            SaveManager.CurrentSave.TotalPoints += roundScore;
+            GameManager.Instance.SetCurrentScore(GameManager.Instance.CurrentScore + _roundScore);
+            SaveManager.CurrentSave.TotalPoints += _roundScore;
             QuestManager.Instance.CheckQuestCompletionByType<QD_TotalPoints>();
             _scoreBar.SetBarValue(GameManager.Instance.CurrentScore, SaveManager.Instance.GetScavengeNode().ScoreGoal);
 
             int confettiNumber = 0;
-            if (roundScore > 0) confettiNumber++;
-            if (roundScore > SaveManager.Instance.GetScavengeNode().ScoreGoal / 2) confettiNumber++;
-            if (roundScore > SaveManager.Instance.GetScavengeNode().ScoreGoal) confettiNumber++;
+            if (_roundScore > 0) confettiNumber++;
+            if (_roundScore > SaveManager.Instance.GetScavengeNode().ScoreGoal / 2) confettiNumber++;
+            if (_roundScore > SaveManager.Instance.GetScavengeNode().ScoreGoal) confettiNumber++;
             _confettiLeft.Emit(confettiNumber * 50);
             _confettiRight.Emit(confettiNumber * 50);
             
@@ -420,7 +424,39 @@ public class UI_BagMenu : UI_Menu
                     _countSequence.ChainDelay(.5f);
                 }
             }
+        }
+    }
 
+    public void CountTotalScoreBonus()
+    {
+        List<UI_BagSlot> chosenItemSlotList = GetChosenItemSlotList();
+        List<BonusData> runBonusList = SaveManager.CurrentSave.CurrentRun.CurrentRunBonusList;
+
+        // calculate all addition per item combinations
+        List<BonusData> bonusTotalAddList = runBonusList.FindAll(x => x.Effect == BonusData.BonusEffect.TotalAddition);
+        for (int i = 0; i < bonusTotalAddList.Count; i++)
+        {
+            int index = i;
+            List<UI_BagSlot> refChosenItemSlotList = new(chosenItemSlotList);
+            if (bonusTotalAddList[index].CheckBonus(ref refChosenItemSlotList))
+            {
+                _countSequence.ChainCallback(() =>
+                {
+                    HighlightBonus(bonusTotalAddList[index].Name);
+                    GameManager.Instance.UIManager.TextPopperManager_Info.PopText($"<wave amp=2>{bonusTotalAddList[index].Name}", Vector3.up, Color.black);
+                    _shakePlayer.PlayFeedbacks();
+                });
+                _countSequence.ChainDelay(.7f);
+                _countSequence.ChainCallback(() =>
+                {
+                    int addBonus = Mathf.RoundToInt(bonusTotalAddList[index].BonusValue);
+                    _shakePlayer.PlayFeedbacks();
+                    GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + addBonus, _roundScoreText.transform.position, _addColor, UI_TextPopper.AnimSpeed.Quick);
+                    _roundScore += addBonus;
+                    _roundScoreText.SetTextValueNumber(_roundScore - addBonus, _roundScore, .4f);
+                });
+                _countSequence.ChainDelay(1f);
+            }
         }
     }
 

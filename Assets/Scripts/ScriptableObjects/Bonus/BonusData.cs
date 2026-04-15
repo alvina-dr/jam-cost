@@ -7,15 +7,24 @@ public class BonusData : ScriptableObject
     public bool IsAvailableInGame;
     public BonusDurability Durability;
     public BonusCategory Category;
+    public BonusEffect Effect;
 
     public string Name;
     [TextArea]
     public string Description;
     public int Price;
+    public float BonusValue;
     public Sprite Icon;
     public Color Color;
     public List<BonusData> UpgradeBonusList;
-
+    public enum BonusEffect
+    {
+        ItemAddition = 0,
+        ItemMultiplication = 1,
+        TotalAddition = 2,
+        TotalMultiplication = 3,
+        Other = 4 
+    }
     public enum BonusDurability
     {
         Run = 0,
@@ -43,5 +52,10 @@ public class BonusData : ScriptableObject
                 SaveManager.CurrentSave.PermanentBonusList.Add(this);
                 break;
         }
+    }
+
+    public virtual bool CheckBonus(ref List<UI_BagSlot> itemDataListRef)
+    {
+        return false;
     }
 }
