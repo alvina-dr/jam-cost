@@ -36,6 +36,10 @@ public class UI_BagMenu : UI_Menu
     [Header("Bonus")]
     [SerializeField] private List<UI_BonusIcon> _bonusIconList = new();
 
+    [Header("Time speed")]
+    [SerializeField] private Transform _speedArrow;
+    [SerializeField] private Vector3 _speedArrowOffset;
+
     private int _animationStackedNumber;
     private float _animationTimeScale = 1;
 
@@ -105,12 +109,17 @@ public class UI_BagMenu : UI_Menu
             return;
         }
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && _countSequence.isAlive)
         {
             Time.timeScale = 2f;
+            _speedArrow.gameObject.SetActive(true);
+            Vector2 pos;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(GameManager.Instance.UIManager.Canvas.transform as RectTransform, Input.mousePosition + _speedArrowOffset, GameManager.Instance.UIManager.Canvas.worldCamera, out pos);
+            _speedArrow.transform.position = GameManager.Instance.UIManager.Canvas.transform.TransformPoint(pos);
         }
         else
         {
+            _speedArrow.gameObject.SetActive(false);
             Time.timeScale = 1f;
         }
     }

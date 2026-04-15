@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    public Canvas Canvas;
+
     public HoverPrice HoverPrice;
     public UI_TextValue Timer;
     public UI_TextValue RoundRemaining;

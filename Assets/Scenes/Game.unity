@@ -387,6 +387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22d5df73cfbff034394593a449c550d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Canvas: {fileID: 110208745}
   HoverPrice: {fileID: 551825959}
   Timer: {fileID: 1013592282}
   RoundRemaining: {fileID: 1349184526}
