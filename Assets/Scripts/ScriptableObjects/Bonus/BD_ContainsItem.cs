@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "BD_ContainsTrash", menuName = "Scriptable Objects/Bonus/BD_ContainsTrash")]
-public class BD_ContainsTrash : BonusData
+public class BD_ContainsItem : BonusData
 {
     [SerializeField] private List<ItemData> _containsItemDataList;
 

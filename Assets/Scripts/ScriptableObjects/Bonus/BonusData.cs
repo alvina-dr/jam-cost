@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +7,8 @@ public class BonusData : ScriptableObject
 {
     public bool IsAvailableInGame;
     public BonusDurability Durability;
-    public BonusCategory Category;
+
+    [ShowIf("Durability", BonusDurability.Permanent)] public BonusCategory Category;
     public BonusEffect Effect;
 
     public string Name;
