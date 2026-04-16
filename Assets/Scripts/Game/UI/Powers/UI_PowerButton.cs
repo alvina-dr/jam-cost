@@ -11,6 +11,12 @@ public class UI_PowerButton : MonoBehaviour
     [SerializeField] private Image _powerLoading;
 
     private bool _powerCharged;
+    private BD_PowerChargeSpeed _powerChargeSpeedBonus;
+
+    private void Start()
+    {
+        _powerChargeSpeedBonus = SaveManager.Instance.CheckHasRunBonus<BD_PowerChargeSpeed>();
+    }
 
     public void Setup(PowerData powerData)
     {
@@ -39,7 +45,9 @@ public class UI_PowerButton : MonoBehaviour
 
         if (!_powerCharged)
         {
-            _powerData.CurrentLoadTime -= Time.deltaTime;
+            float timePassed = Time.deltaTime;
+            if (_powerChargeSpeedBonus) timePassed *= _powerChargeSpeedBonus.BonusValue;
+            _powerData.CurrentLoadTime -= timePassed;
             _powerLoading.fillAmount = (float) _powerData.CurrentLoadTime / (float) _powerData.LoadingTime;
             if (_powerData.CurrentLoadTime <= 0) PowerCharged();
         }
