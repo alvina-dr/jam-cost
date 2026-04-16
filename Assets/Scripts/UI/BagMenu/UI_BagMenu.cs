@@ -325,10 +325,11 @@ public class UI_BagMenu : UI_Menu
             List<UI_BagSlot> refChosenItemSlotList = new(chosenItemSlotList);
             if (combinationItemAddList[index].CheckCombination(ref refChosenItemSlotList))
             {
+                int combinationNumber = _combinationDataList.Count;
+                _combinationDataList.Add(combinationItemAddList[index]);
                 _countSequence.ChainCallback(() =>
                 {
-                    _combinationList[_combinationDataList.Count].Setup(combinationItemAddList[index]);
-                    _combinationDataList.Add(combinationItemAddList[index]);
+                    _combinationList[combinationNumber].Setup(combinationItemAddList[index]);
                     _shakePlayer.PlayFeedbacks();
                     GameManager.Instance.UIManager.TextPopperManager_Info.PopText($"<wave amp=2>{combinationItemAddList[index].Data.Name}", Vector3.up, Color.black);
                 });
@@ -359,10 +360,11 @@ public class UI_BagMenu : UI_Menu
             List<UI_BagSlot> refChosenItemSlotList = new(chosenItemSlotList);
             if (combinationItemMultList[index].CheckCombination(ref refChosenItemSlotList))
             {
+                int combinationNumber = _combinationDataList.Count;
+                _combinationDataList.Add(combinationItemMultList[index]);
                 _countSequence.ChainCallback(() =>
                 {
-                    _combinationList[_combinationDataList.Count].Setup(combinationItemMultList[index]);
-                    _combinationDataList.Add(combinationItemAddList[index]);
+                    _combinationList[combinationNumber].Setup(combinationItemMultList[index]);
                     _shakePlayer.PlayFeedbacks();
                     GameManager.Instance.UIManager.TextPopperManager_Info.PopText($"<wave amp=2>{combinationItemMultList[index].Data.Name}", Vector3.up, Color.black);
                 });
@@ -438,7 +440,7 @@ public class UI_BagMenu : UI_Menu
         {
             int index = i;
             List<UI_BagSlot> refChosenItemSlotList = new(chosenItemSlotList);
-            if (bonusTotalAddList[index].CheckBonus(ref refChosenItemSlotList))
+            if (bonusTotalAddList[index].CheckBonus(ref refChosenItemSlotList, _combinationDataList))
             {
                 _countSequence.ChainCallback(() =>
                 {

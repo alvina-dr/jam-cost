@@ -1,26 +1,46 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "CD_Family", menuName = "Scriptable Objects/CombinationData/CD_Family")]
 public class CD_Family : CombinationData
 {
-    public ItemData.ItemFamily CombinationFamily;
-
-    public override bool CheckCombination(ref List<UI_BagSlot> itemDataList)
+    public override bool CheckCombination(ref List<UI_BagSlot> bagSlotListRef)
     {
-        int numberFamily = 0;
-        for (int i = 0; i < itemDataList.Count; i++)
+        List<UI_BagSlot> bagSlotList = new List<UI_BagSlot>(bagSlotListRef);
+        List<FamilyStat> familyCountList = new();
+        for (int i = 0; i < bagSlotList.Count; i++)
         {
-            if (itemDataList[i].CurrentBagItem.Data.Family == CombinationFamily)
+            FamilyStat familyStat = familyCountList.Find(x => x.Family == bagSlotList[i].CurrentBagItem.Data.Family);
+            if (familyStat != null) 
             {
-                numberFamily++;
+                familyStat.Number++;
+            }
+            else
+            {
+                familyCountList.Add(new FamilyStat(bagSlotList[i].CurrentBagItem.Data.Family, 1));
             }
         }
+        familyCountList.Sort((a, b) => b.Number.CompareTo(a.Number));
+        FamilyStat max = familyCountList[0];
 
-        if (numberFamily >= 4)
+        if (max.Number >= 4)
         {
             DiscoverCombination();
+            bagSlotListRef = bagSlotListRef.FindAll(x => x.CurrentBagItem.Data.Family == max.Family);
         }
-        return numberFamily >= 4;
+        return max.Number >= 4;
+    }
+
+    private class FamilyStat
+    {
+        public ItemData.ItemFamily Family;
+        public int Number;
+
+        public FamilyStat(ItemData.ItemFamily family, int number)
+        {
+            Family = family;
+            Number = number;
+        }
     }
 }

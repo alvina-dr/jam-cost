@@ -56,6 +56,11 @@ public class GS_Scavenging : GameState
     {
         base.UpdateState();
 
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            Timer = 0;
+        }
+
         Timer -= Time.deltaTime;
         if (GameManager.Instance.UIManager.Timer.GetTextValue() != Mathf.RoundToInt(Timer).ToString())
         {

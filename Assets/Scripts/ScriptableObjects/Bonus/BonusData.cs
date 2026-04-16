@@ -18,7 +18,8 @@ public class BonusData : ScriptableObject
     public float BonusValue;
     public Sprite Icon;
     public Color Color;
-    public List<BonusData> UpgradeBonusList;
+    [ShowIf("Durability", BonusDurability.Permanent)] public List<BonusData> UpgradeBonusList;
+
     public enum BonusEffect
     {
         ItemAddition = 0,
@@ -56,7 +57,7 @@ public class BonusData : ScriptableObject
         }
     }
 
-    public virtual bool CheckBonus(ref List<UI_BagSlot> itemDataListRef)
+    public virtual bool CheckBonus(ref List<UI_BagSlot> itemDataListRef, List<CombinationData> combinationDataList = null)
     {
         return false;
     }

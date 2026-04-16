@@ -11,7 +11,7 @@ public class BD_ContainsItem : BonusData
         base.GetBonus();
     }
 
-    public override bool CheckBonus(ref List<UI_BagSlot> itemDataListRef)
+    public override bool CheckBonus(ref List<UI_BagSlot> itemDataListRef, List<CombinationData> combinationDataList = null)
     {
         List<UI_BagSlot> itemDataList = new List<UI_BagSlot>(itemDataListRef);
         List<ItemData> requiredItemList = new(_containsItemDataList);

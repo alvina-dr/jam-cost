@@ -10,14 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 24f1e6f7bc59c4349a2008210b92647a, type: 3}
-  m_Name: CD_Family_Paper
+  m_Name: CD_Family
   m_EditorClassIdentifier: 
   Data:
-    Name: Paper Family
+    Name: Family
     State: 0
-  Name: Paper Family
-  Description: If the depot contains more than 4 items from the same family, each
-    item from this family gains +10 value.
+  Description: If the depot contains <b>4</b> or more items from the same family,
+    <b><color=blue>+10</color></b> for each item from this family.
   Effect: 0
   Bonus: 10
   CombinationFamily: 1
