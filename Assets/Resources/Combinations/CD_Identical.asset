@@ -15,8 +15,7 @@ MonoBehaviour:
   Data:
     Name: Clones
     State: 0
-  Name: Clones
-  Description: If 4 or more items are identical, each identical item's <color=red>x2</color>
-    base value.
+  Description: If <b>4</b> or more items are identical, <color=red>x2</color> for
+    each identical item.
   Effect: 1
   Bonus: 2

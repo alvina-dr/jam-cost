@@ -460,6 +460,34 @@ public class UI_BagMenu : UI_Menu
                 _countSequence.ChainDelay(1f);
             }
         }
+
+        // calculate all addition per item combinations
+        List<BonusData> bonusTotalMultList = runBonusList.FindAll(x => x.Effect == BonusData.BonusEffect.TotalMultiplication);
+        for (int i = 0; i < bonusTotalMultList.Count; i++)
+        {
+            int index = i;
+            List<UI_BagSlot> refChosenItemSlotList = new(chosenItemSlotList);
+            if (bonusTotalMultList[index].CheckBonus(ref refChosenItemSlotList, _combinationDataList))
+            {
+                _countSequence.ChainCallback(() =>
+                {
+                    HighlightBonus(bonusTotalMultList[index].Name);
+                    GameManager.Instance.UIManager.TextPopperManager_Info.PopText($"<wave amp=2>{bonusTotalMultList[index].Name}", Vector3.up, Color.black);
+                    _shakePlayer.PlayFeedbacks();
+                });
+                _countSequence.ChainDelay(.7f);
+                _countSequence.ChainCallback(() =>
+                {
+                    float multBonus = bonusTotalMultList[index].BonusValue;
+                    _shakePlayer.PlayFeedbacks();
+                    GameManager.Instance.UIManager.TextPopperManager_Number.PopText("x" + multBonus, _roundScoreText.transform.position, _multiplyColor, UI_TextPopper.AnimSpeed.Quick);
+                    int formerScore = _roundScore;
+                    _roundScore = Mathf.RoundToInt(multBonus * formerScore);
+                    _roundScoreText.SetTextValueNumber(_roundScore - formerScore, _roundScore, .4f);
+                });
+                _countSequence.ChainDelay(1f);
+            }
+        }
     }
 
     public void HighlightBonus(string bonusName)
