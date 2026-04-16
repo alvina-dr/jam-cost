@@ -17,7 +17,7 @@ MonoBehaviour:
   Category: 0
   Effect: 4
   Name: Power reward PP
-  Description: When you use a power, gain 1 PP.
+  Description: When you use a power, gain 1 PP<sprite name=PP>.
   Price: 0
   BonusValue: 0
   Icon: {fileID: 7603346641494398268, guid: 664782b4c36cded4cae107cea31bd1f7, type: 3}
