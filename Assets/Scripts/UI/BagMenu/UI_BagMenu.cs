@@ -192,7 +192,7 @@ public class UI_BagMenu : UI_Menu
 
             CountCombinations();
 
-            CountBonus();
+            CountItemBonus();
         }
 
         for (int i = 0; i < chosenItemSlotList.Count; i++)
@@ -388,43 +388,75 @@ public class UI_BagMenu : UI_Menu
         }
     }
 
-    public void CountBonus()
+    public void CountItemBonus()
     {
         List<UI_BagSlot> chosenItemSlotList = GetChosenItemSlotList();
+        List<BonusData> runBonusList = SaveManager.CurrentSave.CurrentRun.CurrentRunBonusList;
 
-        // BONUS FAMILY MULTIPLIER
-        List<BD_FamilyMultiplier> bonusDataFamilyList = SaveManager.Instance.CheckHasRunBonusList<BD_FamilyMultiplier>();
-        for (int j = 0; j < bonusDataFamilyList.Count; j++)
+        // calculate all addition to item score
+        List<BonusData> bonusItemAddList = runBonusList.FindAll(x => x.Effect == BonusData.BonusEffect.ItemAddition);
+        for (int i = 0; i < bonusItemAddList.Count; i++)
         {
-            BD_FamilyMultiplier familyMultiplier = bonusDataFamilyList[j];
-            bool bonusUseful = false;
-            for (int i = 0; i < chosenItemSlotList.Count; i++)
+            int index = i;
+            List<UI_BagSlot> refChosenItemSlotList = new(chosenItemSlotList);
+            if (bonusItemAddList[index].CheckBonus(ref refChosenItemSlotList))
             {
-                UI_BagSlot bagSlot = chosenItemSlotList[i];
-                if (familyMultiplier.FamilyBonus == bagSlot.CurrentBagItem.Data.Family)
+                _countSequence.ChainCallback(() =>
                 {
-                    if (!bonusUseful)
-                    {
-                        bonusUseful = true;
-                        _countSequence.ChainCallback(() =>
-                        {
-                            HighlightBonus(familyMultiplier.Name);
-                            GameManager.Instance.UIManager.TextPopperManager_Info.PopText($"<wave amp=2>{familyMultiplier.Name}", Vector3.up, Color.black);
-                        });
-                        _countSequence.ChainDelay(.7f);
-                    }
+                    HighlightBonus(bonusItemAddList[index].Name);
+                    //_shakePlayer.PlayFeedbacks();
+                    GameManager.Instance.UIManager.TextPopperManager_Info.PopText($"<wave amp=2>{bonusItemAddList[index].Name}", Vector3.up, Color.black);
+                });
+                _countSequence.ChainDelay(.2f);
+                for (int j = 0; j < refChosenItemSlotList.Count; j++)
+                {
+                    UI_BagSlot bagSlot = refChosenItemSlotList[j];
+                    _countSequence.ChainDelay(.5f);
                     _countSequence.ChainCallback(() =>
                     {
+                        int addBonus = Mathf.RoundToInt(bonusItemAddList[index].BonusValue);
+                        bagSlot.CurrentBagItem.CurrentScore += addBonus;
                         _shakePlayer.PlayFeedbacks();
-                        StackAnim();
-                        int newScore = Mathf.RoundToInt(bagSlot.CurrentBagItem.CurrentScore * familyMultiplier.BonusMultiplier);
-                        bagSlot.SetPriceTextNumber(bagSlot.CurrentBagItem.CurrentScore, newScore);
+                        bagSlot.SetPriceTextNumber(bagSlot.CurrentBagItem.CurrentScore - addBonus, bagSlot.CurrentBagItem.CurrentScore);
                         bagSlot.CurrentBagItem.CountBaseScore();
-                        bagSlot.CurrentBagItem.CurrentScore = newScore;
-                        GameManager.Instance.UIManager.TextPopperManager_Number.PopText("x" + familyMultiplier.BonusMultiplier, bagSlot.transform.position, _multiplyColor, UI_TextPopper.AnimSpeed.Quick);
+                        GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + addBonus, bagSlot.transform.position, _addColor, UI_TextPopper.AnimSpeed.Quick);
                     });
-                    _countSequence.ChainDelay(.5f);
                 }
+                _countSequence.ChainDelay(1f);
+            }
+        }
+
+        // calculate all multiplication to item score
+        List<BonusData> bonusItemMultList = runBonusList.FindAll(x => x.Effect == BonusData.BonusEffect.ItemMultiplication);
+        for (int i = 0; i < bonusItemMultList.Count; i++)
+        {
+            int index = i;
+            List<UI_BagSlot> refChosenItemSlotList = new(chosenItemSlotList);
+            if (bonusItemMultList[index].CheckBonus(ref refChosenItemSlotList))
+            {
+                _countSequence.ChainCallback(() =>
+                {
+                    HighlightBonus(bonusItemMultList[index].Name);
+                    //_shakePlayer.PlayFeedbacks();
+                    GameManager.Instance.UIManager.TextPopperManager_Info.PopText($"<wave amp=2>{bonusItemMultList[index].Name}", Vector3.up, Color.black);
+                });
+                _countSequence.ChainDelay(.2f);
+                for (int j = 0; j < refChosenItemSlotList.Count; j++)
+                {
+                    UI_BagSlot bagSlot = refChosenItemSlotList[j];
+                    _countSequence.ChainDelay(.5f);
+                    _countSequence.ChainCallback(() =>
+                    {
+                        float multBonus = bonusItemMultList[index].BonusValue;
+                        int formerScore = bagSlot.CurrentBagItem.CurrentScore;
+                        bagSlot.CurrentBagItem.CurrentScore = Mathf.RoundToInt(multBonus * formerScore);
+                        bagSlot.SetPriceTextNumber(bagSlot.CurrentBagItem.CurrentScore - formerScore, bagSlot.CurrentBagItem.CurrentScore);
+                        bagSlot.CurrentBagItem.CountBaseScore();
+                        _shakePlayer.PlayFeedbacks();
+                        GameManager.Instance.UIManager.TextPopperManager_Number.PopText("x" + multBonus, bagSlot.transform.position, _multiplyColor, UI_TextPopper.AnimSpeed.Quick);
+                    });
+                }
+                _countSequence.ChainDelay(1f);
             }
         }
     }
@@ -434,7 +466,7 @@ public class UI_BagMenu : UI_Menu
         List<UI_BagSlot> chosenItemSlotList = GetChosenItemSlotList();
         List<BonusData> runBonusList = SaveManager.CurrentSave.CurrentRun.CurrentRunBonusList;
 
-        // calculate all addition per item combinations
+        // calculate all addition to total score
         List<BonusData> bonusTotalAddList = runBonusList.FindAll(x => x.Effect == BonusData.BonusEffect.TotalAddition);
         for (int i = 0; i < bonusTotalAddList.Count; i++)
         {
