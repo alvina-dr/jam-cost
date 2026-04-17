@@ -60,6 +60,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1.458
       objectReference: {fileID: 0}
+    - target: {fileID: 2168145226939612799, guid: 589aa725fe386ac4888b852676e5c3ff, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3212398478841725436, guid: 589aa725fe386ac4888b852676e5c3ff, type: 3}
       propertyPath: CharacterName
       value: Dee
@@ -343,6 +347,10 @@ PrefabInstance:
     - target: {fileID: 7486545965534635435, guid: 589aa725fe386ac4888b852676e5c3ff, type: 3}
       propertyPath: m_Name
       value: Dee Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7852535043314406367, guid: 589aa725fe386ac4888b852676e5c3ff, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9067737309208840712, guid: 589aa725fe386ac4888b852676e5c3ff, type: 3}
       propertyPath: _outlineColor.g
