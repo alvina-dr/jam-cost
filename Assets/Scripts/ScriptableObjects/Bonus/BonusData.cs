@@ -57,7 +57,7 @@ public class BonusData : ScriptableObject
         }
     }
 
-    public virtual bool CheckBonus(ref List<UI_BagSlot> itemDataListRef, List<CombinationData> combinationDataList = null)
+    public virtual bool CheckBonus(ref List<UI_BagSlot> bagSlotListRef, List<CombinationData> combinationDataList = null)
     {
         return false;
     }

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0ff58b6796ff4c4685b1d551a7a5965, type: 3}
+  m_Name: BD_RandomItemMultiplier
+  m_EditorClassIdentifier: 
+  IsAvailableInGame: 1
+  Durability: 0
+  Category: 0
+  Effect: 1
+  Name: Random Item
+  Description: <b>x2</b> to a <b>random</b> item.
+  Price: 0
+  BonusValue: 2
+  Icon: {fileID: 0}
+  Color: {r: 0, g: 0, b: 0, a: 0}
+  UpgradeBonusList: []
