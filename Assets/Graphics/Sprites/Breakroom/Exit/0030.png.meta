@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 56ed49e06af483147a0443a27b62f264
+guid: d0a3f3f45a11f1346aa6cbd8c1aaac18
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7100412272708553036
-    second: Frigo_0
+      213: 5283193871633112846
+    second: 0030_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -48,12 +48,12 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Frigo_0
+      name: 0030_0
       rect:
         serializedVersion: 2
-        x: 560
-        y: 413
-        width: 179
-        height: 332
+        x: 1137
+        y: 252
+        width: 414
+        height: 585
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c490e99a75bb98260800000000000000
-      internalID: 7100412272708553036
+      spriteID: e0f563ea5dca15940800000000000000
+      internalID: 5283193871633112846
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 738a99e2c8a5eb94b940cbbb7d912dfa
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Frigo_0: 7100412272708553036
+      0030_0: 5283193871633112846
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
