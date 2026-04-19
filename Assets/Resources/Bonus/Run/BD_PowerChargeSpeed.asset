@@ -20,6 +20,7 @@ MonoBehaviour:
   Description: Your powers charge <b>30%</b> faster.
   Price: 0
   BonusValue: 1.3
+  _bonusValue: 1.3
   Icon: {fileID: 0}
   Color: {r: 0, g: 0, b: 0, a: 0}
   UpgradeBonusList: []

@@ -15,7 +15,8 @@ public class BonusData : ScriptableObject
     [TextArea]
     public string Description;
     public int Price;
-    public float BonusValue;
+    public virtual float BonusValue => _bonusValue;
+    [SerializeField] private float _bonusValue;
     public Sprite Icon;
     public Color Color;
     [ShowIf("Durability", BonusDurability.Permanent)] public List<BonusData> UpgradeBonusList;

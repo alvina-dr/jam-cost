@@ -9,20 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b5a761996e917d4c91a575771e6c51c, type: 3}
-  m_Name: BD_SmallBox
+  m_Script: {fileID: 11500000, guid: 0ce1f6e9c878b3640b964d992d6979bd, type: 3}
+  m_Name: BD_BonusNumber
   m_EditorClassIdentifier: 
   IsAvailableInGame: 1
   Durability: 0
   Category: 0
-  Effect: 3
-  Name: Small box
-  Description: '<b>x2</b> to the total score if the deposit box contains <b>3</b>
-    or less items. '
+  Effect: 2
+  Name: Bonus Number
+  Description: <b>+10</b> to the total score for each bonus in your possession.
   Price: 0
-  BonusValue: 2
-  _bonusValue: 2
+  _bonusValue: 10
   Icon: {fileID: 0}
   Color: {r: 0, g: 0, b: 0, a: 0}
   UpgradeBonusList: []
-  _maxItemNumber: 3

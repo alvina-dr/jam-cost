@@ -21,6 +21,7 @@ MonoBehaviour:
     combination was played.
   Price: 0
   BonusValue: 3
+  _bonusValue: 3
   Icon: {fileID: 21300000, guid: 0c3cc57d1fc872040957d37ce476b4d6, type: 3}
   Color: {r: 0, g: 0, b: 0, a: 0}
   UpgradeBonusList: []

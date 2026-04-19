@@ -31,7 +31,6 @@ public class UI_BagMenu : UI_Menu
 
     [Header("Combinations")]
     [SerializeField] private List<UI_Combination> _combinationList = new();
-    private List<CombinationData> _combinationDataList = new();
 
     [Header("Bonus")]
     [SerializeField] private List<UI_BonusIcon> _bonusIconList = new();
@@ -45,6 +44,8 @@ public class UI_BagMenu : UI_Menu
 
     private PrimeTween.Sequence _countSequence;
     int _roundScore = 0;
+    private List<CombinationData> _combinationDataList = new();
+    private List<BonusData> _bonusDataList = new();
 
     public override void OpenMenu()
     {
@@ -316,6 +317,7 @@ public class UI_BagMenu : UI_Menu
         List<UI_BagSlot> chosenItemSlotList = GetChosenItemSlotList();
         List<CombinationData> combinationList = DataLoader.Instance.CombinationDataDictionary.Values.ToList();
         _combinationDataList.Clear();
+        _bonusDataList.Clear();
 
         // calculate all addition per item combinations
         List<CombinationData> combinationItemAddList = combinationList.FindAll(x => x.Effect == CombinationData.CombinationEffect.ItemAddition);
