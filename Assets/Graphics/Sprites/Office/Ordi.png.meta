@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 81e84eff289cc8742aabd2d97e4e9aba
+guid: af90192dd032ccd4bb7ae99fcbca21e8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6372628540673680602
-    second: Crate_Depot_0
+      213: -8924163645179287073
+    second: Ordi_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -46,9 +46,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Crate_Depot_0
+      name: Ordi_0
       rect:
         serializedVersion: 2
-        x: 1496
-        y: 137
-        width: 424
-        height: 662
+        x: 1034
+        y: 515
+        width: 185
+        height: 230
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 62b11ab1b10ef87a0800000000000000
-      internalID: -6372628540673680602
+      spriteID: fd922ab6270072480800000000000000
+      internalID: -8924163645179287073
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Crate_Depot_0: -6372628540673680602
+      Ordi_0: -8924163645179287073
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
