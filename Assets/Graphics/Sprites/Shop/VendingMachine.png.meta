@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: cc06aae61cae2144eb604fa21803f11e
+guid: 86accf2267979bb4787642ca3d739994
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8188885589051528917
-    second: DISTRIBUTEUR 1_0
+      213: -5508899658717356136
+    second: Distributeur_2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 0
   alignment: 0
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DISTRIBUTEUR 1_0
+      name: Distributeur_2_0
       rect:
         serializedVersion: 2
-        x: 1064
-        y: 504
-        width: 163
-        height: 310
+        x: 1206
+        y: 396
+        width: 246
+        height: 429
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b29a44e71fb3b5e80800000000000000
-      internalID: -8188885589051528917
+      spriteID: 89f91e2a2f47c83b0800000000000000
+      internalID: -5508899658717356136
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      DISTRIBUTEUR 1_0: -8188885589051528917
+      Distributeur_2_0: -5508899658717356136
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

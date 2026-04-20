@@ -735,12 +735,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: cc06aae61cae2144eb604fa21803f11e, type: 3}
+  m_Sprite: {fileID: -5508899658717356136, guid: 86accf2267979bb4787642ca3d739994, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.35, y: 0.73}
+  m_Size: {x: 2.0600002, y: 3.89}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -822,12 +822,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 9610056d0b38fb24587d96bcf3ddb828, type: 3}
+  m_Sprite: {fileID: 3303560818437212109, guid: cca2dc3fba0926b48892983a67227ed4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.35, y: 0.73}
+  m_Size: {x: 0.89000005, y: 1.5500001}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -843,11 +843,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 802480210119270616, guid: 589aa725fe386ac4888b852676e5c3ff, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.43
+      value: -0.26
       objectReference: {fileID: 0}
     - target: {fileID: 802480210119270616, guid: 589aa725fe386ac4888b852676e5c3ff, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.3
+      value: -1.34
       objectReference: {fileID: 0}
     - target: {fileID: 802480210119270616, guid: 589aa725fe386ac4888b852676e5c3ff, type: 3}
       propertyPath: m_LocalPosition.z
@@ -880,6 +880,14 @@ PrefabInstance:
     - target: {fileID: 802480210119270616, guid: 589aa725fe386ac4888b852676e5c3ff, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 976010485978510240, guid: 589aa725fe386ac4888b852676e5c3ff, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5546941655118514220, guid: 589aa725fe386ac4888b852676e5c3ff, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7486545965534635435, guid: 589aa725fe386ac4888b852676e5c3ff, type: 3}
       propertyPath: m_Name
@@ -1072,11 +1080,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1007474124497658132, guid: a971f0f12e49b8b4f986da83099e2c23, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3
+      value: 5.05
       objectReference: {fileID: 0}
     - target: {fileID: 1007474124497658132, guid: a971f0f12e49b8b4f986da83099e2c23, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.77
+      value: -2.55
       objectReference: {fileID: 0}
     - target: {fileID: 1007474124497658132, guid: a971f0f12e49b8b4f986da83099e2c23, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1191,7 +1199,7 @@ Transform:
   m_GameObject: {fileID: 1261868120}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.853, y: 1.185, z: 0}
+  m_LocalPosition: {x: 2.73, y: 0.165, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1256,12 +1264,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 1.6647813, y: 2.7467525}
-      - {x: 1.0483602, y: 2.3801825}
-      - {x: 1.0485904, y: 0.21388304}
-      - {x: 2.0505085, y: -0.36666647}
-      - {x: 2.6662846, y: -0.0015086979}
-      - {x: 2.661103, y: 2.1729333}
+    - - {x: 1.613914, y: 3.1074467}
+      - {x: 0.8675779, y: 2.668665}
+      - {x: 0.85304177, y: -0.07027352}
+      - {x: 2.081063, y: -0.7669301}
+      - {x: 2.8343341, y: -0.3223306}
+      - {x: 2.8322015, y: 2.4041476}
   m_UseDelaunayMesh: 0
 --- !u!114 &1261868124
 MonoBehaviour:
@@ -1319,6 +1327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tooltipData: {fileID: 11400000, guid: b2a59e9d81fa20a46aceb95f09c070e6, type: 2}
+  _offset: {x: 0, y: 1.3, z: 0}
 --- !u!224 &1262494796 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 292315533975080965, guid: 5365bd975b861d54d927ef96b96b55b5, type: 3}
@@ -1405,12 +1414,12 @@ SpriteRenderer:
   m_SortingLayerID: -2028115009
   m_SortingLayer: -1
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 080b8c5785925bd439ba0dc376801d8c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8a1d343017cf66545af3b68f14744591, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 19.2, y: 10.8}
+  m_Size: {x: 21.12, y: 11.88}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1886,7 +1895,7 @@ Transform:
   m_GameObject: {fileID: 2060670218}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.88, y: 0.347, z: 0}
+  m_LocalPosition: {x: 4.515, y: -0.375, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1951,19 +1960,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.20727384, y: 0.8248831}
-      - {x: -0.5106012, y: 0.40399328}
-      - {x: -0.50359714, y: -0.7127329}
-      - {x: -0.2803979, y: -0.82947236}
-      - {x: 0.441765, y: -0.42508096}
-      - {x: 0.44349897, y: -0.34080666}
-      - {x: 0.5114986, y: -0.25007546}
-      - {x: 0.49493873, y: -0.1648494}
-      - {x: 0.44001913, y: -0.139296}
-      - {x: 0.5116155, y: -0.053936362}
-      - {x: 0.48352313, y: 0.042223692}
-      - {x: 0.43577492, y: 0.04409319}
-      - {x: 0.4346758, y: 0.6906282}
+    - - {x: -0.24133027, y: 0.75728524}
+      - {x: -0.43733448, y: 0.6644604}
+      - {x: -0.43397796, y: -0.3939501}
+      - {x: 0.2215929, y: -0.7745097}
+      - {x: 0.44542903, y: -0.6485953}
+      - {x: 0.4285308, y: 0.38336512}
   m_UseDelaunayMesh: 0
 --- !u!114 &2060670222
 MonoBehaviour:
@@ -2021,6 +2023,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tooltipData: {fileID: 11400000, guid: 5b634fd8f9a51b545acbbf561bbb2ac0, type: 2}
+  _offset: {x: 0, y: 0.5, z: 0}
 --- !u!224 &2145099417 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1535696797831673604, guid: 8339256d6c8176641a0c21c927c710d4, type: 3}

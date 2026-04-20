@@ -77,6 +77,10 @@ PrefabInstance:
       value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 4501823998913928169, guid: 589aa725fe386ac4888b852676e5c3ff, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4501823998913928169, guid: 589aa725fe386ac4888b852676e5c3ff, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.size
       value: 32
       objectReference: {fileID: 0}
@@ -335,6 +339,10 @@ PrefabInstance:
     - target: {fileID: 4501823998913928169, guid: 589aa725fe386ac4888b852676e5c3ff, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[31].y
       value: 0.17329434
+      objectReference: {fileID: 0}
+    - target: {fileID: 5299603339933461347, guid: 589aa725fe386ac4888b852676e5c3ff, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6682948744498250755, guid: 589aa725fe386ac4888b852676e5c3ff, type: 3}
       propertyPath: m_Sprite

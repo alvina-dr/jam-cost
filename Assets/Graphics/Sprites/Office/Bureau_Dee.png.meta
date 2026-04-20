@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: cc06aae61cae2144eb604fa21803f11e
+guid: 22c8945c9f16b734bb6a761f3aef942e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8188885589051528917
-    second: DISTRIBUTEUR 1_0
+      213: 3277596353346652234
+    second: Bureau_Dee_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -46,9 +46,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DISTRIBUTEUR 1_0
+      name: Bureau_Dee_0
       rect:
         serializedVersion: 2
-        x: 1064
-        y: 504
-        width: 163
-        height: 310
+        x: 0
+        y: 0
+        width: 2112
+        height: 1188
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b29a44e71fb3b5e80800000000000000
-      internalID: -8188885589051528917
+      spriteID: a48c756948c5c7d20800000000000000
+      internalID: 3277596353346652234
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      DISTRIBUTEUR 1_0: -8188885589051528917
+      Bureau_Dee_0: 3277596353346652234
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
