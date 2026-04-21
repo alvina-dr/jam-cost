@@ -2,6 +2,7 @@ using EasyTransition;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HubManager : MonoBehaviour
 {
@@ -31,7 +32,7 @@ public class HubManager : MonoBehaviour
 
     private void Start()
     {
-        if (!SaveManager.CurrentSave.HubFirstTime)
+        if (!SaveManager.CurrentSave.HubFirstTime && SceneManager.GetActiveScene().name == "Hub")
         {
             DialogueManager.Instance.DialogueRunner.StartDialogue("NPC1_Introduction");
             SaveManager.CurrentSave.HubFirstTime = true;
