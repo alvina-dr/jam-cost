@@ -18,11 +18,6 @@ public class MainSceneToolbarButton
 	{
 		GUILayout.FlexibleSpace();
 
-        if (GUILayout.Button(new GUIContent("Game", "Open Game Scene")))
-		{
-			EditorSceneManager.OpenScene("Assets/Scenes/Game.unity");
-		}
-
         if (GUILayout.Button(new GUIContent("Shop", "Open Shop Scene")))
         {
             EditorSceneManager.OpenScene("Assets/Scenes/Shop.unity");
@@ -38,6 +33,11 @@ public class MainSceneToolbarButton
             EditorSceneManager.OpenScene("Assets/Scenes/Hub.unity");
         }
 
+        if (GUILayout.Button(new GUIContent("Office", "Open Office Scene")))
+        {
+            EditorSceneManager.OpenScene("Assets/Scenes/Office.unity");
+        }
+
         if (GUILayout.Button(new GUIContent("Free Round", "Open Free Round Scene")))
         {
             EditorSceneManager.OpenScene("Assets/Scenes/FreeRound.unity");
@@ -46,6 +46,11 @@ public class MainSceneToolbarButton
 
     static void OnRightToolbarGUI()
     {
+        if (GUILayout.Button(new GUIContent("Game", "Open Game Scene")))
+        {
+            EditorSceneManager.OpenScene("Assets/Scenes/Game.unity");
+        }
+
         if (GUILayout.Button(new GUIContent("New save", "Creates a new save")))
         {
             if (SaveManager.Instance != null)
