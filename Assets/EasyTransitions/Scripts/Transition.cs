@@ -105,7 +105,7 @@ namespace EasyTransition
             if (hasTransitionTriggeredOnce) return;
 
 
-            transitionPanelIN.gameObject.SetActive(false);
+            if (transitionPanelIN) transitionPanelIN.gameObject.SetActive(false);
 
             //Setting up the transition
             transitionPanelOUT.gameObject.SetActive(true);
