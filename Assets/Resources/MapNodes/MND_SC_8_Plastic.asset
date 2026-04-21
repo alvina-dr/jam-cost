@@ -15,5 +15,5 @@ MonoBehaviour:
   NodeName: Scavenging
   IsAvailableInGame: 1
   NodeIcon: {fileID: 21300000, guid: e141bfdd015ad2942ab594e1373a4256, type: 3}
-  ScoreGoal: 800
+  ScoreGoal: 1300
   SpawnItemParameters: {fileID: 11400000, guid: d25f3946f2184784483ad43ab1f831f1, type: 2}
