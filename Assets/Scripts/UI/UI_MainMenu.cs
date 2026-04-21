@@ -14,7 +14,7 @@ public class UI_MainMenu : MonoBehaviour
 
         if (SaveManager.CurrentSave.SeeOnboarding == true)
         {
-            TransitionManager.Instance().TransitionChangeScene("Hub", _transitionSettings, 0);
+            TransitionManager.Instance().TransitionChangeScene("Office", _transitionSettings, 0);
         }
         else
         {
