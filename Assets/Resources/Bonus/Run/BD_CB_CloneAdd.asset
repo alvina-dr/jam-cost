@@ -19,7 +19,7 @@ MonoBehaviour:
   Name: Clone clone clone
   Description: <b><color=blue>+100</color></b> to the total score if the <b>Clone</b>
     combination was played.
-  Price: 5
+  Price: 7
   _bonusValue: 100
   Icon: {fileID: 21300000, guid: 0c3cc57d1fc872040957d37ce476b4d6, type: 3}
   Color: {r: 0, g: 0, b: 0, a: 0}

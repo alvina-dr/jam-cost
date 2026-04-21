@@ -18,9 +18,9 @@ MonoBehaviour:
   Effect: 4
   Name: Preparation Time
   Description: Start scavenging with a preparation phase of 10 seconds. You can't
-    put items on the depot during this phase.
-  Price: 5
-  BonusValue: 0
+    put items in the deposit box during this phase.
+  Price: 7
+  _bonusValue: 0
   Icon: {fileID: 21300000, guid: 351fa3fa0a6749d4dbeb958aa026815a, type: 3}
   Color: {r: 0, g: 0, b: 0, a: 0}
   UpgradeBonusList: []
