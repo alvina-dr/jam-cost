@@ -18,8 +18,7 @@ MonoBehaviour:
   Effect: 1
   Name: Papers Please
   Description: All <b>paper items</b> permanently gain a multiplier of <color=red><b>x1.5</b></color>.
-  Price: 5
-  BonusValue: 1.5
+  Price: 10
   _bonusValue: 1.5
   Icon: {fileID: 21300000, guid: 4135f82664c75474683aef3c846155aa, type: 3}
   Color: {r: 0.9490197, g: 0.3647059, b: 0, a: 1}

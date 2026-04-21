@@ -19,8 +19,7 @@ MonoBehaviour:
   Name: Small box
   Description: '<b>x2</b> to the total score if the deposit box contains <b>3</b>
     or less items. '
-  Price: 0
-  BonusValue: 2
+  Price: 5
   _bonusValue: 2
   Icon: {fileID: 0}
   Color: {r: 0, g: 0, b: 0, a: 0}
