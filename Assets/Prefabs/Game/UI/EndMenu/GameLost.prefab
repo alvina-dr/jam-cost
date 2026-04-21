@@ -213,6 +213,7 @@ MonoBehaviour:
   _nodeText: {fileID: 2219112518826580135}
   _totalTimeText: {fileID: 449221623709021724}
   _ppText: {fileID: 0}
+  _transitionSettings: {fileID: 11400000, guid: 013263c83b6a84c4d95beaa8bd163ac8, type: 2}
 --- !u!1 &2042111322204650175
 GameObject:
   m_ObjectHideFlags: 0

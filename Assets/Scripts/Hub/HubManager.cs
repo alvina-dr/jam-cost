@@ -1,10 +1,7 @@
 using EasyTransition;
-using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class HubManager : MonoBehaviour
 {

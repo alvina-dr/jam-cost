@@ -1,6 +1,6 @@
+using EasyTransition;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class UI_GameOver : UI_Menu
 {
@@ -8,6 +8,7 @@ public class UI_GameOver : UI_Menu
     [SerializeField] private TextMeshProUGUI _nodeText;
     [SerializeField] private TextMeshProUGUI _totalTimeText;
     [SerializeField] private TextMeshProUGUI _ppText;
+    [SerializeField] private TransitionSettings _transitionSettings;
 
     public override void OpenMenu()
     {
@@ -27,7 +28,7 @@ public class UI_GameOver : UI_Menu
     {
         Destroy(SaveManager.Instance.gameObject);
         Destroy(DataLoader.Instance.gameObject);
-        SceneManager.LoadScene("Hub");
+        TransitionManager.Instance().TransitionChangeScene("Office", _transitionSettings, 0);
     }
 
     public void NextNode()
