@@ -6,6 +6,8 @@ public class HubManagerRelay : MonoBehaviour
     public void OpenPowerShop() => HubManager.Instance.OpenPowerShop();
     public void OpenPermanentBonusShop() => HubManager.Instance.OpenPermanentBonusShop();
     public void OpenQuestMenu() => HubManager.Instance.OpenQuestMenu();
+    public void GoToBreakroom() => HubManager.Instance.GoToBreakroom();
+    public void GoToOffice() => HubManager.Instance.GoToOffice();
 
     public void UnlockFrigo()
     {

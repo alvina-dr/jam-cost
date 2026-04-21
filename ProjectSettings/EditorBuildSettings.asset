@@ -29,6 +29,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FreeRound.unity
     guid: 83d1ef80a989cdf42b42e25a40d3fe97
+  - enabled: 1
+    path: Assets/Scenes/Office.unity
+    guid: 6f23adefc1102274a8b7f082f4712a94
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

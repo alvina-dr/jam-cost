@@ -76,6 +76,16 @@ public class HubManager : MonoBehaviour
     public void ShowQuestBoardIndication()
     {
         List<QuestData> questDataList = QuestManager.Instance.QuestDataDictionary.Values.ToList();
-        _questBoardClue.gameObject.SetActive(questDataList.Find(x => x.Data.State == QuestData.QuestState.WaitCollection || x.Data.State == QuestData.QuestState.New));
+        if (_questBoardClue) _questBoardClue.gameObject.SetActive(questDataList.Find(x => x.Data.State == QuestData.QuestState.WaitCollection || x.Data.State == QuestData.QuestState.New));
+    }
+
+    public void GoToBreakroom()
+    {
+        TransitionManager.Instance().TransitionChangeScene("Hub", _transitionSettings, 0);
+    }
+
+    public void GoToOffice()
+    {
+        TransitionManager.Instance().TransitionChangeScene("Office", _transitionSettings, 0);
     }
 }
