@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d976661e6a40ef543b5ea61871451f6a, type: 3}
-  m_Name: TD_QuestBoard
+  m_Name: TD_QuestTerminal
   m_EditorClassIdentifier: 
-  Description: 'Quest board
+  Description: 'Quest terminal
 
 '

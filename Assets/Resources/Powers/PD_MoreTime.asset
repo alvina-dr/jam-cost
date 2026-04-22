@@ -18,5 +18,5 @@ MonoBehaviour:
   PowerSprite: {fileID: 21300000, guid: a78d0a6aaca308740af4856b9d60bf6c, type: 3}
   PowerPrice: 5
   PowerBehaviorPrefab: {fileID: 7148455723909092525, guid: f90efc7abe0e6194089177bdd8a6d96d, type: 3}
-  LoadingTime: 30
-  CurrentLoadTime: 30
+  LoadingTime: 25
+  CurrentLoadTime: 25

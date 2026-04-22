@@ -29,12 +29,13 @@ Hubert: You can’t prove anything girl, step back. #line:03045ff
 ===
 title: NPC1_Introduction
 ---
-Hubert: Hey Dee, did you notice? You can clock in with the <b>\[PUNCH CLOCK\]</b> when you begin your day! #line:0aad62a 
--> Dee: You should do that every day to get paid!! #line:07ab713 
+Hubert: Hey Dee, how are you? 
+Hubert: Not that I care really.
+-> Dee: I'm... well ? #line:07ab713 
 -> Dee: Who are you again? #line:08167f5 
-Hubert: Anyway! And since I know you're a bit of a slacker, I left something on the <b>\[BOARD\]</b> for you. #line:032d404 
+Hubert: Anyway! Since I know you're a bit of a slacker, I left something on the <b>Quest Terminal</b> for you. #line:032d404 
 -> Dee: That’s nice, thanks.... #line:03bed7a 
--> Dee: Who are you <i>again</i>? #line:0e4dd27 
+-> Dee: Who are you <i><shake>again</shake></i>? #line:0e4dd27 
 ===
 
 title: NPC1_ShopFirstTime
