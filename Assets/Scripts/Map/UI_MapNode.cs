@@ -35,7 +35,7 @@ public class UI_MapNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         MapNodeData = nodeData;
         _icon.sprite = nodeData.NodeIcon;
-        _icon.SetNativeSize();
+        //_icon.SetNativeSize();
     }
 
     public void SetupLine(UI_MapNode neighbourMapNode, bool xThenY)
