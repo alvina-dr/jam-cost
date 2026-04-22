@@ -17,7 +17,7 @@ MonoBehaviour:
   Category: 0
   Effect: 4
   Name: Check Please
-  Description: Your <b>depot</b> can contain <b>+1</b> additional item
+  Description: Your <b>deposit box</b> can contain <b>+1</b> additional item.
   Price: 15
   _bonusValue: 0
   Icon: {fileID: 21300000, guid: f1a13f1afee0e304989a7f7a63dfef82, type: 3}

@@ -17,8 +17,8 @@ MonoBehaviour:
   Category: 0
   Effect: 3
   Name: Small box
-  Description: '<b>x2</b> to the total score if the deposit box contains <b>3</b>
-    or less items. '
+  Description: <b>x2</b> to the total score if the <b>deposit box</b> contains <b>3</b>
+    or less items.
   Price: 5
   _bonusValue: 2
   Icon: {fileID: 0}
