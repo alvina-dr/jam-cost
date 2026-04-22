@@ -23,7 +23,7 @@ public class UI_Combination : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     IEnumerator Rebuild()
     {
         _combinationName.gameObject.SetActive(false);
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSecondsRealtime(.05f);
         _combinationName.gameObject.SetActive(true);
     }
 

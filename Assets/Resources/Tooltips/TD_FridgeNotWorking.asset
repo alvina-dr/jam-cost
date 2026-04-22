@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d976661e6a40ef543b5ea61871451f6a, type: 3}
-  m_Name: TD_FrigoWorking
+  m_Name: TD_FridgeNotWorking
   m_EditorClassIdentifier: 
-  Description: 'Frigo
+  Description: 'Fridge
 
-    Permanent bonus.'
+    Broken for now...'

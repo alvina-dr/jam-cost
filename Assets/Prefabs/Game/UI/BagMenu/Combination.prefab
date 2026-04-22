@@ -148,7 +148,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _combinationName: {fileID: 7227202665469728926}
-  _uiRebuilder: {fileID: 8703433721643582119}
 --- !u!114 &2705906496512749328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,8 +286,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: CombinationName
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7027937890252495366, guid: ce8c56acc24918644bbaed56dd94fcf3, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
