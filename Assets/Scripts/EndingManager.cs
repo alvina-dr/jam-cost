@@ -11,6 +11,7 @@ public class EndingManager : MonoBehaviour
         DialogueManager.Instance.DialogueRunner.StartDialogue(_endingDialog);
         DialogueManager.Instance.EndDialogueEvent += CallEndDialogueEvent;
         SaveManager.CurrentSave.NumberFirstBossPlayed++;
+        QuestManager.Instance.CheckQuestCompletionByType<QD_FirstBossNumber>();
     }
 
     public void CallEndDialogueEvent()
