@@ -1,3 +1,5 @@
+using DG.Tweening;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -53,16 +55,25 @@ public class TooltipManager : MonoBehaviour
 
     public void ShowTooltip(string description, Vector3 position)
     {
+        _descriptionText.text = description;
         _tooltipTransform.gameObject.SetActive(true);
-        _descriptionText.SetText(description);
-        Vector3 newPosition = Camera.main.WorldToScreenPoint(position) + _offset;
+        _tooltipTransform.localScale = Vector3.zero; 
+        StartCoroutine(UpdateSize());
 
-        if (newPosition.x - _tooltipTransform.sizeDelta.x / 2 < _screenBorderOffset.x)
+        IEnumerator UpdateSize()
         {
-            newPosition -= new Vector3(newPosition.x - _tooltipTransform.sizeDelta.x / 2 - _screenBorderOffset.x, 0, 0);
+            yield return new WaitForEndOfFrame();
+            Vector3 newPosition = Camera.main.WorldToScreenPoint(position) + _offset;
+
+            if (newPosition.x - _tooltipTransform.sizeDelta.x / 2 < _screenBorderOffset.x)
+            {
+                newPosition -= new Vector3(newPosition.x - _tooltipTransform.sizeDelta.x / 2 - _screenBorderOffset.x, 0, 0);
+            }
+            _tooltipTransform.position = newPosition;
+            _tooltipTransform.localScale = Vector3.one;
         }
-        _tooltipTransform.position = newPosition;
     }
+
 
     public void HideTooltip()
     {
