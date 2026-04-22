@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d976661e6a40ef543b5ea61871451f6a, type: 3}
   m_Name: TD_FreeRound
   m_EditorClassIdentifier: 
-  Description: <color=green>+1</color> round per room
+  Description: <b><color=#005500>+1</color></b> round per room
