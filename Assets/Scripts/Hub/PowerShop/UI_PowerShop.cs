@@ -71,6 +71,12 @@ public class UI_PowerShop : UI_Menu
         _powerLore.text = powerData.PowerLore;
         _powerDescription.text = powerData.PowerDescription;
 
+        for (int i = 0; i < _buyPowerSlotList.Count; i++)
+        {
+            if (_buyPowerSlotList[i] != powerSlot) _buyPowerSlotList[i].Deselect();
+            else _buyPowerSlotList[i].Select();
+        }
+
         //if the power is unlocked already
         if (SaveManager.CurrentSave.UnlockedPowerDataList.Contains(powerData))
         {

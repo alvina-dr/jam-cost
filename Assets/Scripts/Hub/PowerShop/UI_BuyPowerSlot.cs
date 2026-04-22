@@ -1,17 +1,52 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UI_BuyPowerSlot : MonoBehaviour
+public class UI_BuyPowerSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private PowerData _powerData;
 
     [Header("Components")]
     [SerializeField] private Image _powerIcon;
     [SerializeField] private Image _powerBackgroundHighlight;
+    [SerializeField] private Image _powerBackgroundSoldOut;
     [SerializeField] private Transform _powerPriceParent;
     [SerializeField] private TextMeshProUGUI _powerPrice;
     [SerializeField] private TextMeshProUGUI _soldOutText;
+
+    [SerializeField] private Image _powerOutlineHighlight;
+    [SerializeField] private Canvas _canvas;
+
+    private bool _selected = false;
+
+    public void Select()
+    {
+        _selected = true;
+        _powerOutlineHighlight.gameObject.SetActive(true);
+        _canvas.sortingOrder = 2;
+    }
+
+    public void Deselect()
+    {
+        _selected = false;
+        _powerOutlineHighlight.gameObject.SetActive(false);
+        _canvas.sortingOrder = 1;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (_selected) return;
+        _powerOutlineHighlight.gameObject.SetActive(true);
+        _canvas.sortingOrder = 2;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (_selected) return;
+        _powerOutlineHighlight.gameObject.SetActive(false);
+        _canvas.sortingOrder = 1;
+    }
 
     public void SetupSlot(PowerData powerData = null)
     {
@@ -22,12 +57,14 @@ public class UI_BuyPowerSlot : MonoBehaviour
             _powerIcon.sprite = _powerData.PowerSprite;
             _powerIcon.gameObject.SetActive(true);
             _soldOutText.gameObject.SetActive(false);
+            _powerBackgroundSoldOut.gameObject.SetActive(false);
             _powerPrice.text = $"{_powerData.PowerPrice}<sprite name=MT>";
         }
         else
         {
             _powerIcon.gameObject.SetActive(false);
             _soldOutText.gameObject.SetActive(true);
+            _powerBackgroundSoldOut.gameObject.SetActive(true);
             _powerPriceParent.gameObject.SetActive(false);
             return;
         }
