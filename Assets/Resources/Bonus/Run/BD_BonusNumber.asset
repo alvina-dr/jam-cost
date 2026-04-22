@@ -17,7 +17,8 @@ MonoBehaviour:
   Category: 0
   Effect: 2
   Name: Bonus Number
-  Description: <b>+10</b> to the total score for each bonus in your possession.
+  Description: <b><color=blue>+10</color></b> to the total score for each bonus in
+    your possession.
   Price: 5
   _bonusValue: 10
   Icon: {fileID: 0}

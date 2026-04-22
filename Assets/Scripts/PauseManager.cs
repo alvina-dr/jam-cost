@@ -44,6 +44,9 @@ public class PauseManager : MonoBehaviour
             && GameManager.Instance.CurrentGameState != null
             && GameManager.Instance.CurrentGameState != GameManager.Instance.RewardState)) return;
 
+        if (ShopManager.Instance != null && (ShopManager.Instance.ConversionMenu.IsOpen() 
+            || ShopManager.Instance.BonusMenu.IsOpen())) return;
+
         if (DialogueManager.Instance.DialogueRunner.IsDialogueRunning) return;
 
         IsPaused = !IsPaused;
