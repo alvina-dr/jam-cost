@@ -46,7 +46,7 @@ public class UI_PowerShop : UI_Menu
         {
             if (i + 1 <= SaveManager.CurrentSave.EquipedPowerMax)
             {
-                if (i < SaveManager.CurrentSave.EquipedPowerDataList.Count) _powerSlotList[i].Setup(true, SaveManager.CurrentSave.EquipedPowerDataList[i]);
+                if (i < SaveManager.Instance.EquipedPowerDataList.Count) _powerSlotList[i].Setup(true, SaveManager.Instance.EquipedPowerDataList[i]);
                 else _powerSlotList[i].Setup(true);
             }
             else _powerSlotList[i].Setup();
@@ -78,9 +78,9 @@ public class UI_PowerShop : UI_Menu
         }
 
         //if the power is unlocked already
-        if (SaveManager.CurrentSave.UnlockedPowerDataList.Contains(powerData))
+        if (SaveManager.Instance.UnlockedPowerDataList.Contains(powerData))
         {
-            if (SaveManager.CurrentSave.EquipedPowerDataList.Contains(_currentPowerData))
+            if (SaveManager.Instance.EquipedPowerDataList.Contains(_currentPowerData))
             {
                 _ticketButtonText.text = "<wave amp=2>Unequip</wave>";
             }
@@ -100,10 +100,10 @@ public class UI_PowerShop : UI_Menu
         if (_currentPowerData == null) return;
 
         // if unlocked
-        if (SaveManager.CurrentSave.UnlockedPowerDataList.Contains(_currentPowerData))
+        if (SaveManager.Instance.UnlockedPowerDataList.Contains(_currentPowerData))
         {
             // if equipped
-            if (SaveManager.CurrentSave.EquipedPowerDataList.Contains(_currentPowerData))
+            if (SaveManager.Instance.EquipedPowerDataList.Contains(_currentPowerData))
             {
                 UnequipPower();
             }
@@ -126,14 +126,14 @@ public class UI_PowerShop : UI_Menu
         if (SaveManager.CurrentSave.MealTickets < _currentPowerData.PowerPrice) return;
 
         SaveManager.Instance.AddMT(-_currentPowerData.PowerPrice);
-        SaveManager.CurrentSave.UnlockedPowerDataList.Add(_currentPowerData);
+        SaveManager.Instance.UnlockedPowerDataList.Add(_currentPowerData);
     }
 
     public void EquipPower()
     {
-        if (SaveManager.CurrentSave.EquipedPowerDataList.Count >= SaveManager.CurrentSave.EquipedPowerMax) return;
+        if (SaveManager.Instance.EquipedPowerDataList.Count >= SaveManager.CurrentSave.EquipedPowerMax) return;
 
-        SaveManager.CurrentSave.EquipedPowerDataList.Add(_currentPowerData);
+        SaveManager.Instance.EquipedPowerDataList.Add(_currentPowerData);
         
         QuestManager.Instance.CheckQuestCompletionByType<QD_EquipPowerNumber>();
     }
@@ -141,6 +141,6 @@ public class UI_PowerShop : UI_Menu
     public void UnequipPower()
     {
         //_powerSlotList[SaveManager.CurrentSave.EquipedPowerDataList.Count - 1].SetPower(_currentPowerData);
-        SaveManager.CurrentSave.EquipedPowerDataList.Remove(_currentPowerData);
+        SaveManager.Instance.EquipedPowerDataList.Remove(_currentPowerData);
     }
 }

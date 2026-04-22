@@ -5,7 +5,7 @@ public class QD_PermanentUpgradeNumber : QuestData
 {
     public override bool CheckQuestCompletion()
     {
-        if (SaveManager.CurrentSave.PermanentBonusList.Count >= Goal)
+        if (SaveManager.Instance.PermanentBonusList.Count >= Goal)
         {
             SetQuestToWaitCollection();
             return true;
@@ -18,6 +18,6 @@ public class QD_PermanentUpgradeNumber : QuestData
 
     public override int GetCurrentValue()
     {
-        return SaveManager.CurrentSave.PermanentBonusList.Count;
+        return SaveManager.Instance.PermanentBonusList.Count;
     }
 }

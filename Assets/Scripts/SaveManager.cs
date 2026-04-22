@@ -1,13 +1,11 @@
 using EasyTransition;
 using PrimeTween;
 using Sirenix.OdinInspector;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using Yarn.Unity;
 
 public class SaveManager : MonoBehaviour
 {
@@ -37,6 +35,12 @@ public class SaveManager : MonoBehaviour
     public PowerData FirstPower;
     [SerializeField] private MapNodeData _firstNode;
 
+    [SerializeReference] public List<BonusData> PermanentBonusList = new();
+    [SerializeReference] public List<PowerData> UnlockedPowerDataList = new();
+    [SerializeReference] public List<PowerData> EquipedPowerDataList = new();
+
+    [SerializeReference] public List<BonusData> CurrentRunBonusList = new();
+
     private void OnAwake()
     {
         PrimeTweenConfig.warnTweenOnDisabledTarget = false;
@@ -54,7 +58,9 @@ public class SaveManager : MonoBehaviour
 
     public void StartNewRun()
     {
+        //CurrentSave.RunDataHistory.Add(CurrentSave.CurrentRun);
         CurrentSave.CurrentRun = new RunData();
+        SaveManager.Instance.CurrentRunBonusList.Clear();
         CurrentMapNode = _firstNode;
 
         // Load permanent bonus advantages
@@ -82,14 +88,14 @@ public class SaveManager : MonoBehaviour
 
     public T CheckHasRunBonus<T>() where T : BonusData
     {
-        return CurrentSave.CurrentRun.CurrentRunBonusList.Find(x => x is T) as T;
+        return CurrentRunBonusList.Find(x => x is T) as T;
     }
 
     public List<T> CheckHasRunBonusList<T>() where T : BonusData
     {
         List<T> returnList = new();
         List<BonusData> listBonusData = new();
-        listBonusData = CurrentSave.CurrentRun.CurrentRunBonusList.FindAll(x => x is T);
+        listBonusData = CurrentRunBonusList.FindAll(x => x is T);
 
         for (int i = 0; i < listBonusData.Count; i++)
         {
@@ -155,6 +161,7 @@ public class SaveManager : MonoBehaviour
     public void Update()
     {
         CurrentSave.CurrentRun.TotalRunDuration += Time.deltaTime;
+        CurrentSave.TimePlayed += Time.deltaTime;
     }
 
     #region SaveManagement
@@ -176,7 +183,10 @@ public class SaveManager : MonoBehaviour
     {
         _currentSave = new SaveData();
         _currentSave.CurrentRun = new RunData();
-        _currentSave.UnlockedPowerDataList.Add(DataLoader.Instance.GetInstantiatedVersionOfPower(FirstPower));
+        PermanentBonusList.Clear();
+        EquipedPowerDataList.Clear();
+        UnlockedPowerDataList.Clear();
+        UnlockedPowerDataList.Add(DataLoader.Instance.GetInstantiatedVersionOfPower(FirstPower));
     }
 
     // Loads a save, this save must exist
@@ -186,9 +196,9 @@ public class SaveManager : MonoBehaviour
         _currentSave = JsonUtility.FromJson<SaveData>(jsonFile);
 
         // Update bonus taken for Data Loader
-        for (int i = 0; i < CurrentSave.CurrentRun.CurrentRunBonusList.Count; i++)
+        for (int i = 0; i < CurrentRunBonusList.Count; i++)
         {
-            DataLoader.Instance.TakeRunSpecificBonus(CurrentSave.CurrentRun.CurrentRunBonusList[i]);
+            DataLoader.Instance.TakeRunSpecificBonus(CurrentRunBonusList[i]);
         }
 
         for (int i = 0; i < CurrentSave.ModifiedQuestList.Count; i++)
@@ -201,9 +211,9 @@ public class SaveManager : MonoBehaviour
             DataLoader.Instance.CombinationDataDictionary[CurrentSave.ModifiedCombinationList[i].Name].Data = CurrentSave.ModifiedCombinationList[i];
         }
 
-        CurrentSave.UnlockedPowerDataList = LoadList(CurrentSave.UnlockedPowerDataListName, DataLoader.Instance.PowerDataList);
-        CurrentSave.EquipedPowerDataList = LoadList(CurrentSave.EquipedPowerDataListName, DataLoader.Instance.PowerDataList);
-        CurrentSave.PermanentBonusList = LoadList(CurrentSave.PermanentBonusListName, DataLoader.Instance.PermanentBonusDataList);
+        UnlockedPowerDataList = LoadList(CurrentSave.UnlockedPowerDataListName, DataLoader.Instance.PowerDataList);
+        EquipedPowerDataList = LoadList(CurrentSave.EquipedPowerDataListName, DataLoader.Instance.PowerDataList);
+        PermanentBonusList = LoadList(CurrentSave.PermanentBonusListName, DataLoader.Instance.PermanentBonusDataList);
     }
 
     public void EraseSave()
@@ -242,13 +252,23 @@ public class SaveManager : MonoBehaviour
             CurrentSave.ModifiedCombinationList.Add(combinationDataList[i].Data);
         }
 
-        CurrentSave.UnlockedPowerDataListName = SaveList(CurrentSave.UnlockedPowerDataList);
-        CurrentSave.EquipedPowerDataListName = SaveList(CurrentSave.EquipedPowerDataList);
-        CurrentSave.PermanentBonusListName = SaveList(CurrentSave.PermanentBonusList);
+        CurrentSave.UnlockedPowerDataListName = SaveList(UnlockedPowerDataList);
+        CurrentSave.EquipedPowerDataListName = SaveList(EquipedPowerDataList);
+        CurrentSave.PermanentBonusListName = SaveList(PermanentBonusList);
 
         string save = JsonUtility.ToJson(CurrentSave, true);
 
         System.IO.File.WriteAllText(Application.persistentDataPath + "/Save.json", save);
+    }
+
+    public void SaveRun()
+    {
+        for (int i = 0; i < CurrentRunBonusList.Count; i++)
+        {
+            CurrentSave.CurrentRun.CurrentRunBonusListName.Add(CurrentRunBonusList[i].Name);
+        }
+
+        CurrentSave.RunDataHistory.Add(CurrentSave.CurrentRun);
     }
 
     public List<string> SaveList<T>(List<T> currentDataList) where T : ScriptableObject
@@ -285,13 +305,10 @@ public class SaveManager : MonoBehaviour
         public string LastSceneName = "Hub";
 
         public int MealTickets;
-        [SerializeReference] public List<BonusData> PermanentBonusList = new();
         [SerializeReference] public List<string> PermanentBonusListName = new();
 
-        [SerializeReference] public List<PowerData> UnlockedPowerDataList = new();
         [SerializeReference] public List<string> UnlockedPowerDataListName = new();
         
-        [SerializeReference] public List<PowerData> EquipedPowerDataList = new();
         [SerializeReference] public List<string> EquipedPowerDataListName = new();
 
         [SerializeReference] public int EquipedPowerMax = 1;
@@ -325,9 +342,12 @@ public class SaveManager : MonoBehaviour
         public int EveryNodeLootPP = 0;
         public int RunStartRerolls = 0;
 
-        public RunData CurrentRun = new();
         public List<QuestData.QuestDataSave> ModifiedQuestList = new();
         public List<CombinationData.CombinationDataSave> ModifiedCombinationList = new();
+
+        public RunData CurrentRun;
+
+        public List<RunData> RunDataHistory = new();
 
         public SaveData() { }
     }
@@ -344,9 +364,11 @@ public class SaveManager : MonoBehaviour
         public float RunRoundBonusTime = 0;
         public int RunBonusRound = 0;
 
-        public List<BonusData> CurrentRunBonusList = new();
-        public List<int> FormerNodeList = new();
+        public List<string> CurrentRunBonusListName = new();
+        //public List<int> FormerNodeList = new();
 
-        public RunData () { }
+        public RunData () 
+        {
+        }
     }
 }

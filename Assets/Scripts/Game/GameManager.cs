@@ -103,7 +103,7 @@ public class GameManager : MonoBehaviour
 
     public void AddBonus(BonusData bonus)
     {
-        SaveManager.CurrentSave.CurrentRun.CurrentRunBonusList.Add(bonus);
+        SaveManager.Instance.CurrentRunBonusList.Add(bonus);
     }
 
     public void SetGameState(GameState newState)

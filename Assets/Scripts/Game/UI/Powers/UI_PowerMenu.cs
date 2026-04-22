@@ -14,9 +14,9 @@ public class UI_PowerMenu : MonoBehaviour
     {
         for (int i = 0; i < _powerButtonList.Count; i++)
         {
-            if (i < SaveManager.CurrentSave.EquipedPowerDataList.Count)
+            if (i < SaveManager.Instance.EquipedPowerDataList.Count)
             {
-                _powerButtonList[i].Setup(SaveManager.CurrentSave.EquipedPowerDataList[i]);
+                _powerButtonList[i].Setup(SaveManager.Instance.EquipedPowerDataList[i]);
                 _powerButtonList[i].gameObject.SetActive(true);
             }
             else

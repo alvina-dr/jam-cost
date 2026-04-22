@@ -92,9 +92,9 @@ public class UI_BagMenu : UI_Menu
 
         for (int i = 0; i < _bonusIconList.Count; i++)
         {
-            if (i < SaveManager.CurrentSave.CurrentRun.CurrentRunBonusList.Count)
+            if (i < SaveManager.Instance.CurrentRunBonusList.Count)
             {
-                _bonusIconList[i].Setup(SaveManager.CurrentSave.CurrentRun.CurrentRunBonusList[i]);
+                _bonusIconList[i].Setup(SaveManager.Instance.CurrentRunBonusList[i]);
             }
             else
             {
@@ -393,7 +393,7 @@ public class UI_BagMenu : UI_Menu
     public void CountItemBonus()
     {
         List<UI_BagSlot> chosenItemSlotList = GetChosenItemSlotList();
-        List<BonusData> runBonusList = SaveManager.CurrentSave.CurrentRun.CurrentRunBonusList;
+        List<BonusData> runBonusList = SaveManager.Instance.CurrentRunBonusList;
 
         // calculate all addition to item score
         List<BonusData> bonusItemAddList = runBonusList.FindAll(x => x.Effect == BonusData.BonusEffect.ItemAddition);
@@ -466,7 +466,7 @@ public class UI_BagMenu : UI_Menu
     public void CountTotalScoreBonus()
     {
         List<UI_BagSlot> chosenItemSlotList = GetChosenItemSlotList();
-        List<BonusData> runBonusList = SaveManager.CurrentSave.CurrentRun.CurrentRunBonusList;
+        List<BonusData> runBonusList = SaveManager.Instance.CurrentRunBonusList;
 
         // calculate all addition to total score
         List<BonusData> bonusTotalAddList = runBonusList.FindAll(x => x.Effect == BonusData.BonusEffect.TotalAddition);

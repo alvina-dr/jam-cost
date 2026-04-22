@@ -35,7 +35,7 @@ public class UI_BuyPermanentBonusSlot : MonoBehaviour
         {
             Image imageB = Instantiate(_bonusUpgradeLevel, _bonusUpgradeVisual);
             _bonusUpgradeLevelList.Add(imageB);
-            if (SaveManager.CurrentSave.PermanentBonusList.Contains(BonusData))
+            if (SaveManager.Instance.PermanentBonusList.Contains(BonusData))
             {
                 imageB.color = Color.black;
                 CurrentIndex++;
@@ -50,7 +50,7 @@ public class UI_BuyPermanentBonusSlot : MonoBehaviour
             {
                 Image image = Instantiate(_bonusUpgradeLevel, _bonusUpgradeVisual);
                 _bonusUpgradeLevelList.Add(image);
-                if (SaveManager.CurrentSave.PermanentBonusList.Contains(bonusData.UpgradeBonusList[i]))
+                if (SaveManager.Instance.PermanentBonusList.Contains(bonusData.UpgradeBonusList[i]))
                 {
                     image.color = Color.black;
                     CurrentIndex++;
@@ -64,7 +64,7 @@ public class UI_BuyPermanentBonusSlot : MonoBehaviour
         }
         else
         {
-            if (SaveManager.CurrentSave.PermanentBonusList.Contains(BonusData))
+            if (SaveManager.Instance.PermanentBonusList.Contains(BonusData))
             {
 
             }

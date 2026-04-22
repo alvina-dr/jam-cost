@@ -26,7 +26,9 @@ public class UI_GameOver : UI_Menu
 
     public void ReloadGame()
     {
-        Destroy(SaveManager.Instance.gameObject);
+        Debug.Log("LOOSE");
+        SaveManager.Instance.SaveRun();
+        //Destroy(SaveManager.Instance.gameObject);
         Destroy(DataLoader.Instance.gameObject);
         TransitionManager.Instance().TransitionChangeScene("Office", _transitionSettings, 0);
     }

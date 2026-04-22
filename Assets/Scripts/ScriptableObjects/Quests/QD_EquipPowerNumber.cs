@@ -5,7 +5,7 @@ public class QD_EquipPowerNumber : QuestData
 {
     public override bool CheckQuestCompletion()
     {
-        if (SaveManager.CurrentSave.EquipedPowerDataList.Count >= Goal)
+        if (SaveManager.Instance.EquipedPowerDataList.Count >= Goal)
         {
             SetQuestToWaitCollection();
             return true;
@@ -18,6 +18,6 @@ public class QD_EquipPowerNumber : QuestData
 
     public override int GetCurrentValue()
     {
-        return SaveManager.CurrentSave.EquipedPowerDataList.Count;
+        return SaveManager.Instance.EquipedPowerDataList.Count;
     }
 }

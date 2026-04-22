@@ -63,10 +63,10 @@ public class UI_MapNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
         _mapLineList.Add(mapLine);
 
-        if (SaveManager.CurrentSave.CurrentRun.FormerNodeList.FindAll(x => x == neighbourMapNode.MapNodeIndex).Count > 0)
-        {
-            mapLine.LineRenderer.color = Color.red;
-        }
+        //if (SaveManager.CurrentSave.CurrentRun.FormerNodeList.FindAll(x => x == neighbourMapNode.MapNodeIndex).Count > 0)
+        //{
+        //    mapLine.LineRenderer.color = Color.red;
+        //}
         
         _previousNodeList.Add(neighbourMapNode.MapNodeIndex);
         neighbourMapNode.NextNodeList.Add(MapNodeIndex);
@@ -74,7 +74,7 @@ public class UI_MapNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void ChooseMapNode()
     {
-        SaveManager.CurrentSave.CurrentRun.FormerNodeList.Add(MapNodeIndex);
+        //SaveManager.CurrentSave.CurrentRun.FormerNodeList.Add(MapNodeIndex);
         NodeChoiceManager.Instance.LaunchNode(MapNodeData);
     }
 

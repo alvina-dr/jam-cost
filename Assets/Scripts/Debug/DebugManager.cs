@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class DebugManager : MonoBehaviour
@@ -126,7 +125,7 @@ public class DebugManager : MonoBehaviour
     public void GenerateNewMap()
     {
         SaveManager.CurrentSave.CurrentRun.CurrentNode = 0;
-        SaveManager.CurrentSave.CurrentRun.FormerNodeList.Clear();
+        //SaveManager.CurrentSave.CurrentRun.FormerNodeList.Clear();
 
         SceneManager.LoadScene("Map");
     }
@@ -139,9 +138,9 @@ public class DebugManager : MonoBehaviour
 
     public void GetPower(PowerData powerData)
     {
-        if (!SaveManager.CurrentSave.UnlockedPowerDataList.Contains(powerData))
+        if (!SaveManager.Instance.UnlockedPowerDataList.Contains(powerData))
         {
-            SaveManager.CurrentSave.UnlockedPowerDataList.Add(powerData);
+            SaveManager.Instance.UnlockedPowerDataList.Add(powerData);
         }
     }
 
@@ -149,9 +148,9 @@ public class DebugManager : MonoBehaviour
     {
         GetPower(powerData);
 
-        if (!SaveManager.CurrentSave.EquipedPowerDataList.Contains(powerData))
+        if (!SaveManager.Instance.EquipedPowerDataList.Contains(powerData))
         {
-            SaveManager.CurrentSave.EquipedPowerDataList.Add(powerData);
+            SaveManager.Instance.EquipedPowerDataList.Add(powerData);
         }
 
         if (GameManager.Instance != null)

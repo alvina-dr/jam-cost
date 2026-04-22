@@ -70,13 +70,13 @@ public class UI_BuyPowerSlot : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
 
         // if already bought
-        if (SaveManager.CurrentSave.UnlockedPowerDataList.Contains(_powerData))
+        if (SaveManager.Instance.UnlockedPowerDataList.Contains(_powerData))
         {
             _powerBackgroundHighlight.gameObject.SetActive(false);
             _powerPriceParent.gameObject.SetActive(false);
 
             // if equipped
-            if (SaveManager.CurrentSave.EquipedPowerDataList.Contains(_powerData))
+            if (SaveManager.Instance.EquipedPowerDataList.Contains(_powerData))
             {
 
             }

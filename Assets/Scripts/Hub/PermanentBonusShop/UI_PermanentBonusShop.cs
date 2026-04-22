@@ -87,14 +87,14 @@ public class UI_PermanentBonusShop : UI_Menu
 
         if (bonusData.UpgradeBonusList.Count == 0) 
         {
-            if (SaveManager.CurrentSave.PermanentBonusList.Contains(bonusData))
+            if (SaveManager.Instance.PermanentBonusList.Contains(bonusData))
             {
                 _ticketButtonText.text = $"Complete";
             }
         }
         else
         {
-            if (permanentBonusSlot.CurrentIndex >= bonusData.UpgradeBonusList.Count || SaveManager.CurrentSave.PermanentBonusList.Contains(bonusData.UpgradeBonusList[permanentBonusSlot.CurrentIndex]))
+            if (permanentBonusSlot.CurrentIndex >= bonusData.UpgradeBonusList.Count || SaveManager.Instance.PermanentBonusList.Contains(bonusData.UpgradeBonusList[permanentBonusSlot.CurrentIndex]))
             {
                 _ticketButtonText.text = $"Complete";
             }
@@ -117,13 +117,13 @@ public class UI_PermanentBonusShop : UI_Menu
             bonusData = _currentBuyPermanentBonusSlot.BonusData.UpgradeBonusList[_currentBuyPermanentBonusSlot.CurrentIndex - 1];
         }
 
-        if (SaveManager.CurrentSave.PermanentBonusList.Contains(bonusData)) return;
+        if (SaveManager.Instance.PermanentBonusList.Contains(bonusData)) return;
 
 
         // check if can buy
         if (SaveManager.CurrentSave.MealTickets < bonusData.Price) return;
         
-        SaveManager.CurrentSave.PermanentBonusList.Add(bonusData);
+        SaveManager.Instance.PermanentBonusList.Add(bonusData);
         bonusData.GetBonus();
         SaveManager.Instance.AddMT(-bonusData.Price);
         QuestManager.Instance.CheckQuestCompletionByType<QD_PermanentUpgradeNumber>();
@@ -157,7 +157,7 @@ public class UI_PermanentBonusShop : UI_Menu
 
             // if first level bonus data is already known
             if (correctBonusData.UpgradeBonusList.Count > 0 &&
-                SaveManager.CurrentSave.PermanentBonusList.Contains(correctBonusData))
+                SaveManager.Instance.PermanentBonusList.Contains(correctBonusData))
             {
                 if (_buyPermanentBonusSlotList[0].CurrentIndex - 1 < correctBonusData.UpgradeBonusList.Count)
                     correctBonusData = correctBonusData.UpgradeBonusList[_buyPermanentBonusSlotList[0].CurrentIndex - 1];

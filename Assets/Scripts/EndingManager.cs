@@ -17,6 +17,7 @@ public class EndingManager : MonoBehaviour
     public void CallEndDialogueEvent()
     {
         SaveManager.Instance.AddMT(3);
+        SaveManager.Instance.SaveRun();
 
         TransitionManager.Instance().TransitionChangeScene("Office", _transitionSettings, 0);
     }

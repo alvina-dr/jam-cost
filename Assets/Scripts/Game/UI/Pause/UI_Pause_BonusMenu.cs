@@ -22,9 +22,9 @@ public class UI_Pause_BonusMenu : UI_Menu
     {
         for (int i = 0; i < _bonusEntryList.Count; i++)
         {
-            if (i < SaveManager.CurrentSave.CurrentRun.CurrentRunBonusList.Count)
+            if (i < SaveManager.Instance.CurrentRunBonusList.Count)
             {
-                _bonusEntryList[i].Setup(SaveManager.CurrentSave.CurrentRun.CurrentRunBonusList[i]);
+                _bonusEntryList[i].Setup(SaveManager.Instance.CurrentRunBonusList[i]);
                 _bonusEntryList[i].gameObject.SetActive(true);
             }
             else

@@ -43,17 +43,17 @@ public class MapManager : MonoBehaviour
     [SerializeField] private Transform _tileParent;
     [SerializeField] private Image _tile1x1Building;
 
-    private List<int> _formerNodeList => SaveManager.CurrentSave.CurrentRun.FormerNodeList;
+    //private List<int> _formerNodeList => SaveManager.CurrentSave.CurrentRun.FormerNodeList;
 
     public void OnAwake()
     {
         //_dayText.SetTextValue((SaveManager.CurrentSave.CurrentRun.CurrentNode + 1).ToString());
 
-        if (_formerNodeList.Count == 0)
-        {
-            SaveManager.CurrentSave.CurrentRun.RandomSeed = (int)System.DateTime.Now.Ticks;
-            _formerNodeList.Add(StartingMapNode.MapNodeIndex);
-        }
+        //if (_formerNodeList.Count == 0)
+        //{
+        //    SaveManager.CurrentSave.CurrentRun.RandomSeed = (int)System.DateTime.Now.Ticks;
+        //    _formerNodeList.Add(StartingMapNode.MapNodeIndex);
+        //}
 
         //_mapNodeList.Add(_startingMapNode);
         //_nodeNumberPerColumn.Add(1);
@@ -193,11 +193,11 @@ public class MapManager : MonoBehaviour
     public void SetNodesState()
     {
         UI_MapNode lastMapNode = StartingMapNode;
-        if (_formerNodeList.Count > 1
-            && _formerNodeList[^1] != -1)
-        {
-            lastMapNode = _mapNodeList[_formerNodeList[^1]];
-        }
+        //if (_formerNodeList.Count > 1
+        //    && _formerNodeList[^1] != -1)
+        //{
+        //    lastMapNode = _mapNodeList[_formerNodeList[^1]];
+        //}
 
         for (int i = 0; i < _mapNodeList.Count; i++)
         {
@@ -205,27 +205,27 @@ public class MapManager : MonoBehaviour
             if (_mapNodeList[i].MapNodeColumnIndex != SaveManager.CurrentSave.CurrentRun.CurrentNode) 
             {
                 // if node is not part of previous nodes
-                if (!_formerNodeList.Contains(_mapNodeList[i].MapNodeIndex))
-                {
-                    _mapNodeList[i].DeactivateNode();
-                }
-                else
-                {
-                    _mapNodeList[i].ShowNodeAlreadyUsed();
-                }
+                //if (!_formerNodeList.Contains(_mapNodeList[i].MapNodeIndex))
+                //{
+                //    _mapNodeList[i].DeactivateNode();
+                //}
+                //else
+                //{
+                //    _mapNodeList[i].ShowNodeAlreadyUsed();
+                //}
             }
             else
             {
                 _mapNodeList[i].SetWhiteLine();
                 if (SaveManager.CurrentSave.CurrentRun.CurrentNode != 0)
                 {
-                    if (_formerNodeList.Last() != -1)
-                    {
-                        if (!_mapNodeList[_formerNodeList.Last()].NextNodeList.Contains(_mapNodeList[i].MapNodeIndex))
-                        {
-                            _mapNodeList[i].DeactivateNode();
-                        }
-                    }
+                    //if (_formerNodeList.Last() != -1)
+                    //{
+                    //    if (!_mapNodeList[_formerNodeList.Last()].NextNodeList.Contains(_mapNodeList[i].MapNodeIndex))
+                    //    {
+                    //        _mapNodeList[i].DeactivateNode();
+                    //    }
+                    //}
                 }
             }
         }
@@ -299,13 +299,13 @@ public class MapManager : MonoBehaviour
 
     public UI_MapNode GetLastNode()
     {
-        if (_formerNodeList.Count > 1)
-        {
-            return _mapNodeList.Find(x => x.MapNodeIndex == _formerNodeList.Last());
-        }
-        else
-        {
-            return StartingMapNode;
-        }
+        //if (_formerNodeList.Count > 1)
+        //{
+        //    return _mapNodeList.Find(x => x.MapNodeIndex == _formerNodeList.Last());
+        //}
+        //else
+        //{
+        return StartingMapNode;
+        //}
     }
 }
