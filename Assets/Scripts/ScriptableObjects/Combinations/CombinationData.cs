@@ -47,5 +47,6 @@ public class CombinationData : ScriptableObject
     {
         public string Name;
         public CombinationDiscovery State;
+        public int NumberUsed;
     }
 }

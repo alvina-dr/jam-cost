@@ -150,6 +150,7 @@ public class GameManager : MonoBehaviour
         if (ScavengingState.CurrentSubState == GS_Scavenging.Scavenging_SubState.RerollCrateAnim) return;
         if (PreparationState.CurrentSubState == GS_Preparation.Preparation_SubState.RerollCrateAnim) return;
 
+        SaveManager.CurrentSave.NumberLeverUsed++;
         ScavengingState.CurrentSubState = GS_Scavenging.Scavenging_SubState.RerollCrateAnim;
         PreparationState.CurrentSubState = GS_Preparation.Preparation_SubState.RerollCrateAnim;
         Sequence rerollSequence = Sequence.Create();

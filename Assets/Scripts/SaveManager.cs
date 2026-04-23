@@ -335,6 +335,8 @@ public class SaveManager : MonoBehaviour
         public int PPSpentRunShop;
         public int PPConvertedToMT;
         public int NumberFirstBossPlayed;
+        public int NumberPowerUsed;
+        public int NumberLeverUsed;
 
         // Permanent bonus stats
         public float PermanentRoundBonusTime = 0;

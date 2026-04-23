@@ -26,6 +26,7 @@ public class CD_ItemList : CombinationData
         if (requiredItemList.Count == 0)
         {
             DiscoverCombination();
+            Data.NumberUsed++;
             return true;
         }
         else

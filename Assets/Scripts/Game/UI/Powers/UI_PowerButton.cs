@@ -37,6 +37,7 @@ public class UI_PowerButton : MonoBehaviour
         PowerBehavior powerBehavior = Instantiate(_powerData.PowerBehaviorPrefab);
         powerBehavior.transform.position = transform.position;
         _powerData.CurrentLoadTime = _powerData.LoadingTime;
+        SaveManager.CurrentSave.NumberPowerUsed++;
 
         if (SaveManager.Instance.CheckHasRunBonus<BD_PowerRewardPP>() != null)
         {

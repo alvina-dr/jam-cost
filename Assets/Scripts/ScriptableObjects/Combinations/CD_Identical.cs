@@ -28,6 +28,7 @@ public class CD_Identical : CombinationData
         {
             bagSlotList = bagSlotList.FindAll(x => x.CurrentBagItem.Data.Name == identicalItemData.Name);
             DiscoverCombination();
+            Data.NumberUsed++;
             return true;
         }
         else

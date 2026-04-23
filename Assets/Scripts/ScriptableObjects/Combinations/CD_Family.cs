@@ -26,6 +26,7 @@ public class CD_Family : CombinationData
 
         if (max.Number >= 4)
         {
+            Data.NumberUsed++;
             DiscoverCombination();
             bagSlotListRef = bagSlotListRef.FindAll(x => x.CurrentBagItem.Data.Family == max.Family);
         }
