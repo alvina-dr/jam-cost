@@ -9,7 +9,8 @@ public class PB_MoreTime : PowerBehavior
 
         for (int i = 0; i < 10; i++)
         {
-            sequence.ChainCallback(() => GameManager.Instance.UIManager.AddTimer(1, Vector3.zero));
+            sequence.ChainCallback(() => GameManager.Instance.UIManager.OnParticleAttracted_Time(1));
+            sequence.ChainCallback(() => GameManager.Instance.UIManager.AddTimerParticle(1, transform.position));
             sequence.ChainDelay(.05f);
         }
         sequence.ChainCallback(() =>

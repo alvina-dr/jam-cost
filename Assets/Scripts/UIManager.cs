@@ -1,4 +1,5 @@
 using Coffee.UIExtensions;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -33,6 +34,15 @@ public class UIManager : MonoBehaviour
     public UIParticleAttractor UIParticle_Time_Attractor;
 
     public Image TimerBackground;
+
+    public void AddTimerParticle(int number, Vector3 worldPosition)
+    {
+        UIParticle_Time_Attractor.onAttracted.RemoveAllListeners();
+        UIParticle_Time_Attractor.onAttracted.AddListener(() => UIParticle_Time.TriggerSubEmitter(0));
+        UIParticle_Time_RectTransform.position = new Vector3(worldPosition.x, worldPosition.y, 0);
+        UIParticle_Time_RectTransform.localPosition = new Vector3(UIParticle_Time_RectTransform.localPosition.x, UIParticle_Time_RectTransform.localPosition.y, 0);
+        UIParticle_Time.Emit(number);
+    }
 
     public void AddTimer(int number, Vector3 worldPosition)
     {
