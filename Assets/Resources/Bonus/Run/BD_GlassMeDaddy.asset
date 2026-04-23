@@ -20,7 +20,7 @@ MonoBehaviour:
   Description: All <b>glass items</b> permanently gain a multiplier of <color=red><b>x1.5</b></color>.
   Price: 13
   _bonusValue: 1.5
-  Icon: {fileID: 21300000, guid: d298beebbe36b8c46a17715273099f2f, type: 3}
+  Icon: {fileID: 21300000, guid: da6d915d663d7414394664e72765f040, type: 3}
   Color: {r: 0.9490197, g: 0.3647059, b: 0, a: 1}
   UpgradeBonusList: []
   FamilyBonus: 2

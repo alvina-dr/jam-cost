@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e7d51f53e123c04b8b999d3c3a3ac9f, type: 3}
-  m_Name: BD_PreparationTime
+  m_Name: BD_PrepTime
   m_EditorClassIdentifier: 
   IsAvailableInGame: 1
   Durability: 0
   Category: 4
   Effect: 4
-  Name: Preparation Time
+  Name: Prep Time
   Description: Start scavenging with a preparation phase of 10 seconds. You can't
     put items in the deposit box during this phase.
   Price: 7
   _bonusValue: 0
-  Icon: {fileID: 21300000, guid: 351fa3fa0a6749d4dbeb958aa026815a, type: 3}
+  Icon: {fileID: 21300000, guid: 7bda968f2a3b9764485fc301ddde7d16, type: 3}
   Color: {r: 0, g: 0, b: 0, a: 0}
   UpgradeBonusList: []
   PreparationTimeDuration: 10

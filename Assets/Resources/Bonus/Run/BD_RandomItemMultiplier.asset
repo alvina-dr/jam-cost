@@ -16,10 +16,10 @@ MonoBehaviour:
   Durability: 0
   Category: 0
   Effect: 1
-  Name: Random Item
+  Name: Lucky Find
   Description: <b>x2</b> to a <b>random</b> item.
   Price: 5
   _bonusValue: 2
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: c7bfcf57466d64f488a052cbb20dd404, type: 3}
   Color: {r: 0, g: 0, b: 0, a: 0}
   UpgradeBonusList: []

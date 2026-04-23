@@ -16,12 +16,12 @@ MonoBehaviour:
   Durability: 0
   Category: 0
   Effect: 2
-  Name: Familyyyy
+  Name: Full Set Boost
   Description: '<b><color=blue>+50</color></b> to the total score if the <b>Same
     Family</b> combination was played. '
   Price: 5
   _bonusValue: 50
-  Icon: {fileID: 21300000, guid: ab03de254cb9bf644810c38712136741, type: 3}
+  Icon: {fileID: 21300000, guid: 032794ec1982545468f9531e9ba97d83, type: 3}
   Color: {r: 0, g: 0, b: 0, a: 0}
   UpgradeBonusList: []
   _combinationData: {fileID: 11400000, guid: e8b4dfd84e1c8be4c814c9072e2507b2, type: 2}
