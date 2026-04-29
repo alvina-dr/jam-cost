@@ -14,7 +14,7 @@ public class UI_BagSlot : MonoBehaviour
     [SerializeField] private GameObject _priceGO;
     public Transform BagItemParent;
 
-    public void CreateItem(ItemData itemData)
+    public void CreateItem(ItemInstance itemData)
     {
         UI_BagItem bagItem = Instantiate(_bagItemPrefab, transform.position, Quaternion.identity, BagItemParent);
         bagItem.Setup(itemData);

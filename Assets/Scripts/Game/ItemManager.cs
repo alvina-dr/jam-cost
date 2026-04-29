@@ -40,7 +40,13 @@ public class ItemManager : MonoBehaviour
         {
             ItemData dataItem = GetRandomItem();
             ItemBehavior itemBehavior = Instantiate(dataItem.Prefab);
-            itemBehavior.Data = dataItem; // actualize item with instantiated item data
+            itemBehavior.Setup(dataItem); // actualize item with instantiated item data
+
+            int random = Random.Range(0, 2);
+            if (random == 0)
+            {
+                itemBehavior.SetTag(DataLoader.Instance.GetRandomItemTagData());
+            }
             itemBehavior.transform.position = new Vector3(Random.Range(-_spawnZone.x/2 + _offset.x, _spawnZone.x / 2 + _offset.x), Random.Range(-_spawnZone.y / 2 + _offset.y, _spawnZone.y / 2 + _offset.y), i * -0.001f);
             itemBehavior.transform.eulerAngles = new Vector3(0, 0, Random.Range(-70, 70));
             ItemList.Add(itemBehavior);
@@ -78,7 +84,7 @@ public class ItemManager : MonoBehaviour
         {
             ItemData dataItem = _ppID;
             ItemBehavior itemBehavior = Instantiate(dataItem.Prefab);
-            itemBehavior.Data = dataItem; // actualize item with instantiated item data
+            itemBehavior.Item.Data = dataItem; // actualize item with instantiated item data
             itemBehavior.transform.position = new Vector3(Random.Range(-_spawnZone.x / 2 + _offset.x, _spawnZone.x / 2 + _offset.x), Random.Range(-_spawnZone.y / 2 + _offset.y, _spawnZone.y / 2 + _offset.y), i * -0.001f);
             itemBehavior.transform.eulerAngles = new Vector3(0, 0, Random.Range(-70, 70));
             ItemList.Add(itemBehavior);

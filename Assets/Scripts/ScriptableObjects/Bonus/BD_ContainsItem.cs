@@ -17,7 +17,7 @@ public class BD_ContainsItem : BonusData
         List<ItemData> requiredItemList = new(_containsItemDataList);
         for (int i = 0; i < itemDataList.Count; i++)
         {
-            if (requiredItemList.Find(x => x.Name == itemDataList[i].CurrentBagItem.Data.Name))
+            if (requiredItemList.Find(x => x.Name == itemDataList[i].CurrentBagItem.ItemInstance.Data.Name))
             {
                 return true;
             }

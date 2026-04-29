@@ -13,7 +13,7 @@ public class BD_FamilyMultiplier : BonusData
         for (int i = 0; i < bagSlotListRef.Count; i++)
         {
             if (bagSlotListRef[i].CurrentBagItem != null 
-                && bagSlotListRef[i].CurrentBagItem.Data.Family == FamilyBonus)
+                && bagSlotListRef[i].CurrentBagItem.ItemInstance.Data.Family == FamilyBonus)
             {
                 chosenBagSlots.Add(bagSlotListRef[i]);
             }

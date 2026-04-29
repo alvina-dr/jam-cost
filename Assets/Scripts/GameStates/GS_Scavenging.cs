@@ -161,12 +161,12 @@ public class GS_Scavenging : GameState
         UpdateItemNumberText();
     }
 
-    public List<ItemData> GetItemDataList()
+    public List<ItemInstance> GetItemInstanceList()
     {
-        List<ItemData> itemDataList = new();
+        List<ItemInstance> itemDataList = new();
         for (int i = 0; i < SelectedItemList.Count; i++)
         {
-            itemDataList.Add(SelectedItemList[i].Data);
+            itemDataList.Add(SelectedItemList[i].Item);
         }
         return itemDataList;
     }

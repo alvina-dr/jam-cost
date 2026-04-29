@@ -19,7 +19,7 @@ public class ClickableBehavior : ItemBehavior
     {
         _collider.enabled = false;
         _collectParticles.Play();
-        SaveManager.Instance.AddPP(Data.BonusCurrency, transform.position);
+        SaveManager.Instance.AddPP(Item.Data.BonusCurrency, transform.position);
         GameManager.Instance.FoundPP++;
         AudioManager.Instance.PlaySFXSound(_collectSound);
         Sequence hideSprite = DOTween.Sequence();

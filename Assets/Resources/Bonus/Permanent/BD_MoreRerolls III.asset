@@ -15,9 +15,11 @@ MonoBehaviour:
   IsAvailableInGame: 1
   Durability: 1
   Category: 1
+  Effect: 0
   Name: Rerolling III
   Description: You get 3 rerolls (+1).
-  Price: 5
+  Price: 15
+  _bonusValue: 0
   Icon: {fileID: 0}
   Color: {r: 0, g: 0, b: 0, a: 0}
   UpgradeBonusList: []

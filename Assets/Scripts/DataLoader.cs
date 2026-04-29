@@ -28,6 +28,7 @@ public class DataLoader : MonoBehaviour
     public List<MapNodeData> MapNodeDataList;
     public List<PowerData> PowerDataList;
     public Dictionary<string, CombinationData> CombinationDataDictionary = new();
+    public Dictionary<string, ItemTagData> ItemTagDataDictionary = new();
 
     private void OnAwake()
     {
@@ -58,6 +59,13 @@ public class DataLoader : MonoBehaviour
         {
             CombinationData combinationData = Instantiate(combinationDataList[i]);
             CombinationDataDictionary.Add(combinationData.Data.Name, combinationData);
+        }
+
+        List<ItemTagData> itemTagDataList = Resources.LoadAll<ItemTagData>("ItemTags").ToList();
+        for (int i = 0; i < itemTagDataList.Count; i++)
+        {
+            ItemTagData itemTagData = Instantiate(itemTagDataList[i]);
+            ItemTagDataDictionary.Add(itemTagData.Name, itemTagData);
         }
     }
 
@@ -120,6 +128,11 @@ public class DataLoader : MonoBehaviour
     public PowerData GetInstantiatedVersionOfPower(PowerData powerData)
     {
         return PowerDataList.Find(x => x.PowerName == powerData.PowerName);
+    }
+
+    public ItemTagData GetRandomItemTagData()
+    {
+        return ItemTagDataDictionary.ElementAt(Random.Range(0, ItemTagDataDictionary.Count)).Value;
     }
 
     public string ConvertTimeToMinutes(float time)

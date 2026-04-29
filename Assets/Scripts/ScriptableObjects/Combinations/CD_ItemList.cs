@@ -12,10 +12,10 @@ public class CD_ItemList : CombinationData
         List<ItemData> requiredItemList = new(_requiredItemList);
         for (int i = 0; i < requiredItemList.Count; i++)
         {
-            UI_BagSlot bagSlot = itemDataList.Find(x => x.CurrentBagItem.Data.Name == requiredItemList[i].Name);
+            UI_BagSlot bagSlot = itemDataList.Find(x => x.CurrentBagItem.ItemInstance.Data.Name == requiredItemList[i].Name);
             if (bagSlot != null)
             {
-                ItemData item = bagSlot.CurrentBagItem.Data;
+                ItemData item = bagSlot.CurrentBagItem.ItemInstance.Data;
                 if (item != null)
                 {
                     requiredItemList.Remove(item);

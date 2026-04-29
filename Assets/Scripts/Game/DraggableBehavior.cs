@@ -76,7 +76,7 @@ public class DraggableBehavior : ItemBehavior
         if (!CanClickItem()) return;
         if (GameManager.Instance.SelectedItem != null) return;
 
-        GameManager.Instance.UIManager.HoverPrice.ShowPrice(Data.Price, transform.position);
+        GameManager.Instance.UIManager.HoverPrice.ShowPrice(Item.Data.Price, transform.position);
     }
 
     protected override void OnMouseExit()
@@ -122,12 +122,15 @@ public class DraggableBehavior : ItemBehavior
         AudioManager.Instance.PlaySFXSound(_pickUpSound);
         GameManager.Instance.ScavengingState.RemoveItemFromSelectedList(this);
         if (!GameManager.Instance.ItemManager.ItemList.Contains(this)) GameManager.Instance.ItemManager.ItemList.Add(this);
+
+        if (Item.TagData) Item.TagData.StartDrag(this, _spriteRenderer);
     }
 
     public void EndDrag()
     {
         _isDragging = false;
         _collider.enabled = true;
+        if (Item.TagData) Item.TagData.EndDrag(this, _spriteRenderer);
 
         if (GameManager.Instance.SelectedItem == this) GameManager.Instance.SelectedItem = null;
 

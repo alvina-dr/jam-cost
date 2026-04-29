@@ -9,10 +9,10 @@ public class UI_BagItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     private UI_BagMenu _bagMenu;
     [SerializeField] private UI_BagSlot _currentBagSlot;
     [SerializeField] private Image _image;
-    [SerializeField] private ItemData _itemData;
+    [SerializeField] private ItemInstance _itemInstance;
     [SerializeField] private ParticleSystem _countItemParticle;
     [SerializeField] private UI_Animation _highlightAnimation;
-    public ItemData Data => _itemData;
+    public ItemInstance ItemInstance => _itemInstance;
 
     public int CurrentScore = 0;
     public List<int> CombinationItemAddList = new();
@@ -29,11 +29,11 @@ public class UI_BagItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         transform.SetParent(_currentBagSlot.BagItemParent);
     }
 
-    public void Setup(ItemData itemData)
+    public void Setup(ItemInstance itemInstance)
     {
-        _itemData = itemData;
-        _image.sprite = itemData.Icon;
-        CurrentScore = _itemData.Price;
+        _itemInstance = itemInstance;
+        _image.sprite = _itemInstance.Data.Icon;
+        CurrentScore = _itemInstance.Data.Price;
     }
 
     public void CountItem()
@@ -54,7 +54,7 @@ public class UI_BagItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        TooltipManager.Instance.ShowTooltip(Data, transform.position + Vector3.up / 2);
+        TooltipManager.Instance.ShowTooltip(ItemInstance, transform.position + Vector3.up / 2);
     }
 
     public void OnPointerExit(PointerEventData eventData)

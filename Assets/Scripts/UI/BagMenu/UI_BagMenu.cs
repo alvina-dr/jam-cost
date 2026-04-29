@@ -61,7 +61,7 @@ public class UI_BagMenu : UI_Menu
         _roundScoreText.SetTextValue($"{0}", false);
         _roundScoreParent.gameObject.SetActive(false);
 
-        List<ItemData> bagItemList = GameManager.Instance.ScavengingState.GetItemDataList();
+        List<ItemInstance> bagItemList = GameManager.Instance.ScavengingState.GetItemInstanceList();
         GameManager.Instance.ScavengingState.CleanItemDataList();
         GameManager.Instance.ScavengingState.UpdateItemNumberText();
 
@@ -297,13 +297,14 @@ public class UI_BagMenu : UI_Menu
         for (int i = 0; i < chosenItemSlotList.Count; i++)
         {
             UI_BagSlot bagSlot = chosenItemSlotList[i];
-            if (bagSlot.CurrentBagItem.Data.Price > 0) // if not garbage
+            if (bagSlot.CurrentBagItem.ItemInstance.Data.Price > 0) // if not garbage
             {
                 _countSequence.ChainDelay(.5f);
                 _countSequence.ChainCallback(() =>
                 {
                     _shakePlayer.PlayFeedbacks();
-                    GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + bagSlot.CurrentBagItem.Data.Price, bagSlot.transform.position, _addColor, UI_TextPopper.AnimSpeed.Quick);
+                    bagSlot.CurrentBagItem.CurrentScore = bagSlot.CurrentBagItem.ItemInstance.CalculateValue();
+                    GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + bagSlot.CurrentBagItem.CurrentScore, bagSlot.transform.position, _addColor, UI_TextPopper.AnimSpeed.Quick);
                     bagSlot.SetPriceText(bagSlot.CurrentBagItem.CurrentScore);
                     bagSlot.CurrentBagItem.CountBaseScore();
                 });

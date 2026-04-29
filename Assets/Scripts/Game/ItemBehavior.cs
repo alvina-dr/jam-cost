@@ -4,7 +4,7 @@ using DG.Tweening;
 
 public class ItemBehavior : MonoBehaviour
 {
-    public ItemData Data;
+    public ItemInstance Item;
     [SerializeField] protected Collider2D _collider;
     [SerializeField] protected SpriteRenderer _spriteRenderer;
 
@@ -22,9 +22,11 @@ public class ItemBehavior : MonoBehaviour
     [SerializeField] private Material _familyGarbageMaterial;
     [SerializeField] private Material _clickableMaterial;
 
-
-    private void Start()
+    public void Setup(ItemData itemData)
     {
+        Item = new();
+        Item.Data = itemData;
+
         _shadowSpriteRenderer.transform.localPosition = _offset;
         _shadowSpriteRenderer.transform.localRotation = Quaternion.identity;
 
@@ -33,7 +35,7 @@ public class ItemBehavior : MonoBehaviour
         _shadowSpriteRenderer.sortingLayerName = _spriteRenderer.sortingLayerName;
         _shadowSpriteRenderer.sortingOrder = _spriteRenderer.sortingOrder - 1;
 
-        switch (Data.Family)
+        switch (Item.Data.Family)
         {
             case ItemData.ItemFamily.Plastic:
                 _spriteRenderer.material = _family1Material;
@@ -54,6 +56,20 @@ public class ItemBehavior : MonoBehaviour
                 _spriteRenderer.material = _clickableMaterial;
                 break;
         }
+
+    }
+
+    public void SetTag(ItemTagData tagData)
+    {
+        if (tagData == null) return;
+
+        Item.TagData = Instantiate(tagData);
+        Item.TagData.SetupTag(this, _spriteRenderer);
+    }
+
+    public void RemoveTag()
+    {
+        Item.TagData = null;
     }
 
     public void SetSortingOrder(int sortingOrder)
