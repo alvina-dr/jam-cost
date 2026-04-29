@@ -6,11 +6,11 @@ public class ITD_Dirty : ItemTagData
 {
     public int Dirtiness;
 
-    public override void SetupTag(ItemBehavior itemBehavior, SpriteRenderer sprite)
+    public override void SetupTag(Material material)
     {
-        sprite.material.EnableKeyword("ITEMTAG_DIRTY");
-        sprite.material.DisableKeyword("ITEMTAG_NONE");
-        sprite.material.SetFloat("_Dirtiness", Dirtiness);
+        material.EnableKeyword("ITEMTAG_DIRTY");
+        material.DisableKeyword("ITEMTAG_NONE");
+        material.SetFloat("_Dirtiness", Dirtiness);
     }
 
     public override void StartDrag(ItemBehavior itemBehavior, SpriteRenderer sprite)

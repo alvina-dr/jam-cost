@@ -32,6 +32,7 @@ public class UI_BagItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void Setup(ItemInstance itemInstance)
     {
         _itemInstance = itemInstance;
+        _itemInstance.TagData.SetupTag(_image.material);
         _image.sprite = _itemInstance.Data.Icon;
         CurrentScore = _itemInstance.Data.Price;
     }

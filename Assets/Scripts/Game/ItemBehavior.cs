@@ -64,7 +64,7 @@ public class ItemBehavior : MonoBehaviour
         if (tagData == null) return;
 
         Item.TagData = Instantiate(tagData);
-        Item.TagData.SetupTag(this, _spriteRenderer);
+        Item.TagData.SetupTag(_spriteRenderer.material);
     }
 
     public void RemoveTag()

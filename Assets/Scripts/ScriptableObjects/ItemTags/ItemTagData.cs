@@ -5,10 +5,10 @@ public class ItemTagData : ScriptableObject
 {
     public string Name;
 
-    public virtual void SetupTag(ItemBehavior itemBehavior, SpriteRenderer sprite)
+    public virtual void SetupTag(Material material)
     {
         Debug.Log("setup tag none");
-        sprite.material.EnableKeyword("NONE");
+        material.EnableKeyword("NONE");
     }
 
     public virtual void StartDrag(ItemBehavior itemBehavior, SpriteRenderer sprite)

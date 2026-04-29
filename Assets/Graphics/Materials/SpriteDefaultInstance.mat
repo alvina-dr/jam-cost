@@ -45,6 +45,7 @@ Material:
     m_Ints: []
     m_Floats:
     - ITEMTAG: 0
+    - _Dirtiness: 3
     - _Dithering: 0
     - _ITEMTAG: 0
     - _OutlineAnimationFrequence: 6

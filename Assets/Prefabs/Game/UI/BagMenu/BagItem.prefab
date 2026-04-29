@@ -152,7 +152,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _currentBagSlot: {fileID: 0}
   _image: {fileID: 529204982360402284}
-  _itemData: {fileID: 0}
   _countItemParticle: {fileID: 5915489110980478149}
   _highlightAnimation: {fileID: 7974139681683731793}
   CurrentScore: 0
@@ -217,7 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 6eb97fb3159ed1445be9a098fb6aaf8d, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
