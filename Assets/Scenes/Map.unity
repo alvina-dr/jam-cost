@@ -842,6 +842,10 @@ PrefabInstance:
       value: Dialogue System
       objectReference: {fileID: 0}
     - target: {fileID: 4965692068064237759, guid: 108f5ea8a8a6d254faa273d53397fff9, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4965692068064237759, guid: 108f5ea8a8a6d254faa273d53397fff9, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
@@ -3002,7 +3006,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37d5e739699db774bbc59dfee6c5526c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mapData: {fileID: 11400000, guid: f2142562869344a42b25704317bc6183, type: 2}
+  _mapData: {fileID: 11400000, guid: fd1fb8c8405019f448b572ff5630c4c1, type: 2}
   _mapNodeList:
   - {fileID: 1214668319}
   - {fileID: 625940886}

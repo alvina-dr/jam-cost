@@ -97,7 +97,7 @@ public class NodeChoiceManager : MonoBehaviour
                 TransitionManager.Instance().TransitionChangeScene("Shop", _transitionSettings, 0);
                 break;
             case MND_Boss:
-                TransitionManager.Instance().TransitionChangeScene("Ending", _transitionSettings, 0);
+                TransitionManager.Instance().TransitionChangeScene("Possession", _transitionSettings, 0);
                 break;
         }
     }

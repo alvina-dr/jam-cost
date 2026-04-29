@@ -141,7 +141,7 @@ public class GameManager : MonoBehaviour
 
     public int GetMaxRoundNumber()
     {
-        return _roundNumber + SaveManager.CurrentSave.CurrentRun.RunBonusRound;
+        return SaveManager.Instance.GetScavengeNode().RoundNumber + SaveManager.CurrentSave.CurrentRun.RunBonusRound;
     }
 
     public void RerollCrate()

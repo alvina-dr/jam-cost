@@ -1,9 +1,10 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityToolbarExtender;
 using UnityEditor;
 using UnityEditor.SceneManagement;
+using UnityEditor.Toolbars;
+using UnityEngine;
+using UnityToolbarExtender;
 
 [InitializeOnLoad]
 public class MainSceneToolbarButton
@@ -13,44 +14,35 @@ public class MainSceneToolbarButton
 		ToolbarExtender.LeftToolbarGUI.Add(OnLeftToolbarGUI);
 		ToolbarExtender.RightToolbarGUI.Add(OnRightToolbarGUI);
     }
-	
-	static void OnLeftToolbarGUI()
+
+    static void OpenChosenScene(object obj)
+    {
+        EditorSceneManager.OpenScene($"Assets/Scenes/{obj}.unity");
+    }
+
+    static void OnLeftToolbarGUI()
 	{
 		GUILayout.FlexibleSpace();
+        GenericMenu dropdownMenu = new GenericMenu();
 
-        if (GUILayout.Button(new GUIContent("Shop", "Open Shop Scene")))
-        {
-            EditorSceneManager.OpenScene("Assets/Scenes/Shop.unity");
-        }
+        dropdownMenu.AddItem(new GUIContent("Game"), false, OpenChosenScene, "Game");
+        dropdownMenu.AddItem(new GUIContent("Main Menu"), false, OpenChosenScene, "MainMenu");
+        dropdownMenu.AddItem(new GUIContent("Shop"), false, OpenChosenScene, "Shop");
+        dropdownMenu.AddItem(new GUIContent("Map"), false, OpenChosenScene, "Map");
+        dropdownMenu.AddItem(new GUIContent("Hub"), false, OpenChosenScene, "Hub");
+        dropdownMenu.AddItem(new GUIContent("Office"), false, OpenChosenScene, "Office");
+        dropdownMenu.AddItem(new GUIContent("Possession"), false, OpenChosenScene, "Boss/Possession");
+        dropdownMenu.AddItem(new GUIContent("Free Round"), false, OpenChosenScene, "FreeRound");
+        dropdownMenu.AddItem(new GUIContent("Onboarding"), false, OpenChosenScene, "Onboarding");
 
-        if (GUILayout.Button(new GUIContent("Map", "Open Map Scene")))
+        if (EditorGUILayout.DropdownButton(new GUIContent("Load scene"), FocusType.Keyboard))
         {
-            EditorSceneManager.OpenScene("Assets/Scenes/Map.unity");
-        }
-
-        if (GUILayout.Button(new GUIContent("Hub", "Open Hub Scene")))
-        {
-            EditorSceneManager.OpenScene("Assets/Scenes/Hub.unity");
-        }
-
-        if (GUILayout.Button(new GUIContent("Office", "Open Office Scene")))
-        {
-            EditorSceneManager.OpenScene("Assets/Scenes/Office.unity");
-        }
-
-        if (GUILayout.Button(new GUIContent("Free Round", "Open Free Round Scene")))
-        {
-            EditorSceneManager.OpenScene("Assets/Scenes/FreeRound.unity");
+            dropdownMenu.ShowAsContext();
         }
     }
 
     static void OnRightToolbarGUI()
     {
-        if (GUILayout.Button(new GUIContent("Game", "Open Game Scene")))
-        {
-            EditorSceneManager.OpenScene("Assets/Scenes/Game.unity");
-        }
-
         if (GUILayout.Button(new GUIContent("New save", "Creates a new save")))
         {
             if (SaveManager.Instance != null)
@@ -59,16 +51,6 @@ public class MainSceneToolbarButton
             }
 
             System.IO.File.Delete(Application.persistentDataPath + "/Save.json");
-        }
-
-        if (GUILayout.Button(new GUIContent("Main Menu", "Open Main Menu Scene")))
-        {
-            EditorSceneManager.OpenScene("Assets/Scenes/MainMenu.unity");
-        }
-
-        if (GUILayout.Button(new GUIContent("Onboarding", "Open Onboarding Scene")))
-        {
-            EditorSceneManager.OpenScene("Assets/Scenes/Onboarding.unity");
         }
     }
 }

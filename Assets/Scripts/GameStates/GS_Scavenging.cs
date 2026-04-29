@@ -26,6 +26,7 @@ public class GS_Scavenging : GameState
     public override void EnterState()
     {
         base.EnterState();
+        SaveManager.Instance.GetScavengeNode().NewRound();
         GameManager.Instance.Lever.SetActive(true);
         GameManager.Instance.CurrentRound++;
         ResetTimer();

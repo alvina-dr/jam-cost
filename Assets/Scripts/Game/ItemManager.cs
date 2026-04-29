@@ -6,7 +6,10 @@ public class ItemManager : MonoBehaviour
 {
     public List<ItemBehavior> ItemList = new();
     [SerializeField] private Vector2 _spawnZone;
+    public Vector2 SpawnZone => _spawnZone;
     [SerializeField] private Vector2 _offset;
+    public Vector2 Offset => _offset;
+
     [SerializeField] public int TopLayer;
 
     [ReadOnly] private int _totalSpawnChance;
@@ -19,7 +22,7 @@ public class ItemManager : MonoBehaviour
     public void ResetDumpster()
     {
         CleanItems();
-        SpawnItems();
+        SaveManager.Instance.GetScavengeNode().SpawnItems();
     }
 
     public void CleanItems()

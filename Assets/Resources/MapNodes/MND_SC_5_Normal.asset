@@ -16,4 +16,5 @@ MonoBehaviour:
   IsAvailableInGame: 1
   NodeIcon: {fileID: 21300000, guid: 3d06216ff65a9ac45a48a7638bb198d2, type: 3}
   ScoreGoal: 650
+  RoundNumber: 3
   SpawnItemParameters: {fileID: 11400000, guid: 6fd6173514e6a4e448b6979205bd7423, type: 2}

@@ -8,7 +8,6 @@ using Yarn;
 using Yarn.Unity;
 using Yarn.Unity.Attributes;
 using PrimeTween;
-#nullable enable
 
 public class OptionDialogBubblePresenter : DialoguePresenterBase
 {

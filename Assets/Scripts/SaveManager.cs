@@ -294,7 +294,7 @@ public class SaveManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        Debug.Log("Destroy save !!!");
+        //Debug.Log("Destroy save !!!");
         Save();
     }
     #endregion
