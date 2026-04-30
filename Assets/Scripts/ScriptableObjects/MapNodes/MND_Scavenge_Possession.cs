@@ -35,6 +35,7 @@ public class MND_Scavenge_Possession : MND_Scavenge_Classic
         switch (GameManager.Instance.CurrentRound)
         {
             case 0:
+                GameManager.Instance.BossLock.SetLock();
                 break;
             case 1:
                 break;

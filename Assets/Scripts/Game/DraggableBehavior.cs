@@ -140,6 +140,18 @@ public class DraggableBehavior : ItemBehavior
             {
                 GoBackToDumpster();
             }
+            else if (GameManager.Instance.BossLock.IsLocked)
+            {
+                if (GameManager.Instance.BossLock.TryOpenLock(Item.Data))
+                {
+                    DestroyItem();
+                    AudioManager.Instance.PlaySFXSound(_trashItemSound);
+                }
+                else
+                {
+                    GoBackToDumpster();
+                }
+            }
             else
             {
                 if (GameManager.Instance.ScavengingState.TryAddItemToSelectedList(this))

@@ -22,6 +22,7 @@ public class CD_Family : CombinationData
             }
         }
         familyCountList.Sort((a, b) => b.Number.CompareTo(a.Number));
+        if (familyCountList.Count == 0) return false;
         FamilyStat max = familyCountList[0];
 
         if (max.Number >= 4)

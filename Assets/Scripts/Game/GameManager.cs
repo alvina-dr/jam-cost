@@ -36,6 +36,9 @@ public class GameManager : MonoBehaviour
     public UIManager UIManager;
     public ItemManager ItemManager;
 
+    [Header("Boss")]
+    public BossLock BossLock;
+
     [Header("Infos")]
     [SerializeField] private int _depotSize;
     [SerializeField] private int _roundNumber;
