@@ -153,9 +153,9 @@ public class GameManager : MonoBehaviour
         ScavengingState.CurrentSubState = GS_Scavenging.Scavenging_SubState.RerollCrateAnim;
         PreparationState.CurrentSubState = GS_Preparation.Preparation_SubState.RerollCrateAnim;
         Sequence rerollSequence = Sequence.Create();
-        rerollSequence.ChainDelay(1f);
-        rerollSequence.ChainCallback(() => ItemManager.ResetDumpster());
-        rerollSequence.ChainDelay(1f);
+        rerollSequence.ChainCallback(() => ItemManager.CleanItems());
+        rerollSequence.ChainDelay(2f);
+        rerollSequence.ChainCallback(() => SaveManager.Instance.GetScavengeNode().SpawnItems());
         rerollSequence.ChainCallback(() => ScavengingState.CurrentSubState = GS_Scavenging.Scavenging_SubState.Scavenging);
         rerollSequence.ChainCallback(() => PreparationState.CurrentSubState = GS_Preparation.Preparation_SubState.Preparation);
     }
