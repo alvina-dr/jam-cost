@@ -1,10 +1,13 @@
 using System.Collections.Generic;
+using System.Globalization;
+using TMPro;
 using UnityEngine;
 
 public class BossLock : MonoBehaviour
 {
     public List<ItemData> itemDataList = new();
     [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private TextMeshPro _textInfo;
 
     public bool IsLocked => itemDataList.Count > 0; 
 
@@ -55,6 +58,7 @@ public class BossLock : MonoBehaviour
 
     public void UpdateLockVisual()
     {
+        _textInfo.text = $"{itemDataList.Count}/3";
         _spriteRenderer.sprite = itemDataList[0].Icon;
     }
 }
