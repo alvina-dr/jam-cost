@@ -4,6 +4,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "MND_Scavenge_Possession", menuName = "Scriptable Objects/MapNode/MND_Scavenge_Possession")]
 public class MND_Scavenge_Possession : MND_Scavenge_Classic
 {
+    public int SecondPhaseGoalScore;
+    public int ThirdPhaseGoalScore;
+
+    public BossPhase BossPhase;
 
     public override void SpawnItems()
     {
@@ -32,21 +36,61 @@ public class MND_Scavenge_Possession : MND_Scavenge_Classic
     public override void NewRound()
     {
         base.NewRound();
-        switch (GameManager.Instance.CurrentRound)
+
+        switch (BossPhase)
         {
-            case 0:
+            case BossPhase.StartFirstPhase:
+            case BossPhase.FirstPhase:
+                break;
+            case BossPhase.StartSecondPhase:
                 GameManager.Instance.BossLock.SetLock();
+                BossPhase = BossPhase.SecondPhase;
                 break;
-            case 1:
+            case BossPhase.SecondPhase:
                 break;
-            case 2:
+            case BossPhase.StartThirdPhase:
+                GameManager.Instance.BossLock.SetLock();
+                BossPhase = BossPhase.ThirdPhase;
                 break;
-            case 3:
-                break;
-            case 4:
-                break;
-            case 5:
+            case BossPhase.ThirdPhase:
                 break;
         }
     }
+
+    public void BeatScore()
+    {
+        switch (BossPhase)
+        {
+            case BossPhase.StartFirstPhase:
+            case BossPhase.FirstPhase:
+                GameManager.Instance.GoalScore = SecondPhaseGoalScore;
+                GameManager.Instance.UIManager.ScoreTextValue.SetTextValue($"{GameManager.Instance.CurrentScore} / {GameManager.Instance.GoalScore}");
+                GameManager.Instance.UIManager.ScoreBarValue.SetBarValue(GameManager.Instance.CurrentScore, GameManager.Instance.GoalScore);
+                BossPhase = BossPhase.StartSecondPhase;
+                GameManager.Instance.UIManager.BagMenu.AllowContinue();
+                break;
+            case BossPhase.StartSecondPhase:
+            case BossPhase.SecondPhase:
+                GameManager.Instance.GoalScore = ThirdPhaseGoalScore;
+                GameManager.Instance.UIManager.ScoreTextValue.SetTextValue($"{GameManager.Instance.CurrentScore} / {GameManager.Instance.GoalScore}");
+                GameManager.Instance.UIManager.ScoreBarValue.SetBarValue(GameManager.Instance.CurrentScore, GameManager.Instance.GoalScore);
+                BossPhase = BossPhase.StartThirdPhase;
+                GameManager.Instance.UIManager.BagMenu.AllowContinue();
+                break;
+            case BossPhase.StartThirdPhase:
+            case BossPhase.ThirdPhase:
+                GameManager.Instance.SetGameState(GameManager.Instance.WinState);
+                break;
+        }
+    }
+}
+
+public enum BossPhase
+{
+    StartFirstPhase = 0,
+    FirstPhase = 1,
+    StartSecondPhase = 2,
+    SecondPhase = 3,
+    StartThirdPhase = 4,
+    ThirdPhase = 5
 }

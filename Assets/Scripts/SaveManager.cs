@@ -61,7 +61,7 @@ public class SaveManager : MonoBehaviour
         //CurrentSave.RunDataHistory.Add(CurrentSave.CurrentRun);
         CurrentSave.CurrentRun = new RunData();
         SaveManager.Instance.CurrentRunBonusList.Clear();
-        CurrentMapNode = _firstNode;
+        CurrentMapNode = Instantiate(_firstNode);
 
         // Load permanent bonus advantages
         AddPP(CurrentSave.RunStartLootPP);

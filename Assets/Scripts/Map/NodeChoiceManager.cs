@@ -84,7 +84,7 @@ public class NodeChoiceManager : MonoBehaviour
 
     public void LaunchNode(MapNodeData data)
     {
-        SaveManager.Instance.CurrentMapNode = data;
+        SaveManager.Instance.CurrentMapNode = Instantiate(data);
         switch (data)
         {
             case MND_Scavenge_Classic:

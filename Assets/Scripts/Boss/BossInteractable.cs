@@ -8,7 +8,7 @@ public class BossInteractable : MonoBehaviour
 
     public void StartBossGame()
     {
-        SaveManager.Instance.CurrentMapNode = _bossMapNode;
+        SaveManager.Instance.CurrentMapNode = Instantiate(_bossMapNode);
         TransitionManager.Instance().TransitionChangeScene("Game", _transitionSettings, 0);
     }
 }

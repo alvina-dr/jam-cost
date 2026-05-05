@@ -12,7 +12,7 @@ public class UI_GameOver : UI_Menu
 
     public override void OpenMenu()
     {
-        _scoreText.text = $"{GameManager.Instance.CurrentScore} / {SaveManager.Instance.GetScavengeNode().ScoreGoal}" ;
+        _scoreText.text = $"{GameManager.Instance.CurrentScore} / {GameManager.Instance.GoalScore}" ;
         _nodeText.text = $"{SaveManager.CurrentSave.CurrentRun.CurrentNode}";
         _totalTimeText.text = $"{DataLoader.Instance.ConvertTimeToMinutes(SaveManager.CurrentSave.CurrentRun.TotalRunDuration)}";
         if (_ppText != null) _ppText.text = $"+{GameManager.Instance.FoundPP}";

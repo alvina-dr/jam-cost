@@ -26,7 +26,6 @@ public class BossLock : MonoBehaviour
 
     public bool TryOpenLock(ItemData itemData)
     {
-        Debug.Log("TRY OPEN LOCK");
         if (itemData.Name == itemDataList[0].Name)
         {
             OpenLock();

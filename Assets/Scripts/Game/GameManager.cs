@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
     [Header("Current Stats")]
     public DraggableBehavior SelectedItem;
     public int CurrentScore;
+    public int GoalScore;
     public int CurrentDay;
     public int CurrentRound;
     public int FoundPP;
@@ -63,8 +64,9 @@ public class GameManager : MonoBehaviour
                 // prepare interface for empty challenge
                 break;
             case MND_Scavenge_Classic:
-                UIManager.ScoreTextValue.SetTextValue($"{CurrentScore} / {SaveManager.Instance.GetScavengeNode().ScoreGoal}");
-                UIManager.ScoreBarValue.SetBarValue(CurrentScore, SaveManager.Instance.GetScavengeNode().ScoreGoal);
+                GoalScore = SaveManager.Instance.GetScavengeNode().ScoreGoal;
+                UIManager.ScoreTextValue.SetTextValue($"{CurrentScore} / {GoalScore}");
+                UIManager.ScoreBarValue.SetBarValue(CurrentScore, GoalScore);
                 ScavengingState.ResetTimer();
                 break;
         }
@@ -119,14 +121,8 @@ public class GameManager : MonoBehaviour
     public void SetCurrentScore(int score, bool animation = true)
     {
         CurrentScore = score;
-        UIManager.ScoreTextValue.SetTextValue($"{CurrentScore} / {SaveManager.Instance.GetScavengeNode().ScoreGoal}", animation);
-        UIManager.ScoreBarValue.SetBarValue(CurrentScore, SaveManager.Instance.GetScavengeNode().ScoreGoal, animation);
-    }
-
-    public void CheckScoreHighEnough()
-    {
-        if (CurrentScore < SaveManager.Instance.GetScavengeNode().ScoreGoal) SetGameState(GameOverState);
-        else SetGameState(WinState);
+        UIManager.ScoreTextValue.SetTextValue($"{CurrentScore} / {GoalScore}", animation);
+        UIManager.ScoreBarValue.SetBarValue(CurrentScore, GoalScore, animation);
     }
 
     public int GetDepotSize()

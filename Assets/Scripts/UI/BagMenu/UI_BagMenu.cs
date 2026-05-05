@@ -56,8 +56,8 @@ public class UI_BagMenu : UI_Menu
 
         base.OpenMenu();
 
-        _scoreBar.SetBarValue(GameManager.Instance.CurrentScore, SaveManager.Instance.GetScavengeNode().ScoreGoal, false);
-        _currentScoreText.SetTextValue($"{GameManager.Instance.CurrentScore} / {SaveManager.Instance.GetScavengeNode().ScoreGoal}", false);
+        _scoreBar.SetBarValue(GameManager.Instance.CurrentScore, GameManager.Instance.GoalScore, false);
+        _currentScoreText.SetTextValue($"{GameManager.Instance.CurrentScore} / {GameManager.Instance.GoalScore}", false);
         _roundScoreText.SetTextValue($"{0}", false);
         _roundScoreParent.gameObject.SetActive(false);
 
@@ -226,46 +226,25 @@ public class UI_BagMenu : UI_Menu
             GameManager.Instance.SetCurrentScore(GameManager.Instance.CurrentScore + _roundScore);
             SaveManager.CurrentSave.TotalPoints += _roundScore;
             QuestManager.Instance.CheckQuestCompletionByType<QD_TotalPoints>();
-            _scoreBar.SetBarValue(GameManager.Instance.CurrentScore, SaveManager.Instance.GetScavengeNode().ScoreGoal);
+            _scoreBar.SetBarValue(GameManager.Instance.CurrentScore, GameManager.Instance.GoalScore);
 
             int confettiNumber = 0;
             if (_roundScore > 0) confettiNumber++;
-            if (_roundScore > SaveManager.Instance.GetScavengeNode().ScoreGoal / 2) confettiNumber++;
-            if (_roundScore > SaveManager.Instance.GetScavengeNode().ScoreGoal) confettiNumber++;
+            if (_roundScore > GameManager.Instance.GoalScore / 2) confettiNumber++;
+            if (_roundScore > GameManager.Instance.GoalScore) confettiNumber++;
             _confettiLeft.Emit(confettiNumber * 50);
             _confettiRight.Emit(confettiNumber * 50);
             
-            _currentScoreText.SetTextValue($"{GameManager.Instance.CurrentScore} / {SaveManager.Instance.GetScavengeNode().ScoreGoal}");
+            _currentScoreText.SetTextValue($"{GameManager.Instance.CurrentScore} / {GameManager.Instance.GoalScore}");
             _roundScoreParent.gameObject.SetActive(false);
             //chosenItemSlotList[index].HidePrice();
         });
         _countSequence.ChainDelay(1f);
 
-        // End of round
-        if (GameManager.Instance.CurrentRound >= GameManager.Instance.GetMaxRoundNumber())
+        _countSequence.ChainCallback(() =>
         {
-            _countSequence.ChainCallback(() =>
-            {
-                GameManager.Instance.CheckScoreHighEnough();
-                GameManager.Instance.CurrentRound = 0;
-            });
-        }
-        // Next hand
-        else
-        {
-            _countSequence.ChainCallback(() =>
-            {
-                if (GameManager.Instance.CurrentScore >= SaveManager.Instance.GetScavengeNode().ScoreGoal)
-                {
-                    GameManager.Instance.SetGameState(GameManager.Instance.WinState);
-                    GameManager.Instance.CurrentRound = 0;
-                }
-                else
-                {
-                    _continue.gameObject.SetActive(true);
-                }
-            });
-        }
+            CheckFinalScore();
+        });
 
         _animationTimeScale = 5.0f / (float)totalAnimation;
     }
@@ -529,5 +508,39 @@ public class UI_BagMenu : UI_Menu
     {
         UI_BonusIcon bonusIcon = _bonusIconList.Find(x => x.Data.Name == bonusName);
         if (bonusIcon != null) bonusIcon.Highlight();
+    }
+
+    public void CheckFinalScore()
+    {
+        MND_Scavenge_Classic scavengeNode = SaveManager.Instance.GetScavengeNode();
+        if (GameManager.Instance.CurrentScore >= GameManager.Instance.GoalScore)
+        {
+            MND_Scavenge_Possession bossPossessionNode = (MND_Scavenge_Possession) scavengeNode;
+            if (bossPossessionNode != null)
+            {
+                bossPossessionNode.BeatScore();
+            }
+            else
+            {
+                GameManager.Instance.SetGameState(GameManager.Instance.WinState);
+            }
+        }
+        else
+        {
+            if (GameManager.Instance.CurrentRound >= GameManager.Instance.GetMaxRoundNumber())
+            {
+                GameManager.Instance.SetGameState(GameManager.Instance.GameOverState);
+
+            }
+            else
+            {
+                AllowContinue();
+            }
+        }
+    }
+
+    public void AllowContinue()
+    {
+        _continue.gameObject.SetActive(true);
     }
 }

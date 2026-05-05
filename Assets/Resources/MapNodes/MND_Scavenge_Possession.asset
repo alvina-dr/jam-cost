@@ -15,6 +15,9 @@ MonoBehaviour:
   NodeName: ???
   IsAvailableInGame: 0
   NodeIcon: {fileID: 21300000, guid: cd37d234951cb75428f21b81a9e20d13, type: 3}
-  ScoreGoal: 1000
-  SpawnItemParameters: {fileID: 11400000, guid: 6fd6173514e6a4e448b6979205bd7423, type: 2}
+  ScoreGoal: 100
   RoundNumber: 5
+  SpawnItemParameters: {fileID: 11400000, guid: 6fd6173514e6a4e448b6979205bd7423, type: 2}
+  SecondPhaseGoalScore: 200
+  ThirdPhaseGoalScore: 400
+  BossPhase: 0
