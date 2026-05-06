@@ -168,33 +168,11 @@ public class UI_BagMenu : UI_Menu
 
         List<UI_BagSlot> chosenItemSlotList = GetChosenItemSlotList();
 
-        int countTimeMax = 1;
-        BD_LastTurn_DoubleItem doubleTrouble = SaveManager.Instance.CheckHasRunBonus<BD_LastTurn_DoubleItem>();
-        if (GameManager.Instance.CurrentRound >= GameManager.Instance.GetMaxRoundNumber() && doubleTrouble != null)
-        {
-            countTimeMax = 2;
-        }
-        for (int countTime = 0; countTime < countTimeMax; countTime++)
-        {
-            if (countTime == 1)
-            {
-                totalAnimation++;
-                _countSequence.ChainDelay(baseDelay * _animationTimeScale);
-                _countSequence.ChainCallback(() =>
-                {
-                    _shakePlayer.PlayFeedbacks();
-                    StackAnim();
-                    HighlightBonus(doubleTrouble.Name);
-                    GameManager.Instance.UIManager.TextPopperManager_Info.PopText(doubleTrouble.Name, Vector3.up, Color.black, UI_TextPopper.AnimSpeed.Quick);
-                });
-                _countSequence.ChainDelay(.1f * _animationTimeScale);
-            }
-            ShowBaseScores();
+        ShowBaseScores();
 
-            CountCombinations();
+        CountCombinations();
 
-            CountItemBonus();
-        }
+        CountItemBonus();
 
         for (int i = 0; i < chosenItemSlotList.Count; i++)
         {
