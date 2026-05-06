@@ -79,7 +79,7 @@ public class ItemBehavior : MonoBehaviour
         transform.position = new Vector3(transform.position.x, transform.position.y, sortingOrder * -0.001f);
     }
 
-    public void DestroyItem()
+    public virtual void DestroyItem()
     {
         transform.DOKill();
         GameManager.Instance.ItemManager.ItemList.Remove(this);

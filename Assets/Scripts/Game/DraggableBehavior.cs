@@ -144,7 +144,7 @@ public class DraggableBehavior : ItemBehavior
             {
                 if (GameManager.Instance.BossLock.TryOpenLock(Item.Data))
                 {
-                    DestroyItem();
+                    base.DestroyItem();
                     AudioManager.Instance.PlaySFXSound(_trashItemSound);
                 }
                 else
@@ -218,5 +218,15 @@ public class DraggableBehavior : ItemBehavior
         });
         _sellIcon.enabled = false;
         _cross.enabled = false;
+    }
+
+    public override void DestroyItem()
+    {
+        BD_TrashEffect bonus = SaveManager.Instance.CheckHasRunBonus<BD_TrashEffect>();
+        if (bonus && bonus.CheckBonus())
+        {
+            SaveManager.Instance.AddPP(1, transform.position);
+        }
+        base.DestroyItem();
     }
 }
