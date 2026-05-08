@@ -11,10 +11,7 @@ public class GS_Reward : GameState
 
         GameManager.Instance.Lever.SetActive(false);
 
-        // get calculation of how many pp should be instantiated as a reward
-        // instantiate all pps
-        // let the player click the button to continue their run
-        GameManager.Instance.ItemManager.SpawnRewards();
+        SaveManager.Instance.CurrentReward.SpawnReward();
         GameManager.Instance.UIManager.RewardMenu.OpenMenu();
     }
 

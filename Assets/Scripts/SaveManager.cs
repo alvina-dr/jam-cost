@@ -31,6 +31,7 @@ public class SaveManager : MonoBehaviour
     [SerializeField] private TransitionSettings _transitionSettings;
 
     public MapNodeData CurrentMapNode;
+    public RewardData CurrentReward;
     [SerializeField] private SaveData _currentSave;
     public PowerData FirstPower;
     [SerializeField] private MapNodeData _firstNode;

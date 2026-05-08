@@ -42,30 +42,24 @@ public class NodeChoiceManager : MonoBehaviour
     {
         List<MapNodeData> chosenMapNodeData = new();
 
-        if (SaveManager.CurrentSave.CurrentRun.CurrentNode == _mapData.BossNumber)
+        MapNodeChoiceData choiceData = _mapData.ChoiceList[SaveManager.CurrentSave.CurrentRun.CurrentNode];
+        List<MapNodeData> choiceList = new(choiceData.MapNodeDataPool);
+
+        int numberNodeToDraw = 2;
+
+        MND_FreeRound freeRound = choiceList.Find(x => x is MND_FreeRound) as MND_FreeRound;
+        if (freeRound != null && SaveManager.CurrentSave.CurrentRun.RunBonusRound == 0)
         {
-            chosenMapNodeData.Add(_mapData.BossMapNodeData);
+            choiceList.Remove(freeRound);
+            chosenMapNodeData.Add(freeRound);
+            numberNodeToDraw--;
         }
-        else
-        {
-            List<MapNodeData> choiceList = new(_mapData.DailyChoiceList[SaveManager.CurrentSave.CurrentRun.CurrentNode].MapNodeDataList);
-
-            int numberNodeToDraw = 2;
-
-            MND_FreeRound freeRound = choiceList.Find(x => x is MND_FreeRound) as MND_FreeRound;
-            if (freeRound != null && SaveManager.CurrentSave.CurrentRun.RunBonusRound == 0)
-            {
-                choiceList.Remove(freeRound);
-                chosenMapNodeData.Add(freeRound);
-                numberNodeToDraw--;
-            }
-            for (int i = 0; i < numberNodeToDraw; i++)
-            { 
-                if (choiceList.Count == 0) break;
-                MapNodeData mapNodeData = choiceList[Random.Range(0, choiceList.Count)];
-                choiceList.Remove(mapNodeData);
-                chosenMapNodeData.Add(mapNodeData);
-            }
+        for (int i = 0; i < numberNodeToDraw; i++)
+        { 
+            if (choiceList.Count == 0) break;
+            MapNodeData mapNodeData = choiceList[Random.Range(0, choiceList.Count)];
+            choiceList.Remove(mapNodeData);
+            chosenMapNodeData.Add(mapNodeData);
         }
 
         for (int i = 0; i < _mapNodeList.Count; i++)
@@ -73,7 +67,7 @@ public class NodeChoiceManager : MonoBehaviour
             if (i < chosenMapNodeData.Count)
             {
                 _mapNodeList[i].gameObject.SetActive(true);
-                _mapNodeList[i].SetupNode(chosenMapNodeData[i]);
+                _mapNodeList[i].SetupNode(chosenMapNodeData[i], choiceData.ChooseRandomReward());
             }
             else
             {
@@ -82,10 +76,11 @@ public class NodeChoiceManager : MonoBehaviour
         }
     }
 
-    public void LaunchNode(MapNodeData data)
+    public void LaunchNode(MapNodeData mapNodeData, RewardData rewardData)
     {
-        SaveManager.Instance.CurrentMapNode = Instantiate(data);
-        switch (data)
+        SaveManager.Instance.CurrentMapNode = Instantiate(mapNodeData);
+        SaveManager.Instance.CurrentReward = rewardData;
+        switch (mapNodeData)
         {
             case MND_Scavenge_Classic:
                 TransitionManager.Instance().TransitionChangeScene("Game", _transitionSettings, 0);

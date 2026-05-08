@@ -7,8 +7,6 @@ public class MND_Scavenge_Classic : MapNodeData
     public int ScoreGoal;
     public int RoundNumber;
     public SpawnItemParameters SpawnItemParameters;
-    public List<RewardData> RewardDataList;
-    public RewardData SelectedRewardData;
 
     public virtual void SpawnItems()
     {
@@ -33,10 +31,5 @@ public class MND_Scavenge_Classic : MapNodeData
     public virtual void NewRound()
     {
 
-    }
-
-    public void SetRandomReward()
-    {
-        SelectedRewardData = RewardDataList[Random.Range(0, RewardDataList.Count)];
     }
 }

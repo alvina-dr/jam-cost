@@ -1,5 +1,4 @@
 using DG.Tweening;
-using NUnit.Framework.Constraints;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +7,7 @@ using UnityEngine.EventSystems;
 public class UI_MapNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public MapNodeData MapNodeData;
+    public RewardData RewardData;
     public int MapNodeIndex;
     public int MapNodeColumnIndex;
     public int MapNodeRowIndex;
@@ -24,18 +24,24 @@ public class UI_MapNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void SetupNode(MapNodeData nodeData, int nodeIndex, int columnIndex, int rowIndex)
     {
-        SetupNode(nodeData);
+        SetupNode(nodeData, null);
         MapNodeIndex = nodeIndex;
         MapNodeRowIndex = rowIndex;
         MapNodeColumnIndex = columnIndex;
         transform.name = "MapNode_" + MapNodeIndex;
     }
 
-    public void SetupNode(MapNodeData nodeData)
+    public void SetupNode(MapNodeData nodeData, RewardData rewardData)
     {
         MapNodeData = nodeData;
+        RewardData = rewardData;
         _icon.sprite = nodeData.NodeIcon;
-        //_icon.SetNativeSize();
+
+        MND_Scavenge_Classic scavengeNode = (MND_Scavenge_Classic) MapNodeData;
+        if (scavengeNode && rewardData)
+        {
+            _icon.sprite = rewardData.Icon;
+        }
     }
 
     public void SetupLine(UI_MapNode neighbourMapNode, bool xThenY)
@@ -75,7 +81,7 @@ public class UI_MapNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void ChooseMapNode()
     {
         //SaveManager.CurrentSave.CurrentRun.FormerNodeList.Add(MapNodeIndex);
-        NodeChoiceManager.Instance.LaunchNode(MapNodeData);
+        NodeChoiceManager.Instance.LaunchNode(MapNodeData, RewardData);
     }
 
     public void DeactivateNode()

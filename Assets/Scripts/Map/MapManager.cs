@@ -61,19 +61,19 @@ public class MapManager : MonoBehaviour
         Random.InitState(SaveManager.CurrentSave.CurrentRun.RandomSeed);
 
         // instantiate all nodes
-        for (int i = 0; i < _mapData.DailyChoiceList.Count; i++)
+        for (int i = 0; i < _mapData.ChoiceList.Count; i++)
         {
             _nodeNumberPerColumn.Add(0);
-            for (int j = 0; j < _mapData.DailyChoiceList[i].MapNodeDataList.Count; j++)
+            for (int j = 0; j < _mapData.ChoiceList[i].MapNodeDataPool.Count; j++)
             {
                 _nodeNumberPerColumn[i] += 1;
                 UI_MapNode mapNode = Instantiate(_mapNodePrefab, _mapNodeParent);
 
-                int mapNodeIndex = i * _mapData.DailyChoiceList[0].MapNodeDataList.Count + j + 1; // + 1 because of the starting map node
+                int mapNodeIndex = i * _mapData.ChoiceList[0].MapNodeDataPool.Count + j + 1; // + 1 because of the starting map node
                 mapNode.transform.localPosition = new Vector3(i * _interNodeSpace.x, j * _interNodeSpace.y, 0) + 
                     new Vector3(Random.Range(-_offsetRandomLimit.x, _offsetRandomLimit.x), Random.Range(-_offsetRandomLimit.y, _offsetRandomLimit.y), 0)
                     + _offsetGeneralMap;
-                mapNode.SetupNode(_mapData.DailyChoiceList[i].MapNodeDataList[j], _mapNodeList.Count, i, j);
+                mapNode.SetupNode(_mapData.ChoiceList[i].MapNodeDataPool[j], _mapNodeList.Count, i, j);
                 _mapNodeList.Add(mapNode);
             }
         }
@@ -178,7 +178,7 @@ public class MapManager : MonoBehaviour
         }
 
         // Connect ending node to all nodes of last column
-        List<UI_MapNode> lastColumnNodeList = GetNodeListFromColumn(_mapData.DailyChoiceList.Count - 1);
+        List<UI_MapNode> lastColumnNodeList = GetNodeListFromColumn(_mapData.ChoiceList.Count - 1);
         for (int i = 0; i < lastColumnNodeList.Count; i++)
         {
             EndingMapNode.SetupLine(lastColumnNodeList[i], false);

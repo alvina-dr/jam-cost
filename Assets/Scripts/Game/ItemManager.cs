@@ -14,10 +14,6 @@ public class ItemManager : MonoBehaviour
 
     [ReadOnly] private int _totalSpawnChance;
 
-    [Header("Reward prefabs")]
-    [SerializeField] private ItemData _ppID;
-
-
     [Button]
     public void ResetDumpster()
     {
@@ -33,29 +29,6 @@ public class ItemManager : MonoBehaviour
         }
 
         ItemList.Clear();
-    }
-
-    public void SpawnItems()
-    {
-        CalculateTotalSpawnChance();
-        
-        for (int i = 0; i < SaveManager.Instance.GetScavengeNode().SpawnItemParameters.ItemNumber; i++)
-        {
-            ItemData dataItem = GetRandomItem();
-            ItemBehavior itemBehavior = Instantiate(dataItem.Prefab);
-            itemBehavior.Setup(dataItem); // actualize item with instantiated item data
-
-            int random = Random.Range(0, 2);
-            if (random == 0)
-            {
-                itemBehavior.SetTag(DataLoader.Instance.GetRandomItemTagData());
-            }
-            itemBehavior.transform.position = new Vector3(Random.Range(-_spawnZone.x/2 + _offset.x, _spawnZone.x / 2 + _offset.x), Random.Range(-_spawnZone.y / 2 + _offset.y, _spawnZone.y / 2 + _offset.y), i * -0.001f);
-            itemBehavior.transform.eulerAngles = new Vector3(0, 0, Random.Range(-70, 70));
-            ItemList.Add(itemBehavior);
-            itemBehavior.SetSortingOrder((i * 2) + 1);
-            TopLayer = (i * 2) + 1;
-        }
     }
 
     public ItemData GetRandomItem()
@@ -74,26 +47,6 @@ public class ItemManager : MonoBehaviour
             }
         }
         return null;
-    }
-
-    public void SpawnRewards()
-    {
-        CleanItems();
-
-        int ppNumber = 5;
-        ppNumber += SaveManager.CurrentSave.EveryNodeLootPP;
-
-        for (int i = 0; i < ppNumber; i++)
-        {
-            ItemData dataItem = _ppID;
-            ItemBehavior itemBehavior = Instantiate(dataItem.Prefab);
-            itemBehavior.Item.Data = dataItem; // actualize item with instantiated item data
-            itemBehavior.transform.position = new Vector3(Random.Range(-_spawnZone.x / 2 + _offset.x, _spawnZone.x / 2 + _offset.x), Random.Range(-_spawnZone.y / 2 + _offset.y, _spawnZone.y / 2 + _offset.y), i * -0.001f);
-            itemBehavior.transform.eulerAngles = new Vector3(0, 0, Random.Range(-70, 70));
-            ItemList.Add(itemBehavior);
-            itemBehavior.SetSortingOrder((i * 2) + 1);
-            TopLayer = (i * 2) + 1;
-        }
     }
 
     public void CalculateTotalSpawnChance()

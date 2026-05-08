@@ -18,3 +18,6 @@ MonoBehaviour:
   ScoreGoal: 1300
   RoundNumber: 3
   SpawnItemParameters: {fileID: 11400000, guid: d25f3946f2184784483ad43ab1f831f1, type: 2}
+  RewardDataList:
+  - {fileID: 11400000, guid: 00b2dc2251ca3e84fa1071d6c833c861, type: 2}
+  SelectedRewardData: {fileID: 0}
