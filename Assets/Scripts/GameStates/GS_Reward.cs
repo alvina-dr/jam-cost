@@ -43,6 +43,8 @@ public class GS_Reward : GameState
     {
         if (_whileTransition) return;
 
+        if (_bonusItemBehavior.Count > 0) return;
+
         _whileTransition = true;
         for (int i = 0; i < GameManager.Instance.ItemManager.ItemList.Count; i++)
         {
