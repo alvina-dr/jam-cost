@@ -4905,15 +4905,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3332545717796112969, guid: a7baf07a41069234a8d382ebd7b43e0c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 3332545717796112969, guid: a7baf07a41069234a8d382ebd7b43e0c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 3332545717796112969, guid: a7baf07a41069234a8d382ebd7b43e0c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 3332545717796112969, guid: a7baf07a41069234a8d382ebd7b43e0c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4934,7 +4934,7 @@ PrefabInstance:
     - target: {fileID: 4162256917233115436, guid: a7baf07a41069234a8d382ebd7b43e0c, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: e44c21a0be77d49419886bd95bcb520c, type: 3}
+      objectReference: {fileID: 21300000, guid: 6d3b50912aa332d4493173811f9bd131, type: 3}
     - target: {fileID: 4162256917233115436, guid: a7baf07a41069234a8d382ebd7b43e0c, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -4965,7 +4965,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7242585668704001078, guid: a7baf07a41069234a8d382ebd7b43e0c, type: 3}
       propertyPath: m_Name
-      value: IP_PP
+      value: IP_Bonus
       objectReference: {fileID: 0}
     - target: {fileID: 8256978997658704428, guid: a7baf07a41069234a8d382ebd7b43e0c, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.size
@@ -5147,7 +5147,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7242585668704001078, guid: a7baf07a41069234a8d382ebd7b43e0c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7492408757463846880}
+      addedObject: {fileID: 8566310589325504646}
     - targetCorrespondingSourceObject: {fileID: 7242585668704001078, guid: a7baf07a41069234a8d382ebd7b43e0c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2834635080238091872}
@@ -5162,7 +5162,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7242585668704001078, guid: a7baf07a41069234a8d382ebd7b43e0c, type: 3}
   m_PrefabInstance: {fileID: 4662837150235267143}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7492408757463846880
+--- !u!114 &8566310589325504646
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5171,9 +5171,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2609674235713113201}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a53942ffa49f3c84c8833c7d793f3046, type: 3}
+  m_Script: {fileID: 11500000, guid: b79e86508fe0fb84b9c0154c6abd9550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Item:
+    Data: {fileID: 0}
+    TagData: {fileID: 0}
   _collider: {fileID: 2834635080238091872}
   _spriteRenderer: {fileID: 8752454728129130859}
   _offset: {x: 0, y: 0, z: 0}
@@ -5188,7 +5191,8 @@ MonoBehaviour:
   _clickableMaterial: {fileID: 2100000, guid: f4abf853aeb0b3b4498833203d55b262, type: 2}
   _collectParticles: {fileID: 3642709651322272509}
   _collectSound: {fileID: 8300000, guid: 0fc69976e44ac9a459408b1e794c0ed5, type: 3}
-  _maxScale: 0.75
+  _maxScale: 0.3
+  BonusData: {fileID: 0}
 --- !u!58 &2834635080238091872
 CircleCollider2D:
   m_ObjectHideFlags: 0

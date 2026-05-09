@@ -15,5 +15,6 @@ MonoBehaviour:
   MapNodeDataPool:
   - {fileID: 11400000, guid: aa0c421df902ed14f93ba91c5ed17b50, type: 2}
   RewardDataPool:
-  - {fileID: 11400000, guid: bcaa046e4e6456a44876bc773b80ee01, type: 2}
-  - {fileID: 11400000, guid: 00b2dc2251ca3e84fa1071d6c833c861, type: 2}
+  - {fileID: 11400000, guid: d55eda5b154e82844a0a21907f387dd6, type: 2}
+  - {fileID: 11400000, guid: c846d1ef6f06f624082bd48660b31597, type: 2}
+  - {fileID: 11400000, guid: 28bc3aeda1ed705459d7eb79b1b5fca8, type: 2}

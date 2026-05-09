@@ -52,5 +52,6 @@ public class MainSceneToolbarButton
 
             System.IO.File.Delete(Application.persistentDataPath + "/Save.json");
         }
+        GUILayout.FlexibleSpace();
     }
 }

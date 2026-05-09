@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa93d97dd1b662249a72a9bd32df600f, type: 3}
-  m_Name: RD_MT
+  m_Name: RD_BonusChoice
   m_EditorClassIdentifier: 
-  Name: Meal Tickets
-  Description: Collect Meal Tickets !
-  Icon: {fileID: 21300000, guid: 04ca3ed6e5775034d885589782406c3b, type: 3}
-  RewardItemData: {fileID: 11400000, guid: e148b4fe439c55c4bac8265bd376766d, type: 2}
+  Name: Bonus
+  Description: Get a choice between 3 random bonus !
+  Icon: {fileID: -4209461767521648114, guid: facecafb1e8654005a2c8c8bedd4beb2, type: 3}
+  RewardItemData: {fileID: 11400000, guid: ebca227d451933645a514b4618ac80bf, type: 2}
   RewardNumber: 3

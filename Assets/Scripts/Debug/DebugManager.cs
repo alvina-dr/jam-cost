@@ -66,7 +66,7 @@ public class DebugManager : MonoBehaviour
         RuntimeDebugSystem.UnregisterActions(DebugActionList.ToArray());
         DebugActionList.Clear();
 
-        List<BonusData> bonusDataList = Resources.LoadAll<BonusData>("Bonus").ToList();
+        List<BonusData> bonusDataList = Resources.LoadAll<BonusData>("BonusData").ToList();
         for (int i = 0; i < bonusDataList.Count; i++)
         {
             int index = i;

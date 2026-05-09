@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cffffe49debf20a4784f27f6d5632d72, type: 3}
-  m_Name: DebugBossMzap
+  m_Name: DebugBossMap
   m_EditorClassIdentifier: 
   DailyChoiceList: []
   NumberOfNodesToDelete: 4

@@ -32,36 +32,36 @@ public class DataLoader : MonoBehaviour
 
     private void OnAwake()
     {
-        ItemDataList = Resources.LoadAll<ItemData>("Items").ToList();
+        ItemDataList = Resources.LoadAll<ItemData>("ItemData").ToList();
         for (int i = 0; i < ItemDataList.Count; i++)
         {
             ItemDataList[i] = Instantiate(ItemDataList[i]);
         }
 
-        RunBonusDataList = Resources.LoadAll<BonusData>("Bonus/Run").ToList();
+        RunBonusDataList = Resources.LoadAll<BonusData>("BonusData/Run").ToList();
         RunBonusDataList = RunBonusDataList.FindAll(x => x.IsAvailableInGame);
 
-        PermanentBonusDataList = Resources.LoadAll<BonusData>("Bonus/Permanent").ToList();
+        PermanentBonusDataList = Resources.LoadAll<BonusData>("BonusData/Permanent").ToList();
         PermanentBonusDataList = PermanentBonusDataList.FindAll(x => x.IsAvailableInGame);
 
-        MapNodeDataList = Resources.LoadAll<MapNodeData>("MapNodes").ToList();
+        MapNodeDataList = Resources.LoadAll<MapNodeData>("MapNodeData").ToList();
         MapNodeDataList = MapNodeDataList.FindAll(x => x.IsAvailableInGame);
 
-        PowerDataList = Resources.LoadAll<PowerData>("Powers").ToList();
+        PowerDataList = Resources.LoadAll<PowerData>("PowerData").ToList();
         for(int i = 0;  i < PowerDataList.Count;i++)
         {
             //PowerDataList[i].Reset();
             PowerDataList[i] = Instantiate(PowerDataList[i]);
         }
 
-        List<CombinationData> combinationDataList = Resources.LoadAll<CombinationData>("Combinations").ToList();
+        List<CombinationData> combinationDataList = Resources.LoadAll<CombinationData>("CombinationData").ToList();
         for (int i = 0; i < combinationDataList.Count; i++)
         {
             CombinationData combinationData = Instantiate(combinationDataList[i]);
             CombinationDataDictionary.Add(combinationData.Data.Name, combinationData);
         }
 
-        List<ItemTagData> itemTagDataList = Resources.LoadAll<ItemTagData>("ItemTags").ToList();
+        List<ItemTagData> itemTagDataList = Resources.LoadAll<ItemTagData>("ItemTagData").ToList();
         for (int i = 0; i < itemTagDataList.Count; i++)
         {
             ItemTagData itemTagData = Instantiate(itemTagDataList[i]);
