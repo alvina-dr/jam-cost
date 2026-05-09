@@ -116,7 +116,7 @@ public class UI_BonusMenu : UI_Menu
 
         SaveManager.Instance.AddPP(-_currentBonusData.Price);
         SaveManager.CurrentSave.PPSpentRunShop += _currentBonusData.Price;
-        QuestManager.Instance.CheckQuestCompletionByType<QD_PPSpentRunShop>();
+        QuestDirector.Instance.CheckQuestCompletionByType<QD_PPSpentRunShop>();
         _currentBonusData = null;
         _currentBonusEntry.SetupBonus(null);
     }

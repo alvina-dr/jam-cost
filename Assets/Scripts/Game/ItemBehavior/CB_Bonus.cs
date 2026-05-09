@@ -15,6 +15,7 @@ public class CB_Bonus : ClickableBehavior, IPointerEnterHandler, IPointerExitHan
 
     public override void Collect()
     {
+        SaveManager.Instance.CurrentRunBonusList.Add(BonusData);
         GameManager.Instance.RewardState.ClearBonus(this);
         _collider.enabled = false;
         AudioManager.Instance.PlaySFXSound(_collectSound);

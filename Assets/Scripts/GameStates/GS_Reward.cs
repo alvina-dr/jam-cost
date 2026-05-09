@@ -46,10 +46,11 @@ public class GS_Reward : GameState
         _whileTransition = true;
         for (int i = 0; i < GameManager.Instance.ItemManager.ItemList.Count; i++)
         {
-            ClickableBehavior clickableBehavior = (ClickableBehavior) GameManager.Instance.ItemManager.ItemList[i];
-            if (clickableBehavior)
+            ItemBehavior itemBehavior = GameManager.Instance.ItemManager.ItemList[i];
+            if (itemBehavior is ClickableBehavior)
             {
-                if ((CB_Bonus) clickableBehavior == null) clickableBehavior.Collect();
+                ClickableBehavior clickableBehavior = (ClickableBehavior) itemBehavior;
+                if (clickableBehavior is not CB_Bonus) clickableBehavior.Collect();
             }
         }
 

@@ -50,7 +50,7 @@ public class QuestData : ScriptableObject
 
         for (int i = 0; i < QuestUnlocked.Count; i++)
         {
-            QuestManager.Instance.GetInstantiatedQuestData(QuestUnlocked[i]).DiscoverQuest();
+            QuestDirector.Instance.GetInstantiatedQuestData(QuestUnlocked[i]).DiscoverQuest();
         }
     }
 

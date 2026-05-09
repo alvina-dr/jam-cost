@@ -25,7 +25,7 @@ public class UI_QuestsMenu : UI_Menu
 
     public void Setup()
     {
-        List<QuestData> questDataList = QuestManager.Instance.QuestDataDictionary.Values.ToList();
+        List<QuestData> questDataList = QuestDirector.Instance.QuestDataDictionary.Values.ToList();
 
         List<QuestData> orderedQuestDataList = new();
 

@@ -15,13 +15,14 @@ MonoBehaviour:
   ChoiceList:
   - {fileID: 11400000, guid: e9800f8a3b3c76444aa530872f307cac, type: 2}
   - {fileID: 11400000, guid: 157e54794b4828247bcf84e14bac3bbf, type: 2}
+  - {fileID: 11400000, guid: 11c05f04898c18a4e8cb50f1bdfdf5fd, type: 2}
   - {fileID: 11400000, guid: 5bcf2f908d14c2e4aa41e5a78993295a, type: 2}
   - {fileID: 11400000, guid: fe57c92adbc1e3047a36e170f07416b4, type: 2}
+  - {fileID: 11400000, guid: 8375aa0167dc84b4ea8d5c6552fad372, type: 2}
   - {fileID: 11400000, guid: 3f82f1d8352a4764596e12f0de1573b8, type: 2}
   - {fileID: 11400000, guid: f6ddb30105b5ddb4cbb457f506c535d0, type: 2}
+  - {fileID: 11400000, guid: 596cee507adefd94bbd3dd5db8a8b5ad, type: 2}
   - {fileID: 11400000, guid: bc5c12396b98ce74baf9e6060842984a, type: 2}
   - {fileID: 11400000, guid: fc856e50683e0e34d8f02ac283ae6e99, type: 2}
+  - {fileID: 11400000, guid: 7dea3f685fc0ee14c8a601b9e1e6f5e9, type: 2}
   - {fileID: 11400000, guid: e606df96c31bd6c4a9f8ca1349c3b30f, type: 2}
-  NumberOfNodesToDelete: 4
-  BossNumber: 12
-  BossMapNodeData: {fileID: 11400000, guid: e5fcb8f75e750cc46baf27d128003a42, type: 2}

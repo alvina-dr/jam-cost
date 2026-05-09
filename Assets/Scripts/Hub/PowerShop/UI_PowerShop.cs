@@ -135,7 +135,7 @@ public class UI_PowerShop : UI_Menu
 
         SaveManager.Instance.EquipedPowerDataList.Add(_currentPowerData);
         
-        QuestManager.Instance.CheckQuestCompletionByType<QD_EquipPowerNumber>();
+        QuestDirector.Instance.CheckQuestCompletionByType<QD_EquipPowerNumber>();
     }
 
     public void UnequipPower()

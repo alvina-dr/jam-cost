@@ -203,7 +203,7 @@ public class UI_BagMenu : UI_Menu
         {
             GameManager.Instance.SetCurrentScore(GameManager.Instance.CurrentScore + _roundScore);
             SaveManager.CurrentSave.TotalPoints += _roundScore;
-            QuestManager.Instance.CheckQuestCompletionByType<QD_TotalPoints>();
+            QuestDirector.Instance.CheckQuestCompletionByType<QD_TotalPoints>();
             _scoreBar.SetBarValue(GameManager.Instance.CurrentScore, GameManager.Instance.GoalScore);
 
             int confettiNumber = 0;
@@ -493,9 +493,9 @@ public class UI_BagMenu : UI_Menu
         MND_Scavenge_Classic scavengeNode = SaveManager.Instance.GetScavengeNode();
         if (GameManager.Instance.CurrentScore >= GameManager.Instance.GoalScore)
         {
-            MND_Scavenge_Possession bossPossessionNode = (MND_Scavenge_Possession) scavengeNode;
-            if (bossPossessionNode != null)
+            if (scavengeNode is MND_Scavenge_Possession)
             {
+                MND_Scavenge_Possession bossPossessionNode = (MND_Scavenge_Possession)scavengeNode;
                 bossPossessionNode.BeatScore();
             }
             else

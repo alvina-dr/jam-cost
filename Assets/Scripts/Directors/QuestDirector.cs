@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class QuestManager : MonoBehaviour
+public class QuestDirector : MonoBehaviour
 {
     #region Singleton
-    public static QuestManager Instance { get; private set; }
+    public static QuestDirector Instance { get; private set; }
 
     private void Awake()
     {
@@ -27,7 +27,7 @@ public class QuestManager : MonoBehaviour
 
     public void OnAwake()
     {
-        List<QuestData> questDataList = Resources.LoadAll<QuestData>("Quests").ToList();
+        List<QuestData> questDataList = Resources.LoadAll<QuestData>("QuestData").ToList();
         for (int i = 0; i < questDataList.Count; i++)
         {
             QuestData questData = Instantiate(questDataList[i]);

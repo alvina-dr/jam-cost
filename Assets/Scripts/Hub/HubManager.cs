@@ -73,7 +73,7 @@ public class HubManager : MonoBehaviour
 
     public void ShowQuestBoardIndication()
     {
-        List<QuestData> questDataList = QuestManager.Instance.QuestDataDictionary.Values.ToList();
+        List<QuestData> questDataList = QuestDirector.Instance.QuestDataDictionary.Values.ToList();
         if (_questBoardClue) _questBoardClue.gameObject.SetActive(questDataList.Find(x => x.Data.State == QuestData.QuestState.WaitCollection || x.Data.State == QuestData.QuestState.New));
     }
 

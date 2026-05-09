@@ -82,9 +82,15 @@ public class SaveManager : MonoBehaviour
 
     public void NextNode()
     {
-        CurrentSave.CurrentRun.CurrentNode++;
-        //AddPP(CurrentSave.EveryNodeLootPP);
-        TransitionManager.Instance().TransitionChangeScene("Map", _transitionSettings, 0);
+        if (CurrentMapNode is MND_Scavenge_Possession)
+        {
+            TransitionManager.Instance().TransitionChangeScene("Ending", _transitionSettings, 0);
+        }
+        else
+        {
+            CurrentSave.CurrentRun.CurrentNode++;
+            TransitionManager.Instance().TransitionChangeScene("Map", _transitionSettings, 0);
+        }
     }
 
     public T CheckHasRunBonus<T>() where T : BonusData
@@ -204,7 +210,7 @@ public class SaveManager : MonoBehaviour
 
         for (int i = 0; i < CurrentSave.ModifiedQuestList.Count; i++)
         {
-            QuestManager.Instance.QuestDataDictionary[CurrentSave.ModifiedQuestList[i].Name].Data = CurrentSave.ModifiedQuestList[i];
+            QuestDirector.Instance.QuestDataDictionary[CurrentSave.ModifiedQuestList[i].Name].Data = CurrentSave.ModifiedQuestList[i];
         }
 
         for (int i = 0; i < CurrentSave.ModifiedCombinationList.Count; i++)
@@ -240,7 +246,7 @@ public class SaveManager : MonoBehaviour
         CurrentSave.LastSceneName = SceneManager.GetActiveScene().name;
 
         CurrentSave.ModifiedQuestList.Clear();
-        List<QuestData> questDataList = QuestManager.Instance.QuestDataDictionary.Values.ToList();
+        List<QuestData> questDataList = QuestDirector.Instance.QuestDataDictionary.Values.ToList();
         for (int i = 0; i < questDataList.Count; i++)
         {
             CurrentSave.ModifiedQuestList.Add(questDataList[i].Data);

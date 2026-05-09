@@ -13,7 +13,7 @@ public class Unlockable_Quest : MonoBehaviour
 
     public void UpdateUnlock()
     {
-        if (QuestManager.Instance.QuestDataDictionary.TryGetValue(_questForUnlock.Data.Name, out QuestData questData))
+        if (QuestDirector.Instance.QuestDataDictionary.TryGetValue(_questForUnlock.Data.Name, out QuestData questData))
         {
             if (questData.Data.State == QuestData.QuestState.Collected)
             {

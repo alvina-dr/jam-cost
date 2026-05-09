@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55637005ec70a2f4cabb931d898f0ba6, type: 3}
-  m_Name: MNCD_Boss
+  m_Name: MNCD_6_Shop
   m_EditorClassIdentifier: 
   MapNodeDataPool:
-  - {fileID: 11400000, guid: e5fcb8f75e750cc46baf27d128003a42, type: 2}
-  RewardDataPool:
-  - {fileID: 11400000, guid: c846d1ef6f06f624082bd48660b31597, type: 2}
+  - {fileID: 11400000, guid: a7429d39c13087143b40e4a945bee045, type: 2}
+  - {fileID: 11400000, guid: 1d499ea43c1cd154495a3173942132ae, type: 2}
+  RewardDataPool: []

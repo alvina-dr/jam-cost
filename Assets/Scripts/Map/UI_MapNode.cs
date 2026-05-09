@@ -37,9 +37,9 @@ public class UI_MapNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         RewardData = rewardData;
         _icon.sprite = nodeData.NodeIcon;
 
-        MND_Scavenge_Classic scavengeNode = (MND_Scavenge_Classic) MapNodeData;
-        if (scavengeNode && rewardData)
+        if (MapNodeData is MND_Scavenge_Classic && rewardData)
         {
+            MND_Scavenge_Classic scavengeNode = (MND_Scavenge_Classic) MapNodeData;
             _icon.sprite = rewardData.Icon;
         }
     }

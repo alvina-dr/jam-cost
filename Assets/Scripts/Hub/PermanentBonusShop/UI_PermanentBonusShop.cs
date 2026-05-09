@@ -126,7 +126,7 @@ public class UI_PermanentBonusShop : UI_Menu
         SaveManager.Instance.PermanentBonusList.Add(bonusData);
         bonusData.GetBonus();
         SaveManager.Instance.AddMT(-bonusData.Price);
-        QuestManager.Instance.CheckQuestCompletionByType<QD_PermanentUpgradeNumber>();
+        QuestDirector.Instance.CheckQuestCompletionByType<QD_PermanentUpgradeNumber>();
 
         // increase buy permanent bonus slot current index 
         if (_currentBuyPermanentBonusSlot.BonusData.UpgradeBonusList.Count > 0 &&

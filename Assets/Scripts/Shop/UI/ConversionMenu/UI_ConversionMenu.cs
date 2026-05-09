@@ -48,7 +48,7 @@ public class UI_ConversionMenu : UI_Menu
         SaveManager.Instance.AddMT(_mealTicketNumber, _mealTicketSpawnPoint.position);
         SaveManager.Instance.AddPP(-_mealTicketNumber*5);
         SaveManager.CurrentSave.PPConvertedToMT += _mealTicketNumber * 5;
-        QuestManager.Instance.CheckQuestCompletionByType<QD_PPConverted>();
+        QuestDirector.Instance.CheckQuestCompletionByType<QD_PPConverted>();
         _mealTicketNumber = 0;
         CloseMenu();
     }
