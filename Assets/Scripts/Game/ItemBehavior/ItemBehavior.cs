@@ -105,6 +105,7 @@ public class ItemBehavior : MonoBehaviour
 
     protected virtual void OnMouseEnter()
     {
+        TooltipManager.Instance.ShowTooltip(Item, transform.position);
         if (!CanClickItem()) return;
         if (GameManager.Instance.SelectedItem != null) return;
 
@@ -115,6 +116,8 @@ public class ItemBehavior : MonoBehaviour
 
     protected virtual void OnMouseExit()
     {
+        TooltipManager.Instance.HideTooltip();
+
         if (!CanClickItem()) return;
         if (GameManager.Instance.SelectedItem != null) return;
 

@@ -16,6 +16,6 @@ public class ClickableBehavior : ItemBehavior
 
     public virtual void Collect()
     {
-
+        GameManager.Instance.ItemManager.ItemList.Remove(this);
     }
 }

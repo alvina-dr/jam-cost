@@ -1,8 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class CB_Bonus : ClickableBehavior, IPointerEnterHandler, IPointerExitHandler
+public class CB_Bonus : ClickableBehavior
 {
     public BonusData BonusData;
 
@@ -15,6 +14,7 @@ public class CB_Bonus : ClickableBehavior, IPointerEnterHandler, IPointerExitHan
 
     public override void Collect()
     {
+        base.Collect();
         SaveManager.Instance.CurrentRunBonusList.Add(BonusData);
         GameManager.Instance.RewardState.ClearBonus(this);
         _collider.enabled = false;
@@ -25,13 +25,20 @@ public class CB_Bonus : ClickableBehavior, IPointerEnterHandler, IPointerExitHan
         hideSprite.Play();
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    protected override void OnMouseExit()
     {
+        base.OnMouseExit();
         TooltipManager.Instance.HideTooltip();
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    protected override void OnMouseEnter()
     {
         TooltipManager.Instance.ShowTooltip(BonusData, transform.position);
+
+        if (!CanClickItem()) return;
+
+        Color color = _spriteRenderer.material.GetColor("_OutlineColor");
+        color = new Color(color.r, color.g, color.b, 1);
+        _spriteRenderer.material.SetColor("_OutlineColor", color);
     }
 }

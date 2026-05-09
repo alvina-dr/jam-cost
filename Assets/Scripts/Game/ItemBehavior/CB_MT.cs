@@ -5,6 +5,7 @@ public class CB_MT : ClickableBehavior
 {
     public override void Collect()
     {
+        base.Collect();
         _collider.enabled = false;
         SaveManager.Instance.AddMT(1, transform.position);
         AudioManager.Instance.PlaySFXSound(_collectSound);

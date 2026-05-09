@@ -75,8 +75,6 @@ public class DraggableBehavior : ItemBehavior
         base.OnMouseEnter();
         if (!CanClickItem()) return;
         if (GameManager.Instance.SelectedItem != null) return;
-
-        GameManager.Instance.UIManager.HoverPrice.ShowPrice(Item.Data.Price, transform.position);
     }
 
     protected override void OnMouseExit()
@@ -84,8 +82,6 @@ public class DraggableBehavior : ItemBehavior
         base.OnMouseExit();
         if (!CanClickItem()) return;
         if (GameManager.Instance.SelectedItem != null) return;
-
-        GameManager.Instance.UIManager.HoverPrice.HidePrice();
     }
 
     private void OnMouseDown()
