@@ -17,7 +17,6 @@ public class QuestDirector : MonoBehaviour
         else
         {
             Instance = this;
-            DontDestroyOnLoad(this.gameObject);
             OnAwake();
         }
     }

@@ -23,7 +23,6 @@ public class DataLoader : MonoBehaviour
     #endregion
 
     public List<ItemData> ItemDataList;
-    public List<BonusData> RunBonusDataList;
     public List<BonusData> PermanentBonusDataList;
     public List<MapNodeData> MapNodeDataList;
     public List<PowerData> PowerDataList;
@@ -37,12 +36,6 @@ public class DataLoader : MonoBehaviour
         {
             ItemDataList[i] = Instantiate(ItemDataList[i]);
         }
-
-        RunBonusDataList = Resources.LoadAll<BonusData>("BonusData/Run").ToList();
-        RunBonusDataList = RunBonusDataList.FindAll(x => x.IsAvailableInGame);
-
-        PermanentBonusDataList = Resources.LoadAll<BonusData>("BonusData/Permanent").ToList();
-        PermanentBonusDataList = PermanentBonusDataList.FindAll(x => x.IsAvailableInGame);
 
         MapNodeDataList = Resources.LoadAll<MapNodeData>("MapNodeData").ToList();
         MapNodeDataList = MapNodeDataList.FindAll(x => x.IsAvailableInGame);
@@ -69,62 +62,7 @@ public class DataLoader : MonoBehaviour
         }
     }
 
-    public BonusData TakeRandomBonusData(BonusData.BonusDurability bonusDurability = BonusData.BonusDurability.Run, List<BonusData> formerList = null)
-    {
-        // Get all possible bonus
-        List<BonusData> bonusDataPool = GetBonusDataList(bonusDurability);
-        List<BonusData> availableBonusDataList = new();
 
-        for (int i = 0; i < bonusDataPool.Count; i++)
-        {
-            if (bonusDataPool[i] is not BD_SameFamily)
-            {
-                availableBonusDataList.Add(bonusDataPool[i]);
-            }
-            else if (SaveManager.Instance.CheckHasRunBonus<BD_SameFamily>() == null)
-            {
-                if (formerList == null) availableBonusDataList.Add(bonusDataPool[i]);
-                else if (formerList.Find(x => x is BD_SameFamily) == null)
-                {
-                    availableBonusDataList.Add(bonusDataPool[i]);
-                }
-            }
-        }
-
-        int randomIndex = Random.Range(0, availableBonusDataList.Count);
-        if (randomIndex >= availableBonusDataList.Count) return null;
-        BonusData data = availableBonusDataList[randomIndex];
-        return TakeRunSpecificBonus(data);
-    }
-
-    public BonusData TakeRunSpecificBonus(BonusData bonusData, BonusData.BonusDurability bonusDurability = BonusData.BonusDurability.Run)
-    {
-        if (RunBonusDataList.Contains(bonusData))
-        {
-            RunBonusDataList.Remove(bonusData);
-            return bonusData;
-        }
-        return null;
-    }
-
-    public BonusData TakeRunBonusByName(string bonusName, BonusData.BonusDurability bonusDurability = BonusData.BonusDurability.Run)
-    {
-        return TakeRunSpecificBonus(RunBonusDataList.Find(x => x.name == bonusName));
-    }
-
-    public List<BonusData> GetBonusDataList(BonusData.BonusDurability bonusDurability = BonusData.BonusDurability.Run)
-    {
-        switch (bonusDurability)
-        {
-            case BonusData.BonusDurability.Run:
-                return RunBonusDataList;
-            case BonusData.BonusDurability.Permanent:
-                return PermanentBonusDataList;
-        }
-
-        return RunBonusDataList;
-    }
-    
     public PowerData GetInstantiatedVersionOfPower(PowerData powerData)
     {
         return PowerDataList.Find(x => x.PowerName == powerData.PowerName);

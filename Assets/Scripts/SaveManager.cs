@@ -23,7 +23,7 @@ public class SaveManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
-            OnAwake();
+            //OnAwake();
         }
     }
     #endregion
@@ -42,7 +42,7 @@ public class SaveManager : MonoBehaviour
 
     [SerializeReference] public List<BonusData> CurrentRunBonusList = new();
 
-    private void OnAwake()
+    private void Start()
     {
         PrimeTweenConfig.warnTweenOnDisabledTarget = false;
         InputSystem.actions.Enable();
@@ -201,12 +201,6 @@ public class SaveManager : MonoBehaviour
         string jsonFile = System.IO.File.ReadAllText($"{Application.persistentDataPath}/Save.json");
         _currentSave = JsonUtility.FromJson<SaveData>(jsonFile);
 
-        // Update bonus taken for Data Loader
-        for (int i = 0; i < CurrentRunBonusList.Count; i++)
-        {
-            DataLoader.Instance.TakeRunSpecificBonus(CurrentRunBonusList[i]);
-        }
-
         for (int i = 0; i < CurrentSave.ModifiedQuestList.Count; i++)
         {
             QuestDirector.Instance.QuestDataDictionary[CurrentSave.ModifiedQuestList[i].Name].Data = CurrentSave.ModifiedQuestList[i];
@@ -219,7 +213,7 @@ public class SaveManager : MonoBehaviour
 
         UnlockedPowerDataList = LoadList(CurrentSave.UnlockedPowerDataListName, DataLoader.Instance.PowerDataList);
         EquipedPowerDataList = LoadList(CurrentSave.EquipedPowerDataListName, DataLoader.Instance.PowerDataList);
-        PermanentBonusList = LoadList(CurrentSave.PermanentBonusListName, DataLoader.Instance.PermanentBonusDataList);
+        PermanentBonusList = LoadList(CurrentSave.PermanentBonusListName, BonusDirector.Instance.PermanentBonusDataDictionary);
     }
 
     public void EraseSave()
@@ -294,6 +288,16 @@ public class SaveManager : MonoBehaviour
         for (int i = 0; i < currentDataListName.Count; i++)
         {
             currentDataList.Add(dataLib.Find(x => x.name == currentDataListName[i]));
+        }
+        return currentDataList;
+    }
+
+    public List<T> LoadList<T>(List<string> currentDataListName, Dictionary<string, T> dataLib) where T : ScriptableObject
+    {
+        List<T> currentDataList = new();
+        for (int i = 0; i < currentDataListName.Count; i++)
+        {
+            currentDataList.Add(dataLib[currentDataListName[i]]);
         }
         return currentDataList;
     }

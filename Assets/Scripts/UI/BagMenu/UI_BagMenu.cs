@@ -354,7 +354,7 @@ public class UI_BagMenu : UI_Menu
         List<BonusData> runBonusList = SaveManager.Instance.CurrentRunBonusList;
 
         // calculate all addition to item score
-        List<BonusData> bonusItemAddList = runBonusList.FindAll(x => x.Effect == BonusData.BonusEffect.ItemAddition);
+        List<BonusData> bonusItemAddList = runBonusList.FindAll(x => x.Effect == BonusEffect.ItemAddition);
         for (int i = 0; i < bonusItemAddList.Count; i++)
         {
             int index = i;
@@ -387,7 +387,7 @@ public class UI_BagMenu : UI_Menu
         }
 
         // calculate all multiplication to item score
-        List<BonusData> bonusItemMultList = runBonusList.FindAll(x => x.Effect == BonusData.BonusEffect.ItemMultiplication);
+        List<BonusData> bonusItemMultList = runBonusList.FindAll(x => x.Effect == BonusEffect.ItemMultiplication);
         for (int i = 0; i < bonusItemMultList.Count; i++)
         {
             int index = i;
@@ -427,7 +427,7 @@ public class UI_BagMenu : UI_Menu
         List<BonusData> runBonusList = SaveManager.Instance.CurrentRunBonusList;
 
         // calculate all addition to total score
-        List<BonusData> bonusTotalAddList = runBonusList.FindAll(x => x.Effect == BonusData.BonusEffect.TotalAddition);
+        List<BonusData> bonusTotalAddList = runBonusList.FindAll(x => x.Effect == BonusEffect.TotalAddition);
         for (int i = 0; i < bonusTotalAddList.Count; i++)
         {
             int index = i;
@@ -454,7 +454,7 @@ public class UI_BagMenu : UI_Menu
         }
 
         // calculate all addition per item combinations
-        List<BonusData> bonusTotalMultList = runBonusList.FindAll(x => x.Effect == BonusData.BonusEffect.TotalMultiplication);
+        List<BonusData> bonusTotalMultList = runBonusList.FindAll(x => x.Effect == BonusEffect.TotalMultiplication);
         for (int i = 0; i < bonusTotalMultList.Count; i++)
         {
             int index = i;

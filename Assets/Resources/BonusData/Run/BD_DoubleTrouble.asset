@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsAvailableInGame: 1
   Durability: 0
+  Rarity: 1
   Category: 3
   Effect: 1
   Name: Double Trouble

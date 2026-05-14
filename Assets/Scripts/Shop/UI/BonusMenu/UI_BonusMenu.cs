@@ -54,24 +54,11 @@ public class UI_BonusMenu : UI_Menu
 
     public void SelectBonusList()
     {
-        if (_bonusEntryList.Count > DataLoader.Instance.RunBonusDataList.Count) Debug.LogWarning("Not enough bonus for this time");
-
-        for (int i = 0; i < _bonusEntryList.Count; i++)
-        {
-            _sellingBonusDataList.Add(DataLoader.Instance.TakeRandomBonusData(BonusData.BonusDurability.Run, _sellingBonusDataList));
-        }
+        _sellingBonusDataList = BonusDirector.Instance.GetRandomBonusRunList(3);
     }
 
     public void ReleaseBonusList()
     {
-        for (int i = 0; i < _bonusEntryList.Count; i++)
-        {
-            if (_sellingBonusDataList[i] != null)
-            {
-                DataLoader.Instance.RunBonusDataList.Add(_sellingBonusDataList[i]);
-            }
-        }
-
         _sellingBonusDataList.Clear();
     }
 

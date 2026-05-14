@@ -70,7 +70,7 @@ public class DebugManager : MonoBehaviour
         for (int i = 0; i < bonusDataList.Count; i++)
         {
             int index = i;
-            if (bonusDataList[index].Durability == BonusData.BonusDurability.Permanent)
+            if (bonusDataList[index].Durability == BonusDurability.Permanent)
             {
                 DebugActionList.Add(DebugActionBuilder.Button().WithName(bonusDataList[index].Name).WithGroup("Bonus/Permanent").WithAction(() => GetBonus(bonusDataList[index])));
             }
@@ -98,6 +98,8 @@ public class DebugManager : MonoBehaviour
         DebugActionList.Add(DebugActionBuilder.Button().WithName("PP").WithGroup("Gain").WithAction(() => SaveManager.Instance.AddPP(100)));
         DebugActionList.Add(DebugActionBuilder.Button().WithName("Meal Tickets").WithGroup("Gain").WithAction(() => SaveManager.Instance.AddMT(100)));
         DebugActionList.Add(DebugActionBuilder.Button().WithName("Rerolls").WithGroup("Gain").WithAction(() => SaveManager.CurrentSave.CurrentRun.Rerolls++));
+        
+        DebugActionList.Add(DebugActionBuilder.Button().WithName("Roll rarity").WithGroup("Test").WithAction(() => Debug.Log(GameDirector.Instance.GetRandomRarity())));
 
         List<QuestData> questDataList = QuestDirector.Instance.QuestDataDictionary.Values.ToList();
         for (int i = 0; i < questDataList.Count; i++)
@@ -130,10 +132,10 @@ public class DebugManager : MonoBehaviour
         SceneManager.LoadScene("Map");
     }
 
-    public void GetBonus(BonusData data)
+    public void GetBonus(BonusData bonusData)
     {
-        BonusData bonus = DataLoader.Instance.TakeRunSpecificBonus(data);
-        if (bonus != null) bonus.GetBonus();
+        BonusData instantiatedBonusData = BonusDirector.Instance.RunBonusDataDictionary[bonusData.name];
+        if (instantiatedBonusData != null) instantiatedBonusData.GetBonus();
     }
 
     public void GetPower(PowerData powerData)

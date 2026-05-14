@@ -105,8 +105,8 @@ public class ItemBehavior : MonoBehaviour
 
     protected virtual void OnMouseEnter()
     {
-        TooltipManager.Instance.ShowTooltip(Item, transform.position);
         if (!CanClickItem()) return;
+        TooltipManager.Instance.ShowTooltip(Item, transform.position);
         if (GameManager.Instance.SelectedItem != null) return;
 
         Color color = _spriteRenderer.material.GetColor("_OutlineColor");

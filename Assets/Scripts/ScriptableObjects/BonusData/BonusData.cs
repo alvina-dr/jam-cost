@@ -7,6 +7,7 @@ public class BonusData : ScriptableObject
 {
     public bool IsAvailableInGame;
     public BonusDurability Durability;
+    [ShowIf("Durability", BonusDurability.Run)] public Rarity Rarity;
 
     [ShowIf("Durability", BonusDurability.Permanent)] public BonusCategory Category;
     public BonusEffect Effect;
@@ -20,20 +21,6 @@ public class BonusData : ScriptableObject
     public Sprite Icon;
     public Color Color;
     [ShowIf("Durability", BonusDurability.Permanent)] public List<BonusData> UpgradeBonusList;
-
-    public enum BonusEffect
-    {
-        ItemAddition = 0,
-        ItemMultiplication = 1,
-        TotalAddition = 2,
-        TotalMultiplication = 3,
-        Other = 4 
-    }
-    public enum BonusDurability
-    {
-        Run = 0,
-        Permanent = 1
-    }
 
     public enum BonusCategory
     {
@@ -62,4 +49,19 @@ public class BonusData : ScriptableObject
     {
         return false;
     }
+}
+
+public enum BonusEffect
+{
+    ItemAddition = 0,
+    ItemMultiplication = 1,
+    TotalAddition = 2,
+    TotalMultiplication = 3,
+    Other = 4
+}
+
+public enum BonusDurability
+{
+    Run = 0,
+    Permanent = 1
 }
