@@ -6,6 +6,7 @@ public class MND_Scavenge_Classic : MapNodeData
 {
     public int ScoreGoal;
     public int RoundNumber;
+    public int DiscardNumber;
     public SpawnItemParameters SpawnItemParameters;
 
     public virtual void SpawnItems()

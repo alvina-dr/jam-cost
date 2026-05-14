@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
     public int GoalScore;
     public int CurrentDay;
     public int CurrentRound;
+    public int CurrentDiscard;
     public int FoundPP;
 
     [Header("Over check")]
@@ -68,6 +69,7 @@ public class GameManager : MonoBehaviour
                 UIManager.ScoreTextValue.SetTextValue($"{CurrentScore} / {GoalScore}");
                 UIManager.ScoreBarValue.SetBarValue(CurrentScore, GoalScore);
                 ScavengingState.ResetTimer();
+                CurrentDiscard = GetMaxDiscardNumber();
                 break;
         }
         CurrentDay = 0;
@@ -75,6 +77,7 @@ public class GameManager : MonoBehaviour
         SetCurrentScore(0, false);
         UIManager.Timer.SetTextValue($"{Mathf.RoundToInt(ScavengingState.Timer)}", false);
         UIManager.RoundRemaining.SetTextValue($"Round {CurrentRound} / {GetMaxRoundNumber()}", false);
+        UIManager.DiscardRemaining.SetTextValue($"Discard {CurrentDiscard}", false);
 
         ItemManager.ResetDumpster();
         ScavengingState.UpdateItemNumberText();
@@ -143,12 +146,24 @@ public class GameManager : MonoBehaviour
         return SaveManager.Instance.GetScavengeNode().RoundNumber + SaveManager.CurrentSave.CurrentRun.RunBonusRound;
     }
 
+    public int GetMaxDiscardNumber()
+    {
+        return SaveManager.Instance.GetScavengeNode().DiscardNumber + SaveManager.CurrentSave.CurrentRun.RunBonusDiscard;
+    }
+
     public void RerollCrate()
     {
         if (CurrentGameState != ScavengingState && CurrentGameState != PreparationState) return;
         if (ScavengingState.CurrentSubState == GS_Scavenging.Scavenging_SubState.RerollCrateAnim) return;
         if (PreparationState.CurrentSubState == GS_Preparation.Preparation_SubState.RerollCrateAnim) return;
+        if (CurrentDiscard <= 0) return;
 
+        CurrentDiscard--;
+        if (CurrentDiscard <= 0)
+        {
+            Lever.gameObject.SetActive(false);
+        }
+        UIManager.DiscardRemaining.SetTextValue($"Discard {CurrentDiscard}", false);
         SaveManager.CurrentSave.NumberLeverUsed++;
         ScavengingState.CurrentSubState = GS_Scavenging.Scavenging_SubState.RerollCrateAnim;
         PreparationState.CurrentSubState = GS_Preparation.Preparation_SubState.RerollCrateAnim;

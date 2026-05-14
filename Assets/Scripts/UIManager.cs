@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
 
     public UI_TextValue Timer;
     public UI_TextValue RoundRemaining;
+    public UI_TextValue DiscardRemaining;
 
     [Header("Game Over UI")]
     public UI_GameOver GameLost;
