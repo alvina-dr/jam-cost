@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System.Collections;
+using System.Text;
 using TMPro;
 using UnityEngine;
 
@@ -30,7 +31,11 @@ public class TooltipManager : MonoBehaviour
 
     public void ShowTooltip(BonusData bonusData, Vector3 position)
     {
-        ShowTooltip(bonusData.Description, position);
+        StringBuilder strBuilder = new StringBuilder();
+        strBuilder.Append($"<b>{bonusData.Name}</b><br>");
+        strBuilder.Append($"{bonusData.Description}<br>");
+        strBuilder.Append($"<b>{bonusData.Rarity}</b><br>");
+        ShowTooltip(strBuilder.ToString(), position);
     }
 
     public void ShowTooltip(CombinationData combinationData, Vector3 position)

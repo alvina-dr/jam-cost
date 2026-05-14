@@ -41,7 +41,6 @@ public class GameDirector : MonoBehaviour
             totalWeight += RarityWeight[i].Weight;
             if (random < totalWeight)
             {
-                Debug.Log("random rarity is : " + RarityWeight[i].Rarity);
                 return RarityWeight[i].Rarity;
             }
         }

@@ -1,8 +1,9 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UI_BonusEntry : MonoBehaviour
+public class UI_BonusEntry : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public BonusData BonusData;
     public Button Button;
@@ -13,6 +14,16 @@ public class UI_BonusEntry : MonoBehaviour
     [SerializeField] private GameObject _highlight;
     [SerializeField] private Image _bonusIcon;
     [SerializeField] private Image _shadow;
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (BonusData) TooltipManager.Instance.ShowTooltip(BonusData, Camera.main.ScreenToWorldPoint(transform.position));
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (BonusData) TooltipManager.Instance.HideTooltip();
+    }
 
     public void SetupBonus(BonusData data)
     {
