@@ -60,5 +60,6 @@ public enum Rarity
 {
     Common = 0,
     Uncommon = 1,
-    Rare = 2
+    Rare = 2,
+    Impossible = 3
 }

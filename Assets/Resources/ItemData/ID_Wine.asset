@@ -15,7 +15,9 @@ MonoBehaviour:
   Prefab: {fileID: 3971539782363818920, guid: 7253ecaac405f72438b238e5fc21080f, type: 3}
   Price: 3
   BonusCurrency: 0
-  Rarity: 1
-  Name: Wine
   Icon: {fileID: 21300000, guid: fa83633571cbb264088500e1a232937d, type: 3}
-  Family: 2
+  Save:
+    Name: Wine
+    Rarity: 1
+    Family: 2
+  Rarity: 1

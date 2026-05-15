@@ -211,6 +211,14 @@ public class SaveManager : MonoBehaviour
             DataLoader.Instance.CombinationDataDictionary[CurrentSave.ModifiedCombinationList[i].Name].Data = CurrentSave.ModifiedCombinationList[i];
         }
 
+        if (CurrentSave.CurrentRun != null)
+        {
+            for (int i = 0; i < CurrentSave.CurrentRun.ModifiedItemDataSave.Count; i++)
+            {
+                ItemDirector.Instance.ItemDataDictionary[CurrentSave.CurrentRun.ModifiedItemDataSave[i].Name].Save = CurrentSave.CurrentRun.ModifiedItemDataSave[i];
+            }
+        }
+
         UnlockedPowerDataList = LoadList(CurrentSave.UnlockedPowerDataListName, DataLoader.Instance.PowerDataList);
         EquipedPowerDataList = LoadList(CurrentSave.EquipedPowerDataListName, DataLoader.Instance.PowerDataList);
         PermanentBonusList = LoadList(CurrentSave.PermanentBonusListName, BonusDirector.Instance.PermanentBonusDataDictionary);
@@ -228,14 +236,6 @@ public class SaveManager : MonoBehaviour
     [Button("Manual Save")]
     public void Save()
     {
-        // Save yarn state
-        //if (YarnStorage != null)
-        //{
-        //    (Dictionary<string, float> yarnFloats, Dictionary<string, string> yarnStrings, Dictionary<string, bool> yarnBools) = YarnStorage.GetAllVariables();
-        //    CurrentSave.YarnFloats = new SerializableDictionary<string, float>(yarnFloats);
-        //    CurrentSave.YarnStrings = new SerializableDictionary<string, string>(yarnStrings);
-        //    CurrentSave.YarnBools = new SerializableDictionary<string, bool>(yarnBools);
-        //}
         CurrentSave.LastSceneName = SceneManager.GetActiveScene().name;
 
         CurrentSave.ModifiedQuestList.Clear();
@@ -250,6 +250,16 @@ public class SaveManager : MonoBehaviour
         for (int i = 0; i < combinationDataList.Count; i++)
         {
             CurrentSave.ModifiedCombinationList.Add(combinationDataList[i].Data);
+        }
+
+        if (CurrentSave.CurrentRun != null) // IF CURRENT RUN
+        {
+            CurrentSave.CurrentRun.ModifiedItemDataSave.Clear();
+            List<ItemData> itemDataList = ItemDirector.Instance.ItemDataDictionary.Values.ToList();
+            for (int i = 0; i < itemDataList.Count; i++)
+            {
+                CurrentSave.CurrentRun.ModifiedItemDataSave.Add(itemDataList[i].Save);
+            }
         }
 
         CurrentSave.UnlockedPowerDataListName = SaveList(UnlockedPowerDataList);
@@ -378,6 +388,7 @@ public class SaveManager : MonoBehaviour
         public int RunBonusDiscard = 0;
 
         public List<string> CurrentRunBonusListName = new();
+        public List<ItemDataSave> ModifiedItemDataSave = new();
         //public List<int> FormerNodeList = new();
 
         public RunData () 

@@ -13,8 +13,7 @@ public class BonusData : ScriptableObject
     public BonusEffect Effect;
 
     public string Name;
-    [TextArea]
-    public string Description;
+    [TextArea] public string Description;
     public int Price;
     public virtual float BonusValue => _bonusValue;
     [SerializeField] private float _bonusValue;

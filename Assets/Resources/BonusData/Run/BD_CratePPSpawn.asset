@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c372dc5c6c1e304b9dfc91a2225f0d4, type: 3}
+  m_Name: BD_CratePPSpawn
+  m_EditorClassIdentifier: 
+  IsAvailableInGame: 1
+  Durability: 0
+  Rarity: 0
+  Category: 0
+  Effect: 4
+  Name: Crate PP Spawn
+  Description: Productivity Points <sprite name=PP> can now spawn directly in the
+    crate.
+  Price: 10
+  _bonusValue: 0
+  Icon: {fileID: -4209461767521648114, guid: b318b69f955070d468000aa0b8231c3e, type: 3}
+  Color: {r: 0, g: 0, b: 0, a: 0}
+  UpgradeBonusList: []

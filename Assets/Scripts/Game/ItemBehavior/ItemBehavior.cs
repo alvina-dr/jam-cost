@@ -35,24 +35,24 @@ public class ItemBehavior : MonoBehaviour
         _shadowSpriteRenderer.sortingLayerName = _spriteRenderer.sortingLayerName;
         _shadowSpriteRenderer.sortingOrder = _spriteRenderer.sortingOrder - 1;
 
-        switch (Item.Data.Family)
+        switch (Item.Data.Save.Family)
         {
-            case ItemData.ItemFamily.Plastic:
+            case ItemFamily.Plastic:
                 _spriteRenderer.material = _family1Material;
                 break;
-            case ItemData.ItemFamily.Paper:
+            case ItemFamily.Paper:
                 _spriteRenderer.material = _family2Material;
                 break;
-            case ItemData.ItemFamily.Glass:
+            case ItemFamily.Glass:
                 _spriteRenderer.material = _family3Material;
                 break;
-            case ItemData.ItemFamily.Electronics:
+            case ItemFamily.Electronics:
                 _spriteRenderer.material = _family4Material;
                 break;
-            case ItemData.ItemFamily.Garbage:
+            case ItemFamily.Garbage:
                 _spriteRenderer.material = _familyGarbageMaterial;
                 break;
-            case ItemData.ItemFamily.Clickable:
+            case ItemFamily.Clickable:
                 _spriteRenderer.material = _clickableMaterial;
                 break;
         }

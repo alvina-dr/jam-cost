@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "BD_FamilyMultiplier", menuName = "Scriptable Objects/Bonus/BD_FamilyMultiplier")]
 public class BD_FamilyMultiplier : BonusData
 {
-    public ItemData.ItemFamily FamilyBonus;
+    public ItemFamily FamilyBonus;
 
     public override bool CheckBonus(ref List<UI_BagSlot> bagSlotListRef, List<CombinationData> combinationDataList = null)
     {
@@ -13,7 +13,7 @@ public class BD_FamilyMultiplier : BonusData
         for (int i = 0; i < bagSlotListRef.Count; i++)
         {
             if (bagSlotListRef[i].CurrentBagItem != null 
-                && bagSlotListRef[i].CurrentBagItem.ItemInstance.Data.Family == FamilyBonus)
+                && bagSlotListRef[i].CurrentBagItem.ItemInstance.Data.Save.Family == FamilyBonus)
             {
                 chosenBagSlots.Add(bagSlotListRef[i]);
             }

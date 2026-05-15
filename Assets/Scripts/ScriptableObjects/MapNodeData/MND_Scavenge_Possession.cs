@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "MND_Scavenge_Possession", menuName = "Scriptable Objects/MapNode/MND_Scavenge_Possession")]
@@ -12,13 +13,12 @@ public class MND_Scavenge_Possession : MND_Scavenge_Classic
     public override void SpawnItems()
     {
         ItemManager itemManager = GameManager.Instance.ItemManager;
-        itemManager.CalculateTotalSpawnChance();
 
-        for (int i = 0; i < SpawnItemParameters.ItemNumber; i++)
+        List<ItemData> itemDataList = ItemDirector.Instance.GetRandomItemDataList(SaveManager.Instance.GetScavengeNode().SpawnItemParameters.ItemNumber);
+        for (int i = 0; i < itemDataList.Count; i++)
         {
-            ItemData dataItem = itemManager.GetRandomItem();
-            ItemBehavior itemBehavior = Instantiate(dataItem.Prefab);
-            itemBehavior.Setup(dataItem); // actualize item with instantiated item data
+            ItemBehavior itemBehavior = Instantiate(itemDataList[i].Prefab);
+            itemBehavior.Setup(itemDataList[i]); // actualize item with instantiated item data
 
             if (i > Mathf.RoundToInt((float)SpawnItemParameters.ItemNumber / 2.0f))
             {

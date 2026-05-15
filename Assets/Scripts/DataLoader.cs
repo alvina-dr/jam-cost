@@ -22,8 +22,6 @@ public class DataLoader : MonoBehaviour
     }
     #endregion
 
-    public List<ItemData> ItemDataList;
-    public List<BonusData> PermanentBonusDataList;
     public List<MapNodeData> MapNodeDataList;
     public List<PowerData> PowerDataList;
     public Dictionary<string, CombinationData> CombinationDataDictionary = new();
@@ -31,12 +29,6 @@ public class DataLoader : MonoBehaviour
 
     private void OnAwake()
     {
-        ItemDataList = Resources.LoadAll<ItemData>("ItemData").ToList();
-        for (int i = 0; i < ItemDataList.Count; i++)
-        {
-            ItemDataList[i] = Instantiate(ItemDataList[i]);
-        }
-
         MapNodeDataList = Resources.LoadAll<MapNodeData>("MapNodeData").ToList();
         MapNodeDataList = MapNodeDataList.FindAll(x => x.IsAvailableInGame);
 

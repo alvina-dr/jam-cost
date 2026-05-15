@@ -11,14 +11,14 @@ public class CD_Family : CombinationData
         List<FamilyStat> familyCountList = new();
         for (int i = 0; i < bagSlotList.Count; i++)
         {
-            FamilyStat familyStat = familyCountList.Find(x => x.Family == bagSlotList[i].CurrentBagItem.ItemInstance.Data.Family);
+            FamilyStat familyStat = familyCountList.Find(x => x.Family == bagSlotList[i].CurrentBagItem.ItemInstance.Data.Save.Family);
             if (familyStat != null) 
             {
                 familyStat.Number++;
             }
             else
             {
-                familyCountList.Add(new FamilyStat(bagSlotList[i].CurrentBagItem.ItemInstance.Data.Family, 1));
+                familyCountList.Add(new FamilyStat(bagSlotList[i].CurrentBagItem.ItemInstance.Data.Save.Family, 1));
             }
         }
         familyCountList.Sort((a, b) => b.Number.CompareTo(a.Number));
@@ -29,17 +29,17 @@ public class CD_Family : CombinationData
         {
             Data.NumberUsed++;
             DiscoverCombination();
-            bagSlotListRef = bagSlotListRef.FindAll(x => x.CurrentBagItem.ItemInstance.Data.Family == max.Family);
+            bagSlotListRef = bagSlotListRef.FindAll(x => x.CurrentBagItem.ItemInstance.Data.Save.Family == max.Family);
         }
         return max.Number >= 4;
     }
 
     private class FamilyStat
     {
-        public ItemData.ItemFamily Family;
+        public ItemFamily Family;
         public int Number;
 
-        public FamilyStat(ItemData.ItemFamily family, int number)
+        public FamilyStat(ItemFamily family, int number)
         {
             Family = family;
             Number = number;

@@ -15,7 +15,9 @@ MonoBehaviour:
   Prefab: {fileID: 3971539782363818920, guid: 695b3ba057b93c14e9ce30d196e97fc5, type: 3}
   Price: 5
   BonusCurrency: 0
-  Rarity: 1
-  Name: Yogurt
   Icon: {fileID: 21300000, guid: 2956d055f8a39c141bf3ff0413b31098, type: 3}
-  Family: 0
+  Save:
+    Name: Yogurt
+    Rarity: 1
+    Family: 0
+  Rarity: 1

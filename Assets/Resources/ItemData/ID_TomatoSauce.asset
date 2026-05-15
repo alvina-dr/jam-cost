@@ -15,7 +15,10 @@ MonoBehaviour:
   Prefab: {fileID: 3971539782363818920, guid: 712ef6e2c69042a41b547f33cef751e0, type: 3}
   Price: 1
   BonusCurrency: 0
-  Rarity: 1
-  Name: Tomato Sauce
   Icon: {fileID: 21300000, guid: 6de2dd59c78b8e54083e9a76b612ed9d, type: 3}
   Family: 2
+  Save:
+    Name: Tomato Sauce
+    Rarity: 0
+    Family: 2
+  Rarity: 0

@@ -15,7 +15,10 @@ MonoBehaviour:
   Prefab: {fileID: 3971539782363818920, guid: 4285576671a8f2f46a5d005c2690c788, type: 3}
   Price: 0
   BonusCurrency: 0
-  Rarity: 0
-  Name: Trash Bag
   Icon: {fileID: 21300000, guid: 3a0c987b60b9fb145a6064940ec0556b, type: 3}
   Family: 4
+  Save:
+    Name: Trash Bag
+    Rarity: 0
+    Family: 4
+  Rarity: 0

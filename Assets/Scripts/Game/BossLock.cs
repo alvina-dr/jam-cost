@@ -29,7 +29,7 @@ public class BossLock : MonoBehaviour
 
     public bool TryOpenLock(ItemData itemData)
     {
-        if (itemData.Name == itemDataList[0].Name)
+        if (itemData.Save.Name == itemDataList[0].Save.Name)
         {
             OpenLock();
             return true;

@@ -51,7 +51,7 @@ public class TooltipManager : MonoBehaviour
     public void ShowTooltip(ItemInstance itemInstance, Vector3 position)
     {
         string itemTagName = itemInstance.TagData ? $" [{itemInstance.TagData.Name}]" : string.Empty;
-        ShowTooltip($"{itemInstance.Data.Name} [{itemInstance.Data.Price}]{itemTagName}", position);
+        ShowTooltip($"{itemInstance.Data.Save.Name} [{itemInstance.Data.Price}]{itemTagName}", position);
     }
 
     public void ShowTooltip(MapNodeData mapNodeData, Vector3 position)

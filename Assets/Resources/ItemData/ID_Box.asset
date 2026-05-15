@@ -15,7 +15,10 @@ MonoBehaviour:
   Prefab: {fileID: 3971539782363818920, guid: dd3fb0017445a6c438f56e77c6f43ffa, type: 3}
   Price: 1
   BonusCurrency: 0
-  Rarity: 1
-  Name: Box
   Icon: {fileID: 21300000, guid: cf4efcfa506dd0040adecdb3f440805e, type: 3}
   Family: 1
+  Save:
+    Name: Box
+    Rarity: 0
+    Family: 1
+  Rarity: 0

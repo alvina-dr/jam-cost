@@ -42,34 +42,6 @@ public class BonusDirector : MonoBehaviour
         }
     }
 
-    public BonusData TakeRandomBonusData(List<BonusData> formerList = null)
-    {
-        // Get all possible bonus
-        List<BonusData> bonusDataPool = RunBonusDataDictionary.Values.ToList();
-        List<BonusData> availableBonusDataList = new();
-
-        for (int i = 0; i < bonusDataPool.Count; i++)
-        {
-            if (bonusDataPool[i] is not BD_SameFamily)
-            {
-                availableBonusDataList.Add(bonusDataPool[i]);
-            }
-            else if (SaveManager.Instance.CheckHasRunBonus<BD_SameFamily>() == null)
-            {
-                if (formerList == null) availableBonusDataList.Add(bonusDataPool[i]);
-                else if (formerList.Find(x => x is BD_SameFamily) == null)
-                {
-                    availableBonusDataList.Add(bonusDataPool[i]);
-                }
-            }
-        }
-
-        int randomIndex = Random.Range(0, availableBonusDataList.Count);
-        if (randomIndex >= availableBonusDataList.Count) return null;
-        BonusData data = availableBonusDataList[randomIndex];
-        return data;
-    }
-
     public List<BonusData> GetRandomBonusRunList(int listSize, bool excludeAlreadyInStock = false)
     {
         List<BonusData> bonusAvailableList = new(RunBonusDataDictionary.Values);

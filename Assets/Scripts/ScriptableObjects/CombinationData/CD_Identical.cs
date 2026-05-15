@@ -16,7 +16,7 @@ public class CD_Identical : CombinationData
 
         for (int i = 0; i < itemDataList.Count; i++)
         {
-            int num = itemDataList.FindAll(x => x.Name == itemDataList[i].Name).Count;
+            int num = itemDataList.FindAll(x => x.Save.Name == itemDataList[i].Save.Name).Count;
             if (num > maxIdenticalNumber)
             {
                 maxIdenticalNumber = num;
@@ -26,7 +26,7 @@ public class CD_Identical : CombinationData
 
         if (maxIdenticalNumber >= 4)
         {
-            bagSlotList = bagSlotList.FindAll(x => x.CurrentBagItem.ItemInstance.Data.Name == identicalItemData.Name);
+            bagSlotList = bagSlotList.FindAll(x => x.CurrentBagItem.ItemInstance.Data.Save.Name == identicalItemData.Save.Name);
             DiscoverCombination();
             Data.NumberUsed++;
             return true;

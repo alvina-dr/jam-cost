@@ -12,8 +12,6 @@ public class ItemManager : MonoBehaviour
 
     [SerializeField] public int TopLayer;
 
-    [ReadOnly] private int _totalSpawnChance;
-
     [Button]
     public void ResetDumpster()
     {
@@ -29,33 +27,6 @@ public class ItemManager : MonoBehaviour
         }
 
         ItemList.Clear();
-    }
-
-    public ItemData GetRandomItem()
-    {
-        int index = Random.Range(0, _totalSpawnChance);
-        for (int j = 0; j < DataLoader.Instance.ItemDataList.Count; j++)
-        {
-            ItemData data = DataLoader.Instance.ItemDataList[j];
-            SpawnItemParameters.ItemProbability proba = SaveManager.Instance.GetScavengeNode().SpawnItemParameters.GetMatchingItemData(data);
-
-            if (proba != null)
-            {
-                if (index < proba.Weight)
-                    return DataLoader.Instance.ItemDataList[j];
-                index -= proba.Weight;
-            }
-        }
-        return null;
-    }
-
-    public void CalculateTotalSpawnChance()
-    {
-        _totalSpawnChance = 0;
-        for (int i = 0; i < SaveManager.Instance.GetScavengeNode().SpawnItemParameters.ItemProbabilityList.Count; i++)
-        {
-            _totalSpawnChance += SaveManager.Instance.GetScavengeNode().SpawnItemParameters.ItemProbabilityList[i].Weight;
-        }
     }
 
     private void OnDrawGizmosSelected()
