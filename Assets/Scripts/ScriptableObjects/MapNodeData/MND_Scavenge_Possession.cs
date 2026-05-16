@@ -7,6 +7,7 @@ public class MND_Scavenge_Possession : MND_Scavenge_Classic
 {
     public int SecondPhaseGoalScore;
     public int ThirdPhaseGoalScore;
+    public GameObject BossPrefab;
 
     public BossPhase BossPhase;
 

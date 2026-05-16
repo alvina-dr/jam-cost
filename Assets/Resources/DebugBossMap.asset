@@ -12,7 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cffffe49debf20a4784f27f6d5632d72, type: 3}
   m_Name: DebugBossMap
   m_EditorClassIdentifier: 
-  DailyChoiceList: []
-  NumberOfNodesToDelete: 4
-  BossNumber: 0
-  BossMapNodeData: {fileID: 11400000, guid: e5fcb8f75e750cc46baf27d128003a42, type: 2}
+  ChoiceList:
+  - {fileID: 11400000, guid: e606df96c31bd6c4a9f8ca1349c3b30f, type: 2}

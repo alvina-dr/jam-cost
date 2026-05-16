@@ -21,4 +21,5 @@ MonoBehaviour:
   SpawnItemParameters: {fileID: 11400000, guid: 6fd6173514e6a4e448b6979205bd7423, type: 2}
   SecondPhaseGoalScore: 1200
   ThirdPhaseGoalScore: 1800
+  BossPrefab: {fileID: 5605757035908937881, guid: dd49ad51884f6e942b7290028ad87df2, type: 3}
   BossPhase: 0

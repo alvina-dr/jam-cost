@@ -64,6 +64,14 @@ public class GameManager : MonoBehaviour
             case MND_Scavenge_Empty:
                 // prepare interface for empty challenge
                 break;
+            case MND_Scavenge_Possession bossPossession:
+                GoalScore = SaveManager.Instance.GetScavengeNode().ScoreGoal;
+                UIManager.ScoreTextValue.SetTextValue($"{CurrentScore} / {GoalScore}");
+                UIManager.ScoreBarValue.SetBarValue(CurrentScore, GoalScore);
+                ScavengingState.ResetTimer();
+                CurrentDiscard = GetMaxDiscardNumber();
+                Instantiate(bossPossession.BossPrefab, Vector3.zero, Quaternion.identity);
+                break;
             case MND_Scavenge_Classic:
                 GoalScore = SaveManager.Instance.GetScavengeNode().ScoreGoal;
                 UIManager.ScoreTextValue.SetTextValue($"{CurrentScore} / {GoalScore}");

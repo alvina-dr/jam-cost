@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsAvailableInGame: 1
   Durability: 1
+  Rarity: 0
   Category: 4
-  Name: ' Time is money III'
+  Effect: 0
+  Name: Time is money III
   Description: Each round lasts 13s (+1).
   Price: 15
+  _bonusValue: 0
   Icon: {fileID: 0}
   Color: {r: 0, g: 0, b: 0, a: 0}
   UpgradeBonusList: []
