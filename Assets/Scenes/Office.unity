@@ -2189,7 +2189,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1732614134}
   - component: {fileID: 1732614133}
-  - component: {fileID: 1732614135}
   m_Layer: 0
   m_Name: HubManager
   m_TagString: Untagged
@@ -2229,18 +2228,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1732614135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1732614132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee7a87c62723bdb46839d711351d93f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1852913257 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3912233397486975416, guid: 7c91637320b22af4daf161f411573c76, type: 3}

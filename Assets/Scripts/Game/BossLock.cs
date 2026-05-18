@@ -32,6 +32,10 @@ public class BossLock : MonoBehaviour
         if (itemData.Save.Name == itemDataList[0].Save.Name)
         {
             OpenLock();
+            if (BossBehavior_Possession.Instance != null)
+            {
+                BossBehavior_Possession.Instance.UnlockDepositBox();
+            }
             return true;
         }
         else return false;
