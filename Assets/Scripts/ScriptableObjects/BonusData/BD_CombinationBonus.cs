@@ -15,11 +15,11 @@ public class BD_CombinationBonus : BonusData
     {
         if (combinationDataList == null) return false;
 
-        for (int i = 0; i < combinationDataList.Count; i++)
-        {
-            Debug.Log("combination data : " + combinationDataList[i].Data.Name);
-            Debug.Log("Compaired with : " + _combinationData.Data.Name);
-        }
+        //for (int i = 0; i < combinationDataList.Count; i++)
+        //{
+        //    Debug.Log("combination data : " + combinationDataList[i].Data.Name);
+        //    Debug.Log("Compaired with : " + _combinationData.Data.Name);
+        //}
         if (combinationDataList.Find(x => x.Data.Name == _combinationData.Data.Name))
         {
             return true;

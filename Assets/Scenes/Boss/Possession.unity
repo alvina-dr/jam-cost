@@ -355,7 +355,7 @@ SpriteRenderer:
   m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.1764706, g: 0.0627451, b: 0.0627451, a: 1}
+  m_Color: {r: 0.9921569, g: 0.9490197, b: 0.75294125, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -914,6 +914,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24838957ea251254897522981231b025, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1053248691
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1053248692}
+  - component: {fileID: 1053248693}
+  m_Layer: 0
+  m_Name: Possession
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1053248692
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1053248691}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.24, y: 1.88, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1805513318}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1053248693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1053248691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd0d6e3e9f51cf74d83bb4615e6c5067, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CharacterName: Possession
+  TextColor: {r: 0, g: 0, b: 0, a: 0}
+  BubbleColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1001 &1196230342
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1529,7 +1576,7 @@ SpriteRenderer:
   m_SortingLayerID: -2028115009
   m_SortingLayer: -1
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 0fd8e3df0612807419846aa5f7ef93a3, type: 3}
+  m_Sprite: {fileID: -7037067625476938236, guid: a091642b1a3b95d4c8c8d6b661f29a6f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1663,6 +1710,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1ac6b1885a881d458cd250539381a19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _transitionSettings: {fileID: 11400000, guid: 2eec88d4ca6df24419aab2fd6b04c543, type: 2}
+  _bossMapNode: {fileID: 11400000, guid: c79274fe2f7fdff4f96ab9e65ca09833, type: 2}
 --- !u!1 &1805513317
 GameObject:
   m_ObjectHideFlags: 0
@@ -1697,6 +1746,7 @@ Transform:
   - {fileID: 2070943386}
   - {fileID: 560076320}
   - {fileID: 856091694}
+  - {fileID: 1053248692}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1828816944
@@ -1986,6 +2036,10 @@ PrefabInstance:
     - target: {fileID: 2704690434878895195, guid: 7c91637320b22af4daf161f411573c76, type: 3}
       propertyPath: m_Name
       value: BossInteraction
+      objectReference: {fileID: 0}
+    - target: {fileID: 2704690434878895195, guid: 7c91637320b22af4daf161f411573c76, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3912233397486975416, guid: 7c91637320b22af4daf161f411573c76, type: 3}
       propertyPath: m_LocalPosition.x

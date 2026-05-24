@@ -1,0 +1,43 @@
+﻿title: BossPossession_Room_Encounter
+when:once
+---
+Possession: Hi Dee.
+Possession: I was waiting for you.
+===
+title: BossPossession_Room_Encounter
+when:always
+---
+=> Possession: Hello again Dee.
+    Possession: I hope you've learned from your mistakes.
+=> Possession: It's good to see you Dee.
+    Possession: Let's see if you've learned anything.
+=> Possession: It's been a long time.
+    Possession: Make this fun.
+=> Possession: Oh you...
+    Possession: I wonder what you've planned this time.
+===
+title: BossPossession_Phase1
+---
+Possession: Let's do this.
+===
+
+title: BossPossession_Phase2
+---
+Possession: I can't wait to show you more !!!
+===
+title: BossPossession_Phase3
+---
+Possession: <shake>Close your eyes, this is my final form !!!</shake>
+===
+title: BossPossession_Loose
+---
+Possession: I'm sure I'll see you again.
+===
+title: BossPossession_Win
+---
+Possession: Aaarg... 
+Possession: Who would have thought?... 
+===
+
+
+

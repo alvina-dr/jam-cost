@@ -5,7 +5,7 @@ public class QD_FirstBossNumber : QuestData
 {
     public override bool CheckQuestCompletion()
     {
-        if (SaveManager.CurrentSave.NumberFirstBossPlayed >= Goal)
+        if (SaveManager.CurrentSave.NumberFirstBossWon >= Goal)
         {
             SetQuestToWaitCollection();
             return true;
@@ -18,6 +18,6 @@ public class QD_FirstBossNumber : QuestData
 
     public override int GetCurrentValue()
     {
-        return SaveManager.CurrentSave.NumberFirstBossPlayed;
+        return SaveManager.CurrentSave.NumberFirstBossWon;
     }
 }

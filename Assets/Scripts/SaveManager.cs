@@ -6,6 +6,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using Yarn.Unity;
 
 public class SaveManager : MonoBehaviour
 {
@@ -36,16 +37,21 @@ public class SaveManager : MonoBehaviour
     public PowerData FirstPower;
     [SerializeField] private MapNodeData _firstNode;
 
-    [SerializeReference] public List<BonusData> PermanentBonusList = new();
-    [SerializeReference] public List<PowerData> UnlockedPowerDataList = new();
-    [SerializeReference] public List<PowerData> EquipedPowerDataList = new();
+    public List<BonusData> PermanentBonusList = new();
+    public List<PowerData> UnlockedPowerDataList = new();
+    public List<PowerData> EquipedPowerDataList = new();
 
-    [SerializeReference] public List<BonusData> CurrentRunBonusList = new();
+    public List<BonusData> CurrentRunBonusList = new();
+
+    public InMemoryVariableStorage YarnStorage;
 
     private void Start()
     {
         PrimeTweenConfig.warnTweenOnDisabledTarget = false;
         InputSystem.actions.Enable();
+
+        YarnStorage = FindFirstObjectByType<InMemoryVariableStorage>(FindObjectsInactive.Include);
+        if (!YarnStorage) Debug.Log("no yarn storage found");
 
         // in editor on awake
         LoadOrCreateSave();
@@ -160,6 +166,8 @@ public class SaveManager : MonoBehaviour
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        YarnStorage = FindFirstObjectByType<InMemoryVariableStorage>(FindObjectsInactive.Include);
+        LoadYarnState();
         if (UI_Run.Instance != null) UI_Run.Instance.PPTextValue.SetTextValue(CurrentSave.CurrentRun.ProductivityPoints.ToString(), false);
         if (UI_Run.Instance != null) UI_Run.Instance.MealTicketTextValue.SetTextValue(CurrentSave.MealTickets.ToString(), false);
     }
@@ -222,6 +230,25 @@ public class SaveManager : MonoBehaviour
         UnlockedPowerDataList = LoadList(CurrentSave.UnlockedPowerDataListName, DataLoader.Instance.PowerDataList);
         EquipedPowerDataList = LoadList(CurrentSave.EquipedPowerDataListName, DataLoader.Instance.PowerDataList);
         PermanentBonusList = LoadList(CurrentSave.PermanentBonusListName, BonusDirector.Instance.PermanentBonusDataDictionary);
+        
+        LoadYarnState();
+
+        //DialogueManager.Instance.DialogueRunner.LoadStateFromPersistentStorage(Application.persistentDataPath + "/YarnSave");
+    }
+
+    public void LoadYarnState()
+    {
+        if (YarnStorage == null)
+        {
+            Debug.LogWarning("YarnStorage not found in SaveManager, cannot load Yarn state");
+            return;
+        }
+
+        Dictionary<string, float> yarnFloats = CurrentSave.YarnFloats.ToDict();
+        Dictionary<string, string> yarnString = CurrentSave.YarnStrings.ToDict();
+        Dictionary<string, bool> yarnBools = CurrentSave.YarnBools.ToDict();
+
+        YarnStorage.SetAllVariables(yarnFloats, yarnString, yarnBools);
     }
 
     public void EraseSave()
@@ -265,6 +292,23 @@ public class SaveManager : MonoBehaviour
         CurrentSave.UnlockedPowerDataListName = SaveList(UnlockedPowerDataList);
         CurrentSave.EquipedPowerDataListName = SaveList(EquipedPowerDataList);
         CurrentSave.PermanentBonusListName = SaveList(PermanentBonusList);
+
+        //DialogueManager.Instance.DialogueRunner.SaveStateToPersistentStorage(Application.persistentDataPath + "/YarnSave");
+
+        if (YarnStorage == null) YarnStorage = FindFirstObjectByType<InMemoryVariableStorage>(FindObjectsInactive.Include);
+
+        // Save yarn state
+        if (YarnStorage != null)
+        {
+            (Dictionary<string, float> yarnFloats, Dictionary<string, string> yarnStrings, Dictionary<string, bool> yarnBools) = YarnStorage.GetAllVariables();
+            CurrentSave.YarnFloats = new SerializableDictionary<string, float>(yarnFloats);
+            CurrentSave.YarnStrings = new SerializableDictionary<string, string>(yarnStrings);
+            CurrentSave.YarnBools = new SerializableDictionary<string, bool>(yarnBools);
+        }
+        else
+        {
+            Debug.LogError("Yarn storage was null when trying to save");
+        }
 
         string save = JsonUtility.ToJson(CurrentSave, true);
 
@@ -323,6 +367,10 @@ public class SaveManager : MonoBehaviour
     public class SaveData
     {
         public string LastSceneName = "Hub";
+        
+        public SerializableDictionary<string, float> YarnFloats;
+        public SerializableDictionary<string, string> YarnStrings;
+        public SerializableDictionary<string, bool> YarnBools;
 
         public int MealTickets;
         [SerializeReference] public List<string> PermanentBonusListName = new();
@@ -354,9 +402,11 @@ public class SaveManager : MonoBehaviour
         public int TotalPoints;
         public int PPSpentRunShop;
         public int PPConvertedToMT;
-        public int NumberFirstBossPlayed;
         public int NumberPowerUsed;
         public int NumberLeverUsed;
+
+        public int NumberFirstBossPlayed;
+        public int NumberFirstBossWon;
 
         // Permanent bonus stats
         public float PermanentRoundBonusTime = 0;

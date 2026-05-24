@@ -41,12 +41,15 @@ public class MND_Scavenge_Possession : MND_Scavenge_Classic
         switch (BossPhase)
         {
             case BossPhase.StartFirstPhase:
+                DialogueManager.Instance.DialogueRunner.StartDialogue("BossPossession_Phase1");
+                break;
             case BossPhase.FirstPhase:
                 break;
             case BossPhase.StartSecondPhase:
                 GameManager.Instance.BossLock.SetLock();
                 BossBehavior_Possession.Instance.LockDepositBox();
                 BossPhase = BossPhase.SecondPhase;
+                DialogueManager.Instance.DialogueRunner.StartDialogue("BossPossession_Phase2");
                 break;
             case BossPhase.SecondPhase:
                 break;
@@ -54,6 +57,7 @@ public class MND_Scavenge_Possession : MND_Scavenge_Classic
                 GameManager.Instance.BossLock.SetLock();
                 BossBehavior_Possession.Instance.LockDepositBox();
                 BossPhase = BossPhase.ThirdPhase;
+                DialogueManager.Instance.DialogueRunner.StartDialogue("BossPossession_Phase3");
                 break;
             case BossPhase.ThirdPhase:
                 break;
