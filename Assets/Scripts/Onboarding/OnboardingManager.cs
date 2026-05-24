@@ -84,6 +84,6 @@ public class OnboardingManager : MonoBehaviour
     public void StartGame()
     {
         SaveManager.CurrentSave.SeeOnboarding = true;
-        TransitionManager.Instance().TransitionChangeScene("Office", _transitionSettings, 0);
+        SaveManager.Instance.ChangeScene("Office", _transitionSettings, 0);
     }
 }

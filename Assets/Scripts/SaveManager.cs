@@ -89,12 +89,12 @@ public class SaveManager : MonoBehaviour
     {
         if (CurrentMapNode is MND_Scavenge_Possession)
         {
-            TransitionManager.Instance().TransitionChangeScene("Ending", _transitionSettings, 0);
+            ChangeScene("Ending", _transitionSettings, 0);
         }
         else
         {
             CurrentSave.CurrentRun.CurrentNode++;
-            TransitionManager.Instance().TransitionChangeScene("Map", _transitionSettings, 0);
+            ChangeScene("Map", _transitionSettings, 0);
         }
     }
 
@@ -248,7 +248,25 @@ public class SaveManager : MonoBehaviour
         Dictionary<string, string> yarnString = CurrentSave.YarnStrings.ToDict();
         Dictionary<string, bool> yarnBools = CurrentSave.YarnBools.ToDict();
 
+        if (yarnFloats.Count == 0 && yarnString.Count == 0 && yarnBools.Count == 0) return;
+
         YarnStorage.SetAllVariables(yarnFloats, yarnString, yarnBools);
+    }
+
+    public void SaveYarnState()
+    {
+        // Save yarn state
+        if (YarnStorage != null)
+        {
+            (Dictionary<string, float> yarnFloats, Dictionary<string, string> yarnStrings, Dictionary<string, bool> yarnBools) = YarnStorage.GetAllVariables();
+            CurrentSave.YarnFloats = new SerializableDictionary<string, float>(yarnFloats);
+            CurrentSave.YarnStrings = new SerializableDictionary<string, string>(yarnStrings);
+            CurrentSave.YarnBools = new SerializableDictionary<string, bool>(yarnBools);
+        }
+        else
+        {
+            Debug.LogError("Yarn storage was null when trying to save");
+        }
     }
 
     public void EraseSave()
@@ -297,22 +315,18 @@ public class SaveManager : MonoBehaviour
 
         if (YarnStorage == null) YarnStorage = FindFirstObjectByType<InMemoryVariableStorage>(FindObjectsInactive.Include);
 
-        // Save yarn state
-        if (YarnStorage != null)
-        {
-            (Dictionary<string, float> yarnFloats, Dictionary<string, string> yarnStrings, Dictionary<string, bool> yarnBools) = YarnStorage.GetAllVariables();
-            CurrentSave.YarnFloats = new SerializableDictionary<string, float>(yarnFloats);
-            CurrentSave.YarnStrings = new SerializableDictionary<string, string>(yarnStrings);
-            CurrentSave.YarnBools = new SerializableDictionary<string, bool>(yarnBools);
-        }
-        else
-        {
-            Debug.LogError("Yarn storage was null when trying to save");
-        }
+        SaveYarnState();
 
         string save = JsonUtility.ToJson(CurrentSave, true);
 
         System.IO.File.WriteAllText(Application.persistentDataPath + "/Save.json", save);
+    }
+
+    public void ChangeScene(string sceneName, TransitionSettings transitionSettings, float startDelay)
+    {
+        TransitionManager.Instance().TransitionChangeScene(sceneName, transitionSettings, startDelay);
+        Debug.Log("Change scene : " + sceneName);
+        Save();
     }
 
     public void SaveRun()

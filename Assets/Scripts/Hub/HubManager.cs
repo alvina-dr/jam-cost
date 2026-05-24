@@ -58,7 +58,7 @@ public class HubManager : MonoBehaviour
 
     public void LaunchNewRun()
     {
-        TransitionManager.Instance().TransitionChangeScene("Game", _transitionSettings, 0);
+        SaveManager.Instance.ChangeScene("Game", _transitionSettings, 0);
         SaveManager.Instance.StartNewRun();
     }
 
@@ -79,11 +79,11 @@ public class HubManager : MonoBehaviour
 
     public void GoToBreakroom()
     {
-        TransitionManager.Instance().TransitionChangeScene("Hub", _transitionSettings, 0);
+        SaveManager.Instance.ChangeScene("Hub", _transitionSettings, 0);
     }
 
     public void GoToOffice()
     {
-        TransitionManager.Instance().TransitionChangeScene("Office", _transitionSettings, 0);
+        SaveManager.Instance.ChangeScene("Office", _transitionSettings, 0);
     }
 }

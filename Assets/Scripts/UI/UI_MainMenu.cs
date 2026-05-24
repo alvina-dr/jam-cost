@@ -13,11 +13,11 @@ public class UI_MainMenu : MonoBehaviour
 
         if (SaveManager.CurrentSave.SeeOnboarding == true)
         {
-            TransitionManager.Instance().TransitionChangeScene("Office", _transitionSettings, 0);
+            SaveManager.Instance.ChangeScene("Office", _transitionSettings, 0);
         }
         else
         {
-            TransitionManager.Instance().TransitionChangeScene("Onboarding", _transitionSettings, 0);
+            SaveManager.Instance.ChangeScene("Onboarding", _transitionSettings, 0);
         }
     }
 

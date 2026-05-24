@@ -8,6 +8,7 @@ public class PossessionRoomManager : MonoBehaviour
 
     private void Start()
     {
+        SaveManager.Instance.LoadYarnState();
         DialogueManager.Instance.EndDialogueEvent += StartBoss;
         DialogueManager.Instance.DialogueRunner.StartDialogue("BossPossession_Room_Encounter");
         SaveManager.CurrentSave.NumberFirstBossPlayed++;
@@ -16,6 +17,6 @@ public class PossessionRoomManager : MonoBehaviour
     public void StartBoss()
     {
         SaveManager.Instance.CurrentMapNode = Instantiate(_bossMapNode);
-        TransitionManager.Instance().TransitionChangeScene("Game", _transitionSettings, 0);
+        SaveManager.Instance.ChangeScene("Game", _transitionSettings, 0);
     }
 }

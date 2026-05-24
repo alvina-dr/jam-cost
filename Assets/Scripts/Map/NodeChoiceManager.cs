@@ -83,16 +83,16 @@ public class NodeChoiceManager : MonoBehaviour
         switch (mapNodeData)
         {
             case MND_Scavenge_Classic:
-                TransitionManager.Instance().TransitionChangeScene("Game", _transitionSettings, 0);
+                SaveManager.Instance.ChangeScene("Game", _transitionSettings, 0);
                 break;
             case MND_FreeRound:
-                TransitionManager.Instance().TransitionChangeScene("FreeRound", _transitionSettings, 0);
+                SaveManager.Instance.ChangeScene("FreeRound", _transitionSettings, 0);
                 break;
             case MND_Shop:
-                TransitionManager.Instance().TransitionChangeScene("Shop", _transitionSettings, 0);
+                SaveManager.Instance.ChangeScene("Shop", _transitionSettings, 0);
                 break;
             case MND_Boss:
-                TransitionManager.Instance().TransitionChangeScene("Possession", _transitionSettings, 0);
+                SaveManager.Instance.ChangeScene("Possession", _transitionSettings, 0);
                 break;
         }
     }

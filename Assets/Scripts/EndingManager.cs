@@ -18,8 +18,7 @@ public class EndingManager : MonoBehaviour
     {
         SaveManager.Instance.AddMT(3);
         SaveManager.Instance.SaveRun();
-
-        TransitionManager.Instance().TransitionChangeScene("Office", _transitionSettings, 0);
+        SaveManager.Instance.ChangeScene("Office", _transitionSettings, 0);
     }
 
 }
