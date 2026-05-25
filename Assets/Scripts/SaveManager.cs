@@ -263,10 +263,6 @@ public class SaveManager : MonoBehaviour
             CurrentSave.YarnStrings = new SerializableDictionary<string, string>(yarnStrings);
             CurrentSave.YarnBools = new SerializableDictionary<string, bool>(yarnBools);
         }
-        else
-        {
-            Debug.LogError("Yarn storage was null when trying to save");
-        }
     }
 
     public void EraseSave()
