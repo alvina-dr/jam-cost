@@ -26,7 +26,7 @@ public class UI_BonusIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        TooltipManager.Instance.ShowTooltip(Data, transform.position);
+        TooltipManager.Instance.ShowTooltip(Data, transform.position, Vector3.zero);
     }
 
     public void OnPointerExit(PointerEventData eventData)

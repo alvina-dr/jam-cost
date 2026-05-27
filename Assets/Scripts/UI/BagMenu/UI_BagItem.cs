@@ -55,7 +55,7 @@ public class UI_BagItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        TooltipManager.Instance.ShowTooltip(ItemInstance, transform.position + Vector3.up / 2);
+        TooltipManager.Instance.ShowTooltip(ItemInstance, transform.position, Vector3.up * 50);
     }
 
     public void OnPointerExit(PointerEventData eventData)

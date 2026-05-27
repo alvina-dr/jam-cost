@@ -33,7 +33,7 @@ public class CB_Bonus : ClickableBehavior
 
     protected override void OnMouseEnter()
     {
-        TooltipManager.Instance.ShowTooltip(BonusData, transform.position);
+        TooltipManager.Instance.ShowTooltip(BonusData, transform.position, Vector3.zero);
 
         if (!CanClickItem()) return;
 

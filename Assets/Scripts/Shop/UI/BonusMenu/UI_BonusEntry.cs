@@ -17,7 +17,7 @@ public class UI_BonusEntry : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (BonusData) TooltipManager.Instance.ShowTooltip(BonusData, Camera.main.ScreenToWorldPoint(transform.position));
+        if (BonusData) TooltipManager.Instance.ShowTooltip(BonusData, Camera.main.ScreenToWorldPoint(transform.position), Vector3.zero);
     }
 
     public void OnPointerExit(PointerEventData eventData)

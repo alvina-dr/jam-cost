@@ -139,7 +139,7 @@ public class UI_MapNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             mapLine.transform.SetAsLastSibling();
         }
 
-        TooltipManager.Instance.ShowTooltip(MapNodeData, Camera.main.ScreenToWorldPoint(transform.position));
+        TooltipManager.Instance.ShowTooltip(MapNodeData, Camera.main.ScreenToWorldPoint(transform.position), Vector3.zero);
         // show path line
     }
 

@@ -35,7 +35,7 @@ public class UI_Combination : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        TooltipManager.Instance.ShowTooltip(_combinationData, transform.position);
+        TooltipManager.Instance.ShowTooltip(_combinationData, transform.position, Vector3.zero);
     }
 
     public void OnPointerExit(PointerEventData eventData)

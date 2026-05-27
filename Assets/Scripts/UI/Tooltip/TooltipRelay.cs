@@ -8,7 +8,7 @@ public class TooltipRelay : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        TooltipManager.Instance.ShowTooltip(_tooltipData, transform.position + _offset);
+        TooltipManager.Instance.ShowTooltip(_tooltipData, transform.position, _offset);
     }
 
     public void OnPointerExit(PointerEventData eventData)

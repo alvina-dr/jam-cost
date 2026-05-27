@@ -28,11 +28,16 @@ public class ShopManager : MonoBehaviour
 
     public Animator VendingMachineAnimator;
     public List<ShopItem> BonusList = new();
-    public ShopItem BoughtItem;
+    [SerializeField] private List<ShopItem> _boughtItemList = new();
+    [SerializeField] private List<Transform> _boughtItemTransformList = new();
+    [SerializeField] private GameObject _mask;
 
     public List<TextMeshProUGUI> _priceTextList = new();
 
     [SerializeField] private float _showBonusDelay;
+
+    [Header("VFX")]
+    [SerializeField] private ParticleSystem _fallSparklesPS;
 
     private List<BonusData> _sellingBonusDataList = new();
 
@@ -59,14 +64,40 @@ public class ShopManager : MonoBehaviour
         }
     }
 
-    public void OpenVendingMachine(BonusData bonusData)
+    public void BuyShopItem(ShopItem shopItem)
+    {
+        _boughtItemList.Add(shopItem);
+        shopItem.transform.position = _boughtItemTransformList[_boughtItemList.Count - 1].position;
+        _fallSparklesPS.Play();
+    }
+
+    public void OpenVendingMachine()
     {
         VendingMachineAnimator.Play("Open");
-        BoughtItem.Setup(bonusData);
+        _mask.SetActive(false);
+
         Sequence sequence = Sequence.Create();
         sequence.ChainDelay(_showBonusDelay);
-        sequence.Chain(Tween.Scale(BoughtItem.transform, 1.1f, .3f));
-        sequence.Chain(Tween.Scale(BoughtItem.transform, 1f, .2f));
+        for (int i = 0; i < _boughtItemList.Count; i++)
+        {
+            ShopItem shopItem = _boughtItemList[i];
+            sequence.ChainCallback(() => shopItem.gameObject.SetActive(true));
+            sequence.ChainCallback(() => shopItem.ShowBonus());
+        }
+
+        sequence.ChainDelay(.5f);
+
+        for (int i = 0; i < _boughtItemList.Count; i++)
+        {
+            ShopItem shopItem = _boughtItemList[i];
+            sequence.Chain(Tween.Scale(shopItem.transform, 1.1f, .3f));
+            sequence.Chain(Tween.Scale(shopItem.transform, 1f, .2f));
+            sequence.ChainCallback(() => shopItem.Collect());
+            sequence.ChainDelay(.3f);
+        }
+
+        sequence.ChainDelay(1.5f);
+        sequence.ChainCallback(() => LeaveShop());
     }
 
     public void CloseVendingMachine()
