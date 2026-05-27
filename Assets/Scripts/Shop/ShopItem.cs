@@ -33,8 +33,9 @@ public class ShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         QuestDirector.Instance.CheckQuestCompletionByType<QD_PPSpentRunShop>();
             
         Sequence sequence = Sequence.Create();
-        sequence.Chain(Tween.Scale(transform, 1.2f, .3f));
-        sequence.Chain(Tween.Scale(transform, 1f, .2f));
+        sequence.Chain(Tween.Scale(transform, 1.2f, .1f));
+        sequence.ChainCallback(() => _spriteRenderer.sortingOrder = 4);
+        sequence.Chain(Tween.Scale(transform, 1f, .15f));
         sequence.Chain(Tween.PositionAtSpeed(transform, new Vector3(transform.position.x, -3.5f, transform.position.z), _fallSpeed, Ease.Linear));
         sequence.ChainCallback(() => ShopManager.Instance.BuyShopItem(this));
         sequence.ChainCallback(() => gameObject.SetActive(false));
@@ -53,8 +54,8 @@ public class ShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void ShowBonus()
     {
         Sequence sequence = Sequence.Create();
-        sequence.Chain(Tween.Scale(transform, 1.2f, .3f));
-        sequence.Chain(Tween.Scale(transform, 1, .2f));
+        sequence.Chain(Tween.Scale(transform, 1.2f, .15f));
+        sequence.Chain(Tween.Scale(transform, 1, .1f));
     }
 
     public void OnPointerEnter(PointerEventData eventData)

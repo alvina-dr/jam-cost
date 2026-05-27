@@ -26,7 +26,9 @@ public class ShopManager : MonoBehaviour
     public UI_BonusMenu BonusMenu;
     public UI_ConversionMenu ConversionMenu;
 
+    [Header("Vending Machine")]
     public Animator VendingMachineAnimator;
+    [SerializeField] private SpriteRenderer _vendingMachineSpriteRenderer;
     public List<ShopItem> BonusList = new();
     [SerializeField] private List<ShopItem> _boughtItemList = new();
     [SerializeField] private List<Transform> _boughtItemTransformList = new();
@@ -78,6 +80,11 @@ public class ShopManager : MonoBehaviour
 
         Sequence sequence = Sequence.Create();
         sequence.ChainDelay(_showBonusDelay);
+        sequence.Group(Tween.ShakeLocalPosition(_vendingMachineSpriteRenderer.transform, Vector3.one * .3f, .3f));
+        Sequence stretch = Sequence.Create();
+        stretch.Group(Tween.ScaleX(_vendingMachineSpriteRenderer.transform, 1.5f, .2f));
+        stretch.Group(Tween.ScaleX(_vendingMachineSpriteRenderer.transform, 1.11f, .3f));
+        sequence.Group(stretch);
         for (int i = 0; i < _boughtItemList.Count; i++)
         {
             ShopItem shopItem = _boughtItemList[i];
@@ -90,8 +97,8 @@ public class ShopManager : MonoBehaviour
         for (int i = 0; i < _boughtItemList.Count; i++)
         {
             ShopItem shopItem = _boughtItemList[i];
-            sequence.Chain(Tween.Scale(shopItem.transform, 1.1f, .3f));
-            sequence.Chain(Tween.Scale(shopItem.transform, 1f, .2f));
+            sequence.Chain(Tween.Scale(shopItem.transform, 1.1f, .15f));
+            sequence.Chain(Tween.Scale(shopItem.transform, 1f, .1f));
             sequence.ChainCallback(() => shopItem.Collect());
             sequence.ChainDelay(.3f);
         }
