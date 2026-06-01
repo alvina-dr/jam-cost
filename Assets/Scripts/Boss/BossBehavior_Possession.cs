@@ -20,6 +20,11 @@ public class BossBehavior_Possession : MonoBehaviour
 
     [SerializeField] private SpriteRenderer _lockBoxSpriteRenderer;
 
+    private void Start()
+    {
+        DialogueManager.Instance.DialogueRunner.StartDialogue("BossPossession_Start");
+    }
+
     public void LockDepositBox()
     {
         _lockBoxSpriteRenderer.gameObject.SetActive(true);

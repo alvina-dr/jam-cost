@@ -16,6 +16,12 @@ when:always
 => Possession: Oh you...
     Possession: I wonder what you've planned this time.
 ===
+title: BossPossession_Start
+---
+Possession: I hope you're ready.
+Possession: <vomits on everything>
+Possession: This will teach you ! 
+===
 title: BossPossession_Phase1
 ---
 Possession: Let's do this.
