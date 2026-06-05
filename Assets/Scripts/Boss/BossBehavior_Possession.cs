@@ -1,3 +1,4 @@
+using PrimeTween;
 using UnityEngine;
 
 public class BossBehavior_Possession : MonoBehaviour
@@ -19,6 +20,7 @@ public class BossBehavior_Possession : MonoBehaviour
     #endregion
 
     [SerializeField] private SpriteRenderer _lockBoxSpriteRenderer;
+    [SerializeField] private GameObject _bossPhaseScreen;
 
     private void Start()
     {
@@ -33,5 +35,15 @@ public class BossBehavior_Possession : MonoBehaviour
     public void UnlockDepositBox()
     {
         _lockBoxSpriteRenderer.gameObject.SetActive(false);
+    }
+
+    public void ShowBossPhaseScreen()
+    {
+        GameManager.Instance.ScavengingState.CurrentSubState = GS_Scavenging.Scavenging_SubState.RerollCrateAnim;
+        _bossPhaseScreen.SetActive(true);
+        Sequence sequence = Sequence.Create();
+        sequence.ChainDelay(3f);
+        sequence.ChainCallback(() => _bossPhaseScreen.SetActive(false));
+        sequence.ChainCallback(() => GameManager.Instance.SetGameState(GameManager.Instance.ScavengingIntroState));
     }
 }

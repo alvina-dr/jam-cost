@@ -28,8 +28,28 @@ public class MND_Scavenge_Classic : MapNodeData
         }
     }
 
+    public virtual void RerollCrateEnd()
+    {
+
+    }
+
     public virtual void NewRound()
     {
 
+    }
+
+    public virtual void ExitScoreCount()
+    {
+        GameManager.Instance.SetGameState(GameManager.Instance.ScavengingIntroState);
+    }
+
+    public virtual void Victory()
+    {
+        GameManager.Instance.SetGameState(GameManager.Instance.WinState);
+    }
+
+    public virtual void Defeat()
+    {
+        GameManager.Instance.SetGameState(GameManager.Instance.GameOverState);
     }
 }

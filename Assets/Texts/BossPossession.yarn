@@ -19,6 +19,7 @@ when:always
 title: BossPossession_Start
 ---
 Possession: I hope you're ready.
+<<VomitOnItems>>
 Possession: <vomits on everything>
 Possession: This will teach you ! 
 ===
@@ -35,15 +36,21 @@ title: BossPossession_Phase3
 ---
 Possession: <shake>Close your eyes, this is my final form !!!</shake>
 ===
-title: BossPossession_Loose
+title: BossPossession_Defeat
 ---
 Possession: I'm sure I'll see you again.
 ===
-title: BossPossession_Win
+title: BossPossession_Victory
 ---
 Possession: Aaarg... 
 Possession: Who would have thought?... 
 ===
 
+title: BossPossession_RerollCrate
+---
+<<VomitOnItems>>
+Possession: <vomits on everything>
+Possession: <shake>IT'S MIIIINE
+===
 
 

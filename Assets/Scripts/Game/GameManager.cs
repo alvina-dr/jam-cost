@@ -181,5 +181,6 @@ public class GameManager : MonoBehaviour
         rerollSequence.ChainCallback(() => SaveManager.Instance.GetScavengeNode().SpawnItems());
         rerollSequence.ChainCallback(() => ScavengingState.CurrentSubState = GS_Scavenging.Scavenging_SubState.Scavenging);
         rerollSequence.ChainCallback(() => PreparationState.CurrentSubState = GS_Preparation.Preparation_SubState.Preparation);
+        rerollSequence.ChainCallback(() => SaveManager.Instance.GetScavengeNode().RerollCrateEnd());
     }
 }

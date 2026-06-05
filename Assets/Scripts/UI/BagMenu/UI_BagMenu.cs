@@ -140,7 +140,7 @@ public class UI_BagMenu : UI_Menu
 
     public void Continue()
     {
-        GameManager.Instance.SetGameState(GameManager.Instance.ScavengingIntroState);
+        SaveManager.Instance.GetScavengeNode().ExitScoreCount();
         _continue.gameObject.SetActive(false);
     }
 
@@ -493,22 +493,13 @@ public class UI_BagMenu : UI_Menu
         MND_Scavenge_Classic scavengeNode = SaveManager.Instance.GetScavengeNode();
         if (GameManager.Instance.CurrentScore >= GameManager.Instance.GoalScore)
         {
-            if (scavengeNode is MND_Scavenge_Possession)
-            {
-                MND_Scavenge_Possession bossPossessionNode = (MND_Scavenge_Possession)scavengeNode;
-                bossPossessionNode.BeatScore();
-            }
-            else
-            {
-                GameManager.Instance.SetGameState(GameManager.Instance.WinState);
-            }
+            scavengeNode.Victory();
         }
         else
         {
             if (GameManager.Instance.CurrentRound >= GameManager.Instance.GetMaxRoundNumber())
             {
-                GameManager.Instance.SetGameState(GameManager.Instance.GameOverState);
-
+                scavengeNode.Defeat();
             }
             else
             {

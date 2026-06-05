@@ -116,12 +116,12 @@ public class DebugManager : MonoBehaviour
 
     public void WinCurrentNode()
     {
-        GameManager.Instance?.SetGameState(GameManager.Instance.WinState);
+        SaveManager.Instance?.GetScavengeNode().Victory();
     }
 
     public void LooseCurrentNode()
     {
-        GameManager.Instance?.SetGameState(GameManager.Instance.GameOverState);
+        SaveManager.Instance?.GetScavengeNode().Defeat();
     }
 
     public void GenerateNewMap()
