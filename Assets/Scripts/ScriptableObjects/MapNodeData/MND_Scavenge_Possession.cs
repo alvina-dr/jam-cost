@@ -82,10 +82,12 @@ public class MND_Scavenge_Possession : MND_Scavenge_Classic
                 break;
             case BossPhase.StartSecondPhase:
                 BossBehavior_Possession.Instance.ShowBossPhaseScreen();
-                break;
+                return;
             case BossPhase.SecondPhase:
                 break;
         }
+
+        GameManager.Instance.SetGameState(GameManager.Instance.ScavengingIntroState);
     }
 
     public void BeatScore()

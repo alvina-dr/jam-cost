@@ -20,7 +20,10 @@ public class BossBehavior_Possession : MonoBehaviour
     #endregion
 
     [SerializeField] private SpriteRenderer _lockBoxSpriteRenderer;
+
+    [Header("Second phase screen")]
     [SerializeField] private GameObject _bossPhaseScreen;
+    [SerializeField] private Transform _bossPicture;
 
     private void Start()
     {
@@ -42,7 +45,11 @@ public class BossBehavior_Possession : MonoBehaviour
         GameManager.Instance.ScavengingState.CurrentSubState = GS_Scavenging.Scavenging_SubState.RerollCrateAnim;
         _bossPhaseScreen.SetActive(true);
         Sequence sequence = Sequence.Create();
-        sequence.ChainDelay(3f);
+        sequence.ChainDelay(1f);
+        sequence.Chain(Tween.Scale(_bossPicture, 1.1f, 0.01f));
+        sequence.ChainDelay(1f);
+        sequence.Chain(Tween.Scale(_bossPicture, 1.2f, 0.01f));
+        sequence.ChainDelay(1f);
         sequence.ChainCallback(() => _bossPhaseScreen.SetActive(false));
         sequence.ChainCallback(() => GameManager.Instance.SetGameState(GameManager.Instance.ScavengingIntroState));
     }
