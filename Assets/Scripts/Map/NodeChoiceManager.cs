@@ -22,9 +22,10 @@ public class NodeChoiceManager : MonoBehaviour
     }
     #endregion
 
-    [SerializeField] private MapData _mapData;
+    public MapData MapData;
     [SerializeField] private List<UI_MapNode> _mapNodeList = new();
     [SerializeField] private TransitionSettings _transitionSettings;
+    [SerializeField] private ClockManager _clockManager;
 
     private void OnAwake()
     {
@@ -42,7 +43,7 @@ public class NodeChoiceManager : MonoBehaviour
     {
         List<MapNodeData> chosenMapNodeData = new();
 
-        MapNodeChoiceData choiceData = _mapData.ChoiceList[SaveManager.CurrentSave.CurrentRun.CurrentNode];
+        MapNodeChoiceData choiceData = MapData.ChoiceList[SaveManager.CurrentSave.CurrentRun.CurrentNode];
         List<MapNodeData> choiceList = new(choiceData.MapNodeDataPool);
 
         int numberNodeToDraw = 2;
@@ -75,7 +76,7 @@ public class NodeChoiceManager : MonoBehaviour
             }
         }
 
-        ClockManager.Instance.Setup();
+        _clockManager.Setup();
     }
 
     public void LaunchNode(MapNodeData mapNodeData, RewardData rewardData)

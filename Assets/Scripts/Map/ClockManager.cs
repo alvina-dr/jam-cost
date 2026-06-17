@@ -21,10 +21,13 @@ public class ClockManager : MonoBehaviour
     }
     #endregion
 
-    [SerializeField] private MapData _mapData;
     [SerializeField] private ClockRoomIcon _clockRoomIconPrefab;
 
     [Header("Choice")]
+    [SerializeField] private SpriteRenderer _twoChoices;
+    [SerializeField] private SpriteRenderer _threeChoices;
+    [SerializeField] private SpriteRenderer _fourChoices;
+    [SerializeField] private SpriteRenderer _fiveChoices;
     [SerializeField] private Transform _circleCenter;
     [SerializeField] private float _degreeStart;
     [SerializeField] private float _circleRadius;
@@ -33,15 +36,18 @@ public class ClockManager : MonoBehaviour
     [SerializeField] private Transform _choiceParent;
     [SerializeField] private List<MapNode> _choiceList = new();
 
+    [Header("Clock Hands")]
+    [SerializeField] private Transform _bigHand;
+    [SerializeField] private Transform _smallHand;
 
     public void Setup()
     {
         List<MapNodeData> chosenMapNodeData = new();
 
-        MapNodeChoiceData choiceData = _mapData.ChoiceList[SaveManager.CurrentSave.CurrentRun.CurrentNode];
+        MapNodeChoiceData choiceData = NodeChoiceManager.Instance.MapData.ChoiceList[SaveManager.CurrentSave.CurrentRun.CurrentNode];
         List<MapNodeData> choiceList = new(choiceData.MapNodeDataPool);
 
-        int numberNodeToDraw = 2;
+        int numberNodeToDraw = 3;
 
         MND_FreeRound freeRound = choiceList.Find(x => x is MND_FreeRound) as MND_FreeRound;
         if (freeRound != null && SaveManager.CurrentSave.CurrentRun.RunBonusRound == 0)
@@ -59,21 +65,55 @@ public class ClockManager : MonoBehaviour
             chosenMapNodeData.Add(mapNodeData);
         }
 
+        for (int i = 0; i < _choiceList.Count; i++)
+        {
+            DestroyImmediate(_choiceList[i].gameObject);
+        }
+
+        _choiceList.Clear();
+
+        float degreeSpace = _degreeTotal / (float)(chosenMapNodeData.Count - 1);
         for (int i = 0; i < chosenMapNodeData.Count; i++)
         {
             MapNode choice = Instantiate(_choicePrefab, _choiceParent);
             _choiceList.Add(choice);
             choice.Setup(chosenMapNodeData[i], choiceData.ChooseRandomReward());
-            float zRotation = chosenMapNodeData.Count * _degreeTotal + _degreeStart;
-            float x = _circleCenter.position.x + _circleRadius * Mathf.Cos((zRotation + 90) * Mathf.PI / 180);
-            float y = _circleCenter.position.y + _circleRadius * Mathf.Sin((zRotation + 90) * Mathf.PI / 180);
+            float zRotation = i * degreeSpace;
+            float x = _circleCenter.position.x + _circleRadius * Mathf.Cos((zRotation + _degreeStart) * Mathf.PI / 180);
+            float y = _circleCenter.position.y + _circleRadius * Mathf.Sin((zRotation + _degreeStart) * Mathf.PI / 180);
             choice.transform.position = new Vector3(x, y, 0);
-            // choose position depending on total number and degree of circle
+        }
+
+        _twoChoices.gameObject.SetActive(false);
+        _threeChoices.gameObject.SetActive(false);
+        _fourChoices.gameObject.SetActive(false);
+        _fiveChoices.gameObject.SetActive(false);
+        switch (chosenMapNodeData.Count)
+        {
+            case 2:
+                _twoChoices.gameObject.SetActive(true);
+                break;
+            case 3:
+                _threeChoices.gameObject.SetActive(true);
+                break;
+            case 4:
+                _fourChoices.gameObject.SetActive(true);
+                break;
+            case 5:
+                _fiveChoices.gameObject.SetActive(true);
+                break;
         }
     }
 
+    private void Update()
+    {
+        Vector2 direction =  Camera.main.ScreenToWorldPoint(Input.mousePosition) - _bigHand.transform.position;
+        if (direction.y < 0) direction = new Vector2(direction.x, 0);
+        _bigHand.transform.up = direction.normalized;
+    }
+
     [Button]
-    public void TestSystem(int choiceNumber)
+    public void SetupClock(int choiceNumber)
     {
         for (int i = 0; i < _choiceList.Count; i++)
         {

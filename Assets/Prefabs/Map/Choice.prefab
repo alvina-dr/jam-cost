@@ -132,3 +132,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8040457a25e3b74286f6304307814f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MapNodeData: {fileID: 0}
+  RewardData: {fileID: 0}
+  _icon: {fileID: 8923984180027432396}
