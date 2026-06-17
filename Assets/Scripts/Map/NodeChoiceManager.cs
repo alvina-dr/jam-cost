@@ -74,6 +74,8 @@ public class NodeChoiceManager : MonoBehaviour
                 _mapNodeList[i].gameObject.SetActive(false);
             }
         }
+
+        ClockManager.Instance.Setup();
     }
 
     public void LaunchNode(MapNodeData mapNodeData, RewardData rewardData)
