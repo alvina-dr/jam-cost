@@ -43,10 +43,12 @@ public class ClockManager : MonoBehaviour
     [SerializeField] private float _roomDegreeStart;
     [SerializeField] private float _roomCircleRadius;
     [SerializeField] private float _roomDegreeTotal;
+    private List<ClockRoomIcon> _roomIconList = new();
 
     [Header("Clock Hands")]
     [SerializeField] private Transform _bigHand;
     [SerializeField] private Transform _smallHand;
+    [SerializeField] private float _handMoveSpeed;
 
     public void Setup()
     {
@@ -113,24 +115,28 @@ public class ClockManager : MonoBehaviour
                 break;
         }
 
-        float roomDegreeSpace = _roomDegreeTotal / (float)(NodeChoiceManager.Instance.MapData.ChoiceList.Count - 1);
+        float roomDegreeSpace = -_roomDegreeTotal / (float)(NodeChoiceManager.Instance.MapData.ChoiceList.Count - 1);
         for (int i = 0; i < NodeChoiceManager.Instance.MapData.ChoiceList.Count; i++)
         {
             ClockRoomIcon roomIcon = Instantiate(_roomPrefab, _roomParent);
-            float zRotation = i * roomDegreeSpace;
-            float x = _choiceCircleCenter.position.x + _roomCircleRadius * Mathf.Cos((zRotation + _roomDegreeStart) * Mathf.PI / 180);
-            float y = _choiceCircleCenter.position.y + _roomCircleRadius * Mathf.Sin((zRotation + _roomDegreeStart) * Mathf.PI / 180);
+            _roomIconList.Add(roomIcon);
+            float zRotation = i * roomDegreeSpace + 180;
+            float x = _choiceCircleCenter.position.x + _roomCircleRadius * Mathf.Cos((zRotation + -_roomDegreeStart) * Mathf.PI / 180);
+            float y = _choiceCircleCenter.position.y + _roomCircleRadius * Mathf.Sin((zRotation + -_roomDegreeStart) * Mathf.PI / 180);
             roomIcon.transform.position = new Vector3(x, y, 0);
-            if (i < SaveManager.CurrentSave.CurrentRun.CurrentNode) roomIcon.Enable();
+            if (i <= SaveManager.CurrentSave.CurrentRun.CurrentNode) roomIcon.Enable();
             else roomIcon.Disable();
         }
+
+        Vector2 direction = _roomIconList[SaveManager.CurrentSave.CurrentRun.CurrentNode].transform.position - _smallHand.transform.position;
+        _smallHand.transform.up = direction.normalized;
     }
 
     private void Update()
     {
         Vector2 direction =  Camera.main.ScreenToWorldPoint(Input.mousePosition) - _bigHand.transform.position;
         if (direction.y < 0) direction = new Vector2(direction.x, 0);
-        _bigHand.transform.up = direction.normalized;
+        _bigHand.transform.up = Vector3.Lerp(_bigHand.transform.up, direction.normalized, Time.deltaTime * _handMoveSpeed);
     }
 
     [Button]

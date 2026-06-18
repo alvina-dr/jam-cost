@@ -5351,6 +5351,7 @@ MonoBehaviour:
   _roomDegreeTotal: 160
   _bigHand: {fileID: 948809879}
   _smallHand: {fileID: 233800226}
+  _handMoveSpeed: 5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
