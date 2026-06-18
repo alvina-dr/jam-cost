@@ -92,7 +92,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6149628572618597448
 RectTransform:
   m_ObjectHideFlags: 0
@@ -203,6 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MapNodeData: {fileID: 11400000, guid: cffc50a3e8ada694c92f6e77cad39c5c, type: 2}
+  RewardData: {fileID: 0}
   MapNodeIndex: 0
   MapNodeColumnIndex: 0
   MapNodeRowIndex: 0
