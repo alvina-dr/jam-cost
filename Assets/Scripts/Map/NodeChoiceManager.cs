@@ -35,7 +35,10 @@ public class NodeChoiceManager : MonoBehaviour
         }
 
         Random.InitState(SaveManager.CurrentSave.CurrentRun.RandomSeed);
+    }
 
+    private void Start()
+    {
         SetupChoice();
     }
 

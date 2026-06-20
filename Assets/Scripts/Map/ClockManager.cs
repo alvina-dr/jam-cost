@@ -1,3 +1,4 @@
+using PrimeTween;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
@@ -50,8 +51,11 @@ public class ClockManager : MonoBehaviour
     [SerializeField] private Transform _smallHand;
     [SerializeField] private float _handMoveSpeed;
 
+    private bool _animationOnGoing;
+
     public void Setup()
     {
+        _animationOnGoing = true;
         List<MapNodeData> chosenMapNodeData = new();
 
         MapNodeChoiceData choiceData = NodeChoiceManager.Instance.MapData.ChoiceList[SaveManager.CurrentSave.CurrentRun.CurrentNode];
@@ -115,6 +119,11 @@ public class ClockManager : MonoBehaviour
                 break;
         }
 
+        _bigHand.transform.up = Vector3.left;
+
+        // ROOMS 
+        Sequence roomIconSequence = Sequence.Create();
+        roomIconSequence.ChainDelay(1f);
         float roomDegreeSpace = -_roomDegreeTotal / (float)(NodeChoiceManager.Instance.MapData.ChoiceList.Count - 1);
         for (int i = 0; i < NodeChoiceManager.Instance.MapData.ChoiceList.Count; i++)
         {
@@ -124,16 +133,47 @@ public class ClockManager : MonoBehaviour
             float x = _choiceCircleCenter.position.x + _roomCircleRadius * Mathf.Cos((zRotation + -_roomDegreeStart) * Mathf.PI / 180);
             float y = _choiceCircleCenter.position.y + _roomCircleRadius * Mathf.Sin((zRotation + -_roomDegreeStart) * Mathf.PI / 180);
             roomIcon.transform.position = new Vector3(x, y, 0);
-            if (i <= SaveManager.CurrentSave.CurrentRun.CurrentNode) roomIcon.Enable();
-            else roomIcon.Disable();
-        }
 
-        Vector2 direction = _roomIconList[SaveManager.CurrentSave.CurrentRun.CurrentNode].transform.position - _smallHand.transform.position;
+            roomIcon.Disable();
+            if (i < SaveManager.CurrentSave.CurrentRun.CurrentNode)
+            {
+                roomIconSequence.ChainCallback(() => roomIcon.Enable());
+                roomIconSequence.ChainDelay(.2f);
+            }
+
+            if (i == SaveManager.CurrentSave.CurrentRun.CurrentNode)
+            {
+                roomIconSequence.ChainCallback(() => roomIcon.Enable());
+                roomIconSequence.ChainDelay(.3f);
+                roomIconSequence.ChainCallback(() => roomIcon.Disable());
+                roomIconSequence.ChainDelay(.3f);
+                roomIconSequence.ChainCallback(() => roomIcon.Enable());
+                roomIconSequence.ChainDelay(.3f);
+                roomIconSequence.ChainCallback(() => roomIcon.Disable());
+                roomIconSequence.ChainDelay(.3f);
+                roomIconSequence.ChainCallback(() => roomIcon.Enable());
+                roomIconSequence.ChainDelay(.3f);
+            }
+        }
+        
+        Vector2 formerDirection = _roomIconList[SaveManager.CurrentSave.CurrentRun.CurrentNode].transform.position - _smallHand.transform.position;
+        Vector2 direction = formerDirection;
+        if (SaveManager.CurrentSave.CurrentRun.CurrentNode > 0)
+        {
+            direction = _roomIconList[SaveManager.CurrentSave.CurrentRun.CurrentNode - 1].transform.position - _smallHand.transform.position;
+        }
         _smallHand.transform.up = direction.normalized;
+
+        if (SaveManager.CurrentSave.CurrentRun.CurrentNode > 0)
+        {
+            roomIconSequence.Chain(Tween.Rotation(_smallHand, direction, .6f));
+            roomIconSequence.ChainCallback(() => _animationOnGoing = false);
+        }
     }
 
     private void Update()
     {
+        if (_animationOnGoing) return;
         Vector2 direction =  Camera.main.ScreenToWorldPoint(Input.mousePosition) - _bigHand.transform.position;
         if (direction.y < 0) direction = new Vector2(direction.x, 0);
         _bigHand.transform.up = Vector3.Lerp(_bigHand.transform.up, direction.normalized, Time.deltaTime * _handMoveSpeed);
