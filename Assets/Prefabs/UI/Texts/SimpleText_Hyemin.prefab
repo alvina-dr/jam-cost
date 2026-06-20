@@ -68,8 +68,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: <wave  amp=2>Goal</wave>
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9a01c1d16251b314b9a760e86592f680, type: 2}
-  m_sharedMaterial: {fileID: -6821917695783777782, guid: 9a01c1d16251b314b9a760e86592f680, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7f7d71138f030e04286340963320dc16, type: 2}
+  m_sharedMaterial: {fileID: 8196981651562774707, guid: 7f7d71138f030e04286340963320dc16, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -105,7 +105,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: -30
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
