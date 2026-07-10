@@ -43,10 +43,10 @@ public class ItemBehavior : MonoBehaviour
             case ItemFamily.Paper:
                 _spriteRenderer.material = _family2Material;
                 break;
-            case ItemFamily.Glass:
+            case ItemFamily.Food:
                 _spriteRenderer.material = _family3Material;
                 break;
-            case ItemFamily.Electronics:
+            case ItemFamily.Construction:
                 _spriteRenderer.material = _family4Material;
                 break;
             case ItemFamily.Garbage:
@@ -106,7 +106,8 @@ public class ItemBehavior : MonoBehaviour
     protected virtual void OnMouseEnter()
     {
         if (!CanClickItem()) return;
-        TooltipManager.Instance.ShowTooltip(Item, transform.position, Vector3.zero);
+        if (GameManager.Instance.SelectedItem != null) return;
+        TooltipManager.Instance.ShowTooltip(Item, transform.position, Vector3.up * 80);
         if (GameManager.Instance.SelectedItem != null) return;
 
         Color color = _spriteRenderer.material.GetColor("_OutlineColor");

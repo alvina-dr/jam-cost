@@ -15,8 +15,8 @@ public enum ItemFamily
 {
     Plastic = 0,
     Paper = 1,
-    Glass = 2,
-    Electronics = 3,
+    Food = 2,
+    Construction = 3,
     Garbage = 4,
     Clickable = 5
 }
