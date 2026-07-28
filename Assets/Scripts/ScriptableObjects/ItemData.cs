@@ -14,7 +14,7 @@ public class ItemData : ScriptableObject
 public enum ItemFamily
 {
     Plastic = 0,
-    Paper = 1,
+    Clothes = 1,
     Food = 2,
     Construction = 3,
     Garbage = 4,

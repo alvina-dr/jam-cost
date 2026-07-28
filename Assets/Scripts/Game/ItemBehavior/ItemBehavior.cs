@@ -40,7 +40,7 @@ public class ItemBehavior : MonoBehaviour
             case ItemFamily.Plastic:
                 _spriteRenderer.material = _family1Material;
                 break;
-            case ItemFamily.Paper:
+            case ItemFamily.Clothes:
                 _spriteRenderer.material = _family2Material;
                 break;
             case ItemFamily.Food:
