@@ -169,6 +169,12 @@ public class ClockManager : MonoBehaviour
             roomIconSequence.Chain(Tween.Rotation(_smallHand, direction, .6f));
             roomIconSequence.ChainCallback(() => _animationOnGoing = false);
         }
+        else
+        {
+            roomIconSequence.ChainDelay(.6f);
+            roomIconSequence.ChainCallback(() => _animationOnGoing = false);
+            //_animationOnGoing = false;
+        }
     }
 
     private void Update()

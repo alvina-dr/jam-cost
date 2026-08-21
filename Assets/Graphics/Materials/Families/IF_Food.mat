@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ItemFamily3
+  m_Name: IF_Food
   m_Shader: {fileID: -6465566751694194690, guid: e8a32357c6c92aa469a4d13dc7cb224e, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -44,7 +44,15 @@ Material:
     m_Ints: []
     m_Floats:
     - ITEMTAG: 0
-    - _Dithering: 0
+    - _Dirtiness: 0
+    - _Dithering: 1
+    - _DitheringShape_Dark: 0.99
+    - _DitheringShape_Light: 1.54
+    - _DitheringShape_Mid: 2.46
+    - _DitheringSize: 0
+    - _DitheringStrength_Dark: 0.32
+    - _DitheringStrength_Light: -0.38
+    - _DitheringStrength_Mid: 0.25
     - _ITEMTAG: 0
     - _OutlineAnimationFrequence: 6
     - _OutlineAnimationFrequency: 5
@@ -52,7 +60,7 @@ Material:
     - _OutlineAnimationStrength: 5
     - _OutlineThickness: 2
     m_Colors:
-    - _OutlineColor: {r: 0.22899851, g: 0.63522, b: 0.1338355, a: 0}
+    - _OutlineColor: {r: 0.8980392, g: 0.3686274, b: 0.3686274, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &2850658905962833268

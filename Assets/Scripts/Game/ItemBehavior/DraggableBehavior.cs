@@ -38,19 +38,19 @@ public class DraggableBehavior : ItemBehavior
             {
                 if (GameManager.Instance.ScavengingState.SelectedItemList.Count + 1 > GameManager.Instance.GetDepotSize()) _sellIcon.color = Color.grey;
                 else _sellIcon.color = Color.green;
-                _sellIcon.enabled = true;
-                _cross.enabled = false;
+                SetSellIcon(true);
+                SetDestroyIcon(false);
 
             }
             else if (!GameManager.Instance.CrateOverCheck.IsOver())
             {
-                _sellIcon.enabled = false;
-                _cross.enabled = true;
+                SetSellIcon(false);
+                SetDestroyIcon(true);
             }
             else
             {
-                _sellIcon.enabled = false;
-                _cross.enabled = false;
+                SetSellIcon(false);
+                SetDestroyIcon(false);
             }
         }
     }
@@ -212,8 +212,8 @@ public class DraggableBehavior : ItemBehavior
         {
             DropItem();
         });
-        _sellIcon.enabled = false;
-        _cross.enabled = false;
+        SetSellIcon(false);
+        SetDestroyIcon(false);
     }
 
     public override void DestroyItem()
@@ -224,5 +224,33 @@ public class DraggableBehavior : ItemBehavior
             SaveManager.Instance.AddPP(1, transform.position);
         }
         base.DestroyItem();
+    }
+
+    public void SetDestroyIcon(bool value)
+    {
+        _cross.enabled = value;
+
+        if (value)
+        {
+            _spriteRenderer.color = Color.grey;
+        }
+        else
+        {
+            _spriteRenderer.color = Color.white;
+        }
+    }
+
+    public void SetSellIcon(bool value)
+    {
+        _sellIcon.enabled = value;
+
+        if (value)
+        {
+            _spriteRenderer.color = Color.green;
+        }
+        else
+        {
+            _spriteRenderer.color = Color.white;
+        }
     }
 }
