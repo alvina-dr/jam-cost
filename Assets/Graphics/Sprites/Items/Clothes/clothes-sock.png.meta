@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ad3da52a865c40741aa9bfc22bbf5ee6
+guid: 846a5aa7afefca54297076d86b33c409
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4726226309011575772
-    second: clothes-sock_0
+      213: 5796599998764885810
+    second: SOCK_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: clothes-sock_0
+      name: SOCK_0
       rect:
         serializedVersion: 2
-        x: 79
-        y: 52
-        width: 290
-        height: 305
+        x: 44
+        y: 27
+        width: 170
+        height: 179
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 42c624b6632196eb0800000000000000
-      internalID: -4726226309011575772
+      spriteID: 2372967bcf8a17050800000000000000
+      internalID: 5796599998764885810
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      clothes-sock_0: -4726226309011575772
+      SOCK_0: 5796599998764885810
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

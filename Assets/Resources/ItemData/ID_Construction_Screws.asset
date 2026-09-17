@@ -15,7 +15,7 @@ MonoBehaviour:
   Prefab: {fileID: 3971539782363818920, guid: 4314cbfd17d28c44aa4f1fe270d49146, type: 3}
   Price: 1
   BonusCurrency: 0
-  Icon: {fileID: 21300000, guid: df8dfec3ab690a642805e292c848e318, type: 3}
+  Icon: {fileID: 21300000, guid: 42114dbb0c25dc440adc068fee11368e, type: 3}
   Save:
     Name: Screws
     Rarity: 0

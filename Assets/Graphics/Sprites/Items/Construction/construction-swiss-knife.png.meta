@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6705197a76a8ce642926a2ac2ba14d46
+guid: 8ca3924654a97794ea14f5718c1fe8b7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9065986288896616203
-    second: construction-swiss-knife2_0
+      213: 3049930124211314035
+    second: construction-swiss-knife 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: construction-swiss-knife2_0
+      name: construction-swiss-knife 1_0
       rect:
         serializedVersion: 2
-        x: 58
-        y: 115
-        width: 353
-        height: 227
+        x: 32
+        y: 65
+        width: 205
+        height: 132
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b07ae300f7ad0dd70800000000000000
-      internalID: 9065986288896616203
+      spriteID: 37dd06be947835a20800000000000000
+      internalID: 3049930124211314035
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      construction-swiss-knife2_0: 9065986288896616203
+      construction-swiss-knife 1_0: 3049930124211314035
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

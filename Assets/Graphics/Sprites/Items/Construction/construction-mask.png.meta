@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4a3d48fc4624eb84d99ad8ddb7467a36
+guid: 69bc43385f5d8204c9d24fec61014eeb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4887672601207866659
-    second: food-tincan_0
+      213: 2493966170767155604
+    second: construction-mask 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: food-tincan_0
+      name: construction-mask 1_0
       rect:
         serializedVersion: 2
-        x: 22
-        y: 73
-        width: 383
-        height: 314
+        x: 27
+        y: 40
+        width: 207
+        height: 173
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3258765b55084d340800000000000000
-      internalID: 4887672601207866659
+      spriteID: 491ea6ac4095c9220800000000000000
+      internalID: 2493966170767155604
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      food-tincan_0: 4887672601207866659
+      construction-mask 1_0: 2493966170767155604
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

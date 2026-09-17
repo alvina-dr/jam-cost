@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c7976c1c7a993944c9c7e249bd6277f6
+guid: f123f7ec4342c914b98fbf0d6f5699fd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 392531847963063521
-    second: clothes-bra_0
+      213: -2409451050159254279
+    second: Bra_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: clothes-bra_0
+      name: Bra_0
       rect:
         serializedVersion: 2
-        x: 31
-        y: 70
-        width: 386
-        height: 338
+        x: 15
+        y: 37
+        width: 226
+        height: 198
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1e4bdd0d2ad827500800000000000000
-      internalID: 392531847963063521
+      spriteID: 9f4d0932909ef8ed0800000000000000
+      internalID: -2409451050159254279
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      clothes-bra_0: 392531847963063521
+      Bra_0: -2409451050159254279
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

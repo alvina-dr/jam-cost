@@ -15,7 +15,7 @@ MonoBehaviour:
   Prefab: {fileID: 3971539782363818920, guid: 928054f433158b7448c7cd510f8f2f02, type: 3}
   Price: 1
   BonusCurrency: 0
-  Icon: {fileID: 21300000, guid: ad169b64bd32d7d45b5c12942c123266, type: 3}
+  Icon: {fileID: 21300000, guid: 2e83f2f35c3398d47b88ffe6c39ccba9, type: 3}
   Save:
     Name: Apple
     Rarity: 0

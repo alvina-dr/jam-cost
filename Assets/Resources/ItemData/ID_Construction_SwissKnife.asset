@@ -15,7 +15,7 @@ MonoBehaviour:
   Prefab: {fileID: 3971539782363818920, guid: 38c4326fd899a2a488ec42b802dda42d, type: 3}
   Price: 1
   BonusCurrency: 0
-  Icon: {fileID: 21300000, guid: 6705197a76a8ce642926a2ac2ba14d46, type: 3}
+  Icon: {fileID: 21300000, guid: 8ca3924654a97794ea14f5718c1fe8b7, type: 3}
   Save:
     Name: Swiss Knife
     Rarity: 2
