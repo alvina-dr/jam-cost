@@ -12,13 +12,11 @@ public class CD_ItemList : CombinationData
         List<ItemData> requiredItemList = ItemDirector.Instance.GetInstantiatedItemList(_requiredItemList);
         for (int i = requiredItemList.Count - 1; i >= 0; i--)
         {
-            Debug.Log("try to find : " + requiredItemList[i].Save.Name);
             UI_BagSlot bagSlot = itemDataList.Find(x => x.CurrentBagItem.ItemInstance.Data.Save.Name == requiredItemList[i].Save.Name);
             
             if (bagSlot != null)
             {
                 ItemData item = bagSlot.CurrentBagItem.ItemInstance.Data;
-                Debug.Log("found item from combination : " + item.Save.Name);
 
                 if (item != null)
                 {
@@ -28,18 +26,14 @@ public class CD_ItemList : CombinationData
             }
         }
 
-        Debug.Log("item missing number : " + requiredItemList.Count);
-
         if (requiredItemList.Count == 0)
         {
-            Debug.Log("complete combination " + Data.Name);
             DiscoverCombination();
             Data.NumberUsed++;
             return true;
         }
         else
         {
-            Debug.Log("couldn't complete combination + " + Data.Name);
             return false;
         }
     }
