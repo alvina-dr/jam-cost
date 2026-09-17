@@ -17,6 +17,6 @@ MonoBehaviour:
   BonusCurrency: 0
   Icon: {fileID: 21300000, guid: 79f4d07be48df93499700e21812398c6, type: 3}
   Save:
-    Name: Saw
+    Name: Lighter
     Rarity: 1
     Family: 3

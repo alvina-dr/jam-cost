@@ -17,6 +17,6 @@ MonoBehaviour:
   BonusCurrency: 0
   Icon: {fileID: 21300000, guid: 69bc43385f5d8204c9d24fec61014eeb, type: 3}
   Save:
-    Name: Drill
+    Name: Mask
     Rarity: 2
     Family: 3

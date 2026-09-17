@@ -62,4 +62,14 @@ public class ItemDirector : MonoBehaviour
 
         return itemReturnList;
     }
+
+    public List<ItemData> GetInstantiatedItemList(List<ItemData> itemDataList)
+    {
+        List<ItemData> instantiatedItemList = new();
+        for (int i = 0; i < itemDataList.Count; i++)
+        {
+            instantiatedItemList.Add(ItemDataDictionary[itemDataList[i].Save.Name]);
+        }
+        return instantiatedItemList;
+    }
 }

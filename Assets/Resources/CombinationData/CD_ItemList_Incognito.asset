@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 898c9f57dd12f9c4aab70236100f6f3a, type: 3}
+  m_Name: CD_ItemList_Incognito
+  m_EditorClassIdentifier: 
+  Data:
+    Name: Incognito
+    State: 0
+    NumberUsed: 0
+  Description: 'Heart
+
+'
+  Effect: 0
+  Bonus: 20
+  _requiredItemList:
+  - {fileID: 11400000, guid: 9129c398353f6da438c5f2adc54c1c03, type: 2}
+  - {fileID: 11400000, guid: 6f57c463758718f4f8a7b89d225ada3d, type: 2}
+  - {fileID: 11400000, guid: 5a63227014b00474c951371b8e1977ed, type: 2}

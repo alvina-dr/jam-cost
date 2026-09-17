@@ -17,6 +17,6 @@ MonoBehaviour:
   BonusCurrency: 0
   Icon: {fileID: 21300000, guid: 0d20a7ec8cc6c9241954608754ae34fb, type: 3}
   Save:
-    Name: Hammer
+    Name: Disk
     Rarity: 1
     Family: 3
