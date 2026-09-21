@@ -49,7 +49,7 @@ Material:
     - _DitheringOpacity: 0
     - _FireSpeed: 0.4
     - _FlameHeight: 0
-    - _FlameLevel: 0
+    - _FlameLevel: 1.2
     - _FlameSize: 0
     - _FlameSpeed: 0.5
     - _FlameWidth: 0.29

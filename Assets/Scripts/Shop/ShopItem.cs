@@ -58,6 +58,18 @@ public class ShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         sequence.Chain(Tween.Scale(transform, 1, .1f));
     }
 
+    private void OnMouseEnter()
+    {
+        TooltipManager.Instance.ShowTooltip(BonusData, transform.position, Vector3.up * 60);
+        if (_floatingSequence.isAlive) _floatingSequence.isPaused = true;
+    }
+
+    private void OnMouseExit()
+    {
+        TooltipManager.Instance.HideTooltip();
+        if (_floatingSequence.isAlive) _floatingSequence.isPaused = false;
+    }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         TooltipManager.Instance.ShowTooltip(BonusData, transform.position, Vector3.up * 60);

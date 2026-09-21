@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using TMPEffects.SerializedCollections;
 using UnityEngine;
 
 public class BonusDirector : MonoBehaviour
@@ -16,20 +17,22 @@ public class BonusDirector : MonoBehaviour
         else
         {
             Instance = this;
+            OnAwake();
         }
     }
     #endregion
 
-    public Dictionary<string, BonusData> RunBonusDataDictionary = new();
-    public Dictionary<string, BonusData> PermanentBonusDataDictionary = new();
+    [SerializedDictionary("Name", "BonusData")] public SerializedDictionary<string, BonusData> RunBonusDataDictionary = new();
+    [SerializedDictionary("Name", "BonusData")] public SerializedDictionary<string, BonusData> PermanentBonusDataDictionary = new();
 
-    private void Start()
+    private void OnAwake()
     {
         List<BonusData> bonusRunDataList = Resources.LoadAll<BonusData>("BonusData/Run").ToList();
         bonusRunDataList = bonusRunDataList.FindAll(x => x.IsAvailableInGame);
         for (int i = 0; i < bonusRunDataList.Count; i++)
         {
             BonusData bonusData = Instantiate(bonusRunDataList[i]);
+            bonusData.name = bonusData.Name;
             RunBonusDataDictionary.Add(bonusData.Name, bonusData);
         }
 
@@ -38,6 +41,7 @@ public class BonusDirector : MonoBehaviour
         for (int i = 0; i < bonusPermanentDataList.Count; i++)
         {
             BonusData bonusData = Instantiate(bonusPermanentDataList[i]);
+            bonusData.name = bonusData.Name;
             PermanentBonusDataDictionary.Add(bonusData.Name, bonusData);
         }
     }

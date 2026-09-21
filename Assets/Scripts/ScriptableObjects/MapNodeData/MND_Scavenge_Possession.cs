@@ -106,7 +106,7 @@ public class MND_Scavenge_Possession : MND_Scavenge_Classic
                 GameManager.Instance.UIManager.ScoreTextValue.SetTextValue($"{GameManager.Instance.CurrentScore} / {GameManager.Instance.GoalScore}");
                 GameManager.Instance.UIManager.ScoreBarValue.SetBarValue(GameManager.Instance.CurrentScore, GameManager.Instance.GoalScore);
                 BossPhase = BossPhase.StartSecondPhase;
-                GameManager.Instance.UIManager.BagMenu.AllowContinue();
+                ScoreCalculationManager.Instance.AllowContinue();
                 break;
             case BossPhase.StartSecondPhase:
             case BossPhase.SecondPhase:

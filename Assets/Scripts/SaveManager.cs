@@ -225,6 +225,8 @@ public class SaveManager : MonoBehaviour
             {
                 ItemDirector.Instance.ItemDataDictionary[CurrentSave.CurrentRun.ModifiedItemDataSave[i].Name].Save = CurrentSave.CurrentRun.ModifiedItemDataSave[i];
             }
+
+            CurrentRunBonusList = LoadList(CurrentSave.CurrentRun.CurrentRunBonusListName, BonusDirector.Instance.RunBonusDataDictionary);
         }
 
         UnlockedPowerDataList = LoadList(CurrentSave.UnlockedPowerDataListName, DataLoader.Instance.PowerDataList);
@@ -301,6 +303,8 @@ public class SaveManager : MonoBehaviour
             {
                 CurrentSave.CurrentRun.ModifiedItemDataSave.Add(itemDataList[i].Save);
             }
+
+            CurrentSave.CurrentRun.CurrentRunBonusListName = SaveList(CurrentRunBonusList);
         }
 
         CurrentSave.UnlockedPowerDataListName = SaveList(UnlockedPowerDataList);
@@ -327,10 +331,7 @@ public class SaveManager : MonoBehaviour
 
     public void SaveRun()
     {
-        for (int i = 0; i < CurrentRunBonusList.Count; i++)
-        {
-            CurrentSave.CurrentRun.CurrentRunBonusListName.Add(CurrentRunBonusList[i].Name);
-        }
+
 
         CurrentSave.RunDataHistory.Add(CurrentSave.CurrentRun);
     }

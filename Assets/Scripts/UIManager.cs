@@ -27,6 +27,7 @@ public class UIManager : MonoBehaviour
     [Header("HUD")]
     public UI_TextValue ScoreTextValue;
     public UI_BarValue ScoreBarValue;
+    public GameObject HUD_Game;
 
     [Header("Time particles")]
     public ParticleSystem UIParticle_Time;

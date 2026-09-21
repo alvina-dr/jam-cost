@@ -64,6 +64,8 @@ public class ShopManager : MonoBehaviour
             DialogueManager.Instance.DialogueRunner.StartDialogue("NPC1_ShopFirstTime");
             SaveManager.CurrentSave.ShopFirstTime = true;
         }
+
+        BonusHandManager.Instance.Show();
     }
 
     public void BuyShopItem(ShopItem shopItem)

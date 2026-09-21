@@ -49,18 +49,19 @@ Material:
     m_Ints: []
     m_Floats:
     - ITEMTAG: 0
+    - _ColorMask: 0
     - _Dirtiness: 0
     - _Dithering: 1
     - _DitheringShape: 1.15
     - _DitheringShapeDark: 1.13
     - _DitheringShapeLight: 0.73
-    - _DitheringShape_Dark: 4.96
-    - _DitheringShape_Light: 0.4
+    - _DitheringShape_Dark: 3.75
+    - _DitheringShape_Light: 0.9
     - _DitheringShape_Mid: 3.67
     - _DitheringSize: 0
     - _DitheringStrength: 0
-    - _DitheringStrength_Dark: 0.54
-    - _DitheringStrength_Light: -0.99
+    - _DitheringStrength_Dark: 0.39
+    - _DitheringStrength_Light: -0.87
     - _DitheringStrength_Mid: 0.25
     - _ITEMTAG: 0
     - _OutlineAnimationFrequence: 6
@@ -68,8 +69,13 @@ Material:
     - _OutlineAnimationSpeed: 6
     - _OutlineAnimationStrength: 0
     - _OutlineThickness: 6.2
+    - _Stencil: 0
+    - _StencilComp: 0
+    - _StencilOp: 0
+    - _StencilReadMask: 0
+    - _StencilWriteMask: 0
     m_Colors:
-    - _OutlineColor: {r: 0.7294118, g: 0.38039216, b: 0.37254903, a: 1}
+    - _OutlineColor: {r: 0.9058824, g: 0.3647059, b: 0.3529412, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &2850658905962833268

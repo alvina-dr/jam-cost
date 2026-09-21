@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8370274031504179286}
   - component: {fileID: 2959701924660715554}
-  - component: {fileID: 1844872145481324388}
+  - component: {fileID: 2997639698041367083}
   m_Layer: 0
   m_Name: ShopItem
   m_TagString: Untagged
@@ -48,9 +48,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BonusData: {fileID: 0}
   _spriteRenderer: {fileID: 6817389135514819102}
+  _shadowSpriteRenderer: {fileID: 0}
   _fallSpeed: 20
---- !u!58 &1844872145481324388
-CircleCollider2D:
+--- !u!60 &2997639698041367083
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -84,7 +85,26 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.64
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.8571428, y: 2.5142858}
+    newSize: {x: 1.28, y: 1.28}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.646913, y: 0.99482274}
+      - {x: -0.6315325, y: 0.9958182}
+      - {x: -0.7038295, y: 0.94974357}
+      - {x: -0.7076996, y: -0.9456241}
+      - {x: -0.64759254, y: -1.0023074}
+      - {x: 0.6488587, y: -1.0025574}
+      - {x: 0.7071162, y: -0.93648577}
+      - {x: 0.709314, y: 0.923239}
+  m_UseDelaunayMesh: 0
 --- !u!1 &2956814950193291963
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,7 +132,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8370274031504179286}
@@ -140,7 +160,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f4abf853aeb0b3b4498833203d55b262, type: 2}
+  - {fileID: 2100000, guid: 8f6d8f2bfe1708e49a796b430deb942a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
