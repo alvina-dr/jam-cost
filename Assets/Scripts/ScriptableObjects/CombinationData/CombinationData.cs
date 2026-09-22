@@ -25,7 +25,7 @@ public class CombinationData : ScriptableObject
     public CombinationEffect Effect;
     public int Bonus;
 
-    public virtual bool CheckCombination(ref List<UI_BagSlot> itemDataList)
+    public virtual bool CheckCombination(ref List<Item_ScoreCalculation> itemDataList)
     {
         return false;
     }

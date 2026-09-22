@@ -4,14 +4,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CD_Identical", menuName = "Scriptable Objects/CombinationData/CD_Identical")]
 public class CD_Identical : CombinationData
 {
-    public override bool CheckCombination(ref List<UI_BagSlot> bagSlotList)
+    public override bool CheckCombination(ref List<Item_ScoreCalculation> bagSlotList)
     {
         int maxIdenticalNumber = 0;
         ItemData identicalItemData = null;
         List<ItemData> itemDataList = new();
         for (int i = 0; i < bagSlotList.Count; i++)
         {
-            itemDataList.Add(bagSlotList[i].CurrentBagItem.ItemInstance.Data);
+            itemDataList.Add(bagSlotList[i].ItemInstance.Data);
         }
 
         for (int i = 0; i < itemDataList.Count; i++)
@@ -26,7 +26,7 @@ public class CD_Identical : CombinationData
 
         if (maxIdenticalNumber >= 4)
         {
-            bagSlotList = bagSlotList.FindAll(x => x.CurrentBagItem.ItemInstance.Data.Save.Name == identicalItemData.Save.Name);
+            bagSlotList = bagSlotList.FindAll(x => x.ItemInstance.Data.Save.Name == identicalItemData.Save.Name);
             DiscoverCombination();
             Data.NumberUsed++;
             return true;

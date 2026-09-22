@@ -5,20 +5,20 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CD_Family", menuName = "Scriptable Objects/CombinationData/CD_Family")]
 public class CD_Family : CombinationData
 {
-    public override bool CheckCombination(ref List<UI_BagSlot> bagSlotListRef)
+    public override bool CheckCombination(ref List<Item_ScoreCalculation> bagSlotListRef)
     {
-        List<UI_BagSlot> bagSlotList = new List<UI_BagSlot>(bagSlotListRef);
+        List<Item_ScoreCalculation> bagSlotList = new List<Item_ScoreCalculation>(bagSlotListRef);
         List<FamilyStat> familyCountList = new();
         for (int i = 0; i < bagSlotList.Count; i++)
         {
-            FamilyStat familyStat = familyCountList.Find(x => x.Family == bagSlotList[i].CurrentBagItem.ItemInstance.Data.Save.Family);
+            FamilyStat familyStat = familyCountList.Find(x => x.Family == bagSlotList[i].ItemInstance.Data.Save.Family);
             if (familyStat != null) 
             {
                 familyStat.Number++;
             }
             else
             {
-                familyCountList.Add(new FamilyStat(bagSlotList[i].CurrentBagItem.ItemInstance.Data.Save.Family, 1));
+                familyCountList.Add(new FamilyStat(bagSlotList[i].ItemInstance.Data.Save.Family, 1));
             }
         }
         familyCountList.Sort((a, b) => b.Number.CompareTo(a.Number));
@@ -29,7 +29,7 @@ public class CD_Family : CombinationData
         {
             Data.NumberUsed++;
             DiscoverCombination();
-            bagSlotListRef = bagSlotListRef.FindAll(x => x.CurrentBagItem.ItemInstance.Data.Save.Family == max.Family);
+            bagSlotListRef = bagSlotListRef.FindAll(x => x.ItemInstance.Data.Save.Family == max.Family);
         }
         return max.Number >= 4;
     }

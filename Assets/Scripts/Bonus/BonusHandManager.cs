@@ -56,23 +56,9 @@ public class BonusHandManager : MonoBehaviour
         }
     }
 
-    [Button]
-    public void Instantiate(int number)
+    public BonusBehavior GetBonus(string name)
     {
-        for (int i = 0; i < _bonusBehaviorList.Count; i++)
-        {
-            DestroyImmediate(_bonusBehaviorList[i].gameObject);
-        }
-
-        _bonusBehaviorList.Clear();
-
-        for (int i = 0; i < number; i++)
-        {
-            BonusBehavior bonusBehavior = PrefabUtility.InstantiatePrefab(_bonusBehaviorPrefab, transform) as BonusBehavior;
-            float totalSpace = _bonusSpace * (number - 1) + _bonusSize * number;
-            bonusBehavior.transform.localPosition = new Vector3((i * _bonusSpace) + (i * _bonusSize + _bonusSize / 2) - totalSpace / 2, 0);
-            _bonusBehaviorList.Add(bonusBehavior);
-        }
+        return _bonusBehaviorList.Find(x => x.BonusData.Name == name);
     }
 
     [Button]
@@ -108,4 +94,26 @@ public class BonusHandManager : MonoBehaviour
             bonusSequence.Chain(Tween.LocalPositionY(activeBonusList[index].transform, -3, .2f));
         }
     }
+
+#if UNITY_EDITOR
+    [Button]
+    public void Instantiate(int number)
+    {
+        for (int i = 0; i < _bonusBehaviorList.Count; i++)
+        {
+            DestroyImmediate(_bonusBehaviorList[i].gameObject);
+        }
+
+        _bonusBehaviorList.Clear();
+
+        for (int i = 0; i < number; i++)
+        {
+            BonusBehavior bonusBehavior = PrefabUtility.InstantiatePrefab(_bonusBehaviorPrefab, transform) as BonusBehavior;
+            float totalSpace = _bonusSpace * (number - 1) + _bonusSize * number;
+            bonusBehavior.transform.localPosition = new Vector3((i * _bonusSpace) + (i * _bonusSize + _bonusSize / 2) - totalSpace / 2, 0);
+            _bonusBehaviorList.Add(bonusBehavior);
+        }
+    }
+
+#endif
 }

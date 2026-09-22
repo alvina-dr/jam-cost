@@ -29,6 +29,22 @@ public class ItemManager : MonoBehaviour
         ItemList.Clear();
     }
 
+    public void HideItems()
+    {
+        for (int i = ItemList.Count - 1; i >= 0; i--)
+        {
+            ItemList[i].gameObject.SetActive(false);
+        }
+    }
+
+    public void ShowItems()
+    {
+        for (int i = ItemList.Count - 1; i >= 0; i--)
+        {
+            ItemList[i].gameObject.SetActive(true);
+        }
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(0f, 1f, 0f, .5f); 

@@ -1,57 +1,74 @@
-using System;
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEditor.SceneManagement;
 using UnityEditor.Toolbars;
 using UnityEngine;
-using UnityToolbarExtender;
+using UnityEngine.UIElements;
 
-[InitializeOnLoad]
 public class MainSceneToolbarButton
 {
-	static MainSceneToolbarButton()
-	{
-		ToolbarExtender.LeftToolbarGUI.Add(OnLeftToolbarGUI);
-		ToolbarExtender.RightToolbarGUI.Add(OnRightToolbarGUI);
-    }
-
-    static void OpenChosenScene(object obj)
-    {
-        EditorSceneManager.OpenScene($"Assets/Scenes/{obj}.unity");
-    }
-
-    static void OnLeftToolbarGUI()
-	{
-		GUILayout.FlexibleSpace();
-        GenericMenu dropdownMenu = new GenericMenu();
-
-        dropdownMenu.AddItem(new GUIContent("Game"), false, OpenChosenScene, "Game");
-        dropdownMenu.AddItem(new GUIContent("Main Menu"), false, OpenChosenScene, "MainMenu");
-        dropdownMenu.AddItem(new GUIContent("Shop"), false, OpenChosenScene, "Shop");
-        dropdownMenu.AddItem(new GUIContent("Map"), false, OpenChosenScene, "Map");
-        dropdownMenu.AddItem(new GUIContent("Hub"), false, OpenChosenScene, "Hub");
-        dropdownMenu.AddItem(new GUIContent("Office"), false, OpenChosenScene, "Office");
-        dropdownMenu.AddItem(new GUIContent("Possession"), false, OpenChosenScene, "Boss/Possession");
-        dropdownMenu.AddItem(new GUIContent("Free Round"), false, OpenChosenScene, "FreeRound");
-        dropdownMenu.AddItem(new GUIContent("Onboarding"), false, OpenChosenScene, "Onboarding");
-
-        if (EditorGUILayout.DropdownButton(new GUIContent("Load scene"), FocusType.Keyboard))
+    const string k_ToolbarElementName = "Examples/Analysis Windows";
+    static (string, string, string)[] s_Elements =
+        new (string name, string tooptip, string menuPath)[]
         {
-            dropdownMenu.ShowAsContext();
-        }
-    }
+            // Open profiler window
+            ("Profiler", "Open the Profiler window","Window/Analysis/Profiler"),
+            // Open frame debugger window
+            ("Frame Debugger", "Open the Frame Debugger window","Window/Analysis/Frame Debugger"),
+            // Open physics debugger window
+            ("Physics Debugger", "Open the Physics Debugger window","Window/Analysis/Physics Debugger")
+        };
 
-    static void OnRightToolbarGUI()
+    static bool s_DisplayAsButtons = true;
+
+    [MainToolbarElement(k_ToolbarElementName, defaultDockPosition = MainToolbarDockPosition.Middle)]
+    static IEnumerable<MainToolbarElement> CreateAnalysisWindowsBar()
     {
-        if (GUILayout.Button(new GUIContent("New save", "Creates a new save")))
+        if (s_DisplayAsButtons)
         {
-            if (SaveManager.Instance != null)
+            foreach (var element in s_Elements)
             {
-                SaveManager.Instance.CreateSave();
+                yield return new MainToolbarButton(
+                    new MainToolbarContent(element.Item1, element.Item2),
+                    () => EditorApplication.ExecuteMenuItem(element.Item3))
+                {
+                    populateContextMenu = PopulateContextMenu,
+                };
             }
-
-            System.IO.File.Delete(Application.persistentDataPath + "/Save.json");
         }
-        GUILayout.FlexibleSpace();
+        else
+        {
+            yield return new MainToolbarDropdown(
+                new MainToolbarContent("Analysis", "Open the list of available analysis windows"),
+                ShowDropdownMenu)
+            {
+                populateContextMenu = PopulateContextMenu,
+            };
+        }
+    }
+
+    static void PopulateContextMenu(DropdownMenu menu)
+    {
+        menu.AppendAction(
+            L10n.Tr(s_DisplayAsButtons ? "Display as Dropdown" : "Display as Buttons"),
+            UpdateDisplayType);
+    }
+
+    static void UpdateDisplayType(DropdownMenuAction _)
+    {
+        s_DisplayAsButtons = !s_DisplayAsButtons;
+        MainToolbar.Refresh(k_ToolbarElementName);
+    }
+
+    static void ShowDropdownMenu(Rect dropDownRect)
+    {
+        var menu = new GenericMenu();
+        foreach (var element in s_Elements)
+        {
+            menu.AddItem(new GUIContent(element.Item1), false, () =>
+            {
+                EditorApplication.ExecuteMenuItem(element.Item3);
+            });
+        }
+        menu.DropDown(dropDownRect);
     }
 }

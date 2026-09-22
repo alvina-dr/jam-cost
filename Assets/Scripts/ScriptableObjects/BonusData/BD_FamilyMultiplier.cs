@@ -6,20 +6,19 @@ public class BD_FamilyMultiplier : BonusData
 {
     public ItemFamily FamilyBonus;
 
-    public override bool CheckBonus(ref List<UI_BagSlot> bagSlotListRef, List<CombinationData> combinationDataList = null)
+    public override bool CheckBonus(ref List<Item_ScoreCalculation> bagSlotListRef, List<CombinationData> combinationDataList = null)
     {
-        List<UI_BagSlot> chosenBagSlots = new();
+        List<Item_ScoreCalculation> chosenItems = new();
 
         for (int i = 0; i < bagSlotListRef.Count; i++)
         {
-            if (bagSlotListRef[i].CurrentBagItem != null 
-                && bagSlotListRef[i].CurrentBagItem.ItemInstance.Data.Save.Family == FamilyBonus)
+            if (bagSlotListRef[i].ItemInstance.Data.Save.Family == FamilyBonus)
             {
-                chosenBagSlots.Add(bagSlotListRef[i]);
+                chosenItems.Add(bagSlotListRef[i]);
             }
         }
 
-        bagSlotListRef = chosenBagSlots;
+        bagSlotListRef = chosenItems;
 
         if (bagSlotListRef.Count > 0) return true;
         

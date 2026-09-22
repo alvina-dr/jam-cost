@@ -12,13 +12,13 @@ public class BD_ItemNumber : BonusData
         base.GetBonus();
     }
 
-    public override bool CheckBonus(ref List<UI_BagSlot> itemDataListRef, List<CombinationData> combinationDataList = null)
+    public override bool CheckBonus(ref List<Item_ScoreCalculation> itemDataListRef, List<CombinationData> combinationDataList = null)
     {
         int itemNumber = 0;
 
         for (int i = 0; i < itemDataListRef.Count; i++)
         {
-            if (itemDataListRef[i].CurrentBagItem != null) itemNumber++;
+            if (itemDataListRef[i] != null) itemNumber++;
         }
 
         if (itemNumber <= _maxItemNumber) return true;

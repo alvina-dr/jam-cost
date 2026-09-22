@@ -11,7 +11,7 @@ public class BD_CombinationBonus : BonusData
         base.GetBonus();
     }
 
-    public override bool CheckBonus(ref List<UI_BagSlot> itemDataListRef, List<CombinationData> combinationDataList = null)
+    public override bool CheckBonus(ref List<Item_ScoreCalculation> itemDataListRef, List<CombinationData> combinationDataList = null)
     {
         if (combinationDataList == null) return false;
 

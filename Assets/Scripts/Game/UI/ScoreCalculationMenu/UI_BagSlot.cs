@@ -30,17 +30,6 @@ public class UI_BagSlot : MonoBehaviour
         HidePrice();
     }
 
-    public void SetPriceText(int number)
-    {
-        _priceText.SetTextValue($"<wave amp=1>{number}");
-        _priceGO.gameObject.SetActive(true);
-    }
-
-    public void SetPriceTextNumber(int oldPrice, int newPrice)
-    {
-        _priceText.SetTextValueNumber(oldPrice, newPrice, .4f);
-    }
-
     public void HidePrice()
     {
         _priceText.SetTextValue(string.Empty, false);

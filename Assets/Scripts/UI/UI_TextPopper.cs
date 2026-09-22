@@ -33,12 +33,8 @@ public class UI_TextPopper : MonoBehaviour
         textAnimation.Join(transform.DOShakeRotation(.5f, .3f));
         textAnimation.AppendCallback(() =>
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+            transform.DOKill();
         });
-    }
-
-    private void OnDestroy()
-    {
-        transform.DOKill();
     }
 }

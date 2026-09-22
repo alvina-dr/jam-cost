@@ -1,21 +1,33 @@
 using PrimeTween;
+using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Item_ScoreCalculation : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class Item_ScoreCalculation : MonoBehaviour
 {
     [SerializeField] private UI_BagSlot _currentBagSlot;
     [SerializeField] private PolygonCollider2D _polygonCollider;
     [SerializeField] private SpriteRenderer _sprite;
     [SerializeField] private ItemInstance _itemInstance;
     [SerializeField] private ParticleSystem _countItemParticle;
-    [SerializeField] private UI_Animation _highlightAnimation;
+    [SerializeField] private SimpleAnimation _highlightAnimation;
+
+    [Header("Price")]
+    [SerializeField] private UI_TextValue _priceText;
+    [SerializeField] private GameObject _priceGO;
+
     public ItemInstance ItemInstance => _itemInstance;
 
     public int CurrentScore = 0;
     public List<int> CombinationItemAddList = new();
     public List<int> CombinationItemMultList = new();
+
+    [Button]
+    public void UpdatePolygonCollider()
+    {
+        _polygonCollider.CreateFromSprite(_sprite.sprite);
+    }
 
     public void SetSlot(UI_BagSlot bagSlot)
     {
@@ -29,6 +41,7 @@ public class Item_ScoreCalculation : MonoBehaviour, IPointerEnterHandler, IPoint
         if (_itemInstance.TagData) _itemInstance.TagData.SetupTag(_sprite.material);
         _sprite.sprite = _itemInstance.Data.Icon;
         CurrentScore = _itemInstance.Data.Price;
+        _polygonCollider.CreateFromSprite(_sprite.sprite);
     }
 
     public void CountItem()
@@ -47,12 +60,23 @@ public class Item_ScoreCalculation : MonoBehaviour, IPointerEnterHandler, IPoint
         sequence.Chain(Tween.Scale(_sprite.transform, 1, .05f));
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public void SetPriceText(int number)
+    {
+        _priceText.SetTextValue($"<wave amp=1>{number}");
+        _priceGO.gameObject.SetActive(true);
+    }
+
+    public void SetPriceTextNumber(int oldPrice, int newPrice)
+    {
+        _priceText.SetTextValueNumber(oldPrice, newPrice, .4f);
+    }
+
+    private void OnMouseEnter()
     {
         TooltipManager.Instance.ShowTooltip(ItemInstance, transform.position, Vector3.up * 50);
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    private void OnMouseExit()
     {
         TooltipManager.Instance.HideTooltip();
     }

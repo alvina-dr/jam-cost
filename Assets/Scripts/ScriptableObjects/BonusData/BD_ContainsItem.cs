@@ -11,13 +11,13 @@ public class BD_ContainsItem : BonusData
         base.GetBonus();
     }
 
-    public override bool CheckBonus(ref List<UI_BagSlot> itemDataListRef, List<CombinationData> combinationDataList = null)
+    public override bool CheckBonus(ref List<Item_ScoreCalculation> itemDataListRef, List<CombinationData> combinationDataList = null)
     {
-        List<UI_BagSlot> itemDataList = new List<UI_BagSlot>(itemDataListRef);
+        List<Item_ScoreCalculation> itemDataList = new List<Item_ScoreCalculation>(itemDataListRef);
         List<ItemData> requiredItemList = new(_containsItemDataList);
         for (int i = 0; i < itemDataList.Count; i++)
         {
-            if (requiredItemList.Find(x => x.Save.Name == itemDataList[i].CurrentBagItem.ItemInstance.Data.Save.Name))
+            if (requiredItemList.Find(x => x.Save.Name == itemDataList[i].ItemInstance.Data.Save.Name))
             {
                 return true;
             }

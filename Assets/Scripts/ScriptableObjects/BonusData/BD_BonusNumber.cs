@@ -6,7 +6,7 @@ public class BD_BonusNumber : BonusData
 {
     public override float BonusValue => base.BonusValue * SaveManager.Instance.CurrentRunBonusList.Count;
 
-    public override bool CheckBonus(ref List<UI_BagSlot> bagSlotListRef, List<CombinationData> combinationDataList = null)
+    public override bool CheckBonus(ref List<Item_ScoreCalculation> bagSlotListRef, List<CombinationData> combinationDataList = null)
     {
         if (SaveManager.Instance.CurrentRunBonusList.Count > 0) return true;
         return false;
