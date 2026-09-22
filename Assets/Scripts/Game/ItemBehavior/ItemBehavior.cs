@@ -1,6 +1,7 @@
+using DG.Tweening;
+using Sirenix.OdinInspector;
 using System.Collections;
 using UnityEngine;
-using DG.Tweening;
 
 public class ItemBehavior : MonoBehaviour
 {
@@ -126,4 +127,13 @@ public class ItemBehavior : MonoBehaviour
         color = new Color(color.r, color.g, color.b, 0);
         _spriteRenderer.material.SetColor("_OutlineColor", color);
     }
+
+#if UNITY_EDITOR
+    [Button]
+    public void UpdateCollider()
+    {
+        PolygonCollider2D col = GetComponent<PolygonCollider2D>();
+        if (col) col.CreateFromSprite(_spriteRenderer.sprite);
+    }
+#endif
 }

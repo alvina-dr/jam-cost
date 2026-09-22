@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ID_Food_TinCan
   m_EditorClassIdentifier: 
   Prefab: {fileID: 3971539782363818920, guid: e06bde1cfa0caf840b26b0036a52d4ba, type: 3}
-  Price: 1
+  Price: 5
   BonusCurrency: 0
   Icon: {fileID: 21300000, guid: 5f077112fc8ec6147857a9effc5af9b3, type: 3}
   Save:

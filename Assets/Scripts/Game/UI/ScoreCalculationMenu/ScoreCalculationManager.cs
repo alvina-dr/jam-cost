@@ -328,7 +328,6 @@ public class ScoreCalculationManager : MonoBehaviour
                 {
                     HighlightBonus(bonusItemAddList[index].Name);
                     //_shakePlayer.PlayFeedbacks();
-                    GameManager.Instance.UIManager.TextPopperManager_Info.PopText($"<wave amp=2>{bonusItemAddList[index].Name}", Vector3.up, Color.black);
                 });
                 _countSequence.ChainDelay(.2f);
                 for (int j = 0; j < refChosenItemSlotList.Count; j++)
@@ -361,7 +360,6 @@ public class ScoreCalculationManager : MonoBehaviour
                 {
                     HighlightBonus(bonusItemMultList[index].Name);
                     //_shakePlayer.PlayFeedbacks();
-                    GameManager.Instance.UIManager.TextPopperManager_Info.PopText($"<wave amp=2>{bonusItemMultList[index].Name}", Vector3.up, Color.black);
                 });
                 _countSequence.ChainDelay(.2f);
                 for (int j = 0; j < refChosenItemSlotList.Count; j++)
@@ -400,7 +398,6 @@ public class ScoreCalculationManager : MonoBehaviour
                 _countSequence.ChainCallback(() =>
                 {
                     HighlightBonus(bonusTotalAddList[index].Name);
-                    GameManager.Instance.UIManager.TextPopperManager_Info.PopText($"<wave amp=2>{bonusTotalAddList[index].Name}", Vector3.up, Color.black);
                     CameraManager.Instance.SimpleShake();
                 });
                 _countSequence.ChainDelay(.7f);
@@ -427,7 +424,6 @@ public class ScoreCalculationManager : MonoBehaviour
                 _countSequence.ChainCallback(() =>
                 {
                     HighlightBonus(bonusTotalMultList[index].Name);
-                    GameManager.Instance.UIManager.TextPopperManager_Info.PopText($"<wave amp=2>{bonusTotalMultList[index].Name}", Vector3.up, Color.black);
                     CameraManager.Instance.SimpleShake();
                 });
                 _countSequence.ChainDelay(.7f);
@@ -495,6 +491,5 @@ public class ScoreCalculationManager : MonoBehaviour
             _itemList.Add(bonusBehavior);
         }
     }
-
 #endif
 }

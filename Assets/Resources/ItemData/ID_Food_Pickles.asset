@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ID_Food_Pickles
   m_EditorClassIdentifier: 
   Prefab: {fileID: 3971539782363818920, guid: 51def548707077645b90819b34664c27, type: 3}
-  Price: 1
+  Price: 7
   BonusCurrency: 0
   Icon: {fileID: 21300000, guid: 9977521e18b389e439199f15939be112, type: 3}
   Save:

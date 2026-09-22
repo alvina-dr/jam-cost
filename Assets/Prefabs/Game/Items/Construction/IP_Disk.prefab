@@ -38,7 +38,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7242585668704001078, guid: a7baf07a41069234a8d382ebd7b43e0c, type: 3}
       propertyPath: m_Name
-      value: IP_Hammer
+      value: IP_Disk
       objectReference: {fileID: 0}
     - target: {fileID: 8256978997658704428, guid: a7baf07a41069234a8d382ebd7b43e0c, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.size

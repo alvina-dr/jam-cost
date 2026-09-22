@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ID_Construction_Lighter
   m_EditorClassIdentifier: 
   Prefab: {fileID: 3971539782363818920, guid: c4fff2782c35940429e25e915b88056b, type: 3}
-  Price: 1
+  Price: 5
   BonusCurrency: 0
   Icon: {fileID: 21300000, guid: 79f4d07be48df93499700e21812398c6, type: 3}
   Save:
