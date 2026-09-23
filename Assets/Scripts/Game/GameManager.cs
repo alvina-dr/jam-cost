@@ -175,12 +175,32 @@ public class GameManager : MonoBehaviour
         SaveManager.CurrentSave.NumberLeverUsed++;
         ScavengingState.CurrentSubState = GS_Scavenging.Scavenging_SubState.RerollCrateAnim;
         PreparationState.CurrentSubState = GS_Preparation.Preparation_SubState.RerollCrateAnim;
+
         Sequence rerollSequence = Sequence.Create();
+        ItemManager.EnterItemsPerfMode();
+        rerollSequence.Chain(Tween.PositionY(CrateOverCheck.transform, -8f, 1f));
         rerollSequence.ChainCallback(() => ItemManager.CleanItems());
-        rerollSequence.ChainDelay(2f);
-        rerollSequence.ChainCallback(() => SaveManager.Instance.GetScavengeNode().SpawnItems());
-        rerollSequence.ChainCallback(() => ScavengingState.CurrentSubState = GS_Scavenging.Scavenging_SubState.Scavenging);
-        rerollSequence.ChainCallback(() => PreparationState.CurrentSubState = GS_Preparation.Preparation_SubState.Preparation);
-        rerollSequence.ChainCallback(() => SaveManager.Instance.GetScavengeNode().RerollCrateEnd());
+        rerollSequence.ChainDelay(1f);
+        rerollSequence.ChainCallback(() =>
+        {
+            CrateOverCheck.transform.position = new Vector3(CrateOverCheck.transform.position.x, 0, CrateOverCheck.transform.position.z);
+            SaveManager.Instance.GetScavengeNode().SpawnItems();
+            ItemManager.EnterItemsPerfMode();
+            CrateOverCheck.transform.position = new Vector3(CrateOverCheck.transform.position.x, 8, CrateOverCheck.transform.position.z);
+        });
+        rerollSequence.Chain(Tween.PositionY(CrateOverCheck.transform, 0f, 1f));
+        rerollSequence.ChainCallback(() =>
+        {
+            ItemManager.ExitItemsPerfMode();
+            ScavengingState.CurrentSubState = GS_Scavenging.Scavenging_SubState.Scavenging;
+            PreparationState.CurrentSubState = GS_Preparation.Preparation_SubState.Preparation;
+            SaveManager.Instance.GetScavengeNode().RerollCrateEnd();
+        });
+    }
+
+    public void ApproveDepot()
+    {
+        if (CurrentGameState != ScavengingState) return;
+        ScavengingState.EndOfRound();
     }
 }

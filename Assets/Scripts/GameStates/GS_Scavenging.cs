@@ -28,8 +28,8 @@ public class GS_Scavenging : GameState
         base.EnterState();
         SaveManager.Instance.GetScavengeNode().NewRound();
         GameManager.Instance.Lever.SetActive(true);
-        GameManager.Instance.CurrentRound++;
-        ResetTimer();
+        //GameManager.Instance.CurrentRound++;
+        //ResetTimer();
         AudioManager.Instance.StartClockSound();
         GameManager.Instance.UIManager.RoundRemaining.SetTextValue($"Round {GameManager.Instance.CurrentRound} / {GameManager.Instance.GetMaxRoundNumber()}");
 
@@ -122,7 +122,7 @@ public class GS_Scavenging : GameState
         }
 
         // normal classic state
-        ResetTimer();
+        //ResetTimer();
         GameManager.Instance.SetGameState(GameManager.Instance.BagState);
     }
 

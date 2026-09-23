@@ -78,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1811817549
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: -1000
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 4f32c3a337897df4c9dad8514c6225a3, type: 3}
@@ -260,7 +260,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1811817549
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: -1000
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: ded6527ae2cdd3b4a828eef33cd4e8ee, type: 3}

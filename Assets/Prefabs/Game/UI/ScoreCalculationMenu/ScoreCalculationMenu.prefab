@@ -5561,8 +5561,8 @@ MonoBehaviour:
   - {fileID: 2919664376252844378}
   - {fileID: 386527082655601687}
   - {fileID: 7708816711459137245}
-  _speedArrow: {fileID: 302950585941027093}
-  _speedArrowOffset: {x: 0, y: 40, z: 0}
+  SpeedArrow: {fileID: 302950585941027093}
+  SpeedArrowOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &3744618767581050698
 MonoBehaviour:
   m_ObjectHideFlags: 0

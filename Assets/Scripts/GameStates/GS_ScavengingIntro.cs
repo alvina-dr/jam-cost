@@ -7,6 +7,7 @@ public class GS_ScavengingIntro : GameState
         base.EnterState();
         Time.timeScale = 1.0f;
         GameManager.Instance.UIManager.NewHand.Show();
+        GameManager.Instance.ScavengingState.ResetTimer();
     }
 
     public override void UpdateState()

@@ -45,6 +45,22 @@ public class ItemManager : MonoBehaviour
         }
     }
 
+    public void EnterItemsPerfMode()
+    {
+        for (int i = ItemList.Count - 1; i >= 0; i--)
+        {
+            ItemList[i].EnterPerfMode();
+        }
+    }
+
+    public void ExitItemsPerfMode()
+    {
+        for (int i = ItemList.Count - 1; i >= 0; i--)
+        {
+            ItemList[i].ExitPerfMode();
+        }
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(0f, 1f, 0f, .5f); 

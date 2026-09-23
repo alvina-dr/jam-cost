@@ -76,6 +76,8 @@ public class ScoreCalculationManager : MonoBehaviour
         List<ItemInstance> bagItemList = GameManager.Instance.ScavengingState.GetItemInstanceList();
         GameManager.Instance.ScavengingState.CleanItemDataList();
         GameManager.Instance.ScavengingState.UpdateItemNumberText();
+
+        Tween.Delay(1f, () => CountScore());
     }
 
     public void Setup()
@@ -104,12 +106,35 @@ public class ScoreCalculationManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (GameManager.Instance.CurrentGameState != GameManager.Instance.BagState)
+        {
+            Time.timeScale = 1.0f;
+            return;
+        }
+
+        if (Input.GetMouseButton(0) && _countSequence.isAlive)
+        {
+            Time.timeScale = 2f;
+            GameManager.Instance.UIManager.BagMenu.SpeedArrow.gameObject.SetActive(true);
+            Vector2 pos;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(GameManager.Instance.UIManager.Canvas.transform as RectTransform, Input.mousePosition + GameManager.Instance.UIManager.BagMenu.SpeedArrowOffset, GameManager.Instance.UIManager.Canvas.worldCamera, out pos);
+            GameManager.Instance.UIManager.BagMenu.SpeedArrow.transform.position = GameManager.Instance.UIManager.Canvas.transform.TransformPoint(pos);
+        }
+        else
+        {
+            GameManager.Instance.UIManager.BagMenu.SpeedArrow.gameObject.SetActive(false);
+            Time.timeScale = 1f;
+        }
+    }
+
     public void Hide()
     {
         BonusHandManager.Instance.Hide();
         GameManager.Instance.ItemManager.ShowItems();
-        GameManager.Instance.CrateOverCheck.gameObject.SetActive(false);
-        GameManager.Instance.DepotOverCheck.gameObject.SetActive(false);
+        GameManager.Instance.CrateOverCheck.gameObject.SetActive(true);
+        GameManager.Instance.DepotOverCheck.gameObject.SetActive(true);
 
         Tween.LocalPositionY(transform, 10.8f, .5f).OnComplete(() =>
         {
@@ -126,12 +151,6 @@ public class ScoreCalculationManager : MonoBehaviour
     public void AllowContinue()
     {
         GameManager.Instance.UIManager.BagMenu.ContinueButton.gameObject.SetActive(true);
-    }
-
-    public void Confirm()
-    {
-        CountScore();
-        //_confirm.gameObject.SetActive(false);
     }
 
     #region Score Calculation

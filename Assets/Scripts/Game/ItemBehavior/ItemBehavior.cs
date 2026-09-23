@@ -1,6 +1,5 @@
 using DG.Tweening;
 using Sirenix.OdinInspector;
-using System.Collections;
 using UnityEngine;
 
 public class ItemBehavior : MonoBehaviour
@@ -126,6 +125,16 @@ public class ItemBehavior : MonoBehaviour
         Color color = _spriteRenderer.material.GetColor("_OutlineColor");
         color = new Color(color.r, color.g, color.b, 0);
         _spriteRenderer.material.SetColor("_OutlineColor", color);
+    }
+
+    public void EnterPerfMode()
+    {
+        _collider.enabled = false;
+    }
+
+    public void ExitPerfMode()
+    {
+        _collider.enabled = true;
     }
 
 #if UNITY_EDITOR

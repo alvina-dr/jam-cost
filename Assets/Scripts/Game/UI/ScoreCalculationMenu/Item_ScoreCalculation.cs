@@ -37,6 +37,7 @@ public class Item_ScoreCalculation : MonoBehaviour
 
     public void Setup(ItemInstance itemInstance)
     {
+        gameObject.SetActive(true);
         _itemInstance = itemInstance;
         if (_itemInstance.TagData) _itemInstance.TagData.SetupTag(_sprite.material);
         _sprite.sprite = _itemInstance.Data.Icon;

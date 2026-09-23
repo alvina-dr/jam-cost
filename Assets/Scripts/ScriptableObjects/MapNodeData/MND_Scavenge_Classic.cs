@@ -16,7 +16,7 @@ public class MND_Scavenge_Classic : MapNodeData
         List<ItemData> itemDataList = ItemDirector.Instance.GetRandomItemDataList(SaveManager.Instance.GetScavengeNode().SpawnItemParameters.ItemNumber);
         for (int i = 0; i < itemDataList.Count; i++)
         {
-            ItemBehavior itemBehavior = Instantiate(itemDataList[i].Prefab);
+            ItemBehavior itemBehavior = Instantiate(itemDataList[i].Prefab, GameManager.Instance.CrateOverCheck.transform);
             itemBehavior.Setup(itemDataList[i]); // actualize item with instantiated item data
 
             int random = Random.Range(0, 2);
@@ -40,7 +40,7 @@ public class MND_Scavenge_Classic : MapNodeData
 
     public virtual void ExitScoreCount()
     {
-        GameManager.Instance.SetGameState(GameManager.Instance.ScavengingIntroState);
+        GameManager.Instance.SetGameState(GameManager.Instance.ScavengingState);
     }
 
     public virtual void Victory()

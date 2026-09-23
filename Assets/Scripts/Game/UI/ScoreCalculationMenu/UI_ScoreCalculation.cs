@@ -30,8 +30,8 @@ public class UI_ScoreCalculation : UI_Menu
     public List<UI_Combination> CombinationList = new();
 
     [Header("Time speed")]
-    [SerializeField] private Transform _speedArrow;
-    [SerializeField] private Vector3 _speedArrowOffset;
+    public Transform SpeedArrow;
+    public Vector3 SpeedArrowOffset;
 
     private PrimeTween.Sequence _countSequence;
     private List<CombinationData> _combinationDataList = new();
@@ -39,7 +39,7 @@ public class UI_ScoreCalculation : UI_Menu
 
     public override void OpenMenu()
     {
-        ConfirmButton.gameObject.SetActive(true);
+        //ConfirmButton.gameObject.SetActive(true);
         ContinueButton.gameObject.SetActive(false);
 
         base.OpenMenu();
@@ -50,29 +50,6 @@ public class UI_ScoreCalculation : UI_Menu
         for (int i = 0; i < CombinationList.Count; i++)
         {
             CombinationList[i].Reset();
-        }
-    }
-
-    private void Update()
-    {
-        if (!_isOpen)
-        {
-            Time.timeScale = 1.0f;
-            return;
-        }
-
-        if (Input.GetMouseButton(0) && _countSequence.isAlive)
-        {
-            Time.timeScale = 2f;
-            _speedArrow.gameObject.SetActive(true);
-            Vector2 pos;
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(GameManager.Instance.UIManager.Canvas.transform as RectTransform, Input.mousePosition + _speedArrowOffset, GameManager.Instance.UIManager.Canvas.worldCamera, out pos);
-            _speedArrow.transform.position = GameManager.Instance.UIManager.Canvas.transform.TransformPoint(pos);
-        }
-        else
-        {
-            _speedArrow.gameObject.SetActive(false);
-            Time.timeScale = 1f;
         }
     }
 
@@ -108,14 +85,9 @@ public class UI_ScoreCalculation : UI_Menu
         }
     }
 
-    public void AllowContinue()
-    {
-        ContinueButton.gameObject.SetActive(true);
-    }
-
     public void Confirm()
     {
-        ScoreCalculationManager.Instance.CountScore();
-        ConfirmButton.gameObject.SetActive(false);
+        //ScoreCalculationManager.Instance.CountScore();
+        //ConfirmButton.gameObject.SetActive(false);
     }
 }
