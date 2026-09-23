@@ -5558,6 +5558,7 @@ MonoBehaviour:
   - {fileID: 5935106758087138706}
   - {fileID: 2664382499508650044}
   - {fileID: 5950396528082425751}
+  - {fileID: 2919664376252844378}
   - {fileID: 386527082655601687}
   - {fileID: 7708816711459137245}
   _speedArrow: {fileID: 302950585941027093}
@@ -9543,6 +9544,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6468457729161893479, guid: b2fc499ed8b8aac44b82d13cc99db910, type: 3}
   m_PrefabInstance: {fileID: 5998404719521479645}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2919664376252844378 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8915480229342048903, guid: b2fc499ed8b8aac44b82d13cc99db910, type: 3}
+  m_PrefabInstance: {fileID: 5998404719521479645}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcee50a7e86e01242bbdf6511beb7d97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6033867535702135692
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -41,6 +41,7 @@ public class Item_ScoreCalculation : MonoBehaviour
         if (_itemInstance.TagData) _itemInstance.TagData.SetupTag(_sprite.material);
         _sprite.sprite = _itemInstance.Data.Icon;
         CurrentScore = _itemInstance.Data.Price;
+        _priceGO.gameObject.SetActive(false);
         _polygonCollider.CreateFromSprite(_sprite.sprite);
     }
 

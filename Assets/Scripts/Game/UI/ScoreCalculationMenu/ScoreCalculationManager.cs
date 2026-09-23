@@ -60,6 +60,8 @@ public class ScoreCalculationManager : MonoBehaviour
         Tween.LocalPositionY(transform, 0, .5f).OnComplete(() =>
         {
             GameManager.Instance.ItemManager.HideItems();
+            GameManager.Instance.CrateOverCheck.gameObject.SetActive(false);
+            GameManager.Instance.DepotOverCheck.gameObject.SetActive(false);
         });
 
         BonusHandManager.Instance.Show();
@@ -105,9 +107,12 @@ public class ScoreCalculationManager : MonoBehaviour
     public void Hide()
     {
         BonusHandManager.Instance.Hide();
+        GameManager.Instance.ItemManager.ShowItems();
+        GameManager.Instance.CrateOverCheck.gameObject.SetActive(false);
+        GameManager.Instance.DepotOverCheck.gameObject.SetActive(false);
+
         Tween.LocalPositionY(transform, 10.8f, .5f).OnComplete(() =>
         {
-            GameManager.Instance.ItemManager.ShowItems();
             _sortingGroup.sortingLayerName = "Background";
         });
     }

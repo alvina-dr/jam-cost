@@ -22,8 +22,6 @@ public class ClockManager : MonoBehaviour
     }
     #endregion
 
-    [SerializeField] private ClockRoomIcon _clockRoomIconPrefab;
-
     [Header("Choice")]
     [SerializeField] private SpriteRenderer _twoChoices;
     [SerializeField] private SpriteRenderer _threeChoices;
