@@ -353,7 +353,7 @@ public class SaveManager : MonoBehaviour
     public void ChangeScene(string sceneName, TransitionSettings transitionSettings, float startDelay)
     {
         TransitionManager.Instance().TransitionChangeScene(sceneName, transitionSettings, startDelay);
-        Debug.Log("Change scene : " + sceneName);
+        //Debug.Log("Change scene : " + sceneName);
         Save();
     }
 

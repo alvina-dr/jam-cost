@@ -42,7 +42,7 @@ public class ClockManager : MonoBehaviour
     [SerializeField] private float _roomDegreeStart;
     [SerializeField] private float _roomCircleRadius;
     [SerializeField] private float _roomDegreeTotal;
-    private List<ClockRoomIcon> _roomIconList = new();
+    [SerializeField] private List<ClockRoomIcon> _roomIconList = new();
 
     [Header("Clock Hands")]
     [SerializeField] private Transform _bigHand;
@@ -130,7 +130,7 @@ public class ClockManager : MonoBehaviour
             if (i < SaveManager.CurrentSave.CurrentRun.CurrentNode)
             {
                 roomIconSequence.ChainCallback(() => roomIcon.Enable());
-                roomIconSequence.ChainDelay(.2f);
+                roomIconSequence.ChainDelay(.1f);
             }
 
             if (i == SaveManager.CurrentSave.CurrentRun.CurrentNode)
@@ -149,17 +149,23 @@ public class ClockManager : MonoBehaviour
         }
         
         Vector2 formerDirection = _roomIconList[0].transform.position - _smallHand.transform.position;
-        Vector2 direction = formerDirection;
-        if (SaveManager.CurrentSave.CurrentRun.CurrentNode > 0)
-        {
-            direction = _roomIconList[SaveManager.CurrentSave.CurrentRun.CurrentNode].transform.position - _smallHand.transform.position;
-        }
-        float angle = Vector3.Angle(_smallHand.transform.up, direction);
+        //Debug.DrawLine(_smallHand.transform.position, _roomIconList[0].transform.position, color:Color.red, 5);
         _smallHand.transform.up = formerDirection;
+
+        Vector2 direction = formerDirection;
 
         if (SaveManager.CurrentSave.CurrentRun.CurrentNode > 0)
         {
-            roomIconSequence.Chain(Tween.LocalRotation(_smallHand, new Vector3(0, 0, angle), .6f));
+            direction = _roomIconList[SaveManager.CurrentSave.CurrentRun.CurrentNode].transform.position - _smallHand.transform.position;
+            //Debug.DrawLine(_smallHand.transform.position, _roomIconList[SaveManager.CurrentSave.CurrentRun.CurrentNode].transform.position, color:Color.blue, 5);
+
+            float angle = Vector2.SignedAngle(Vector3.up, direction.normalized);
+
+            //_smallHand.transform.eulerAngles = new Vector3(0, 0, angle);
+            //Debug.Log("current node is : " + SaveManager.CurrentSave.CurrentRun.CurrentNode);
+            //Debug.Log("point at " + _roomIconList[SaveManager.CurrentSave.CurrentRun.CurrentNode].name);
+            
+            roomIconSequence.Chain(Tween.Rotation(_smallHand, new Vector3(0, 0, angle), .6f));
             roomIconSequence.ChainCallback(() => _animationOnGoing = false);
         }
         else
