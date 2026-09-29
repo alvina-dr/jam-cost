@@ -1,20 +1,32 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Interactable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class Interactable : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Color _outlineColor;
 
-    public void OnPointerEnter(PointerEventData eventData)
+    private void OnMouseEnter()
     {
         Color color = new Color(_outlineColor.r, _outlineColor.g, _outlineColor.b, 1);
         _spriteRenderer.material.SetColor("_OutlineColor", color);
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    private void OnMouseExit()
     {
         Color color = new Color(_outlineColor.r, _outlineColor.g, _outlineColor.b, 0);
         _spriteRenderer.material.SetColor("_OutlineColor", color);
     }
+
+    //public void OnPointerEnter(PointerEventData eventData)
+    //{
+    //    Color color = new Color(_outlineColor.r, _outlineColor.g, _outlineColor.b, 1);
+    //    _spriteRenderer.material.SetColor("_OutlineColor", color);
+    //}
+
+    //public void OnPointerExit(PointerEventData eventData)
+    //{
+    //    Color color = new Color(_outlineColor.r, _outlineColor.g, _outlineColor.b, 0);
+    //    _spriteRenderer.material.SetColor("_OutlineColor", color);
+    //}
 }
