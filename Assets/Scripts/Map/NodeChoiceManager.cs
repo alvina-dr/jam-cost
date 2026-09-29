@@ -44,42 +44,42 @@ public class NodeChoiceManager : MonoBehaviour
 
     public void SetupChoice()
     {
-        List<MapNodeData> chosenMapNodeData = new();
+        //List<MapNodeData> chosenMapNodeData = new();
 
-        MapNodeChoiceData choiceData = MapData.ChoiceList[SaveManager.CurrentSave.CurrentRun.CurrentNode];
-        List<MapNodeData> choiceList = new(choiceData.MapNodeDataPool);
+        //MapNodeChoiceData choiceData = MapData.ChoiceList[SaveManager.CurrentSave.CurrentRun.CurrentNode];
+        //List<MapNodeData> choiceList = new(choiceData.MapNodeDataPool);
 
-        int numberNodeToDraw = 2;
+        //int numberNodeToDraw = 2;
 
-        MND_FreeRound freeRound = choiceList.Find(x => x is MND_FreeRound) as MND_FreeRound;
-        if (freeRound != null && SaveManager.CurrentSave.CurrentRun.RunBonusRound == 0)
-        {
-            choiceList.Remove(freeRound);
-            chosenMapNodeData.Add(freeRound);
-            numberNodeToDraw--;
-        }
-        for (int i = 0; i < numberNodeToDraw; i++)
-        { 
-            if (choiceList.Count == 0) break;
-            MapNodeData mapNodeData = choiceList[Random.Range(0, choiceList.Count)];
-            choiceList.Remove(mapNodeData);
-            chosenMapNodeData.Add(mapNodeData);
-        }
+        //MND_FreeRound freeRound = choiceList.Find(x => x is MND_FreeRound) as MND_FreeRound;
+        //if (freeRound != null && SaveManager.CurrentSave.CurrentRun.RunBonusRound == 0)
+        //{
+        //    choiceList.Remove(freeRound);
+        //    chosenMapNodeData.Add(freeRound);
+        //    numberNodeToDraw--;
+        //}
+        //for (int i = 0; i < numberNodeToDraw; i++)
+        //{ 
+        //    if (choiceList.Count == 0) break;
+        //    MapNodeData mapNodeData = choiceList[Random.Range(0, choiceList.Count)];
+        //    choiceList.Remove(mapNodeData);
+        //    chosenMapNodeData.Add(mapNodeData);
+        //}
 
-        for (int i = 0; i < _mapNodeList.Count; i++)
-        {
-            if (i < chosenMapNodeData.Count)
-            {
-                _mapNodeList[i].gameObject.SetActive(true);
-                _mapNodeList[i].SetupNode(chosenMapNodeData[i], choiceData.ChooseRandomReward());
-            }
-            else
-            {
-                _mapNodeList[i].gameObject.SetActive(false);
-            }
-        }
+        //for (int i = 0; i < _mapNodeList.Count; i++)
+        //{
+        //    if (i < chosenMapNodeData.Count)
+        //    {
+        //        _mapNodeList[i].gameObject.SetActive(true);
+        //        _mapNodeList[i].SetupNode(chosenMapNodeData[i], choiceData.ChooseRandomReward());
+        //    }
+        //    else
+        //    {
+        //        _mapNodeList[i].gameObject.SetActive(false);
+        //    }
+        //}
 
-        _clockManager.Setup();
+        //_clockManager.Setup();
     }
 
     public void LaunchNode(MapNodeData mapNodeData, RewardData rewardData)

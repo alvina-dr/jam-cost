@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MapNodeDataPool:
   - {fileID: 11400000, guid: 332926b00b8b6ba4b994a42ad61165aa, type: 2}
-  - {fileID: 11400000, guid: a725c1eabf9247d4188bebaf25d40ee5, type: 2}
+  - {fileID: 11400000, guid: 332926b00b8b6ba4b994a42ad61165aa, type: 2}
   RewardDataPool:
   - {fileID: 11400000, guid: d55eda5b154e82844a0a21907f387dd6, type: 2}
   - {fileID: 11400000, guid: c846d1ef6f06f624082bd48660b31597, type: 2}

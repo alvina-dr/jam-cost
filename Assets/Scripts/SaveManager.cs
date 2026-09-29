@@ -94,7 +94,35 @@ public class SaveManager : MonoBehaviour
         else
         {
             CurrentSave.CurrentRun.CurrentNode++;
-            ChangeScene("Map", _transitionSettings, 0);
+            if (ClockManager.GetAllChosenNodes().Count == 1)
+            {
+                LaunchNode(ClockManager.GetAllChosenNodes()[0], null);
+            }
+            else
+            {
+                ChangeScene("Map", _transitionSettings, 0);
+            }
+        }
+    }
+
+    public void LaunchNode(MapNodeData mapNodeData, RewardData rewardData)
+    {
+        CurrentMapNode = Instantiate(mapNodeData);
+        CurrentReward = rewardData;
+        switch (mapNodeData)
+        {
+            case MND_Scavenge_Classic:
+                ChangeScene("Game", _transitionSettings, 0);
+                break;
+            case MND_FreeRound:
+                ChangeScene("FreeRound", _transitionSettings, 0);
+                break;
+            case MND_Shop:
+                ChangeScene("Shop", _transitionSettings, 0);
+                break;
+            case MND_Boss:
+                ChangeScene("Possession", _transitionSettings, 0);
+                break;
         }
     }
 

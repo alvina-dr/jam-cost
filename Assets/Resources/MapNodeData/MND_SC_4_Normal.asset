@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8500b62373a49354aa3c85bb688cdeb2, type: 3}
-  m_Name: MND_SC_6_Paper
+  m_Name: MND_SC_4_Normal
   m_EditorClassIdentifier: 
-  NodeName: Scavenging (Paper)
+  NodeName: Scavenging
   IsAvailableInGame: 1
   NodeIcon: {fileID: 21300000, guid: bbe9cf5b4e24ff94f90abc1e53ffb8b9, type: 3}
-  ScoreGoal: 800
+  ScoreGoal: 450
   RoundNumber: 3
   DiscardNumber: 6
-  SpawnItemParameters: {fileID: 11400000, guid: cc07bd7682fb981438de2cc83cd2f032, type: 2}
+  SpawnItemParameters: {fileID: 11400000, guid: 6fd6173514e6a4e448b6979205bd7423, type: 2}

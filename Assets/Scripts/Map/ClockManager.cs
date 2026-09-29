@@ -51,31 +51,17 @@ public class ClockManager : MonoBehaviour
 
     private bool _animationOnGoing;
 
+    private void Start()
+    {
+        Setup();
+    }
+
     public void Setup()
     {
         _animationOnGoing = true;
-        List<MapNodeData> chosenMapNodeData = new();
-
+        List<MapNodeData> chosenMapNodeData = GetAllChosenNodes();
         MapNodeChoiceData choiceData = NodeChoiceManager.Instance.MapData.ChoiceList[SaveManager.CurrentSave.CurrentRun.CurrentNode];
-        List<MapNodeData> choiceList = new(choiceData.MapNodeDataPool);
 
-        int numberNodeToDraw = 3;
-
-        MND_FreeRound freeRound = choiceList.Find(x => x is MND_FreeRound) as MND_FreeRound;
-        if (freeRound != null && SaveManager.CurrentSave.CurrentRun.RunBonusRound == 0)
-        {
-            choiceList.Remove(freeRound);
-            chosenMapNodeData.Add(freeRound);
-            numberNodeToDraw--;
-        }
-
-        for (int i = 0; i < numberNodeToDraw; i++)
-        {
-            if (choiceList.Count == 0) break;
-            MapNodeData mapNodeData = choiceList[Random.Range(0, choiceList.Count)];
-            choiceList.Remove(mapNodeData);
-            chosenMapNodeData.Add(mapNodeData);
-        }
 
         for (int i = 0; i < _choiceList.Count; i++)
         {
@@ -85,6 +71,13 @@ public class ClockManager : MonoBehaviour
         _choiceList.Clear();
 
         float degreeSpace = _degreeTotal / (float)(chosenMapNodeData.Count - 1);
+        if (chosenMapNodeData.Count == 1)
+        {
+            degreeSpace = _degreeTotal;
+            //NodeChoiceManager.Instance.LaunchNode(chosenMapNodeData[0], choiceData.ChooseRandomReward());
+            //return;
+        }
+        
         for (int i = 0; i < chosenMapNodeData.Count; i++)
         {
             MapNode choice = Instantiate(_choicePrefab, _choiceParent);
@@ -127,6 +120,7 @@ public class ClockManager : MonoBehaviour
         {
             ClockRoomIcon roomIcon = Instantiate(_roomPrefab, _roomParent);
             _roomIconList.Add(roomIcon);
+            roomIcon.name = "Room Icon " + i;
             float zRotation = i * roomDegreeSpace + 180;
             float x = _choiceCircleCenter.position.x + _roomCircleRadius * Mathf.Cos((zRotation + -_roomDegreeStart) * Mathf.PI / 180);
             float y = _choiceCircleCenter.position.y + _roomCircleRadius * Mathf.Sin((zRotation + -_roomDegreeStart) * Mathf.PI / 180);
@@ -154,17 +148,18 @@ public class ClockManager : MonoBehaviour
             }
         }
         
-        Vector2 formerDirection = _roomIconList[SaveManager.CurrentSave.CurrentRun.CurrentNode].transform.position - _smallHand.transform.position;
+        Vector2 formerDirection = _roomIconList[0].transform.position - _smallHand.transform.position;
         Vector2 direction = formerDirection;
         if (SaveManager.CurrentSave.CurrentRun.CurrentNode > 0)
         {
-            direction = _roomIconList[SaveManager.CurrentSave.CurrentRun.CurrentNode - 1].transform.position - _smallHand.transform.position;
+            direction = _roomIconList[SaveManager.CurrentSave.CurrentRun.CurrentNode].transform.position - _smallHand.transform.position;
         }
-        _smallHand.transform.up = direction.normalized;
+        float angle = Vector3.Angle(_smallHand.transform.up, direction);
+        _smallHand.transform.up = formerDirection;
 
         if (SaveManager.CurrentSave.CurrentRun.CurrentNode > 0)
         {
-            roomIconSequence.Chain(Tween.Rotation(_smallHand, direction, .6f));
+            roomIconSequence.Chain(Tween.LocalRotation(_smallHand, new Vector3(0, 0, angle), .6f));
             roomIconSequence.ChainCallback(() => _animationOnGoing = false);
         }
         else
@@ -173,6 +168,34 @@ public class ClockManager : MonoBehaviour
             roomIconSequence.ChainCallback(() => _animationOnGoing = false);
             //_animationOnGoing = false;
         }
+    }
+
+    public static List<MapNodeData> GetAllChosenNodes()
+    {
+        List<MapNodeData> chosenMapNodeData = new();
+
+        MapNodeChoiceData choiceData = NodeChoiceManager.Instance.MapData.ChoiceList[SaveManager.CurrentSave.CurrentRun.CurrentNode];
+        List<MapNodeData> choiceList = new(choiceData.MapNodeDataPool);
+
+        int numberNodeToDraw = 3;
+
+        MND_FreeRound freeRound = choiceList.Find(x => x is MND_FreeRound) as MND_FreeRound;
+        if (freeRound != null && SaveManager.CurrentSave.CurrentRun.RunBonusRound == 0)
+        {
+            choiceList.Remove(freeRound);
+            chosenMapNodeData.Add(freeRound);
+            numberNodeToDraw--;
+        }
+
+        for (int i = 0; i < numberNodeToDraw; i++)
+        {
+            if (choiceList.Count == 0) break;
+            MapNodeData mapNodeData = choiceList[Random.Range(0, choiceList.Count)];
+            choiceList.Remove(mapNodeData);
+            chosenMapNodeData.Add(mapNodeData);
+        }
+
+        return chosenMapNodeData;
     }
 
     private void Update()
