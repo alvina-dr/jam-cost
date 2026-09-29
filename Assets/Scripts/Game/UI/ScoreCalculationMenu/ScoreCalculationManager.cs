@@ -135,6 +135,7 @@ public class ScoreCalculationManager : MonoBehaviour
         GameManager.Instance.ItemManager.ShowItems();
         GameManager.Instance.CrateOverCheck.gameObject.SetActive(true);
         GameManager.Instance.DepotOverCheck.gameObject.SetActive(true);
+        GameManager.Instance.UIManager.BagMenu.CloseMenu();
 
         Tween.LocalPositionY(transform, 10.8f, .5f).OnComplete(() =>
         {

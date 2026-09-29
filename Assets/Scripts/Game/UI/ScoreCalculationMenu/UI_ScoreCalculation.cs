@@ -84,10 +84,4 @@ public class UI_ScoreCalculation : UI_Menu
             anim.Chain(Tween.LocalPositionY(slotList[i].CurrentBagItem.transform, 0, .3f));
         }
     }
-
-    public void Confirm()
-    {
-        //ScoreCalculationManager.Instance.CountScore();
-        //ConfirmButton.gameObject.SetActive(false);
-    }
 }
