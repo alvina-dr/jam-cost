@@ -305,7 +305,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &95685324
 Transform:
   m_ObjectHideFlags: 0
@@ -967,7 +967,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SimpleAnimation
   _sprite: {fileID: 133963704}
   _animation: {fileID: 11400000, guid: 6946ea7b5a8a0b0468ac8e1bf9717662, type: 2}
-  _delayBetweenSprites: 0.1
+  _delayBetweenSprites: 0.05
   _startOnAwake: 0
   _loop: 0
   _disabledOnStart: 0
@@ -8152,12 +8152,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SimpleAnimation
   _sprite: {fileID: 1069600088}
-  _animation: {fileID: 11400000, guid: f69aa07fe803bee44bc0a6469d885807, type: 2}
-  _delayBetweenSprites: 0.1
+  _animation: {fileID: 11400000, guid: 722c610f47ba60b419aeecf8904821ae, type: 2}
+  _delayBetweenSprites: 0.05
   _startOnAwake: 0
-  _loop: 0
+  _loop: 1
   _disabledOnStart: 0
-  _delayBetweenLoop: 0
+  _delayBetweenLoop: 3
 --- !u!212 &1069600088
 SpriteRenderer:
   serializedVersion: 2
@@ -8233,6 +8233,8 @@ MonoBehaviour:
   _outlineColor: {r: 1, g: 0, b: 0, a: 1}
   _collider: {fileID: 1069600085}
   _animation: {fileID: 1069600086}
+  _clickAnim: {fileID: 11400000, guid: f69aa07fe803bee44bc0a6469d885807, type: 2}
+  _idleAnim: {fileID: 11400000, guid: 722c610f47ba60b419aeecf8904821ae, type: 2}
 --- !u!1 &1071881344
 GameObject:
   m_ObjectHideFlags: 0

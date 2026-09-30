@@ -61,4 +61,9 @@ public class SimpleAnimation : MonoBehaviour
     {
         _animation = animation;
     }
+
+    public void SetLoop(bool loop)
+    {
+        _loop = loop;
+    }
 }
