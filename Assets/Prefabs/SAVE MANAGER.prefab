@@ -194,6 +194,18 @@ MonoBehaviour:
   CurrentReward: {fileID: 11400000, guid: d55eda5b154e82844a0a21907f387dd6, type: 2}
   _currentSave:
     LastSceneName: Hub
+    YarnFloats:
+      _keys: []
+      _values: []
+      size: 0
+    YarnStrings:
+      _keys: []
+      _values: []
+      size: 0
+    YarnBools:
+      _keys: []
+      _values: 
+      size: 0
     MealTickets: 0
     PermanentBonusListName: []
     UnlockedPowerDataListName: []
@@ -215,9 +227,10 @@ MonoBehaviour:
     TotalPoints: 0
     PPSpentRunShop: 0
     PPConvertedToMT: 0
-    NumberFirstBossPlayed: 0
     NumberPowerUsed: 0
     NumberLeverUsed: 0
+    NumberFirstBossPlayed: 0
+    NumberFirstBossWon: 0
     PermanentRoundBonusTime: 0
     RunStartLootPP: 0
     EveryNodeLootPP: 0
@@ -234,13 +247,16 @@ MonoBehaviour:
       RunBonusRound: 0
       RunBonusDiscard: 0
       CurrentRunBonusListName: []
+      ModifiedItemDataSave: []
     RunDataHistory: []
   FirstPower: {fileID: 11400000, guid: 5ac3058a1642fe041ae4dfa896e0ee76, type: 2}
+  MapData: {fileID: 11400000, guid: f2142562869344a42b25704317bc6183, type: 2}
   _firstNode: {fileID: 11400000, guid: cffc50a3e8ada694c92f6e77cad39c5c, type: 2}
   PermanentBonusList: []
   UnlockedPowerDataList: []
   EquipedPowerDataList: []
   CurrentRunBonusList: []
+  YarnStorage: {fileID: 0}
 --- !u!1 &8323011623194388260
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,3 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 183ff7e701af3d840b02b268c6535222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RunBonusDataDictionary:
+    _serializedList: []
+  PermanentBonusDataDictionary:
+    _serializedList: []

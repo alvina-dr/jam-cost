@@ -60,7 +60,7 @@ public class ClockManager : MonoBehaviour
     {
         _animationOnGoing = true;
         List<MapNodeData> chosenMapNodeData = GetAllChosenNodes();
-        MapNodeChoiceData choiceData = NodeChoiceManager.Instance.MapData.ChoiceList[SaveManager.CurrentSave.CurrentRun.CurrentNode];
+        MapNodeChoiceData choiceData = SaveManager.Instance.MapData.ChoiceList[SaveManager.CurrentSave.CurrentRun.CurrentNode];
 
 
         for (int i = 0; i < _choiceList.Count; i++)
@@ -115,8 +115,8 @@ public class ClockManager : MonoBehaviour
         // ROOMS 
         Sequence roomIconSequence = Sequence.Create();
         roomIconSequence.ChainDelay(1f);
-        float roomDegreeSpace = -_roomDegreeTotal / (float)(NodeChoiceManager.Instance.MapData.ChoiceList.Count - 1);
-        for (int i = 0; i < NodeChoiceManager.Instance.MapData.ChoiceList.Count; i++)
+        float roomDegreeSpace = -_roomDegreeTotal / (float)(SaveManager.Instance.MapData.ChoiceList.Count - 1);
+        for (int i = 0; i < SaveManager.Instance.MapData.ChoiceList.Count; i++)
         {
             ClockRoomIcon roomIcon = Instantiate(_roomPrefab, _roomParent);
             _roomIconList.Add(roomIcon);
@@ -180,7 +180,7 @@ public class ClockManager : MonoBehaviour
     {
         List<MapNodeData> chosenMapNodeData = new();
 
-        MapNodeChoiceData choiceData = NodeChoiceManager.Instance.MapData.ChoiceList[SaveManager.CurrentSave.CurrentRun.CurrentNode];
+        MapNodeChoiceData choiceData = SaveManager.Instance.MapData.ChoiceList[SaveManager.CurrentSave.CurrentRun.CurrentNode];
         List<MapNodeData> choiceList = new(choiceData.MapNodeDataPool);
 
         int numberNodeToDraw = 3;

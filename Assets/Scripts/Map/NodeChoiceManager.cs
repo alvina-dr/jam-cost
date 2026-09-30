@@ -1,7 +1,6 @@
 using EasyTransition;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class NodeChoiceManager : MonoBehaviour
 {
@@ -22,7 +21,6 @@ public class NodeChoiceManager : MonoBehaviour
     }
     #endregion
 
-    public MapData MapData;
     [SerializeField] private List<UI_MapNode> _mapNodeList = new();
     [SerializeField] private TransitionSettings _transitionSettings;
     [SerializeField] private ClockManager _clockManager;

@@ -35,6 +35,7 @@ public class SaveManager : MonoBehaviour
     public RewardData CurrentReward;
     [SerializeField] private SaveData _currentSave;
     public PowerData FirstPower;
+    public MapData MapData;
     [SerializeField] private MapNodeData _firstNode;
 
     public List<BonusData> PermanentBonusList = new();
