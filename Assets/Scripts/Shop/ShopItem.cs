@@ -5,6 +5,7 @@ using PrimeTween;
 public class ShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
     public BonusData BonusData;
+    [SerializeField] private ShopParentChoice _parentChoice;
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private SpriteRenderer _shadowSpriteRenderer;
     [SerializeField] private float _fallSpeed;
@@ -61,12 +62,14 @@ public class ShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private void OnMouseEnter()
     {
         TooltipManager.Instance.ShowTooltip(BonusData, transform.position, Vector3.up * 60);
+        _parentChoice.Face.MouseEnterFace();
         if (_floatingSequence.isAlive) _floatingSequence.isPaused = true;
     }
 
     private void OnMouseExit()
     {
         TooltipManager.Instance.HideTooltip();
+        _parentChoice.Face.MouseExitFace();
         if (_floatingSequence.isAlive) _floatingSequence.isPaused = false;
     }
 

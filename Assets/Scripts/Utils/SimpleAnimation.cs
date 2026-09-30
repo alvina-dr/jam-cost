@@ -40,13 +40,23 @@ public class SimpleAnimation : MonoBehaviour
         StartAnim(null);
     }
 
+    public void StopAnim()
+    {
+        if (_routine != null)
+        {
+            StopCoroutine(_routine);
+        }
+
+        if (_animation) _sprite.sprite = _animation.SpriteList[0];
+    }
+
     public IEnumerator Play(Action callback = null)
     {
         _sprite.enabled = true;
         for (int i = 0; i < _animation.SpriteList.Count; i++)
         {
             _sprite.sprite = _animation.SpriteList[i];
-            yield return new WaitForSecondsRealtime(_delayBetweenSprites);
+            yield return new WaitForSecondsRealtime(_animation.DelayBetweenSprites);
         }
         //_image.enabled = false;
 
