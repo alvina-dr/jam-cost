@@ -424,7 +424,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 6eb97fb3159ed1445be9a098fb6aaf8d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -920,7 +920,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 6eb97fb3159ed1445be9a098fb6aaf8d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1070,7 +1070,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable_Lever
   _spriteRenderer: {fileID: 133963704}
-  _outlineColor: {r: 1, g: 0, b: 0, a: 1}
+  _outlineColor: {r: 0.9372549, g: 0.5686275, b: 0.5019608, a: 1}
   _collider: {fileID: 133963707}
   _animation: {fileID: 133963705}
 --- !u!20 &151158841 stripped
@@ -8275,7 +8275,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 6eb97fb3159ed1445be9a098fb6aaf8d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8321,7 +8321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable_Discard
   _spriteRenderer: {fileID: 1069600088}
-  _outlineColor: {r: 1, g: 0, b: 0, a: 1}
+  _outlineColor: {r: 0.9372549, g: 0.5686275, b: 0.5019608, a: 1}
   _collider: {fileID: 1069600085}
   _animation: {fileID: 1069600086}
   _clickAnim: {fileID: 11400000, guid: f69aa07fe803bee44bc0a6469d885807, type: 2}
