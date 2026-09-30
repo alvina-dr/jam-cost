@@ -30,7 +30,7 @@ public class UI_GameOver : UI_Menu
         SaveManager.Instance.SaveRun();
         //Destroy(SaveManager.Instance.gameObject);
         Destroy(DataLoader.Instance.gameObject);
-        SaveManager.Instance.ChangeScene("Office", _transitionSettings, 0);
+        SaveManager.Instance.ChangeScene("Hub", _transitionSettings, 0);
     }
 
     public void NextNode()

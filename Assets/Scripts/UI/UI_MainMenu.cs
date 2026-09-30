@@ -13,7 +13,7 @@ public class UI_MainMenu : MonoBehaviour
 
         if (SaveManager.CurrentSave.SeeOnboarding == true)
         {
-            SaveManager.Instance.ChangeScene("Office", _transitionSettings, 0);
+            SaveManager.Instance.ChangeScene("Hub", _transitionSettings, 0);
         }
         else
         {
