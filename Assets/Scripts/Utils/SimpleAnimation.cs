@@ -1,21 +1,21 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SimpleAnimation : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer _sprite;
-    [SerializeField] private List<Sprite> _spriteList = new();
+    [SerializeField] private AnimationData _animation;
     [SerializeField] private float _delayBetweenSprites;
     [SerializeField] private bool _startOnAwake;
     [SerializeField] private bool _loop;
+    [SerializeField] private bool _disabledOnStart;
     [SerializeField] private float _delayBetweenLoop;
     private Coroutine _routine;
 
     private void Awake()
     {
-        _sprite.enabled = false;
+        if (_disabledOnStart) _sprite.enabled = false;
         if (_startOnAwake) _routine = StartCoroutine(Play());
     }
 
@@ -35,12 +35,17 @@ public class SimpleAnimation : MonoBehaviour
         }
     }
 
+    public void StartAnim()
+    {
+        StartAnim(null);
+    }
+
     public IEnumerator Play(Action callback = null)
     {
         _sprite.enabled = true;
-        for (int i = 0; i < _spriteList.Count; i++)
+        for (int i = 0; i < _animation.SpriteList.Count; i++)
         {
-            _sprite.sprite = _spriteList[i];
+            _sprite.sprite = _animation.SpriteList[i];
             yield return new WaitForSecondsRealtime(_delayBetweenSprites);
         }
         //_image.enabled = false;
@@ -52,8 +57,8 @@ public class SimpleAnimation : MonoBehaviour
         if (_loop) _routine = StartCoroutine(Play());
     }
 
-    public void SetAnimation(List<Sprite> spriteList)
+    public void SetAnimation(AnimationData animation)
     {
-        _spriteList = spriteList;
+        _animation = animation;
     }
 }

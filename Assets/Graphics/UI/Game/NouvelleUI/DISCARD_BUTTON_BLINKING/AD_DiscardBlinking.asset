@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa4bbd7618ed9304fbcf5c9ec4b3a5c8, type: 3}
+  m_Name: AD_DiscardBlinking
+  m_EditorClassIdentifier: Assembly-CSharp::AnimationData
+  SpriteList:
+  - {fileID: 21300000, guid: 2239492772f36410fb4a2e6cb388e98e, type: 3}
+  - {fileID: 21300000, guid: 1d718fc1c6c354b9985473aa6720ed65, type: 3}
+  - {fileID: 21300000, guid: 07d2fc3e3e5604c44ba2648b1630781a, type: 3}
+  - {fileID: 21300000, guid: 22c5f0a4d331848c89592ae6952f10a7, type: 3}
+  - {fileID: 21300000, guid: 0b0d778eb135a465d81b224f7c370615, type: 3}
+  - {fileID: 21300000, guid: b554c53e0058c48c3adb1ee98312657e, type: 3}
+  - {fileID: 21300000, guid: 5ca06d45d2c764888bafb2e1e3eee896, type: 3}
+  - {fileID: 21300000, guid: 9db3e40db254f418fa6085f72025d04f, type: 3}
+  - {fileID: 21300000, guid: f76fc1e52f9514e978e839b612dbcb03, type: 3}
+  - {fileID: 21300000, guid: b5d02ae4e32244f348888d32506c3bb4, type: 3}
+  - {fileID: 21300000, guid: 57f41c23687194b69b4ea7d8576a18ac, type: 3}
+  - {fileID: 21300000, guid: 47bf6bbff7aca4cf78d160d81b2e0d62, type: 3}

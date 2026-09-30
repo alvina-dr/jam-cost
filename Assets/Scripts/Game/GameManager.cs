@@ -84,8 +84,7 @@ public class GameManager : MonoBehaviour
 
         SetCurrentScore(0, false);
         UIManager.Timer.SetTextValue($"{Mathf.RoundToInt(ScavengingState.Timer)}", false);
-        UIManager.RoundRemaining.SetTextValue($"Round {CurrentRound} / {GetMaxRoundNumber()}", false);
-        UIManager.DiscardRemaining.SetTextValue($"Discard {CurrentDiscard}", false);
+        UIManager.DiscardRemaining.SetTextValue($"{CurrentDiscard}", false);
 
         ItemManager.ResetDumpster();
         ScavengingState.UpdateItemNumberText();
@@ -171,7 +170,7 @@ public class GameManager : MonoBehaviour
         {
             Lever.gameObject.SetActive(false);
         }
-        UIManager.DiscardRemaining.SetTextValue($"Discard {CurrentDiscard}", false);
+        UIManager.DiscardRemaining.SetTextValue($"{CurrentDiscard}", false);
         SaveManager.CurrentSave.NumberLeverUsed++;
         ScavengingState.CurrentSubState = GS_Scavenging.Scavenging_SubState.RerollCrateAnim;
         PreparationState.CurrentSubState = GS_Preparation.Preparation_SubState.RerollCrateAnim;

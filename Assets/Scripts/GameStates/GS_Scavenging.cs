@@ -31,7 +31,6 @@ public class GS_Scavenging : GameState
         //GameManager.Instance.CurrentRound++;
         //ResetTimer();
         AudioManager.Instance.StartClockSound();
-        GameManager.Instance.UIManager.RoundRemaining.SetTextValue($"Round {GameManager.Instance.CurrentRound} / {GameManager.Instance.GetMaxRoundNumber()}");
 
         if (SaveManager.CurrentSave.GameFirstTimeRoundPlayed)
         {

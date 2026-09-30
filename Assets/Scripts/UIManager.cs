@@ -1,5 +1,4 @@
 using Coffee.UIExtensions;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +7,6 @@ public class UIManager : MonoBehaviour
     public Canvas Canvas;
 
     public UI_TextValue Timer;
-    public UI_TextValue RoundRemaining;
     public UI_TextValue DiscardRemaining;
 
     [Header("Game Over UI")]

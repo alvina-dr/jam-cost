@@ -153,6 +153,7 @@ public class DraggableBehavior : ItemBehavior
                 if (GameManager.Instance.ScavengingState.TryAddItemToSelectedList(this))
                 {
                     DropItem();
+                    transform.parent = GameManager.Instance.DepotOverCheck.transform;
                     GameManager.Instance.ItemManager.ItemList.Remove(this);
                     AudioManager.Instance.PlaySFXSound(_addToTicketSound);
                 }
@@ -186,6 +187,7 @@ public class DraggableBehavior : ItemBehavior
         else
         {
             DropItem();
+            transform.parent = GameManager.Instance.CrateOverCheck.transform;
         }
     }
 

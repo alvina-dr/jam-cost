@@ -11,12 +11,13 @@ public class UI_Animation : MonoBehaviour
     [SerializeField] private float _delayBetweenSprites;
     [SerializeField] private bool _startOnAwake;
     [SerializeField] private bool _loop;
+    [SerializeField] private bool _disabledOnStart;
     [SerializeField] private float _delayBetweenLoop;
     private Coroutine _routine;
     
     private void Awake()
     {
-        _image.enabled = false;
+        if (_disabledOnStart) _image.enabled = false;
         if (_startOnAwake) _routine = StartCoroutine(Play());
     }
 
@@ -34,6 +35,11 @@ public class UI_Animation : MonoBehaviour
         {
             _routine = StartCoroutine(Play(callback));
         }
+    }
+
+    public void StartAnim()
+    {
+        StartAnim(null);
     }
 
     public IEnumerator Play(Action callback = null)

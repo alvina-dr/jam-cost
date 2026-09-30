@@ -1,3 +1,4 @@
+using PrimeTween;
 using UnityEngine;
 
 public class GS_Bag : GameState
@@ -10,9 +11,9 @@ public class GS_Bag : GameState
         AudioManager.Instance.StopClockSound();
         AudioManager.Instance.PlaySFXSound(_endRoundSound);
         if (GameManager.Instance.SelectedItem != null) GameManager.Instance.SelectedItem.EndDrag();
-        ScoreCalculationManager.Instance.Show();
-
         GameManager.Instance.UIManager.HUD_Game.gameObject.SetActive(false);
+
+        Tween.Delay(1f, () => ScoreCalculationManager.Instance.Show());
     }
 
     public override void UpdateState()
