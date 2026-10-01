@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa4bbd7618ed9304fbcf5c9ec4b3a5c8, type: 3}
   m_Name: AD_DiscardOn
   m_EditorClassIdentifier: Assembly-CSharp::AnimationData
+  DelayBetweenSprites: 0.01
   SpriteList:
   - {fileID: 21300000, guid: b0afa13982deb4833832e45fd326332c, type: 3}
   - {fileID: 21300000, guid: 0cdc54f9f02cc4433a1ee2b9f57e4b26, type: 3}

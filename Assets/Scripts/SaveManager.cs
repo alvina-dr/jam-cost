@@ -101,7 +101,7 @@ public class SaveManager : MonoBehaviour
             }
             else
             {
-                ChangeScene("Map", _transitionSettings, 0);
+                ChangeScene("Clock", _transitionSettings, 0);
             }
         }
     }

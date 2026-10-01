@@ -60,6 +60,11 @@ public class TooltipManager : MonoBehaviour
         ShowTooltip(mapNodeData.NodeName, position, offset);
     }
 
+    public void ShowTooltip(RewardData rewardData,  Vector3 position, Vector3 offset)
+    {
+        ShowTooltip(rewardData.Description, position, offset);
+    }
+
     public void ShowTooltip(string description, Vector3 position, Vector3 offset)
     {
         _descriptionText.text = description;

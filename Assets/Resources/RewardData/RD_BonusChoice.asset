@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Bonus
   Description: Get a choice between 3 random bonus !
-  Icon: {fileID: -4209461767521648114, guid: facecafb1e8654005a2c8c8bedd4beb2, type: 3}
+  Icon: {fileID: 21300000, guid: 934bc1d4648a76946b17605b8f1203f4, type: 3}
   RewardItemData: {fileID: 11400000, guid: ebca227d451933645a514b4618ac80bf, type: 2}
   RewardNumber: 3
