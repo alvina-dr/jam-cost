@@ -200,6 +200,6 @@ public class GameManager : MonoBehaviour
     public void ApproveDepot()
     {
         if (CurrentGameState != ScavengingState) return;
-        ScavengingState.EndOfRound();
+        GameManager.Instance.SetGameState(GameManager.Instance.BagState);
     }
 }

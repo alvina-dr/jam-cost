@@ -40,7 +40,8 @@ public class MND_Scavenge_Classic : MapNodeData
 
     public virtual void ExitScoreCount()
     {
-        GameManager.Instance.SetGameState(GameManager.Instance.ScavengingState);
+        if (GameManager.Instance.ScavengingState.Timer <= 0) GameManager.Instance.SetGameState(GameManager.Instance.GameOverState);
+        else GameManager.Instance.SetGameState(GameManager.Instance.ScavengingState);
     }
 
     public virtual void Victory()

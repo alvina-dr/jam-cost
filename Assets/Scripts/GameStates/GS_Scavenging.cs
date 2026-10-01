@@ -122,7 +122,15 @@ public class GS_Scavenging : GameState
 
         // normal classic state
         //ResetTimer();
-        GameManager.Instance.SetGameState(GameManager.Instance.BagState);
+
+        if (GameManager.Instance.ScavengingState.SelectedItemList.Count == 0)
+        {
+            GameManager.Instance.SetGameState(GameManager.Instance.GameOverState);
+        }
+        else
+        {
+            GameManager.Instance.SetGameState(GameManager.Instance.BagState);
+        }
     }
 
     public void ResetTimer()

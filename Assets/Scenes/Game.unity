@@ -2397,7 +2397,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: -2
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: e67c0ede074cdec42b1d06d7be07a879, type: 3}
+  m_Sprite: {fileID: -7094046922478185421, guid: abc9271ee8ebc4985a7e29e4c77d6973, type: 3}
   m_Color: {r: 0.9921569, g: 0.69803923, b: 0.77647066, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2405,7 +2405,7 @@ SpriteRenderer:
   m_Size: {x: 19.2, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
 --- !u!1 &678708867
 GameObject:
@@ -10793,7 +10793,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Timer: 0
-  _roundTime: 60
+  _roundTime: 5
   SelectedItemList: []
   _itemNumberTextValue: {fileID: 116919398}
   _itemNumberText: {fileID: 116919397}
