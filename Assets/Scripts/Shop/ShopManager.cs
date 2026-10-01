@@ -71,7 +71,7 @@ public class ShopManager : MonoBehaviour
     public void BuyShopItem(ShopItem shopItem)
     {
         _boughtItemList.Add(shopItem);
-        shopItem.transform.position = _boughtItemTransformList[_boughtItemList.Count - 1].position;
+        //shopItem.transform.position = _boughtItemTransformList[_boughtItemList.Count - 1].position;
         _fallSparklesPS.Play();
     }
 

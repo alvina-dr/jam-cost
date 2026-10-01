@@ -1,5 +1,6 @@
 using PrimeTween;
 using Sirenix.OdinInspector;
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -23,6 +24,7 @@ public class BonusHandManager : MonoBehaviour
     #endregion
 
     [SerializeField] private List<BonusBehavior> _bonusBehaviorList = new();
+    [SerializeField] private List<BonusBehavior> _activeBonusBehaviorList = new();
     [SerializeField] private BonusBehavior _bonusBehaviorPrefab;
     [SerializeField] private float _bonusSpace;
     [SerializeField] private float _bonusSize;
@@ -41,6 +43,7 @@ public class BonusHandManager : MonoBehaviour
             if (i < SaveManager.Instance.CurrentRunBonusList.Count)
             {
                 _bonusBehaviorList[i].Setup(SaveManager.Instance.CurrentRunBonusList[i]);
+                _activeBonusBehaviorList.Add(_bonusBehaviorList[i]);
             }
             else
             {
@@ -48,11 +51,10 @@ public class BonusHandManager : MonoBehaviour
             }
         }
 
-        List<BonusBehavior> activeBonusList =  _bonusBehaviorList.FindAll(x => x.gameObject.activeSelf);
-        for (int i = 0; i < activeBonusList.Count; i++)
+        for (int i = 0; i < _activeBonusBehaviorList.Count; i++)
         {
-            float totalSpace = _bonusSpace * (activeBonusList.Count - 1) + _bonusSize * activeBonusList.Count;
-            activeBonusList[i].transform.localPosition = new Vector3((i * _bonusSpace) + (i * _bonusSize + _bonusSize / 2) - totalSpace / 2, -3);
+            float totalSpace = _bonusSpace * (_activeBonusBehaviorList.Count - 1) + _bonusSize * _activeBonusBehaviorList.Count;
+            _activeBonusBehaviorList[i].transform.localPosition = new Vector3((i * _bonusSpace) + (i * _bonusSize + _bonusSize / 2) - totalSpace / 2, -3);
         }
     }
 
@@ -61,20 +63,45 @@ public class BonusHandManager : MonoBehaviour
         return _bonusBehaviorList.Find(x => x.BonusData.Name == name);
     }
 
+    public void AddBonus(BonusData bonusData)
+    {
+        if (_activeBonusBehaviorList.Count >= _bonusBehaviorList.Count ) return;
+
+        int futureBonusCount = _activeBonusBehaviorList.Count + 1;
+        float totalSpace = _bonusSpace * (futureBonusCount - 1) + _bonusSize * futureBonusCount;
+        for (int i = 0; i < _activeBonusBehaviorList.Count; i++)
+        {
+            int index = i;
+            float normalPositionX = (i * _bonusSpace) + (i * _bonusSize + _bonusSize / 2) - totalSpace / 2;
+
+            Sequence moveSequence = Sequence.Create();
+            moveSequence.ChainDelay(index * .05f + 0.1f);
+            moveSequence.Chain(Tween.LocalPositionX(_activeBonusBehaviorList[index].transform, normalPositionX, .1f));
+        }
+
+        BonusBehavior bonusBehavior = _bonusBehaviorList[_activeBonusBehaviorList.Count];
+        _activeBonusBehaviorList.Add(bonusBehavior);
+        bonusBehavior.Setup(bonusData);
+        bonusBehavior.transform.localPosition = new Vector3(((futureBonusCount - 1) * _bonusSpace) + ((futureBonusCount - 1) * _bonusSize + _bonusSize / 2) - totalSpace / 2, -3);
+        Sequence addBonusSequence = Sequence.Create();
+        addBonusSequence.ChainDelay(futureBonusCount * .05f + 0.1f);
+        addBonusSequence.Chain(Tween.LocalPositionY(bonusBehavior.transform, 0.3f, .1f));
+        addBonusSequence.Chain(Tween.LocalPositionY(bonusBehavior.transform, 0, .2f));
+    }
+
     [Button]
     public void Show()
     {
         if (IsShow) return;
 
         IsShow = true;
-        List<BonusBehavior> activeBonusList = _bonusBehaviorList.FindAll(x => x.gameObject.activeSelf);
-        for (int i = 0; i < activeBonusList.Count; i++)
+        for (int i = 0; i < _activeBonusBehaviorList.Count; i++)
         {
             int index = i;
             Sequence bonusSequence = Sequence.Create();
             bonusSequence.ChainDelay(index * .1f + 0.1f);
-            bonusSequence.Chain(Tween.LocalPositionY(activeBonusList[index].transform, 0.3f, .1f));
-            bonusSequence.Chain(Tween.LocalPositionY(activeBonusList[index].transform, 0, .2f));
+            bonusSequence.Chain(Tween.LocalPositionY(_activeBonusBehaviorList[index].transform, 0.3f, .1f));
+            bonusSequence.Chain(Tween.LocalPositionY(_activeBonusBehaviorList[index].transform, 0, .2f));
         }
     }
 
@@ -109,6 +136,7 @@ public class BonusHandManager : MonoBehaviour
         for (int i = 0; i < number; i++)
         {
             BonusBehavior bonusBehavior = PrefabUtility.InstantiatePrefab(_bonusBehaviorPrefab, transform) as BonusBehavior;
+            bonusBehavior.name = "BonusBehavior_" + i;
             float totalSpace = _bonusSpace * (number - 1) + _bonusSize * number;
             bonusBehavior.transform.localPosition = new Vector3((i * _bonusSpace) + (i * _bonusSize + _bonusSize / 2) - totalSpace / 2, 0);
             _bonusBehaviorList.Add(bonusBehavior);

@@ -32,16 +32,10 @@ public class ShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         SaveManager.Instance.AddPP(-BonusData.Price);
         SaveManager.CurrentSave.PPSpentRunShop += BonusData.Price;
         QuestDirector.Instance.CheckQuestCompletionByType<QD_PPSpentRunShop>();
-            
-        Sequence sequence = Sequence.Create();
-        sequence.Chain(Tween.Scale(transform, 1.2f, .1f));
-        sequence.ChainCallback(() => _spriteRenderer.sortingOrder = 4);
-        sequence.Chain(Tween.Scale(transform, 1f, .15f));
-        sequence.Chain(Tween.PositionAtSpeed(transform, new Vector3(transform.position.x, -3.5f, transform.position.z), _fallSpeed, Ease.Linear));
-        sequence.ChainCallback(() => ShopManager.Instance.BuyShopItem(this));
-        sequence.ChainCallback(() => gameObject.SetActive(false));
-
         _floatingSequence.Stop();
+        Collect();
+        ShopManager.Instance.BuyShopItem(this);
+        Tween.Delay(.5f, () => BonusHandManager.Instance.AddBonus(BonusData));
     }
 
     public void Collect()
