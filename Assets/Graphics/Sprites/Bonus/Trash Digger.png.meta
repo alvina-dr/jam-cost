@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 06eb4081a94e24c46b6ce26fee4e7e6c
+guid: 9652793040cf23744a869649f71060ae
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9015776257194148417
-    second: containers_0
+      213: 5011232054401578391
+    second: Trash Digger_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: containers_0
+      name: Trash Digger_0
       rect:
         serializedVersion: 2
-        x: 10
-        y: 0
-        width: 492
-        height: 512
+        x: 18
+        y: 18
+        width: 224
+        height: 315
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 14245700db87e1d70800000000000000
-      internalID: 9015776257194148417
+      spriteID: 79538a9b0097b8540800000000000000
+      internalID: 5011232054401578391
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      containers_0: 9015776257194148417
+      Trash Digger_0: 5011232054401578391
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

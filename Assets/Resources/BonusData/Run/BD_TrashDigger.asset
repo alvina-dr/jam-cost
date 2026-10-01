@@ -21,7 +21,7 @@ MonoBehaviour:
   Description: <b>10%</b> chance of gaining a PP when you trash an item.
   Price: 0
   _bonusValue: 0
-  Icon: {fileID: 21300000, guid: 8ab1c262d27ed8e41b3d806003d83d13, type: 3}
+  Icon: {fileID: 21300000, guid: 9652793040cf23744a869649f71060ae, type: 3}
   Color: {r: 0, g: 0, b: 0, a: 0}
   UpgradeBonusList: []
   ChancePercentage: 10

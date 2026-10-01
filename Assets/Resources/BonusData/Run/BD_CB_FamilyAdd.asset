@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsAvailableInGame: 1
   Durability: 0
+  Rarity: 0
   Category: 0
   Effect: 2
-  Name: Full Set Boost
+  Name: Small Car
   Description: '<b><color=blue>+50</color></b> to the total score if the <b>Same
     Family</b> combination was played. '
   Price: 5
