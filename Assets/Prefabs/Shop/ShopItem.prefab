@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BonusData: {fileID: 0}
+  _parentChoice: {fileID: 0}
   _spriteRenderer: {fileID: 6817389135514819102}
   _shadowSpriteRenderer: {fileID: 0}
   _fallSpeed: 20
@@ -96,14 +97,14 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.646913, y: 0.99482274}
-      - {x: -0.6315325, y: 0.9958182}
-      - {x: -0.7038295, y: 0.94974357}
-      - {x: -0.7076996, y: -0.9456241}
-      - {x: -0.64759254, y: -1.0023074}
-      - {x: 0.6488587, y: -1.0025574}
-      - {x: 0.7071162, y: -0.93648577}
-      - {x: 0.709314, y: 0.923239}
+    - - {x: 0.5371915, y: 0.8041815}
+      - {x: -0.5341546, y: 0.8065486}
+      - {x: -0.57902133, y: 0.7673314}
+      - {x: -0.58538145, y: -0.7569047}
+      - {x: -0.5462432, y: -0.8100933}
+      - {x: 0.537025, y: -0.813838}
+      - {x: 0.5882927, y: -0.75475585}
+      - {x: 0.58176273, y: 0.76551425}
   m_UseDelaunayMesh: 0
 --- !u!1 &2956814950193291963
 GameObject:
@@ -132,13 +133,14 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8370274031504179286}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6817389135514819102
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -157,6 +159,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -178,9 +182,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
+  m_MaskInteraction: 2
   m_Sprite: {fileID: 21300000, guid: 6d3b50912aa332d4493173811f9bd131, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -190,5 +196,4 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 2
   m_SpriteSortPoint: 0

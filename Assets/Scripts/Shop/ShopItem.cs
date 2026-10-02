@@ -1,8 +1,7 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 using PrimeTween;
 
-public class ShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
+public class ShopItem : MonoBehaviour
 {
     public BonusData BonusData;
     [SerializeField] private ShopParentChoice _parentChoice;
@@ -25,7 +24,7 @@ public class ShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         Tween.Delay(Random.Range(0, .5f), () => _floatingSequence.isPaused = false);
     }
 
-    public void OnPointerDown(PointerEventData eventData)
+    private void OnMouseDown()
     {
         if (SaveManager.CurrentSave.CurrentRun.ProductivityPoints < BonusData.Price) return;
 
@@ -65,18 +64,6 @@ public class ShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         TooltipManager.Instance.HideTooltip();
         _parentChoice.Face.MouseExitFace();
-        if (_floatingSequence.isAlive) _floatingSequence.isPaused = false;
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        TooltipManager.Instance.ShowTooltip(BonusData, transform.position, Vector3.up * 60);
-        if (_floatingSequence.isAlive) _floatingSequence.isPaused = true;
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        TooltipManager.Instance.HideTooltip();
         if (_floatingSequence.isAlive) _floatingSequence.isPaused = false;
     }
 }
