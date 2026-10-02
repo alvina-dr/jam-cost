@@ -46,7 +46,7 @@ public class ShopManager : MonoBehaviour
     private void Start()
     {
         BonusMenu.SelectBonusList();
-        _sellingBonusDataList = BonusDirector.Instance.GetRandomBonusRunList(3);
+        _sellingBonusDataList = BonusDirector.Instance.GetRandomBonusRunList(3, true);
 
         for (int i = 0; i < BonusList.Count; i++)
         {

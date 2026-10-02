@@ -10793,7 +10793,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Timer: 0
-  _roundTime: 5
+  _roundTime: 60
   SelectedItemList: []
   _itemNumberTextValue: {fileID: 116919398}
   _itemNumberText: {fileID: 116919397}
