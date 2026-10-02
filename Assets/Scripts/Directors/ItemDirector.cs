@@ -22,6 +22,7 @@ public class ItemDirector : MonoBehaviour
     #endregion
 
     public Dictionary<string, ItemData> ItemDataDictionary = new();
+    public ItemBehavior PPPrefab;
 
     private void OnAwake()
     {

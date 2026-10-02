@@ -2628,6 +2628,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1468865574}
     m_Modifications:
+    - target: {fileID: 285193714589946492, guid: 04f1d102fa47b3b40a08b4e98c38813f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3191355819161798272, guid: 04f1d102fa47b3b40a08b4e98c38813f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3688495013685191406, guid: 04f1d102fa47b3b40a08b4e98c38813f, type: 3}
       propertyPath: m_Name
       value: Frigo_Powers

@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsAvailableInGame: 1
   Durability: 1
+  Rarity: 0
   Category: 2
+  Effect: 0
   Name: Productive Times
-  Description: Gives you 3 more productivity point <sprite name=PP> at the end of
-    scavenging.
+  Description: Gives you +3<sprite name=PP> at the end of scavenging.
   Price: 5
+  _bonusValue: 0
   Icon: {fileID: 0}
   Color: {r: 0, g: 0, b: 0, a: 0}
   UpgradeBonusList: []

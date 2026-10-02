@@ -18,7 +18,7 @@ MonoBehaviour:
   Category: 4
   Effect: 0
   Name: Time is money III
-  Description: Each round lasts 13s (+1).
+  Description: The default scavenging timer starts at 75 (+5).
   Price: 15
   _bonusValue: 0
   Icon: {fileID: 0}
