@@ -1,4 +1,4 @@
-using DG.Tweening;
+using PrimeTween;
 using UnityEngine;
 
 public class CB_Bonus : ClickableBehavior
@@ -19,10 +19,10 @@ public class CB_Bonus : ClickableBehavior
         GameManager.Instance.RewardState.ClearBonus(this);
         _collider.enabled = false;
         AudioManager.Instance.PlaySFXSound(_collectSound);
-        Sequence hideSprite = DOTween.Sequence();
-        hideSprite.Append(_spriteRenderer.transform.DOScale(_maxScale, .2f));
-        hideSprite.Append(_spriteRenderer.transform.DOScale(0, .1f));
-        hideSprite.Play();
+        Sequence hideSprite = Sequence.Create();
+        hideSprite.Chain(Tween.Scale(_spriteRenderer.transform, _maxScale, .2f));
+        hideSprite.Chain(Tween.Scale(_spriteRenderer.transform, 0, .1f));
+        hideSprite.ChainCallback(() => BonusHandManager.Instance.AddBonus(BonusData));
     }
 
     protected override void OnMouseExit()

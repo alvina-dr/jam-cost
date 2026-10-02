@@ -14,17 +14,25 @@ public class GS_Reward : GameState
         GameManager.Instance.Lever.SetActive(false);
 
         SaveManager.Instance.CurrentReward.SpawnReward();
-        List<BonusData> bonusDataList = BonusDirector.Instance.GetRandomBonusRunList(3, true);
         List<ItemBehavior> bonusItemBehavior = GameManager.Instance.ItemManager.ItemList.FindAll(x => x is CB_Bonus);
-        for (int i = 0; i < bonusItemBehavior.Count; i++)
+
+        if (bonusItemBehavior.Count > 0)
         {
-            CB_Bonus bonus = (CB_Bonus) bonusItemBehavior[i];
-            if (bonus)
+            List<BonusData> bonusDataList = BonusDirector.Instance.GetRandomBonusRunList(3, true);
+
+            for (int i = 0; i < bonusItemBehavior.Count; i++)
             {
-                _bonusItemBehavior.Add(bonus);
-                bonus.Setup(bonusDataList[i]);
+                CB_Bonus bonus = (CB_Bonus)bonusItemBehavior[i];
+                if (bonus)
+                {
+                    _bonusItemBehavior.Add(bonus);
+                    bonus.Setup(bonusDataList[i]);
+                }
             }
+
+            BonusHandManager.Instance.Show();
         }
+
 
         GameManager.Instance.UIManager.RewardMenu.OpenMenu();
     }

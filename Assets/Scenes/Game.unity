@@ -10490,7 +10490,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4055730177989707258, guid: 6d787b4eee563d3478023ad9a8cea882, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -281.6
+      value: -215
       objectReference: {fileID: 0}
     - target: {fileID: 4055730177989707258, guid: 6d787b4eee563d3478023ad9a8cea882, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -17601,6 +17601,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6436201847158242453, guid: 8267fe26a38b4bb4da0aa0f61750c309, type: 3}
+      propertyPath: CurrentReward
+      value: 
+      objectReference: {fileID: 11400000, guid: 28bc3aeda1ed705459d7eb79b1b5fca8, type: 2}
     - target: {fileID: 6436201847158242453, guid: 8267fe26a38b4bb4da0aa0f61750c309, type: 3}
       propertyPath: StartingSave.CurrentDay
       value: -1
