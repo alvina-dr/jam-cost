@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Yarn.Unity;
 
 public class HubManager : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class HubManager : MonoBehaviour
     public UI_QuestsMenu QuestsMenu;
 
     [SerializeField] private Transform _questBoardClue;
+    [SerializeField] private Transform _exitClue;
 
     [SerializeField] private TransitionSettings _transitionSettings;
 
@@ -37,6 +39,8 @@ public class HubManager : MonoBehaviour
             DialogueManager.Instance.DialogueRunner.StartDialogue("NPC1_Introduction");
             SaveManager.CurrentSave.HubFirstTime = true;
         }
+
+        if (SaveManager.CurrentSave.IndicateExit) _exitClue.gameObject.SetActive(true);
 
         ShowQuestBoardIndication();
     }
@@ -60,6 +64,7 @@ public class HubManager : MonoBehaviour
     {
         SaveManager.Instance.ChangeScene("Game", _transitionSettings, 0);
         SaveManager.Instance.StartNewRun();
+        SaveManager.CurrentSave.IndicateExit = false;
     }
 
     public void UpdateAllUnlocks()
@@ -75,6 +80,14 @@ public class HubManager : MonoBehaviour
     {
         List<QuestData> questDataList = QuestDirector.Instance.QuestDataDictionary.Values.ToList();
         if (_questBoardClue) _questBoardClue.gameObject.SetActive(questDataList.Find(x => x.Data.State == QuestData.QuestState.WaitCollection || x.Data.State == QuestData.QuestState.New));
+    }
+
+    [YarnCommand("ShowExitClue")]
+    public void ShowExitClue()
+    {
+        if (SaveManager.CurrentSave.GameFirstTime) return;
+        _exitClue.gameObject.SetActive(true);
+         SaveManager.CurrentSave.IndicateExit = true;
     }
 
     public void GoToBreakroom()

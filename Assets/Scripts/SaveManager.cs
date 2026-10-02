@@ -428,6 +428,7 @@ public class SaveManager : MonoBehaviour
         public bool FreeRoundFirstTime = false;
         public bool GetFreeRoundFirstTime = false;
 
+        public bool IndicateExit = false;
         public bool GameFirstTime = false;
         public bool GameFirstTimeRoundPlayed = false;
         public bool GameSecondTime = false;
