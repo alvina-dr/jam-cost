@@ -18,7 +18,7 @@ MonoBehaviour:
   Category: 0
   Effect: 2
   Name: Go Trash or Go Home
-  Description: <b><color=blue>+200</b></color> to the total score if a trash bag
+  Description: <b><color=blue>+200</b></color> to the total score if a trash item
     was in the deposit box.
   Price: 10
   _bonusValue: 200
@@ -26,4 +26,6 @@ MonoBehaviour:
   Color: {r: 0, g: 0, b: 0, a: 0}
   UpgradeBonusList: []
   _containsItemDataList:
-  - {fileID: 11400000, guid: 06d9fb3819290d4478ab1a5baa5fd555, type: 2}
+  - {fileID: 11400000, guid: 050a6d5e1ec4eaf449438346e27745f6, type: 2}
+  - {fileID: 11400000, guid: c4559281c63cbe74c8c340c79130f028, type: 2}
+  - {fileID: 11400000, guid: 0a3bc85cda3101542ae375c9248c37bf, type: 2}

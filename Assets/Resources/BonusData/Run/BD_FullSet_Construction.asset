@@ -18,7 +18,7 @@ MonoBehaviour:
   Category: 3
   Effect: 4
   Name: Full set - Construction
-  Description: All items are construction items.
+  Description: All items are counted as construction items.
   Price: 10
   _bonusValue: 0
   Icon: {fileID: 21300000, guid: 422297b00a4dcdc479f09e1af18830d7, type: 3}

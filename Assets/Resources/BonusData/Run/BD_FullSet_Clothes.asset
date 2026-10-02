@@ -18,7 +18,7 @@ MonoBehaviour:
   Category: 3
   Effect: 4
   Name: Full set - Clothes
-  Description: All items are clothes items.
+  Description: All items are counted as clothes items.
   Price: 10
   _bonusValue: 0
   Icon: {fileID: 21300000, guid: 8a8c37a8b231da6459f19ca3792eede5, type: 3}

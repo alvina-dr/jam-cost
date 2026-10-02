@@ -18,7 +18,7 @@ MonoBehaviour:
   Category: 3
   Effect: 4
   Name: Full set - Food
-  Description: All items are food items.
+  Description: All items are counted as food items.
   Price: 10
   _bonusValue: 0
   Icon: {fileID: 21300000, guid: 738965bd80bca7744a7707421ae3f245, type: 3}
