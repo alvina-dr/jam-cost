@@ -77,12 +77,22 @@ public class ClockManager : MonoBehaviour
             //NodeChoiceManager.Instance.LaunchNode(chosenMapNodeData[0], choiceData.ChooseRandomReward());
             //return;
         }
-        
+
+        int scavengeNodeCount = chosenMapNodeData.FindAll(x => x is MND_Scavenge_Classic).Count;
+        List<RewardData> randomRewardList = choiceData.GetRandomRewardList(scavengeNodeCount);
         for (int i = 0; i < chosenMapNodeData.Count; i++)
         {
             MapNode choice = Instantiate(_choicePrefab, _choiceParent);
             _choiceList.Add(choice);
-            choice.Setup(chosenMapNodeData[i], choiceData.ChooseRandomReward());
+            if (chosenMapNodeData[i] is MND_Scavenge_Classic)
+            {
+                choice.Setup(chosenMapNodeData[i], randomRewardList[0]);
+                randomRewardList.RemoveAt(0);
+            }
+            else
+            {
+                choice.Setup(chosenMapNodeData[i], null);
+            }
             float zRotation = i * degreeSpace;
             float x = _choiceCircleCenter.position.x + _circleRadius * Mathf.Cos((zRotation + _degreeStart) * Mathf.PI / 180);
             float y = _choiceCircleCenter.position.y + _circleRadius * Mathf.Sin((zRotation + _degreeStart) * Mathf.PI / 180);
