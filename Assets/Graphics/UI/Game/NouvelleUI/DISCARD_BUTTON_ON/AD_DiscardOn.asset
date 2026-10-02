@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa4bbd7618ed9304fbcf5c9ec4b3a5c8, type: 3}
   m_Name: AD_DiscardOn
   m_EditorClassIdentifier: Assembly-CSharp::AnimationData
-  DelayBetweenSprites: 0.01
+  DelayBetweenSprites: 0.06
   SpriteList:
   - {fileID: 21300000, guid: b0afa13982deb4833832e45fd326332c, type: 3}
   - {fileID: 21300000, guid: 0cdc54f9f02cc4433a1ee2b9f57e4b26, type: 3}
@@ -26,3 +26,26 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4bb4a6ee0dfa6418f85541a507cf868c, type: 3}
   - {fileID: 21300000, guid: d09bb2bcaf8b148ee806f90f14d40ab3, type: 3}
   - {fileID: 21300000, guid: 9d7412421e4d7487cb9a857f66ff6504, type: 3}
+  - {fileID: 21300000, guid: 9d7412421e4d7487cb9a857f66ff6504, type: 3}
+  - {fileID: 21300000, guid: 9d7412421e4d7487cb9a857f66ff6504, type: 3}
+  - {fileID: 21300000, guid: 9d7412421e4d7487cb9a857f66ff6504, type: 3}
+  - {fileID: 21300000, guid: 9d7412421e4d7487cb9a857f66ff6504, type: 3}
+  - {fileID: 21300000, guid: 9d7412421e4d7487cb9a857f66ff6504, type: 3}
+  - {fileID: 21300000, guid: 9d7412421e4d7487cb9a857f66ff6504, type: 3}
+  - {fileID: 21300000, guid: 9d7412421e4d7487cb9a857f66ff6504, type: 3}
+  - {fileID: 21300000, guid: 9d7412421e4d7487cb9a857f66ff6504, type: 3}
+  - {fileID: 21300000, guid: 9d7412421e4d7487cb9a857f66ff6504, type: 3}
+  - {fileID: 21300000, guid: 9d7412421e4d7487cb9a857f66ff6504, type: 3}
+  - {fileID: 21300000, guid: 9d7412421e4d7487cb9a857f66ff6504, type: 3}
+  - {fileID: 21300000, guid: 9d7412421e4d7487cb9a857f66ff6504, type: 3}
+  - {fileID: 21300000, guid: 9d7412421e4d7487cb9a857f66ff6504, type: 3}
+  - {fileID: 21300000, guid: 9d7412421e4d7487cb9a857f66ff6504, type: 3}
+  - {fileID: 21300000, guid: 9d7412421e4d7487cb9a857f66ff6504, type: 3}
+  - {fileID: 21300000, guid: 9d7412421e4d7487cb9a857f66ff6504, type: 3}
+  - {fileID: 21300000, guid: 9d7412421e4d7487cb9a857f66ff6504, type: 3}
+  - {fileID: 21300000, guid: d09bb2bcaf8b148ee806f90f14d40ab3, type: 3}
+  - {fileID: 21300000, guid: 828a5648eeb1c4204bda2fa66d6cc5b3, type: 3}
+  - {fileID: 21300000, guid: 40b974954df8e47e5979adea02866d9b, type: 3}
+  - {fileID: 21300000, guid: 42f81bf3eca444811a48d532cf1c1208, type: 3}
+  - {fileID: 21300000, guid: f9253f90f3f114f75869befb535240b3, type: 3}
+  - {fileID: 21300000, guid: b0afa13982deb4833832e45fd326332c, type: 3}

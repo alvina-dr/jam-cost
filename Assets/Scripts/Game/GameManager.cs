@@ -179,7 +179,7 @@ public class GameManager : MonoBehaviour
         ItemManager.EnterItemsPerfMode();
         rerollSequence.Chain(Tween.PositionY(CrateOverCheck.transform, -8f, 1f));
         rerollSequence.ChainCallback(() => ItemManager.CleanItems());
-        rerollSequence.ChainDelay(1f);
+        rerollSequence.ChainDelay(.3f);
         rerollSequence.ChainCallback(() =>
         {
             CrateOverCheck.transform.position = new Vector3(CrateOverCheck.transform.position.x, 0, CrateOverCheck.transform.position.z);

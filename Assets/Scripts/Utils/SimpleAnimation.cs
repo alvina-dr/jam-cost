@@ -29,6 +29,8 @@ public class SimpleAnimation : MonoBehaviour
 
     public void StartAnim(Action callback = null)
     {
+        StopAnim();
+
         if (gameObject.activeSelf)
         {
             _routine = StartCoroutine(Play(callback));
