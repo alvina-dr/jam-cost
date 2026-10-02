@@ -3,8 +3,7 @@
 ScoreBar: Your goal is to score points and reach the target score of the room.
 DepositBox: You earn points by putting carefully selected items in the <b>deposit box</b>.
 DepositBoxNumber: Each item is worth a specific amount of points. You can only choose <b>4</b> items.
-Timer: Here you can see how much <b>time</b> you have left before the end of the <b>round</b>.
-RoundNumber: Carefull, you only have <b>3 rounds</b> to make the score, so be thoughful!
+Timer: Here you can see how much <b>time</b> you have left before the end of the <b>timer</b>.
 PlayButton: You can start whenever you want during your first round by pressing the <b>"play"</b> button.
 Pause: Also, by pressing <sprite name=Input_Space>, you can <b>pause</b> the game if you need to take a break or think about your strategy!
 ===
@@ -12,18 +11,19 @@ title: Onboarding_GameScene_2
 ---
 Center: Some items will be worth more when put together.
 Center: For example, you can try to make a <b>combination</b>.
-Center: If you pick 4 or more paper items each item will be worth +5.
+Center: If you pick 4 or more items from the same family, each item will be worth +5.
 Center: There are many <b>combinations</b> that you can discover, try to match items together! 
 Pause: You can see all the combinations discovered in the pause menu.
 
 ===
 title: Onboarding_GameScene_3
 ---
-Lever: If you can't find anything interesting or the <b>crate</b> is empty, you can use this <b>lever</b> to get a new one.
-Timer: Carefull though, you will loose a few precious seconds while the <b>crate</b> is being replaced.
+Lever: If you can't find anything interesting or if the <b>crate</b> is empty, you can use this <b>lever</b> to get a new one.
+Timer: Careful though, you will loose a few precious seconds while the <b>crate</b> is being replaced.
 ===
 title: Onboarding_Powers
 ---
 Powers: Your powers charge with time.  
 Powers: Once they're ready, click on their buttons to use them !
+Powers: Here, this one will give you more time!
 ===
