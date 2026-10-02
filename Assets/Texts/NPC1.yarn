@@ -36,6 +36,7 @@ Hubert: Not that I care really.
 Hubert: Anyway! Since I know you're a bit of a slacker, I left something on the <b>Quest Terminal</b> for you. #line:032d404 
 -> Dee: That’s nice, thanks.... #line:03bed7a 
 -> Dee: Who are you <i><shake>again</shake></i>? #line:0e4dd27 
+<<ShowExitClue HubManager>>
 ===
 
 title: NPC1_ShopFirstTime
