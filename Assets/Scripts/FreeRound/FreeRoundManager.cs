@@ -41,9 +41,9 @@ public class FreeRoundManager : MonoBehaviour
         SaveManager.Instance.NextNode();
     }
 
-    public void GetFreeRound()
+    public void GetTimeBonus()
     {
-        SaveManager.CurrentSave.CurrentRun.RunBonusRound++;
+        SaveManager.CurrentSave.CurrentRun.RunRoundBonusTime += 10;
 
         if (!SaveManager.CurrentSave.GetFreeRoundFirstTime)
         {
