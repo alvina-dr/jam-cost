@@ -110,7 +110,7 @@ public class ScoreCalculationManager : MonoBehaviour
     {
         if (GameManager.Instance.CurrentGameState != GameManager.Instance.BagState)
         {
-            Time.timeScale = 1.0f;
+            //Time.timeScale = 1.0f;
             return;
         }
 
@@ -131,6 +131,8 @@ public class ScoreCalculationManager : MonoBehaviour
 
     public void Hide()
     {
+        Time.timeScale = 1f;
+
         BonusHandManager.Instance.Hide();
         GameManager.Instance.ItemManager.ShowItems();
         GameManager.Instance.CrateOverCheck.gameObject.SetActive(true);
@@ -140,6 +142,7 @@ public class ScoreCalculationManager : MonoBehaviour
         Tween.LocalPositionY(transform, 10.8f, .5f).OnComplete(() =>
         {
             _sortingGroup.sortingLayerName = "Background";
+
         });
     }
 
