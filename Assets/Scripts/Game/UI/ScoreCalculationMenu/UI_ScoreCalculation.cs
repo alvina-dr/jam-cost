@@ -1,7 +1,6 @@
 using MoreMountains.Feedbacks;
 using PrimeTween;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -32,10 +31,6 @@ public class UI_ScoreCalculation : UI_Menu
     [Header("Time speed")]
     public Transform SpeedArrow;
     public Vector3 SpeedArrowOffset;
-
-    private PrimeTween.Sequence _countSequence;
-    private List<CombinationData> _combinationDataList = new();
-    private List<BonusData> _bonusDataList = new();
 
     public override void OpenMenu()
     {
