@@ -55,7 +55,6 @@ public class GameManager : MonoBehaviour
     [Header("Over check")]
     public OverCheck DepotOverCheck;
     public OverCheck CrateOverCheck;
-    public GameObject Lever;
 
     private void Start()
     {
@@ -169,10 +168,6 @@ public class GameManager : MonoBehaviour
         if (CurrentDiscard <= 0) return;
 
         CurrentDiscard--;
-        if (CurrentDiscard <= 0)
-        {
-            Lever.gameObject.SetActive(false);
-        }
         UIManager.DiscardRemaining.SetTextValue($"{CurrentDiscard}", false);
         SaveManager.CurrentSave.NumberLeverUsed++;
         ScavengingState.CurrentSubState = GS_Scavenging.Scavenging_SubState.RerollCrateAnim;

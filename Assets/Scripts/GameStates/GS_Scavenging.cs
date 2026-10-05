@@ -27,7 +27,6 @@ public class GS_Scavenging : GameState
     {
         base.EnterState();
         SaveManager.Instance.GetScavengeNode().NewRound();
-        GameManager.Instance.Lever.SetActive(true);
         //GameManager.Instance.CurrentRound++;
         //ResetTimer();
         AudioManager.Instance.StartClockSound();

@@ -17,7 +17,6 @@ public class GS_Preparation : GameState
     public override void EnterState()
     {
         base.EnterState();
-        GameManager.Instance.Lever.SetActive(true);
         ResetTimer();
         AudioManager.Instance.StartClockSound();
     }
