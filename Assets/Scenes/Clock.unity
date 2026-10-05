@@ -4770,7 +4770,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37d5e739699db774bbc59dfee6c5526c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MapData: {fileID: 11400000, guid: f2142562869344a42b25704317bc6183, type: 2}
   _mapNodeList:
   - {fileID: 1214668319}
   - {fileID: 625940886}
@@ -5405,7 +5404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 229b1420408e46c4fbe9a531a772f572, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _clockRoomIconPrefab: {fileID: 5010335530752506579, guid: 3791d8b1a585b2140a18e35ff194a652, type: 3}
+  _transitionSettings: {fileID: 11400000, guid: b0126e1e0c6c2a04895d564bd230dfb9, type: 2}
   _twoChoices: {fileID: 1259122855}
   _threeChoices: {fileID: 883653115}
   _fourChoices: {fileID: 2043911379}
@@ -5425,6 +5424,7 @@ MonoBehaviour:
   _roomDegreeStart: 10
   _roomCircleRadius: 3.24
   _roomDegreeTotal: 160
+  _roomIconList: []
   _bigHand: {fileID: 948809879}
   _smallHand: {fileID: 233800226}
   _handMoveSpeed: 5
