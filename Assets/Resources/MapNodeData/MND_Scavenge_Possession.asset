@@ -17,7 +17,7 @@ MonoBehaviour:
   NodeIcon: {fileID: 21300000, guid: cd37d234951cb75428f21b81a9e20d13, type: 3}
   ScoreGoal: 2
   RoundNumber: 5
-  DiscardNumber: 10
+  DiscardNumber: 4
   SpawnItemParameters: {fileID: 11400000, guid: 6fd6173514e6a4e448b6979205bd7423, type: 2}
   SecondPhaseGoalScore: 1200
   ThirdPhaseGoalScore: 1800
