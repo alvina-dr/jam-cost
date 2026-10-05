@@ -6,7 +6,7 @@ DepositBox: You earn points by putting carefully selected items in the <b>deposi
 DepositBoxNumber: Each item is worth a specific amount of points. You can only choose <b>4</b> items.
 Timer: Here you can see how much <b>time</b> you have left before the end of the <b>timer</b>.
 PlayButton: You can start whenever you want during your first round by pressing the <b>"play"</b> button.
-Pause: Also, by pressing <sprite name=Input_Space>, you can <b>pause</b> the game if you need to take a break or think about your strategy!
+Pause: Also, by pressing <sprite name=Input_Space>, you can <b>pause</b> the game if you need to take a break !
 ===
 title: Onboarding_GameScene_2
 ---

@@ -89,11 +89,14 @@ public class GameManager : MonoBehaviour
         ItemManager.ResetDumpster();
         ScavengingState.UpdateItemNumberText();
 
-        if (!SaveManager.CurrentSave.GameFirstTime)
+        Tween.Delay(.8f, () =>
         {
-            DialogueManager.Instance.DialogueRunner.StartDialogue("Onboarding_GameScene_1");
-            SaveManager.CurrentSave.GameFirstTime = true;
-        }
+            if (!SaveManager.CurrentSave.GameFirstTime)
+            {
+                DialogueManager.Instance.DialogueRunner.StartDialogue("Onboarding_GameScene_1");
+                SaveManager.CurrentSave.GameFirstTime = true;
+            }
+        });
     }
 
     public void StartFirstRound()

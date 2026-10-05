@@ -18,6 +18,7 @@ title: NPC1_NewFrigo
 Hubert: Oh sweet, the <wave>fridge</wave> is back! I can’t wait to watch other employees stick angry post-its on their food — it’s going to be my new little dramedy. #line:07ab75e 
 -> Dee: My favourite office drama! #line:08b3184 
 -> Dee: Are you the one stealing them? #line:015f683 
+<<SetCharacterPicture AVATAR_PNJ_GUY_ANGRY>>
 Hubert: You can’t prove anything girl, step back. #line:03045ff 
 ===
 title: NPC1_Introduction
@@ -27,6 +28,7 @@ Hubert: Hey!
 Hubert: How are you?
 -> Dee: I'm... well ? #line:07ab713 
 -> Dee: Who are you again? #line:08167f5 
+<<SetCharacterPicture AVATAR_PNJ_GUY_ANGRY>>
 Hubert: Anyway! You should go ahead. #line:032d404 
 <<ShowExitClue HubManager>>
 ===

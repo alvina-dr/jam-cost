@@ -1,15 +1,18 @@
 ﻿title: Dee_Hub
 ---
+<<SetCharacterPicture>>
 Dee: Brand new day, all that...
 Dee: Guess I gotta go.
 ===
 title: Dee_Shop
 ---
+<<SetCharacterPicture>>
 Dee: Aaaand.....
 Dee: Time for a break.
 ===
 title: FirstFreeRound
 ---
+<<SetCharacterPicture>>
 Dee: Oh wow !
 Dee: What's that on the floor.
 Dee: I should go take a look.
@@ -17,10 +20,12 @@ Dee: I should go take a look.
 
 title: GetFirstFreeRound
 ---
+<<SetCharacterPicture>>
 Dee: Nice.
-Dee: I now have one more round to find cool items in the crate.
+Dee: I now have one more time to find cool items in the crate.
 ===
 title: ForgetFreeRound
 ---
+<<SetCharacterPicture>>
 Dee: I should take the item on the floor before leaving.
 ===

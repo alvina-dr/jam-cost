@@ -39,7 +39,7 @@ public class OnboardingManager : MonoBehaviour
 
     private void Start()
     {
-        Setup();
+        //Setup();
     }
 
     public void Next()

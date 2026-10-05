@@ -594,7 +594,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6072031417905214299, guid: 7c91637320b22af4daf161f411573c76, type: 3}
       propertyPath: _offset.y
-      value: 0.5
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 6072031417905214299, guid: 7c91637320b22af4daf161f411573c76, type: 3}
       propertyPath: _tooltipData
