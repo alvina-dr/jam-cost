@@ -1,13 +1,4 @@
-﻿title: NPC_Racoon
----
-Hubert: <wave>EUUH AAARG OUAAHEEEEYH</wave> #line:0fbd45e 
-Hubert: <wave>œrg æœrg euurgh</wave> #line:0b79fcc 
-Hubert: <wave>EUUH AAARG OUAAHEEEEEEEEEEEEEYH</wave> #line:0154f94 
--> Hubert: <wave>œrg æœrg euurgh</wave> #line:033f9c4 
--> Hubert: œrg æœrg euurgh #line:09bd812 
-===
-
-title: NPC1_Ending
+﻿title: NPC1_Ending
 ---
 Hubert: Arf. The manager of this floor seems to be absent. #line:0bd441a 
 Hubert: I’m not sure if they’re on leave or just taking a break that feels like an eternity, but it looks like you’ll have to wait to meet them. #line:0a86e57 
@@ -29,19 +20,15 @@ Hubert: You can’t prove anything girl, step back. #line:03045ff
 ===
 title: NPC1_Introduction
 ---
-Hubert: Hey Dee, how are you? 
-Hubert: Not that I care really.
+Hubert: Hey!  
+Hubert: How are you?
 -> Dee: I'm... well ? #line:07ab713 
 -> Dee: Who are you again? #line:08167f5 
-Hubert: Anyway! Since I know you're a bit of a slacker, I left something on the <b>Quest Terminal</b> for you. #line:032d404 
--> Dee: That’s nice, thanks.... #line:03bed7a 
--> Dee: Who are you <i><shake>again</shake></i>? #line:0e4dd27 
+Hubert: Anyway! You should go ahead. #line:032d404 
 <<ShowExitClue HubManager>>
 ===
 
 title: NPC1_ShopFirstTime
 ---
-Hubert: Don’t you ever crave something sweet during the day? I’ve got to stay strong — I want to save my productivity points and cash them in at the converter. #line:0afe78e 
--> Dee: I didn’t expect that from you, that’s smart! #line:0979c32 
--> Dee: I don’t need candy. I need a sugar daddy. #line:0de62f3 
+Hubert: The shopkeeper isn't very chatty, but you should find some great items to help you out here! #line:0afe78e 
 ===
