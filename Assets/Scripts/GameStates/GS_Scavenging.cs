@@ -1,4 +1,4 @@
-using DG.Tweening;
+using PrimeTween;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using TMPro;
@@ -32,24 +32,26 @@ public class GS_Scavenging : GameState
         //ResetTimer();
         AudioManager.Instance.StartClockSound();
 
-        if (SaveManager.CurrentSave.GameFirstTimeRoundPlayed)
+        Tween.Delay(1, () =>
         {
-            if (!SaveManager.CurrentSave.GameSecondTime)
+            if (SaveManager.CurrentSave.GameFirstTimeRoundPlayed)
             {
-                SaveManager.CurrentSave.GameSecondTime = true;
-                DialogueManager.Instance.EndDialogueEvent += PlayAgain;
-                Time.timeScale = 0;
-                DialogueManager.Instance.DialogueRunner.StartDialogue("Onboarding_GameScene_2");
+                if (!SaveManager.CurrentSave.GameSecondTime)
+                {
+                    SaveManager.CurrentSave.GameSecondTime = true;
+                    DialogueManager.Instance.EndDialogueEvent += PlayAgain;
+                    Time.timeScale = 0;
+                    DialogueManager.Instance.DialogueRunner.StartDialogue("Onboarding_GameScene_2");
+                }
+                else if (!SaveManager.CurrentSave.GameThirdTime)
+                {
+                    SaveManager.CurrentSave.GameThirdTime = true;
+                    DialogueManager.Instance.EndDialogueEvent += PlayAgain;
+                    Time.timeScale = 0;
+                    DialogueManager.Instance.DialogueRunner.StartDialogue("Onboarding_GameScene_3");
+                }
             }
-            else if (!SaveManager.CurrentSave.GameThirdTime)
-            {
-                SaveManager.CurrentSave.GameThirdTime = true;
-                DialogueManager.Instance.EndDialogueEvent += PlayAgain;
-                Time.timeScale = 0;
-                DialogueManager.Instance.DialogueRunner.StartDialogue("Onboarding_GameScene_3");
-            }
-        }
-
+        });
     }
 
     public override void UpdateState()
@@ -68,26 +70,26 @@ public class GS_Scavenging : GameState
             if (Timer <= 5)
             {
                 GameManager.Instance.UIManager.Timer.SetTextColor(Color.red);
-                if (!_fireDown)
-                {
-                    _fireDown = true;
-                    GameManager.Instance.UIManager.TimerBackground.material.DOFloat(1.2f, "_FlameLevel", .3f).OnComplete(() =>
-                    {
-                        _fireDown = false;
-                    });
-                }
+                //if (!_fireDown)
+                //{
+                //    _fireDown = true;
+                //    //GameManager.Instance.UIManager.TimerBackground.material.DOFloat(1.2f, "_FlameLevel", .3f).OnComplete(() =>
+                //    {
+                //        _fireDown = false;
+                //    });
+                //}
             }
             else
             {
                 GameManager.Instance.UIManager.Timer.ResetTextColor();
-                if (!_fireDown)
-                {
-                    _fireDown = true;
-                    GameManager.Instance.UIManager.TimerBackground.material.DOFloat(0, "_FlameLevel", .3f).OnComplete(() =>
-                    {
-                        _fireDown = false;
-                    });
-                }
+                //if (!_fireDown)
+                //{
+                //    _fireDown = true;
+                //    //GameManager.Instance.UIManager.TimerBackground.material.DOFloat(0, "_FlameLevel", .3f).OnComplete(() =>
+                //    //{
+                //    //    _fireDown = false;
+                //    //});
+                //}
             }
         }
 
