@@ -35,6 +35,7 @@ Hubert: Anyway! You should go ahead. #line:032d404
 
 title: NPC1_ShopFirstTime
 ---
-<<SetCharacterPicture AVATAR_PNJ_GUY_HAPPY>>
-Hubert: The shopkeeper isn't very chatty, but you should find some great items to help you out here! #line:0afe78e 
+<<SetCharacterPicture>>
+The shopkeeper isn't very chatty, but...
+... You should find some great items to help you out here! #line:0afe78e 
 ===

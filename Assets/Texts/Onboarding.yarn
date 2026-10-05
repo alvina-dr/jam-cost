@@ -4,9 +4,11 @@
 ScoreBar: Your goal is to score points and reach the target score of the room.
 DepositBox: You earn points by putting carefully selected items in the <b>deposit box</b>.
 DepositBoxNumber: Each item is worth a specific amount of points. You can only choose <b>4</b> items.
-Timer: Here you can see how much <b>time</b> you have left before the end of the <b>timer</b>.
+Lever: Once you have picked good items, you can pull on the lever to confirm your choice.
+Timer: Here you can see how many <b>seconds</b> you have left before the end of the <b>timer</b>.
+Timer: Pull the lever and score items as many time as you can before it reaches 0 !
 PlayButton: You can start whenever you want during your first round by pressing the <b>"play"</b> button.
-Pause: Also, by pressing <sprite name=Input_Space>, you can <b>pause</b> the game if you need to take a break !
+Pause: Also, by pressing <sprite name=Input_Space> you can <b>pause</b> the game if you need to take a break !
 ===
 title: Onboarding_GameScene_2
 ---
