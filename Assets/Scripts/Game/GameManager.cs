@@ -200,4 +200,9 @@ public class GameManager : MonoBehaviour
         if (CurrentGameState != ScavengingState) return;
         GameManager.Instance.SetGameState(GameManager.Instance.BagState);
     }
+
+    public void PlayAgain()
+    {
+        Time.timeScale = 1;
+    }
 }

@@ -1,6 +1,6 @@
 ﻿title: Onboarding_GameScene_1
 ---
-<<SetCharacterPicture >>
+<<SetCharacterPicture>>
 ScoreBar: Your goal is to score points and reach the target score of the room.
 DepositBox: You earn points by putting carefully selected items in the <b>deposit box</b>.
 DepositBoxNumber: Each item is worth a specific amount of points. You can only choose <b>4</b> items.
@@ -12,7 +12,7 @@ Pause: Also, by pressing <sprite name=Input_Space> you can <b>pause</b> the game
 ===
 title: Onboarding_GameScene_2
 ---
-<<SetCharacterPicture >>
+<<SetCharacterPicture>>
 Center: Some items will be worth more when put together.
 Center: For example, you can try to make a <b>combination</b>.
 Center: If you pick 4 or more items from the same family, each item will be worth +5.
@@ -22,15 +22,20 @@ Pause: You can see all the combinations discovered in the pause menu.
 ===
 title: Onboarding_GameScene_3
 ---
-<<SetCharacterPicture >>
+<<SetCharacterPicture>>
 Discard: Sometimes you can't find anything interesting or the <b>crate</b> is empty.
 Discard: When that happens, you can click on this <b>little guy</b> to get a new full crate !
 Timer: Careful though, you will loose a few seconds while the <b>crate</b> is being replaced.
 ===
 title: Onboarding_Powers
 ---
-<<SetCharacterPicture >>
+<<SetCharacterPicture>>
 Powers: Your powers charge with time.  
 Powers: Once they're ready, click on their buttons to use them !
 Powers: Here, this one will give you more time!
+===
+title: Onboarding_GameScene_CountScore1
+---
+<<SetCharacterPicture>>
+PlayButton: You can press down the left button of your mouse to go faster during the score count.
 ===

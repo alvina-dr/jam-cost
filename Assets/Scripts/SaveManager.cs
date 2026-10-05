@@ -431,6 +431,7 @@ public class SaveManager : MonoBehaviour
         public bool GameFirstTimeRoundPlayed = false;
         public bool GameSecondTime = false;
         public bool GameThirdTime = false;
+        public bool CountScoreFirstTime = false;
         public bool PowerFirstTime = false;
         
         public bool SeeNewFrigo = false;

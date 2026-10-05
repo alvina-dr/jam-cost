@@ -125,7 +125,7 @@ public class ScoreCalculationManager : MonoBehaviour
         else
         {
             GameManager.Instance.UIManager.BagMenu.SpeedArrow.gameObject.SetActive(false);
-            Time.timeScale = 1f;
+            if (Time.timeScale == 2f) Time.timeScale = 1f;
         }
     }
 

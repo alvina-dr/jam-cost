@@ -38,14 +38,14 @@ public class GS_Scavenging : GameState
                 if (!SaveManager.CurrentSave.GameSecondTime)
                 {
                     SaveManager.CurrentSave.GameSecondTime = true;
-                    DialogueManager.Instance.EndDialogueEvent += PlayAgain;
+                    DialogueManager.Instance.EndDialogueEvent += GameManager.Instance.PlayAgain;
                     Time.timeScale = 0;
                     DialogueManager.Instance.DialogueRunner.StartDialogue("Onboarding_GameScene_2");
                 }
                 else if (!SaveManager.CurrentSave.GameThirdTime)
                 {
                     SaveManager.CurrentSave.GameThirdTime = true;
-                    DialogueManager.Instance.EndDialogueEvent += PlayAgain;
+                    DialogueManager.Instance.EndDialogueEvent += GameManager.Instance.PlayAgain;
                     Time.timeScale = 0;
                     DialogueManager.Instance.DialogueRunner.StartDialogue("Onboarding_GameScene_3");
                 }
@@ -203,10 +203,5 @@ public class GS_Scavenging : GameState
         }
 
         _itemNumberTextValue.SetTextValue(SelectedItemList.Count + "/" + GameManager.Instance.GetDepotSize());
-    }
-
-    public void PlayAgain()
-    {
-        Time.timeScale = 1;
     }
 }
