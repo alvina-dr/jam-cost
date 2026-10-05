@@ -25,7 +25,7 @@ public class MapNode : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        NodeChoiceManager.Instance.LaunchNode(MapNodeData, RewardData);
+        ClockManager.Instance.LaunchNode(MapNodeData, RewardData);
         Tween.Scale(_iconScaler, 1, .2f, Ease.InOutBack);
     }
 
