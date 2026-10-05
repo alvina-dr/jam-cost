@@ -15,4 +15,4 @@ MonoBehaviour:
   DelayBetweenSprites: 0.5
   SpriteList:
   - {fileID: 21300000, guid: 7a184148437294a7b8d96378a700727d, type: 3}
-  - {fileID: 0}
+  - {fileID: -8437586548865755428, guid: d1f506c9b79f62f42ab0778b300fe2aa, type: 3}

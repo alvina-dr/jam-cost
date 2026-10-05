@@ -1058,7 +1058,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _image: {fileID: 1496753592}
   _spriteList:
-  - {fileID: 21300000, guid: 2d566c4409eb34e48ad7c349584ca33b, type: 3}
   - {fileID: 21300000, guid: b7a6d3c1cf9c6c244b3296670b12815a, type: 3}
   - {fileID: 21300000, guid: c60fbb4f6a8a43640b05b3cf33edcb20, type: 3}
   - {fileID: 21300000, guid: 2bdb5bc27828d574094038b9ccc587c0, type: 3}
@@ -1108,6 +1107,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7f0cd7de42285474db5c4e61d79a53a8, type: 3}
   - {fileID: 21300000, guid: 97bddd1a31cc61f48a6325e78bfea7f1, type: 3}
   - {fileID: 21300000, guid: 014aed5a7a24bee46845681a96127750, type: 3}
+  _animation: {fileID: 11400000, guid: 95e6e6844a0e85e40b590de97730d08e, type: 2}
   _delayBetweenSprites: 0.041666668
   _startOnAwake: 1
   _loop: 1

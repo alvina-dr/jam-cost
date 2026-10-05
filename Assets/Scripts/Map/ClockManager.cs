@@ -143,7 +143,7 @@ public class ClockManager : MonoBehaviour
             if (i < SaveManager.CurrentSave.CurrentRun.CurrentNode)
             {
                 roomIconSequence.ChainCallback(() => roomIcon.Enable());
-                roomIconSequence.ChainDelay(.1f);
+                roomIconSequence.ChainDelay(.07f);
             }
 
             if (i == SaveManager.CurrentSave.CurrentRun.CurrentNode)
@@ -172,7 +172,7 @@ public class ClockManager : MonoBehaviour
 
             float angle = Vector2.SignedAngle(Vector3.up, direction.normalized);
 
-            roomIconSequence.Chain(Tween.Rotation(_smallHand, new Vector3(0, 0, angle), .6f));
+            roomIconSequence.Chain(Tween.Rotation(_smallHand, new Vector3(0, 0, angle), .3f));
             roomIconSequence.ChainCallback(() => _animationOnGoing = false);
         }
         else

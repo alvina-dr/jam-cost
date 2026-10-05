@@ -1,20 +1,19 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UI_Animation : MonoBehaviour
 {
     [SerializeField] private Image _image;
-    [SerializeField] private List<Sprite> _spriteList = new();
+    [SerializeField] private AnimationData _animation;
     [SerializeField] private float _delayBetweenSprites;
     [SerializeField] private bool _startOnAwake;
     [SerializeField] private bool _loop;
     [SerializeField] private bool _disabledOnStart;
     [SerializeField] private float _delayBetweenLoop;
     private Coroutine _routine;
-    
+
     private void Awake()
     {
         if (_disabledOnStart) _image.enabled = false;
@@ -31,6 +30,8 @@ public class UI_Animation : MonoBehaviour
 
     public void StartAnim(Action callback = null)
     {
+        StopAnim();
+
         if (gameObject.activeSelf)
         {
             _routine = StartCoroutine(Play(callback));
@@ -42,13 +43,23 @@ public class UI_Animation : MonoBehaviour
         StartAnim(null);
     }
 
+    public void StopAnim()
+    {
+        if (_routine != null)
+        {
+            StopCoroutine(_routine);
+        }
+
+        if (_animation) _image.sprite = _animation.SpriteList[0];
+    }
+
     public IEnumerator Play(Action callback = null)
     {
         _image.enabled = true;
-        for (int i = 0; i < _spriteList.Count; i++)
+        for (int i = 0; i < _animation.SpriteList.Count; i++)
         {
-            _image.sprite = _spriteList[i];
-            yield return new WaitForSecondsRealtime(_delayBetweenSprites);
+            _image.sprite = _animation.SpriteList[i];
+            yield return new WaitForSecondsRealtime(_animation.DelayBetweenSprites);
         }
         //_image.enabled = false;
 
@@ -59,8 +70,13 @@ public class UI_Animation : MonoBehaviour
         if (_loop) _routine = StartCoroutine(Play());
     }
 
-    public void SetAnimation(List<Sprite> spriteList)
+    public void SetAnimation(AnimationData animation)
     {
-        _spriteList = spriteList;
+        _animation = animation;
+    }
+
+    public void SetLoop(bool loop)
+    {
+        _loop = loop;
     }
 }

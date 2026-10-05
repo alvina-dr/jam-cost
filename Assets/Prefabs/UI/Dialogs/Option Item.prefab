@@ -68,6 +68,7 @@ GameObject:
   - component: {fileID: 3241653132069343230}
   - component: {fileID: 1790482823140244791}
   - component: {fileID: 721144572235377823}
+  - component: {fileID: 3620047677176596109}
   m_Layer: 5
   m_Name: Selection Indicator
   m_TagString: Untagged
@@ -132,6 +133,26 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3620047677176596109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3241653132069343229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 318b98fa664d22c43bc7a8b772a014c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI_Animation
+  _image: {fileID: 721144572235377823}
+  _spriteList: []
+  _animation: {fileID: 11400000, guid: a3d1da6d424d70d46b0d49f8982d7ee4, type: 2}
+  _delayBetweenSprites: 0
+  _startOnAwake: 1
+  _loop: 1
+  _disabledOnStart: 0
+  _delayBetweenLoop: 0
 --- !u!1 &5078344489792438467
 GameObject:
   m_ObjectHideFlags: 0
