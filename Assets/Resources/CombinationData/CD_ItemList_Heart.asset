@@ -16,11 +16,9 @@ MonoBehaviour:
     Name: Heart
     State: 0
     NumberUsed: 0
-  Description: 'Heart
-
-'
-  Effect: 0
-  Bonus: 20
+  Description: Just cute hearts everywhere
+  Effect: 1
+  Bonus: 3
   _requiredItemList:
   - {fileID: 11400000, guid: a0ea6b205e39ad54ab8c186d800e8994, type: 2}
   - {fileID: 11400000, guid: 91b3ef6dee600c341bc0fbc05c1009a2, type: 2}

@@ -16,9 +16,10 @@ MonoBehaviour:
     Name: Flamethrower
     State: 0
     NumberUsed: 0
-  Description: Flamethrower
+  Description: That's... Not really allowed but we'll change the company policy a
+    bit for you ?
   Effect: 0
-  Bonus: 20
+  Bonus: 50
   _requiredItemList:
   - {fileID: 11400000, guid: 91b3ef6dee600c341bc0fbc05c1009a2, type: 2}
   - {fileID: 11400000, guid: 6615494143a8d9e4a8628c1505102ee1, type: 2}

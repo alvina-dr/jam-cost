@@ -16,11 +16,9 @@ MonoBehaviour:
     Name: Animals
     State: 0
     NumberUsed: 0
-  Description: 'Numbers
-
-'
-  Effect: 0
-  Bonus: 20
+  Description: Awww they're cute and you really outdid yourself on this one
+  Effect: 1
+  Bonus: 5
   _requiredItemList:
   - {fileID: 11400000, guid: 678ab10791efe164993cc5879a88dd46, type: 2}
   - {fileID: 11400000, guid: 151b3075c5771a94696bf68265ba0ede, type: 2}

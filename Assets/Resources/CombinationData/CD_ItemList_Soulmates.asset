@@ -16,9 +16,7 @@ MonoBehaviour:
     Name: Soulmates
     State: 0
     NumberUsed: 0
-  Description: 'Smiley
-
-'
+  Description: Two socks, two feets, it all comes together.
   Effect: 0
   Bonus: 20
   _requiredItemList:

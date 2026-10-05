@@ -16,11 +16,9 @@ MonoBehaviour:
     Name: Smiley
     State: 0
     NumberUsed: 0
-  Description: 'Smiley
-
-'
-  Effect: 0
-  Bonus: 20
+  Description: A little bit of smile in your life
+  Effect: 1
+  Bonus: 3
   _requiredItemList:
   - {fileID: 11400000, guid: 2aa222e588012194c934a981abb0f652, type: 2}
   - {fileID: 11400000, guid: 726f52f5ae6329f4387b48bf40381eb7, type: 2}

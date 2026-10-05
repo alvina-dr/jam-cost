@@ -16,11 +16,9 @@ MonoBehaviour:
     Name: Incognito
     State: 0
     NumberUsed: 0
-  Description: 'Heart
-
-'
+  Description: Put this on and you'll be invisible.
   Effect: 0
-  Bonus: 20
+  Bonus: 50
   _requiredItemList:
   - {fileID: 11400000, guid: 9129c398353f6da438c5f2adc54c1c03, type: 2}
   - {fileID: 11400000, guid: 6f57c463758718f4f8a7b89d225ada3d, type: 2}

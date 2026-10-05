@@ -16,11 +16,9 @@ MonoBehaviour:
     Name: Crossroad Certified
     State: 0
     NumberUsed: 0
-  Description: 'Smiley
-
-'
-  Effect: 0
-  Bonus: 20
+  Description: 
+  Effect: 1
+  Bonus: 3
   _requiredItemList:
   - {fileID: 11400000, guid: f21cf5f763d4f09409f2a98b512101b6, type: 2}
   - {fileID: 11400000, guid: bdb2b277b8026c9418b7e50d048af2d6, type: 2}

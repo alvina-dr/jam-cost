@@ -16,11 +16,9 @@ MonoBehaviour:
     Name: Sparkle
     State: 0
     NumberUsed: 0
-  Description: 'Sparkle
-
-'
-  Effect: 0
-  Bonus: 20
+  Description: You were able to see the sparkle inside all this items yayy
+  Effect: 1
+  Bonus: 3
   _requiredItemList:
   - {fileID: 11400000, guid: 678ab10791efe164993cc5879a88dd46, type: 2}
   - {fileID: 11400000, guid: e1893e6160155f240a9985831bac29f5, type: 2}

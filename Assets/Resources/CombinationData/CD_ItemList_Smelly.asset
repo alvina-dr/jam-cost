@@ -16,11 +16,9 @@ MonoBehaviour:
     Name: Smelly
     State: 0
     NumberUsed: 0
-  Description: 'Numbers
-
-'
+  Description: Worst of both worlds
   Effect: 0
-  Bonus: 20
+  Bonus: 40
   _requiredItemList:
   - {fileID: 11400000, guid: a0ea6b205e39ad54ab8c186d800e8994, type: 2}
   - {fileID: 11400000, guid: 536c7fcd1ff8b414088ec80d6e3416a6, type: 2}

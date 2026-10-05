@@ -16,11 +16,9 @@ MonoBehaviour:
     Name: Star
     State: 0
     NumberUsed: 0
-  Description: 'Numbers
-
-'
-  Effect: 0
-  Bonus: 20
+  Description: Stars everywhere
+  Effect: 1
+  Bonus: 3
   _requiredItemList:
   - {fileID: 11400000, guid: 8047f77f817b9a049a8686da54db94b6, type: 2}
   - {fileID: 11400000, guid: 6d8742c5ada6e204b9f58a7cd107ff5a, type: 2}

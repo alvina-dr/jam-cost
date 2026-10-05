@@ -16,11 +16,9 @@ MonoBehaviour:
     Name: Twinssss
     State: 0
     NumberUsed: 0
-  Description: 'Numbers
-
-'
-  Effect: 0
-  Bonus: 20
+  Description: Symetry at it's peak
+  Effect: 1
+  Bonus: 3
   _requiredItemList:
   - {fileID: 11400000, guid: a0ea6b205e39ad54ab8c186d800e8994, type: 2}
   - {fileID: 11400000, guid: a0ea6b205e39ad54ab8c186d800e8994, type: 2}
