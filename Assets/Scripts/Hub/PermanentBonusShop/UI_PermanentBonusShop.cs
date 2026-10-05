@@ -111,17 +111,18 @@ public class UI_PermanentBonusShop : UI_Menu
 
         if (_currentBuyPermanentBonusSlot.CurrentIndex - 1 >= _currentBuyPermanentBonusSlot.BonusData.UpgradeBonusList.Count) return;
 
-        BonusData bonusData = _currentBuyPermanentBonusSlot.BonusData;
+        BonusData bonusData = BonusDirector.Instance.PermanentBonusDataDictionary[_currentBuyPermanentBonusSlot.BonusData.Name];
         if (_currentBuyPermanentBonusSlot.CurrentIndex > 0)
         {
-            bonusData = _currentBuyPermanentBonusSlot.BonusData.UpgradeBonusList[_currentBuyPermanentBonusSlot.CurrentIndex - 1];
+            bonusData = BonusDirector.Instance.PermanentBonusDataDictionary[_currentBuyPermanentBonusSlot.BonusData.UpgradeBonusList[_currentBuyPermanentBonusSlot.CurrentIndex - 1].Name];
         }
 
         if (SaveManager.Instance.PermanentBonusList.Contains(bonusData)) return;
 
-
         // check if can buy
         if (SaveManager.CurrentSave.MealTickets < bonusData.Price) return;
+
+        Debug.Log("try buying");
         
         SaveManager.Instance.PermanentBonusList.Add(bonusData);
         bonusData.GetBonus();

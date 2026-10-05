@@ -360,8 +360,6 @@ public class SaveManager : MonoBehaviour
 
     public void SaveRun()
     {
-
-
         CurrentSave.RunDataHistory.Add(CurrentSave.CurrentRun);
     }
 
