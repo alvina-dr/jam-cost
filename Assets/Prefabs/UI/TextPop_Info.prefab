@@ -82,15 +82,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: <wave amp=2>Glass me daddy
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9a01c1d16251b314b9a760e86592f680, type: 2}
-  m_sharedMaterial: {fileID: -6821917695783777782, guid: 9a01c1d16251b314b9a760e86592f680, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 93a105f9957f105408a5bf0341a30f59, type: 2}
+  m_sharedMaterial: {fileID: -1777882958213534370, guid: 93a105f9957f105408a5bf0341a30f59, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4279900698
+  m_fontColor: {r: 0.10062885, g: 0.10062885, b: 0.10062885, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -113,11 +113,12 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 17
+  m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: 0
+  m_characterSpacing: 9.4
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
