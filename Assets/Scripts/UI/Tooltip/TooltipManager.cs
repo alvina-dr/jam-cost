@@ -52,7 +52,12 @@ public class TooltipManager : MonoBehaviour
     public void ShowTooltip(ItemInstance itemInstance, Vector3 position, Vector3 offset)
     {
         string itemTagName = itemInstance.TagData ? $" [{itemInstance.TagData.Name}]" : string.Empty;
-        ShowTooltip($"{itemInstance.Data.Save.Name} [{itemInstance.Data.Price}]{itemTagName}", position, offset);
+        string itemPrice = $"[{ itemInstance.Data.Price}]";
+        if (itemInstance.Data.Save.Family == ItemFamily.Clickable)
+        {
+            itemPrice = string.Empty;
+        }
+        ShowTooltip($"{itemInstance.Data.Save.Name} {itemPrice}{itemTagName}", position, offset);
     }
 
     public void ShowTooltip(MapNodeData mapNodeData, Vector3 position, Vector3 offset)

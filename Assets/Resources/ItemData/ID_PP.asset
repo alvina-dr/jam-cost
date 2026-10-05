@@ -18,6 +18,5 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: e44c21a0be77d49419886bd95bcb520c, type: 3}
   Save:
     Name: Productivity Point
-    Rarity: 3
+    Rarity: 2
     Family: 5
-  Rarity: 3

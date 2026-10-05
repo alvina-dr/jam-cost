@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
         ItemManager.ResetDumpster();
         ScavengingState.UpdateItemNumberText();
 
-        Tween.Delay(.8f, () =>
+        Tween.Delay(.2f, () =>
         {
             if (!SaveManager.CurrentSave.GameFirstTime)
             {
