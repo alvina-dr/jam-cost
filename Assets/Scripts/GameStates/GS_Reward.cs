@@ -11,7 +11,7 @@ public class GS_Reward : GameState
     {
         base.EnterState();
 
-        GameManager.Instance.Lever.SetActive(false);
+        GameManager.Instance.UIManager.Timer.gameObject.SetActive(false);
 
         SaveManager.Instance.CurrentReward.SpawnReward();
         List<ItemBehavior> bonusItemBehavior = GameManager.Instance.ItemManager.ItemList.FindAll(x => x is CB_Bonus);

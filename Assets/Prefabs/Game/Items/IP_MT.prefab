@@ -4816,7 +4816,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &225812791064449587
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4835,6 +4835,8 @@ ParticleSystemRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4856,9 +4858,11 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 648390207
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 100
+  m_MaskInteraction: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -4890,7 +4894,6 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
 --- !u!1001 &4662837150235267143
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5174,6 +5177,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 702df562eb697bb4290e36d258dd5a27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Item:
+    Data: {fileID: 0}
+    TagData: {fileID: 0}
   _collider: {fileID: 2834635080238091872}
   _spriteRenderer: {fileID: 8752454728129130859}
   _offset: {x: 0, y: 0, z: 0}
@@ -5186,6 +5192,7 @@ MonoBehaviour:
   _family4Material: {fileID: 2100000, guid: 3a430e1f32465b840a02788602dd1903, type: 2}
   _familyGarbageMaterial: {fileID: 2100000, guid: 28f039e842234f647bf9fb4c97d6bfef, type: 2}
   _clickableMaterial: {fileID: 2100000, guid: f4abf853aeb0b3b4498833203d55b262, type: 2}
+  _tooltipOffset: {x: 0, y: 80, z: 0}
   _collectParticles: {fileID: 3642709651322272509}
   _collectSound: {fileID: 8300000, guid: 0fc69976e44ac9a459408b1e794c0ed5, type: 3}
   _maxScale: 0.75

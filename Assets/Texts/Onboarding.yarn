@@ -23,8 +23,9 @@ Pause: You can see all the combinations discovered in the pause menu.
 title: Onboarding_GameScene_3
 ---
 <<SetCharacterPicture >>
-Discard: If you can't find anything interesting or if the <b>crate</b> is empty, you can click on this <b>little guy</b> to get a new one.
-Timer: Careful though, you will loose a few precious seconds while the <b>crate</b> is being replaced.
+Discard: Sometimes you can't find anything interesting or the <b>crate</b> is empty.
+Discard: When that happens, you can click on this <b>little guy</b> to get a new full crate !
+Timer: Careful though, you will loose a few seconds while the <b>crate</b> is being replaced.
 ===
 title: Onboarding_Powers
 ---

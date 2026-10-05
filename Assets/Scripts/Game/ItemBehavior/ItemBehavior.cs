@@ -22,6 +22,8 @@ public class ItemBehavior : MonoBehaviour
     [SerializeField] private Material _familyGarbageMaterial;
     [SerializeField] private Material _clickableMaterial;
 
+    [SerializeField] protected Vector3 _tooltipOffset;
+
     public void Setup(ItemData itemData)
     {
         Item = new();
@@ -107,7 +109,9 @@ public class ItemBehavior : MonoBehaviour
     {
         if (!CanClickItem()) return;
         if (GameManager.Instance.SelectedItem != null) return;
-        TooltipManager.Instance.ShowTooltip(Item, transform.position, Vector3.up * 80);
+
+        TooltipManager.Instance.ShowTooltip(Item, transform.position, _tooltipOffset);
+        
         if (GameManager.Instance.SelectedItem != null) return;
 
         Color color = _spriteRenderer.material.GetColor("_OutlineColor");

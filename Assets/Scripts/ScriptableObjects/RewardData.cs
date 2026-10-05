@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "RewardData", menuName = "Scriptable Objects/RewardData")]
@@ -26,6 +27,18 @@ public class RewardData : ScriptableObject
             GameManager.Instance.ItemManager.ItemList.Add(itemBehavior);
             itemBehavior.SetSortingOrder((i * 2) + 1);
             GameManager.Instance.ItemManager.TopLayer = (i * 2) + 1;
+        }
+
+        float bonusSpace = .2f;
+        float bonusSize = 1.5f;
+        if (RewardItemData.Prefab is CB_Bonus)
+        {
+            for (int i = 0; i < GameManager.Instance.ItemManager.ItemList.Count; i++)
+            {
+                float totalSpace = bonusSpace * (GameManager.Instance.ItemManager.ItemList.Count - 1) + bonusSize * GameManager.Instance.ItemManager.ItemList.Count;
+                GameManager.Instance.ItemManager.ItemList[i].transform.position = new Vector3((i * bonusSpace) + (i * bonusSize + bonusSize / 2) - totalSpace / 2, 0.45f, GameManager.Instance.ItemManager.ItemList[i].transform.position.z);
+                GameManager.Instance.ItemManager.ItemList[i].transform.rotation = Quaternion.identity;
+            }
         }
 
         // PP every node
