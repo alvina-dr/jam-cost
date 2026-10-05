@@ -193,7 +193,7 @@ public class GS_Scavenging : GameState
     {
         if (SelectedItemList.Count >= GameManager.Instance.GetDepotSize())
         {
-            _itemNumberText.color = Color.red;
+            _itemNumberText.color = new Color(1, 0.8892186f, 0.0660376f);
             _depotSprite.color = new Color32(213, 213, 213, 255);
         }
         else
