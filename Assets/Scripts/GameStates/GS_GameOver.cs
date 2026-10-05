@@ -9,7 +9,8 @@ public class GS_GameOver : GameState
         base.EnterState();
         Time.timeScale = 1f;
         AudioManager.Instance.PlaySFXSound(_looseSound);
-        GameManager.Instance.UIManager.GameLost.OpenMenu();
+        GameManager.Instance.UIManager.HUD_Game.gameObject.SetActive(false);
+        GameOverManager.Instance.Open();
     }
 
     public override void UpdateState()

@@ -451,7 +451,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2421288393890848660, guid: ce8c56acc24918644bbaed56dd94fcf3, type: 3}
       propertyPath: m_fontSize
-      value: 35
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2421288393890848660, guid: ce8c56acc24918644bbaed56dd94fcf3, type: 3}
       propertyPath: m_fontStyle
@@ -471,7 +471,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2421288393890848660, guid: ce8c56acc24918644bbaed56dd94fcf3, type: 3}
       propertyPath: m_fontSizeBase
-      value: 35
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2421288393890848660, guid: ce8c56acc24918644bbaed56dd94fcf3, type: 3}
       propertyPath: m_RaycastTarget
