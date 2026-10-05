@@ -1236,6 +1236,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DialogueRunner: {fileID: 6291089679402216987}
+  CharacterPicture: {fileID: 5221959376422262676}
+  CharacterPictureImage: {fileID: 1073114316705730253}
+  CharacterSpriteDictionary:
+    _serializedList: []
 --- !u!114 &6291089679402216987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2096,7 +2100,7 @@ GameObject:
   - component: {fileID: 1073114316705730253}
   - component: {fileID: 1004216424546411683}
   m_Layer: 5
-  m_Name: CharacterPicture (1)
+  m_Name: CharacterPictureImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2149,7 +2153,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 4484640732199004492, guid: b6ef49a81abb8d84aa194e3b2568e6b7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1684f0dfe793548f59390c4a0942b711, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
