@@ -32,7 +32,8 @@ public class ShopItem : MonoBehaviour
         SaveManager.CurrentSave.PPSpentRunShop += BonusData.Price;
         QuestDirector.Instance.CheckQuestCompletionByType<QD_PPSpentRunShop>();
         Collect();
-        ShopManager.Instance.BuyShopItem(this);
+        ShopManager.Instance.BuyShopItem(_parentChoice);
+        _parentChoice.MatchingPrice.gameObject.SetActive(false);
         Tween.Delay(.5f, () => BonusHandManager.Instance.AddBonus(BonusData));
     }
 

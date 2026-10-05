@@ -1,4 +1,6 @@
+using DG.Tweening;
 using PrimeTween;
+using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -29,14 +31,15 @@ public class ShopManager : MonoBehaviour
     [Header("Vending Machine")]
     public Animator VendingMachineAnimator;
     [SerializeField] private SpriteRenderer _vendingMachineSpriteRenderer;
-    public List<ShopItem> BonusList = new();
-    [SerializeField] private List<ShopItem> _boughtItemList = new();
-    [SerializeField] private List<Transform> _boughtItemTransformList = new();
+    public List<ShopParentChoice> BonusList = new();
+    [SerializeField] private List<ShopParentChoice> _boughtItemList = new();
     [SerializeField] private GameObject _mask;
 
     public List<TextMeshProUGUI> _priceTextList = new();
 
     [SerializeField] private float _showBonusDelay;
+    [SerializeField] private UI_TextValue _rerollButtonText;
+    [SerializeField] private UI_Button _rerollButton;
 
     [Header("VFX")]
     [SerializeField] private ParticleSystem _fallSparklesPS;
@@ -45,18 +48,11 @@ public class ShopManager : MonoBehaviour
 
     private void Start()
     {
-        BonusMenu.SelectBonusList();
-        _sellingBonusDataList = BonusDirector.Instance.GetRandomBonusRunList(3, true);
+        SetNewRandomBonus();
 
         for (int i = 0; i < BonusList.Count; i++)
         {
-            BonusList[i].Setup(_sellingBonusDataList[i]);
-        }
-
-        for (int i = 0; i < _priceTextList.Count; i++)
-        {
-            if (i < BonusList.Count) _priceTextList[i].text = $"{BonusList[i].BonusData.Price}<sprite name=PP>";
-            else _priceTextList[i].text = "...";
+            BonusList[i].MatchingPrice = _priceTextList[i];
         }
 
         if (!SaveManager.CurrentSave.ShopFirstTime)
@@ -65,53 +61,32 @@ public class ShopManager : MonoBehaviour
             SaveManager.CurrentSave.ShopFirstTime = true;
         }
 
+        UpdateRerollButton();
+
         BonusHandManager.Instance.Show();
     }
 
-    public void BuyShopItem(ShopItem shopItem)
+    public void SetNewRandomBonus()
     {
-        _boughtItemList.Add(shopItem);
+        _sellingBonusDataList = BonusDirector.Instance.GetRandomBonusRunList(3, true);
+
+        for (int i = 0; i < BonusList.Count; i++)
+        {
+            BonusList[i].Item.Setup(_sellingBonusDataList[i]);
+        }
+
+        for (int i = 0; i < _priceTextList.Count; i++)
+        {
+            if (i < BonusList.Count) _priceTextList[i].text = $"{BonusList[i].Item.BonusData.Price}<sprite name=PP>";
+            else _priceTextList[i].text = "...";
+        }
+    }
+
+    public void BuyShopItem(ShopParentChoice shopParentChoice)
+    {
+        _boughtItemList.Add(shopParentChoice);
         //shopItem.transform.position = _boughtItemTransformList[_boughtItemList.Count - 1].position;
         _fallSparklesPS.Play();
-    }
-
-    public void OpenVendingMachine()
-    {
-        VendingMachineAnimator.Play("Open");
-        _mask.SetActive(false);
-
-        Sequence sequence = Sequence.Create();
-        sequence.ChainDelay(_showBonusDelay);
-        sequence.Group(Tween.ShakeLocalPosition(_vendingMachineSpriteRenderer.transform, Vector3.one * .3f, .3f));
-        Sequence stretch = Sequence.Create();
-        stretch.Group(Tween.ScaleX(_vendingMachineSpriteRenderer.transform, 1.5f, .2f));
-        stretch.Group(Tween.ScaleX(_vendingMachineSpriteRenderer.transform, 1.11f, .3f));
-        sequence.Group(stretch);
-        for (int i = 0; i < _boughtItemList.Count; i++)
-        {
-            ShopItem shopItem = _boughtItemList[i];
-            sequence.ChainCallback(() => shopItem.gameObject.SetActive(true));
-            sequence.ChainCallback(() => shopItem.ShowBonus());
-        }
-
-        sequence.ChainDelay(.5f);
-
-        for (int i = 0; i < _boughtItemList.Count; i++)
-        {
-            ShopItem shopItem = _boughtItemList[i];
-            sequence.Chain(Tween.Scale(shopItem.transform, 1.1f, .15f));
-            sequence.Chain(Tween.Scale(shopItem.transform, 1f, .1f));
-            sequence.ChainCallback(() => shopItem.Collect());
-            sequence.ChainDelay(.3f);
-        }
-
-        sequence.ChainDelay(1.5f);
-        sequence.ChainCallback(() => LeaveShop());
-    }
-
-    public void CloseVendingMachine()
-    {
-        VendingMachineAnimator.Play("Close");
     }
 
     public void LeaveShop()
@@ -120,13 +95,36 @@ public class ShopManager : MonoBehaviour
         SaveManager.Instance.NextNode();
     }
 
-    //public void OpenVendingMachine()
-    //{
-    //    BonusMenu.OpenMenu();
-    //}
-
-    public void OpenConversionMachine()
+    public void UpdateRerollButton()
     {
-        ConversionMenu.OpenMenu();
+        _rerollButtonText.SetTextValue($"Reroll ({SaveManager.CurrentSave.CurrentRun.Rerolls})", false);
+        if (SaveManager.CurrentSave.CurrentRun.Rerolls <= 0)
+        {
+            _rerollButtonText.SetTextColor(Color.grey);
+            _rerollButton.transform.DOScale(1f, .3f).SetUpdate(true);
+            _rerollButton.enabled = false;
+        }
+        else
+        {
+            _rerollButtonText.SetTextColor(new Color32(231, 93, 90, 255));
+            _rerollButton.enabled = true;
+        }
+    }
+
+    public void RerollShop()
+    {
+        if (SaveManager.CurrentSave.CurrentRun.Rerolls == 0) return;
+
+        SaveManager.CurrentSave.CurrentRun.Rerolls--;
+        UpdateRerollButton();
+        BonusMenu.ReleaseBonusList();
+        SetNewRandomBonus();
+    }
+
+    [Button]
+    public void DebugReroll()
+    {
+        BonusMenu.ReleaseBonusList();
+        SetNewRandomBonus();
     }
 }
