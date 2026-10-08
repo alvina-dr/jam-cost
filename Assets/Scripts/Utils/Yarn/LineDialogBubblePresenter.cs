@@ -307,6 +307,7 @@ public class LineDialogBubblePresenter : DialoguePresenterBase
             _sequence.Chain(Tween.Scale(dialogBubble.transform, 1.1f, .1f));
             _sequence.Chain(Tween.Scale(dialogBubble.transform, 1f, .05f));
             _sequence.ChainCallback(() => callback?.Invoke());
+            AudioManager.PlaySound(AudioManager.Instance.OpenDialog);
         }
     }
 

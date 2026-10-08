@@ -29,6 +29,8 @@ public class BonusHandManager : MonoBehaviour
     [SerializeField] private float _bonusSpace;
     [SerializeField] private float _bonusSize;
 
+    [SerializeField] private float _animationSpeedMultiplier;
+
     public bool IsShow;
 
     private void Start()
@@ -85,6 +87,7 @@ public class BonusHandManager : MonoBehaviour
         bonusBehavior.transform.localPosition = new Vector3(((futureBonusCount - 1) * _bonusSpace) + ((futureBonusCount - 1) * _bonusSize + _bonusSize / 2) - totalSpace / 2, -3);
         Sequence addBonusSequence = Sequence.Create();
         addBonusSequence.ChainDelay(futureBonusCount * .05f + 0.1f);
+        addBonusSequence.ChainCallback(() => AudioManager.PlaySound(AudioManager.Instance.BonusShow));
         addBonusSequence.Chain(Tween.LocalPositionY(bonusBehavior.transform, 0.3f, .1f));
         addBonusSequence.Chain(Tween.LocalPositionY(bonusBehavior.transform, 0, .2f));
     }
@@ -95,11 +98,15 @@ public class BonusHandManager : MonoBehaviour
         if (IsShow) return;
 
         IsShow = true;
+        float totalDelay = 0.1f;
         for (int i = 0; i < _activeBonusBehaviorList.Count; i++)
         {
             int index = i;
+            totalDelay += 1.0f / (index + 2.0f) * _animationSpeedMultiplier;
+            float delay = totalDelay;
             Sequence bonusSequence = Sequence.Create();
-            bonusSequence.ChainDelay(index * .1f + 0.1f);
+            bonusSequence.ChainDelay(delay);
+            bonusSequence.ChainCallback(() => AudioManager.PlaySound(AudioManager.Instance.BonusShow, index  * AudioManager.Instance.BonusShow.PitchBonus));
             bonusSequence.Chain(Tween.LocalPositionY(_activeBonusBehaviorList[index].transform, 0.3f, .1f));
             bonusSequence.Chain(Tween.LocalPositionY(_activeBonusBehaviorList[index].transform, 0, .2f));
         }
@@ -112,11 +119,15 @@ public class BonusHandManager : MonoBehaviour
 
         IsShow = false;
         List<BonusBehavior> activeBonusList = _bonusBehaviorList.FindAll(x => x.gameObject.activeSelf);
+        float totalDelay = 0.1f;
         for (int i = 0; i < activeBonusList.Count; i++)
         {
             int index = i;
+            totalDelay += 1.0f / (index + 2.0f) * _animationSpeedMultiplier;
+            float delay = totalDelay;
             Sequence bonusSequence = Sequence.Create();
-            bonusSequence.ChainDelay(index * .1f + 0.1f);
+            bonusSequence.ChainDelay(delay);
+            bonusSequence.ChainCallback(() => AudioManager.PlaySound(AudioManager.Instance.BonusHide, index * -AudioManager.Instance.BonusHide.PitchBonus));
             bonusSequence.Chain(Tween.LocalPositionY(activeBonusList[index].transform, 0.3f, .1f));
             bonusSequence.Chain(Tween.LocalPositionY(activeBonusList[index].transform, -3, .2f));
         }

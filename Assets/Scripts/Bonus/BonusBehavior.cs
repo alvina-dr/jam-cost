@@ -39,6 +39,7 @@ public class BonusBehavior : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         Tween.ShakeLocalRotation(_spriteRenderer.transform, new Vector3(0, 0, 10), .2f);
         Tween.LocalPositionY(_spriteRenderer.transform, .3f, .2f);
         TooltipManager.Instance.ShowTooltip(BonusData, transform.position, Vector3.up * 200);
+        AudioManager.PlaySound(AudioManager.Instance.BonusHover);
     }
 
     public void OnPointerExit(PointerEventData eventData)

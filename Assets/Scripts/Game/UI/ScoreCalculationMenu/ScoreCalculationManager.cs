@@ -63,8 +63,7 @@ public class ScoreCalculationManager : MonoBehaviour
             GameManager.Instance.CrateOverCheck.gameObject.SetActive(false);
             GameManager.Instance.DepotOverCheck.gameObject.SetActive(false);
         });
-
-        BonusHandManager.Instance.Show();
+        Tween.Delay(.7f, () => BonusHandManager.Instance.Show());
 
         _animationTimeScale = 1;
 
@@ -133,7 +132,12 @@ public class ScoreCalculationManager : MonoBehaviour
     {
         Time.timeScale = 1f;
 
-        BonusHandManager.Instance.Hide();
+        if (GameManager.Instance.CurrentScore < GameManager.Instance.GoalScore)
+        {
+            BonusHandManager.Instance.Hide();
+        }
+        else if (SaveManager.Instance.CurrentReward.RewardItemData.Prefab is not CB_Bonus) BonusHandManager.Instance.Hide();
+        
         GameManager.Instance.ItemManager.ShowItems();
         GameManager.Instance.CrateOverCheck.gameObject.SetActive(true);
         GameManager.Instance.DepotOverCheck.gameObject.SetActive(true);
@@ -149,6 +153,7 @@ public class ScoreCalculationManager : MonoBehaviour
     public void HighlightBonus(string bonusName)
     {
         BonusBehavior bonus = BonusHandManager.Instance.GetBonus(bonusName);
+        AudioManager.PlaySound(AudioManager.Instance.BonusHighlight);
         if (bonus != null) bonus.Highlight();
     }
 
@@ -194,6 +199,7 @@ public class ScoreCalculationManager : MonoBehaviour
             {
                 StackAnim();
                 chosenItemSlotList[index].CountItem();
+                AudioManager.PlaySound(AudioManager.Instance.ItemHighlight);
             });
             _countSequence.ChainDelay(.2f);
             _countSequence.ChainCallback(() =>
@@ -255,6 +261,7 @@ public class ScoreCalculationManager : MonoBehaviour
                     GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + item.CurrentScore, item.transform.position, _addColor, UI_TextPopper.AnimSpeed.Quick);
                     item.SetPriceText(item.CurrentScore);
                     item.CountBaseScore();
+                    AudioManager.PlaySound(AudioManager.Instance.CountItem);
                 });
             }
         }
@@ -281,6 +288,7 @@ public class ScoreCalculationManager : MonoBehaviour
                 _countSequence.ChainCallback(() =>
                 {
                     GameManager.Instance.UIManager.BagMenu.CombinationList[combinationNumber].Setup(combinationItemAddList[index]);
+                    AudioManager.PlaySound(AudioManager.Instance.Combination);
                     CameraManager.Instance.SimpleShake();
                     GameManager.Instance.UIManager.TextPopperManager_Info.PopText($"<wave amp=2>{combinationItemAddList[index].Data.Name}", Vector3.up, Color.black);
                 });
@@ -297,6 +305,7 @@ public class ScoreCalculationManager : MonoBehaviour
                         bagSlot.SetPriceTextNumber(bagSlot.CurrentScore - addBonus, bagSlot.CurrentScore);
                         bagSlot.CountBaseScore();
                         GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + addBonus, bagSlot.transform.position, _addColor, UI_TextPopper.AnimSpeed.Quick);
+                        AudioManager.PlaySound(AudioManager.Instance.ScoreAdd);
                     });
                 }
                 _countSequence.ChainDelay(1f);
@@ -316,6 +325,7 @@ public class ScoreCalculationManager : MonoBehaviour
                 _countSequence.ChainCallback(() =>
                 {
                     GameManager.Instance.UIManager.BagMenu.CombinationList[combinationNumber].Setup(combinationItemMultList[index]);
+                    AudioManager.PlaySound(AudioManager.Instance.Combination);
                     CameraManager.Instance.SimpleShake();
                     GameManager.Instance.UIManager.TextPopperManager_Info.PopText($"<wave amp=2>{combinationItemMultList[index].Data.Name}", Vector3.up, Color.black);
                 });
@@ -332,6 +342,7 @@ public class ScoreCalculationManager : MonoBehaviour
                         item.SetPriceTextNumber(item.CurrentScore / multBonus, item.CurrentScore);
                         item.CountBaseScore();
                         GameManager.Instance.UIManager.TextPopperManager_Number.PopText("x" + multBonus, item.transform.position, _multiplyColor, UI_TextPopper.AnimSpeed.Quick);
+                        AudioManager.PlaySound(AudioManager.Instance.ScoreMultiply);
                     });
                 }
                 _countSequence.ChainDelay(1f);
@@ -370,6 +381,7 @@ public class ScoreCalculationManager : MonoBehaviour
                         item.SetPriceTextNumber(item.CurrentScore - addBonus, item.CurrentScore);
                         item.CountBaseScore();
                         GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + addBonus, item.transform.position, _addColor, UI_TextPopper.AnimSpeed.Quick);
+                        AudioManager.PlaySound(AudioManager.Instance.ScoreAdd);
                     });
                 }
                 _countSequence.ChainDelay(1f);
@@ -403,6 +415,7 @@ public class ScoreCalculationManager : MonoBehaviour
                         item.CountBaseScore();
                         CameraManager.Instance.SimpleShake();
                         GameManager.Instance.UIManager.TextPopperManager_Number.PopText("x" + multBonus, item.transform.position, _multiplyColor, UI_TextPopper.AnimSpeed.Quick);
+                        AudioManager.PlaySound(AudioManager.Instance.ScoreMultiply);
                     });
                 }
                 _countSequence.ChainDelay(1f);

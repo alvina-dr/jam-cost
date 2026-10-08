@@ -8,7 +8,8 @@ public class UI_Button : MonoBehaviour, ISelectHandler, IDeselectHandler, IPoint
 {
     [SerializeField] private TextMeshProUGUI _textMeshProUGUI;
     [SerializeField] private Image _background;
-    [SerializeField] private AudioClip _onClickSound;
+    [SerializeField] private SoundData _onClickSound;
+    [SerializeField] private SoundData _onHoverSound;
 
     private void Awake()
     {
@@ -28,11 +29,12 @@ public class UI_Button : MonoBehaviour, ISelectHandler, IDeselectHandler, IPoint
         transform.DOScale(1.1f, .3f).SetUpdate(true);
         if (_textMeshProUGUI != null) _textMeshProUGUI.color = Color.white;
         if (_background != null) _background.gameObject.SetActive(true);
+        if (_onHoverSound) AudioManager.PlaySound(_onHoverSound);
     }
 
     private void OnClick()
     {
-        AudioManager.Instance.PlaySFXSound(_onClickSound);
+        if (_onClickSound) AudioManager.PlaySound(_onClickSound);
     }
 
     public void OnPointerEnter(PointerEventData eventData)

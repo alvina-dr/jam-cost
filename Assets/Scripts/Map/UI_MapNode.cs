@@ -81,7 +81,7 @@ public class UI_MapNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void ChooseMapNode()
     {
         //SaveManager.CurrentSave.CurrentRun.FormerNodeList.Add(MapNodeIndex);
-        ClockManager.Instance.LaunchNode(MapNodeData, RewardData);
+        SaveManager.Instance.LaunchNode(MapNodeData, RewardData);
     }
 
     public void DeactivateNode()

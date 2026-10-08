@@ -36,8 +36,8 @@ public class RewardData : ScriptableObject
             for (int i = 0; i < GameManager.Instance.ItemManager.ItemList.Count; i++)
             {
                 float totalSpace = bonusSpace * (GameManager.Instance.ItemManager.ItemList.Count - 1) + bonusSize * GameManager.Instance.ItemManager.ItemList.Count;
-                GameManager.Instance.ItemManager.ItemList[i].transform.position = new Vector3((i * bonusSpace) + (i * bonusSize + bonusSize / 2) - totalSpace / 2, 0.45f, GameManager.Instance.ItemManager.ItemList[i].transform.position.z);
-                GameManager.Instance.ItemManager.ItemList[i].transform.rotation = Quaternion.identity;
+                GameManager.Instance.ItemManager.ItemList[i].transform.position = new Vector3((i * bonusSpace) + (i * bonusSize + bonusSize / 2) - totalSpace / 2, 0.45f + Random.Range(-.2f, .2f), GameManager.Instance.ItemManager.ItemList[i].transform.position.z);
+                GameManager.Instance.ItemManager.ItemList[i].transform.transform.eulerAngles = new Vector3(0, 0, Random.Range(-10, 10));
             }
         }
 

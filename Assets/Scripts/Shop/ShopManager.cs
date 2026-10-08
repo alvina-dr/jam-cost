@@ -1,4 +1,3 @@
-using DG.Tweening;
 using PrimeTween;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
@@ -63,7 +62,7 @@ public class ShopManager : MonoBehaviour
 
         UpdateRerollButton();
 
-        BonusHandManager.Instance.Show();
+        Tween.Delay(.3f, () => BonusHandManager.Instance.Show());
     }
 
     public void SetNewRandomBonus()
@@ -101,7 +100,7 @@ public class ShopManager : MonoBehaviour
         if (SaveManager.CurrentSave.CurrentRun.Rerolls <= 0)
         {
             _rerollButtonText.SetTextColor(Color.grey);
-            _rerollButton.transform.DOScale(1f, .3f).SetUpdate(true);
+            Tween.Scale(_rerollButton.transform, 1, .3f);
             _rerollButton.enabled = false;
         }
         else

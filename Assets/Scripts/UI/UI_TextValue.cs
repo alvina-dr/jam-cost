@@ -4,13 +4,13 @@ using PrimeTween;
 
 public class UI_TextValue : MonoBehaviour
 {
-    [SerializeField]
-    private TextMeshProUGUI _textUI;
+    [SerializeField] private TextMeshProUGUI _textUI;
     public string GetTextValue() => _tempoText;
     private string _tempoText;
 
     private Sequence textAnimation;
     private Color _textInitialColor;
+    [SerializeField] private SoundData _numberUpSound;
 
     private void Awake()
     {
@@ -59,7 +59,7 @@ public class UI_TextValue : MonoBehaviour
             for (int i = 0; i < difference; i++)
             {
                 int number = oldNumber + addNumber * (i + 1);
-
+                int index = i;
                 if (number == newNumber)
                 {
                     textAnimation.Chain(Tween.Scale(transform, 1.1f, .2f));
@@ -68,6 +68,7 @@ public class UI_TextValue : MonoBehaviour
                 }
                 else
                 {
+                    if (_numberUpSound) textAnimation.ChainCallback(() => AudioManager.PlaySound(_numberUpSound, index * _numberUpSound.PitchBonus));
                     textAnimation.ChainCallback(() => _textUI.text = $"{number}", warnIfTargetDestroyed: false);
                     textAnimation.ChainDelay(numberDuration);
                 }

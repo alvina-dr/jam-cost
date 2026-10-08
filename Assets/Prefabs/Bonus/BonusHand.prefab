@@ -69,6 +69,7 @@ MonoBehaviour:
   _bonusBehaviorPrefab: {fileID: 6153595430179985476, guid: 0d1d04585da006b49a2b339f078490d2, type: 3}
   _bonusSpace: 0.2
   _bonusSize: 1.5
+  _animationSpeedMultiplier: 0.5
   IsShow: 0
 --- !u!1001 &1679429858595894109
 PrefabInstance:

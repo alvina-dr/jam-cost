@@ -62,4 +62,9 @@ public class DialogueManager : MonoBehaviour
             Instance.CharacterPictureImage.sprite = Instance.CharacterSpriteDictionary[character];
         }
     }
+
+    public void OnDialogueComplete()
+    {
+        AudioManager.PlaySound(AudioManager.Instance.CloseDialog);
+    }
 }

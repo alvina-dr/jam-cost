@@ -30,7 +30,7 @@ public class GS_Reward : GameState
                 }
             }
 
-            BonusHandManager.Instance.Show();
+            //BonusHandManager.Instance.Show();
         }
 
 

@@ -122,7 +122,7 @@ public class SaveManager : MonoBehaviour
                 ChangeScene("Shop", _transitionSettings, 0);
                 break;
             case MND_Boss:
-                ChangeScene("Possession", _transitionSettings, 0);
+                ChangeScene("Ending", _transitionSettings, 0);
                 break;
         }
     }

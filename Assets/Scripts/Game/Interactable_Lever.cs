@@ -8,7 +8,9 @@ public class Interactable_Lever : Interactable
     public void OnMouseDown()
     {
         if (GameManager.Instance.CurrentGameState != GameManager.Instance.ScavengingState) return;
+        if (GameManager.Instance.ScavengingState.SelectedItemList.Count == 0) return;
 
+        AudioManager.PlaySound(AudioManager.Instance.Combination);
         _collider.enabled = false;
         _animation.StartAnim(() =>
         {

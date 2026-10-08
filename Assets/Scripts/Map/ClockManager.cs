@@ -211,27 +211,6 @@ public class ClockManager : MonoBehaviour
         return chosenMapNodeData;
     }
 
-    public void LaunchNode(MapNodeData mapNodeData, RewardData rewardData)
-    {
-        SaveManager.Instance.CurrentMapNode = Instantiate(mapNodeData);
-        SaveManager.Instance.CurrentReward = rewardData;
-        switch (mapNodeData)
-        {
-            case MND_Scavenge_Classic:
-                SaveManager.Instance.ChangeScene("Game", _transitionSettings, 0);
-                break;
-            case MND_FreeRound:
-                SaveManager.Instance.ChangeScene("FreeRound", _transitionSettings, 0);
-                break;
-            case MND_Shop:
-                SaveManager.Instance.ChangeScene("Shop", _transitionSettings, 0);
-                break;
-            case MND_Boss:
-                SaveManager.Instance.ChangeScene("Ending", _transitionSettings, 0);
-                break;
-        }
-    }
-
     private void Update()
     {
         if (_animationOnGoing) return;

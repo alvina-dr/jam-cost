@@ -49,6 +49,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sfx: {fileID: 1044586053687981963}
   _clockSound: {fileID: 5072353175710001428}
+  OpenDialog: {fileID: 11400000, guid: 6723d92b4a4d9d940929eb50e7794732, type: 2}
+  CloseDialog: {fileID: 11400000, guid: 8208e5da265c5d34b83dae068e6c23b0, type: 2}
+  CountItem: {fileID: 11400000, guid: 6afc2434297acd34f9aa6a08d7a591f3, type: 2}
+  ScoreAdd: {fileID: 11400000, guid: b33b5ec16e62fc240a7a0de45674e7ef, type: 2}
+  ScoreMultiply: {fileID: 11400000, guid: a76e64e07513de24da5966deec6d973a, type: 2}
+  ItemHighlight: {fileID: 11400000, guid: 6de28a504feea6e45bd7ccc162a29806, type: 2}
+  NumberIncrease: {fileID: 11400000, guid: 7bf25f7797f15b24393b4d165a6222ee, type: 2}
+  BonusHighlight: {fileID: 11400000, guid: 3169bdefe09cbf843b4422bb8e26bc0d, type: 2}
+  BonusHover: {fileID: 11400000, guid: f1a4c5a1961a0e243aeb2f7563a66a39, type: 2}
+  BonusShow: {fileID: 11400000, guid: cdd0605ddc0d1774e8ab45113821b772, type: 2}
+  BonusHide: {fileID: 11400000, guid: a026d56535f3b8c469008c357b68e93c, type: 2}
+  Combination: {fileID: 11400000, guid: d6cf67bb1c4dc41498171e4a1da64c98, type: 2}
+  SoundScaler: 1
 --- !u!1 &3303640005169003905
 GameObject:
   m_ObjectHideFlags: 0
@@ -65,7 +78,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3364505297368404794
 Transform:
   m_ObjectHideFlags: 0
@@ -91,7 +104,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: cd4ecd815a74aeb4ba8fc3dd3231b53b, type: 3}
+  m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: cd4ecd815a74aeb4ba8fc3dd3231b53b, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.1
@@ -349,7 +362,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2cbadeaec3dee4149a9b9dac9a1912b1, type: 3}
+  m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 2cbadeaec3dee4149a9b9dac9a1912b1, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.22

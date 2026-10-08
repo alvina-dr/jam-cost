@@ -5588,6 +5588,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3334086424629485869, guid: ff72d7222bd8a2f4aad4598e344489dd, type: 3}
+      propertyPath: _numberUpSound
+      value: 
+      objectReference: {fileID: 11400000, guid: 7bf25f7797f15b24393b4d165a6222ee, type: 2}
     - target: {fileID: 3489341908228792153, guid: ff72d7222bd8a2f4aad4598e344489dd, type: 3}
       propertyPath: m_text
       value: 
