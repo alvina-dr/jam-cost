@@ -53,14 +53,20 @@ MonoBehaviour:
   CloseDialog: {fileID: 11400000, guid: 8208e5da265c5d34b83dae068e6c23b0, type: 2}
   CountItem: {fileID: 11400000, guid: 6afc2434297acd34f9aa6a08d7a591f3, type: 2}
   ScoreAdd: {fileID: 11400000, guid: b33b5ec16e62fc240a7a0de45674e7ef, type: 2}
-  ScoreMultiply: {fileID: 11400000, guid: a76e64e07513de24da5966deec6d973a, type: 2}
+  ScoreMultiply: {fileID: 11400000, guid: 17ad3fd6fb2bed245adb5eadc63aba4d, type: 2}
   ItemHighlight: {fileID: 11400000, guid: 6de28a504feea6e45bd7ccc162a29806, type: 2}
   NumberIncrease: {fileID: 11400000, guid: 7bf25f7797f15b24393b4d165a6222ee, type: 2}
+  ScoreFail: {fileID: 11400000, guid: 8a80feadef3328b4ea943223d10ea942, type: 2}
   BonusHighlight: {fileID: 11400000, guid: 3169bdefe09cbf843b4422bb8e26bc0d, type: 2}
   BonusHover: {fileID: 11400000, guid: f1a4c5a1961a0e243aeb2f7563a66a39, type: 2}
   BonusShow: {fileID: 11400000, guid: cdd0605ddc0d1774e8ab45113821b772, type: 2}
   BonusHide: {fileID: 11400000, guid: a026d56535f3b8c469008c357b68e93c, type: 2}
-  Combination: {fileID: 11400000, guid: d6cf67bb1c4dc41498171e4a1da64c98, type: 2}
+  Combination: {fileID: 11400000, guid: e116c66bec501a240aebebb95292ae76, type: 2}
+  ConfirmDepot: {fileID: 11400000, guid: d6cf67bb1c4dc41498171e4a1da64c98, type: 2}
+  Win: {fileID: 11400000, guid: e4939775f056867489659f697e38076a, type: 2}
+  GameOver: {fileID: 11400000, guid: 9403255b50915424a92ec7a85924fd27, type: 2}
+  EndRound: {fileID: 11400000, guid: ca5b6388f18b93b4db1d79c354752232, type: 2}
+  Confetti: {fileID: 11400000, guid: 5aac4eccc0cac674bbd2fa3f1b48a410, type: 2}
   SoundScaler: 1
 --- !u!1 &3303640005169003905
 GameObject:

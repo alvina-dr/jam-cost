@@ -10,7 +10,6 @@ public class GS_Win : GameState
     {
         base.EnterState();
         Time.timeScale = 1f;
-        AudioManager.Instance.PlaySFXSound(_winSound);
         GameManager.Instance.SetGameState(GameManager.Instance.RewardState);
 
         for (int i = 0; i < _particleSystemList.Count; i++)

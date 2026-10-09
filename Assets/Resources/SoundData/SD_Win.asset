@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ed9b5eff96b0614faf7f410e0993850, type: 3}
-  m_Name: SD_BonusHighlight
+  m_Name: SD_Win
   m_EditorClassIdentifier: Assembly-CSharp::SoundData
   audioClips:
-  - {fileID: 8300000, guid: cf4ac5d9e41b17e44bed057bfa572677, type: 3}
+  - {fileID: 8300000, guid: 775ebd6260b9b9f4e8de44892d258a95, type: 3}
   clipVolume: 0.2
   pitch: 1
-  PitchBonus: 0
+  PitchBonus: 0.02
   Output: {fileID: 0}

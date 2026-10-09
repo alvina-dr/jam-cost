@@ -4,12 +4,19 @@ using UnityEngine;
 public class CB_Bonus : ClickableBehavior
 {
     public BonusData BonusData;
+    private Sequence _floatingSequence;
 
     public void Setup(BonusData bonusData)
     {
         BonusData = bonusData;
         _spriteRenderer.sprite = BonusData.Icon;
         _shadowSpriteRenderer.sprite = BonusData.Icon;
+
+        _floatingSequence = Sequence.Create(cycleMode: Sequence.SequenceCycleMode.Restart, cycles: -1);
+        _floatingSequence.Chain(Tween.LocalPositionY(_spriteRenderer.transform, .05f, 1f, Ease.Linear));
+        _floatingSequence.Chain(Tween.LocalPositionY(_spriteRenderer.transform, 0, 1f, Ease.Linear));
+        _floatingSequence.isPaused = true;
+        Tween.Delay(Random.Range(0, .5f), () => _floatingSequence.isPaused = false);
     }
 
     public override void Collect()
@@ -29,12 +36,14 @@ public class CB_Bonus : ClickableBehavior
     {
         base.OnMouseExit();
         TooltipManager.Instance.HideTooltip();
+        if (_floatingSequence.isAlive) _floatingSequence.isPaused = false;
     }
 
     protected override void OnMouseEnter()
     {
         TooltipManager.Instance.ShowTooltip(BonusData, transform.position, _tooltipOffset);
         AudioManager.PlaySound(AudioManager.Instance.BonusHover);
+        if (_floatingSequence.isAlive) _floatingSequence.isPaused = true;
 
         if (!CanClickItem()) return;
 

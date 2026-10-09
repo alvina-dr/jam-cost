@@ -8,7 +8,7 @@ public class GS_GameOver : GameState
     {
         base.EnterState();
         Time.timeScale = 1f;
-        AudioManager.Instance.PlaySFXSound(_looseSound);
+        AudioManager.PlaySound(AudioManager.Instance.GameOver);
         GameManager.Instance.UIManager.HUD_Game.gameObject.SetActive(false);
         GameOverManager.Instance.Open();
     }

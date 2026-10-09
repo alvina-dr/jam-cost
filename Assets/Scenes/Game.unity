@@ -735,6 +735,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _textUI: {fileID: 116919397}
+  _numberUpSound: {fileID: 0}
 --- !u!1001 &126348059
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17016,6 +17017,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _textUI: {fileID: 2034436630}
+  _numberUpSound: {fileID: 0}
 --- !u!1 &2051514229
 GameObject:
   m_ObjectHideFlags: 0
@@ -17260,6 +17262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _textUI: {fileID: 2094291498}
+  _numberUpSound: {fileID: 0}
 --- !u!1001 &406301380875153066
 PrefabInstance:
   m_ObjectHideFlags: 0

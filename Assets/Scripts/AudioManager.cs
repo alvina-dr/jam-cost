@@ -31,13 +31,20 @@ public class AudioManager : MonoBehaviour
     public SoundData ScoreMultiply;
     public SoundData ItemHighlight;
     public SoundData NumberIncrease;
-    
+    public SoundData ScoreFail;
+
     public SoundData BonusHighlight;
     public SoundData BonusHover;
     public SoundData BonusShow;
     public SoundData BonusHide;
 
     public SoundData Combination;
+    public SoundData ConfirmDepot;
+
+    public SoundData Win;
+    public SoundData GameOver;
+    public SoundData EndRound;
+    public SoundData Confetti;
 
     [Header("Parameters")]
     public float SoundScaler;

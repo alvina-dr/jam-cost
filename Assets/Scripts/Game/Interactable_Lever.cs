@@ -10,7 +10,7 @@ public class Interactable_Lever : Interactable
         if (GameManager.Instance.CurrentGameState != GameManager.Instance.ScavengingState) return;
         if (GameManager.Instance.ScavengingState.SelectedItemList.Count == 0) return;
 
-        AudioManager.PlaySound(AudioManager.Instance.Combination);
+        AudioManager.PlaySound(AudioManager.Instance.ConfirmDepot);
         _collider.enabled = false;
         _animation.StartAnim(() =>
         {

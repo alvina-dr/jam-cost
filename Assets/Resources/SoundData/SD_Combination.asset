@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: SD_Combination
   m_EditorClassIdentifier: Assembly-CSharp::SoundData
   audioClips:
-  - {fileID: 8300000, guid: 11c0fe3554901c942aac9761eef98162, type: 3}
+  - {fileID: 8300000, guid: de9ee407733489f42a11db04deda6903, type: 3}
   clipVolume: 0.1
-  pitch: 0.6
+  pitch: 1.5
   PitchBonus: 0.02
   Output: {fileID: 0}

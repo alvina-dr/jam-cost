@@ -223,12 +223,17 @@ public class ScoreCalculationManager : MonoBehaviour
             QuestDirector.Instance.CheckQuestCompletionByType<QD_TotalPoints>();
             GameManager.Instance.UIManager.ScoreBarValue.SetBarValue(GameManager.Instance.CurrentScore, GameManager.Instance.GoalScore);
 
-            int confettiNumber = 0;
-            if (_roundScore > 0) confettiNumber++;
-            if (_roundScore > GameManager.Instance.GoalScore / 2) confettiNumber++;
-            if (_roundScore > GameManager.Instance.GoalScore) confettiNumber++;
-            _confettiLeft.Emit(confettiNumber * 50);
-            _confettiRight.Emit(confettiNumber * 50);
+            if (GameManager.Instance.CurrentScore >= GameManager.Instance.GoalScore)
+            {
+                //int confettiNumber = 0;
+                //if (_roundScore > 0) confettiNumber++;
+                //if (_roundScore > GameManager.Instance.GoalScore / 2) confettiNumber++;
+                //if (_roundScore > GameManager.Instance.GoalScore) confettiNumber++;
+                _confettiLeft.Emit(150);
+                _confettiRight.Emit(150);
+                AudioManager.PlaySound(AudioManager.Instance.Confetti);
+                AudioManager.PlaySound(AudioManager.Instance.Win);
+            }
 
             GameManager.Instance.UIManager.ScoreTextValue.SetTextValue($"{GameManager.Instance.CurrentScore} / {GameManager.Instance.GoalScore}");
             GameManager.Instance.UIManager.BagMenu.RoundScoreParent.gameObject.SetActive(false);
@@ -263,6 +268,16 @@ public class ScoreCalculationManager : MonoBehaviour
                     item.CountBaseScore();
                     AudioManager.PlaySound(AudioManager.Instance.CountItem);
                 });
+            }
+            else
+            {
+                _countSequence.ChainDelay(.5f);
+                _countSequence.ChainCallback(() =>
+                {
+                    item.CurrentScore = item.ItemInstance.CalculateValue();
+                    item.SetPriceText(item.CurrentScore);
+                });
+
             }
         }
         _countSequence.ChainDelay(1f);
@@ -338,11 +353,12 @@ public class ScoreCalculationManager : MonoBehaviour
                     {
                         int multBonus = combinationItemMultList[index].Bonus;
                         item.CurrentScore *= multBonus;
+                        if (item.CurrentScore <= 0) AudioManager.PlaySound(AudioManager.Instance.ScoreFail);
+                        else AudioManager.PlaySound(AudioManager.Instance.ScoreMultiply);
                         CameraManager.Instance.SimpleShake();
                         item.SetPriceTextNumber(item.CurrentScore / multBonus, item.CurrentScore);
                         item.CountBaseScore();
                         GameManager.Instance.UIManager.TextPopperManager_Number.PopText("x" + multBonus, item.transform.position, _multiplyColor, UI_TextPopper.AnimSpeed.Quick);
-                        AudioManager.PlaySound(AudioManager.Instance.ScoreMultiply);
                     });
                 }
                 _countSequence.ChainDelay(1f);
@@ -411,11 +427,12 @@ public class ScoreCalculationManager : MonoBehaviour
                         float multBonus = bonusItemMultList[index].BonusValue;
                         int formerScore = item.CurrentScore;
                         item.CurrentScore = Mathf.RoundToInt(multBonus * formerScore);
+                        if (item.CurrentScore <= 0) AudioManager.PlaySound(AudioManager.Instance.ScoreFail);
+                        else AudioManager.PlaySound(AudioManager.Instance.ScoreMultiply);
                         item.SetPriceTextNumber(item.CurrentScore - formerScore, item.CurrentScore);
                         item.CountBaseScore();
                         CameraManager.Instance.SimpleShake();
                         GameManager.Instance.UIManager.TextPopperManager_Number.PopText("x" + multBonus, item.transform.position, _multiplyColor, UI_TextPopper.AnimSpeed.Quick);
-                        AudioManager.PlaySound(AudioManager.Instance.ScoreMultiply);
                     });
                 }
                 _countSequence.ChainDelay(1f);

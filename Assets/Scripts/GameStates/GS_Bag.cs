@@ -9,7 +9,7 @@ public class GS_Bag : GameState
     {
         base.EnterState();
         AudioManager.Instance.StopClockSound();
-        AudioManager.Instance.PlaySFXSound(_endRoundSound);
+        AudioManager.PlaySound(AudioManager.Instance.EndRound);
         if (GameManager.Instance.SelectedItem != null) GameManager.Instance.SelectedItem.EndDrag();
         GameManager.Instance.UIManager.HUD_Game.gameObject.SetActive(false);
 
