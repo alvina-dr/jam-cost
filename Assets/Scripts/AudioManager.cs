@@ -46,6 +46,9 @@ public class AudioManager : MonoBehaviour
     public SoundData EndRound;
     public SoundData Confetti;
 
+    [Header("Clock")]
+    public SoundData ClockRoomAdd;
+
     [Header("Parameters")]
     public float SoundScaler;
 

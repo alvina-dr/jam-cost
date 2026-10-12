@@ -32,6 +32,7 @@ public class MapNode : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
     public void OnPointerEnter(PointerEventData eventData)
     {
         Tween.Scale(_iconScaler, 1.1f, .2f, Ease.InOutBack);
+        AudioManager.PlaySound(AudioManager.Instance.BonusHover);
         if (MapNodeData is MND_Scavenge_Classic && RewardData)
         {
             TooltipManager.Instance.ShowTooltip(RewardData, transform.position, Vector3.up * 50);

@@ -142,13 +142,19 @@ public class ClockManager : MonoBehaviour
             roomIcon.Disable();
             if (i < SaveManager.CurrentSave.CurrentRun.CurrentNode)
             {
-                roomIconSequence.ChainCallback(() => roomIcon.Enable());
+                roomIconSequence.ChainCallback(() => {
+                    roomIcon.Enable();
+                    AudioManager.PlaySound(AudioManager.Instance.ClockRoomAdd);
+                });
                 roomIconSequence.ChainDelay(.07f);
             }
 
             if (i == SaveManager.CurrentSave.CurrentRun.CurrentNode)
             {
-                roomIconSequence.ChainCallback(() => roomIcon.Enable());
+                roomIconSequence.ChainCallback(() => {
+                    roomIcon.Enable();
+                    AudioManager.PlaySound(AudioManager.Instance.ClockRoomAdd);
+                });
                 roomIconSequence.ChainDelay(.3f);
                 roomIconSequence.ChainCallback(() => roomIcon.Disable());
                 roomIconSequence.ChainDelay(.3f);

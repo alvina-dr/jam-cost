@@ -67,6 +67,7 @@ MonoBehaviour:
   GameOver: {fileID: 11400000, guid: 9403255b50915424a92ec7a85924fd27, type: 2}
   EndRound: {fileID: 11400000, guid: ca5b6388f18b93b4db1d79c354752232, type: 2}
   Confetti: {fileID: 11400000, guid: 5aac4eccc0cac674bbd2fa3f1b48a410, type: 2}
+  ClockRoomAdd: {fileID: 11400000, guid: 72f0af3bb72eb6544a283af7f03eb324, type: 2}
   SoundScaler: 1
 --- !u!1 &3303640005169003905
 GameObject:
