@@ -518,7 +518,7 @@ public class ScoreCalculationManager : MonoBehaviour
         }
         else
         {
-            if (GameManager.Instance.CurrentRound >= GameManager.Instance.GetMaxRoundNumber())
+            if (GameManager.Instance.ItemManager.ItemList.Count <= 0)
             {
                 scavengeNode.Defeat();
             }

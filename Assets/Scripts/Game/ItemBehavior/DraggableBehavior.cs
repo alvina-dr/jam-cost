@@ -117,9 +117,11 @@ public class DraggableBehavior : ItemBehavior
         _shadowSpriteRenderer.maskInteraction = SpriteMaskInteraction.None;
         AudioManager.Instance.PlaySFXSound(_pickUpSound);
         GameManager.Instance.ScavengingState.RemoveItemFromSelectedList(this);
-        if (!GameManager.Instance.ItemManager.ItemList.Contains(this)) GameManager.Instance.ItemManager.ItemList.Add(this);
+        if (GameManager.Instance.ItemManager.ItemList.Contains(this)) GameManager.Instance.ItemManager.ItemList.Remove(this);
 
         if (Item.TagData) Item.TagData.StartDrag(this, _spriteRenderer);
+
+        GameManager.Instance.UpdateCrateItemCount();
     }
 
     public void EndDrag()
@@ -136,18 +138,18 @@ public class DraggableBehavior : ItemBehavior
             {
                 GoBackToDumpster();
             }
-            else if (GameManager.Instance.BossLock.IsLocked)
-            {
-                if (GameManager.Instance.BossLock.TryOpenLock(Item.Data))
-                {
-                    base.DestroyItem();
-                    AudioManager.Instance.PlaySFXSound(_trashItemSound);
-                }
-                else
-                {
-                    GoBackToDumpster();
-                }
-            }
+            //else if (GameManager.Instance.BossLock.IsLocked)
+            //{
+            //    if (GameManager.Instance.BossLock.TryOpenLock(Item.Data))
+            //    {
+            //        base.DestroyItem();
+            //        AudioManager.Instance.PlaySFXSound(_trashItemSound);
+            //    }
+            //    else
+            //    {
+            //        GoBackToDumpster();
+            //    }
+            //}
             else
             {
                 if (GameManager.Instance.ScavengingState.TryAddItemToSelectedList(this))
@@ -187,8 +189,12 @@ public class DraggableBehavior : ItemBehavior
         else
         {
             DropItem();
+            if (!GameManager.Instance.ItemManager.ItemList.Contains(this)) GameManager.Instance.ItemManager.ItemList.Add(this);
             transform.parent = GameManager.Instance.CrateOverCheck.transform;
         }
+
+
+        GameManager.Instance.UpdateCrateItemCount();
     }
 
     public void DropItem()
@@ -216,6 +222,7 @@ public class DraggableBehavior : ItemBehavior
         });
         SetSellIcon(false);
         SetDestroyIcon(false);
+        if (!GameManager.Instance.ItemManager.ItemList.Contains(this)) GameManager.Instance.ItemManager.ItemList.Add(this);
     }
 
     public override void DestroyItem()
@@ -226,6 +233,8 @@ public class DraggableBehavior : ItemBehavior
             SaveManager.Instance.AddPP(1, transform.position);
         }
         base.DestroyItem();
+
+        GameManager.Instance.ScavengingState.TrashItem();
     }
 
     public void SetDestroyIcon(bool value)

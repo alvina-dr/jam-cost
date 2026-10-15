@@ -1,7 +1,7 @@
 using PrimeTween;
 using UnityEngine;
 
-public class GS_Bag : GameState
+public class GS_ScoreCalculation : GameState
 {
     [SerializeField] private AudioClip _endRoundSound;
 

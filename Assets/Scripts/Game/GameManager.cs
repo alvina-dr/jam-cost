@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     public GS_Win WinState;
     public GS_GameOver GameOverState;
     public GS_ScavengingIntro ScavengingIntroState;
-    public GS_Bag BagState;
+    public GS_ScoreCalculation BagState;
     public GS_Preparation PreparationState;
     public GS_Reward RewardState;
 
@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
                 GoalScore = SaveManager.Instance.GetScavengeNode().ScoreGoal;
                 UIManager.ScoreTextValue.SetTextValue($"{CurrentScore} / {GoalScore}");
                 UIManager.ScoreBarValue.SetBarValue(CurrentScore, GoalScore);
-                ScavengingState.ResetTimer();
+                //ScavengingState.ResetTimer();
                 CurrentDiscard = GetMaxDiscardNumber();
                 Instantiate(bossPossession.BossPrefab, Vector3.zero, Quaternion.identity);
                 break;
@@ -75,14 +75,14 @@ public class GameManager : MonoBehaviour
                 GoalScore = SaveManager.Instance.GetScavengeNode().ScoreGoal;
                 UIManager.ScoreTextValue.SetTextValue($"{CurrentScore} / {GoalScore}");
                 UIManager.ScoreBarValue.SetBarValue(CurrentScore, GoalScore);
-                ScavengingState.ResetTimer();
+                //ScavengingState.ResetTimer();
                 CurrentDiscard = GetMaxDiscardNumber();
                 break;
         }
         CurrentDay = 0;
 
         SetCurrentScore(0, false);
-        UIManager.Timer.SetTextValue($"{Mathf.RoundToInt(ScavengingState.Timer)}", false);
+        UpdateCrateItemCount();
         UIManager.DiscardRemaining.SetTextValue($"{CurrentDiscard}", false);
 
         ItemManager.ResetDumpster();
@@ -118,10 +118,12 @@ public class GameManager : MonoBehaviour
         if (CurrentGameState) CurrentGameState.UpdateState();
     }
 
-    public void AddBonus(BonusData bonus)
+    public void UpdateCrateItemCount()
     {
-        SaveManager.Instance.CurrentRunBonusList.Add(bonus);
+        if (UIManager.Timer.GetTextValue() != $"{ItemManager.ItemList.Count}/{GetCrateSize()}")
+            UIManager.Timer.SetTextValue($"{ItemManager.ItemList.Count}/{GetCrateSize()}");
     }
+
 
     public void SetGameState(GameState newState)
     {
@@ -150,6 +152,11 @@ public class GameManager : MonoBehaviour
         return _depotSize + depotSizeBonus;
     }
 
+    public int GetCrateSize()
+    {
+        return SaveManager.Instance.GetScavengeNode().SpawnItemParameters.ItemNumber + SaveManager.CurrentSave.CrateSizeBonus;
+    }
+
     public int GetMaxRoundNumber()
     {
         return SaveManager.Instance.GetScavengeNode().RoundNumber + SaveManager.CurrentSave.CurrentRun.RunBonusRound;
@@ -169,7 +176,10 @@ public class GameManager : MonoBehaviour
 
         CurrentDiscard--;
         UIManager.DiscardRemaining.SetTextValue($"{CurrentDiscard}", false);
-        SaveManager.CurrentSave.NumberLeverUsed++;
+        SaveManager.CurrentSave.NumberDiscardUsed++;
+        SaveManager.Instance.GetScavengeNode().SpawnItems();
+
+        return;
         ScavengingState.CurrentSubState = GS_Scavenging.Scavenging_SubState.RerollCrateAnim;
         PreparationState.CurrentSubState = GS_Preparation.Preparation_SubState.RerollCrateAnim;
 

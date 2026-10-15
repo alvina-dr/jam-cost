@@ -62,13 +62,13 @@ public class GS_Scavenging : GameState
             Timer = 0;
         }
 
-        Timer -= Time.deltaTime;
-        if (GameManager.Instance.UIManager.Timer.GetTextValue() != Mathf.RoundToInt(Timer).ToString())
-        {
-            GameManager.Instance.UIManager.Timer.SetTextValue(Mathf.RoundToInt(Timer).ToString());
-            if (Timer <= 5)
-            {
-                GameManager.Instance.UIManager.Timer.SetTextColor(Color.red);
+        //Timer -= Time.deltaTime;
+        //if (GameManager.Instance.UIManager.Timer.GetTextValue() != Mathf.RoundToInt(Timer).ToString())
+        //{
+            //GameManager.Instance.UIManager.Timer.SetTextValue(Mathf.RoundToInt(Timer).ToString());
+            //if (Timer <= 5)
+            //{
+                //GameManager.Instance.UIManager.Timer.SetTextColor(Color.red);
                 //if (!_fireDown)
                 //{
                 //    _fireDown = true;
@@ -77,10 +77,10 @@ public class GS_Scavenging : GameState
                 //        _fireDown = false;
                 //    });
                 //}
-            }
-            else
-            {
-                GameManager.Instance.UIManager.Timer.ResetTextColor();
+            //}
+            //else
+            //{
+                //GameManager.Instance.UIManager.Timer.ResetTextColor();
                 //if (!_fireDown)
                 //{
                 //    _fireDown = true;
@@ -89,24 +89,25 @@ public class GS_Scavenging : GameState
                 //    //    _fireDown = false;
                 //    //});
                 //}
-            }
-        }
+            //}
+        //}
 
-        if (Timer <= 0)
-        {
-            EndOfRound();
-        }
+        //if (GameManager.Instance.ItemManager.ItemList.Count == 0)
+        //{
+        //    GameManager.Instance.SetGameState(GameManager.Instance.WinState);
+        //    // win this game
+        //}
 
-        switch (SaveManager.Instance.CurrentMapNode)
-        {
-            case MND_Scavenge_Empty scavengeEmptyNode:
-                if (GameManager.Instance.ItemManager.ItemList.Count == 0)
-                {
-                    GameManager.Instance.SetGameState(GameManager.Instance.WinState);
-                    // win this game
-                }
-                break;
-        }
+        //switch (SaveManager.Instance.CurrentMapNode)
+        //{
+        //    case MND_Scavenge_Empty scavengeEmptyNode:
+        //        if (GameManager.Instance.ItemManager.ItemList.Count == 0)
+        //        {
+        //            GameManager.Instance.SetGameState(GameManager.Instance.WinState);
+        //            // win this game
+        //        }
+        //        break;
+        //}
     }
 
     public void EndOfRound()
@@ -131,6 +132,14 @@ public class GS_Scavenging : GameState
         else
         {
             GameManager.Instance.SetGameState(GameManager.Instance.BagState);
+        }
+    }
+
+    public void TrashItem()
+    {
+        if (GameManager.Instance.ItemManager.ItemList.Count == 0)
+        {
+            GameManager.Instance.SetGameState(GameManager.Instance.GameOverState);
         }
     }
 

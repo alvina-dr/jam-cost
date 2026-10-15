@@ -13,8 +13,8 @@ public class MND_Scavenge_Classic : MapNodeData
     {
         ItemManager itemManager = GameManager.Instance.ItemManager;
 
-        List<ItemData> itemDataList = ItemDirector.Instance.GetRandomItemDataList(SaveManager.Instance.GetScavengeNode().SpawnItemParameters.ItemNumber);
-        for (int i = 0; i < itemDataList.Count; i++)
+        List<ItemData> itemDataList = ItemDirector.Instance.GetRandomItemDataList(GameManager.Instance.GetCrateSize());
+        for (int i = itemManager.ItemList.Count; i < itemDataList.Count; i++)
         {
             ItemBehavior itemBehavior = Instantiate(itemDataList[i].Prefab, GameManager.Instance.CrateOverCheck.transform);
             itemBehavior.Setup(itemDataList[i]); // actualize item with instantiated item data
@@ -26,6 +26,8 @@ public class MND_Scavenge_Classic : MapNodeData
             itemBehavior.SetSortingOrder((i * 2) + 1);
             itemManager.TopLayer = (i * 2) + 1;
         }
+
+        GameManager.Instance.UpdateCrateItemCount();
     }
 
     public virtual void RerollCrateEnd()
@@ -40,7 +42,7 @@ public class MND_Scavenge_Classic : MapNodeData
 
     public virtual void ExitScoreCount()
     {
-        if (GameManager.Instance.ScavengingState.Timer <= 0) GameManager.Instance.SetGameState(GameManager.Instance.GameOverState);
+        if (GameManager.Instance.ItemManager.ItemList.Count <= 0) GameManager.Instance.SetGameState(GameManager.Instance.GameOverState);
         else GameManager.Instance.SetGameState(GameManager.Instance.ScavengingState);
     }
 

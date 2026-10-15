@@ -443,7 +443,7 @@ public class SaveManager : MonoBehaviour
         public int PPSpentRunShop;
         public int PPConvertedToMT;
         public int NumberPowerUsed;
-        public int NumberLeverUsed;
+        public int NumberDiscardUsed;
 
         public int NumberFirstBossPlayed;
         public int NumberFirstBossWon;
@@ -453,6 +453,7 @@ public class SaveManager : MonoBehaviour
         public int RunStartLootPP = 0;
         public int EveryNodeLootPP = 0;
         public int RunStartRerolls = 0;
+        public int CrateSizeBonus = 0;
 
         public List<QuestData.QuestDataSave> ModifiedQuestList = new();
         public List<CombinationData.CombinationDataSave> ModifiedCombinationList = new();
