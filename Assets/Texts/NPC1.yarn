@@ -32,10 +32,52 @@ Hubert: How are you?
 Hubert: Anyway! You should go ahead. #line:032d404 
 <<ShowExitClue HubManager>>
 ===
-
 title: NPC1_ShopFirstTime
 ---
 <<SetCharacterPicture>>
 The shopkeeper isn't very chatty, but...
 ... You should find some great items to help you out here! #line:0afe78e 
+===
+
+title: NPC1_Hello
+---
+<<SetCharacterPicture AVATAR_PNJ_GUY_HAPPY>>
+=> Hubert: Hey there !
+=> Hubert: Hi darling.
+=> Hubert: Been a while !
+<<jump NPC1_Menu>>>>
+===
+
+title: NPC1_Menu
+---
+-> Dee: Show item <<if CheckHasAnyStoryItem()>>
+    Hubert: You got something you want to show me ? 
+    <<jump NPC1_ShowItem>>
+-> Dee : Talk
+    Hubert: Been a while since we talked right ? 
+    Hubert: I feel like you're ignoring me.
+    Hubert: But that's just in my head right.
+    Hubert: Right ?
+    <<jump NPC1_Menu>>
+-> Dee : Bye
+    Hubert: Nice day !
+===
+
+title: NPC1_ShowItem
+---
+-> Dee : Bubble <<if CheckHasStoryItem("Bubble")>>
+    Hubert: Oh yeah I've seen it many times around here.
+-> Dee : Ball <<if CheckHasStoryItem("Ball")>>
+    Hubert: Looks brand new. You bought that ?
+-> Dee : Slime <<if CheckHasStoryItem("Slime")>>
+    Hubert: Uhhhh. Looks sticky.
+-> Dee : Strange Stuff <<if CheckHasStoryItem("Strange Stuff")>>
+    Hubert: I feel like this shouldn't even be in the office to be honest.
+-> Dee : Back
+    Hubert: What's up girl ?
+    <<jump NPC1_Menu>>
+=> Hubert: Wanna show me something else ?
+=> Hubert: Anything else ?
+=> Hubert: Other stuff you want me to look at ?
+<<jump NPC1_ShowItem>>
 ===

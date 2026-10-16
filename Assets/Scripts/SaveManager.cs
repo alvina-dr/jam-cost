@@ -39,6 +39,7 @@ public class SaveManager : MonoBehaviour
     [SerializeField] private MapNodeData _firstNode;
 
     public List<BonusData> PermanentBonusList = new();
+    public List<StoryItemData> StoryItemDataList = new();
     public List<PowerData> UnlockedPowerDataList = new();
     public List<PowerData> EquipedPowerDataList = new();
 
@@ -261,7 +262,8 @@ public class SaveManager : MonoBehaviour
         UnlockedPowerDataList = LoadList(CurrentSave.UnlockedPowerDataListName, DataLoader.Instance.PowerDataList);
         EquipedPowerDataList = LoadList(CurrentSave.EquipedPowerDataListName, DataLoader.Instance.PowerDataList);
         PermanentBonusList = LoadList(CurrentSave.PermanentBonusListName, BonusDirector.Instance.PermanentBonusDataDictionary);
-        
+        StoryItemDataList = LoadList(CurrentSave.StoryItemDataListName, StoryItemDirector.Instance.StoryItemDataDictionary);
+
         LoadYarnState();
 
         //DialogueManager.Instance.DialogueRunner.LoadStateFromPersistentStorage(Application.persistentDataPath + "/YarnSave");
@@ -339,6 +341,7 @@ public class SaveManager : MonoBehaviour
         CurrentSave.UnlockedPowerDataListName = SaveList(UnlockedPowerDataList);
         CurrentSave.EquipedPowerDataListName = SaveList(EquipedPowerDataList);
         CurrentSave.PermanentBonusListName = SaveList(PermanentBonusList);
+        CurrentSave.StoryItemDataListName = SaveList(StoryItemDataList);
 
         //DialogueManager.Instance.DialogueRunner.SaveStateToPersistentStorage(Application.persistentDataPath + "/YarnSave");
 
@@ -412,6 +415,8 @@ public class SaveManager : MonoBehaviour
 
         public int MealTickets;
         [SerializeReference] public List<string> PermanentBonusListName = new();
+
+        [SerializeReference] public List<string> StoryItemDataListName = new();
 
         [SerializeReference] public List<string> UnlockedPowerDataListName = new();
         

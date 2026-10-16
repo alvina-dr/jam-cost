@@ -2695,11 +2695,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 802480210119270616, guid: 589aa725fe386ac4888b852676e5c3ff, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.54
+      value: 4.01
       objectReference: {fileID: 0}
     - target: {fileID: 802480210119270616, guid: 589aa725fe386ac4888b852676e5c3ff, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.08
+      value: -1.89
       objectReference: {fileID: 0}
     - target: {fileID: 802480210119270616, guid: 589aa725fe386ac4888b852676e5c3ff, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2771,7 +2771,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9067737309208840712, guid: 589aa725fe386ac4888b852676e5c3ff, type: 3}
       propertyPath: _dialogueNodeName
-      value: NPC1_Introduction
+      value: NPC1_Hello
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

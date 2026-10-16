@@ -4,6 +4,7 @@ using BennyKok.RuntimeDebug.Systems;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -80,11 +81,11 @@ public class DebugManager : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < DataLoader.Instance.PowerDataList.Count; i++)
+        List<StoryItemData> storyItemDataList = StoryItemDirector.Instance.StoryItemDataDictionary.Values.ToList();
+        for (int i = 0; i < storyItemDataList.Count; i++)
         {
             int index = i;
-            DebugActionList.Add(DebugActionBuilder.Button().WithName(DataLoader.Instance.PowerDataList[index].PowerName).WithGroup("Power/Get").WithAction(() => GetPower(DataLoader.Instance.PowerDataList[index])));
-            DebugActionList.Add(DebugActionBuilder.Button().WithName(DataLoader.Instance.PowerDataList[index].PowerName).WithGroup("Power/Equip").WithAction(() => EquipPower(DataLoader.Instance.PowerDataList[index])));
+            DebugActionList.Add(DebugActionBuilder.Button().WithName(storyItemDataList[index].Name).WithGroup("Story Item").WithAction(() => StoryItemDirector.Instance.GetStoryItem(storyItemDataList[index])));
         }
 
         // GAME
@@ -138,26 +139,8 @@ public class DebugManager : MonoBehaviour
         if (instantiatedBonusData != null) instantiatedBonusData.GetBonus();
     }
 
-    public void GetPower(PowerData powerData)
+    public void GetStoryItem(StoryItemData storyItemData)
     {
-        if (!SaveManager.Instance.UnlockedPowerDataList.Contains(powerData))
-        {
-            SaveManager.Instance.UnlockedPowerDataList.Add(powerData);
-        }
-    }
-
-    public void EquipPower(PowerData powerData)
-    {
-        GetPower(powerData);
-
-        if (!SaveManager.Instance.EquipedPowerDataList.Contains(powerData))
-        {
-            SaveManager.Instance.EquipedPowerDataList.Add(powerData);
-        }
-
-        if (GameManager.Instance != null)
-        {
-            GameManager.Instance.UIManager.PowerMenu.Setup();
-        }
+        
     }
 }

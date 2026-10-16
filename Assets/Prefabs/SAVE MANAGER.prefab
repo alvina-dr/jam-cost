@@ -176,6 +176,7 @@ Transform:
   - {fileID: 466727216963724704}
   - {fileID: 2841637122821020402}
   - {fileID: 2670179321387146255}
+  - {fileID: 7554350588172944472}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6436201847158242453
@@ -209,6 +210,7 @@ MonoBehaviour:
       size: 0
     MealTickets: 0
     PermanentBonusListName: []
+    StoryItemDataListName: []
     UnlockedPowerDataListName: []
     EquipedPowerDataListName: []
     EquipedPowerMax: 1
@@ -222,6 +224,7 @@ MonoBehaviour:
     GameFirstTimeRoundPlayed: 0
     GameSecondTime: 0
     GameThirdTime: 0
+    CountScoreFirstTime: 0
     PowerFirstTime: 0
     SeeNewFrigo: 0
     NumberRunPlayed: 0
@@ -230,13 +233,14 @@ MonoBehaviour:
     PPSpentRunShop: 0
     PPConvertedToMT: 0
     NumberPowerUsed: 0
-    NumberLeverUsed: 0
+    NumberDiscardUsed: 0
     NumberFirstBossPlayed: 0
     NumberFirstBossWon: 0
     PermanentRoundBonusTime: 0
     RunStartLootPP: 0
     EveryNodeLootPP: 0
     RunStartRerolls: 0
+    BonusCrateSize: 0
     ModifiedQuestList: []
     ModifiedCombinationList: []
     CurrentRun:
@@ -248,6 +252,7 @@ MonoBehaviour:
       RunRoundBonusTime: 0
       RunBonusRound: 0
       RunBonusDiscard: 0
+      RunBonusCrateSize: 0
       CurrentRunBonusListName: []
       ModifiedItemDataSave: []
     RunDataHistory: []
@@ -255,6 +260,7 @@ MonoBehaviour:
   MapData: {fileID: 11400000, guid: f2142562869344a42b25704317bc6183, type: 2}
   _firstNode: {fileID: 11400000, guid: cffc50a3e8ada694c92f6e77cad39c5c, type: 2}
   PermanentBonusList: []
+  StoryItemDataList: []
   UnlockedPowerDataList: []
   EquipedPowerDataList: []
   CurrentRunBonusList: []
@@ -307,3 +313,47 @@ MonoBehaviour:
     _serializedList: []
   PermanentBonusDataDictionary:
     _serializedList: []
+--- !u!1 &8591858844904993776
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7554350588172944472}
+  - component: {fileID: 3332310334493135906}
+  m_Layer: 0
+  m_Name: StoryItemDirector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7554350588172944472
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8591858844904993776}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1102212129726004946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3332310334493135906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8591858844904993776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d24f2b825538ea46b74f115b9ed58ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StoryItemDirector

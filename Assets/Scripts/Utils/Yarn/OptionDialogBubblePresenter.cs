@@ -352,6 +352,7 @@ public class OptionDialogBubblePresenter : DialoguePresenterBase
     private OptionItem CreateNewOptionView()
     {
         var optionView = Instantiate(optionViewPrefab);
+        optionView.name = "OptionView_" + optionViews.Count;
 
         var targetTransform = canvasGroup != null ? canvasGroup.transform : this.transform;
 
