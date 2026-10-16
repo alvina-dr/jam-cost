@@ -10,6 +10,7 @@ public class Interactable_Discard : Interactable
     public void OnMouseDown()
     {
         if (GameManager.Instance.CurrentGameState != GameManager.Instance.ScavengingState) return;
+        if (GameManager.Instance.CurrentDiscard <= 0) return;
 
         _collider.enabled = false;
         _animation.SetAnimation(_clickAnim);

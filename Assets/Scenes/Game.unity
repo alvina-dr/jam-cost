@@ -10158,6 +10158,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button_Play
       objectReference: {fileID: 0}
+    - target: {fileID: 7789650274984934497, guid: 6d787b4eee563d3478023ad9a8cea882, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10594,7 +10598,6 @@ GameObject:
   - component: {fileID: 1648493514}
   - component: {fileID: 1648493515}
   - component: {fileID: 1648493516}
-  - component: {fileID: 1648493517}
   - component: {fileID: 1648493518}
   m_Layer: 0
   m_Name: GameManager
@@ -10636,7 +10639,6 @@ MonoBehaviour:
   GameOverState: {fileID: 1648493512}
   ScavengingIntroState: {fileID: 1648493514}
   BagState: {fileID: 1648493516}
-  PreparationState: {fileID: 1648493517}
   RewardState: {fileID: 1648493518}
   UIManager: {fileID: 110208747}
   ItemManager: {fileID: 1648493509}
@@ -10680,12 +10682,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff60752d9d8281c4e865c3af0f5c30db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Timer: 0
   _roundTime: 60
   SelectedItemList: []
   _itemNumberTextValue: {fileID: 116919398}
   _itemNumberText: {fileID: 116919397}
   _depotSprite: {fileID: 1134507859}
+  ItemTrashedNumber: 0
   CurrentSubState: 0
 --- !u!114 &1648493512
 MonoBehaviour:
@@ -10739,21 +10741,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _endRoundSound: {fileID: 8300000, guid: bae491b857f23ed4496562b501c06fe5, type: 3}
---- !u!114 &1648493517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1648493506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1f39cd7bc77de143b14d7aaf8077aac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Timer: 0
-  PreparationTime: 10
-  CurrentSubState: 0
 --- !u!114 &1648493518
 MonoBehaviour:
   m_ObjectHideFlags: 0

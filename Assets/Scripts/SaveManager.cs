@@ -453,7 +453,7 @@ public class SaveManager : MonoBehaviour
         public int RunStartLootPP = 0;
         public int EveryNodeLootPP = 0;
         public int RunStartRerolls = 0;
-        public int CrateSizeBonus = 0;
+        public int BonusCrateSize = 0;
 
         public List<QuestData.QuestDataSave> ModifiedQuestList = new();
         public List<CombinationData.CombinationDataSave> ModifiedCombinationList = new();
@@ -477,6 +477,7 @@ public class SaveManager : MonoBehaviour
         public float RunRoundBonusTime = 0;
         public int RunBonusRound = 0;
         public int RunBonusDiscard = 0;
+        public int RunBonusCrateSize = 0;
 
         public List<string> CurrentRunBonusListName = new();
         public List<ItemDataSave> ModifiedItemDataSave = new();

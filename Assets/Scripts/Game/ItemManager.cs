@@ -16,7 +16,7 @@ public class ItemManager : MonoBehaviour
     public void ResetDumpster()
     {
         CleanItems();
-        SaveManager.Instance.GetScavengeNode().SpawnItems();
+        SaveManager.Instance.GetScavengeNode().SpawnItems(GameManager.Instance.GetCrateSize());
     }
 
     public void CleanItems()

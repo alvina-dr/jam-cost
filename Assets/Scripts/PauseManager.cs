@@ -40,7 +40,6 @@ public class PauseManager : MonoBehaviour
     public void Pause(InputAction.CallbackContext _)
     {
         if (GameManager.Instance != null && (GameManager.Instance.CurrentGameState != GameManager.Instance.ScavengingState
-            && GameManager.Instance.CurrentGameState != GameManager.Instance.PreparationState
             && GameManager.Instance.CurrentGameState != null
             && GameManager.Instance.CurrentGameState != GameManager.Instance.RewardState)) return;
 

@@ -32,9 +32,7 @@ public class DraggableBehavior : ItemBehavior
             Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = mouseWorldPosition + _dragOffset;
 
-            if ((GameManager.Instance.DepotOverCheck.IsOver() 
-                || (Input.mousePosition.x >= Screen.width && Input.mousePosition.y >= 0 && Input.mousePosition.y <= Screen.height)) 
-                        && GameManager.Instance.CurrentGameState != GameManager.Instance.PreparationState)
+            if (GameManager.Instance.DepotOverCheck.IsOver() || (Input.mousePosition.x >= Screen.width && Input.mousePosition.y >= 0 && Input.mousePosition.y <= Screen.height))
             {
                 if (GameManager.Instance.ScavengingState.SelectedItemList.Count + 1 > GameManager.Instance.GetDepotSize()) _sellIcon.color = Color.grey;
                 else _sellIcon.color = Color.green;
@@ -134,35 +132,16 @@ public class DraggableBehavior : ItemBehavior
 
         if (GameManager.Instance.DepotOverCheck.IsOver())
         {
-            if (GameManager.Instance.CurrentGameState == GameManager.Instance.PreparationState)
+            if (GameManager.Instance.ScavengingState.TryAddItemToSelectedList(this))
             {
-                GoBackToDumpster();
+                DropItem();
+                transform.parent = GameManager.Instance.DepotOverCheck.transform;
+                GameManager.Instance.ItemManager.ItemList.Remove(this);
+                AudioManager.Instance.PlaySFXSound(_addToTicketSound);
             }
-            //else if (GameManager.Instance.BossLock.IsLocked)
-            //{
-            //    if (GameManager.Instance.BossLock.TryOpenLock(Item.Data))
-            //    {
-            //        base.DestroyItem();
-            //        AudioManager.Instance.PlaySFXSound(_trashItemSound);
-            //    }
-            //    else
-            //    {
-            //        GoBackToDumpster();
-            //    }
-            //}
             else
             {
-                if (GameManager.Instance.ScavengingState.TryAddItemToSelectedList(this))
-                {
-                    DropItem();
-                    transform.parent = GameManager.Instance.DepotOverCheck.transform;
-                    GameManager.Instance.ItemManager.ItemList.Remove(this);
-                    AudioManager.Instance.PlaySFXSound(_addToTicketSound);
-                }
-                else
-                {
-                    GoBackToDumpster();
-                }
+                GoBackToDumpster();
             }
         }
         else if (!GameManager.Instance.CrateOverCheck.IsOver())

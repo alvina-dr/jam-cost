@@ -9,22 +9,21 @@ public class MND_Scavenge_Classic : MapNodeData
     public int DiscardNumber;
     public SpawnItemParameters SpawnItemParameters;
 
-    public virtual void SpawnItems()
+    public virtual void SpawnItems(int number)
     {
         ItemManager itemManager = GameManager.Instance.ItemManager;
 
-        List<ItemData> itemDataList = ItemDirector.Instance.GetRandomItemDataList(GameManager.Instance.GetCrateSize());
-        for (int i = itemManager.ItemList.Count; i < itemDataList.Count; i++)
+        List<ItemData> itemDataList = ItemDirector.Instance.GetRandomItemDataList(number);
+        for (int i = 0; i < itemDataList.Count; i++)
         {
             ItemBehavior itemBehavior = Instantiate(itemDataList[i].Prefab, GameManager.Instance.CrateOverCheck.transform);
             itemBehavior.Setup(itemDataList[i]); // actualize item with instantiated item data
 
-            int random = Random.Range(0, 2);
             itemBehavior.transform.position = new Vector3(Random.Range(-itemManager.SpawnZone.x / 2 + itemManager.Offset.x, itemManager.SpawnZone.x / 2 + itemManager.Offset.x), Random.Range(-itemManager.SpawnZone.y / 2 + itemManager.Offset.y, itemManager.SpawnZone.y / 2 + itemManager.Offset.y), i * -0.001f);
             itemBehavior.transform.eulerAngles = new Vector3(0, 0, Random.Range(-70, 70));
+            itemBehavior.SetSortingOrder((itemManager.ItemList.Count * 2) + 1);
+            itemManager.TopLayer = (itemManager.ItemList.Count * 2) + 1;
             itemManager.ItemList.Add(itemBehavior);
-            itemBehavior.SetSortingOrder((i * 2) + 1);
-            itemManager.TopLayer = (i * 2) + 1;
         }
 
         GameManager.Instance.UpdateCrateItemCount();

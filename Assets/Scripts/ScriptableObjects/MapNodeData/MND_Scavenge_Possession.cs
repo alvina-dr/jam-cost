@@ -13,11 +13,11 @@ public class MND_Scavenge_Possession : MND_Scavenge_Classic
 
     public BossPhase BossPhase;
 
-    public override void SpawnItems()
+    public override void SpawnItems(int number)
     {
         ItemManager itemManager = GameManager.Instance.ItemManager;
 
-        List<ItemData> itemDataList = ItemDirector.Instance.GetRandomItemDataList(SpawnItemParameters.ItemNumber);
+        List<ItemData> itemDataList = ItemDirector.Instance.GetRandomItemDataList(number);
         for (int i = 0; i < itemDataList.Count; i++)
         {
             ItemBehavior itemBehavior = Instantiate(itemDataList[i].Prefab);

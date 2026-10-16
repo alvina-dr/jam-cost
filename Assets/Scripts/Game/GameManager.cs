@@ -29,7 +29,6 @@ public class GameManager : MonoBehaviour
     public GS_GameOver GameOverState;
     public GS_ScavengingIntro ScavengingIntroState;
     public GS_ScoreCalculation BagState;
-    public GS_Preparation PreparationState;
     public GS_Reward RewardState;
 
     [Header("References")]
@@ -88,28 +87,26 @@ public class GameManager : MonoBehaviour
         ItemManager.ResetDumpster();
         ScavengingState.UpdateItemNumberText();
 
-        Tween.Delay(.2f, () =>
+
+        if (!SaveManager.CurrentSave.GameFirstTime)
         {
-            if (!SaveManager.CurrentSave.GameFirstTime)
+            Tween.Delay(.2f, () =>
             {
+                DialogueManager.Instance.EndDialogueEvent += StartPlaying;
                 DialogueManager.Instance.DialogueRunner.StartDialogue("Onboarding_GameScene_1");
                 SaveManager.CurrentSave.GameFirstTime = true;
-            }
-        });
-    }
-
-    public void StartFirstRound()
-    {
-        BD_PreparationTime bonusPreparationTime = SaveManager.Instance.CheckHasRunBonus<BD_PreparationTime>();
-        if (bonusPreparationTime != null)
-        {
-            PreparationState.PreparationTime = bonusPreparationTime.PreparationTimeDuration;
-            CurrentGameState = PreparationState;
+            });
         }
         else
         {
             CurrentGameState = ScavengingIntroState;
+            CurrentGameState.EnterState();
         }
+    }
+
+    public void StartPlaying()
+    {
+        CurrentGameState = ScavengingIntroState;
         CurrentGameState.EnterState();
     }
 
@@ -154,7 +151,7 @@ public class GameManager : MonoBehaviour
 
     public int GetCrateSize()
     {
-        return SaveManager.Instance.GetScavengeNode().SpawnItemParameters.ItemNumber + SaveManager.CurrentSave.CrateSizeBonus;
+        return SaveManager.Instance.GetScavengeNode().SpawnItemParameters.ItemNumber + SaveManager.CurrentSave.BonusCrateSize + SaveManager.CurrentSave.CurrentRun.RunBonusCrateSize;
     }
 
     public int GetMaxRoundNumber()
@@ -169,40 +166,15 @@ public class GameManager : MonoBehaviour
 
     public void RerollCrate()
     {
-        if (CurrentGameState != ScavengingState && CurrentGameState != PreparationState) return;
+        if (CurrentGameState != ScavengingState) return;
         if (ScavengingState.CurrentSubState == GS_Scavenging.Scavenging_SubState.RerollCrateAnim) return;
-        if (PreparationState.CurrentSubState == GS_Preparation.Preparation_SubState.RerollCrateAnim) return;
         if (CurrentDiscard <= 0) return;
 
         CurrentDiscard--;
         UIManager.DiscardRemaining.SetTextValue($"{CurrentDiscard}", false);
         SaveManager.CurrentSave.NumberDiscardUsed++;
-        SaveManager.Instance.GetScavengeNode().SpawnItems();
-
-        return;
-        ScavengingState.CurrentSubState = GS_Scavenging.Scavenging_SubState.RerollCrateAnim;
-        PreparationState.CurrentSubState = GS_Preparation.Preparation_SubState.RerollCrateAnim;
-
-        Sequence rerollSequence = Sequence.Create();
-        ItemManager.EnterItemsPerfMode();
-        rerollSequence.Chain(Tween.PositionY(CrateOverCheck.transform, -8f, 1f));
-        rerollSequence.ChainCallback(() => ItemManager.CleanItems());
-        rerollSequence.ChainDelay(.3f);
-        rerollSequence.ChainCallback(() =>
-        {
-            CrateOverCheck.transform.position = new Vector3(CrateOverCheck.transform.position.x, 0, CrateOverCheck.transform.position.z);
-            SaveManager.Instance.GetScavengeNode().SpawnItems();
-            ItemManager.EnterItemsPerfMode();
-            CrateOverCheck.transform.position = new Vector3(CrateOverCheck.transform.position.x, 8, CrateOverCheck.transform.position.z);
-        });
-        rerollSequence.Chain(Tween.PositionY(CrateOverCheck.transform, 0f, 1f));
-        rerollSequence.ChainCallback(() =>
-        {
-            ItemManager.ExitItemsPerfMode();
-            ScavengingState.CurrentSubState = GS_Scavenging.Scavenging_SubState.Scavenging;
-            PreparationState.CurrentSubState = GS_Preparation.Preparation_SubState.Preparation;
-            SaveManager.Instance.GetScavengeNode().RerollCrateEnd();
-        });
+        SaveManager.Instance.GetScavengeNode().SpawnItems(ScavengingState.ItemTrashedNumber);
+        ScavengingState.ItemTrashedNumber = 0;
     }
 
     public void ApproveDepot()

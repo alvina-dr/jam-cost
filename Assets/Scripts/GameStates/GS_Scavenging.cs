@@ -6,14 +6,13 @@ using UnityEngine;
 
 public class GS_Scavenging : GameState
 {
-    [ReadOnly] public float Timer;
     [SerializeField] private float _roundTime;
     public List<ItemBehavior> SelectedItemList = new();
     [SerializeField] private UI_TextValue _itemNumberTextValue;
     [SerializeField] private TextMeshProUGUI _itemNumberText;
     [SerializeField] private SpriteRenderer _depotSprite;
-
-    private bool _fireDown;
+    
+    public int ItemTrashedNumber;
 
     public enum Scavenging_SubState
     {
@@ -27,8 +26,6 @@ public class GS_Scavenging : GameState
     {
         base.EnterState();
         SaveManager.Instance.GetScavengeNode().NewRound();
-        //GameManager.Instance.CurrentRound++;
-        //ResetTimer();
         AudioManager.Instance.StartClockSound();
 
         Tween.Delay(1, () =>
@@ -56,58 +53,6 @@ public class GS_Scavenging : GameState
     public override void UpdateState()
     {
         base.UpdateState();
-
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            Timer = 0;
-        }
-
-        //Timer -= Time.deltaTime;
-        //if (GameManager.Instance.UIManager.Timer.GetTextValue() != Mathf.RoundToInt(Timer).ToString())
-        //{
-            //GameManager.Instance.UIManager.Timer.SetTextValue(Mathf.RoundToInt(Timer).ToString());
-            //if (Timer <= 5)
-            //{
-                //GameManager.Instance.UIManager.Timer.SetTextColor(Color.red);
-                //if (!_fireDown)
-                //{
-                //    _fireDown = true;
-                //    //GameManager.Instance.UIManager.TimerBackground.material.DOFloat(1.2f, "_FlameLevel", .3f).OnComplete(() =>
-                //    {
-                //        _fireDown = false;
-                //    });
-                //}
-            //}
-            //else
-            //{
-                //GameManager.Instance.UIManager.Timer.ResetTextColor();
-                //if (!_fireDown)
-                //{
-                //    _fireDown = true;
-                //    //GameManager.Instance.UIManager.TimerBackground.material.DOFloat(0, "_FlameLevel", .3f).OnComplete(() =>
-                //    //{
-                //    //    _fireDown = false;
-                //    //});
-                //}
-            //}
-        //}
-
-        //if (GameManager.Instance.ItemManager.ItemList.Count == 0)
-        //{
-        //    GameManager.Instance.SetGameState(GameManager.Instance.WinState);
-        //    // win this game
-        //}
-
-        //switch (SaveManager.Instance.CurrentMapNode)
-        //{
-        //    case MND_Scavenge_Empty scavengeEmptyNode:
-        //        if (GameManager.Instance.ItemManager.ItemList.Count == 0)
-        //        {
-        //            GameManager.Instance.SetGameState(GameManager.Instance.WinState);
-        //            // win this game
-        //        }
-        //        break;
-        //}
     }
 
     public void EndOfRound()
@@ -137,18 +82,11 @@ public class GS_Scavenging : GameState
 
     public void TrashItem()
     {
+        ItemTrashedNumber++;
         if (GameManager.Instance.ItemManager.ItemList.Count == 0)
         {
             GameManager.Instance.SetGameState(GameManager.Instance.GameOverState);
         }
-    }
-
-    public void ResetTimer()
-    {
-        Timer = GetRoundTime();
-        GameManager.Instance.UIManager.Timer.ResetTextColor();
-        GameManager.Instance.UIManager.TimerBackground.material.SetFloat("_FlameLevel", 0);
-        _fireDown = false;
     }
 
     public float GetRoundTime()

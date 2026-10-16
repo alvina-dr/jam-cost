@@ -62,6 +62,6 @@ public class UIManager : MonoBehaviour
 
     public void OnParticleAttracted_Time(int number)
     {
-        GameManager.Instance.ScavengingState.Timer += number;
+        //GameManager.Instance.ScavengingState.Timer += number;
     }
 }

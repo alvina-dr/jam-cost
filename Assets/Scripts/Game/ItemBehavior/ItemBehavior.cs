@@ -96,11 +96,6 @@ public class ItemBehavior : MonoBehaviour
             if (GameManager.Instance.ScavengingState.CurrentSubState == GS_Scavenging.Scavenging_SubState.Scavenging) return true;
             else return false;
         }
-        if (GameManager.Instance.CurrentGameState == GameManager.Instance.PreparationState)
-        {
-            if (GameManager.Instance.PreparationState.CurrentSubState == GS_Preparation.Preparation_SubState.Preparation) return true;
-            else return false;
-        }
         if (GameManager.Instance.CurrentGameState == GameManager.Instance.RewardState) return true;
         return false;
     }
