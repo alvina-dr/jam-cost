@@ -3,6 +3,7 @@ using PrimeTween;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using System.Linq;
+using TMPEffects.SerializedCollections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -364,6 +365,7 @@ public class SaveManager : MonoBehaviour
     public void SaveRun()
     {
         CurrentSave.RunDataHistory.Add(CurrentSave.CurrentRun);
+        StoryItemDirector.Instance.AddAllRelationLevel();
     }
 
     public List<string> SaveList<T>(List<T> currentDataList) where T : ScriptableObject
@@ -414,6 +416,8 @@ public class SaveManager : MonoBehaviour
         public SerializableDictionary<string, bool> YarnBools;
 
         public int MealTickets;
+        public SerializedDictionary<string, int> CharacterLevelDictionary = new();
+
         [SerializeReference] public List<string> PermanentBonusListName = new();
 
         [SerializeReference] public List<string> StoryItemDataListName = new();

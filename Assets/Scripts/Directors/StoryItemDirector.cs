@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using TMPEffects.SerializedCollections;
 using UnityEngine;
 using Yarn.Unity;
 
@@ -22,7 +23,7 @@ public class StoryItemDirector : MonoBehaviour
     }
     #endregion
 
-    public Dictionary<string, StoryItemData> StoryItemDataDictionary = new();
+    [SerializedDictionary("Name", "StoryItemData")] public SerializedDictionary<string, StoryItemData> StoryItemDataDictionary = new();
 
     private void OnAwake()
     {
@@ -40,6 +41,15 @@ public class StoryItemDirector : MonoBehaviour
         SaveManager.Instance.StoryItemDataList.Add(StoryItemDataDictionary[storyItemData.Name]);
     }
 
+    public void AddAllRelationLevel()
+    {
+        List<string> characterNameList = SaveManager.CurrentSave.CharacterLevelDictionary.Keys.ToList();
+        for (int i = 0; i < characterNameList.Count; i++)
+        {
+            StoryItemDirector.AddRelationLevel(characterNameList[i]);
+        }
+    }
+
     [YarnFunction]
     public static bool CheckHasStoryItem(string storyItemName)
     {
@@ -51,5 +61,40 @@ public class StoryItemDirector : MonoBehaviour
     public static bool CheckHasAnyStoryItem()
     {
         return SaveManager.Instance.StoryItemDataList.Count > 0;
+    }
+
+    [YarnCommand]
+    public static void GiveStoryItemToNPC(string storyItemName)
+    {
+        if (!Instance.StoryItemDataDictionary.ContainsKey(storyItemName)) return;
+        SaveManager.Instance.StoryItemDataList.Remove(Instance.StoryItemDataDictionary[storyItemName]);
+    }
+
+    [YarnCommand]
+    public static void AddRelationLevel(string character)
+    {
+        if (!SaveManager.CurrentSave.CharacterLevelDictionary.ContainsKey(character))
+        {
+            SaveManager.CurrentSave.CharacterLevelDictionary.Add(character, 0);
+        }
+
+        SaveManager.CurrentSave.CharacterLevelDictionary[character]++;
+    }
+
+    [YarnFunction]
+    public static int GetRelationLevel(string character)
+    {
+        if (!SaveManager.CurrentSave.CharacterLevelDictionary.ContainsKey(character))
+        {
+            SaveManager.CurrentSave.CharacterLevelDictionary.Add(character, 0);
+        }
+
+        return SaveManager.CurrentSave.CharacterLevelDictionary[character];
+    }
+
+    [YarnFunction]
+    public static int GetNumberOfRun()
+    {
+        return SaveManager.CurrentSave.RunDataHistory.Count;
     }
 }

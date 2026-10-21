@@ -67,4 +67,10 @@ public class DialogueManager : MonoBehaviour
     {
         AudioManager.PlaySound(AudioManager.Instance.CloseDialog);
     }
+
+    [YarnCommand]
+    public void LaunchDialog(string prefix)
+    {
+
+    }
 }

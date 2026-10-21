@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2550784a38776084bbc2e072f2550422, type: 3}
-  m_Name: SID_Baloon
+  m_Name: SID_Pen
   m_EditorClassIdentifier: Assembly-CSharp::StoryItemData
-  Name: Baloon
+  Name: Pen

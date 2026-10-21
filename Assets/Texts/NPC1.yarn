@@ -45,7 +45,7 @@ title: NPC1_Hello
 => Hubert: Hey there !
 => Hubert: Hi darling.
 => Hubert: Been a while !
-<<jump NPC1_Menu>>>>
+<<jump NPC1_ContextualTalk>>
 ===
 
 title: NPC1_Menu
@@ -54,21 +54,27 @@ title: NPC1_Menu
     Hubert: You got something you want to show me ? 
     <<jump NPC1_ShowItem>>
 -> Dee : Talk
-    Hubert: Been a while since we talked right ? 
-    Hubert: I feel like you're ignoring me.
-    Hubert: But that's just in my head right.
-    Hubert: Right ?
-    <<jump NPC1_Menu>>
+    <<jump NPC1_Talk>>
 -> Dee : Bye
     Hubert: Nice day !
 ===
 
 title: NPC1_ShowItem
 ---
--> Dee : Bubble <<if CheckHasStoryItem("Bubble")>>
-    Hubert: Oh yeah I've seen it many times around here.
 -> Dee : Ball <<if CheckHasStoryItem("Ball")>>
     Hubert: Looks brand new. You bought that ?
+-> Dee : Bubble <<if CheckHasStoryItem("Bubble")>>
+    Hubert: Oh yeah I've seen it many times around here.
+-> Dee : Pen <<if CheckHasStoryItem("Pen")>>
+    Hubert: No way !!!
+    Hubert: I've been looking for this pen for ages !!
+    Hubert: Where did you find it ?
+    Hubert: You know what- this is a stupid question forget it.
+    Hubert: Thanks a lot for giving it back.
+    Hubert: It's... It means a lot to me.
+    Hubert: Thanks.
+    <<GiveStoryItemToNPC Pen>>
+    <<jump NPC1_Menu>>
 -> Dee : Slime <<if CheckHasStoryItem("Slime")>>
     Hubert: Uhhhh. Looks sticky.
 -> Dee : Strange Stuff <<if CheckHasStoryItem("Strange Stuff")>>
@@ -80,4 +86,43 @@ title: NPC1_ShowItem
 => Hubert: Anything else ?
 => Hubert: Other stuff you want me to look at ?
 <<jump NPC1_ShowItem>>
+===
+
+title: NPC1_Talk
+when: GetRelationLevel("Hubert") == 0 || GetRelationLevel("Hubert") == 1
+---
+<<once>>
+    Hubert: Been a while since we talked right ? 
+    Hubert: I feel like you're ignoring me.
+    Hubert: But that's just in my head right.
+    <<AddRelationLevel Hubert>>
+<<endonce>>
+Hubert: You get what I mean ?
+===
+title: NPC1_Talk
+when: GetRelationLevel("Hubert") == 2 || GetRelationLevel("Hubert") == 3
+---
+<<once>>
+    Hubert: I feel like we're getting closer you and me. 
+    Hubert: I wonder if you feel the same ?...
+    Hubert: ...
+    <<AddRelationLevel Hubert>>
+<<endonce>>
+Hubert: Yeah, you can also keep it a secret no problem.
+===
+
+title: NPC1_ContextualTalk
+when: always 
+---
+<<jump NPC1_Menu>>>>
+===
+
+title: NPC1_ContextualTalk
+when: GetNumberOfRun() > 0
+when: once 
+---
+Hubert: Oh wow you've been out of the office ?!
+Hubert: I hope it was okay and you didn't get lost. 
+Hubert: It's big out there. Be careful girl.
+<<jump NPC1_Menu>>>>
 ===
