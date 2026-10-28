@@ -4,6 +4,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CD_Identical", menuName = "Scriptable Objects/CombinationData/CD_Identical")]
 public class CD_Identical : CombinationData
 {
+    [SerializeField] private int _identicalTargetNumber;
+
     public override bool CheckCombination(ref List<Item_ScoreCalculation> bagSlotList)
     {
         int maxIdenticalNumber = 0;
@@ -16,7 +18,7 @@ public class CD_Identical : CombinationData
 
         for (int i = 0; i < itemDataList.Count; i++)
         {
-            int num = itemDataList.FindAll(x => x.Save.Name == itemDataList[i].Save.Name).Count;
+            int num = itemDataList.FindAll(x => x.Save.CompleteName == itemDataList[i].Save.CompleteName).Count;
             if (num > maxIdenticalNumber)
             {
                 maxIdenticalNumber = num;
@@ -24,9 +26,9 @@ public class CD_Identical : CombinationData
             }
         }
 
-        if (maxIdenticalNumber >= 4)
+        if (maxIdenticalNumber >= _identicalTargetNumber)
         {
-            bagSlotList = bagSlotList.FindAll(x => x.ItemInstance.Data.Save.Name == identicalItemData.Save.Name);
+            bagSlotList = bagSlotList.FindAll(x => x.ItemInstance.Data.Save.CompleteName == identicalItemData.Save.CompleteName);
             DiscoverCombination();
             Data.NumberUsed++;
             return true;

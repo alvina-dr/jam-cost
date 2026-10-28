@@ -290,6 +290,47 @@ public class ScoreCalculationManager : MonoBehaviour
         _combinationDataList.Clear();
         _bonusDataList.Clear();
 
+
+        combinationList = combinationList.OrderByDescending(x => x.Priority).ToList();
+
+        for (int i = 0; i < combinationList.Count; i++)
+        {
+            int index = i;
+            List<Item_ScoreCalculation> refChosenItemSlotList = new(chosenItemSlotList);
+            if (combinationList[index].CheckCombination(ref refChosenItemSlotList))
+            {
+                int combinationNumber = _combinationDataList.Count;
+                _combinationDataList.Add(combinationList[index]);
+                _countSequence.ChainCallback(() =>
+                {
+                    GameManager.Instance.UIManager.BagMenu.CombinationList[combinationNumber].Setup(combinationList[index]);
+                    AudioManager.PlaySound(AudioManager.Instance.Combination);
+                    CameraManager.Instance.SimpleShake();
+                    GameManager.Instance.UIManager.TextPopperManager_Info.PopText($"<wave amp=2>{combinationList[index].Data.Name}", Vector3.up, Color.black);
+                });
+                _countSequence.ChainDelay(.2f);
+                for (int j = 0; j < refChosenItemSlotList.Count; j++)
+                {
+                    Item_ScoreCalculation bagSlot = refChosenItemSlotList[j];
+                    _countSequence.ChainDelay(.5f);
+                    _countSequence.ChainCallback(() =>
+                    {
+                        int addBonus = combinationList[index].Bonus;
+                        bagSlot.CurrentScore += addBonus;
+                        CameraManager.Instance.SimpleShake();
+                        bagSlot.SetPriceTextNumber(bagSlot.CurrentScore - addBonus, bagSlot.CurrentScore);
+                        bagSlot.CountBaseScore();
+                        GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + addBonus, bagSlot.transform.position, _addColor, UI_TextPopper.AnimSpeed.Quick);
+                        AudioManager.PlaySound(AudioManager.Instance.ScoreAdd);
+                    });
+                }
+                _countSequence.ChainDelay(1f);
+                return;
+            }
+        }
+
+        return;
+
         // calculate all addition per item combinations
         List<CombinationData> combinationItemAddList = combinationList.FindAll(x => x.Effect == CombinationData.CombinationEffect.ItemAddition);
         for (int i = 0; i < combinationItemAddList.Count; i++)

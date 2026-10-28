@@ -9,14 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24f1e6f7bc59c4349a2008210b92647a, type: 3}
-  m_Name: CD_Family
+  m_Script: {fileID: 11500000, guid: 89bfc4f049e9512418ef9a2db3f72f51, type: 3}
+  m_Name: CD_ThreeOfAKind+
   m_EditorClassIdentifier: 
   Data:
-    Name: Family
+    Name: Three of a Kind +
     State: 0
-  Description: If the depot contains <b>4</b> or more items from the same family,
-    <b><color=blue>+10</color></b> for each item from this family.
-  Effect: 0
-  Bonus: 10
-  CombinationFamily: 1
+    NumberUsed: 0
+  Description: If <b>3</b> items are identical, <color=red>x2</color> for each identical
+    item.
+  Effect: 1
+  Bonus: 2
+  Priority: 3
+  _identicalTargetNumber: 3

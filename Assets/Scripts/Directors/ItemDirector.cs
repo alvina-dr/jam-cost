@@ -30,7 +30,7 @@ public class ItemDirector : MonoBehaviour
         for (int i = 0; i < itemDataList.Count; i++)
         {
             ItemData itemData = Instantiate(itemDataList[i]);
-            ItemDataDictionary.Add(itemData.Save.Name, itemData);
+            ItemDataDictionary.Add($"{itemData.Save.CompleteName}", itemData);
         }
     }
 
@@ -69,7 +69,7 @@ public class ItemDirector : MonoBehaviour
         List<ItemData> instantiatedItemList = new();
         for (int i = 0; i < itemDataList.Count; i++)
         {
-            instantiatedItemList.Add(ItemDataDictionary[itemDataList[i].Save.Name]);
+            instantiatedItemList.Add(ItemDataDictionary[itemDataList[i].Save.CompleteName]);
         }
         return instantiatedItemList;
     }

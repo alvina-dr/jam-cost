@@ -254,7 +254,7 @@ public class SaveManager : MonoBehaviour
         {
             for (int i = 0; i < CurrentSave.CurrentRun.ModifiedItemDataSave.Count; i++)
             {
-                ItemDirector.Instance.ItemDataDictionary[CurrentSave.CurrentRun.ModifiedItemDataSave[i].Name].Save = CurrentSave.CurrentRun.ModifiedItemDataSave[i];
+                ItemDirector.Instance.ItemDataDictionary[CurrentSave.CurrentRun.ModifiedItemDataSave[i].CompleteName].Save = CurrentSave.CurrentRun.ModifiedItemDataSave[i];
             }
 
             CurrentRunBonusList = LoadList(CurrentSave.CurrentRun.CurrentRunBonusListName, BonusDirector.Instance.RunBonusDataDictionary);

@@ -13,6 +13,12 @@ public class DraggableBehavior : ItemBehavior
     [SerializeField] private AudioClip _trashItemSound;
     [SerializeField] private AudioClip _addToTicketSound;
 
+    public override void Setup(ItemData itemData)
+    {
+        _spriteRenderer.sprite = itemData.Icon;
+        base.Setup(itemData);
+    }
+
     private void Update()
     {
         if (!CanClickItem() || PauseManager.Instance.IsPaused)

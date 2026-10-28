@@ -1,3 +1,4 @@
+using NUnit.Framework.Interfaces;
 using UnityEngine;
 using static ItemData;
 
@@ -14,11 +15,24 @@ public class ItemData : ScriptableObject
 public enum ItemFamily
 {
     Plastic = 0,
-    Clothes = 1,
-    Food = 2,
-    Construction = 3,
+    Blue = 1,
+    Red = 2,
+    Green = 3,
     Garbage = 4,
     Clickable = 5
+}
+
+public enum ItemIdentity
+{
+    Milk = 0,
+    Apple = 1,
+    Pickles = 2,
+    Sock = 3,
+    Bra = 4,
+    Cap = 5,
+    Spray = 6,
+    Lighter = 7,
+    Screws = 8
 }
 
 [System.Serializable]
@@ -27,4 +41,7 @@ public class ItemDataSave
     public string Name;
     public Rarity Rarity;
     public ItemFamily Family;
+    public ItemIdentity Identity;
+
+    public string CompleteName => $"{Name}_{Family}";
 }

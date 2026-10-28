@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32c517d233ca1924496e4ec2b4e372ef, type: 3}
-  m_Name: ID_Food_Apple
+  m_Name: ID_Green_Screws
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 3971539782363818920, guid: 928054f433158b7448c7cd510f8f2f02, type: 3}
+  Prefab: {fileID: 3971539782363818920, guid: 4314cbfd17d28c44aa4f1fe270d49146, type: 3}
   Price: 1
   BonusCurrency: 0
-  Icon: {fileID: 21300000, guid: 2e83f2f35c3398d47b88ffe6c39ccba9, type: 3}
+  Icon: {fileID: 21300000, guid: 42114dbb0c25dc440adc068fee11368e, type: 3}
   Save:
-    Name: Apple
+    Name: Screws
     Rarity: 0
-    Family: 2
+    Family: 3
+    Identity: 8

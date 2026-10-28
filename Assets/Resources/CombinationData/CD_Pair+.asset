@@ -10,12 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 89bfc4f049e9512418ef9a2db3f72f51, type: 3}
-  m_Name: CD_Identical
+  m_Name: CD_Pair+
   m_EditorClassIdentifier: 
   Data:
-    Name: Clones
+    Name: Pair+
     State: 0
-  Description: If <b>4</b> or more items are identical, <color=red>x2</color> for
-    each identical item.
+    NumberUsed: 0
+  Description: If <b>2</b> items are identical, <color=red>x2</color> for each identical
+    item.
   Effect: 1
   Bonus: 2
+  Priority: 1
+  _identicalTargetNumber: 2

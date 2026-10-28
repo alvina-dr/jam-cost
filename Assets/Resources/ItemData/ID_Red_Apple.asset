@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32c517d233ca1924496e4ec2b4e372ef, type: 3}
-  m_Name: ID_Food_Milk
+  m_Name: ID_Red_Apple
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 3971539782363818920, guid: 05c16e753cafd2c47b3c1ac313dddb06, type: 3}
-  Price: 10
+  Prefab: {fileID: 3971539782363818920, guid: 928054f433158b7448c7cd510f8f2f02, type: 3}
+  Price: 1
   BonusCurrency: 0
-  Icon: {fileID: 21300000, guid: 1bd982dacd12df14299d36e30ef79154, type: 3}
+  Icon: {fileID: 21300000, guid: 2e83f2f35c3398d47b88ffe6c39ccba9, type: 3}
   Save:
-    Name: Milk
+    Name: Apple
     Rarity: 0
     Family: 2
+    Identity: 1

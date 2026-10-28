@@ -24,6 +24,7 @@ public class CombinationData : ScriptableObject
     [TextArea] public string Description;
     public CombinationEffect Effect;
     public int Bonus;
+    public int Priority;
 
     public virtual bool CheckCombination(ref List<Item_ScoreCalculation> itemDataList)
     {

@@ -24,7 +24,7 @@ public class ItemBehavior : MonoBehaviour
 
     [SerializeField] protected Vector3 _tooltipOffset;
 
-    public void Setup(ItemData itemData)
+    public virtual void Setup(ItemData itemData)
     {
         Item = new();
         Item.Data = itemData;
@@ -42,13 +42,13 @@ public class ItemBehavior : MonoBehaviour
             case ItemFamily.Plastic:
                 _spriteRenderer.material = _family1Material;
                 break;
-            case ItemFamily.Clothes:
+            case ItemFamily.Blue:
                 _spriteRenderer.material = _family2Material;
                 break;
-            case ItemFamily.Food:
+            case ItemFamily.Red:
                 _spriteRenderer.material = _family3Material;
                 break;
-            case ItemFamily.Construction:
+            case ItemFamily.Green:
                 _spriteRenderer.material = _family4Material;
                 break;
             case ItemFamily.Garbage:
