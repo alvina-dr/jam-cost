@@ -20,5 +20,5 @@ MonoBehaviour:
     each identical item.
   Effect: 1
   Bonus: 2
-  Priority: 6
+  Priority: 8
   _identicalTargetNumber: 4

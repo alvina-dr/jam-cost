@@ -20,5 +20,5 @@ MonoBehaviour:
     item.
   Effect: 0
   Bonus: 2
-  Priority: 2
+  Priority: 5
   _identicalTargetNumber: 3
