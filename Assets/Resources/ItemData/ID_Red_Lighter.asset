@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32c517d233ca1924496e4ec2b4e372ef, type: 3}
+  m_Name: ID_Red_Lighter
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 3971539782363818920, guid: c4fff2782c35940429e25e915b88056b, type: 3}
+  Price: 5
+  BonusCurrency: 0
+  Icon: {fileID: 21300000, guid: 48ef8c35f53375f4fa0d45821b0db569, type: 3}
+  Save:
+    Name: Lighter
+    Rarity: 1
+    Family: 2
+    Identity: 7
