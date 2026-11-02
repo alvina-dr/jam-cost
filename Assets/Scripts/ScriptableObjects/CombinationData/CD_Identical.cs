@@ -6,15 +6,10 @@ public class CD_Identical : CombinationData
 {
     [SerializeField] private int _identicalTargetNumber;
 
-    public override bool CheckCombination(ref List<Item_ScoreCalculation> itemCalculationList)
+    public override bool CheckCombination(List<ItemData> itemDataList, ref List<Item_ScoreCalculation> itemScoreCalculationList)
     {
         int maxIdenticalNumber = 0;
         ItemData identicalItemData = null;
-        List<ItemData> itemDataList = new();
-        for (int i = 0; i < itemCalculationList.Count; i++)
-        {
-            itemDataList.Add(itemCalculationList[i].ItemInstance.Data);
-        }
 
         for (int i = 0; i < itemDataList.Count; i++)
         {
@@ -28,9 +23,12 @@ public class CD_Identical : CombinationData
 
         if (maxIdenticalNumber >= _identicalTargetNumber)
         {
-            itemCalculationList = itemCalculationList.FindAll(x => x.ItemInstance.Data.Save.CompleteName == identicalItemData.Save.CompleteName);
-            DiscoverCombination();
-            Data.NumberUsed++;
+            if (itemScoreCalculationList.Count > 0)
+            {
+                itemScoreCalculationList = itemScoreCalculationList.FindAll(x => x.ItemInstance.Data.Save.CompleteName == identicalItemData.Save.CompleteName);
+                DiscoverCombination();
+                Data.NumberUsed++;
+            }
             return true;
         }
         else

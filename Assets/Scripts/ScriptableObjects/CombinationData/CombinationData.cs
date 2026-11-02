@@ -1,6 +1,6 @@
+using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
-using static QuestData;
 
 [CreateAssetMenu(fileName = "CombinationData", menuName = "Scriptable Objects/CombinationData")]
 public class CombinationData : ScriptableObject
@@ -23,12 +23,26 @@ public class CombinationData : ScriptableObject
     public CombinationDataSave Data;
     [TextArea] public string Description;
     public CombinationEffect Effect;
-    public int Bonus;
     public int Priority;
 
-    public virtual bool CheckCombination(ref List<Item_ScoreCalculation> itemDataList)
+    [HorizontalGroup("Bonus")]
+    [BoxGroup("Bonus/ADD"), HideLabel] public float BaseScore;
+    [BoxGroup("Bonus/MULT"), HideLabel] public float MultiplierScore;
+
+    public virtual bool CheckCombination(List<ItemData> itemDataList, ref List<Item_ScoreCalculation> itemScoreCalculationList)
     {
         return false;
+    }
+
+    public List<Item_ScoreCalculation> FilterListByIndex(List<int> validIndexList, List<Item_ScoreCalculation> itemScoreCalculationList)
+    {
+        List<Item_ScoreCalculation> returnList = new();
+        for (int i = 0; i < validIndexList.Count; i++)
+        {
+            returnList.Add(itemScoreCalculationList[validIndexList[i]]);
+        }
+
+        return returnList;
     }
 
     public void DiscoverCombination()

@@ -15,6 +15,9 @@ public class UI_ScoreCalculation : UI_Menu
     [Header("Round score")]
     public Transform RoundScoreParent;
     public UI_TextValue RoundScoreText;
+    public UI_TextValue AddScoreText;
+    public UI_TextValue MultiplyScoreText;
+    public UI_Combination CurrentCombinationInfo;
 
     [Header("Score colors")]
     [SerializeField] private Color _addColor;
@@ -24,9 +27,6 @@ public class UI_ScoreCalculation : UI_Menu
     [SerializeField] private ParticleSystem _confettiLeft;
     [SerializeField] private ParticleSystem _confettiRight;
     [SerializeField] private MMF_Player _shakePlayer;
-
-    [Header("Combinations")]
-    public List<UI_Combination> CombinationList = new();
 
     [Header("Time speed")]
     public Transform SpeedArrow;
@@ -42,10 +42,7 @@ public class UI_ScoreCalculation : UI_Menu
         RoundScoreText.SetTextValue($"{0}", false);
         RoundScoreParent.gameObject.SetActive(false);
 
-        for (int i = 0; i < CombinationList.Count; i++)
-        {
-            CombinationList[i].Reset();
-        }
+        CurrentCombinationInfo.Reset();
     }
 
     public override void CloseMenu()

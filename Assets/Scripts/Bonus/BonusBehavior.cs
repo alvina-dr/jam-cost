@@ -7,6 +7,7 @@ public class BonusBehavior : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 {
     public BonusData BonusData;
     [SerializeField] private SpriteRenderer _spriteRenderer;
+    public Transform InfoSpawnPoint;
 
     public void Setup(BonusData bonusData)
     {
@@ -20,7 +21,7 @@ public class BonusBehavior : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         Color outlineColor = _spriteRenderer.material.GetColor("_OutlineColor");
         _spriteRenderer.material.SetColor("_OutlineColor", Color.white);
-        GameManager.Instance.UIManager.TextPopperManager_Info.PopText(BonusData.Name, transform.position + Vector3.up * 1.5f);
+        //GameManager.Instance.UIManager.TextPopperManager_Info.PopText(BonusData.Name, transform.position + Vector3.up * 1.5f);
 
         Sequence highlight = Sequence.Create();
         highlight.Chain(Tween.Scale(transform, 1.4f, .2f));

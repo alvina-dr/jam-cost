@@ -80,4 +80,11 @@ public class UI_TextValue : MonoBehaviour
             _textUI.text = $"{newNumber}";
         }
     }
+
+    public void ScaleAnim(float bigSize, float duration)
+    {
+        Sequence scaleAnim = Sequence.Create();
+        scaleAnim.Chain(Tween.Scale(_textUI.transform, bigSize, duration / 2.0f));
+        scaleAnim.Chain(Tween.Scale(_textUI.transform, 1, duration / 2.0f));
+    }
 }

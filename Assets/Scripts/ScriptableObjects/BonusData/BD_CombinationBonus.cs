@@ -11,16 +11,16 @@ public class BD_CombinationBonus : BonusData
         base.GetBonus();
     }
 
-    public override bool CheckBonus(ref List<Item_ScoreCalculation> itemDataListRef, List<CombinationData> combinationDataList = null)
+    public override bool CheckBonus(ref List<Item_ScoreCalculation> itemScoreCalculationList, CombinationData combinationData = null)
     {
-        if (combinationDataList == null) return false;
+        if (combinationData == null) return false;
 
         //for (int i = 0; i < combinationDataList.Count; i++)
         //{
         //    Debug.Log("combination data : " + combinationDataList[i].Data.Name);
         //    Debug.Log("Compaired with : " + _combinationData.Data.Name);
         //}
-        if (combinationDataList.Find(x => x.Data.Name == _combinationData.Data.Name))
+        if (combinationData.Data.Name == _combinationData.Data.Name)
         {
             return true;
         }

@@ -40,10 +40,6 @@ public class ScoreCalculationManager : MonoBehaviour
     [SerializeField] private ParticleSystem _confettiRight;
     [SerializeField] private MMF_Player _shakePlayer;
 
-    [Header("Score colors")]
-    [SerializeField] private Color _addColor;
-    [SerializeField] private Color _multiplyColor;
-
     private int _animationStackedNumber;
     private float _animationTimeScale = 1;
 
@@ -51,6 +47,11 @@ public class ScoreCalculationManager : MonoBehaviour
     private List<CombinationData> _combinationDataList = new();
     private List<BonusData> _bonusDataList = new();
     int _roundScore = 0;
+
+    private float _baseScore;
+    private float _multiplierScore;
+    private CombinationData _currentCombinationData;
+
 
     public void Show()
     {
@@ -72,9 +73,20 @@ public class ScoreCalculationManager : MonoBehaviour
         GameManager.Instance.UIManager.ScoreBarValue.SetBarValue(GameManager.Instance.CurrentScore, GameManager.Instance.GoalScore, false);
         GameManager.Instance.UIManager.ScoreTextValue.SetTextValue($"{GameManager.Instance.CurrentScore} / {GameManager.Instance.GoalScore}", false);
 
-        List<ItemInstance> bagItemList = GameManager.Instance.ScavengingState.GetItemInstanceList();
-        GameManager.Instance.ScavengingState.CleanItemDataList();
+        GameManager.Instance.ScavengingState.CleanSelectedItemList();
         GameManager.Instance.ScavengingState.UpdateItemNumberText();
+
+        List<Item_ScoreCalculation> chosenItemSlotList = GetChosenItemList();
+        CombinationData combination = CheckCombination(ItemDirector.GetItemDataList(chosenItemSlotList));
+        if (combination != null)
+        {
+            _baseScore = combination.BaseScore;
+            _multiplierScore = combination.MultiplierScore;
+            GameManager.Instance.UIManager.BagMenu.CurrentCombinationInfo.Setup(combination);
+        }
+
+        GameManager.Instance.UIManager.BagMenu.AddScoreText.SetTextValue($"{_baseScore}", false);
+        GameManager.Instance.UIManager.BagMenu.MultiplyScoreText.SetTextValue($"{_multiplierScore}", false);
 
         Tween.Delay(1f, () => CountScore());
     }
@@ -182,40 +194,22 @@ public class ScoreCalculationManager : MonoBehaviour
         GameManager.Instance.UIManager.BagMenu.RoundScoreText.SetTextValue($"{_roundScore}", false);
         GameManager.Instance.UIManager.BagMenu.RoundScoreParent.gameObject.SetActive(true);
 
-        List<Item_ScoreCalculation> chosenItemSlotList = GetChosenItemList();
-
         ShowBaseScores();
 
-        CountCombinations();
+        //CountItemBonus();
 
-        CountItemBonus();
-
-        for (int i = 0; i < chosenItemSlotList.Count; i++)
+        _countSequence.ChainDelay(1f);
+        _countSequence.ChainCallback(() =>
         {
-            int index = i;
+            _roundScore = Mathf.RoundToInt(_baseScore * _multiplierScore);
+            GameManager.Instance.UIManager.BagMenu.RoundScoreText.SetTextValueNumber(0, _roundScore);
+            GameManager.Instance.UIManager.BagMenu.AddScoreText.SetTextValue("0");
+            GameManager.Instance.UIManager.BagMenu.MultiplyScoreText.SetTextValue("0");
+        });
 
-            _countSequence.ChainDelay(.6f);
-            _countSequence.ChainCallback(() =>
-            {
-                StackAnim();
-                chosenItemSlotList[index].CountItem();
-                AudioManager.PlaySound(AudioManager.Instance.ItemHighlight);
-            });
-            _countSequence.ChainDelay(.2f);
-            _countSequence.ChainCallback(() =>
-            {
-                CameraManager.Instance.SimpleShake();
-                _roundScore += chosenItemSlotList[index].CurrentScore;
-                GameManager.Instance.UIManager.BagMenu.RoundScoreText.SetTextValueNumber(_roundScore - chosenItemSlotList[index].CurrentScore, _roundScore, .4f);
-            });
+        //CountTotalScoreBonus();
 
-            _countSequence.ChainDelay(.3f * _animationTimeScale);
-            StackAnim();
-        }
-
-        CountTotalScoreBonus();
-
-        _countSequence.ChainDelay(.8f * _animationTimeScale);
+        _countSequence.ChainDelay(1f);
         _countSequence.ChainCallback(() =>
         {
             GameManager.Instance.SetCurrentScore(GameManager.Instance.CurrentScore + _roundScore);
@@ -258,20 +252,21 @@ public class ScoreCalculationManager : MonoBehaviour
             Item_ScoreCalculation item = chosenItemSlotList[i];
             if (item.ItemInstance.Data.Price > 0) // if not garbage
             {
-                _countSequence.ChainDelay(.5f);
+                _countSequence.ChainDelay(1f);
                 _countSequence.ChainCallback(() =>
                 {
                     CameraManager.Instance.SimpleShake();
                     item.CurrentScore = item.ItemInstance.CalculateValue();
-                    GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + item.CurrentScore, item.transform.position, _addColor, UI_TextPopper.AnimSpeed.Quick);
-                    item.SetPriceText(item.CurrentScore);
+                    _baseScore += item.CurrentScore;
+                    GameManager.Instance.UIManager.BagMenu.AddScoreText.SetTextValueNumber(Mathf.RoundToInt(_baseScore - item.CurrentScore), (int) _baseScore, .6f);
+                    GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + item.CurrentScore, item.InfoSpawnPoint.position, GameDirector.Instance.AddColor, UI_TextPopper.AnimSpeed.Quick);
                     item.CountBaseScore();
                     AudioManager.PlaySound(AudioManager.Instance.CountItem);
                 });
             }
             else
             {
-                _countSequence.ChainDelay(.5f);
+                _countSequence.ChainDelay(.8f);
                 _countSequence.ChainCallback(() =>
                 {
                     item.CurrentScore = item.ItemInstance.CalculateValue();
@@ -279,263 +274,65 @@ public class ScoreCalculationManager : MonoBehaviour
                 });
 
             }
+
+            CheckItemBonus(item);
         }
         _countSequence.ChainDelay(1f);
     }
 
-    public void CountCombinations()
+    public CombinationData CheckCombination(List<ItemData> itemDataList)
     {
-        List<Item_ScoreCalculation> chosenItemSlotList = GetChosenItemList();
         List<CombinationData> combinationList = DataLoader.Instance.CombinationDataDictionary.Values.ToList();
-        _combinationDataList.Clear();
-        _bonusDataList.Clear();
-
-
         combinationList = combinationList.OrderByDescending(x => x.Priority).ToList();
 
         for (int i = 0; i < combinationList.Count; i++)
         {
-            int index = i;
-            List<Item_ScoreCalculation> refChosenItemSlotList = new(chosenItemSlotList);
-            if (combinationList[index].CheckCombination(ref refChosenItemSlotList))
+            List<Item_ScoreCalculation> refChosenItemSlotList = new();
+            if (combinationList[i].CheckCombination(itemDataList, ref refChosenItemSlotList))
             {
-                int combinationNumber = _combinationDataList.Count;
-                _combinationDataList.Add(combinationList[index]);
-                _countSequence.ChainCallback(() =>
-                {
-                    GameManager.Instance.UIManager.BagMenu.CombinationList[combinationNumber].Setup(combinationList[index]);
-                    AudioManager.PlaySound(AudioManager.Instance.Combination);
-                    CameraManager.Instance.SimpleShake();
-                    GameManager.Instance.UIManager.TextPopperManager_Info.PopText($"<wave amp=2>{combinationList[index].Data.Name}", Vector3.up, Color.black);
-                });
-                _countSequence.ChainDelay(.2f);
-                for (int j = 0; j < refChosenItemSlotList.Count; j++)
-                {
-                    Item_ScoreCalculation bagSlot = refChosenItemSlotList[j];
-                    _countSequence.ChainDelay(.5f);
-                    _countSequence.ChainCallback(() =>
-                    {
-                        int addBonus = combinationList[index].Bonus;
-                        bagSlot.CurrentScore += addBonus;
-                        CameraManager.Instance.SimpleShake();
-                        bagSlot.SetPriceTextNumber(bagSlot.CurrentScore - addBonus, bagSlot.CurrentScore);
-                        bagSlot.CountBaseScore();
-                        GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + addBonus, bagSlot.transform.position, _addColor, UI_TextPopper.AnimSpeed.Quick);
-                        AudioManager.PlaySound(AudioManager.Instance.ScoreAdd);
-                    });
-                }
-                _countSequence.ChainDelay(1f);
-                return;
+                return combinationList[i];
             }
         }
 
-        return;
-
-        // calculate all addition per item combinations
-        List<CombinationData> combinationItemAddList = combinationList.FindAll(x => x.Effect == CombinationData.CombinationEffect.ItemAddition);
-        for (int i = 0; i < combinationItemAddList.Count; i++)
-        {
-            int index = i;
-            List<Item_ScoreCalculation> refChosenItemSlotList = new(chosenItemSlotList);
-            if (combinationItemAddList[index].CheckCombination(ref refChosenItemSlotList))
-            {
-                int combinationNumber = _combinationDataList.Count;
-                _combinationDataList.Add(combinationItemAddList[index]);
-                _countSequence.ChainCallback(() =>
-                {
-                    GameManager.Instance.UIManager.BagMenu.CombinationList[combinationNumber].Setup(combinationItemAddList[index]);
-                    AudioManager.PlaySound(AudioManager.Instance.Combination);
-                    CameraManager.Instance.SimpleShake();
-                    GameManager.Instance.UIManager.TextPopperManager_Info.PopText($"<wave amp=2>{combinationItemAddList[index].Data.Name}", Vector3.up, Color.black);
-                });
-                _countSequence.ChainDelay(.2f);
-                for (int j = 0; j < refChosenItemSlotList.Count; j++)
-                {
-                    Item_ScoreCalculation bagSlot = refChosenItemSlotList[j];
-                    _countSequence.ChainDelay(.5f);
-                    _countSequence.ChainCallback(() =>
-                    {
-                        int addBonus = combinationItemAddList[index].Bonus;
-                        bagSlot.CurrentScore += addBonus;
-                        CameraManager.Instance.SimpleShake();
-                        bagSlot.SetPriceTextNumber(bagSlot.CurrentScore - addBonus, bagSlot.CurrentScore);
-                        bagSlot.CountBaseScore();
-                        GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + addBonus, bagSlot.transform.position, _addColor, UI_TextPopper.AnimSpeed.Quick);
-                        AudioManager.PlaySound(AudioManager.Instance.ScoreAdd);
-                    });
-                }
-                _countSequence.ChainDelay(1f);
-            }
-        }
-
-        // calculate all multiplier per item combinations
-        List<CombinationData> combinationItemMultList = combinationList.FindAll(x => x.Effect == CombinationData.CombinationEffect.ItemMultiplication);
-        for (int i = 0; i < combinationItemMultList.Count; i++)
-        {
-            int index = i;
-            List<Item_ScoreCalculation> refChosenItemSlotList = new(chosenItemSlotList);
-            if (combinationItemMultList[index].CheckCombination(ref refChosenItemSlotList))
-            {
-                int combinationNumber = _combinationDataList.Count;
-                _combinationDataList.Add(combinationItemMultList[index]);
-                _countSequence.ChainCallback(() =>
-                {
-                    GameManager.Instance.UIManager.BagMenu.CombinationList[combinationNumber].Setup(combinationItemMultList[index]);
-                    AudioManager.PlaySound(AudioManager.Instance.Combination);
-                    CameraManager.Instance.SimpleShake();
-                    GameManager.Instance.UIManager.TextPopperManager_Info.PopText($"<wave amp=2>{combinationItemMultList[index].Data.Name}", Vector3.up, Color.black);
-                });
-                _countSequence.ChainDelay(.2f);
-                for (int j = 0; j < refChosenItemSlotList.Count; j++)
-                {
-                    Item_ScoreCalculation item = refChosenItemSlotList[j];
-                    _countSequence.ChainDelay(.5f);
-                    _countSequence.ChainCallback(() =>
-                    {
-                        int multBonus = combinationItemMultList[index].Bonus;
-                        item.CurrentScore *= multBonus;
-                        if (item.CurrentScore <= 0) AudioManager.PlaySound(AudioManager.Instance.ScoreFail);
-                        else AudioManager.PlaySound(AudioManager.Instance.ScoreMultiply);
-                        CameraManager.Instance.SimpleShake();
-                        item.SetPriceTextNumber(item.CurrentScore / multBonus, item.CurrentScore);
-                        item.CountBaseScore();
-                        GameManager.Instance.UIManager.TextPopperManager_Number.PopText("x" + multBonus, item.transform.position, _multiplyColor, UI_TextPopper.AnimSpeed.Quick);
-                    });
-                }
-                _countSequence.ChainDelay(1f);
-            }
-        }
+        return null;
     }
 
-    public void CountItemBonus()
+    public void CheckItemBonus(Item_ScoreCalculation item)
     {
         List<Item_ScoreCalculation> chosenItemSlotList = GetChosenItemList();
         List<BonusData> runBonusList = SaveManager.Instance.CurrentRunBonusList;
 
         // calculate all addition to item score
-        List<BonusData> bonusItemAddList = runBonusList.FindAll(x => x.Effect == BonusEffect.ItemAddition);
+        List<BonusData> bonusItemAddList = runBonusList.FindAll(x => x.Effect == BonusEffect.ItemAddition || x.Effect == BonusEffect.ItemMultiplication); 
         for (int i = 0; i < bonusItemAddList.Count; i++)
         {
             int index = i;
             List<Item_ScoreCalculation> refChosenItemSlotList = new(chosenItemSlotList);
-            if (bonusItemAddList[index].CheckBonus(ref refChosenItemSlotList))
+            if (bonusItemAddList[index].CheckBonus(ref refChosenItemSlotList) && refChosenItemSlotList.Contains(item))
             {
+                _countSequence.ChainDelay(.5f);
                 _countSequence.ChainCallback(() =>
                 {
+                    BonusBehavior bonus = BonusHandManager.Instance.GetBonus(bonusItemAddList[index].Name);
                     HighlightBonus(bonusItemAddList[index].Name);
-                    //_shakePlayer.PlayFeedbacks();
-                });
-                _countSequence.ChainDelay(.2f);
-                for (int j = 0; j < refChosenItemSlotList.Count; j++)
-                {
-                    Item_ScoreCalculation item = refChosenItemSlotList[j];
-                    _countSequence.ChainDelay(.5f);
-                    _countSequence.ChainCallback(() =>
+                    int bonusValue = Mathf.RoundToInt(bonusItemAddList[index].BonusValue);
+                    if (bonusItemAddList[index].Effect == BonusEffect.ItemAddition)
                     {
-                        int addBonus = Mathf.RoundToInt(bonusItemAddList[index].BonusValue);
-                        item.CurrentScore += addBonus;
-                        CameraManager.Instance.SimpleShake();
-                        item.SetPriceTextNumber(item.CurrentScore - addBonus, item.CurrentScore);
-                        item.CountBaseScore();
-                        GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + addBonus, item.transform.position, _addColor, UI_TextPopper.AnimSpeed.Quick);
-                        AudioManager.PlaySound(AudioManager.Instance.ScoreAdd);
-                    });
-                }
-                _countSequence.ChainDelay(1f);
-            }
-        }
-
-        // calculate all multiplication to item score
-        List<BonusData> bonusItemMultList = runBonusList.FindAll(x => x.Effect == BonusEffect.ItemMultiplication);
-        for (int i = 0; i < bonusItemMultList.Count; i++)
-        {
-            int index = i;
-            List<Item_ScoreCalculation> refChosenItemSlotList = new(chosenItemSlotList);
-            if (bonusItemMultList[index].CheckBonus(ref refChosenItemSlotList))
-            {
-                _countSequence.ChainCallback(() =>
-                {
-                    HighlightBonus(bonusItemMultList[index].Name);
-                    //_shakePlayer.PlayFeedbacks();
-                });
-                _countSequence.ChainDelay(.2f);
-                for (int j = 0; j < refChosenItemSlotList.Count; j++)
-                {
-                    Item_ScoreCalculation item = refChosenItemSlotList[j];
-                    _countSequence.ChainDelay(.5f);
-                    _countSequence.ChainCallback(() =>
+                        _baseScore += bonusValue;
+                        GameManager.Instance.UIManager.BagMenu.AddScoreText.SetTextValueNumber(Mathf.RoundToInt(_baseScore - bonusValue), (int)_baseScore, .6f);
+                        GameManager.Instance.UIManager.BagMenu.AddScoreText.ScaleAnim(2f, .3f);
+                    }
+                    else
                     {
-                        float multBonus = bonusItemMultList[index].BonusValue;
-                        int formerScore = item.CurrentScore;
-                        item.CurrentScore = Mathf.RoundToInt(multBonus * formerScore);
-                        if (item.CurrentScore <= 0) AudioManager.PlaySound(AudioManager.Instance.ScoreFail);
-                        else AudioManager.PlaySound(AudioManager.Instance.ScoreMultiply);
-                        item.SetPriceTextNumber(item.CurrentScore - formerScore, item.CurrentScore);
-                        item.CountBaseScore();
-                        CameraManager.Instance.SimpleShake();
-                        GameManager.Instance.UIManager.TextPopperManager_Number.PopText("x" + multBonus, item.transform.position, _multiplyColor, UI_TextPopper.AnimSpeed.Quick);
-                    });
-                }
-                _countSequence.ChainDelay(1f);
-            }
-        }
-    }
-
-    public void CountTotalScoreBonus()
-    {
-        List<Item_ScoreCalculation> chosenItemSlotList = GetChosenItemList();
-        List<BonusData> runBonusList = SaveManager.Instance.CurrentRunBonusList;
-
-        // calculate all addition to total score
-        List<BonusData> bonusTotalAddList = runBonusList.FindAll(x => x.Effect == BonusEffect.TotalAddition);
-        for (int i = 0; i < bonusTotalAddList.Count; i++)
-        {
-            int index = i;
-            List<Item_ScoreCalculation> refChosenItemSlotList = new(chosenItemSlotList);
-            if (bonusTotalAddList[index].CheckBonus(ref refChosenItemSlotList, _combinationDataList))
-            {
-                _countSequence.ChainCallback(() =>
-                {
-                    HighlightBonus(bonusTotalAddList[index].Name);
+                        _multiplierScore += bonusValue;
+                        GameManager.Instance.UIManager.BagMenu.MultiplyScoreText.SetTextValueNumber(Mathf.RoundToInt(_multiplierScore - bonusValue), (int)_multiplierScore, .6f);
+                        GameManager.Instance.UIManager.BagMenu.MultiplyScoreText.ScaleAnim(2f, .3f);
+                    }
                     CameraManager.Instance.SimpleShake();
+                    Color color = GameDirector.GetBonusEffectColor(bonusItemAddList[index].Effect);
+                    GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + bonusValue, bonus.InfoSpawnPoint.position, color, UI_TextPopper.AnimSpeed.Quick);
+                    AudioManager.PlaySound(AudioManager.Instance.ScoreAdd);
                 });
-                _countSequence.ChainDelay(.7f);
-                _countSequence.ChainCallback(() =>
-                {
-                    int addBonus = Mathf.RoundToInt(bonusTotalAddList[index].BonusValue);
-                    CameraManager.Instance.SimpleShake();
-                    GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + addBonus, GameManager.Instance.UIManager.BagMenu.RoundScoreText.transform.position, _addColor, UI_TextPopper.AnimSpeed.Quick);
-                    _roundScore += addBonus;
-                    GameManager.Instance.UIManager.BagMenu.RoundScoreText.SetTextValueNumber(_roundScore - addBonus, _roundScore, .4f);
-                });
-                _countSequence.ChainDelay(1f);
-            }
-        }
-
-        // calculate all addition per item combinations
-        List<BonusData> bonusTotalMultList = runBonusList.FindAll(x => x.Effect == BonusEffect.TotalMultiplication);
-        for (int i = 0; i < bonusTotalMultList.Count; i++)
-        {
-            int index = i;
-            List<Item_ScoreCalculation> refChosenItemSlotList = new(chosenItemSlotList);
-            if (bonusTotalMultList[index].CheckBonus(ref refChosenItemSlotList, _combinationDataList))
-            {
-                _countSequence.ChainCallback(() =>
-                {
-                    HighlightBonus(bonusTotalMultList[index].Name);
-                    CameraManager.Instance.SimpleShake();
-                });
-                _countSequence.ChainDelay(.7f);
-                _countSequence.ChainCallback(() =>
-                {
-                    float multBonus = bonusTotalMultList[index].BonusValue;
-                    CameraManager.Instance.SimpleShake();
-                    GameManager.Instance.UIManager.TextPopperManager_Number.PopText("x" + multBonus, GameManager.Instance.UIManager.BagMenu.RoundScoreText.transform.position, _multiplyColor, UI_TextPopper.AnimSpeed.Quick);
-                    int formerScore = _roundScore;
-                    _roundScore = Mathf.RoundToInt(multBonus * formerScore);
-                    GameManager.Instance.UIManager.BagMenu.RoundScoreText.SetTextValueNumber(_roundScore - formerScore, _roundScore, .4f);
-                });
-                _countSequence.ChainDelay(1f);
             }
         }
     }
@@ -588,6 +385,25 @@ public class ScoreCalculationManager : MonoBehaviour
             float totalSpace = _itemSpace * (number - 1) + _itemSize * number;
             bonusBehavior.transform.localPosition = new Vector3((i * _itemSpace) + (i * _itemSize + _itemSize / 2) - totalSpace / 2, 0);
             _itemList.Add(bonusBehavior);
+        }
+    }
+
+    [Button]
+    public void DebugShowOrHide()
+    {
+        if (_sortingGroup.sortingLayerName != "ScoreCalculation")
+        {
+            _sortingGroup.sortingLayerName = "ScoreCalculation";
+            transform.localPosition = new Vector3(transform.localPosition.x, 0, transform.localPosition.z);
+            FindFirstObjectByType<UI_ScoreCalculation>(FindObjectsInactive.Include).gameObject.SetActive(true);
+            FindFirstObjectByType<UIManager>().HUD_Game.gameObject.SetActive(false);
+        }
+        else
+        {
+            transform.localPosition = new Vector3(transform.localPosition.x, 10.8f, transform.localPosition.z);
+            _sortingGroup.sortingLayerName = "Background";
+            FindFirstObjectByType<UI_ScoreCalculation>(FindObjectsInactive.Include).gameObject.SetActive(false);
+            FindFirstObjectByType<UIManager>().HUD_Game.gameObject.SetActive(true);
         }
     }
 #endif

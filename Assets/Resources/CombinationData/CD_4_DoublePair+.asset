@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 58e93cc9fb563254ab12bbc35c605a96, type: 3}
-  m_Name: CD_DoublePair
+  m_Name: CD_4_DoublePair+
   m_EditorClassIdentifier: Assembly-CSharp::CD_DoublePair
   Data:
-    Name: Double pair
+    Name: Double pair +
     State: 0
     NumberUsed: 0
   Description: 'Double pair
 
 '
   Effect: 0
-  Bonus: 3
-  Priority: 3
-  _identical: 0
+  Priority: 4
+  BaseScore: 50
+  MultiplierScore: 3
+  _identical: 1

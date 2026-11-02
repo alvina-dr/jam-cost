@@ -8,6 +8,9 @@ public class UIManager : MonoBehaviour
 
     public UI_TextValue Timer;
     public UI_TextValue DiscardRemaining;
+    public UI_TextValue CombinationName;
+    public UI_TextValue CombinationBaseScore;
+    public UI_TextValue CombinationMultiplierScore;
 
     [Header("Game Over UI")]
     public UI_GameOver GameLost;

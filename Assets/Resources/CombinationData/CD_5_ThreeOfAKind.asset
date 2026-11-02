@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0fd2a1eaf3ba50a4eb997369413ef742, type: 3}
-  m_Name: CD_Pair
+  m_Name: CD_5_ThreeOfAKind
   m_EditorClassIdentifier: Assembly-CSharp::CD_SameIdentity
   Data:
-    Name: Pair
+    Name: Three of a Kind
     State: 0
     NumberUsed: 0
-  Description: If <b>2</b> items are the same, <color=red>x2</color> for each similar
+  Description: If <b>3</b> items are the same, <color=red>x2</color> for each similar
     item.
   Effect: 0
-  Bonus: 2
-  Priority: 0
-  _identicalTargetNumber: 2
+  Priority: 5
+  BaseScore: 50
+  MultiplierScore: 4
+  _identicalTargetNumber: 3

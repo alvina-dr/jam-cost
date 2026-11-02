@@ -21,6 +21,11 @@ public class GameDirector : MonoBehaviour
 
     public List<RarityWeight> RarityWeight = new();
 
+
+    [Header("Colors")]
+    public Color AddColor;
+    public Color MultiplyColor;
+
     private void Start()
     {
         
@@ -46,6 +51,21 @@ public class GameDirector : MonoBehaviour
         }
 
         return Rarity.Common;
+    }
+
+    public static Color GetBonusEffectColor(BonusEffect bonusEffect)
+    {
+        switch (bonusEffect)
+        {
+            case BonusEffect.ItemAddition:
+            case BonusEffect.TotalAddition:
+                return Instance.AddColor;
+            case BonusEffect.ItemMultiplication:
+            case BonusEffect.TotalMultiplication:
+                return Instance.MultiplyColor;
+        }
+
+        return Instance.AddColor;
     }
 }
 

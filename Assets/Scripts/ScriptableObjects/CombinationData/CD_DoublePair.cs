@@ -6,31 +6,39 @@ public class CD_DoublePair : CombinationData
 {
     [SerializeField] private bool _identical;
 
-    public override bool CheckCombination(ref List<Item_ScoreCalculation> itemCalculationList)
+    public override bool CheckCombination(List<ItemData> itemDataList, ref List<Item_ScoreCalculation> itemScoreCalculationList)
     {
-        List<Item_ScoreCalculation> itemList = new(itemCalculationList);
-        List<Item_ScoreCalculation> pairItemList = new();
+        List<int> validIndexList = new();
 
-        for (int i = 0; i < itemList.Count; i++)
+        for (int i = 0; i < itemDataList.Count; i++)
         {
-            if (pairItemList.Contains(itemList[i])) continue;
-            List<Item_ScoreCalculation> pairList = itemList.FindAll(x => x.ItemInstance.Data.Save.Identity == itemList[i].ItemInstance.Data.Save.Identity);
-            if (_identical) pairList = itemList.FindAll(x => x.ItemInstance.Data.Save.CompleteName == itemList[i].ItemInstance.Data.Save.CompleteName);
-
-            if (pairList.Count == 2)
+            if (!validIndexList.Contains(i))
             {
-                for (int j = 0; j < pairList. Count; j++)
+                List<ItemData> pairList = itemDataList.FindAll(x => x.Save.Identity == itemDataList[i].Save.Identity);
+                if (_identical) pairList = new(itemDataList.FindAll(x => x.Save.CompleteName == itemDataList[i].Save.CompleteName));
+
+                if (pairList.Count == 2)
                 {
-                    pairItemList.Add(pairList[j]);
+                    for (int j = 0; j < itemDataList.Count; j++)
+                    {
+                        if ((_identical && itemDataList[j] == pairList[0]) || (!_identical && itemDataList[j].Save.Identity == pairList[0].Save.Identity))
+                        {
+                            validIndexList.Add(j);
+                        }
+                    }
+
                 }
             }
         }
 
-        if (pairItemList.Count / 2.0f == 2.0f)
+        if ((float) validIndexList.Count / 2.0f == 2.0f)
         {
-            itemCalculationList = pairItemList;
-            DiscoverCombination();
-            Data.NumberUsed++;
+            if (itemScoreCalculationList.Count > 0)
+            {
+                itemScoreCalculationList = FilterListByIndex(validIndexList, itemScoreCalculationList);
+                DiscoverCombination();
+                Data.NumberUsed++;
+            }
             return true;
         }
         else

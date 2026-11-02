@@ -6,13 +6,13 @@ public class CD_ItemList : CombinationData
 {
     [SerializeField] private List<ItemData> _requiredItemList = new();
 
-    public override bool CheckCombination(ref List<Item_ScoreCalculation> itemDataListRef)
+    public override bool CheckCombination(List<ItemData> itemDataList, ref List<Item_ScoreCalculation> itemScoreCalculationList)
     {
-        List<Item_ScoreCalculation> itemDataList = new List<Item_ScoreCalculation>(itemDataListRef);
+        List<Item_ScoreCalculation> itemList = new List<Item_ScoreCalculation>(itemScoreCalculationList);
         List<ItemData> requiredItemList = ItemDirector.Instance.GetInstantiatedItemList(_requiredItemList);
         for (int i = requiredItemList.Count - 1; i >= 0; i--)
         {
-            Item_ScoreCalculation item = itemDataList.Find(x => x.ItemInstance.Data.Save.Name == requiredItemList[i].Save.Name);
+            Item_ScoreCalculation item = itemList.Find(x => x.ItemInstance.Data.Save.Name == requiredItemList[i].Save.Name);
             
             if (item != null)
             {
@@ -21,7 +21,7 @@ public class CD_ItemList : CombinationData
                 if (itemData != null)
                 {
                     requiredItemList.Remove(itemData);
-                    itemDataList.Remove(item);
+                    itemList.Remove(item);
                 }
             }
         }

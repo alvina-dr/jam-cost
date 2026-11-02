@@ -9,16 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89bfc4f049e9512418ef9a2db3f72f51, type: 3}
-  m_Name: CD_Pair+
+  m_Script: {fileID: 11500000, guid: 24f1e6f7bc59c4349a2008210b92647a, type: 3}
+  m_Name: CD_2_Flush
   m_EditorClassIdentifier: 
   Data:
-    Name: Pair+
+    Name: Flush
     State: 0
     NumberUsed: 0
-  Description: If <b>2</b> items are identical, <color=red>x2</color> for each identical
-    item.
-  Effect: 1
-  Bonus: 2
-  Priority: 1
-  _identicalTargetNumber: 2
+  Description: If the depot contains <b>4</b> or more items from the same family,
+    <b><color=blue>+10</color></b> for each item from this family.
+  Effect: 0
+  Priority: 2
+  BaseScore: 30
+  MultiplierScore: 2

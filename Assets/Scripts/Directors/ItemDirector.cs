@@ -73,4 +73,26 @@ public class ItemDirector : MonoBehaviour
         }
         return instantiatedItemList;
     }
+
+    public static List<ItemData> GetItemDataList(List<ItemBehavior> itemScoreCalculationList)
+    {
+        List<ItemData> itemDataList = new();
+        for (int i = 0; i < itemScoreCalculationList.Count; i++)
+        {
+            itemDataList.Add(itemScoreCalculationList[i].Item.Data);
+        }
+
+        return itemDataList;
+    }
+
+    public static List<ItemData> GetItemDataList(List<Item_ScoreCalculation> itemScoreCalculationList)
+    {
+        List<ItemData> itemDataList = new();
+        for (int i = 0; i < itemScoreCalculationList.Count; i++)
+        {
+            itemDataList.Add(itemScoreCalculationList[i].ItemInstance.Data);
+        }
+
+        return itemDataList;
+    }
 }

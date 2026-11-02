@@ -2,7 +2,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using PrimeTween;
-using System.Collections;
 
 public class UI_Combination : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -14,18 +13,11 @@ public class UI_Combination : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         gameObject.SetActive(true);
         _combinationData = combinationData;
         _combinationName.SetText(_combinationData.Data.Name);
-        StartCoroutine(Rebuild());
         Sequence showSequence = Sequence.Create();
         showSequence.Chain(Tween.Scale(transform, 1.3f, .05f));
         showSequence.Chain(Tween.Scale(transform, 1, .1f));
     }
 
-    IEnumerator Rebuild()
-    {
-        _combinationName.gameObject.SetActive(false);
-        yield return new WaitForSecondsRealtime(.05f);
-        _combinationName.gameObject.SetActive(true);
-    }
 
     public void Reset()
     {

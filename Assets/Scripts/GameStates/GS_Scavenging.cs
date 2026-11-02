@@ -106,6 +106,8 @@ public class GS_Scavenging : GameState
 
         SelectedItemList.Add(itemBehavior);
         UpdateItemNumberText();
+        CombinationData combination = ScoreCalculationManager.Instance.CheckCombination(ItemDirector.GetItemDataList(SelectedItemList));
+        UpdateCombinationText(combination);
         return true;
     }
 
@@ -115,6 +117,8 @@ public class GS_Scavenging : GameState
 
         SelectedItemList.Remove(itemBehavior);
         UpdateItemNumberText();
+        CombinationData combination = ScoreCalculationManager.Instance.CheckCombination(ItemDirector.GetItemDataList(SelectedItemList));
+        UpdateCombinationText(combination);
     }
 
     public List<ItemInstance> GetItemInstanceList()
@@ -127,7 +131,9 @@ public class GS_Scavenging : GameState
         return itemDataList;
     }
 
-    public void CleanItemDataList()
+
+
+    public void CleanSelectedItemList()
     {
         for (int i = SelectedItemList.Count - 1; i >= 0; i--)
         {
@@ -150,5 +156,19 @@ public class GS_Scavenging : GameState
         }
 
         _itemNumberTextValue.SetTextValue(SelectedItemList.Count + "/" + GameManager.Instance.GetDepotSize());
+    }
+
+    public void UpdateCombinationText(CombinationData combinationData)
+    {
+        if (combinationData == null)
+        {
+            GameManager.Instance.UIManager.CombinationName.SetTextValue(string.Empty);
+            GameManager.Instance.UIManager.CombinationBaseScore.SetTextValue($"{0}");
+            GameManager.Instance.UIManager.CombinationMultiplierScore.SetTextValue($"{0}");
+            return;
+        }
+        GameManager.Instance.UIManager.CombinationName.SetTextValue(combinationData.Data.Name);
+        GameManager.Instance.UIManager.CombinationBaseScore.SetTextValue($"{combinationData.BaseScore}");
+        GameManager.Instance.UIManager.CombinationMultiplierScore.SetTextValue($"{combinationData.MultiplierScore}");
     }
 }

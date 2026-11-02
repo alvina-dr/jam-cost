@@ -12,6 +12,7 @@ public class Item_ScoreCalculation : MonoBehaviour
     [SerializeField] private ItemInstance _itemInstance;
     [SerializeField] private ParticleSystem _countItemParticle;
     [SerializeField] private SimpleAnimation _highlightAnimation;
+    public Transform InfoSpawnPoint;
 
     [Header("Price")]
     [SerializeField] private UI_TextValue _priceText;

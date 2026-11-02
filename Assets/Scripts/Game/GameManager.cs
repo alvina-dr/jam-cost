@@ -82,6 +82,7 @@ public class GameManager : MonoBehaviour
 
         SetCurrentScore(0, false);
         UpdateCrateItemCount();
+        ScavengingState.UpdateCombinationText(null);
         UIManager.DiscardRemaining.SetTextValue($"{CurrentDiscard}", false);
 
         ItemManager.ResetDumpster();

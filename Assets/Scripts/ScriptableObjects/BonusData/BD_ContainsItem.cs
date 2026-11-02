@@ -11,9 +11,9 @@ public class BD_ContainsItem : BonusData
         base.GetBonus();
     }
 
-    public override bool CheckBonus(ref List<Item_ScoreCalculation> itemDataListRef, List<CombinationData> combinationDataList = null)
+    public override bool CheckBonus(ref List<Item_ScoreCalculation> itemScoreCalculationList, CombinationData combinationData = null)
     {
-        List<Item_ScoreCalculation> itemDataList = new List<Item_ScoreCalculation>(itemDataListRef);
+        List<Item_ScoreCalculation> itemDataList = new List<Item_ScoreCalculation>(itemScoreCalculationList);
         List<ItemData> requiredItemList = new(_containsItemDataList);
         for (int i = 0; i < itemDataList.Count; i++)
         {
