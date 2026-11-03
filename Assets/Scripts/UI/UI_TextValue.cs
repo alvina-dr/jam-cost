@@ -55,10 +55,12 @@ public class UI_TextValue : MonoBehaviour
             int addNumber = difference < 0 ? -1 : 1;
             difference = Mathf.Abs(difference);
 
-            float numberDuration = animationDuration / (float) difference;
-            for (int i = 0; i < difference; i++)
+            int stepNumber = Mathf.Min(difference, 30);
+
+            float numberDuration = animationDuration / (float) stepNumber;
+            for (int i = 1; i <= stepNumber; i++)
             {
-                int number = oldNumber + addNumber * (i + 1);
+                int number = oldNumber + Mathf.RoundToInt(addNumber * i * (float) difference / (float) stepNumber);
                 int index = i;
                 if (number == newNumber)
                 {

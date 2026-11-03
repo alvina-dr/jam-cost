@@ -3471,6 +3471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_TextValue
   _textUI: {fileID: 1256333730}
+  _numberUpSound: {fileID: 0}
 --- !u!1 &1260939729
 GameObject:
   m_ObjectHideFlags: 0
