@@ -68,7 +68,6 @@ public enum BonusEffect
 {
     Item = 0,
     Final = 1,
-    TotalMultiplication = 2,
     Other = 3
 }
 

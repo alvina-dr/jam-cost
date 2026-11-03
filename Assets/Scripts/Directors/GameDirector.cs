@@ -52,20 +52,6 @@ public class GameDirector : MonoBehaviour
 
         return Rarity.Common;
     }
-
-    public static Color GetBonusEffectColor(BonusEffect bonusEffect)
-    {
-        switch (bonusEffect)
-        {
-            case BonusEffect.Item:
-            case BonusEffect.Final:
-                return Instance.AddColor;
-            case BonusEffect.TotalMultiplication:
-                return Instance.MultiplyColor;
-        }
-
-        return Instance.AddColor;
-    }
 }
 
 [System.Serializable]
