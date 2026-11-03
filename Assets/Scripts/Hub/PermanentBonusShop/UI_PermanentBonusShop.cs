@@ -81,7 +81,7 @@ public class UI_PermanentBonusShop : UI_Menu
         _bonusIcon.gameObject.SetActive(true);
         _bonusIcon.sprite = bonusData.Icon;
         _bonusName.text = bonusData.Name;
-        _bonusDescription.text = bonusData.Description;
+        _bonusDescription.text = bonusData.GetDescription();
 
         _ticketButtonText.text = $"Buy ({bonusData.Price}<sprite name=MT>)";
 

@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "BD_BonusNumber", menuName = "Scriptable Objects/Bonus/BD_BonusNumber")]
 public class BD_BonusNumber : BonusData
 {
-    public override float BonusValue => base.BonusValue * SaveManager.Instance.CurrentRunBonusList.Count;
+    public override float Mult => base.Mult * SaveManager.Instance.CurrentRunBonusList.Count;
 
     public override bool CheckBonus(ref List<Item_ScoreCalculation> itemScoreCalculationList, CombinationData combinationData = null)
     {

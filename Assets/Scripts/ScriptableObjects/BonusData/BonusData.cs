@@ -15,8 +15,13 @@ public class BonusData : ScriptableObject
     public string Name;
     [TextArea] public string Description;
     public int Price;
-    public virtual float BonusValue => _bonusValue;
-    [SerializeField] private float _bonusValue;
+    [HorizontalGroup("Bonus")]
+    [BoxGroup("Bonus/ADD"), HideLabel] public float _points;
+    [BoxGroup("Bonus/MULT"), HideLabel] public float _mult;
+
+    public virtual float Points => _points;
+    public virtual float Mult => _mult;
+
     public Sprite Icon;
     public Color Color;
     [ShowIf("Durability", BonusDurability.Permanent)] public List<BonusData> UpgradeBonusList;
@@ -48,15 +53,23 @@ public class BonusData : ScriptableObject
     {
         return false;
     }
+
+    public virtual string GetDescription()
+    {
+        Description = Description.Replace("[_points]", _points.ToString());
+        Description = Description.Replace("[_mult]", _mult.ToString());
+        Description = Description.Replace("[Mult]", Mult.ToString());
+        Description = Description.Replace("[Points]", Points.ToString());
+        return Description;
+    }
 }
 
 public enum BonusEffect
 {
-    ItemAddition = 0,
-    ItemMultiplication = 1,
-    TotalAddition = 2,
-    TotalMultiplication = 3,
-    Other = 4
+    Item = 0,
+    Final = 1,
+    TotalMultiplication = 2,
+    Other = 3
 }
 
 public enum BonusDurability

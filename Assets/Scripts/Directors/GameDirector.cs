@@ -57,10 +57,9 @@ public class GameDirector : MonoBehaviour
     {
         switch (bonusEffect)
         {
-            case BonusEffect.ItemAddition:
-            case BonusEffect.TotalAddition:
+            case BonusEffect.Item:
+            case BonusEffect.Final:
                 return Instance.AddColor;
-            case BonusEffect.ItemMultiplication:
             case BonusEffect.TotalMultiplication:
                 return Instance.MultiplyColor;
         }

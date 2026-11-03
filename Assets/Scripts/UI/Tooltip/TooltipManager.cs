@@ -34,7 +34,7 @@ public class TooltipManager : MonoBehaviour
     {
         StringBuilder strBuilder = new StringBuilder();
         strBuilder.Append($"<b>{bonusData.Name}</b><br>");
-        strBuilder.Append($"{bonusData.Description}<br>");
+        strBuilder.Append($"{bonusData.GetDescription()}<br>");
         strBuilder.Append($"<b>{bonusData.Rarity}</b><br>");
         ShowTooltip(strBuilder.ToString(), position, offset);
     }

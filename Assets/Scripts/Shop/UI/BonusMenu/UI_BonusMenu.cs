@@ -81,7 +81,7 @@ public class UI_BonusMenu : UI_Menu
         _currentBonusData = bonusData;
         _currentBonusEntry = bonusEntry;
         _bonusName.text = _currentBonusData.Name;
-        _bonusDescription.text = _currentBonusData.Description;
+        _bonusDescription.text = _currentBonusData.GetDescription();
         _bonusPrice.text = $"Buy ({_currentBonusData.Price} <sprite name=PP>)";
     }
 

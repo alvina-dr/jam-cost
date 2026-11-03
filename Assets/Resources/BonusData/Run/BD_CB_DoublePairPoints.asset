@@ -10,19 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af464149b72050141933f9254bbb3185, type: 3}
-  m_Name: BD_CB_FamilyAdd
+  m_Name: BD_CB_DoublePairPoints
   m_EditorClassIdentifier: 
   IsAvailableInGame: 1
   Durability: 0
   Rarity: 0
   Category: 0
-  Effect: 2
+  Effect: 1
   Name: Small Car
-  Description: '<b><color=blue>+50</color></b> to the total score if the <b>Same
-    Family</b> combination was played. '
+  Description: <color=blue><b>+[_points]</b> Points</color> if the <b>Double Pair+</b>
+    combination was played.
   Price: 5
-  _bonusValue: 50
+  _points: 50
+  _mult: 0
   Icon: {fileID: 21300000, guid: 032794ec1982545468f9531e9ba97d83, type: 3}
   Color: {r: 0, g: 0, b: 0, a: 0}
   UpgradeBonusList: []
-  _combinationData: {fileID: 11400000, guid: e8b4dfd84e1c8be4c814c9072e2507b2, type: 2}
+  _combinationData: {fileID: 11400000, guid: e957121ca0d9b2b4e8a6848c6ca84fa9, type: 2}

@@ -303,36 +303,46 @@ public class ScoreCalculationManager : MonoBehaviour
         List<BonusData> runBonusList = SaveManager.Instance.CurrentRunBonusList;
 
         // calculate all addition to item score
-        List<BonusData> bonusItemAddList = runBonusList.FindAll(x => x.Effect == BonusEffect.ItemAddition || x.Effect == BonusEffect.ItemMultiplication); 
+        List<BonusData> bonusItemAddList = runBonusList.FindAll(x => x.Effect == BonusEffect.Item); 
         for (int i = 0; i < bonusItemAddList.Count; i++)
         {
             int index = i;
             List<Item_ScoreCalculation> refChosenItemSlotList = new(chosenItemSlotList);
             if (bonusItemAddList[index].CheckBonus(ref refChosenItemSlotList) && refChosenItemSlotList.Contains(item))
             {
-                _countSequence.ChainDelay(.5f);
-                _countSequence.ChainCallback(() =>
+                BonusBehavior bonus = BonusHandManager.Instance.GetBonus(bonusItemAddList[index].Name);
+
+                if (bonusItemAddList[index].Points > 0)
                 {
-                    BonusBehavior bonus = BonusHandManager.Instance.GetBonus(bonusItemAddList[index].Name);
-                    HighlightBonus(bonusItemAddList[index].Name);
-                    int bonusValue = Mathf.RoundToInt(bonusItemAddList[index].BonusValue);
-                    if (bonusItemAddList[index].Effect == BonusEffect.ItemAddition)
+                    _countSequence.ChainDelay(.5f);
+                    _countSequence.ChainCallback(() =>
                     {
+                        HighlightBonus(bonusItemAddList[index].Name);
+                        int bonusValue = Mathf.RoundToInt(bonusItemAddList[index].Points);
                         _baseScore += bonusValue;
                         GameManager.Instance.UIManager.BagMenu.AddScoreText.SetTextValueNumber(Mathf.RoundToInt(_baseScore - bonusValue), (int)_baseScore, .6f);
                         GameManager.Instance.UIManager.BagMenu.AddScoreText.ScaleAnim(2f, .3f);
-                    }
-                    else
+                        GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + bonusValue, bonus.InfoSpawnPoint.position, GameDirector.Instance.AddColor, UI_TextPopper.AnimSpeed.Quick);
+                        AudioManager.PlaySound(AudioManager.Instance.ScoreAdd);
+                        CameraManager.Instance.SimpleShake();
+                    });
+                }
+
+                if (bonusItemAddList[index].Mult > 0)
+                {
+                    _countSequence.ChainDelay(.5f);
+                    _countSequence.ChainCallback(() =>
                     {
+                        HighlightBonus(bonusItemAddList[index].Name);
+                        int bonusValue = Mathf.RoundToInt(bonusItemAddList[index].Mult);
                         _multiplierScore += bonusValue;
                         GameManager.Instance.UIManager.BagMenu.MultiplyScoreText.SetTextValueNumber(Mathf.RoundToInt(_multiplierScore - bonusValue), (int)_multiplierScore, .6f);
                         GameManager.Instance.UIManager.BagMenu.MultiplyScoreText.ScaleAnim(2f, .3f);
-                    }
-                    CameraManager.Instance.SimpleShake();
-                    Color color = GameDirector.GetBonusEffectColor(bonusItemAddList[index].Effect);
-                    GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + bonusValue, bonus.InfoSpawnPoint.position, color, UI_TextPopper.AnimSpeed.Quick);
-                    AudioManager.PlaySound(AudioManager.Instance.ScoreAdd);
-                });
+                        GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + bonusValue, bonus.InfoSpawnPoint.position, GameDirector.Instance.MultiplyColor, UI_TextPopper.AnimSpeed.Quick);
+                        AudioManager.PlaySound(AudioManager.Instance.ScoreMultiply);
+                        CameraManager.Instance.SimpleShake();
+                    });
+                }
             }
         }
     }

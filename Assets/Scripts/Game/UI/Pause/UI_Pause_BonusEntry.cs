@@ -16,7 +16,7 @@ public class UI_Pause_BonusEntry : MonoBehaviour, IPointerEnterHandler, IPointer
         _bonusData = bonusData;
         _bonusIcon.sprite = _bonusData.Icon;
         _bonusName.text = _bonusData.Name;
-        _bonusDescription.text = _bonusData.Description;
+        _bonusDescription.text = _bonusData.GetDescription();
     }
 
     public void ShowTooltip()
