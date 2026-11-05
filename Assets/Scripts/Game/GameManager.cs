@@ -51,6 +51,9 @@ public class GameManager : MonoBehaviour
     public int CurrentDiscard;
     public int FoundPP;
 
+    public CombinationData FirstCombinationPlayed;
+    public CombinationData PreviousCombinationPlayed;
+
     [Header("Over check")]
     public OverCheck DepotOverCheck;
     public OverCheck CrateOverCheck;

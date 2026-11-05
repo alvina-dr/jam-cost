@@ -51,7 +51,7 @@ public class ScoreCalculationManager : MonoBehaviour
 
     private float _baseScore;
     private float _multiplierScore;
-    private CombinationData _currentCombinationData;
+    public CombinationData CurrentCombinationData;
 
 
     public void Show()
@@ -78,12 +78,19 @@ public class ScoreCalculationManager : MonoBehaviour
         GameManager.Instance.ScavengingState.UpdateItemNumberText();
 
         List<Item_ScoreCalculation> chosenItemSlotList = GetChosenItemList();
-        _currentCombinationData = CheckCombination(ItemDirector.GetItemDataList(chosenItemSlotList));
-        if (_currentCombinationData != null)
+
+        if (CurrentCombinationData != null)
         {
-            _baseScore = _currentCombinationData.BaseScore;
-            _multiplierScore = _currentCombinationData.MultiplierScore;
-            GameManager.Instance.UIManager.BagMenu.CurrentCombinationInfo.Setup(_currentCombinationData);
+            GameManager.Instance.PreviousCombinationPlayed = CurrentCombinationData;
+            if (GameManager.Instance.FirstCombinationPlayed == null) GameManager.Instance.FirstCombinationPlayed = CurrentCombinationData;
+        }
+
+        CurrentCombinationData = CheckCombination(ItemDirector.GetItemDataList(chosenItemSlotList));
+        if (CurrentCombinationData != null)
+        {
+            _baseScore = CurrentCombinationData.BaseScore;
+            _multiplierScore = CurrentCombinationData.MultiplierScore;
+            GameManager.Instance.UIManager.BagMenu.CurrentCombinationInfo.Setup(CurrentCombinationData);
         }
 
         GameManager.Instance.UIManager.BagMenu.AddScoreText.SetTextValue($"{_baseScore}", false);
@@ -311,7 +318,7 @@ public class ScoreCalculationManager : MonoBehaviour
         {
             int index = i;
             List<Item_ScoreCalculation> refChosenItemSlotList = new(chosenItemSlotList);
-            if (bonusList[index].CheckBonus(ref refChosenItemSlotList, _currentCombinationData) && refChosenItemSlotList.Contains(item))
+            if (bonusList[index].CheckBonus(ref refChosenItemSlotList, CurrentCombinationData) && refChosenItemSlotList.Contains(item))
             {
                 BonusBehavior bonus = BonusHandManager.Instance.GetBonus(bonusList[index].Name);
 
@@ -371,7 +378,7 @@ public class ScoreCalculationManager : MonoBehaviour
             int index = i;
             List<Item_ScoreCalculation> refChosenItemSlotList = new(chosenItemSlotList);
 
-            if (bonusList[index].CheckBonus(ref refChosenItemSlotList, _currentCombinationData))
+            if (bonusList[index].CheckBonus(ref refChosenItemSlotList, CurrentCombinationData))
             {
                 BonusBehavior bonus = BonusHandManager.Instance.GetBonus(bonusList[index].Name);
 

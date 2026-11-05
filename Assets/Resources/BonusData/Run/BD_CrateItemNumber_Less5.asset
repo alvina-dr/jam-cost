@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee2a8f13f7e898445b65adb696f0779a, type: 3}
+  m_Name: BD_CrateItemNumber_Less5
+  m_EditorClassIdentifier: Assembly-CSharp::BD_CrateItemNumber
+  IsAvailableInGame: 1
+  Durability: 0
+  Rarity: 0
+  Category: 0
+  Effect: 0
+  Name: Shortage
+  Description: If there are less than [_itemNumber] items in the crate gives +[_mult]
+    Mult.
+  Price: 0
+  _points: 0
+  _mult: 8
+  Icon: {fileID: 21300000, guid: 611d7e29cf4af0b4faadee36059671bf, type: 3}
+  Color: {r: 0, g: 0, b: 0, a: 0}
+  UpgradeBonusList: []
+  _itemNumber: -5

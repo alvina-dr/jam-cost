@@ -234,8 +234,6 @@ MonoBehaviour:
   _confettiLeft: {fileID: 1256252515}
   _confettiRight: {fileID: 1359531669}
   _shakePlayer: {fileID: 0}
-  _addColor: {r: 0.14117648, g: 0.61960787, b: 1, a: 1}
-  _multiplyColor: {r: 0.96862745, g: 0.38431373, b: 0.14509805, a: 1}
 --- !u!210 &92255508
 SortingGroup:
   m_ObjectHideFlags: 0
