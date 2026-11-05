@@ -60,6 +60,11 @@ public class DataLoader : MonoBehaviour
         return PowerDataList.Find(x => x.PowerName == powerData.PowerName);
     }
 
+    public static CombinationData GetInstantiatedCombination(CombinationData combination)
+    {
+        return Instance.CombinationDataDictionary[combination.Data.Name];
+    }
+
     public ItemTagData GetRandomItemTagData()
     {
         return ItemTagDataDictionary.ElementAt(Random.Range(0, ItemTagDataDictionary.Count)).Value;

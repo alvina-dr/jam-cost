@@ -6,6 +6,6 @@ public class BD_IdenticalPreviousCombination : BonusData
 {
     public override bool CheckBonus(ref List<Item_ScoreCalculation> itemScoreCalculationList, CombinationData combinationData = null)
     {
-        return (GameManager.Instance.PreviousCombinationPlayed != null && GameManager.Instance.PreviousCombinationPlayed == ScoreCalculationManager.Instance.CurrentCombinationData);
+        return (GameManager.Instance.PreviousCombinationPlayed != null && GameManager.Instance.PreviousCombinationPlayed == combinationData);
     }
 }
