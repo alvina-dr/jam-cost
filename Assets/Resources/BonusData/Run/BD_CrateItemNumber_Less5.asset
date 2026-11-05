@@ -16,7 +16,7 @@ MonoBehaviour:
   Durability: 0
   Rarity: 0
   Category: 0
-  Effect: 0
+  Effect: 1
   Name: Shortage
   Description: If there are less than [_itemNumber] items in the crate gives +[_mult]
     Mult.

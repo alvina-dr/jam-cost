@@ -195,7 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _transitionSettings: {fileID: 11400000, guid: b0126e1e0c6c2a04895d564bd230dfb9, type: 2}
   CurrentMapNode: {fileID: 11400000, guid: cffc50a3e8ada694c92f6e77cad39c5c, type: 2}
-  CurrentReward: {fileID: 11400000, guid: d55eda5b154e82844a0a21907f387dd6, type: 2}
+  CurrentReward: {fileID: 11400000, guid: 28bc3aeda1ed705459d7eb79b1b5fca8, type: 2}
   _currentSave:
     LastSceneName: Hub
     YarnFloats:

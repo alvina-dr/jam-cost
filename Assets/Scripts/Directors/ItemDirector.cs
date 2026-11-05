@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using TMPEffects.SerializedCollections;
 using UnityEngine;
 
 public class ItemDirector : MonoBehaviour
@@ -21,7 +22,7 @@ public class ItemDirector : MonoBehaviour
     }
     #endregion
 
-    public Dictionary<string, ItemData> ItemDataDictionary = new();
+    [SerializedDictionary("Name", "BonusData")]  public SerializedDictionary<string, ItemData> ItemDataDictionary = new();
     public ItemBehavior PPPrefab;
 
     private void OnAwake()
