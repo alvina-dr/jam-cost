@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ID_Green_Cap
   m_EditorClassIdentifier: 
   Prefab: {fileID: 3971539782363818920, guid: 6657821e3a1f3f74aa79200765ed0164, type: 3}
-  Price: 10
+  Price: 9
   BonusCurrency: 0
   Icon: {fileID: 8130001073297634226, guid: 39b3f665e79e782499ad2f394c2f208d, type: 3}
   Save:

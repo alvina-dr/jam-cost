@@ -364,6 +364,21 @@ public class ScoreCalculationManager : MonoBehaviour
                         GameManager.Instance.UIManager.BagMenu.MultiplyScoreText.SetTextValueNumber(Mathf.RoundToInt(_multiplierScore - bonusValue), (int)_multiplierScore, .6f);
                     });
                 }
+
+                if (bonusList[index].PP > 0)
+                {
+                    int bonusValue = Mathf.RoundToInt(bonusList[index].PP);
+
+                    _countSequence.ChainDelay(.5f);
+                    _countSequence.ChainCallback(() =>
+                    {
+                        HighlightBonus(bonusList[index].Name);
+                        SaveManager.Instance.AddPP(bonusValue, bonus.transform.position);
+                        GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + bonusValue + "<sprite name=PP>", bonus.InfoSpawnPoint.position, GameDirector.Instance.MultiplyColor, UI_TextPopper.AnimSpeed.Quick);
+                        AudioManager.PlaySound(AudioManager.Instance.ScoreMultiply);
+                        CameraManager.Instance.SimpleShake();
+                    });
+                }
             }
         }
     }

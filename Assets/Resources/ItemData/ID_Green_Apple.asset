@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ID_Green_Apple
   m_EditorClassIdentifier: 
   Prefab: {fileID: 3971539782363818920, guid: 928054f433158b7448c7cd510f8f2f02, type: 3}
-  Price: 1
+  Price: 3
   BonusCurrency: 0
   Icon: {fileID: -8223222072347897769, guid: 83fd4d629dc912844a0c31edd335b651, type: 3}
   Save:

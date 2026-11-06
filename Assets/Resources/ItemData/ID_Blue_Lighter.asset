@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ID_Blue_Lighter
   m_EditorClassIdentifier: 
   Prefab: {fileID: 3971539782363818920, guid: c4fff2782c35940429e25e915b88056b, type: 3}
-  Price: 5
+  Price: 4
   BonusCurrency: 0
   Icon: {fileID: 2788480440432256691, guid: d71e1e55ac6ac114e943d90d689c68a9, type: 3}
   Save:

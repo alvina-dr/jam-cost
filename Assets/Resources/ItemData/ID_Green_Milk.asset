@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ID_Green_Milk
   m_EditorClassIdentifier: 
   Prefab: {fileID: 3971539782363818920, guid: 05c16e753cafd2c47b3c1ac313dddb06, type: 3}
-  Price: 7
+  Price: 8
   BonusCurrency: 0
   Icon: {fileID: 5746920994731973347, guid: 4cb7e397ba8467e46967500073c9658c, type: 3}
   Save:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ID_Blue_Spray
   m_EditorClassIdentifier: 
   Prefab: {fileID: 3971539782363818920, guid: f406b668fe2d56a489dcd147d61078ce, type: 3}
-  Price: 7
+  Price: 6
   BonusCurrency: 0
   Icon: {fileID: -6254503827384903911, guid: 6555cce89fd85fd40bd7b44882e3490a, type: 3}
   Save:

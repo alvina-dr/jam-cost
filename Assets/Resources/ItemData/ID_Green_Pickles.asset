@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ID_Green_Pickles
   m_EditorClassIdentifier: 
   Prefab: {fileID: 3971539782363818920, guid: 51def548707077645b90819b34664c27, type: 3}
-  Price: 7
+  Price: 5
   BonusCurrency: 0
   Icon: {fileID: -3395771456510406679, guid: feb32764896ff6e4b915e3920d769237, type: 3}
   Save:

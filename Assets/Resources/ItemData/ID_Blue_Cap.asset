@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ID_Blue_Cap
   m_EditorClassIdentifier: 
   Prefab: {fileID: 3971539782363818920, guid: 6657821e3a1f3f74aa79200765ed0164, type: 3}
-  Price: 10
+  Price: 9
   BonusCurrency: 0
   Icon: {fileID: 21300000, guid: 84dc2050ed18b2a4aacd9ea2dbf3d45e, type: 3}
   Save:

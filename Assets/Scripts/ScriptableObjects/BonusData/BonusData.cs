@@ -18,9 +18,11 @@ public class BonusData : ScriptableObject
     [HorizontalGroup("Bonus")]
     [BoxGroup("Bonus/ADD"), HideLabel] public float _points;
     [BoxGroup("Bonus/MULT"), HideLabel] public float _mult;
+    [BoxGroup("Bonus/PP"), HideLabel] public float _pp;
 
     public virtual float Points => _points;
     public virtual float Mult => _mult;
+    public virtual float PP => _pp;
 
     public Sprite Icon;
     public Color Color;
@@ -58,8 +60,10 @@ public class BonusData : ScriptableObject
     {
         Description = Description.Replace("[_points]", _points.ToString());
         Description = Description.Replace("[_mult]", _mult.ToString());
+        Description = Description.Replace("[_pp]", _pp.ToString());
         Description = Description.Replace("[Mult]", Mult.ToString());
         Description = Description.Replace("[Points]", Points.ToString());
+        Description = Description.Replace("[PP]", PP.ToString());
         return Description;
     }
 }
