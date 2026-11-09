@@ -30,6 +30,7 @@ public class CB_Bonus : ClickableBehavior
         hideSprite.Chain(Tween.Scale(_spriteRenderer.transform, _maxScale, .2f));
         hideSprite.Chain(Tween.Scale(_spriteRenderer.transform, 0, .1f));
         hideSprite.ChainCallback(() => BonusHandManager.Instance.AddBonus(BonusData));
+        GameManager.Instance.RewardState.FinishCollect();
     }
 
     protected override void OnMouseExit()

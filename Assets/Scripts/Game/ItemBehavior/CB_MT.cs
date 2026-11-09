@@ -1,5 +1,4 @@
 using DG.Tweening;
-using UnityEngine;
 
 public class CB_MT : ClickableBehavior
 {
@@ -13,5 +12,7 @@ public class CB_MT : ClickableBehavior
         hideSprite.Append(_spriteRenderer.transform.DOScale(_maxScale, .2f));
         hideSprite.Append(_spriteRenderer.transform.DOScale(0, .1f));
         hideSprite.Play();
+
+        if (GameManager.Instance.ItemManager.ItemList.Count == 0) GameManager.Instance.RewardState.FinishCollect();
     }
 }

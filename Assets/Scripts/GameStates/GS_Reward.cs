@@ -32,9 +32,6 @@ public class GS_Reward : GameState
 
             //BonusHandManager.Instance.Show();
         }
-
-
-        GameManager.Instance.UIManager.RewardMenu.OpenMenu();
     }
 
     public override void UpdateState()
@@ -47,24 +44,9 @@ public class GS_Reward : GameState
         base.ExitState(); 
     }
 
-    public void CollectAndNextNode()
+    public void FinishCollect()
     {
-        if (_whileTransition) return;
-
-        if (_bonusItemBehavior.Count > 0) return;
-
-        _whileTransition = true;
-        for (int i = GameManager.Instance.ItemManager.ItemList.Count - 1; i >= 0; i--)
-        {
-            ItemBehavior itemBehavior = GameManager.Instance.ItemManager.ItemList[i];
-            if (itemBehavior is ClickableBehavior)
-            {
-                ClickableBehavior clickableBehavior = (ClickableBehavior) itemBehavior;
-                if (clickableBehavior is not CB_Bonus) clickableBehavior.Collect();
-            }
-        }
-
-        DOVirtual.DelayedCall(1.5f, () =>
+        DOVirtual.DelayedCall(.7f, () =>
         {
             SaveManager.Instance.NextNode();
         });
