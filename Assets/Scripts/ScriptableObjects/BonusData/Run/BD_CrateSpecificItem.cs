@@ -19,8 +19,6 @@ public class BD_CrateSpecificItem : BonusData
             }
         }
 
-        Debug.Log("contains = " + contains);
-
         return (contains == _checkContains);
     }
 }

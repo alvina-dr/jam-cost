@@ -80,9 +80,10 @@ public class GS_Scavenging : GameState
         }
     }
 
-    public void TrashItem()
+    public void TrashItem(ItemInstance itemInstance)
     {
         ItemTrashedNumber++;
+        GameManager.Instance.ItemManager.TrashedItemList.Add(itemInstance);
         if (GameManager.Instance.ItemManager.ItemList.Count == 0 && SelectedItemList.Count == 0)
         {
             GameManager.Instance.SetGameState(GameManager.Instance.GameOverState);

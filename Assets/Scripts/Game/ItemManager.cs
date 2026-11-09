@@ -5,6 +5,7 @@ using UnityEngine;
 public class ItemManager : MonoBehaviour
 {
     public List<ItemBehavior> ItemList = new();
+    public List<ItemInstance> TrashedItemList = new();
     [SerializeField] private Vector2 _spawnZone;
     public Vector2 SpawnZone => _spawnZone;
     [SerializeField] private Vector2 _offset;

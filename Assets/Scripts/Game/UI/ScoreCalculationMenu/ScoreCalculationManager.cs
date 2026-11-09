@@ -419,13 +419,14 @@ public class ScoreCalculationManager : MonoBehaviour
                     _countSequence.ChainDelay(.5f);
                     _countSequence.ChainCallback(() =>
                     {
-                        GameManager.Instance.UIManager.BagMenu.AddScoreText.SetTextValueNumber(Mathf.RoundToInt(_baseScore - bonusValue), (int)_baseScore, .6f);
+                        GameManager.Instance.UIManager.BagMenu.AddScoreText.SetTextValue(_baseScore.ToString());
+                        //GameManager.Instance.UIManager.BagMenu.AddScoreText.SetTextValueNumber(Mathf.RoundToInt(_baseScore - bonusValue), (int)_baseScore, .6f);
                     });
                 }
 
                 if (bonusList[index].Mult > 0)
                 {
-                    int bonusValue = Mathf.RoundToInt(bonusList[index].Mult);
+                    float bonusValue = bonusList[index].Mult;
 
                     _countSequence.ChainDelay(.5f);
                     _countSequence.ChainCallback(() =>
@@ -440,7 +441,8 @@ public class ScoreCalculationManager : MonoBehaviour
                     _countSequence.ChainDelay(.5f);
                     _countSequence.ChainCallback(() =>
                     {
-                        GameManager.Instance.UIManager.BagMenu.MultiplyScoreText.SetTextValueNumber(Mathf.RoundToInt(_multiplierScore - bonusValue), (int)_multiplierScore, .6f);
+                        GameManager.Instance.UIManager.BagMenu.MultiplyScoreText.SetTextValue(_multiplierScore.ToString());
+                        //GameManager.Instance.UIManager.BagMenu.MultiplyScoreText.SetTextValueNumber(_multiplierScore - bonusValue, (int)_multiplierScore, .6f);
                     });
                 }
 

@@ -217,9 +217,10 @@ public class DraggableBehavior : ItemBehavior
         {
             SaveManager.Instance.AddPP(1, transform.position);
         }
+
         base.DestroyItem();
 
-        GameManager.Instance.ScavengingState.TrashItem();
+        GameManager.Instance.ScavengingState.TrashItem(Item);
     }
 
     public void SetDestroyIcon(bool value)
