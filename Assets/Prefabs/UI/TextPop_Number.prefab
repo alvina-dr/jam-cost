@@ -79,7 +79,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: x3
+  m_text: x3<sprite name=PP>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 93a105f9957f105408a5bf0341a30f59, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 6e29b7e7cb0b9a542906ae794196ffe5, type: 2}
@@ -98,7 +98,7 @@ MonoBehaviour:
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
+  m_spriteAsset: {fileID: 11400000, guid: e5134e787003a154fb53672c404a5609, type: 2}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
   m_TextStyleHashCode: -1183493901

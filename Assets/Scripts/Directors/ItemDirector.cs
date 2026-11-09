@@ -65,12 +65,17 @@ public class ItemDirector : MonoBehaviour
         return itemReturnList;
     }
 
-    public List<ItemData> GetInstantiatedItemList(List<ItemData> itemDataList)
+    public static ItemData GetInstantiatedItem(ItemData itemData)
+    {
+        return Instance.ItemDataDictionary[itemData.Save.CompleteName];
+    }
+
+    public static List<ItemData> GetInstantiatedItemList(List<ItemData> itemDataList)
     {
         List<ItemData> instantiatedItemList = new();
         for (int i = 0; i < itemDataList.Count; i++)
         {
-            instantiatedItemList.Add(ItemDataDictionary[itemDataList[i].Save.CompleteName]);
+            instantiatedItemList.Add(Instance.ItemDataDictionary[itemDataList[i].Save.CompleteName]);
         }
         return instantiatedItemList;
     }

@@ -260,7 +260,7 @@ public class ScoreCalculationManager : MonoBehaviour
             Item_ScoreCalculation item = chosenItemSlotList[i];
             if (item.ItemInstance.Data.Price > 0) // if not garbage
             {
-                _countSequence.ChainDelay(1f);
+                _countSequence.ChainDelay(.8f);
                 _countSequence.ChainCallback(() =>
                 {
                     CameraManager.Instance.SimpleShake();
@@ -270,10 +270,12 @@ public class ScoreCalculationManager : MonoBehaviour
                     item.CountBaseScore();
                     AudioManager.PlaySound(AudioManager.Instance.CountItem);
                 });
-                _countSequence.ChainDelay(.5f);
+                _countSequence.ChainDelay(.3f);
                 _countSequence.ChainCallback(() =>
                 {
-                    GameManager.Instance.UIManager.BagMenu.AddScoreText.SetTextValueNumber(Mathf.RoundToInt(_baseScore - item.CurrentScore), (int)_baseScore, .6f);
+                    //GameManager.Instance.UIManager.BagMenu.AddScoreText.SetTextValue(_baseScore.ToString());
+                    GameManager.Instance.UIManager.BagMenu.AddScoreText.ScaleAnim(2f, .3f);
+                    GameManager.Instance.UIManager.BagMenu.AddScoreText.SetTextValueNumber(Mathf.RoundToInt(_baseScore - item.CurrentScore), (int)_baseScore, .3f);
                 });
             }
             else
@@ -331,15 +333,16 @@ public class ScoreCalculationManager : MonoBehaviour
                     {
                         HighlightBonus(bonusList[index].Name);
                         _baseScore += bonusValue;
-                        GameManager.Instance.UIManager.BagMenu.AddScoreText.ScaleAnim(2f, .3f);
                         GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + bonusValue, bonus.InfoSpawnPoint.position, GameDirector.Instance.AddColor, UI_TextPopper.AnimSpeed.Quick);
                         AudioManager.PlaySound(AudioManager.Instance.ScoreAdd);
                         CameraManager.Instance.SimpleShake();
                     });
-                    _countSequence.ChainDelay(.5f);
+                    _countSequence.ChainDelay(.3f);
                     _countSequence.ChainCallback(() =>
                     {
-                        GameManager.Instance.UIManager.BagMenu.AddScoreText.SetTextValueNumber(Mathf.RoundToInt(_baseScore - bonusValue), (int)_baseScore, .6f);
+                        GameManager.Instance.UIManager.BagMenu.AddScoreText.SetTextValue(_baseScore.ToString());
+                        //GameManager.Instance.UIManager.BagMenu.AddScoreText.SetTextValueNumber(Mathf.RoundToInt(_baseScore - bonusValue), (int)_baseScore, .6f);
+                        GameManager.Instance.UIManager.BagMenu.AddScoreText.ScaleAnim(2f, .3f);
                     });
                 }
 
@@ -347,21 +350,23 @@ public class ScoreCalculationManager : MonoBehaviour
                 {
                     int bonusValue = Mathf.RoundToInt(bonusList[index].Mult);
 
-                    _countSequence.ChainDelay(.5f);
+                    _countSequence.ChainDelay(.4f);
                     _countSequence.ChainCallback(() =>
                     {
                         HighlightBonus(bonusList[index].Name);
                         _multiplierScore += bonusValue;
-                        GameManager.Instance.UIManager.BagMenu.MultiplyScoreText.SetTextValueNumber(Mathf.RoundToInt(_multiplierScore - bonusValue), (int)_multiplierScore, .6f);
-                        GameManager.Instance.UIManager.BagMenu.MultiplyScoreText.ScaleAnim(2f, .3f);
+                        //GameManager.Instance.UIManager.BagMenu.MultiplyScoreText.SetTextValue(_multiplierScore.ToString());
+                        //GameManager.Instance.UIManager.BagMenu.MultiplyScoreText.ScaleAnim(2f, .3f);
                         GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + bonusValue, bonus.InfoSpawnPoint.position, GameDirector.Instance.MultiplyColor, UI_TextPopper.AnimSpeed.Quick);
                         AudioManager.PlaySound(AudioManager.Instance.ScoreMultiply);
                         CameraManager.Instance.SimpleShake();
                     });
-                    _countSequence.ChainDelay(.5f);
+                    _countSequence.ChainDelay(.3f);
                     _countSequence.ChainCallback(() =>
                     {
-                        GameManager.Instance.UIManager.BagMenu.MultiplyScoreText.SetTextValueNumber(Mathf.RoundToInt(_multiplierScore - bonusValue), (int)_multiplierScore, .6f);
+                        GameManager.Instance.UIManager.BagMenu.MultiplyScoreText.SetTextValue(_multiplierScore.ToString());
+                        GameManager.Instance.UIManager.BagMenu.MultiplyScoreText.ScaleAnim(2f, .3f);
+                        //GameManager.Instance.UIManager.BagMenu.MultiplyScoreText.SetTextValueNumber(Mathf.RoundToInt(_multiplierScore - bonusValue), (int)_multiplierScore, .4f);
                     });
                 }
 
@@ -369,12 +374,12 @@ public class ScoreCalculationManager : MonoBehaviour
                 {
                     int bonusValue = Mathf.RoundToInt(bonusList[index].PP);
 
-                    _countSequence.ChainDelay(.5f);
+                    _countSequence.ChainDelay(.3f);
                     _countSequence.ChainCallback(() =>
                     {
                         HighlightBonus(bonusList[index].Name);
-                        SaveManager.Instance.AddPP(bonusValue, bonus.transform.position);
-                        GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + bonusValue + "<sprite name=PP>", bonus.InfoSpawnPoint.position, GameDirector.Instance.MultiplyColor, UI_TextPopper.AnimSpeed.Quick);
+                        SaveManager.Instance.AddPP(bonusValue, bonus.InfoSpawnPoint.position);
+                        GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + bonusValue + "<sprite name=PP>", bonus.InfoSpawnPoint.position, Color.white, UI_TextPopper.AnimSpeed.Quick);
                         AudioManager.PlaySound(AudioManager.Instance.ScoreMultiply);
                         CameraManager.Instance.SimpleShake();
                     });
@@ -436,6 +441,21 @@ public class ScoreCalculationManager : MonoBehaviour
                     _countSequence.ChainCallback(() =>
                     {
                         GameManager.Instance.UIManager.BagMenu.MultiplyScoreText.SetTextValueNumber(Mathf.RoundToInt(_multiplierScore - bonusValue), (int)_multiplierScore, .6f);
+                    });
+                }
+
+                if (bonusList[index].PP > 0)
+                {
+                    int bonusValue = Mathf.RoundToInt(bonusList[index].PP);
+
+                    _countSequence.ChainDelay(.5f);
+                    _countSequence.ChainCallback(() =>
+                    {
+                        HighlightBonus(bonusList[index].Name);
+                        SaveManager.Instance.AddPP(bonusValue, bonus.InfoSpawnPoint.position);
+                        GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + bonusValue + "<sprite name=PP>", bonus.InfoSpawnPoint.position, Color.white, UI_TextPopper.AnimSpeed.Quick);
+                        AudioManager.PlaySound(AudioManager.Instance.ScoreMultiply);
+                        CameraManager.Instance.SimpleShake();
                     });
                 }
 

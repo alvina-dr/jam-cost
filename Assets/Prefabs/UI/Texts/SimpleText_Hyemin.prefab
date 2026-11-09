@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <wave  amp=2>Goal</wave>
+  m_text: <wave  amp=2>Goal</wave><sprite name=PP>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: be0c8aad9340d4b4ba159bd6ba4e6892, type: 2}
   m_sharedMaterial: {fileID: 1571548749983037656, guid: be0c8aad9340d4b4ba159bd6ba4e6892, type: 2}
@@ -176,7 +176,7 @@ MonoBehaviour:
     _serializedList: []
   sceneHideAnimations:
     _serializedList: []
-  preview: 1
+  preview: 0
   useDefaultDatabase: 1
   useDefaultKeywordDatabase: 0
   initDatabase: 1

@@ -12,24 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74342fc1771287e4ab63837b180d92b2, type: 3}
   m_Name: BD_SpecificItem
   m_EditorClassIdentifier: Assembly-CSharp::BD_SpecificItem
-  IsAvailableInGame: 0
+  IsAvailableInGame: 1
   Durability: 0
   Rarity: 0
   Category: 0
   Effect: 0
-  Name: 
-  Description: 'X, X and X gives 1 PP when scored.
+  Name: SpecificItems
+  Description: 'Socks, screws and apple give +[_pp]<sprite name=PP> when scored.
 
 '
   Price: 0
   _points: 0
   _mult: 0
-  _pp: 0
-  Icon: {fileID: 0}
+  _pp: 1
+  Icon: {fileID: 21300000, guid: 467243563ab0e844db01288e51d1ebc3, type: 3}
   Color: {r: 0, g: 0, b: 0, a: 0}
   UpgradeBonusList: []
   _itemDataList:
   - {fileID: 11400000, guid: a0ea6b205e39ad54ab8c186d800e8994, type: 2}
   - {fileID: 11400000, guid: 65c249e7306f67648845b155ea7e4be2, type: 2}
   - {fileID: 11400000, guid: 633ab375072a0364da922c2e81519cb8, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 57a63b6b9b0c9924e8f22c40f3e02cfb, type: 2}
+  - {fileID: 11400000, guid: 8047f77f817b9a049a8686da54db94b6, type: 2}
+  - {fileID: 11400000, guid: d4aaf5398b6f0cf41be9e8462ac19129, type: 2}
+  - {fileID: 11400000, guid: 2f34db82ef95ba74c8129b6b21a328b3, type: 2}
+  - {fileID: 11400000, guid: 98dabdbadd7ba884fb26a2b089dc0c64, type: 2}
+  - {fileID: 11400000, guid: 6d8742c5ada6e204b9f58a7cd107ff5a, type: 2}
