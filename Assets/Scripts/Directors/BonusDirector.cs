@@ -64,6 +64,15 @@ public class BonusDirector : MonoBehaviour
             }
         }
 
+        for (int i = 0; i < SaveManager.Instance.CurrentRunBonusList.Count; i++)
+        {
+            for (int j = 0; j < SaveManager.Instance.CurrentRunBonusList[i].ForbidBonusList.Count; j++)
+            {
+                BonusData bonus = GetInstantiatedRunBonusData(SaveManager.Instance.CurrentRunBonusList[i].ForbidBonusList[j]);
+                bonusAvailableList.Remove(bonus);
+            }
+        }
+
         for (int i = 0; i < listSize; i++)
         {
             Rarity randomRarity = GameDirector.Instance.GetRandomRarity();
@@ -91,8 +100,8 @@ public class BonusDirector : MonoBehaviour
         return bonusReturnList;
     }
 
-    public BonusData GetInstantiatedRunBonusData(BonusData bonusData)
+    public static BonusData GetInstantiatedRunBonusData(BonusData bonusData)
     {
-        return RunBonusDataDictionary[bonusData.Name];
+        return Instance.RunBonusDataDictionary[bonusData.Name];
     }
 }

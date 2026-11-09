@@ -23,6 +23,9 @@ MonoBehaviour:
   _points: 0
   _mult: 2
   _pp: 0
+  ForbidBonusList:
+  - {fileID: 11400000, guid: 2624efe2b72230c42a1f155533ebd4a3, type: 2}
+  - {fileID: 11400000, guid: 0e125c522effc404588d4f5c46f98aa2, type: 2}
   Icon: {fileID: 21300000, guid: 71f51fe58c28c8b4ca55ccd7973f4b1e, type: 3}
   Color: {r: 0.9490197, g: 0.3647059, b: 0, a: 1}
   UpgradeBonusList: []

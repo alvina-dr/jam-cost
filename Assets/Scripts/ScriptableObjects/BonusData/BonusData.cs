@@ -20,6 +20,8 @@ public class BonusData : ScriptableObject
     [BoxGroup("Bonus/MULT"), HideLabel] public float _mult;
     [BoxGroup("Bonus/PP"), HideLabel] public float _pp;
 
+    [BoxGroup("Forbid Bonus list"), HideLabel] public List<BonusData> ForbidBonusList = new();
+
     public virtual float Points => _points;
     public virtual float Mult => _mult;
     public virtual float PP => _pp;
