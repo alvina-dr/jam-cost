@@ -18,7 +18,7 @@ MonoBehaviour:
   Category: 0
   Effect: 1
   Name: Daily pass
-  Description: +<color=blue><b>+[_points]</b> Points.</color>
+  Description: <color=blue><b>+[_points]</b> Points.</color>
   Price: 2
   _points: 50
   _mult: 0

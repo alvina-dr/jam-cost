@@ -18,7 +18,7 @@ MonoBehaviour:
   Category: 0
   Effect: 1
   Name: Simple pass
-  Description: +<color=red><b>+[_mult]</b> Mult.</color>
+  Description: <color=red><b>+[_mult]</b> Mult.</color>
   Price: 2
   _points: 0
   _mult: 4
