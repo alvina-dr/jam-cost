@@ -20,9 +20,10 @@ MonoBehaviour:
   Name: Small Car
   Description: <color=blue><b>+[_points]</b> Points</color> if the <b>Double Pair+</b>
     combination was played.
-  Price: 5
+  Price: 3
   _points: 50
   _mult: 0
+  _pp: 0
   Icon: {fileID: 21300000, guid: 032794ec1982545468f9531e9ba97d83, type: 3}
   Color: {r: 0, g: 0, b: 0, a: 0}
   UpgradeBonusList: []

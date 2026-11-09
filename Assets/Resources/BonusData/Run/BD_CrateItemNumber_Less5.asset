@@ -20,9 +20,10 @@ MonoBehaviour:
   Name: Shortage
   Description: If there are less than [_itemNumber] items in the crate gives +[_mult]
     Mult.
-  Price: 0
+  Price: 6
   _points: 0
   _mult: 8
+  _pp: 0
   Icon: {fileID: 21300000, guid: 611d7e29cf4af0b4faadee36059671bf, type: 3}
   Color: {r: 0, g: 0, b: 0, a: 0}
   UpgradeBonusList: []

@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BD_IdenticalFirstCombination
   IsAvailableInGame: 1
   Durability: 0
-  Rarity: 0
+  Rarity: 1
   Category: 0
   Effect: 1
-  Name: Hola
+  Name: Consistency
   Description: 'All combinations identical to the first one give +[_pp]<sprite name=PP>.
 
 '
-  Price: 0
+  Price: 4
   _points: 0
   _mult: 0
   _pp: 1

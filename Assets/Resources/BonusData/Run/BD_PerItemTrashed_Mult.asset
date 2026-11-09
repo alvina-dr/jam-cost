@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BD_PerItemTrashed
   IsAvailableInGame: 1
   Durability: 0
-  Rarity: 0
+  Rarity: 2
   Category: 0
   Effect: 1
-  Name: Trasher
+  Name: Trash or Crash
   Description: <color=red><b>+[_mult]</b> Mult</color> for each item trashed during
     the round. (Currently <color=red><b>+[Mult]</b></color>)
-  Price: 10
+  Price: 3
   _points: 0
   _mult: 0.25
   _pp: 0

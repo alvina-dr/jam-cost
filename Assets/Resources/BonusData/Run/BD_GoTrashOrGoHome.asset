@@ -20,9 +20,10 @@ MonoBehaviour:
   Name: Go Trash or Go Home
   Description: <b><color=blue>+[_points]</b> Points</color> if a trash item was in
     the deposit box.
-  Price: 10
+  Price: 7
   _points: 200
   _mult: 0
+  _pp: 0
   Icon: {fileID: 21300000, guid: 5562254bd4af6f94a8385361e31cc0c9, type: 3}
   Color: {r: 0, g: 0, b: 0, a: 0}
   UpgradeBonusList: []

@@ -14,15 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsAvailableInGame: 1
   Durability: 0
-  Rarity: 1
+  Rarity: 0
   Category: 0
   Effect: 1
   Name: Minibus
   Description: <color=red><b>+[_mult]</b> Mult</color> if the <b>Double Pair+</b>
     combination was played.
-  Price: 13
+  Price: 3
   _points: 0
   _mult: 2
+  _pp: 0
   Icon: {fileID: 21300000, guid: 7211d02a981c73f4abb630c48b82727c, type: 3}
   Color: {r: 0, g: 0, b: 0, a: 0}
   UpgradeBonusList: []

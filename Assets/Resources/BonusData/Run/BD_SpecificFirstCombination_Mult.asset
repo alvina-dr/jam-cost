@@ -14,15 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BD_SpecificFirstCombination
   IsAvailableInGame: 1
   Durability: 0
-  Rarity: 1
+  Rarity: 0
   Category: 0
   Effect: 1
-  Name: Specific First Combination
+  Name: Perfect Start
   Description: If the first combination played is [_combination], all combinations
     played after give +[_mult] Mult.
-  Price: 0
+  Price: 4
   _points: 0
   _mult: 4
+  _pp: 0
   Icon: {fileID: -4209461767521648114, guid: 5c3a31a47773517478635506449f2868, type: 3}
   Color: {r: 0, g: 0, b: 0, a: 0}
   UpgradeBonusList: []

@@ -17,11 +17,11 @@ MonoBehaviour:
   Rarity: 1
   Category: 0
   Effect: 1
-  Name: No greens for me
+  Name: Eat your greens
   Description: 'If there are no green items left in the crate gives +[_points] points.
 
 '
-  Price: 0
+  Price: 5
   _points: 100
   _mult: 0
   _pp: 0

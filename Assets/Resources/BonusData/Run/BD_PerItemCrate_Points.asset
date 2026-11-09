@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BD_PerItemCrate
   IsAvailableInGame: 1
   Durability: 0
-  Rarity: 0
+  Rarity: 1
   Category: 0
   Effect: 1
   Name: Leftovers
   Description: <color=blue><b>+[_points]</b> Points</color> per item left in the
     crate. (Currently <color=blue><b>+[Points]</b> Points</color>)
-  Price: 0
+  Price: 5
   _points: 20
   _mult: 0
   _pp: 0
