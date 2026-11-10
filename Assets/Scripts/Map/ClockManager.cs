@@ -2,6 +2,7 @@ using EasyTransition;
 using PrimeTween;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class ClockManager : MonoBehaviour
@@ -135,8 +136,8 @@ public class ClockManager : MonoBehaviour
             _roomIconList.Add(roomIcon);
             roomIcon.name = "Room Icon " + i;
             float zRotation = i * roomDegreeSpace + 180;
-            float x = _choiceCircleCenter.position.x + _roomCircleRadius * Mathf.Cos((zRotation + -_roomDegreeStart) * Mathf.PI / 180);
-            float y = _choiceCircleCenter.position.y + _roomCircleRadius * Mathf.Sin((zRotation + -_roomDegreeStart) * Mathf.PI / 180);
+            float x = _roomCircleCenter.position.x + _roomCircleRadius * Mathf.Cos((zRotation + -_roomDegreeStart) * Mathf.PI / 180);
+            float y = _roomCircleCenter.position.y + _roomCircleRadius * Mathf.Sin((zRotation + -_roomDegreeStart) * Mathf.PI / 180);
             roomIcon.transform.position = new Vector3(x, y, 0);
 
             roomIcon.Disable();
@@ -235,16 +236,21 @@ public class ClockManager : MonoBehaviour
 
         _choiceList.Clear();
 
-        float degreeSpace = _roomDegreeTotal / (float) (choiceNumber - 1);
+
+        float degreeSpace = _degreeTotal / (float)(choiceNumber - 1);
+        if (choiceNumber == 1)
+        {
+            degreeSpace = _degreeTotal;
+        }
+
         for (int i = 0; i < choiceNumber; i++)
         {
-            MapNode choice = Instantiate(_choicePrefab, _choiceParent);
+            MapNode choice = PrefabUtility.InstantiatePrefab(_choicePrefab, _choiceParent) as MapNode;
             _choiceList.Add(choice);
             float zRotation = i * degreeSpace;
             float x = _choiceCircleCenter.position.x + _circleRadius * Mathf.Cos((zRotation + _degreeStart) * Mathf.PI / 180);
             float y = _choiceCircleCenter.position.y + _circleRadius * Mathf.Sin((zRotation + _degreeStart) * Mathf.PI / 180);
             choice.transform.position = new Vector3(x, y, 0);
-            // choose position depending on total number and degree of circle
         }
     }
 }

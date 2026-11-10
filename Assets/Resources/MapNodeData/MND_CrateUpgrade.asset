@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NodeName: Crate Upgrade
   IsAvailableInGame: 1
-  NodeIcon: {fileID: 21300000, guid: 457b3157456042f4581ff3a26423e41e, type: 3}
+  NodeIcon: {fileID: 21300000, guid: aa5bd70a839e65048af1031cb92923f4, type: 3}

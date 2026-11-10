@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 8523ce5556d904e46999258049a21ecb
+guid: aa5bd70a839e65048af1031cb92923f4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7114418947609066526
-    second: image 20_0
-  - first:
-      213: 2643780381824276327
-    second: image 20_1
+      213: 3993410433586525083
+    second: Crate Upgrade_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,10 +48,10 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 1
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 75
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -75,7 +72,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -129,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: image 20_0
+      name: Crate Upgrade_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 191
-        height: 164
+        x: 22
+        y: 40
+        width: 212
+        height: 157
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -144,30 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e1cfb8bc65e7bb260800000000000000
-      internalID: 7114418947609066526
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: image 20_1
-      rect:
-        serializedVersion: 2
-        x: 61
-        y: 158
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 76758caff3890b420800000000000000
-      internalID: 2643780381824276327
+      spriteID: b937340a1a17b6730800000000000000
+      internalID: 3993410433586525083
       vertices: []
       indices: 
       edges: []
@@ -186,8 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      image 20_0: 7114418947609066526
-      image 20_1: 2643780381824276327
+      Crate Upgrade_0: 3993410433586525083
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

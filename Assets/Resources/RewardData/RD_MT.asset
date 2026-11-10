@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Meal Tickets
   Description: Collect Meal Tickets !
-  Icon: {fileID: 21300000, guid: 04ca3ed6e5775034d885589782406c3b, type: 3}
+  Icon: {fileID: 21300000, guid: 32f3fb5cc4a41c84bb10fc64678e46a0, type: 3}
   RewardItemData: {fileID: 11400000, guid: e148b4fe439c55c4bac8265bd376766d, type: 2}
   RewardNumber: 3

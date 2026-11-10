@@ -35,9 +35,9 @@ public class MapNode : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
         AudioManager.PlaySound(AudioManager.Instance.BonusHover);
         if (MapNodeData is MND_Scavenge_Classic && RewardData)
         {
-            TooltipManager.Instance.ShowTooltip(RewardData, transform.position, Vector3.up * 50);
+            TooltipManager.Instance.ShowTooltip(RewardData, transform.position, Vector3.up * 60);
         }
-        else TooltipManager.Instance.ShowTooltip(MapNodeData, transform.position, Vector3.up * 50);
+        else TooltipManager.Instance.ShowTooltip(MapNodeData, transform.position, Vector3.up * 60);
     }
 
     public void OnPointerExit(PointerEventData eventData)
