@@ -27,6 +27,7 @@ public class ScoreCalculationManager : MonoBehaviour
     }
     #endregion
 
+    public const float ANIM_SPEED_VALUE = 3f;
     [SerializeField] private SortingGroup _sortingGroup;
 
     [Header("Items")]
@@ -42,20 +43,18 @@ public class ScoreCalculationManager : MonoBehaviour
     [SerializeField] private MMF_Player _shakePlayer;
 
     private int _animationStackedNumber;
-    private float _animationTimeScale = 1;
 
     private PrimeTween.Sequence _countSequence;
-    private List<CombinationData> _combinationDataList = new();
-    private List<BonusData> _bonusDataList = new();
     int _roundScore = 0;
 
     private float _baseScore;
     private float _multiplierScore;
     public CombinationData CurrentCombinationData;
 
-
     public void Show()
     {
+        TooltipManager.Instance.HideTooltip();
+
         Setup();
 
         _sortingGroup.sortingLayerName = "ScoreCalculation";
@@ -66,8 +65,6 @@ public class ScoreCalculationManager : MonoBehaviour
             GameManager.Instance.DepotOverCheck.gameObject.SetActive(false);
         });
         Tween.Delay(.7f, () => BonusHandManager.Instance.Show());
-
-        _animationTimeScale = 1;
 
         GameManager.Instance.UIManager.BagMenu.OpenMenu();
 
@@ -135,7 +132,7 @@ public class ScoreCalculationManager : MonoBehaviour
 
         if (Input.GetMouseButton(0) && _countSequence.isAlive)
         {
-            Time.timeScale = 2f;
+            Time.timeScale = ANIM_SPEED_VALUE;
             GameManager.Instance.UIManager.BagMenu.SpeedArrow.gameObject.SetActive(true);
             Vector2 pos;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(GameManager.Instance.UIManager.Canvas.transform as RectTransform, Input.mousePosition + GameManager.Instance.UIManager.BagMenu.SpeedArrowOffset, GameManager.Instance.UIManager.Canvas.worldCamera, out pos);
@@ -144,7 +141,7 @@ public class ScoreCalculationManager : MonoBehaviour
         else
         {
             GameManager.Instance.UIManager.BagMenu.SpeedArrow.gameObject.SetActive(false);
-            if (Time.timeScale == 2f) Time.timeScale = 1f;
+            if (Time.timeScale == ANIM_SPEED_VALUE) Time.timeScale = 1f;
         }
     }
 
@@ -248,7 +245,7 @@ public class ScoreCalculationManager : MonoBehaviour
             CheckFinalScore();
         });
 
-        _animationTimeScale = 5.0f / (float)totalAnimation;
+        //_animationTimeScale = 5.0f / (float)totalAnimation;
     }
 
     public void CountItems()
@@ -258,9 +255,10 @@ public class ScoreCalculationManager : MonoBehaviour
         for (int i = 0; i < chosenItemSlotList.Count; i++)
         {
             Item_ScoreCalculation item = chosenItemSlotList[i];
+            _countSequence.ChainDelay(.5f);
+
             if (item.ItemInstance.Data.Price > 0) // if not garbage
             {
-                _countSequence.ChainDelay(.8f);
                 _countSequence.ChainCallback(() =>
                 {
                     CameraManager.Instance.SimpleShake();
@@ -280,11 +278,9 @@ public class ScoreCalculationManager : MonoBehaviour
             }
             else
             {
-                _countSequence.ChainDelay(.8f);
                 _countSequence.ChainCallback(() =>
                 {
                     item.CurrentScore = item.ItemInstance.CalculateValue();
-                    item.SetPriceText(item.CurrentScore);
                 });
 
             }
@@ -463,16 +459,6 @@ public class ScoreCalculationManager : MonoBehaviour
 
                 _countSequence.ChainDelay(.5f);
             }
-        }
-    }
-
-    public void StackAnim()
-    {
-        _animationStackedNumber++;
-        if (_animationStackedNumber > 1)
-        {
-            _animationStackedNumber = 0;
-            _animationTimeScale *= .7f;
         }
     }
 

@@ -15,6 +15,8 @@ MonoBehaviour:
   ChoiceList:
   - {fileID: 11400000, guid: e9800f8a3b3c76444aa530872f307cac, type: 2}
   - {fileID: 11400000, guid: 157e54794b4828247bcf84e14bac3bbf, type: 2}
+  - {fileID: 11400000, guid: 11038f94c553fcd468bb4e2a526f98ec, type: 2}
+  - {fileID: 11400000, guid: b2d804821ab0f0741a7f0a4b23029fd8, type: 2}
   - {fileID: 11400000, guid: 11c05f04898c18a4e8cb50f1bdfdf5fd, type: 2}
   - {fileID: 11400000, guid: 5bcf2f908d14c2e4aa41e5a78993295a, type: 2}
   - {fileID: 11400000, guid: fe57c92adbc1e3047a36e170f07416b4, type: 2}

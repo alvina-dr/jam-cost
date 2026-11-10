@@ -69,6 +69,9 @@ public class SaveManager : MonoBehaviour
     public void StartNewRun()
     {
         CurrentSave.CurrentRun = new RunData();
+        CurrentSave.CurrentRun.RandomSeed = (int)System.DateTime.Now.Ticks;
+        Random.InitState(CurrentSave.CurrentRun.RandomSeed);
+        
         Instance.CurrentRunBonusList.Clear();
         CurrentMapNode = Instantiate(_firstNode);
 

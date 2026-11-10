@@ -66,7 +66,7 @@ public class Item_ScoreCalculation : MonoBehaviour
     public void SetPriceText(int number)
     {
         _priceText.SetTextValue($"<wave amp=1>{number}");
-        _priceGO.gameObject.SetActive(true);
+        //_priceGO.gameObject.SetActive(true);
     }
 
     public void SetPriceTextNumber(int oldPrice, int newPrice)

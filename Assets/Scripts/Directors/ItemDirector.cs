@@ -37,6 +37,7 @@ public class ItemDirector : MonoBehaviour
 
     public List<ItemData> GetRandomItemDataList(int listSize)
     {
+        Random.InitState(SaveManager.CurrentSave.CurrentRun.RandomSeed + SaveManager.CurrentSave.CurrentRun.CurrentNode + GameManager.Instance.ItemManager.TrashedItemList.Count);
         List<ItemData> itemAvailableList = new(ItemDataDictionary.Values);
         List<ItemData> itemReturnList = new();
 
@@ -62,6 +63,7 @@ public class ItemDirector : MonoBehaviour
             }
         }
 
+        Random.InitState(SaveManager.CurrentSave.CurrentRun.RandomSeed);
         return itemReturnList;
     }
 
