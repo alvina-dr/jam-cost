@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Interactable_Discard : Interactable
@@ -6,6 +7,7 @@ public class Interactable_Discard : Interactable
     [SerializeField] private SimpleAnimation _animation;
     [SerializeField] private AnimationData _clickAnim;
     [SerializeField] private AnimationData _idleAnim;
+    [SerializeField] private Transform _tooltipOrigin;
 
     public void OnMouseDown()
     {
@@ -23,5 +25,18 @@ public class Interactable_Discard : Interactable
             _animation.StartAnim();
         });
         GameManager.Instance.RerollCrate();
+    }
+
+    public override void OnMouseEnter()
+    {
+        base.OnMouseEnter();
+        TooltipManager.Instance.ShowTooltip($"Refill (Discarded items : {GameManager.Instance.ScavengingState.ItemTrashedNumber})",
+           _tooltipOrigin.position, Vector3.zero);
+    }
+
+    public override void OnMouseExit()
+    {
+        base.OnMouseExit();
+        TooltipManager.Instance.HideTooltip();
     }
 }
