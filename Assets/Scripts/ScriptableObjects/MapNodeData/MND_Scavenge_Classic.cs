@@ -14,6 +14,8 @@ public class MND_Scavenge_Classic : MapNodeData
         ItemManager itemManager = GameManager.Instance.ItemManager;
 
         List<ItemData> itemDataList = ItemDirector.Instance.GetRandomItemDataList(number);
+
+        Random.InitState(SaveManager.CurrentSave.CurrentRun.RandomSeed + SaveManager.CurrentSave.CurrentRun.CurrentNode + GameManager.Instance.ItemManager.TrashedItemList.Count);
         for (int i = 0; i < itemDataList.Count; i++)
         {
             ItemBehavior itemBehavior = Instantiate(itemDataList[i].Prefab, GameManager.Instance.CrateOverCheck.transform);
@@ -21,12 +23,13 @@ public class MND_Scavenge_Classic : MapNodeData
 
             itemBehavior.transform.position = new Vector3(Random.Range(-itemManager.SpawnZone.x / 2 + itemManager.Offset.x, itemManager.SpawnZone.x / 2 + itemManager.Offset.x), Random.Range(-itemManager.SpawnZone.y / 2 + itemManager.Offset.y, itemManager.SpawnZone.y / 2 + itemManager.Offset.y), i * -0.001f);
             itemBehavior.transform.eulerAngles = new Vector3(0, 0, Random.Range(-70, 70));
-            itemBehavior.SetSortingOrder((itemManager.ItemList.Count * 2) + 1);
-            itemManager.TopLayer = (itemManager.ItemList.Count * 2) + 1;
+            itemBehavior.SetSortingOrder(itemManager.TopLayer + 2);
+            itemManager.TopLayer += 2;
             itemManager.ItemList.Add(itemBehavior);
         }
 
         GameManager.Instance.UpdateCrateItemCount();
+        Random.InitState(SaveManager.CurrentSave.CurrentRun.RandomSeed);
     }
 
     public virtual void RerollCrateEnd()
