@@ -19,4 +19,5 @@ MonoBehaviour:
   Save:
     Name: Productivity Point
     Rarity: 2
-    Family: 5
+    _family: 5
+    Identity: 9

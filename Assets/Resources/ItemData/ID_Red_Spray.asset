@@ -19,5 +19,5 @@ MonoBehaviour:
   Save:
     Name: Spray
     Rarity: 1
-    Family: 2
+    _family: 2
     Identity: 6

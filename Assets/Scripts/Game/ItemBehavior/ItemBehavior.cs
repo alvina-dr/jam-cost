@@ -37,9 +37,9 @@ public class ItemBehavior : MonoBehaviour
         _shadowSpriteRenderer.sortingLayerName = _spriteRenderer.sortingLayerName;
         _shadowSpriteRenderer.sortingOrder = _spriteRenderer.sortingOrder - 1;
 
-        switch (Item.Data.Save.Family)
+        switch (Item.Data.Save.Family())
         {
-            case ItemFamily.Plastic:
+            case ItemFamily.None:
                 _spriteRenderer.material = _family1Material;
                 break;
             case ItemFamily.Blue:

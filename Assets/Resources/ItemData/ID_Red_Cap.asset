@@ -19,5 +19,5 @@ MonoBehaviour:
   Save:
     Name: Cap
     Rarity: 2
-    Family: 2
+    _family: 2
     Identity: 5

@@ -53,7 +53,7 @@ public class TooltipManager : MonoBehaviour
     {
         string itemTagName = itemInstance.TagData ? $" [{itemInstance.TagData.Name}]" : string.Empty;
         string itemPrice = $"[{ itemInstance.Data.Price}]";
-        if (itemInstance.Data.Save.Family == ItemFamily.Clickable)
+        if (itemInstance.Data.Save.Family() == ItemFamily.Clickable)
         {
             itemPrice = string.Empty;
         }

@@ -19,5 +19,5 @@ MonoBehaviour:
   Save:
     Name: Milk
     Rarity: 0
-    Family: 2
+    _family: 2
     Identity: 0

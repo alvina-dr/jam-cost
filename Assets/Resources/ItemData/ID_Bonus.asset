@@ -19,5 +19,5 @@ MonoBehaviour:
   Save:
     Name: Bonus
     Rarity: 3
-    Family: 5
-  Rarity: 3
+    _family: 5
+    Identity: 9

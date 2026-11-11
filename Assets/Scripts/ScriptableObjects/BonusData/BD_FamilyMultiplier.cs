@@ -12,7 +12,7 @@ public class BD_FamilyMultiplier : BonusData
 
         for (int i = 0; i < itemScoreCalculationList.Count; i++)
         {
-            if (itemScoreCalculationList[i].ItemInstance.Data.Save.Family == FamilyBonus)
+            if (itemScoreCalculationList[i].ItemInstance.Data.Save.Family() == FamilyBonus)
             {
                 chosenItems.Add(itemScoreCalculationList[i]);
             }

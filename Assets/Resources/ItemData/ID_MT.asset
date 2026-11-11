@@ -19,5 +19,5 @@ MonoBehaviour:
   Save:
     Name: Meal Ticket
     Rarity: 3
-    Family: 5
-  Rarity: 3
+    _family: 5
+    Identity: 9

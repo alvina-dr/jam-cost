@@ -19,5 +19,5 @@ MonoBehaviour:
   Save:
     Name: Sock
     Rarity: 0
-    Family: 1
+    _family: 1
     Identity: 3

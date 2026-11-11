@@ -14,7 +14,7 @@ public class ItemData : ScriptableObject
 
 public enum ItemFamily
 {
-    Plastic = 0,
+    None = 0,
     Blue = 1,
     Red = 2,
     Green = 3,
@@ -32,7 +32,8 @@ public enum ItemIdentity
     Cap = 5,
     Spray = 6,
     Lighter = 7,
-    Screws = 8
+    Screws = 8,
+    Other = 9
 }
 
 [System.Serializable]
@@ -40,8 +41,18 @@ public class ItemDataSave
 {
     public string Name;
     public Rarity Rarity;
-    public ItemFamily Family;
+    [SerializeField] private ItemFamily _family;
     public ItemIdentity Identity;
 
-    public string CompleteName => $"{Name}_{Family}";
+    public string CompleteName => $"{Name}_{_family}";
+
+    public ItemFamily Family()
+    {
+        ItemFamily itemFamily = _family;
+
+        BD_SameFamily bonus = SaveManager.Instance.CheckHasRunBonus<BD_SameFamily>();
+        if (bonus) itemFamily = bonus.Family;
+
+        return itemFamily;
+    }
 }

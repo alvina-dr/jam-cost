@@ -19,5 +19,5 @@ MonoBehaviour:
   Save:
     Name: Pickles
     Rarity: 0
-    Family: 3
+    _family: 3
     Identity: 2

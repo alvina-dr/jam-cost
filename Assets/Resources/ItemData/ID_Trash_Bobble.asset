@@ -19,4 +19,5 @@ MonoBehaviour:
   Save:
     Name: Bobble
     Rarity: 0
-    Family: 4
+    _family: 4
+    Identity: 9

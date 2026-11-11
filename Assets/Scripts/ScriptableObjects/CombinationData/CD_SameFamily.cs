@@ -11,14 +11,14 @@ public class CD_Family : CombinationData
 
         for (int i = 0; i < itemDataList.Count; i++)
         {
-            FamilyStat familyStat = familyCountList.Find(x => x.Family == itemDataList[i].Save.Family);
+            FamilyStat familyStat = familyCountList.Find(x => x.Family == itemDataList[i].Save.Family());
             if (familyStat != null) 
             {
                 familyStat.Number++;
             }
             else
             {
-                familyCountList.Add(new FamilyStat(itemDataList[i].Save.Family, 1));
+                familyCountList.Add(new FamilyStat(itemDataList[i].Save.Family(), 1));
             }
         }
         familyCountList.Sort((a, b) => b.Number.CompareTo(a.Number));
@@ -29,7 +29,7 @@ public class CD_Family : CombinationData
         {
             if (itemScoreCalculationList.Count > 0)
             {
-                itemScoreCalculationList = itemScoreCalculationList.FindAll(x => x.ItemInstance.Data.Save.Family == max.Family);
+                itemScoreCalculationList = itemScoreCalculationList.FindAll(x => x.ItemInstance.Data.Save.Family() == max.Family);
                 DiscoverCombination();
                 Data.NumberUsed++;
             }

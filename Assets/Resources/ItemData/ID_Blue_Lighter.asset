@@ -19,5 +19,5 @@ MonoBehaviour:
   Save:
     Name: Lighter
     Rarity: 1
-    Family: 1
+    _family: 1
     Identity: 7
