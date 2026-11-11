@@ -21,9 +21,10 @@ MonoBehaviour:
   Description: <color=blue><b>+[_points]</b> Points</color> per item left in the
     crate. (Currently <color=blue><b>+[Points]</b> Points</color>)
   Price: 5
-  _points: 20
+  _points: 10
   _mult: 0
   _pp: 0
+  ForbidBonusList: []
   Icon: {fileID: 21300000, guid: 8851bf9098489884eadca54e5f353a7a, type: 3}
   Color: {r: 0, g: 0, b: 0, a: 0}
   UpgradeBonusList: []

@@ -21,8 +21,9 @@ MonoBehaviour:
   Description: <color=red><b>+[_mult]</b> Mult.</color>
   Price: 2
   _points: 0
-  _mult: 4
+  _mult: 2
   _pp: 0
+  ForbidBonusList: []
   Icon: {fileID: 21300000, guid: 6d3b50912aa332d4493173811f9bd131, type: 3}
   Color: {r: 0, g: 0, b: 0, a: 0}
   UpgradeBonusList: []
