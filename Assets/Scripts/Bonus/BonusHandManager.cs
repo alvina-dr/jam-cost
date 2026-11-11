@@ -104,7 +104,7 @@ public class BonusHandManager : MonoBehaviour
             int index = i;
             totalDelay += 1.0f / (index + 2.0f) * _animationSpeedMultiplier;
             float delay = totalDelay;
-            Sequence bonusSequence = Sequence.Create();
+            Sequence bonusSequence = Sequence.Create(useUnscaledTime:true);
             bonusSequence.ChainDelay(delay);
             bonusSequence.ChainCallback(() => AudioManager.PlaySound(AudioManager.Instance.BonusShow, index  * AudioManager.Instance.BonusShow.PitchBonus));
             bonusSequence.Chain(Tween.LocalPositionY(_activeBonusBehaviorList[index].transform, 0.3f, .1f));
@@ -125,12 +125,14 @@ public class BonusHandManager : MonoBehaviour
             int index = i;
             totalDelay += 1.0f / (index + 2.0f) * _animationSpeedMultiplier;
             float delay = totalDelay;
-            Sequence bonusSequence = Sequence.Create();
+            Sequence bonusSequence = Sequence.Create(useUnscaledTime: true);
             bonusSequence.ChainDelay(delay);
             bonusSequence.ChainCallback(() => AudioManager.PlaySound(AudioManager.Instance.BonusHide, index * -AudioManager.Instance.BonusHide.PitchBonus));
             bonusSequence.Chain(Tween.LocalPositionY(activeBonusList[index].transform, 0.3f, .1f));
             bonusSequence.Chain(Tween.LocalPositionY(activeBonusList[index].transform, -3, .2f));
         }
+
+        Debug.Log("Show");
     }
 
 #if UNITY_EDITOR

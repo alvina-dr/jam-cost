@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cc2774bddcc415418f25b455367c1b1, type: 3}
   m_Name: BD_ColorSpectrum_Red
   m_EditorClassIdentifier: 
-  IsAvailableInGame: 0
+  IsAvailableInGame: 1
   Durability: 0
   Rarity: 1
   Category: 3

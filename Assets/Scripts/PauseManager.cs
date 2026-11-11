@@ -64,12 +64,14 @@ public class PauseManager : MonoBehaviour
     public void OpenMenu()
     {
         _menu.OpenMenu();
+        BonusHandManager.Instance.Show();
     }
 
     public void CloseMenu()
     {
         CloseAllMenusExcept(null);
         _menu.CloseMenu();
+        BonusHandManager.Instance.Hide();
     }
 
     public void CloseAllMenusExcept(UI_Menu exceptionMenu)
