@@ -1,12 +1,12 @@
 using PrimeTween;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class BonusBehavior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class BonusBehavior : MonoBehaviour
 {
     public BonusData BonusData;
     [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private Collider2D _collider;
     public Transform InfoSpawnPoint;
 
     public void Setup(BonusData bonusData)
@@ -14,6 +14,7 @@ public class BonusBehavior : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         gameObject.SetActive(true);
         BonusData = bonusData;
         _spriteRenderer.sprite = BonusData.Icon;
+        _collider.enabled = true;
     }
 
     [Button]
@@ -34,20 +35,28 @@ public class BonusBehavior : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         highlight.ChainCallback(() => _spriteRenderer.material.SetColor("_OutlineColor", outlineColor));
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public void OnMouseEnter()
     {
-        Tween.Scale(transform, 1.2f, .2f);
-        Tween.ShakeLocalRotation(_spriteRenderer.transform, new Vector3(0, 0, 10), .2f);
-        Tween.LocalPositionY(_spriteRenderer.transform, .3f, .2f);
+        Debug.Log("enter bonus");
+
+        Tween.Scale(transform, 1.2f, .2f, useUnscaledTime:true);
+        Tween.ShakeLocalRotation(_spriteRenderer.transform, new Vector3(0, 0, 10), .2f, useUnscaledTime: true);
+        Tween.LocalPositionY(_spriteRenderer.transform, .3f, .2f, useUnscaledTime: true);
         TooltipManager.Instance.ShowTooltip(BonusData, transform.position, Vector3.up * 200);
         AudioManager.PlaySound(AudioManager.Instance.BonusHover);
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public void OnMouseExit()
     {
-        Tween.Scale(transform, 1, .2f);
-        Tween.ShakeLocalRotation(_spriteRenderer.transform, new Vector3(0, 0, 10), .2f);
-        Tween.LocalPositionY(_spriteRenderer.transform, 0, .2f);
+        Tween.Scale(transform, 1, .2f, useUnscaledTime: true);
+        Tween.ShakeLocalRotation(_spriteRenderer.transform, new Vector3(0, 0, 10), .2f, useUnscaledTime: true);
+        Tween.LocalPositionY(_spriteRenderer.transform, 0, .2f, useUnscaledTime: true);
         TooltipManager.Instance.HideTooltip();
+    }
+
+    public void UpdateCollider()
+    {
+        _collider.enabled = false;
+        _collider.enabled = true;
     }
 }

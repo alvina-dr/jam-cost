@@ -43,7 +43,7 @@ public class FreeRoundManager : MonoBehaviour
 
     public void GetTimeBonus()
     {
-        SaveManager.CurrentSave.CurrentRun.RunBonusCrateSize += 1;
+        SaveManager.CurrentSave.CurrentRun.RunBonusCrateSize += 3;
 
         if (!SaveManager.CurrentSave.GetFreeRoundFirstTime)
         {

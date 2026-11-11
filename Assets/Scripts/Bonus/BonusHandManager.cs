@@ -109,6 +109,7 @@ public class BonusHandManager : MonoBehaviour
             bonusSequence.ChainCallback(() => AudioManager.PlaySound(AudioManager.Instance.BonusShow, index  * AudioManager.Instance.BonusShow.PitchBonus));
             bonusSequence.Chain(Tween.LocalPositionY(_activeBonusBehaviorList[index].transform, 0.3f, .1f));
             bonusSequence.Chain(Tween.LocalPositionY(_activeBonusBehaviorList[index].transform, 0, .2f));
+            bonusSequence.ChainCallback(() => _activeBonusBehaviorList[index].UpdateCollider());
         }
     }
 
@@ -131,8 +132,6 @@ public class BonusHandManager : MonoBehaviour
             bonusSequence.Chain(Tween.LocalPositionY(activeBonusList[index].transform, 0.3f, .1f));
             bonusSequence.Chain(Tween.LocalPositionY(activeBonusList[index].transform, -3, .2f));
         }
-
-        Debug.Log("Show");
     }
 
 #if UNITY_EDITOR

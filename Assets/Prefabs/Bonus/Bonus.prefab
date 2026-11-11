@@ -80,6 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BonusData: {fileID: 0}
   _spriteRenderer: {fileID: 6983371535283313633}
+  _collider: {fileID: 3501063830031704830}
   InfoSpawnPoint: {fileID: 893537192227980750}
 --- !u!61 &3501063830031704830
 BoxCollider2D:
