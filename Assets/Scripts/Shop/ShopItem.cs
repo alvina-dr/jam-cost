@@ -31,10 +31,9 @@ public class ShopItem : MonoBehaviour
         SaveManager.Instance.AddPP(-BonusData.Price);
         SaveManager.CurrentSave.PPSpentRunShop += BonusData.Price;
         QuestDirector.Instance.CheckQuestCompletionByType<QD_PPSpentRunShop>();
-        Collect();
         ShopManager.Instance.BuyShopItem(_parentChoice);
         _parentChoice.MatchingPrice.gameObject.SetActive(false);
-        Tween.Delay(.5f, () => BonusHandManager.Instance.AddBonus(BonusData));
+        Collect();
     }
 
     public void Collect()
@@ -45,6 +44,7 @@ public class ShopItem : MonoBehaviour
         sequence.Chain(Tween.Scale(transform, 0, .2f));
         BonusData.GetBonus();
         _parentChoice.Face.BuyBonus();
+        Tween.Delay(.5f, () => BonusHandManager.Instance.AddBonus(new BonusInstance(BonusData)));
     }
 
     public void ShowBonus()

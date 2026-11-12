@@ -20,6 +20,7 @@ public class ClockManager : MonoBehaviour
         else
         {
             Instance = this;
+            OnAwake();
         }
     }
     #endregion
@@ -54,6 +55,11 @@ public class ClockManager : MonoBehaviour
     [SerializeField] private float _handMoveSpeed;
 
     private bool _animationOnGoing;
+
+    private void OnAwake()
+    {
+        Random.InitState(SaveManager.CurrentSave.CurrentRun.RandomSeed);
+    }
 
     private void Start()
     {

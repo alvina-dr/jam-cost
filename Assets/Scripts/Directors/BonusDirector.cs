@@ -56,19 +56,19 @@ public class BonusDirector : MonoBehaviour
             for (int i = bonusAvailableList.Count - 1; i >= 0; i--)
             {
                 string bonusName = bonusAvailableList[i].Name;
-                BonusData bonusData = SaveManager.Instance.CurrentRunBonusList.Find(x => x.Name == bonusName);
-                if (bonusData != null)
+                BonusInstance bonusInstance = SaveManager.Instance.CurrentRunBonusList.Find(x => x.Data.Name == bonusName);
+                if (bonusInstance != null && bonusInstance.Data != null)
                 {
-                    bonusAvailableList.Remove(bonusData);
+                    bonusAvailableList.Remove(bonusInstance.Data);
                 }
             }
         }
 
         for (int i = 0; i < SaveManager.Instance.CurrentRunBonusList.Count; i++)
         {
-            for (int j = 0; j < SaveManager.Instance.CurrentRunBonusList[i].ForbidBonusList.Count; j++)
+            for (int j = 0; j < SaveManager.Instance.CurrentRunBonusList[i].Data.ForbidBonusList.Count; j++)
             {
-                BonusData bonus = GetInstantiatedRunBonusData(SaveManager.Instance.CurrentRunBonusList[i].ForbidBonusList[j]);
+                BonusData bonus = GetInstantiatedRunBonusData(SaveManager.Instance.CurrentRunBonusList[i].Data.ForbidBonusList[j]);
                 bonusAvailableList.Remove(bonus);
             }
         }

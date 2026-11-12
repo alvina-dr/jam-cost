@@ -32,6 +32,7 @@ public class BonusHandManager : MonoBehaviour
     [SerializeField] private float _animationSpeedMultiplier;
 
     public bool IsShow;
+    public bool CanDrag;
 
     private void Start()
     {
@@ -42,6 +43,7 @@ public class BonusHandManager : MonoBehaviour
     {
         for (int i = 0; i < _bonusBehaviorList.Count; i++)
         {
+            _bonusBehaviorList[i].CanDrag = CanDrag;
             if (i < SaveManager.Instance.CurrentRunBonusList.Count)
             {
                 _bonusBehaviorList[i].Setup(SaveManager.Instance.CurrentRunBonusList[i]);
@@ -62,10 +64,10 @@ public class BonusHandManager : MonoBehaviour
 
     public BonusBehavior GetBonus(string name)
     {
-        return _bonusBehaviorList.Find(x => x.BonusData.Name == name);
+        return _bonusBehaviorList.Find(x => x.BonusInstance.Data.Name == name);
     }
 
-    public void AddBonus(BonusData bonusData)
+    public void AddBonus(BonusInstance bonusInstance)
     {
         if (_activeBonusBehaviorList.Count >= _bonusBehaviorList.Count ) return;
 
@@ -83,7 +85,7 @@ public class BonusHandManager : MonoBehaviour
 
         BonusBehavior bonusBehavior = _bonusBehaviorList[_activeBonusBehaviorList.Count];
         _activeBonusBehaviorList.Add(bonusBehavior);
-        bonusBehavior.Setup(bonusData);
+        bonusBehavior.Setup(bonusInstance);
         bonusBehavior.transform.localPosition = new Vector3(((futureBonusCount - 1) * _bonusSpace) + ((futureBonusCount - 1) * _bonusSize + _bonusSize / 2) - totalSpace / 2, -3);
         Sequence addBonusSequence = Sequence.Create();
         addBonusSequence.ChainDelay(futureBonusCount * .05f + 0.1f);

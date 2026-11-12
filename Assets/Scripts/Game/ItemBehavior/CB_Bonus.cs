@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class CB_Bonus : ClickableBehavior
 {
-    public BonusData BonusData;
+    public BonusInstance BonusInstance;
     private Sequence _floatingSequence;
 
-    public void Setup(BonusData bonusData)
+    public void Setup(BonusInstance bonusInstance)
     {
-        BonusData = bonusData;
-        _spriteRenderer.sprite = BonusData.Icon;
-        _shadowSpriteRenderer.sprite = BonusData.Icon;
+        BonusInstance = bonusInstance;
+        _spriteRenderer.sprite = BonusInstance.Data.Icon;
+        _shadowSpriteRenderer.sprite = BonusInstance.Data.Icon;
 
         _floatingSequence = Sequence.Create(cycleMode: Sequence.SequenceCycleMode.Restart, cycles: -1);
         _floatingSequence.Chain(Tween.LocalPositionY(_spriteRenderer.transform, .05f, 1f, Ease.Linear));
@@ -22,14 +22,14 @@ public class CB_Bonus : ClickableBehavior
     public override void Collect()
     {
         base.Collect();
-        SaveManager.Instance.CurrentRunBonusList.Add(BonusData);
+        BonusInstance.GetBonus();
         GameManager.Instance.RewardState.ClearBonus(this);
         _collider.enabled = false;
         AudioManager.Instance.PlaySFXSound(_collectSound);
         Sequence hideSprite = Sequence.Create();
         hideSprite.Chain(Tween.Scale(_spriteRenderer.transform, _maxScale, .2f));
         hideSprite.Chain(Tween.Scale(_spriteRenderer.transform, 0, .1f));
-        hideSprite.ChainCallback(() => BonusHandManager.Instance.AddBonus(BonusData));
+        hideSprite.ChainCallback(() => BonusHandManager.Instance.AddBonus(BonusInstance));
         GameManager.Instance.RewardState.FinishCollect();
     }
 
@@ -42,7 +42,7 @@ public class CB_Bonus : ClickableBehavior
 
     protected override void OnMouseEnter()
     {
-        TooltipManager.Instance.ShowTooltip(BonusData, transform.position, _tooltipOffset);
+        TooltipManager.Instance.ShowTooltip(BonusInstance.Data, transform.position, _tooltipOffset);
         AudioManager.PlaySound(AudioManager.Instance.BonusHover);
         if (_floatingSequence.isAlive) _floatingSequence.isPaused = true;
 

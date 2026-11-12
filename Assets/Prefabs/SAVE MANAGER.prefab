@@ -1,5 +1,49 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &276902563679044251
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6854047762404027221}
+  - component: {fileID: 5737323213916968013}
+  m_Layer: 0
+  m_Name: StickerDirector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6854047762404027221
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276902563679044251}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -477, y: -270, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1102212129726004946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5737323213916968013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276902563679044251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9f109249ab8d234a994c7afcb284e5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StickerDirector
 --- !u!1 &2743813845175866118
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,6 +143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 841d99c63715b554d9619e07d3f3db11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemDataDictionary:
+    _serializedList: []
   PPPrefab: {fileID: 7492408757463846880, guid: 2ea5387f3843301418e2e3f7f12e9634, type: 3}
 --- !u!1 &5101335605440823329
 GameObject:
@@ -179,6 +225,7 @@ Transform:
   - {fileID: 2841637122821020402}
   - {fileID: 2670179321387146255}
   - {fileID: 7554350588172944472}
+  - {fileID: 6854047762404027221}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6436201847158242453

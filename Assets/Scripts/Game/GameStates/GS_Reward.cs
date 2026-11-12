@@ -26,7 +26,7 @@ public class GS_Reward : GameState
                 if (bonus)
                 {
                     _bonusItemBehavior.Add(bonus);
-                    bonus.Setup(bonusDataList[i]);
+                    bonus.Setup(new BonusInstance(bonusDataList[i]));
                 }
             }
 

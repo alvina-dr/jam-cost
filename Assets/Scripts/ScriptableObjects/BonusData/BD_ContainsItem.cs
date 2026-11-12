@@ -6,11 +6,6 @@ public class BD_ContainsItem : BonusData
 {
     [SerializeField] private List<ItemData> _containsItemDataList;
 
-    public override void GetBonus()
-    {
-        base.GetBonus();
-    }
-
     public override bool CheckBonus(ref List<Item_ScoreCalculation> itemScoreCalculationList, CombinationData combinationData = null)
     {
         List<Item_ScoreCalculation> itemDataList = new List<Item_ScoreCalculation>(itemScoreCalculationList);

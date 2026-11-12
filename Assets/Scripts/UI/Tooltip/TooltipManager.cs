@@ -39,6 +39,15 @@ public class TooltipManager : MonoBehaviour
         ShowTooltip(strBuilder.ToString(), position, offset);
     }
 
+    public void ShowTooltip(StickerData stickerData, Vector3 position, Vector3 offset)
+    {
+        StringBuilder strBuilder = new StringBuilder();
+        strBuilder.Append($"<b>{stickerData.Name}</b><br>");
+        strBuilder.Append($"{stickerData.GetDescription()}<br>");
+        strBuilder.Append($"<b>{stickerData.Rarity}</b><br>");
+        ShowTooltip(strBuilder.ToString(), position, offset);
+    }
+
     public void ShowTooltip(CombinationData combinationData, Vector3 position, Vector3 offset)
     {
         ShowTooltip(combinationData.Description, position, offset);

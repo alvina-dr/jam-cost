@@ -44,7 +44,7 @@ public class SaveManager : MonoBehaviour
     public List<PowerData> UnlockedPowerDataList = new();
     public List<PowerData> EquipedPowerDataList = new();
 
-    public List<BonusData> CurrentRunBonusList = new();
+    public List<BonusInstance> CurrentRunBonusList = new();
 
     public InMemoryVariableStorage YarnStorage;
 
@@ -140,12 +140,12 @@ public class SaveManager : MonoBehaviour
     public List<T> CheckHasRunBonusList<T>() where T : BonusData
     {
         List<T> returnList = new();
-        List<BonusData> listBonusData = new();
-        listBonusData = CurrentRunBonusList.FindAll(x => x is T);
+        List<BonusInstance> listBonusData = new();
+        listBonusData = CurrentRunBonusList.FindAll(x => x.Data is T);
 
         for (int i = 0; i < listBonusData.Count; i++)
         {
-            if (listBonusData[i] is T castedValue)
+            if (listBonusData[i].Data is T castedValue)
             {
                 returnList.Add(castedValue);
             }
@@ -260,7 +260,11 @@ public class SaveManager : MonoBehaviour
                 ItemDirector.Instance.ItemDataDictionary[CurrentSave.CurrentRun.ModifiedItemDataSave[i].CompleteName].Save = CurrentSave.CurrentRun.ModifiedItemDataSave[i];
             }
 
-            CurrentRunBonusList = LoadList(CurrentSave.CurrentRun.CurrentRunBonusListName, BonusDirector.Instance.RunBonusDataDictionary);
+            CurrentRunBonusList.Clear();
+            for (int i = 0; i < CurrentSave.CurrentRun.CurrentBonusInstanceList.Count; i++)
+            {
+                CurrentRunBonusList.Add(new BonusInstance(CurrentSave.CurrentRun.CurrentBonusInstanceList[i]));
+            }
         }
 
         UnlockedPowerDataList = LoadList(CurrentSave.UnlockedPowerDataListName, DataLoader.Instance.PowerDataList);
@@ -339,7 +343,11 @@ public class SaveManager : MonoBehaviour
                 CurrentSave.CurrentRun.ModifiedItemDataSave.Add(itemDataList[i].Save);
             }
 
-            CurrentSave.CurrentRun.CurrentRunBonusListName = SaveList(CurrentRunBonusList);
+            CurrentSave.CurrentRun.CurrentBonusInstanceList.Clear();
+            for (int i = 0; i < CurrentRunBonusList.Count; i++)
+            {
+                CurrentSave.CurrentRun.CurrentBonusInstanceList.Add(new BonusInstanceSave(CurrentRunBonusList[i]));
+            }
         }
 
         CurrentSave.UnlockedPowerDataListName = SaveList(UnlockedPowerDataList);
@@ -491,9 +499,8 @@ public class SaveManager : MonoBehaviour
         public int RunBonusDiscard = 0;
         public int RunBonusCrateSize = 0;
 
-        public List<string> CurrentRunBonusListName = new();
+        public List<BonusInstanceSave> CurrentBonusInstanceList = new();
         public List<ItemDataSave> ModifiedItemDataSave = new();
-        //public List<int> FormerNodeList = new();
 
         public RunData () 
         {

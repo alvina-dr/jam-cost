@@ -136,7 +136,11 @@ public class DebugManager : MonoBehaviour
     public void GetBonus(BonusData bonusData)
     {
         BonusData instantiatedBonusData = BonusDirector.Instance.RunBonusDataDictionary[bonusData.Name];
-        if (instantiatedBonusData != null) instantiatedBonusData.GetBonus();
+        if (instantiatedBonusData != null)
+        {
+            BonusInstance bonusInstance = new BonusInstance(instantiatedBonusData);
+            bonusInstance.GetBonus();
+        }
     }
 
     public void GetStoryItem(StoryItemData storyItemData)

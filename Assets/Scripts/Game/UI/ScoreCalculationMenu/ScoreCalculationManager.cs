@@ -310,24 +310,24 @@ public class ScoreCalculationManager : MonoBehaviour
     public void CheckItemBonus(Item_ScoreCalculation item)
     {
         List<Item_ScoreCalculation> chosenItemSlotList = GetChosenItemList();
-        List<BonusData> bonusList = SaveManager.Instance.CurrentRunBonusList.FindAll(x => x.Effect == BonusEffect.Item); 
+        List<BonusInstance> bonusList = SaveManager.Instance.CurrentRunBonusList.FindAll(x => x.Data.Effect == BonusEffect.Item); 
 
         for (int i = 0; i < bonusList.Count; i++)
         {
             int index = i;
             List<Item_ScoreCalculation> refChosenItemSlotList = new(chosenItemSlotList);
-            if (bonusList[index].CheckBonus(ref refChosenItemSlotList, CurrentCombinationData) && refChosenItemSlotList.Contains(item))
+            if (bonusList[index].Data.CheckBonus(ref refChosenItemSlotList, CurrentCombinationData) && refChosenItemSlotList.Contains(item))
             {
-                BonusBehavior bonus = BonusHandManager.Instance.GetBonus(bonusList[index].Name);
+                BonusBehavior bonus = BonusHandManager.Instance.GetBonus(bonusList[index].Data.Name);
 
-                if (bonusList[index].Points > 0)
+                if (bonusList[index].Data.Points > 0)
                 {
-                    int bonusValue = Mathf.RoundToInt(bonusList[index].Points);
+                    int bonusValue = Mathf.RoundToInt(bonusList[index].Data.Points);
 
                     _countSequence.ChainDelay(.5f);
                     _countSequence.ChainCallback(() =>
                     {
-                        HighlightBonus(bonusList[index].Name);
+                        HighlightBonus(bonusList[index].Data.Name);
                         _baseScore += bonusValue;
                         GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + bonusValue, bonus.InfoSpawnPoint.position, GameDirector.Instance.AddColor, UI_TextPopper.AnimSpeed.Quick);
                         AudioManager.PlaySound(AudioManager.Instance.ScoreAdd);
@@ -342,14 +342,14 @@ public class ScoreCalculationManager : MonoBehaviour
                     });
                 }
 
-                if (bonusList[index].Mult > 0)
+                if (bonusList[index].Data.Mult > 0)
                 {
-                    int bonusValue = Mathf.RoundToInt(bonusList[index].Mult);
+                    int bonusValue = Mathf.RoundToInt(bonusList[index].Data.Mult);
 
                     _countSequence.ChainDelay(.4f);
                     _countSequence.ChainCallback(() =>
                     {
-                        HighlightBonus(bonusList[index].Name);
+                        HighlightBonus(bonusList[index].Data.Name);
                         _multiplierScore += bonusValue;
                         //GameManager.Instance.UIManager.BagMenu.MultiplyScoreText.SetTextValue(_multiplierScore.ToString());
                         //GameManager.Instance.UIManager.BagMenu.MultiplyScoreText.ScaleAnim(2f, .3f);
@@ -366,14 +366,14 @@ public class ScoreCalculationManager : MonoBehaviour
                     });
                 }
 
-                if (bonusList[index].PP > 0)
+                if (bonusList[index].Data.PP > 0)
                 {
-                    int bonusValue = Mathf.RoundToInt(bonusList[index].PP);
+                    int bonusValue = Mathf.RoundToInt(bonusList[index].Data.PP);
 
                     _countSequence.ChainDelay(.3f);
                     _countSequence.ChainCallback(() =>
                     {
-                        HighlightBonus(bonusList[index].Name);
+                        HighlightBonus(bonusList[index].Data.Name);
                         SaveManager.Instance.AddPP(bonusValue, bonus.InfoSpawnPoint.position);
                         GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + bonusValue + "<sprite name=PP>", bonus.InfoSpawnPoint.position, Color.white, UI_TextPopper.AnimSpeed.Quick);
                         AudioManager.PlaySound(AudioManager.Instance.ScoreMultiply);
@@ -387,25 +387,25 @@ public class ScoreCalculationManager : MonoBehaviour
     public void CheckFinalBonus()
     {
         List<Item_ScoreCalculation> chosenItemSlotList = GetChosenItemList();
-        List<BonusData> bonusList = SaveManager.Instance.CurrentRunBonusList.FindAll(x => x.Effect == BonusEffect.Final);
+        List<BonusInstance> bonusList = SaveManager.Instance.CurrentRunBonusList.FindAll(x => x.Data.Effect == BonusEffect.Final);
 
         for (int i = 0; i < bonusList.Count; i++)
         {
             int index = i;
             List<Item_ScoreCalculation> refChosenItemSlotList = new(chosenItemSlotList);
 
-            if (bonusList[index].CheckBonus(ref refChosenItemSlotList, CurrentCombinationData))
+            if (bonusList[index].Data.CheckBonus(ref refChosenItemSlotList, CurrentCombinationData))
             {
-                BonusBehavior bonus = BonusHandManager.Instance.GetBonus(bonusList[index].Name);
+                BonusBehavior bonus = BonusHandManager.Instance.GetBonus(bonusList[index].Data.Name);
 
-                if (bonusList[index].Points > 0)
+                if (bonusList[index].Data.Points > 0)
                 {
-                    int bonusValue = Mathf.RoundToInt(bonusList[index].Points);
+                    int bonusValue = Mathf.RoundToInt(bonusList[index].Data.Points);
 
                     _countSequence.ChainDelay(.5f);
                     _countSequence.ChainCallback(() =>
                     {
-                        HighlightBonus(bonusList[index].Name);
+                        HighlightBonus(bonusList[index].Data.Name);
                         _baseScore += bonusValue;
                         GameManager.Instance.UIManager.BagMenu.AddScoreText.ScaleAnim(2f, .3f);
                         GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + bonusValue, bonus.InfoSpawnPoint.position, GameDirector.Instance.AddColor, UI_TextPopper.AnimSpeed.Quick);
@@ -420,14 +420,14 @@ public class ScoreCalculationManager : MonoBehaviour
                     });
                 }
 
-                if (bonusList[index].Mult > 0)
+                if (bonusList[index].Data.Mult > 0)
                 {
-                    float bonusValue = bonusList[index].Mult;
+                    float bonusValue = bonusList[index].Data.Mult;
 
                     _countSequence.ChainDelay(.5f);
                     _countSequence.ChainCallback(() =>
                     {
-                        HighlightBonus(bonusList[index].Name);
+                        HighlightBonus(bonusList[index].Data.Name);
                         _multiplierScore += bonusValue;
                         GameManager.Instance.UIManager.BagMenu.MultiplyScoreText.ScaleAnim(2f, .3f);
                         GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + bonusValue, bonus.InfoSpawnPoint.position, GameDirector.Instance.MultiplyColor, UI_TextPopper.AnimSpeed.Quick);
@@ -442,14 +442,14 @@ public class ScoreCalculationManager : MonoBehaviour
                     });
                 }
 
-                if (bonusList[index].PP > 0)
+                if (bonusList[index].Data.PP > 0)
                 {
-                    int bonusValue = Mathf.RoundToInt(bonusList[index].PP);
+                    int bonusValue = Mathf.RoundToInt(bonusList[index].Data.PP);
 
                     _countSequence.ChainDelay(.5f);
                     _countSequence.ChainCallback(() =>
                     {
-                        HighlightBonus(bonusList[index].Name);
+                        HighlightBonus(bonusList[index].Data.Name);
                         SaveManager.Instance.AddPP(bonusValue, bonus.InfoSpawnPoint.position);
                         GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + bonusValue + "<sprite name=PP>", bonus.InfoSpawnPoint.position, Color.white, UI_TextPopper.AnimSpeed.Quick);
                         AudioManager.PlaySound(AudioManager.Instance.ScoreMultiply);

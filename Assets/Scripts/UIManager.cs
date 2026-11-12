@@ -22,7 +22,6 @@ public class UIManager : MonoBehaviour
     
     public UI_NewHand NewHand;
     public UI_ScoreCalculation BagMenu;
-    public UI_PowerMenu PowerMenu;
 
     [Header("HUD")]
     public UI_TextValue ScoreTextValue;

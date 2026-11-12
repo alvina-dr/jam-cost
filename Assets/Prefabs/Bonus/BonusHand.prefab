@@ -71,6 +71,7 @@ MonoBehaviour:
   _bonusSize: 1.5
   _animationSpeedMultiplier: 0.5
   IsShow: 0
+  CanDrag: 0
 --- !u!1001 &1679429858595894109
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -298,6 +299,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6060538316454203650}
     m_Modifications:
+    - target: {fileID: 2418737388365729806, guid: 0d1d04585da006b49a2b339f078490d2, type: 3}
+      propertyPath: BonusBehavior
+      value: 
+      objectReference: {fileID: 1403073839869845441}
     - target: {fileID: 6423362884621353858, guid: 0d1d04585da006b49a2b339f078490d2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.6499996

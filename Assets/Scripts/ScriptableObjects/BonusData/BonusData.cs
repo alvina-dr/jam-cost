@@ -44,9 +44,9 @@ public class BonusData : ScriptableObject
     {
         switch (Durability)
         {
-            case BonusDurability.Run:
-                SaveManager.Instance.CurrentRunBonusList.Add(this);
-                break;
+            //case BonusDurability.Run:
+            //    SaveManager.Instance.CurrentRunBonusList.Add(this);
+            //    break;
             case BonusDurability.Permanent:
                 SaveManager.Instance.PermanentBonusList.Add(this);
                 break;
