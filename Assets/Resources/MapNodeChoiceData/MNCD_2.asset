@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MNCD_2
   m_EditorClassIdentifier: 
   MapNodeDataPool:
-  - {fileID: 11400000, guid: 41443b0ad27f711469adcfbb242e7d78, type: 2}
+  - {fileID: 11400000, guid: 14be1e99682117c419e79a75f5ed7d25, type: 2}
   - {fileID: 11400000, guid: 1d499ea43c1cd154495a3173942132ae, type: 2}
   RewardDataPool:
   - {fileID: 11400000, guid: d55eda5b154e82844a0a21907f387dd6, type: 2}

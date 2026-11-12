@@ -57,19 +57,6 @@ public class GS_Scavenging : GameState
 
     public void EndOfRound()
     {
-        switch (SaveManager.Instance.CurrentMapNode)
-        {
-            case MND_Scavenge_Empty scavengeEmptyNode:
-                if (GameManager.Instance.ItemManager.ItemList.Count > 0)
-                {
-                    GameManager.Instance.SetGameState(GameManager.Instance.GameOverState);
-                }
-                return;
-        }
-
-        // normal classic state
-        //ResetTimer();
-
         if (GameManager.Instance.ScavengingState.SelectedItemList.Count == 0)
         {
             GameManager.Instance.SetGameState(GameManager.Instance.GameOverState);
@@ -92,12 +79,6 @@ public class GS_Scavenging : GameState
 
     public float GetRoundTime()
     {
-        switch (SaveManager.Instance.CurrentMapNode) 
-        {
-            case MND_Scavenge_Empty scavengeEmptyNode :
-                return scavengeEmptyNode.Timer;
-        }
-
         return _roundTime + SaveManager.CurrentSave.PermanentRoundBonusTime + SaveManager.CurrentSave.CurrentRun.RunRoundBonusTime;
     }
 

@@ -93,21 +93,7 @@ public class MapManager : MonoBehaviour
     public void LaunchNode(MapNodeData data)
     {
         SaveManager.Instance.CurrentMapNode = Instantiate(data);
-        switch (data) 
-        {
-            case MND_Scavenge_Classic:
-                SceneManager.LoadScene("Game");
-                break;
-            case MND_FreeRound:
-                SceneManager.LoadScene("FreeRound");
-                break;
-            case MND_Shop:
-                SceneManager.LoadScene("Shop");
-                break;
-            case MND_Boss:
-                SceneManager.LoadScene("Ending");
-                break;
-        }
+        SceneManager.LoadScene(data.Scene.name);
     }
 
     public void RemoveNodes()

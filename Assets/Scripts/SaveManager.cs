@@ -115,21 +115,7 @@ public class SaveManager : MonoBehaviour
     {
         CurrentMapNode = Instantiate(mapNodeData);
         CurrentReward = rewardData;
-        switch (mapNodeData)
-        {
-            case MND_Scavenge_Classic:
-                ChangeScene("Game", _transitionSettings, 0);
-                break;
-            case MND_FreeRound:
-                ChangeScene("FreeRound", _transitionSettings, 0);
-                break;
-            case MND_Shop:
-                ChangeScene("Shop", _transitionSettings, 0);
-                break;
-            case MND_Boss:
-                ChangeScene("Ending", _transitionSettings, 0);
-                break;
-        }
+        ChangeScene(mapNodeData.Scene.name, _transitionSettings, 0);
     }
 
     public T CheckHasRunBonus<T>() where T : BonusData

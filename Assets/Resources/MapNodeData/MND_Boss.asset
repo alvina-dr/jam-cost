@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e32198c046e17f4b8bffe62933c2acd, type: 3}
   m_Name: MND_Boss
   m_EditorClassIdentifier: 
+  Scene: {fileID: 102900000, guid: 8101649a01e4f9446aee1a99b1c950e8, type: 3}
   NodeName: End of the run
   IsAvailableInGame: 1
   NodeIcon: {fileID: 21300000, guid: 930acdc4e4b9bee468fc0bcbf96d71b8, type: 3}

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 751b2510932cb3648b423ce4b8a88ff6, type: 3}
   m_Name: MND_CrateUpgrade
   m_EditorClassIdentifier: 
+  Scene: {fileID: 102900000, guid: 83d1ef80a989cdf42b42e25a40d3fe97, type: 3}
   NodeName: Crate Upgrade
   IsAvailableInGame: 1
   NodeIcon: {fileID: 21300000, guid: aa5bd70a839e65048af1031cb92923f4, type: 3}

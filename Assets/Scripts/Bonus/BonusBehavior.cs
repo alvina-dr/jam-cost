@@ -132,8 +132,10 @@ public class BonusBehavior : MonoBehaviour
         stickerBehavior.gameObject.SetActive(false);
         Sequence sequence = Sequence.Create();
         sequence.Chain(Tween.PositionX(transform, 0, .5f));
-        sequence.Group(Tween.ScaleX(transform, -2, .3f));
-        sequence.Chain(Tween.ScaleX(transform, 2, .3f));
+        sequence.Group(Tween.ScaleX(transform, -2, .1f, Ease.Linear));
+        sequence.Chain(Tween.ScaleX(transform, 2, .1f, Ease.Linear));
+        sequence.Chain(Tween.ScaleX(transform, -2, .1f, Ease.Linear));
+        sequence.Chain(Tween.ScaleX(transform, 2, .1f, Ease.Linear));
         sequence.ChainDelay(.5f);
         sequence.Group(Tween.Scale(transform, 2.5f, .3f));
         sequence.Chain(Tween.Position(transform, _startDragPosition, .5f));
@@ -145,5 +147,7 @@ public class BonusBehavior : MonoBehaviour
             StickerManager.Instance.StickerPlacement.gameObject.SetActive(false);
             BonusInstance.AddSticker(stickerBehavior, sprite);
         });
+        sequence.ChainDelay(.8f);
+        sequence.ChainCallback(() => SaveManager.Instance.NextNode());
     }
 }

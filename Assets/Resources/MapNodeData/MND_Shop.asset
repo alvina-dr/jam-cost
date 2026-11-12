@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49a89c28fda634b498cc145b6eeef9f9, type: 3}
   m_Name: MND_Shop
   m_EditorClassIdentifier: 
+  Scene: {fileID: 102900000, guid: e89450a706b0b3743beeb0d76a391c03, type: 3}
   NodeName: Shop
   IsAvailableInGame: 1
   NodeIcon: {fileID: 21300000, guid: cbde24c81f96fa746951e8bce8633ff3, type: 3}

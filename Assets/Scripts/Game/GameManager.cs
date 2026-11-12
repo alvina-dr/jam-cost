@@ -62,9 +62,6 @@ public class GameManager : MonoBehaviour
     {
         switch (SaveManager.Instance.CurrentMapNode)
         {
-            case MND_Scavenge_Empty:
-                // prepare interface for empty challenge
-                break;
             case MND_Scavenge_Possession bossPossession:
                 GoalScore = SaveManager.Instance.GetScavengeNode().ScoreGoal;
                 UIManager.ScoreTextValue.SetTextValue($"{CurrentScore} / {GoalScore}");
