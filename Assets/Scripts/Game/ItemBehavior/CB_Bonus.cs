@@ -42,7 +42,7 @@ public class CB_Bonus : ClickableBehavior
 
     protected override void OnMouseEnter()
     {
-        TooltipManager.Instance.ShowTooltip(BonusInstance.Data, transform.position, _tooltipOffset);
+        TooltipManager.Instance.ShowTooltip(BonusInstance, transform.position, _tooltipOffset);
         AudioManager.PlaySound(AudioManager.Instance.BonusHover);
         if (_floatingSequence.isAlive) _floatingSequence.isPaused = true;
 

@@ -3,7 +3,7 @@ using PrimeTween;
 
 public class ShopItem : MonoBehaviour
 {
-    public BonusData BonusData;
+    public BonusInstance BonusInstance;
     [SerializeField] private ShopParentChoice _parentChoice;
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private SpriteRenderer _shadowSpriteRenderer;
@@ -11,11 +11,11 @@ public class ShopItem : MonoBehaviour
 
     private Sequence _floatingSequence;
 
-    public void Setup(BonusData bonusData)
+    public void Setup(BonusInstance bonusInstance)
     {
-        BonusData = bonusData;
-        _spriteRenderer.sprite = BonusData.Icon;
-        if (_shadowSpriteRenderer) _shadowSpriteRenderer.sprite = BonusData.Icon;
+        BonusInstance = bonusInstance;
+        _spriteRenderer.sprite = BonusInstance.Data.Icon;
+        if (_shadowSpriteRenderer) _shadowSpriteRenderer.sprite = BonusInstance.Data.Icon;
 
         _floatingSequence = Sequence.Create(cycleMode: Sequence.SequenceCycleMode.Restart, cycles: -1);
         _floatingSequence.Chain(Tween.LocalPositionY(_spriteRenderer.transform, .05f, 1f, Ease.Linear));
@@ -26,10 +26,10 @@ public class ShopItem : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (SaveManager.CurrentSave.CurrentRun.ProductivityPoints < BonusData.Price) return;
+        if (SaveManager.CurrentSave.CurrentRun.ProductivityPoints < BonusInstance.Data.Price) return;
 
-        SaveManager.Instance.AddPP(-BonusData.Price);
-        SaveManager.CurrentSave.PPSpentRunShop += BonusData.Price;
+        SaveManager.Instance.AddPP(-BonusInstance.Data.Price);
+        SaveManager.CurrentSave.PPSpentRunShop += BonusInstance.Data.Price;
         QuestDirector.Instance.CheckQuestCompletionByType<QD_PPSpentRunShop>();
         ShopManager.Instance.BuyShopItem(_parentChoice);
         _parentChoice.MatchingPrice.gameObject.SetActive(false);
@@ -42,9 +42,9 @@ public class ShopItem : MonoBehaviour
         Sequence sequence = Sequence.Create();
         sequence.Chain(Tween.Scale(transform, 1.2f, .3f));
         sequence.Chain(Tween.Scale(transform, 0, .2f));
-        BonusData.GetBonus();
+        BonusInstance.GetBonus();
         _parentChoice.Face.BuyBonus();
-        Tween.Delay(.5f, () => BonusHandManager.Instance.AddBonus(new BonusInstance(BonusData)));
+        Tween.Delay(.5f, () => BonusHandManager.Instance.AddBonus(BonusInstance));
     }
 
     public void ShowBonus()
@@ -56,7 +56,7 @@ public class ShopItem : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        TooltipManager.Instance.ShowTooltip(BonusData, transform.position, Vector3.up * 60);
+        TooltipManager.Instance.ShowTooltip(BonusInstance, transform.position, Vector3.up * 60);
         _parentChoice.Face.MouseEnterFace();
         if (_floatingSequence.isAlive) _floatingSequence.isPaused = true;
     }

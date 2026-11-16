@@ -24,7 +24,6 @@ public class ShopManager : MonoBehaviour
     #endregion
 
     [Header("References")]
-    public UI_BonusMenu BonusMenu;
     public UI_ConversionMenu ConversionMenu;
 
     [Header("Vending Machine")]
@@ -71,12 +70,12 @@ public class ShopManager : MonoBehaviour
 
         for (int i = 0; i < BonusList.Count; i++)
         {
-            BonusList[i].Item.Setup(_sellingBonusDataList[i]);
+            BonusList[i].Item.Setup(new BonusInstance(_sellingBonusDataList[i]));
         }
 
         for (int i = 0; i < _priceTextList.Count; i++)
         {
-            if (i < BonusList.Count) _priceTextList[i].text = $"{BonusList[i].Item.BonusData.Price}<sprite name=PP>";
+            if (i < BonusList.Count) _priceTextList[i].text = $"{BonusList[i].Item.BonusInstance.Data.Price}<sprite name=PP>";
             else _priceTextList[i].text = "...";
         }
     }
@@ -90,7 +89,6 @@ public class ShopManager : MonoBehaviour
 
     public void LeaveShop()
     {
-        BonusMenu.ReleaseBonusList();
         SaveManager.Instance.NextNode();
     }
 
@@ -116,14 +114,12 @@ public class ShopManager : MonoBehaviour
 
         SaveManager.CurrentSave.CurrentRun.Rerolls--;
         UpdateRerollButton();
-        BonusMenu.ReleaseBonusList();
         SetNewRandomBonus();
     }
 
     [Button]
     public void DebugReroll()
     {
-        BonusMenu.ReleaseBonusList();
         SetNewRandomBonus();
     }
 }

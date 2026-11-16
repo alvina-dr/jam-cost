@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -30,8 +31,9 @@ public class Interactable_Discard : Interactable
     public override void OnMouseEnter()
     {
         base.OnMouseEnter();
-        TooltipManager.Instance.ShowTooltip($"Refill (Discarded items : {GameManager.Instance.ScavengingState.ItemTrashedNumber})",
-           _tooltipOrigin.position, Vector3.zero);
+        string description = $"Refill (Discarded items : {GameManager.Instance.ScavengingState.ItemTrashedNumber})";
+        List<AbstractTooltipData> tooltipList = new() { new AbstractTooltipData(description:description) };
+        TooltipManager.Instance.ShowTooltip(tooltipList, _tooltipOrigin.position, Vector3.zero);
     }
 
     public override void OnMouseExit()

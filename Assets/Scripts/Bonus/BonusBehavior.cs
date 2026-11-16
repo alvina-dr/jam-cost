@@ -75,7 +75,7 @@ public class BonusBehavior : MonoBehaviour
         if (!enabled) return;
         if (_isDragged) return;
 
-        TooltipManager.Instance.ShowTooltip(BonusInstance.Data, transform.position, Vector3.up * 200);
+        TooltipManager.Instance.ShowTooltip(BonusInstance, transform.position, Vector3.up * 200);
         AudioManager.PlaySound(AudioManager.Instance.BonusHover);
         Tween.Scale(transform, 1.2f, .2f, useUnscaledTime: true);
         Tween.ShakeLocalRotation(_spriteRenderer.transform, new Vector3(0, 0, 10), .2f, useUnscaledTime: true);

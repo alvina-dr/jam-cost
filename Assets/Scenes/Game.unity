@@ -17455,38 +17455,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TOOLTIP MANAGER
       objectReference: {fileID: 0}
-    - target: {fileID: 5750297426435332061, guid: ee0a60682a2f8fb4b87b1b2a72692132, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5750297426435332061, guid: ee0a60682a2f8fb4b87b1b2a72692132, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8549250902943425912, guid: ee0a60682a2f8fb4b87b1b2a72692132, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8549250902943425912, guid: ee0a60682a2f8fb4b87b1b2a72692132, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8549250902943425912, guid: ee0a60682a2f8fb4b87b1b2a72692132, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8549250902943425912, guid: ee0a60682a2f8fb4b87b1b2a72692132, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8549250902943425912, guid: ee0a60682a2f8fb4b87b1b2a72692132, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8549250902943425912, guid: ee0a60682a2f8fb4b87b1b2a72692132, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
