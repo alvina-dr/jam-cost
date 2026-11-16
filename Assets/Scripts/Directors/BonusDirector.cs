@@ -104,4 +104,26 @@ public class BonusDirector : MonoBehaviour
     {
         return Instance.RunBonusDataDictionary[bonusData.Name];
     }
+
+    public static T GetBonusInstanceByType<T>() where T : BonusData
+    {
+        return SaveManager.Instance.CurrentRunBonusList.Find(x => x is T) as T;
+    }
+
+    public static List<T> GetBonusInstanceListByType<T>() where T : BonusData
+    {
+        List<T> returnList = new();
+        List<BonusInstance> listBonusData = new();
+        listBonusData = SaveManager.Instance.CurrentRunBonusList.FindAll(x => x.Data is T);
+
+        for (int i = 0; i < listBonusData.Count; i++)
+        {
+            if (listBonusData[i].Data is T castedValue)
+            {
+                returnList.Add(castedValue);
+            }
+        }
+
+        return returnList;
+    }
 }

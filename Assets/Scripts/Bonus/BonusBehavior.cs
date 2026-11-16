@@ -1,5 +1,6 @@
 using PrimeTween;
 using Sirenix.OdinInspector;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BonusBehavior : MonoBehaviour
@@ -10,7 +11,8 @@ public class BonusBehavior : MonoBehaviour
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Collider2D _collider;
     public Transform InfoSpawnPoint;
-    [SerializeField] private SpriteRenderer _stickerPrefab;
+    [SerializeField] private AppliedStickerBehavior _stickerPrefab;
+    [SerializeField] private List<AppliedStickerBehavior> _appliedStickerList = new();
     public bool CanDrag = false;
     
     private Vector3 _startDragPosition;
@@ -26,9 +28,9 @@ public class BonusBehavior : MonoBehaviour
 
         for (int i = 0; i < BonusInstance.StickerList.Count; i++)
         {
-            SpriteRenderer sprite = Instantiate(_stickerPrefab, _spriteRenderer.transform);
-            sprite.sprite = BonusInstance.StickerList[i].Data.Sprite;
-            sprite.transform.localPosition = BonusInstance.StickerList[i].Position;
+            AppliedStickerBehavior appliedSticker = Instantiate(_stickerPrefab, _spriteRenderer.transform);
+            appliedSticker.Setup(BonusInstance.StickerList[i]);
+            _appliedStickerList.Add(appliedSticker);
         }
     }
 
@@ -48,6 +50,24 @@ public class BonusBehavior : MonoBehaviour
         highlight.Group(Tween.LocalPositionY(_spriteRenderer.transform, 0, .1f));
 
         highlight.ChainCallback(() => _spriteRenderer.material.SetColor("_OutlineColor", outlineColor));
+
+        AudioManager.PlaySound(AudioManager.Instance.BonusHighlight);
+    }
+
+    public void HighlightSticker(string stickerName)
+    {
+        AppliedStickerBehavior appliedSticker = _appliedStickerList.Find(x => x.StickerInstance.Data.Name == stickerName);
+        if (appliedSticker) appliedSticker.Highlight();
+
+        Sequence sequence = Sequence.Create();
+        sequence.Chain(Tween.Scale(transform, 1.2f, .1f));
+        sequence.Chain(Tween.LocalPositionY(_spriteRenderer.transform, .3f, .1f));
+        sequence.Group(Tween.ScaleX(transform, -1.2f, .1f, Ease.Linear));
+        sequence.Chain(Tween.ScaleX(transform, 1.2f, .1f, Ease.Linear));
+        sequence.Chain(Tween.ScaleX(transform, -1.2f, .1f, Ease.Linear));
+        sequence.Chain(Tween.ScaleX(transform, 1.2f, .1f, Ease.Linear));
+        sequence.Chain(Tween.Scale(transform, 1f, .1f));
+        sequence.Group(Tween.LocalPositionY(_spriteRenderer.transform, 0, .1f));
     }
 
     public void OnMouseEnter()
@@ -126,9 +146,9 @@ public class BonusBehavior : MonoBehaviour
 
     public void AddSticker(StickerBehavior stickerBehavior)
     {
-        SpriteRenderer sprite = Instantiate(_stickerPrefab, _spriteRenderer.transform);
-        sprite.sprite = stickerBehavior.StickerData.Sprite;
-        sprite.transform.position = stickerBehavior.transform.position;
+        AppliedStickerBehavior appliedSticker = Instantiate(_stickerPrefab, _spriteRenderer.transform);
+        appliedSticker.transform.position = stickerBehavior.transform.position;
+        appliedSticker.Setup(new StickerInstance(stickerBehavior.StickerData, appliedSticker.transform.localPosition));
         stickerBehavior.gameObject.SetActive(false);
         Sequence sequence = Sequence.Create();
         sequence.Chain(Tween.PositionX(transform, 0, .5f));
@@ -145,7 +165,7 @@ public class BonusBehavior : MonoBehaviour
             enabled = true;
             BehaviorAddSticker.enabled = false;
             StickerManager.Instance.StickerPlacement.gameObject.SetActive(false);
-            BonusInstance.AddSticker(stickerBehavior, sprite);
+            BonusInstance.AddSticker(stickerBehavior, appliedSticker);
         });
         sequence.ChainDelay(.8f);
         sequence.ChainCallback(() => SaveManager.Instance.NextNode());

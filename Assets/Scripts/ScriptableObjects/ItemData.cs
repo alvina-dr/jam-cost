@@ -48,7 +48,7 @@ public class ItemDataSave
     {
         ItemFamily itemFamily = _family;
 
-        BD_SameFamily bonus = SaveManager.Instance.CheckHasRunBonus<BD_SameFamily>();
+        BD_SameFamily bonus = BonusDirector.GetBonusInstanceByType<BD_SameFamily>();
         if (bonus) itemFamily = bonus.Family;
 
         return itemFamily;

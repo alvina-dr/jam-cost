@@ -212,7 +212,7 @@ public class DraggableBehavior : ItemBehavior
 
     public override void DestroyItem()
     {
-        BD_TrashEffect bonus = SaveManager.Instance.CheckHasRunBonus<BD_TrashEffect>();
+        BD_TrashEffect bonus = BonusDirector.GetBonusInstanceByType<BD_TrashEffect>();
         if (bonus && bonus.CheckBonus())
         {
             SaveManager.Instance.AddPP(1, transform.position);

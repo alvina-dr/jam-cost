@@ -234,6 +234,8 @@ MonoBehaviour:
   _confettiLeft: {fileID: 1256252515}
   _confettiRight: {fileID: 1359531669}
   _shakePlayer: {fileID: 0}
+  BaseScore: 0
+  MultiplierScore: 0
   CurrentCombinationData: {fileID: 0}
 --- !u!210 &92255508
 SortingGroup:

@@ -80,13 +80,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c2c96fb9e03e28408d682dcadf1c675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BonusData: {fileID: 0}
+  BonusInstance:
+    Data: {fileID: 0}
+    StickerList: []
   BehaviorAddSticker: {fileID: 2418737388365729806}
   OverCheck: {fileID: 5595710259066247265}
   _spriteRenderer: {fileID: 6983371535283313633}
   _collider: {fileID: 3501063830031704830}
   InfoSpawnPoint: {fileID: 893537192227980750}
-  _stickerPrefab: {fileID: 1732292207446504836, guid: f883a03d63e58f94295a07b8e6026449, type: 3}
+  _stickerPrefab: {fileID: 6365464106978205268, guid: f883a03d63e58f94295a07b8e6026449, type: 3}
+  _appliedStickerList: []
   CanDrag: 0
 --- !u!114 &2418737388365729806
 MonoBehaviour:
@@ -193,8 +196,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 7870370315404196853}
+  m_Children: []
   m_Father: {fileID: 6423362884621353858}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6983371535283313633
@@ -328,69 +330,3 @@ SortingGroup:
   m_SortingOrder: 30
   m_SortAtRoot: 0
   m_Sort3DAs2D: 0
---- !u!1001 &3264978011937875444
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 7302199524196176512}
-    m_Modifications:
-    - target: {fileID: 4645080584722750977, guid: f883a03d63e58f94295a07b8e6026449, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.7700002
-      objectReference: {fileID: 0}
-    - target: {fileID: 4645080584722750977, guid: f883a03d63e58f94295a07b8e6026449, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.13000011
-      objectReference: {fileID: 0}
-    - target: {fileID: 4645080584722750977, guid: f883a03d63e58f94295a07b8e6026449, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4645080584722750977, guid: f883a03d63e58f94295a07b8e6026449, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4645080584722750977, guid: f883a03d63e58f94295a07b8e6026449, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4645080584722750977, guid: f883a03d63e58f94295a07b8e6026449, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4645080584722750977, guid: f883a03d63e58f94295a07b8e6026449, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4645080584722750977, guid: f883a03d63e58f94295a07b8e6026449, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4645080584722750977, guid: f883a03d63e58f94295a07b8e6026449, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4645080584722750977, guid: f883a03d63e58f94295a07b8e6026449, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6056806791289318810, guid: f883a03d63e58f94295a07b8e6026449, type: 3}
-      propertyPath: m_Name
-      value: StickerSprite
-      objectReference: {fileID: 0}
-    - target: {fileID: 6056806791289318810, guid: f883a03d63e58f94295a07b8e6026449, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f883a03d63e58f94295a07b8e6026449, type: 3}
---- !u!4 &7870370315404196853 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4645080584722750977, guid: f883a03d63e58f94295a07b8e6026449, type: 3}
-  m_PrefabInstance: {fileID: 3264978011937875444}
-  m_PrefabAsset: {fileID: 0}

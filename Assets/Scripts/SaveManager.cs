@@ -118,28 +118,6 @@ public class SaveManager : MonoBehaviour
         ChangeScene(mapNodeData.Scene.name, _transitionSettings, 0);
     }
 
-    public T CheckHasRunBonus<T>() where T : BonusData
-    {
-        return CurrentRunBonusList.Find(x => x is T) as T;
-    }
-
-    public List<T> CheckHasRunBonusList<T>() where T : BonusData
-    {
-        List<T> returnList = new();
-        List<BonusInstance> listBonusData = new();
-        listBonusData = CurrentRunBonusList.FindAll(x => x.Data is T);
-
-        for (int i = 0; i < listBonusData.Count; i++)
-        {
-            if (listBonusData[i].Data is T castedValue)
-            {
-                returnList.Add(castedValue);
-            }
-        }
-
-        return returnList;
-    }
-
     public void AddMT(int number, Vector3 worldPosition = default(Vector3))
     {
         if (number > 0 && worldPosition != default(Vector3))

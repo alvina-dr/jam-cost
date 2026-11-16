@@ -43,12 +43,12 @@ public class ScoreCalculationManager : MonoBehaviour
     [SerializeField] private MMF_Player _shakePlayer;
 
     private int _animationStackedNumber;
-
-    private PrimeTween.Sequence _countSequence;
     int _roundScore = 0;
 
-    private float _baseScore;
-    private float _multiplierScore;
+    // PUBLIC INFORMATIONS
+    public PrimeTween.Sequence CountSequence;
+    public float BaseScore;
+    public float MultiplierScore;
     public CombinationData CurrentCombinationData;
 
     public void Show()
@@ -85,13 +85,13 @@ public class ScoreCalculationManager : MonoBehaviour
         CurrentCombinationData = CheckCombination(ItemDirector.GetItemDataList(chosenItemSlotList));
         if (CurrentCombinationData != null)
         {
-            _baseScore = CurrentCombinationData.BaseScore;
-            _multiplierScore = CurrentCombinationData.MultiplierScore;
+            BaseScore = CurrentCombinationData.BaseScore;
+            MultiplierScore = CurrentCombinationData.MultiplierScore;
             GameManager.Instance.UIManager.BagMenu.CurrentCombinationInfo.Setup(CurrentCombinationData);
         }
 
-        GameManager.Instance.UIManager.BagMenu.AddScoreText.SetTextValue($"{_baseScore}", false);
-        GameManager.Instance.UIManager.BagMenu.MultiplyScoreText.SetTextValue($"{_multiplierScore}", false);
+        GameManager.Instance.UIManager.BagMenu.AddScoreText.SetTextValue($"{BaseScore}", false);
+        GameManager.Instance.UIManager.BagMenu.MultiplyScoreText.SetTextValue($"{MultiplierScore}", false);
 
         Tween.Delay(1f, () => CountScore());
     }
@@ -130,7 +130,7 @@ public class ScoreCalculationManager : MonoBehaviour
             return;
         }
 
-        if (Input.GetMouseButton(0) && _countSequence.isAlive)
+        if (Input.GetMouseButton(0) && CountSequence.isAlive)
         {
             Time.timeScale = ANIM_SPEED_VALUE;
             GameManager.Instance.UIManager.BagMenu.SpeedArrow.gameObject.SetActive(true);
@@ -167,13 +167,6 @@ public class ScoreCalculationManager : MonoBehaviour
         });
     }
 
-    public void HighlightBonus(string bonusName)
-    {
-        BonusBehavior bonus = BonusHandManager.Instance.GetBonus(bonusName);
-        AudioManager.PlaySound(AudioManager.Instance.BonusHighlight);
-        if (bonus != null) bonus.Highlight();
-    }
-
     public void AllowContinue()
     {
         GameManager.Instance.UIManager.BagMenu.ContinueButton.gameObject.SetActive(true);
@@ -189,8 +182,8 @@ public class ScoreCalculationManager : MonoBehaviour
 
     public void CountScore()
     {
-        _countSequence.Stop();
-        _countSequence = PrimeTween.Sequence.Create();
+        CountSequence.Stop();
+        CountSequence = PrimeTween.Sequence.Create();
 
         _roundScore = 0;
         float baseDelay = 0.5f;
@@ -203,10 +196,10 @@ public class ScoreCalculationManager : MonoBehaviour
 
         CheckFinalBonus();
 
-        _countSequence.ChainDelay(1f);
-        _countSequence.ChainCallback(() =>
+        CountSequence.ChainDelay(1f);
+        CountSequence.ChainCallback(() =>
         {
-            _roundScore = Mathf.RoundToInt(_baseScore * _multiplierScore);
+            _roundScore = Mathf.RoundToInt(BaseScore * MultiplierScore);
             GameManager.Instance.UIManager.BagMenu.RoundScoreText.SetTextValueNumber(0, _roundScore);
             GameManager.Instance.UIManager.BagMenu.AddScoreText.SetTextValue("0");
             GameManager.Instance.UIManager.BagMenu.MultiplyScoreText.SetTextValue("0");
@@ -214,8 +207,8 @@ public class ScoreCalculationManager : MonoBehaviour
 
         //CountTotalScoreBonus();
 
-        _countSequence.ChainDelay(1f);
-        _countSequence.ChainCallback(() =>
+        CountSequence.ChainDelay(1f);
+        CountSequence.ChainCallback(() =>
         {
             GameManager.Instance.SetCurrentScore(GameManager.Instance.CurrentScore + _roundScore);
             SaveManager.CurrentSave.TotalPoints += _roundScore;
@@ -238,9 +231,9 @@ public class ScoreCalculationManager : MonoBehaviour
             GameManager.Instance.UIManager.BagMenu.RoundScoreParent.gameObject.SetActive(false);
             //chosenItemSlotList[index].HidePrice();
         });
-        _countSequence.ChainDelay(1f);
+        CountSequence.ChainDelay(1f);
 
-        _countSequence.ChainCallback(() =>
+        CountSequence.ChainCallback(() =>
         {
             CheckFinalScore();
         });
@@ -255,30 +248,30 @@ public class ScoreCalculationManager : MonoBehaviour
         for (int i = 0; i < chosenItemSlotList.Count; i++)
         {
             Item_ScoreCalculation item = chosenItemSlotList[i];
-            _countSequence.ChainDelay(.5f);
+            CountSequence.ChainDelay(.5f);
 
             if (item.ItemInstance.Data.Price > 0) // if not garbage
             {
-                _countSequence.ChainCallback(() =>
+                CountSequence.ChainCallback(() =>
                 {
                     CameraManager.Instance.SimpleShake();
                     item.CurrentScore = item.ItemInstance.CalculateValue();
-                    _baseScore += item.CurrentScore;
+                    BaseScore += item.CurrentScore;
                     GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + item.CurrentScore, item.InfoSpawnPoint.position, GameDirector.Instance.AddColor, UI_TextPopper.AnimSpeed.Quick);
                     item.CountBaseScore();
                     AudioManager.PlaySound(AudioManager.Instance.CountItem);
                 });
-                _countSequence.ChainDelay(.3f);
-                _countSequence.ChainCallback(() =>
+                CountSequence.ChainDelay(.3f);
+                CountSequence.ChainCallback(() =>
                 {
                     //GameManager.Instance.UIManager.BagMenu.AddScoreText.SetTextValue(_baseScore.ToString());
                     GameManager.Instance.UIManager.BagMenu.AddScoreText.ScaleAnim(2f, .3f);
-                    GameManager.Instance.UIManager.BagMenu.AddScoreText.SetTextValueNumber(Mathf.RoundToInt(_baseScore - item.CurrentScore), (int)_baseScore, .3f);
+                    GameManager.Instance.UIManager.BagMenu.AddScoreText.SetTextValueNumber(Mathf.RoundToInt(BaseScore - item.CurrentScore), (int)BaseScore, .3f);
                 });
             }
             else
             {
-                _countSequence.ChainCallback(() =>
+                CountSequence.ChainCallback(() =>
                 {
                     item.CurrentScore = item.ItemInstance.CalculateValue();
                 });
@@ -287,7 +280,7 @@ public class ScoreCalculationManager : MonoBehaviour
 
             CheckItemBonus(item);
         }
-        _countSequence.ChainDelay(1f);
+        CountSequence.ChainDelay(1f);
     }
 
     public CombinationData CheckCombination(List<ItemData> itemDataList)
@@ -318,68 +311,7 @@ public class ScoreCalculationManager : MonoBehaviour
             List<Item_ScoreCalculation> refChosenItemSlotList = new(chosenItemSlotList);
             if (bonusList[index].Data.CheckBonus(ref refChosenItemSlotList, CurrentCombinationData) && refChosenItemSlotList.Contains(item))
             {
-                BonusBehavior bonus = BonusHandManager.Instance.GetBonus(bonusList[index].Data.Name);
-
-                if (bonusList[index].Data.Points > 0)
-                {
-                    int bonusValue = Mathf.RoundToInt(bonusList[index].Data.Points);
-
-                    _countSequence.ChainDelay(.5f);
-                    _countSequence.ChainCallback(() =>
-                    {
-                        HighlightBonus(bonusList[index].Data.Name);
-                        _baseScore += bonusValue;
-                        GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + bonusValue, bonus.InfoSpawnPoint.position, GameDirector.Instance.AddColor, UI_TextPopper.AnimSpeed.Quick);
-                        AudioManager.PlaySound(AudioManager.Instance.ScoreAdd);
-                        CameraManager.Instance.SimpleShake();
-                    });
-                    _countSequence.ChainDelay(.3f);
-                    _countSequence.ChainCallback(() =>
-                    {
-                        GameManager.Instance.UIManager.BagMenu.AddScoreText.SetTextValue(_baseScore.ToString());
-                        //GameManager.Instance.UIManager.BagMenu.AddScoreText.SetTextValueNumber(Mathf.RoundToInt(_baseScore - bonusValue), (int)_baseScore, .6f);
-                        GameManager.Instance.UIManager.BagMenu.AddScoreText.ScaleAnim(2f, .3f);
-                    });
-                }
-
-                if (bonusList[index].Data.Mult > 0)
-                {
-                    int bonusValue = Mathf.RoundToInt(bonusList[index].Data.Mult);
-
-                    _countSequence.ChainDelay(.4f);
-                    _countSequence.ChainCallback(() =>
-                    {
-                        HighlightBonus(bonusList[index].Data.Name);
-                        _multiplierScore += bonusValue;
-                        //GameManager.Instance.UIManager.BagMenu.MultiplyScoreText.SetTextValue(_multiplierScore.ToString());
-                        //GameManager.Instance.UIManager.BagMenu.MultiplyScoreText.ScaleAnim(2f, .3f);
-                        GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + bonusValue, bonus.InfoSpawnPoint.position, GameDirector.Instance.MultiplyColor, UI_TextPopper.AnimSpeed.Quick);
-                        AudioManager.PlaySound(AudioManager.Instance.ScoreMultiply);
-                        CameraManager.Instance.SimpleShake();
-                    });
-                    _countSequence.ChainDelay(.3f);
-                    _countSequence.ChainCallback(() =>
-                    {
-                        GameManager.Instance.UIManager.BagMenu.MultiplyScoreText.SetTextValue(_multiplierScore.ToString());
-                        GameManager.Instance.UIManager.BagMenu.MultiplyScoreText.ScaleAnim(2f, .3f);
-                        //GameManager.Instance.UIManager.BagMenu.MultiplyScoreText.SetTextValueNumber(Mathf.RoundToInt(_multiplierScore - bonusValue), (int)_multiplierScore, .4f);
-                    });
-                }
-
-                if (bonusList[index].Data.PP > 0)
-                {
-                    int bonusValue = Mathf.RoundToInt(bonusList[index].Data.PP);
-
-                    _countSequence.ChainDelay(.3f);
-                    _countSequence.ChainCallback(() =>
-                    {
-                        HighlightBonus(bonusList[index].Data.Name);
-                        SaveManager.Instance.AddPP(bonusValue, bonus.InfoSpawnPoint.position);
-                        GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + bonusValue + "<sprite name=PP>", bonus.InfoSpawnPoint.position, Color.white, UI_TextPopper.AnimSpeed.Quick);
-                        AudioManager.PlaySound(AudioManager.Instance.ScoreMultiply);
-                        CameraManager.Instance.SimpleShake();
-                    });
-                }
+                ApplyBonusEffect(bonusList[index]);
             }
         }
     }
@@ -396,70 +328,100 @@ public class ScoreCalculationManager : MonoBehaviour
 
             if (bonusList[index].Data.CheckBonus(ref refChosenItemSlotList, CurrentCombinationData))
             {
-                BonusBehavior bonus = BonusHandManager.Instance.GetBonus(bonusList[index].Data.Name);
-
-                if (bonusList[index].Data.Points > 0)
-                {
-                    int bonusValue = Mathf.RoundToInt(bonusList[index].Data.Points);
-
-                    _countSequence.ChainDelay(.5f);
-                    _countSequence.ChainCallback(() =>
-                    {
-                        HighlightBonus(bonusList[index].Data.Name);
-                        _baseScore += bonusValue;
-                        GameManager.Instance.UIManager.BagMenu.AddScoreText.ScaleAnim(2f, .3f);
-                        GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + bonusValue, bonus.InfoSpawnPoint.position, GameDirector.Instance.AddColor, UI_TextPopper.AnimSpeed.Quick);
-                        AudioManager.PlaySound(AudioManager.Instance.ScoreAdd);
-                        CameraManager.Instance.SimpleShake();
-                    });
-                    _countSequence.ChainDelay(.5f);
-                    _countSequence.ChainCallback(() =>
-                    {
-                        GameManager.Instance.UIManager.BagMenu.AddScoreText.SetTextValue(_baseScore.ToString());
-                        //GameManager.Instance.UIManager.BagMenu.AddScoreText.SetTextValueNumber(Mathf.RoundToInt(_baseScore - bonusValue), (int)_baseScore, .6f);
-                    });
-                }
-
-                if (bonusList[index].Data.Mult > 0)
-                {
-                    float bonusValue = bonusList[index].Data.Mult;
-
-                    _countSequence.ChainDelay(.5f);
-                    _countSequence.ChainCallback(() =>
-                    {
-                        HighlightBonus(bonusList[index].Data.Name);
-                        _multiplierScore += bonusValue;
-                        GameManager.Instance.UIManager.BagMenu.MultiplyScoreText.ScaleAnim(2f, .3f);
-                        GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + bonusValue, bonus.InfoSpawnPoint.position, GameDirector.Instance.MultiplyColor, UI_TextPopper.AnimSpeed.Quick);
-                        AudioManager.PlaySound(AudioManager.Instance.ScoreMultiply);
-                        CameraManager.Instance.SimpleShake();
-                    });
-                    _countSequence.ChainDelay(.5f);
-                    _countSequence.ChainCallback(() =>
-                    {
-                        GameManager.Instance.UIManager.BagMenu.MultiplyScoreText.SetTextValue(_multiplierScore.ToString());
-                        //GameManager.Instance.UIManager.BagMenu.MultiplyScoreText.SetTextValueNumber(_multiplierScore - bonusValue, (int)_multiplierScore, .6f);
-                    });
-                }
-
-                if (bonusList[index].Data.PP > 0)
-                {
-                    int bonusValue = Mathf.RoundToInt(bonusList[index].Data.PP);
-
-                    _countSequence.ChainDelay(.5f);
-                    _countSequence.ChainCallback(() =>
-                    {
-                        HighlightBonus(bonusList[index].Data.Name);
-                        SaveManager.Instance.AddPP(bonusValue, bonus.InfoSpawnPoint.position);
-                        GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + bonusValue + "<sprite name=PP>", bonus.InfoSpawnPoint.position, Color.white, UI_TextPopper.AnimSpeed.Quick);
-                        AudioManager.PlaySound(AudioManager.Instance.ScoreMultiply);
-                        CameraManager.Instance.SimpleShake();
-                    });
-                }
-
-                _countSequence.ChainDelay(.5f);
+                ApplyBonusEffect(bonusList[index]);
             }
         }
+    }
+
+    public void ApplyBonusEffect(BonusInstance bonusInstance)
+    {
+        BonusBehavior bonus = BonusHandManager.Instance.GetBonus(bonusInstance.Data.Name);
+
+        int playAgain = 0;
+        while (playAgain < 2)
+        {
+            if (bonusInstance.Data.Points > 0)
+            {
+                int bonusValue = Mathf.RoundToInt(bonusInstance.Data.Points);
+
+                CountSequence.ChainDelay(.5f);
+                CountSequence.ChainCallback(() =>
+                {
+                    bonus.Highlight();
+                    BaseScore += bonusValue;
+                    GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + bonusValue, bonus.InfoSpawnPoint.position, GameDirector.Instance.AddColor, UI_TextPopper.AnimSpeed.Quick);
+                    AudioManager.PlaySound(AudioManager.Instance.ScoreAdd);
+                    CameraManager.Instance.SimpleShake();
+                });
+                CountSequence.ChainDelay(.5f);
+                CountSequence.ChainCallback(() =>
+                {
+                    GameManager.Instance.UIManager.BagMenu.AddScoreText.SetTextValue(BaseScore.ToString());
+                    GameManager.Instance.UIManager.BagMenu.AddScoreText.ScaleAnim(2f, .3f);
+                });
+            }
+
+            if (bonusInstance.Data.Mult > 0)
+            {
+                float bonusValue = bonusInstance.Data.Mult;
+
+                CountSequence.ChainDelay(.5f);
+                CountSequence.ChainCallback(() =>
+                {
+                    bonus.Highlight();
+                    MultiplierScore += bonusValue;
+                    GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + bonusValue, bonus.InfoSpawnPoint.position, GameDirector.Instance.MultiplyColor, UI_TextPopper.AnimSpeed.Quick);
+                    AudioManager.PlaySound(AudioManager.Instance.ScoreMultiply);
+                    CameraManager.Instance.SimpleShake();
+                });
+                CountSequence.ChainDelay(.5f);
+                CountSequence.ChainCallback(() =>
+                {
+                    GameManager.Instance.UIManager.BagMenu.MultiplyScoreText.SetTextValue(MultiplierScore.ToString());
+                    GameManager.Instance.UIManager.BagMenu.MultiplyScoreText.ScaleAnim(2f, .3f);
+                });
+            }
+
+            if (bonusInstance.Data.PP > 0)
+            {
+                int bonusValue = Mathf.RoundToInt(bonusInstance.Data.PP);
+
+                CountSequence.ChainDelay(.5f);
+                CountSequence.ChainCallback(() =>
+                {
+                    bonus.Highlight();
+                    SaveManager.Instance.AddPP(bonusValue, bonus.InfoSpawnPoint.position);
+                    GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + bonusValue + "<sprite name=PP>", bonus.InfoSpawnPoint.position, Color.white, UI_TextPopper.AnimSpeed.Quick);
+                    AudioManager.PlaySound(AudioManager.Instance.ScoreMultiply);
+                    CameraManager.Instance.SimpleShake();
+                });
+            }
+
+
+            //REPEAT SECTION
+            StickerData stickerData = bonusInstance.GetStickerDataByType<StD_Replay>();
+            if (stickerData == null)
+            {
+                CountSequence.ChainDelay(.5f);
+                break;
+            }
+            else
+            {
+                playAgain++;
+                if (playAgain < 2)
+                {
+                    CountSequence.ChainDelay(.2f);
+                    CountSequence.ChainCallback(() =>
+                    {
+                        bonus.HighlightSticker(stickerData.Name);
+                        GameManager.Instance.UIManager.TextPopperManager_Info.PopText("Again !", bonus.InfoSpawnPoint.position, Color.white, UI_TextPopper.AnimSpeed.Quick);
+                    });
+                    CountSequence.ChainDelay(.2f);
+                }
+            }
+        }
+
+        bonusInstance.CheckSticker(bonus);
     }
 
     public void CheckFinalScore()

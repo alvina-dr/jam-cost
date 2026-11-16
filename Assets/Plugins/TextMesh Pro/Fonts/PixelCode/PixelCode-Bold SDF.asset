@@ -139,12 +139,12 @@ Texture2D:
   m_TextureDimension: 2
   m_TextureSettings:
     serializedVersion: 2
-    m_FilterMode: 1
+    m_FilterMode: 0
     m_Aniso: 1
     m_MipBias: 0
-    m_WrapU: 0
-    m_WrapV: 0
-    m_WrapW: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
   m_LightmapFormat: 0
   m_ColorSpace: 0
   m_PlatformBlob: 
@@ -205,7 +205,7 @@ MonoBehaviour:
     atlasHeight: 512
     characterSetSelectionMode: 1
     characterSequence: 32 - 126, 160 - 255, 8192 - 8303, 8364, 8482, 9633
-    referencedFontAssetGUID: 
+    referencedFontAssetGUID: d17a03c5acc2761488b4950cc90d9c6d
     referencedTextAssetGUID: 
     fontStyle: 0
     fontStyleModifier: 0

@@ -15,3 +15,5 @@ MonoBehaviour:
   IsAvailableInGame: 1
   Name: Replay
   Sprite: {fileID: 21300000, guid: a146a77fd7b1f4e4d8ca5365b62b3b32, type: 3}
+  Rarity: 0
+  _description: Replays the attached bonus.

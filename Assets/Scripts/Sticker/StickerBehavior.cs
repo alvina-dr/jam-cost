@@ -28,8 +28,9 @@ public class StickerBehavior : MonoBehaviour
         sequence.Chain(Tween.Position(transform, StickerManager.Instance.StickerPosition.position, .5f));
     }
 
-    private void OnMouseOver()
+    private void OnMouseEnter()
     {
+        Debug.Log("ON MOUSE OVER");
         TooltipManager.Instance.ShowTooltip(StickerData, transform.position, Vector3.up * 60);
     }
 

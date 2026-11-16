@@ -141,7 +141,7 @@ public class GameManager : MonoBehaviour
     {
         int depotSizeBonus = 0;
 
-        List<BD_HandSize> bonusDepotSizeList = SaveManager.Instance.CheckHasRunBonusList<BD_HandSize>();
+        List<BD_HandSize> bonusDepotSizeList = BonusDirector.GetBonusInstanceListByType<BD_HandSize>();
 
         for (int i = 0; i < bonusDepotSizeList.Count; i++)
         {
