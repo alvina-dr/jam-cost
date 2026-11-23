@@ -250,32 +250,43 @@ public class ScoreCalculationManager : MonoBehaviour
             Item_ScoreCalculation item = chosenItemSlotList[i];
             CountSequence.ChainDelay(.5f);
 
-            if (item.ItemInstance.Data.Price > 0) // if not garbage
+            int itemPoints = item.ItemInstance.CalculatePoints();
+            float itemMult = item.ItemInstance.CalculateMult();
+            if (itemPoints > 0)
             {
                 CountSequence.ChainCallback(() =>
                 {
                     CameraManager.Instance.SimpleShake();
-                    item.CurrentScore = item.ItemInstance.CalculateValue();
-                    BaseScore += item.CurrentScore;
-                    GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + item.CurrentScore, item.InfoSpawnPoint.position, GameDirector.Instance.AddColor, UI_TextPopper.AnimSpeed.Quick);
-                    item.CountBaseScore();
+                    BaseScore += itemPoints;
+                    GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + itemPoints, item.InfoSpawnPoint.position, GameDirector.Instance.AddColor, UI_TextPopper.AnimSpeed.Quick);
+                    item.Highlight();
                     AudioManager.PlaySound(AudioManager.Instance.CountItem);
                 });
                 CountSequence.ChainDelay(.3f);
                 CountSequence.ChainCallback(() =>
                 {
-                    //GameManager.Instance.UIManager.BagMenu.AddScoreText.SetTextValue(_baseScore.ToString());
                     GameManager.Instance.UIManager.BagMenu.AddScoreText.ScaleAnim(2f, .3f);
-                    GameManager.Instance.UIManager.BagMenu.AddScoreText.SetTextValueNumber(Mathf.RoundToInt(BaseScore - item.CurrentScore), (int)BaseScore, .3f);
+                    GameManager.Instance.UIManager.BagMenu.AddScoreText.SetTextValue(BaseScore.ToString());
                 });
             }
-            else
+
+            if (itemMult > 0)
             {
+                CountSequence.ChainDelay(.3f);
                 CountSequence.ChainCallback(() =>
                 {
-                    item.CurrentScore = item.ItemInstance.CalculateValue();
+                    CameraManager.Instance.SimpleShake();
+                    MultiplierScore += itemMult;
+                    GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + itemMult, item.InfoSpawnPoint.position, GameDirector.Instance.MultiplyColor, UI_TextPopper.AnimSpeed.Quick);
+                    item.Highlight();
+                    AudioManager.PlaySound(AudioManager.Instance.ScoreMultiply);
                 });
-
+                CountSequence.ChainDelay(.3f);
+                CountSequence.ChainCallback(() =>
+                {
+                    GameManager.Instance.UIManager.BagMenu.MultiplyScoreText.ScaleAnim(2f, .3f);
+                    GameManager.Instance.UIManager.BagMenu.MultiplyScoreText.SetTextValue(MultiplierScore.ToString());
+                });
             }
 
             CheckItemBonus(item);

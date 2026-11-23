@@ -4,10 +4,15 @@ using UnityEngine;
 public class ItemTagData : ScriptableObject
 {
     public string Name;
+    [TextArea, SerializeField] private string _description;
+
+    public virtual string GetDescription()
+    {
+        return _description;
+    }
 
     public virtual void SetupTag(Material material)
     {
-        Debug.Log("setup tag none");
         material.EnableKeyword("NONE");
     }
 
@@ -21,8 +26,13 @@ public class ItemTagData : ScriptableObject
 
     }
 
-    public virtual int CalculateValue(ItemData data)
+    public virtual int CalculatePoints(ItemData data)
     {
         return data.Price;
+    }
+
+    public virtual float CalculateMult(ItemData data)
+    {
+        return 0;
     }
 }

@@ -20,7 +20,6 @@ public class Item_ScoreCalculation : MonoBehaviour
 
     public ItemInstance ItemInstance => _itemInstance;
 
-    public int CurrentScore = 0;
     public List<int> CombinationItemAddList = new();
     public List<int> CombinationItemMultList = new();
 
@@ -42,7 +41,6 @@ public class Item_ScoreCalculation : MonoBehaviour
         _itemInstance = itemInstance;
         if (_itemInstance.TagData) _itemInstance.TagData.SetupTag(_sprite.material);
         _sprite.sprite = _itemInstance.Data.Icon;
-        CurrentScore = _itemInstance.Data.Price;
         _priceGO.gameObject.SetActive(false);
         _polygonCollider.CreateFromSprite(_sprite.sprite);
     }
@@ -56,7 +54,7 @@ public class Item_ScoreCalculation : MonoBehaviour
         _highlightAnimation.StartAnim();
     }
 
-    public void CountBaseScore()
+    public void Highlight()
     {
         Sequence sequence = Sequence.Create();
         sequence.Chain(Tween.Scale(_sprite.transform, 1.4f, .1f));

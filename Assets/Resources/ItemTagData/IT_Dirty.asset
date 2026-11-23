@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: IT_Dirty
   m_EditorClassIdentifier: 
   Name: Dirty
+  _description: It's dirty heh
   Dirtiness: 2

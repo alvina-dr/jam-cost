@@ -70,7 +70,14 @@ public class TooltipManager : MonoBehaviour
         {
             itemPrice = string.Empty;
         }
+
         List<AbstractTooltipData> tooltipList = new() { new AbstractTooltipData(description: $"{itemInstance.Data.Save.Name} {itemPrice}{itemTagName}") };
+
+        if (itemInstance.TagData != null)
+        {
+            tooltipList.Add(new AbstractTooltipData(itemInstance.TagData.Name, itemInstance.TagData.GetDescription()));
+        }
+
         ShowTooltip(tooltipList, position, offset);
     }
 

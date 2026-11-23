@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.U2D;
 
-[CreateAssetMenu(fileName = "IT_Dirty", menuName = "Scriptable Objects/ItemTags/IT_Dirty")]
+[CreateAssetMenu(fileName = "IT_Dirty", menuName = "Scriptable Objects/ItemTagData/IT_Dirty")]
 public class ITD_Dirty : ItemTagData
 {
     public int Dirtiness;
@@ -33,7 +33,7 @@ public class ITD_Dirty : ItemTagData
         }
     }
 
-    public override int CalculateValue(ItemData data)
+    public override int CalculatePoints(ItemData data)
     {
         return Mathf.RoundToInt((float) data.Price * ((float) Dirtiness / 2.0f));
     }
