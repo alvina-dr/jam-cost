@@ -22,8 +22,9 @@ MonoBehaviour:
     the round. (Currently <color=red><b>+[Mult]</b></color>)
   Price: 3
   _points: 0
-  _mult: 0.25
+  _mult: 0.5
   _pp: 0
+  ForbidBonusList: []
   Icon: {fileID: 21300000, guid: 467243563ab0e844db01288e51d1ebc3, type: 3}
   Color: {r: 0, g: 0, b: 0, a: 0}
   UpgradeBonusList: []
