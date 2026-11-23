@@ -6,6 +6,7 @@ public class StickerBehavior : MonoBehaviour
     public StickerData StickerData;
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Collider2D _collider;
+    [SerializeField] private PolygonColliderUpdater _colliderUpdate;
 
     private bool _canStick;
     private Vector3 _startDragPosition;
@@ -16,6 +17,7 @@ public class StickerBehavior : MonoBehaviour
     {
         StickerData = stickerData;
         _spriteRenderer.sprite = stickerData.Sprite;
+        _colliderUpdate.UpdatePolygonCollider();
     }
 
     public void StickMode()
@@ -30,7 +32,6 @@ public class StickerBehavior : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        Debug.Log("ON MOUSE OVER");
         TooltipManager.Instance.ShowTooltip(StickerData, transform.position, Vector3.up * 60);
     }
 

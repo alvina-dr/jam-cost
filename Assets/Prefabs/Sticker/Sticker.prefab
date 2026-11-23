@@ -141,6 +141,7 @@ MonoBehaviour:
   StickerData: {fileID: 0}
   _spriteRenderer: {fileID: 2083790345000646214}
   _collider: {fileID: 4231495157521224254}
+  _colliderUpdate: {fileID: 7824091957630142457}
 --- !u!60 &4231495157521224254
 PolygonCollider2D:
   m_ObjectHideFlags: 0

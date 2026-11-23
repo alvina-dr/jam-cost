@@ -46,7 +46,7 @@ public class TooltipManager : MonoBehaviour
         StringBuilder strBuilder = new StringBuilder();
         strBuilder.Append($"{stickerData.GetDescription()}<br>");
         strBuilder.Append($"{stickerData.Rarity}");
-        List<AbstractTooltipData> tooltipList = new() { new AbstractTooltipData(stickerData.Name, $"strBuilder") };
+        List<AbstractTooltipData> tooltipList = new() { new AbstractTooltipData(stickerData.Name, $"{strBuilder}") };
         ShowTooltip(tooltipList, position, offset);
     }
 
