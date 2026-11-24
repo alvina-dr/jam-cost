@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49da771b779ffb144be35f15eb521100, type: 3}
-  m_Name: IT_Dirty
-  m_EditorClassIdentifier: 
-  Name: Dirty
-  _description: It's dirty heh
-  Dirtiness: 2
+  m_Script: {fileID: 11500000, guid: 3b771091a51fdf74e8930eaf11a9ba4a, type: 3}
+  m_Name: ITD_Gold
+  m_EditorClassIdentifier: Assembly-CSharp::ITD_Gold
+  Name: Gold
+  _description: +1<sprite name=PP>.
+  PP: 1

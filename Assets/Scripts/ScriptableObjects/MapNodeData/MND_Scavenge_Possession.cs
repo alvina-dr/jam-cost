@@ -44,7 +44,7 @@ public class MND_Scavenge_Possession : MND_Scavenge_Classic
             if (i > Mathf.RoundToInt((float)SaveManager.Instance.GetScavengeNode().SpawnItemParameters.ItemNumber / 2.0f))
             {
                 ItemBehavior itemBehavior = GameManager.Instance.ItemManager.ItemList[i];
-                sequence.ChainCallback(() => itemBehavior.SetTag(DataLoader.Instance.GetRandomItemTagData()));
+                sequence.ChainCallback(() => itemBehavior.SetTag(ItemTagDirector.Instance.GetRandomItemTagData()));
                 sequence.ChainDelay(.01f);
             }
         }

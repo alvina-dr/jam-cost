@@ -21,7 +21,7 @@ public class MND_Scavenge_Classic : MapNodeData
             ItemBehavior itemBehavior = Instantiate(itemDataList[i].Prefab, GameManager.Instance.CrateOverCheck.transform);
             itemBehavior.Setup(itemDataList[i]); // actualize item with instantiated item data
             int random = Random.Range(1, 100);
-            if (random < 50) itemBehavior.SetTag(DataLoader.Instance.GetRandomItemTagData());
+            if (random < 50) itemBehavior.SetTag(ItemTagDirector.Instance.GetRandomItemTagData());
             itemBehavior.transform.position = new Vector3(Random.Range(-itemManager.SpawnZone.x / 2 + itemManager.Offset.x, itemManager.SpawnZone.x / 2 + itemManager.Offset.x), Random.Range(-itemManager.SpawnZone.y / 2 + itemManager.Offset.y, itemManager.SpawnZone.y / 2 + itemManager.Offset.y), i * -0.001f);
             itemBehavior.transform.eulerAngles = new Vector3(0, 0, Random.Range(-70, 70));
             itemBehavior.SetSortingOrder(itemManager.TopLayer + 2);

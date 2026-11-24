@@ -35,4 +35,9 @@ public class ItemTagData : ScriptableObject
     {
         return 0;
     }
+
+    public virtual int CalculatePP(ItemData data)
+    {
+        return 0;
+    }
 }

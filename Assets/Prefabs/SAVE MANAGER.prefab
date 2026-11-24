@@ -44,6 +44,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9f109249ab8d234a994c7afcb284e5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StickerDirector
+  StickerDataDictionary:
+    _serializedList: []
+--- !u!1 &1433989848557590523
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6195115766772011240}
+  - component: {fileID: 8845985028511621858}
+  m_Layer: 0
+  m_Name: ItemTagDirector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6195115766772011240
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433989848557590523}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1102212129726004946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8845985028511621858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433989848557590523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d843d3f635dd3934ba3842e9fc2e2bb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemTagDirector
 --- !u!1 &2743813845175866118
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,6 +270,7 @@ Transform:
   - {fileID: 466727216963724704}
   - {fileID: 2841637122821020402}
   - {fileID: 2670179321387146255}
+  - {fileID: 6195115766772011240}
   - {fileID: 7554350588172944472}
   - {fileID: 6854047762404027221}
   m_Father: {fileID: 0}
@@ -304,7 +351,7 @@ MonoBehaviour:
       RunBonusRound: 0
       RunBonusDiscard: 0
       RunBonusCrateSize: 0
-      CurrentRunBonusListName: []
+      CurrentBonusInstanceList: []
       ModifiedItemDataSave: []
     RunDataHistory: []
   FirstPower: {fileID: 11400000, guid: 5ac3058a1642fe041ae4dfa896e0ee76, type: 2}

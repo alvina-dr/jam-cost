@@ -17,4 +17,10 @@ public class ItemInstance
         if (TagData) return TagData.CalculateMult(Data);
         return 0;
     }
+
+    public int CalculatePP()
+    {
+        if (TagData) return TagData.CalculatePP(Data);
+        return 0;
+    }
 }

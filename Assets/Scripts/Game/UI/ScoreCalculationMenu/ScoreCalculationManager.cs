@@ -252,6 +252,7 @@ public class ScoreCalculationManager : MonoBehaviour
 
             int itemPoints = item.ItemInstance.CalculatePoints();
             float itemMult = item.ItemInstance.CalculateMult();
+            int itemPP = item.ItemInstance.CalculatePP();
             if (itemPoints > 0)
             {
                 CountSequence.ChainCallback(() =>
@@ -286,6 +287,19 @@ public class ScoreCalculationManager : MonoBehaviour
                 {
                     GameManager.Instance.UIManager.BagMenu.MultiplyScoreText.ScaleAnim(2f, .3f);
                     GameManager.Instance.UIManager.BagMenu.MultiplyScoreText.SetTextValue(MultiplierScore.ToString());
+                });
+            }
+
+            if (itemPP > 0)
+            {
+                CountSequence.ChainDelay(.3f);
+                CountSequence.ChainCallback(() =>
+                {
+                    CameraManager.Instance.SimpleShake();
+                    item.Highlight();
+                    SaveManager.Instance.AddPP(itemPP, item.InfoSpawnPoint.position);
+                    GameManager.Instance.UIManager.TextPopperManager_Number.PopText("+" + itemPP + "<sprite name=PP>", item.InfoSpawnPoint.position, Color.white, UI_TextPopper.AnimSpeed.Quick);
+                    AudioManager.PlaySound(AudioManager.Instance.CountItem);
                 });
             }
 

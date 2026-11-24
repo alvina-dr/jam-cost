@@ -45,13 +45,6 @@ public class DataLoader : MonoBehaviour
             CombinationData combinationData = Instantiate(combinationDataList[i]);
             CombinationDataDictionary.Add(combinationData.Data.Name, combinationData);
         }
-
-        List<ItemTagData> itemTagDataList = Resources.LoadAll<ItemTagData>("ItemTagData").ToList();
-        for (int i = 0; i < itemTagDataList.Count; i++)
-        {
-            ItemTagData itemTagData = Instantiate(itemTagDataList[i]);
-            ItemTagDataDictionary.Add(itemTagData.Name, itemTagData);
-        }
     }
 
 
@@ -63,11 +56,6 @@ public class DataLoader : MonoBehaviour
     public static CombinationData GetInstantiatedCombination(CombinationData combination)
     {
         return Instance.CombinationDataDictionary[combination.Data.Name];
-    }
-
-    public ItemTagData GetRandomItemTagData()
-    {
-        return ItemTagDataDictionary.ElementAt(Random.Range(0, ItemTagDataDictionary.Count)).Value;
     }
 
     public string ConvertTimeToMinutes(float time)
